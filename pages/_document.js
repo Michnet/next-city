@@ -10,12 +10,13 @@ export default function Document() {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
         <link rel="stylesheet" type="text/css" href="/styles/style.css"></link>
+        <link rel="stylesheet" type="text/css" href="/styles/custom.min.css"></link>
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="/fonts/css/fontawesome-all.min.css"/>    
         <link rel="manifest" href="/_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js"/>
         <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/icon-192x192.png"></link>
       </Head>
-      <body class="theme-light" data-highlight="highlight-red" data-gradient="body-default">
+      <body className="in_transit theme-light" data-highlight="highlight-red" data-gradient="body-default">
         
         <Main/>
         <NextScript />

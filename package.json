@@ -10,10 +10,21 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "colorthief": "^2.4.0",
+    "dayjs": "^1.11.10",
     "ky": "^1.2.1",
     "next": "14.1.0",
+    "next-auth": "^4.24.6",
     "react": "^18",
+    "react-countdown": "^2.3.5",
     "react-dom": "^18",
-    "swr": "^2.2.5"
+    "react-hydration-provider": "^2.1.0",
+    "react-multi-date-picker": "^4.4.1",
+    "react-responsive-masonry": "^2.2.0",
+    "react-tagcloud": "^2.3.3",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
+    "swr": "^2.2.5",
+    "yet-another-react-lightbox": "^3.17.0"
   }
 }

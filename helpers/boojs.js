@@ -39,10 +39,10 @@ export function run_boojs(){
 //'use strict'
 
 //Removing Preloader
-setTimeout(function(){
+/* setTimeout(function(){
     var preloader = document.getElementById('preloader')
     if(preloader){preloader.classList.add('preloader-hide');}
-},150);
+},150); */
 
 //Global Variables
 let isPWA = true;  // Enables or disables the service worker and PWA
@@ -63,8 +63,12 @@ function init_template(){
 
     //Attaching Menu Hider
     var menuHider = document.getElementsByClassName('menu-hider');
-    if(!menuHider.length){var hider = document.createElement('div'); hider.setAttribute("class", "menu-hider");document.body.insertAdjacentElement('beforebegin', hider);}
-    setTimeout(function() {if(hider.classList.contains('menu-active')){hider.classList.remove('menu-active');}}, 50);
+    if(!menuHider.length){
+        console.log('None found');
+        var hider = document.createElement('div'); hider.setAttribute("class", "menu-hider");document.body.insertAdjacentElement('beforebegin', hider);}else{
+            console.log('One found', menuHider);
+        }
+    setTimeout(function() {if(hider?.classList.contains('menu-active')){hider.classList.remove('menu-active');}}, 50);
 
     //Activating Menus
     document.querySelectorAll('.menu').forEach(el=>{el.style.display='block'})

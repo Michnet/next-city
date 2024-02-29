@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect } from "react";
 //import { Inter } from "next/font/google";
 import { run_template } from './../../helpers/js';
 import { run_boojs } from './../../helpers/boojs';
+import RouteLoader from "./RouteLoader";
 
 //const inter = Inter({ subsets: ["latin"] });
 
@@ -189,7 +189,7 @@ export default function Layout({children}) {
 {run_boojs()}
  {/* {run_template()} */}
  </Script>	
- 
+ <RouteLoader/>
 </main>
   );
 }

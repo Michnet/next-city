@@ -1,6 +1,6 @@
 // To clear cache on devices, always increase APP_VER number after making changes.
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
-var APP_NAME = 'StickyMobile';
+var APP_NAME = 'LyveCity';
 var APP_VER = '4.8.1';
 var CACHE_NAME = APP_NAME + '-' + APP_VER;
 

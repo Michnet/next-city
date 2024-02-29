@@ -2,6 +2,16 @@
   transition: all 350ms ease;
 }
 
+#preloader{
+  transition: all 150ms ease !important;
+  display: none;
+  visibility: hidden
+}
+body.in_transit #preloader{
+display: block;
+visibility:visible;
+} 
+
 /*Typography Settings*/
 body {
   font-size: 13px;

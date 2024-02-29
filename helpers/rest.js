@@ -1,4 +1,4 @@
-import { serializeQuery, WPDomain } from "./base";
+import { kyFetch, serializeQuery, WPDomain } from "./base";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -29,6 +29,28 @@ export async function advancedFetchListings(payload){
           const errorJson = await error.response.json();
         } */
       }
+}
+
+export const getEventDates = async (payload) => {
+
+  const endPoint = `wp-json/m-api/v1/event-dates?${serializeQuery({
+      ...payload
+  })
+}`;
+if(!payload?.event_id || payload?.event_id == 'undefined'){
+  return;
+}else{
+
+  try {
+    const res = await kyFetch.get(`${WPDomain}/${endPoint}`).json();
+    if(res){
+        return res;
+      }else{
+    }
+  } catch (error) {
+    console.log('got failed', error)
+  }
+}
 }
 
 

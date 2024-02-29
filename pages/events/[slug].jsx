@@ -1,4 +1,5 @@
 import Layout from "@/components/layouts/Layout";
+import CountDownUI from "@/components/UI/CountDownUI";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
 import { cleanHtml } from "@/helpers/universal";
 import { memo } from "react";
@@ -42,7 +43,7 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, logo, thumbnail, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, categories, logo, thumbnail, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
     const {_links} = meta ?? {};
 
     console.log('listing', listing);
@@ -50,7 +51,7 @@ export async function getStaticPaths() {
     return <Layout> 
     <div className="page-content">
 
-    <div className="card preload-img" data-src={cover} data-card-height="480">
+    <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{background: `${cover}`, height:'60vh'}}>
         <div className="card-top m-3">
             <div className="notch-clear">
                 <a data-back-button href="#" className="icon icon-xs bg-white color-black rounded-m"><i className="fa fa-angle-left"></i></a>
@@ -58,7 +59,7 @@ export async function getStaticPaths() {
         </div>
         <div className="card-bottom ms-3 mb-3">
             <span className="bg-highlight color-white font-700 p-2 rounded-s">
-                $2.50 / bottle
+                {categories[0]?.name}
             </span>
             <h1 className="font-40 font-900 line-height-xl mt-4">
                 {cleanHtml(title?.rendered)}
@@ -89,54 +90,66 @@ export async function getStaticPaths() {
         <div className="card-overlay bg-gradient-fade-small"></div>
     </div>
 
-    <div className="card card-overflow card-style mt-n5">
-        <div className="content">
-            <p>
-                The best selling Mobile Progressive Web App on the Envato Marketplaces just got even better now, with 3.0 introducing
-                Boostrap 4.x compatibility and a tone of new gorgeous features!
-            </p>
+    <div className="card card-style">
+            <div className="content">          
+                {short_desc && <p className="mb-4">
+                    <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
+                </p>}
+                <CountDownUI light /* fromActive */ eventId={id} />
+                <div className="row mb-3">
+                    <div className="col-6">
+                        <div className="d-flex">
+                            <div className="align-self-center">
+                                <i style={{width:"20px"}} className="fa fa-calendar color-teal-dark font-23 me-3 text-center"></i>
+                            </div>
+                            <div className="align-self-center">
+                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Date</span>
+                                <strong className="d-block font-12 pb-1 color-theme">Sun, 28 August</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div className="d-flex">
+                            <div className="align-self-center">
+                                <i style={{width:"20px"}} className="fa fa-clock color-red-dark font-23 me-3 text-center"></i>
+                            </div>
+                            <div className="align-self-center">
+                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Time</span>
+                                <strong className="d-block font-12 pb-1 color-theme">06:00 - 12:00 PM</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 mb-2"></div>
+                    <div className="col-6">
+                        <div className="d-flex">
+                            <div className="align-self-center">
+                                <i style={{width:"20px"}} className="fa fa-map-marker color-yellow-dark font-23 me-3 text-center"></i>
+                            </div>
+                            <div className="align-self-center">
+                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Place</span>
+                                <strong className="d-block font-12 pb-1 color-theme">Area 51, Nevada</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div className="d-flex">
+                            <div className="align-self-center">
+                                <i style={{width:"20px"}} className="fa fa-dollar-sign color-green-dark font-23 me-3 text-center"></i>
+                            </div>
+                            <div className="align-self-center">
+                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Ticket</span>
+                                <strong className="d-block font-12 pb-1 color-theme">$10 USD</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div className="row mb-0">
-                <div className="col-4">
-                    <span className="font-11">Origin</span>
-                    <p className="mt-n2 mb-3">
-                        <strong className="color-theme">Local</strong>
-                    </p>
-                </div>
-                <div className="col-4">
-                    <span className="font-11">Type</span>
-                    <p className="mt-n2 mb-3">
-                        <strong className="color-theme">Dairy</strong>
-                    </p>
-                </div>
-                <div className="col-4">
-                    <span className="font-11">Produced</span>
-                    <p className="mt-n2 mb-3">
-                        <strong className="color-theme">Today</strong>
-                    </p>
-                </div>
+                <div className="divider"></div>
 
+                <a href="#" className="btn btn-full btn-m rounded-sm shadow-xl bg-highlight font-700 text-uppercase">Join Event</a>
+                
             </div>
-
-            <div className="divider mt-3"></div>
-
-            <div className="d-flex">
-                <div className="flex-grow-1">
-                    <span className="font-11">Share with the World </span>
-                    <p className="mt-n2">
-                        <strong className="color-theme">Share or Save for Later</strong>
-                    </p>
-                </div>
-                <div className="flex-shrink-1 mt-1">
-                    <a href="#" data-menu="menu-share" className="icon icon-xs rounded-xl shadow-m ms-2 bg-blue-dark"><i className="fa fa-share-alt"></i></a>
-                    <a href="#" data-menu="menu-share" className="icon icon-xs rounded-xl shadow-m ms-2 bg-red-dark"><i className="fa fa-heart"></i></a>
-                </div>
-            </div>
-
-            <a href="#" className="btn btn-full btn-m font-900 text-uppercase rounded-sm shadow-l bg-green-dark mt-4">Purchase Today</a>
-
         </div>
-    </div>
 
     <div className="d-flex px-3 mb-n3">
         <div className="align-self-center">

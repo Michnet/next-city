@@ -4,7 +4,8 @@
 import useSWR  from "swr";
 import { advancedFetchListingsUrl, fetcher } from "@/helpers/rest";
 import Layout from "@/components/layouts/Layout";
-import { cleanHtml } from "@/helpers/universal";
+import { cleanHtml, shuffleArray } from "@/helpers/universal";
+import { PriceView } from "@/components/UI/PriceView";
 
 
 export default function Home() {
@@ -206,62 +207,48 @@ export default function Home() {
 
 <div className="content mt-2 mb-n3">
   <div className="row">
-    <div className="col-6 pe-2">
-      <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
-        <div className="card-top m-2">
-          <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">15% OFF</span>
-        </div>
-        <img src="images/travel/4m.jpg" alt="img" className="img-fluid"/>
-        <div className="p-2">
-          <h4 className="mb-0">Island Exploring</h4>
-          <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>Europe, Iceland</p>
-        </div>
-        <div className="divider mb-0"></div>
-        <h5 className="p-2 font-12">$1550 / 7 Days <span className="float-end font-400 font-11 color-green-dark">30 Left</span></h5>
-      </a>
-    </div>
-    <div className="col-6 ps-2">
-      <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
-        <div className="card-top m-2">
-          <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">25% OFF</span>
-        </div>
-        <img src="images/travel/7m.jpg" alt="img" width="100" className="img-fluid"/>
-        <div className="p-2">
-          <h4 className="mb-0">Mountain Hikes</h4>
-          <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>Europe, France</p>
-        </div>
-        <div className="divider mb-0"></div>
-        <h5 className="p-2 font-12">$1320 / 5 Days <span className="float-end font-400 font-11 color-yellow-dark">5 Left</span></h5>
-      </a>
-    </div>
-    <div className="col-6 pe-2">
-      <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
-        <div className="card-top m-2">
-          <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">15% OFF</span>
-        </div>
-        <img src="images/travel/3m.jpg" alt="img" className="img-fluid"/>
-        <div className="p-2">
-          <h4 className="mb-0">Forest Walks</h4>
-          <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>United States</p>
-        </div>
-        <div className="divider mb-0"></div>
-        <h5 className="p-2 font-12">$150 / 1 Day <span className="float-end font-400 font-11 color-red-dark">0 Left</span></h5>
-      </a>
-    </div>
-    <div className="col-6 ps-2">
-      <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
-        <div className="card-top m-2">
-          <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">25% OFF</span>
-        </div>
-        <img src="images/travel/5m.jpg" alt="img" width="100" className="img-fluid"/>
-        <div className="p-2">
-          <h4 className="mb-0">Ocean Dives</h4>
-          <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>Europe, France</p>
-        </div>
-        <div className="divider mb-0"></div>
-        <h5 className="p-2 font-12">$530 / 2 Dives <span className="float-end font-400 font-11 color-blue-dark">10 Left</span></h5>
-      </a>
-    </div>
+        {listings?.length > 0 ? 
+          shuffleArray(listings).map((li, ind) => {
+
+            let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
+            if(ind < 4){
+              if((ind + 1) % 2  == 0){
+               return <div className="col-6 ps-2">
+                    <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
+                      <div className="card-top m-2">
+                        <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">25% OFF</span>
+                      </div>
+                      <img src={xtra_large_thumb} alt="img" width="100" className="img-fluid" style={{height: '180px', objectFit: 'cover'}}/>
+                      <div className="p-2">
+                        <h4 className="mb-0">{cleanHtml(title?.rendered)}</h4>
+                        <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</p>
+                      </div>
+                      <div className="divider mb-0"></div>
+                      <h5 className="p-2 font-12">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
+                      <span className="float-end font-400 font-11 color-yellow-dark">5 Left</span>
+                      </h5>
+                    </a>
+                  </div>
+            }else{
+               return <div className="col-6 pe-2">
+               <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
+                 <div className="card-top m-2">
+                   <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">15% OFF</span>
+                 </div>
+                 <img src={xtra_large_thumb} alt="img" className="img-fluid" style={{height: '180px', objectFit: 'cover'}}/>
+                 <div className="p-2">
+                   <h4 className="mb-0">{cleanHtml(title?.rendered)}</h4>
+                   <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</p>
+                 </div>
+                 <div className="divider mb-0"></div>
+                 <h5 className="p-2 font-12">$1550 / 7 Days <span className="float-end font-400 font-11 color-green-dark">30 Left</span></h5>
+               </a>
+             </div>
+            }}
+          })
+          :
+          <></>
+        }
   </div>
 </div>
 
