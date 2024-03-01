@@ -2125,7 +2125,7 @@ button {
 .card {
   -webkit-transform: translate3d(0, 0, 0);
   background-size: cover;
-  border: 0px !important;
+  border: 0px;
   max-height: 150000px;
   margin-bottom: 30px;
   background-position: center center !important;

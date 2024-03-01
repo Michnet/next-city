@@ -1,26 +1,33 @@
-import dynamic from "next/dynamic";
+//import dynamic from "next/dynamic";
 import Link from "next/link";
 import Script from "next/script";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 //import { Inter } from "next/font/google";
 import { run_template } from './../../helpers/js';
 import { run_boojs } from './../../helpers/boojs';
 import RouteLoader from "./RouteLoader";
+import SiteHead from "../UI/SiteHead";
 
 //const inter = Inter({ subsets: ["latin"] });
 
-export default function Layout({children}) {
+export default function Layout({children, title}) {
 
 	console.log('loading layout')
   return (
+	<>
+	<SiteHead title={title ?? 'LyveCity Page'}/>
 	<main /* className={`${inter.className}`} */>
 	<div id="preloader"><div className="spinner-border color-highlight" role="status"></div></div>
     <div id='page'>
 
-	<div className="header header-fixed header-logo-center header-auto-show">
-		<Link href="/" className="header-title">Sticky Mobile</Link>
-		<a href="#" data-back-button className="header-icon header-icon-1"><i className="fas fa-arrow-left"></i></a>
-		<a href="#" data-toggle-theme className="header-icon header-icon-4"><i className="fas fa-lightbulb"></i></a>
+	<div className="header header-bar header-fixed header-logo-center header-auto-show">
+		<a href="#" data-back-button className="_left header-icon header-icon-1"><i className="fas fa-arrow-left"></i></a>
+		<div className="title_box"><Link href="/" className="header-title truncate mh-100">{title ?? 'LyveCity'}</Link></div>
+		<div className="_right">
+			<a href="#" data-toggle-theme className="header-menu-icon header-icon-4"><i className="bi bi-lamp-fill"></i></a>
+			<a href='#' data-bs-toggle='offcanvas' data-bs-target='#listing_menu' className="header-menu-icon header-icon-4"><i className="bi bi-caret-left"></i>
+			</a>
+		</div>
 	</div>
 
 	<div id="footer-bar" className="footer-bar-1">
@@ -186,10 +193,11 @@ export default function Layout({children}) {
 {/* <Script defer='true'  strategy={"afterInteractive"} onReady={() => console.log('Custom loaded')} src="/scripts/custom.js"/> */}
 
 <Script>
-{run_boojs()}
- {/* {run_template()} */}
+{/* {run_boojs()} */}
+ {run_template()}
  </Script>	
  <RouteLoader/>
 </main>
-  );
+</>
+  )
 }

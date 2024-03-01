@@ -53,13 +53,13 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, ra
             <div className="splide__list">
                 {listings?.length > 0 ?
                    listings.map((item) => {
-                    let {title, thumbnail} = item;
+                    let {title, thumbnail, slug} = item;
                     return (
                     <div className="splide__slide">
-                        <a href="#" className="mx-3">
+                        <a href={`/events/${slug}`} className="mx-3">
                             <div className="card card-style me-0 mb-0" style={{backgroundImage: `url(${thumbnail})`}} data-card-height="150">
                                 <div className="card-bottom p-2 px-3">
-                                    <h4 className="color-white">{cleanHtml(title?.rendered)}</h4>
+                                    <h4 className="color-white truncate-3">{cleanHtml(title?.rendered)}</h4>
                                 </div>
                                 <div className="card-overlay bg-gradient opacity-80"></div>
                             </div>

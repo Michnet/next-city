@@ -1,7 +1,9 @@
 import "@/styles/globals.css";
 import Head from "next/head";
 import { useEffect } from "react";
+import "@/public/scss/bootstrap.scss";
 import "@/public/scss/style.scss";
+import "@/public/styles/custom.min.css";
 import { RecoilRoot } from "recoil";
 import { HydrationProvider } from "react-hydration-provider";
 //import "@/public/scripts/bootstrap.min.js";
@@ -13,10 +15,13 @@ export default function App({ Component, pageProps }) {
   }); */
 
   useEffect(() => {
-    /* if (typeof window !== "undefined") {
-      require("@/public/scripts/bootstrap.min.js");
-    } */
-  });
+    require("@/helpers/boojs.js");
+   // require("bootstrap/dist/js/bootstrap.bundle.min.js");
+   /*  Aos.init({
+      duration: 1200,
+      once: true,
+    }); */
+}, []);
 
   return <>
       <Head>

@@ -1,4 +1,4 @@
-import RelatedByTaxSplide from "@/components/events/RelatedByTaxSplide";
+import RelatedByTaxSplide from "@/components/listing/RelatedByTaxSplide";
 import Layout from "@/components/layouts/Layout";
 import CountDownUI from "@/components/UI/CountDownUI";
 //import VisitRecord from "@/components/UI/VisitRecord";
@@ -6,7 +6,13 @@ import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
 import { cleanHtml } from "@/helpers/universal";
 import dynamic from "next/dynamic";
-import { memo } from "react";
+import { memo, useState } from "react";
+import FAQs from "@/components/UI/FAQs";
+import SiteHead from "@/components/UI/SiteHead";
+import MegaGallery from "@/components/UI/Galleries/MegaGallery";
+import listingMenu from "@/components/listing/ListingMenu";
+import { useRouter } from "next/router";
+import ListingSideMenu from "@/components/listing/ListingSideMenu";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 
@@ -49,13 +55,32 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, categories, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, categories, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {faqs} = about_us ?? {};
     const {_links} = meta ?? {};
+    const router = useRouter();
+    const {query} = router;
+    const [activeKey, setActiveKey] = useState(query?.page ?? 'home');
+
+    let localMenu = listingMenu({listing:listing/*, userId: user?.id */});
+    console.log('menu', localMenu);
 
     console.log('listing', listing);
 
-    return <Layout> 
+    return <Layout title={cleanHtml(title?.rendered)}> 
         <>
+        <SiteHead
+           title={`${cleanHtml(listing?.title?.rendered)}`} 
+           description={`${listing?.short_desc}`}
+           image={listing?.large_thumb}
+           type='event'
+           updated_time={modified}
+           phone_number={phone}
+           street_address={address}
+           latitude={latitude}
+           longitude={longitude}
+           slug={`/events/${slug}`}
+           />
     <div className="page-content">
 
     <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{backgroundImage: `url(${cover})`, height:'60vh'}}>
@@ -99,7 +124,7 @@ export async function getStaticPaths() {
 
     <div className="card card-style">
             <div className="content">          
-                {short_desc && <p className="mb-4 text-16 bb-thin pb-2">
+                {short_desc && <p className="mb-4 text-14 pb-2">
                     <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
                 </p>}
                 <CountDownUI /* fromActive */ eventId={id} />
@@ -110,7 +135,7 @@ export async function getStaticPaths() {
                                 <i style={{width:"20px"}} className="fa fa-calendar color-teal-dark font-23 me-3 text-center"></i>
                             </div>
                             <div className="align-self-center">
-                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Date</span>
+                                <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50">Date</span>
                                 <strong className="d-block font-12 pb-1 color-theme">Sun, 28 August</strong>
                             </div>
                         </div>
@@ -121,7 +146,7 @@ export async function getStaticPaths() {
                                 <i style={{width:"20px"}} className="bi bi-clock color-red-dark font-23 me-3 text-center"></i>
                             </div>
                             <div className="align-self-center">
-                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Time</span>
+                                <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50">Time</span>
                                 <strong className="d-block font-12 pb-1 color-theme">06:00 - 12:00 PM</strong>
                             </div>
                         </div>
@@ -133,7 +158,7 @@ export async function getStaticPaths() {
                                 <i style={{width:"20px"}} className="fa fa-map-marker color-yellow-dark font-23 me-3 text-center"></i>
                             </div>
                             <div className="align-self-center">
-                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Place</span>
+                                <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50">Place</span>
                                 <strong className="d-block font-12 pb-1 color-theme">Area 51, Nevada</strong>
                             </div>
                         </div>
@@ -144,7 +169,7 @@ export async function getStaticPaths() {
                                 <i style={{width:"20px"}} className="fa fa-dollar-sign color-green-dark font-23 me-3 text-center"></i>
                             </div>
                             <div className="align-self-center">
-                                <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Ticket</span>
+                                <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50">Ticket</span>
                                 <strong className="d-block font-12 pb-1 color-theme">$10 USD</strong>
                             </div>
                         </div>
@@ -158,6 +183,24 @@ export async function getStaticPaths() {
             </div>
         </div>
 
+        <div className="card card-style shadow-0 radius-0 bg-transparent">
+        <MegaGallery listing={listing} /* color={color} *//>
+        </div>
+
+        <div className="card card-style shadow-0 border bg-transparent">
+            <div className="content">
+                <div class="d-flex pb-2 border-bottom mb-3 ">
+                    <div>
+                        <h6 class="mb-n1 opacity-80 color-highlight">FAQs</h6>
+                        <h3>Common Questions</h3>
+                    </div>
+                    <div class="align-self-center ms-auto">
+                    <i class="bi bi-question-circle-fill font-24 color-red-dark"></i>
+                    </div>
+                </div>
+                <FAQs faqs={faqs} postID={id}/>
+            </div>
+        </div>
         <RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/>
 
     <div className="footer card card-style">
@@ -179,6 +222,7 @@ export async function getStaticPaths() {
 {/* <!-- End of Page Content--> */}
 
 {/* <!-- All Menus, Action Sheets, Modals, Notifications, Toasts, Snackbars get Placed outside the <div className="page-content"> --> */}
+    <ListingSideMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <VisitRecord Id={listing.id}/>
     <ListingStater id={listing.id}/>
     </>

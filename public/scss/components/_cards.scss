@@ -6,7 +6,7 @@ $card-under-bg-zindex:1;
 .card {
 	-webkit-transform: translate3d(0,0,0);
 	background-size: cover;
-	border: $rounded-0 !important;
+	border: $rounded-0;
 	max-height: 150000px;
     margin-bottom:$globalMargin;
 	background-position: center center !important;

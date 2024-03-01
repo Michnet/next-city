@@ -220,7 +220,7 @@ export default function Home() {
                       </div>
                       <img src={xtra_large_thumb} alt="img" width="100" className="img-fluid" style={{height: '180px', objectFit: 'cover'}}/>
                       <div className="p-2">
-                        <h4 className="mb-0">{cleanHtml(title?.rendered)}</h4>
+                        <h4 className="mb-0 truncate-2 text-14">{cleanHtml(title?.rendered)}</h4>
                         <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</p>
                       </div>
                       <div className="divider mb-0"></div>
@@ -237,11 +237,11 @@ export default function Home() {
                  </div>
                  <img src={xtra_large_thumb} alt="img" className="img-fluid" style={{height: '180px', objectFit: 'cover'}}/>
                  <div className="p-2">
-                   <h4 className="mb-0">{cleanHtml(title?.rendered)}</h4>
+                   <h4 className="mb-0 truncate-2 text-14">{cleanHtml(title?.rendered)}</h4>
                    <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</p>
                  </div>
                  <div className="divider mb-0"></div>
-                 <h5 className="p-2 font-12">$1550 / 7 Days <span className="float-end font-400 font-11 color-green-dark">30 Left</span></h5>
+                 <h5 className="p-2 font-12">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }<span className="float-end font-400 font-11 color-green-dark">30 Left</span></h5>
                </a>
              </div>
             }}
