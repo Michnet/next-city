@@ -213,7 +213,7 @@ export default function Home() {
             let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
             if(ind < 4){
               if((ind + 1) % 2  == 0){
-               return <div className="col-6 ps-2">
+               return <div className="col-6 ps-2" key={id}>
                     <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
                       <div className="card-top m-2">
                         <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">25% OFF</span>
@@ -230,7 +230,7 @@ export default function Home() {
                     </a>
                   </div>
             }else{
-               return <div className="col-6 pe-2">
+               return <div className="col-6 pe-2" key={id}>
                <a href="#" data-menu="menu-reserve" className="card card-style mx-0 mb-3">
                  <div className="card-top m-2">
                    <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">15% OFF</span>

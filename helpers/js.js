@@ -30,7 +30,7 @@ setTimeout(function(){
             //Attaching Menu Hider
             var menuHider = document.getElementsByClassName('menu-hider');
             if(!menuHider.length){var hider = document.createElement('div'); hider.setAttribute("class", "menu-hider");document.body.insertAdjacentElement('beforebegin', hider);}
-            setTimeout(function() {if(hider.classList.contains('menu-active')){hider.classList.remove('menu-active');}}, 50);
+            setTimeout(function() {if(hider?.classList.contains('menu-active')){hider.classList.remove('menu-active');}}, 50);
 
             //Activating Menus
             document.querySelectorAll('.menu').forEach(el=>{el.style.display='block'})
