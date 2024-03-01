@@ -1,6 +1,8 @@
 // Importing Bootstrap Variables to Reuse
 @import "bootstrap/functions";
 @import "bootstrap/variables";
+@import "custom/tools";
+@import "custom/variables";
 
 //Importing Sticky Utility Classes
 @import "sticky/variables";
@@ -61,6 +63,7 @@
 //Demo Aligns for Icons and Background Demo Images
 //Can be deleted to save space
 @import "components/zdemo";
+@import "custom/typography";
 
 //Importing Plugins
 @import "plugins/splide";

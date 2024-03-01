@@ -53,6 +53,25 @@ if(!payload?.event_id || payload?.event_id == 'undefined'){
 }
 }
 
+export const recordVisit = async (payload) => {
+
+  const endPoint = `wp-json/m-api/v1/visit?${serializeQuery({
+      ...payload
+  })
+}`;
+
+try {
+  const res = await kyFetch.post(`${WPDomain}/${endPoint}`).json();
+  if(res){
+      return res;
+    }else{
+      return null
+  }
+  } catch (error) {
+    console.log('got failed', error)
+  }  
+}    
+
 
 export const fetchIdsUrl = (payload) => {
   let endpoint;

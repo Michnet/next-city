@@ -1,8 +1,14 @@
+import RelatedByTaxSplide from "@/components/events/RelatedByTaxSplide";
 import Layout from "@/components/layouts/Layout";
 import CountDownUI from "@/components/UI/CountDownUI";
+//import VisitRecord from "@/components/UI/VisitRecord";
+import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
 import { cleanHtml } from "@/helpers/universal";
+import dynamic from "next/dynamic";
 import { memo } from "react";
+const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
+
 
 export async function getStaticPaths() {
     const res = await fetch(fetchIdsUrl({type: 'job_listing', listing_type:'event', slugs: true}));
@@ -43,15 +49,16 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, categories, logo, thumbnail, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, categories, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
     const {_links} = meta ?? {};
 
     console.log('listing', listing);
 
     return <Layout> 
+        <>
     <div className="page-content">
 
-    <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{background: `${cover}`, height:'60vh'}}>
+    <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{backgroundImage: `url(${cover})`, height:'60vh'}}>
         <div className="card-top m-3">
             <div className="notch-clear">
                 <a data-back-button href="#" className="icon icon-xs bg-white color-black rounded-m"><i className="fa fa-angle-left"></i></a>
@@ -66,7 +73,7 @@ export async function getStaticPaths() {
             </h1>
             <p className="mb-3">
                 <i className="fa fa-map-marker font-11 me-2"></i>
-                From Joe's Farm on 8th Street and Main
+                {address}
             </p>
             <div className="d-flex pb-4">
                 <div className="align-self-center flex-grow-1">
@@ -83,7 +90,7 @@ export async function getStaticPaths() {
                     </p>
                 </div>
                 <div className="align-self-center flex-shrink-1">
-                    <a href="#" className="btn btn-full btn-s me-3 font-900 text-uppercase rounded-sm shadow-xxl bg-blue-dark">Follow Farm</a>
+                    <a href="#" className="btn btn-full btn-s me-3 font-900 text-uppercase rounded-sm shadow-xxl bg-dark-dark">Booking</a>
                 </div>
             </div>
         </div>
@@ -92,10 +99,10 @@ export async function getStaticPaths() {
 
     <div className="card card-style">
             <div className="content">          
-                {short_desc && <p className="mb-4">
+                {short_desc && <p className="mb-4 text-16 bb-thin pb-2">
                     <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
                 </p>}
-                <CountDownUI light /* fromActive */ eventId={id} />
+                <CountDownUI /* fromActive */ eventId={id} />
                 <div className="row mb-3">
                     <div className="col-6">
                         <div className="d-flex">
@@ -111,7 +118,7 @@ export async function getStaticPaths() {
                     <div className="col-6">
                         <div className="d-flex">
                             <div className="align-self-center">
-                                <i style={{width:"20px"}} className="fa fa-clock color-red-dark font-23 me-3 text-center"></i>
+                                <i style={{width:"20px"}} className="bi bi-clock color-red-dark font-23 me-3 text-center"></i>
                             </div>
                             <div className="align-self-center">
                                 <span className="d-block font-10 mb-n3 pb-1 color-theme opacity-50">Time</span>
@@ -151,71 +158,7 @@ export async function getStaticPaths() {
             </div>
         </div>
 
-    <div className="d-flex px-3 mb-n3">
-        <div className="align-self-center">
-            <h4 className="mb-0">More Local Produce</h4>
-        </div>
-        <div className="align-self-center ms-auto">
-            <a href="#" className="font-12">View All</a>
-        </div>
-    </div>
-
-    <div className="splide double-slider slider-no-dots text-center visible-slider" id="double-slider-1a">
-        <div className="splide__track">
-            <div className="splide__list">
-                <div className="splide__slide">
-                    <a href="#" className="mx-3">
-                        <div className="card card-style me-0 mb-0" style={{backgroundImage: 'url(/images/grocery/10m.jpg)'}} data-card-height="150">
-                            <div className="card-bottom p-2 px-3">
-                                <h4 className="color-white">Specials</h4>
-                            </div>
-                            <div className="card-overlay bg-gradient opacity-80"></div>
-                        </div>
-                    </a>
-                </div>
-                <div className="splide__slide">
-                    <a href="#" className="mx-3">
-                        <div className="card card-style me-0 mb-0" style={{backgroundImage: 'url(/images/grocery/7m.jpg)'}} data-card-height="150">
-                            <div className="card-bottom p-2 px-3">
-                                <h4 className="color-white">Fruit</h4>
-                            </div>
-                            <div className="card-overlay bg-gradient opacity-80"></div>
-                        </div>
-                    </a>
-                </div>
-                <div className="splide__slide">
-                    <a href="#" className="mx-3">
-                        <div className="card card-style me-0 mb-0" style={{backgroundImage: 'url(/images/grocery/9m.jpg)'}} data-card-height="150">
-                            <div className="card-bottom p-2 px-3">
-                                <h4 className="color-white">Veggies</h4>
-                            </div>
-                            <div className="card-overlay bg-gradient opacity-80"></div>
-                        </div>
-                    </a>
-                </div>
-                <div className="splide__slide">
-                    <a href="#" className="mx-3">
-                        <div className="card card-style me-0 mb-0" style={{backgroundImage: 'url(/images/grocery/2m.jpg)'}} data-card-height="150">
-                            <div className="card-bottom p-2 px-3">
-                                <h4 className="color-white">Grains</h4>
-                            </div>
-                            <div className="card-overlay bg-gradient opacity-80"></div>
-                        </div>
-                    </a>
-                </div>
-                <div className="splide__slide">
-                    <a href="#" className="mx-3">
-                        <div className="card card-style me-0 mb-0" style={{backgroundImage: 'url(/images/grocery/6m.jpg)'}} data-card-height="150">
-                            <div className="card-bottom p-2 px-3">
-                                <h4 className="color-white">Dariy</h4>
-                            </div>
-                            <div className="card-overlay bg-gradient opacity-80"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/>
 
     <div className="footer card card-style">
         <a href="#" className="footer-title"><span className="color-highlight">StickyMobile</span></a>
@@ -236,6 +179,9 @@ export async function getStaticPaths() {
 {/* <!-- End of Page Content--> */}
 
 {/* <!-- All Menus, Action Sheets, Modals, Notifications, Toasts, Snackbars get Placed outside the <div className="page-content"> --> */}
+    <VisitRecord Id={listing.id}/>
+    <ListingStater id={listing.id}/>
+    </>
 </Layout>
 
   }

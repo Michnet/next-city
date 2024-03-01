@@ -130,19 +130,19 @@ body {
 }
 
 .theme-light .header .header-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(/images/preload-logo.png);
 }
 
 .theme-dark .header .header-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(/images/preload-logo.png);
 }
 
 .theme-light .footer .footer-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(/images/preload-logo.png);
 }
 
 .theme-dark .footer .footer-logo {
-  background-image: url(../images/preload-logo.png);
+  background-image: url(/images/preload-logo.png);
 }
 
 /*--Header---*/
@@ -6452,127 +6452,127 @@ input[type=number] {
 
 /*Styles used to showcase the demo product on ThemeForest and create backgrounds. These can be deleted to increase speed of loading*/
 .bg-0 {
-  background-image: url(../images/pictures/0l.jpg);
+  background-image: url(/images/pictures/0l.jpg);
 }
 
 .bg-1 {
-  background-image: url(../images/pictures/1.jpg);
+  background-image: url(/images/pictures/1.jpg);
 }
 
 .bg-2 {
-  background-image: url(../images/pictures/2.jpg);
+  background-image: url(/images/pictures/2.jpg);
 }
 
 .bg-3 {
-  background-image: url(../images/pictures/3.jpg);
+  background-image: url(/images/pictures/3.jpg);
 }
 
 .bg-4 {
-  background-image: url(../images/pictures/4.jpg);
+  background-image: url(/images/pictures/4.jpg);
 }
 
 .bg-5 {
-  background-image: url(../images/pictures/5.jpg);
+  background-image: url(/images/pictures/5.jpg);
 }
 
 .bg-6 {
-  background-image: url(../images/pictures/6.jpg);
+  background-image: url(/images/pictures/6.jpg);
 }
 
 .bg-7 {
-  background-image: url(../images/pictures/7.jpg);
+  background-image: url(/images/pictures/7.jpg);
 }
 
 .bg-8 {
-  background-image: url(../images/pictures/8.jpg);
+  background-image: url(/images/pictures/8.jpg);
 }
 
 .bg-9 {
-  background-image: url(../images/pictures/9.jpg);
+  background-image: url(/images/pictures/9.jpg);
 }
 
 .bg-10 {
-  background-image: url(../images/pictures/10.jpg);
+  background-image: url(/images/pictures/10.jpg);
 }
 
 .bg-11 {
-  background-image: url(../images/pictures/11.jpg);
+  background-image: url(/images/pictures/11.jpg);
 }
 
 .bg-12 {
-  background-image: url(../images/pictures/12.jpg);
+  background-image: url(/images/pictures/12.jpg);
 }
 
 .bg-13 {
-  background-image: url(../images/pictures/13.jpg);
+  background-image: url(/images/pictures/13.jpg);
 }
 
 .bg-14 {
-  background-image: url(../images/pictures/14.jpg);
+  background-image: url(/images/pictures/14.jpg);
 }
 
 .bg-15 {
-  background-image: url(../images/pictures/15.jpg);
+  background-image: url(/images/pictures/15.jpg);
 }
 
 .bg-16 {
-  background-image: url(../images/pictures/16.jpg);
+  background-image: url(/images/pictures/16.jpg);
 }
 
 .bg-17 {
-  background-image: url(../images/pictures/17.jpg);
+  background-image: url(/images/pictures/17.jpg);
 }
 
 .bg-18 {
-  background-image: url(../images/pictures/18.jpg);
+  background-image: url(/images/pictures/18.jpg);
 }
 
 .bg-19 {
-  background-image: url(../images/pictures/19.jpg);
+  background-image: url(/images/pictures/19.jpg);
 }
 
 .bg-20 {
-  background-image: url(../images/pictures/20.jpg);
+  background-image: url(/images/pictures/20.jpg);
 }
 
 .bg-21 {
-  background-image: url(../images/pictures/21.jpg);
+  background-image: url(/images/pictures/21.jpg);
 }
 
 .bg-22 {
-  background-image: url(../images/pictures/22.jpg);
+  background-image: url(/images/pictures/22.jpg);
 }
 
 .bg-23 {
-  background-image: url(../images/pictures/23.jpg);
+  background-image: url(/images/pictures/23.jpg);
 }
 
 .bg-24 {
-  background-image: url(../images/pictures/24.jpg);
+  background-image: url(/images/pictures/24.jpg);
 }
 
 .bg-25 {
-  background-image: url(../images/pictures/25.jpg);
+  background-image: url(/images/pictures/25.jpg);
 }
 
 .bg-26 {
-  background-image: url(../images/pictures/26.jpg);
+  background-image: url(/images/pictures/26.jpg);
 }
 
 .bg-27 {
-  background-image: url(../images/pictures/27.jpg);
+  background-image: url(/images/pictures/27.jpg);
 }
 
 .bg-28 {
-  background-image: url(../images/pictures/28.jpg);
+  background-image: url(/images/pictures/28.jpg);
 }
 
 .bg-29 {
-  background-image: url(../images/pictures/29.jpg);
+  background-image: url(/images/pictures/29.jpg);
 }
 
 .bg-30 {
-  background-image: url(../images/pictures/30.jpg);
+  background-image: url(/images/pictures/30.jpg);
 }
 
 /*Demo Colors*/

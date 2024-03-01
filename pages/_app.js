@@ -1,6 +1,9 @@
 import "@/styles/globals.css";
 import Head from "next/head";
 import { useEffect } from "react";
+import "@/public/scss/style.scss";
+import { RecoilRoot } from "recoil";
+import { HydrationProvider } from "react-hydration-provider";
 //import "@/public/scripts/bootstrap.min.js";
 
 export default function App({ Component, pageProps }) {
@@ -16,9 +19,14 @@ export default function App({ Component, pageProps }) {
   });
 
   return <>
-  <Head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-    <title>Next City</title>
-  </Head>
-  <Component {...pageProps} /></>;
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+        <title>Next City</title>
+      </Head>
+      <RecoilRoot>
+        <HydrationProvider>
+            <Component {...pageProps} />;
+        </HydrationProvider>
+      </RecoilRoot>
+  </>
 }
