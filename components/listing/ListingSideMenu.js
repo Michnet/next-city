@@ -61,18 +61,18 @@ if(localMenu){
   return (
     <>
        <Client>
-      <div style={{width : 300}} className="l_menu_drawer offcanvas offcanvas-end" tabindex="-1" id="listing_menu"> 
+      <div style={{width : 300}} className="l_menu_drawer offcanvas offcanvas-end" tabIndex="-1" id="listing_menu"> 
         <div className="underlay" style={{backgroundSize: 'cover', backgroundPosition: 'center', background: `url(${srcWithFallback(cover)})`}}>
         </div>
-        <div class="offcanvas-header">
+        <div className="offcanvas-header">
             <div className="side_menu menu_logo"> 
               {/* <Avatar rounded width={40} height={40} src={thumbnail}/> */}
               {/* <HeaderAnnex/> */}
               {/* <h4 className="_title gx-text-truncate" dangerouslySetInnerHTML={{__html: title?.rendered}}/> */}
             </div>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body px-30">
+        <div className="offcanvas-body px-30">
                 <div className="d-flex flex-column justify-between h-100"><ul className="listing_menu">
                   {listView}
                 </ul>

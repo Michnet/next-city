@@ -1,3 +1,6 @@
+:root{
+  --highlight: #2ABA66 !important;
+}
 /* Generating Color Pack*/
 .color-highlight {
   color: #2ABA66 !important;

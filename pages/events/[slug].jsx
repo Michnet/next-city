@@ -13,6 +13,8 @@ import MegaGallery from "@/components/UI/Galleries/MegaGallery";
 import listingMenu from "@/components/listing/ListingMenu";
 import { useRouter } from "next/router";
 import ListingSideMenu from "@/components/listing/ListingSideMenu";
+import { Client } from "react-hydration-provider";
+import RightMenu from "@/components/listing/RightMenu";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 
@@ -124,9 +126,9 @@ export async function getStaticPaths() {
 
     <div className="card card-style">
             <div className="content">          
-                {short_desc && <p className="mb-4 text-14 pb-2">
+                <Client>{short_desc && <p className="mb-4 text-14 pb-2">
                     <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
-                </p>}
+                </p>}</Client>
                 <CountDownUI /* fromActive */ eventId={id} />
                 <div className="row mb-3">
                     <div className="col-6">
@@ -187,7 +189,7 @@ export async function getStaticPaths() {
         <MegaGallery listing={listing} /* color={color} *//>
         </div>
 
-        <div className="card card-style shadow-0 border bg-transparent">
+        {faqs?.length > 0 && <div className="card card-style shadow-0 border bg-transparent">
             <div className="content">
                 <div class="d-flex pb-2 border-bottom mb-3 ">
                     <div>
@@ -200,8 +202,8 @@ export async function getStaticPaths() {
                 </div>
                 <FAQs faqs={faqs} postID={id}/>
             </div>
-        </div>
-        <RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/>
+        </div>}
+        <Client><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></Client>
 
     <div className="footer card card-style">
         <a href="#" className="footer-title"><span className="color-highlight">StickyMobile</span></a>
@@ -213,7 +215,7 @@ export async function getStaticPaths() {
             <a href="#" data-menu="menu-share" className="icon icon-xs rounded-sm me-1 shadow-l bg-red-dark"><i className="fa fa-share-alt"></i></a>
             <a href="#" className="back-to-top icon icon-xs rounded-sm shadow-l bg-dark-light"><i className="fa fa-angle-up"></i></a>
         </div>
-        <p className="footer-copyright">Copyright &copy; Enabled <span id="copyright-year">2017</span>. All Rights Reserved.</p>
+        <p className="footer-copyright">Copyright &copy; Enabled <span id="copyright-year">2024</span>. All Rights Reserved.</p>
         <p className="footer-links"><a href="#" className="color-highlight">Privacy Policy</a> | <a href="#" className="color-highlight">Terms and Conditions</a> | <a href="#" className="back-to-top color-highlight"> Back to Top</a></p>
         <div className="clear"></div>
     </div>
@@ -223,6 +225,7 @@ export async function getStaticPaths() {
 
 {/* <!-- All Menus, Action Sheets, Modals, Notifications, Toasts, Snackbars get Placed outside the <div className="page-content"> --> */}
     <ListingSideMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+    <RightMenu/>
     <VisitRecord Id={listing.id}/>
     <ListingStater id={listing.id}/>
     </>

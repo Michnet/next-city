@@ -14,7 +14,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, ra
 
     
     let payload = {
-        _fields : 'id,title,thumbnail,fields,ticket_min_price_html, event_date,slug,_links,page_views,featured_media,acf,rating,category,schedule,longitude,latitude,level,short_desc,type,dir_categories,thumbnail, gallery,locations', 
+        _fields : 'id,title,thumbnail,fields,ticket_min_price_html, event_date,slug,_links,page_views,featured_media,acf,rating,category,schedule,longitude,latitude,level,short_desc,type,dir_categories,large_thumb, gallery,locations', 
         exclude : exclude,
         per_page : 5,
         page: page,
@@ -53,11 +53,11 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, ra
             <div className="splide__list">
                 {listings?.length > 0 ?
                    listings.map((item) => {
-                    let {title, thumbnail, slug} = item;
+                    let {title, large_thumb, slug, id} = item;
                     return (
-                    <div className="splide__slide">
+                    <div className="splide__slide" key={id}>
                         <a href={`/events/${slug}`} className="mx-3">
-                            <div className="card card-style me-0 mb-0" style={{backgroundImage: `url(${thumbnail})`}} data-card-height="150">
+                            <div className="card card-style me-0 mb-0" style={{backgroundImage: `url(${large_thumb})`}} data-card-height="150">
                                 <div className="card-bottom p-2 px-3">
                                     <h4 className="color-white truncate-3">{cleanHtml(title?.rendered)}</h4>
                                 </div>

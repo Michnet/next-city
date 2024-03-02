@@ -7,6 +7,7 @@ import { run_template } from './../../helpers/js';
 import { run_boojs } from './../../helpers/boojs';
 import RouteLoader from "./RouteLoader";
 import SiteHead from "../UI/SiteHead";
+import { Client } from "react-hydration-provider";
 
 //const inter = Inter({ subsets: ["latin"] });
 
@@ -20,15 +21,15 @@ export default function Layout({children, title}) {
 	<div id="preloader"><div className="spinner-border color-highlight" role="status"></div></div>
     <div id='page'>
 
-	<div className="header header-bar header-fixed header-logo-center header-auto-show">
+	<Client><div className="header header-bar header-fixed header-logo-center header-auto-show">
 		<a href="#" data-back-button className="_left header-icon header-icon-1"><i className="fas fa-arrow-left"></i></a>
 		<div className="title_box"><Link href="/" className="header-title truncate mh-100">{title ?? 'LyveCity'}</Link></div>
 		<div className="_right">
 			<a href="#" data-toggle-theme className="header-menu-icon header-icon-4"><i className="bi bi-lamp-fill"></i></a>
-			<a href='#' data-bs-toggle='offcanvas' data-bs-target='#listing_menu' className="header-menu-icon header-icon-4"><i className="bi bi-caret-left"></i>
-			</a>
+			<a href='#' data-bs-toggle='offcanvas' data-bs-target='#listing_menu' className="header-menu-icon header-icon-4"><i className="bi bi-caret-left"></i></a>
+			<a href="#" data-menu="menu-sidebar-right-2"><i class="fa fa-heart font-18 color-red-dark"></i></a>
 		</div>
-	</div>
+	</div></Client>
 
 	<div id="footer-bar" className="footer-bar-1">
 		<Link href="/"><i className="fa fa-home"></i><span>Home</span></Link>

@@ -100,7 +100,7 @@ galleryView = <>
               if (typeof item === 'string') {
                 if(item?.length > 0){
                   let backGs = ['100', '200', '300', '400'];
-                return <div className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
+                return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
                   <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
                 </div>
                 }

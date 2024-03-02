@@ -7,7 +7,10 @@ const FAQs = ({postID, faqs}) => {
     
     useEffect(() => {
       if(faqs?.length >  0){
+        console.log('seeen it', faqs);
         setLoading(false);
+      }else{
+        console.log('Not seeen', faqs)
       }
     
       return () => {

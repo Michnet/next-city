@@ -14,8 +14,8 @@ const CountDownUI = ({fromActive, date = null, eventId, light}) => {
 
   const getDates = async(payload) => {
     const fetchdDates = await getEventDates(payload);
-    if(fetchdDates){
-        setTheDate(fetchdDates[0].start);
+    if(fetchdDates?.length > 0){
+        setTheDate(fetchdDates[0]?.start);
     }
   }
 
