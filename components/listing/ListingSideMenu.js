@@ -73,9 +73,14 @@ if(localMenu){
             <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div className="offcanvas-body px-30">
-                <div className="d-flex flex-column justify-between h-100"><ul className="listing_menu">
-                  {listView}
-                </ul>
+                <div className="d-flex flex-column justify-between h-100">
+                <div class="card card-style">
+				          <div class="content my-0">
+                    <ul className="listing_menu">
+                      {listView}
+                    </ul>
+                  </div>
+                  </div>
                 {/* <CallToActions thin noPadLeft light bgClass={'bg-transparent'} actionComponent={
                     <div className="d-flex  gap-3">
                       <Link href={'/add-listing'}><button

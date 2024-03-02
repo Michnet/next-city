@@ -225,7 +225,7 @@ export async function getStaticPaths() {
 
 {/* <!-- All Menus, Action Sheets, Modals, Notifications, Toasts, Snackbars get Placed outside the <div className="page-content"> --> */}
     <ListingSideMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
-    <RightMenu/>
+    <RightMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <VisitRecord Id={listing.id}/>
     <ListingStater id={listing.id}/>
     </>

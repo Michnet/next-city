@@ -1,15 +1,57 @@
+import { authState } from "@/contexts/atoms";
+import { cleanHtml } from "@/helpers/universal";
+import { Client } from "react-hydration-provider";
+import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
 
-function RightMenu({listing}) {
+function RightMenu({listing, activeKey, setActiveKey}) {
+    const {cover, large_thumb, title, locations} = listing ?? {};
+    const {user} = useRecoilValue(authState);
+    let listView;
+
     let localMenu = listingMenu({listing:listing, userId: user?.id});
+    if(localMenu){
+        listView = <>
+                    {localMenu.map((el) => {
+                      if(el?.content !== 'empty'){
+                      const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
+                      return <>
+                      <a className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
+							<i class="fa font-12 fa-home gradient-green rounded-sm color-white"></i>
+							<span>{buttony ? subTitle : title}
+                                      {badgeNumber > 0 ? <span className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
+                                         {badgeNumber}
+                                      </span> : <></>}</span>
+							<i class="fa fa-angle-right"></i>
+						</a>
+                      {/* <li className={`${activeKey === id ? 'active' : ''}`} key={id}>
+                                <a className={`l_menu _item ${buttony ? 'btn mb-0 btn-loud radius-30 shadow px-20' : ''}`} data-bs-dismiss="offcanvas" data-bs-target="#l_menu" onClick={() => setActiveKey(id)}>
+                                    <i className="menu_pointer _left las la-caret-left"/>
+                                    <span className="icon">
+                                      <i className={`${icon}`}/>
+                                    </span>
+                                    <h6 className={`label position-relative ${buttony ? 'text-white' : ''}`}>
+                                      {buttony ? subTitle : title}
+                                      {badgeNumber > 0 ? <span className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
+                                         {badgeNumber}
+                                      </span> : <></>}
+                                    </h6>
+                                    <i className="menu_pointer _right las la-caret-right"/>
+                                </a>
+                              </li> */}
+                              </>
+                      }
+                    })}
+                    </>
+      }
   return (
-    <>
+    <Client>
     <div id="menu-sidebar-right-2" class="menu menu-box-right menu-box-detached menu-sidebar" data-menu-width="310">
 		<div class="sidebar-content">
-			<div class="card card-style bg-9 my-3" data-card-height="130">
+			<div class="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
 				<div class="card-bottom m-3">
-					<h1 class="mb-n1 color-white">Meet Sticky</h1>
-					<p class="color-white mb-0 opacity-50">Now with Sidebars too!</p>
+					<h1 class="mb-n1 color-white truncate">{cleanHtml(title?.rendered)}</h1>
+					{locations?.length > 0 && <p class="color-white mb-0 opacity-50">{locations[0]?.name}</p>}
 				</div>
 				<div class="card-top m-2">
 					<a href="#" class="icon icon-xxs gradient-red rounded-sm float-end close-menu"><i class="fa fa-times color-white"></i></a>
@@ -17,6 +59,16 @@ function RightMenu({listing}) {
 				<div class="card-overlay bg-gradient"></div>
 				<div class="card-overlay bg-black opacity-10"></div>
 			</div>
+            <div class="card card-style">
+				<div class="content my-0">
+					<h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
+					<div class="list-group list-custom-small list-icon-0">
+						{listView}
+					</div>
+				</div>
+			</div>
+
+
 			<div class="card card-style">
 				<div class="content my-0">
 					<h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
@@ -117,7 +169,7 @@ function RightMenu({listing}) {
 			</div>
 		</div>
 	</div>
-    </>
+    </Client>
   )
 }
 export default RightMenu
