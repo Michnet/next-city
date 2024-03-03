@@ -7,7 +7,8 @@
     --pastColor: #a50e0e;
     --ongoingColor: blue;
     --ongoingColorLight: #b3b3ff;
-    --palette: 
+    --palette1: var(--highlight);
+    --palette2: #5a5a5a
     }
 
 #preloader{
@@ -729,3 +730,12 @@ h6 {
     opacity: 0.3;
 }
 
+
+
+.splide__list {
+    width: 100%;
+}
+
+.splide {
+    visibility: visible;
+}

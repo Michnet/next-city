@@ -1,12 +1,11 @@
 export function run_template(){
-    
 
     if (typeof window !== "undefined") {
         //Removing Preloader
-setTimeout(function(){
-    var preloader = document.getElementById('preloader')
-    if(preloader){preloader.classList.add('preloader-hide');}
-},150);
+        setTimeout(function(){
+            var preloader = document.getElementById('preloader')
+            if(preloader){preloader.classList.add('preloader-hide');}
+        },150);
     //document.addEventListener('DOMContentLoaded', () => {
         'use strict'
 
@@ -22,7 +21,8 @@ setTimeout(function(){
         var pwaLocation = "/_service-worker.js";
 
         //Place all your custom Javascript functions and plugin calls below this line
-        function init_template(){
+
+        //function init_template(){
             //Caching Global Variables
             var i, e, el; //https://www.w3schools.com/js/js_performance.asp
             console.log('loading now...................');
@@ -126,6 +126,7 @@ setTimeout(function(){
 
 
             //Image Sliders
+            /* 
             var splide = document.getElementsByClassName('splide');
             if(splide.length){
                 var singleSlider = document.querySelectorAll('.single-slider');
@@ -174,7 +175,7 @@ setTimeout(function(){
                         }).mount();
                     });
                 }
-            }
+            } */
 
             //Don't jump on Empty Links
             const emptyHref = document.querySelectorAll('a[href="#"]')
@@ -410,9 +411,11 @@ setTimeout(function(){
             //Dark Mode
             const toggleDark = document.querySelectorAll('[data-toggle-theme]');
             function activateDarkMode(){
+                console.log('activating mode', toggleDark);
                 document.body.classList.add('theme-dark');
-                document.body.classList.remove('theme-light', 'detect-theme');
-                for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
+                document.body.classList.remove('theme-light');
+                document.body.classList.remove('detect-theme');
+                for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
                 localStorage.setItem(pwaName+'-Theme', 'dark-mode');
             }
             function activateLightMode(){
@@ -437,7 +440,8 @@ setTimeout(function(){
             //Activating Dark Mode
             const darkModeSwitch = document.querySelectorAll('[data-toggle-theme]')
             darkModeSwitch.forEach(el => el.addEventListener('click',e =>{
-                if(document.body.className == "theme-light"){ removeTransitions(); activateDarkMode();}
+                if(document.body.className == "theme-light"){ 
+                    removeTransitions(); activateDarkMode();}
                 else if(document.body.className == "theme-dark"){ removeTransitions(); activateLightMode();}
                 setTimeout(function(){addTransitions();},350);
             }));
@@ -1452,10 +1456,9 @@ setTimeout(function(){
                     }
                 }
             }
-        }
 
         //Fix Scroll for AJAX pages.
-        if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+        /* if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
 
         //End of Init Template
          if(isAJAX === true){
@@ -1474,7 +1477,7 @@ setTimeout(function(){
             }
         }
 
-        init_template();
+        init_template(); */
     //});
     }
 }

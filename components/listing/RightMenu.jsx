@@ -16,13 +16,13 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
                       return <>
-                      <a className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
-							<i class="fa font-12 fa-home gradient-green rounded-sm color-white"></i>
+                      <a onClick={() => setActiveKey(id)} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
+							<i className={`fa font-12 fa-home gradient-green rounded-sm color-white`}></i>
 							<span>{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
                                       </span> : <></>}</span>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
                       {/* <li className={`${activeKey === id ? 'active' : ''}`} key={id}>
                                 <a className={`l_menu _item ${buttony ? 'btn mb-0 btn-loud radius-30 shadow px-20' : ''}`} data-bs-dismiss="offcanvas" data-bs-target="#l_menu" onClick={() => setActiveKey(id)}>
@@ -46,120 +46,120 @@ function RightMenu({listing, activeKey, setActiveKey}) {
       }
   return (
     <Client>
-    <div id="menu-sidebar-right-2" class="menu menu-box-right menu-box-detached menu-sidebar" data-menu-width="310">
-		<div class="sidebar-content">
-			<div class="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
-				<div class="card-bottom m-3">
-					<h1 class="mb-n1 color-white truncate">{cleanHtml(title?.rendered)}</h1>
-					{locations?.length > 0 && <p class="color-white mb-0 opacity-50">{locations[0]?.name}</p>}
+    <div id="menu-sidebar-right-2" className="menu menu-box-right menu-box-detached menu-sidebar" data-menu-width="310">
+		<div className="sidebar-content">
+			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
+				<div className="card-bottom m-3">
+					<h1 className="mb-n1 color-white truncate">{cleanHtml(title?.rendered)}</h1>
+					{locations?.length > 0 && <p className="color-white mb-0 opacity-50">{locations[0]?.name}</p>}
 				</div>
-				<div class="card-top m-2">
-					<a href="#" class="icon icon-xxs gradient-red rounded-sm float-end close-menu"><i class="fa fa-times color-white"></i></a>
+				<div className="card-top m-2">
+					<a href="#" className="icon icon-xxs gradient-red rounded-sm float-end close-menu"><i className="fa fa-times color-white"></i></a>
 				</div>
-				<div class="card-overlay bg-gradient"></div>
-				<div class="card-overlay bg-black opacity-10"></div>
+				<div className="card-overlay bg-gradient"></div>
+				<div className="card-overlay bg-black opacity-10"></div>
 			</div>
-            <div class="card card-style">
-				<div class="content my-0">
-					<h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
-					<div class="list-group list-custom-small list-icon-0">
+            <div className="card card-style">
+				<div className="content my-0">
+					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
+					<div className="list-group list-custom-small list-icon-0">
 						{listView}
 					</div>
 				</div>
 			</div>
 
 
-			<div class="card card-style">
-				<div class="content my-0">
-					<h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
-					<div class="list-group list-custom-small list-icon-0">
+			<div className="card card-style">
+				<div className="content my-0">
+					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
+					<div className="list-group list-custom-small list-icon-0">
 						<a href="#">
-							<i class="fa font-12 fa-home gradient-green rounded-sm color-white"></i>
+							<i className="fa font-12 fa-home gradient-green rounded-sm color-white"></i>
 							<span>Homepage</span>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
 						<a href="#">
-							<i class="fa font-12 fa-cog gradient-red rounded-sm color-white"></i>
+							<i className="fa font-12 fa-cog gradient-red rounded-sm color-white"></i>
 							<span>Components</span>
-							<span class="badge bg-highlight">NEW</span>
-							<i class="fa fa-angle-right"></i>
+							<span className="badge bg-highlight">NEW</span>
+							<i className="fa fa-angle-right"></i>
 						</a>
 						<a href="#">
-							<i class="fa font-12 fa-file gradient-blue rounded-sm color-white"></i>
+							<i className="fa font-12 fa-file gradient-blue rounded-sm color-white"></i>
 							<span>Page Packs</span>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
 						<a href="#">
-							<i class="fa font-12 fa-camera gradient-yellow rounded-sm color-white"></i>
+							<i className="fa font-12 fa-camera gradient-yellow rounded-sm color-white"></i>
 							<span>Media</span>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
 						<a href="#">
-							<i class="fa font-12 fa-image gradient-teal rounded-sm color-white"></i>
+							<i className="fa font-12 fa-image gradient-teal rounded-sm color-white"></i>
 							<span>Contact</span>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="card card-style">
-				<div class="content my-0">
-					<h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Settings</h5>
-					<div class="list-group list-custom-small list-icon-0">
-						<a href="#" data-toggle-theme data-trigger-switch="switch-dark2-mode" class="border-0">
-							<i class="fa font-12 fa-moon gradient-mint color-white rounded-sm"></i>
+			<div className="card card-style">
+				<div className="content my-0">
+					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Settings</h5>
+					<div className="list-group list-custom-small list-icon-0">
+						<a href="#" data-toggle-theme data-trigger-switch="switch-dark2-mode" className="border-0">
+							<i className="fa font-12 fa-moon gradient-mint color-white rounded-sm"></i>
 							<span>Dark Mode</span>
-							<div class="custom-control ios-switch">
-								<input data-toggle-theme type="checkbox" class="ios-input" id="switch-dark2-mode"/>
-								<label class="custom-control-label" for="switch-dark2-mode"></label>
+							<div className="custom-control ios-switch">
+								<input data-toggle-theme type="checkbox" className="ios-input" id="switch-dark2-mode"/>
+								<label className="custom-control-label" for="switch-dark2-mode"></label>
 							</div>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
 						<a href="#" data-menu="menu-highlights">
-							<i class="fa font-12 fa-droplet gradient-blue rounded-sm color-white"></i>
+							<i className="fa font-12 fa-droplet gradient-blue rounded-sm color-white"></i>
 							<span>Highlights</span>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
 						<a href="#" data-menu="menu-backgrounds">
-							<i class="fa font-12 fa-paint-brush gradient-orange rounded-sm color-white"></i>
+							<i className="fa font-12 fa-paint-brush gradient-orange rounded-sm color-white"></i>
 							<span>Backgrounds</span>
-							<i class="fa fa-angle-right"></i>
+							<i className="fa fa-angle-right"></i>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="position-sticky w-100 bottom-0 end-0 pb-1">
-			<div class="bg-theme mx-3 rounded-m shadow-m">
-				<div class="d-flex px-2 pb-2 pt-2">
-					<div class="align-self-center">
-						<a href="#"><img src="images/pictures/7s.jpg" width="40" class="rounded-sm" alt="img"/></a>
+		<div className="position-sticky w-100 bottom-0 end-0 pb-1">
+			<div className="bg-theme mx-3 rounded-m shadow-m">
+				<div className="d-flex px-2 pb-2 pt-2">
+					<div className="align-self-center">
+						<a href="#"><img src="images/pictures/7s.jpg" width="40" className="rounded-sm" alt="img"/></a>
 					</div>
-					<div class="ps-2 align-self-center">
-						<h5 class="ps-1 mb-1 pt-1 line-height-xs font-17">Alex Doeson</h5>
-						<h6 class="ps-1 mb-0 font-400 opacity-40 font-12">Freelance Photographer</h6>
+					<div className="ps-2 align-self-center">
+						<h5 className="ps-1 mb-1 pt-1 line-height-xs font-17">Alex Doeson</h5>
+						<h6 className="ps-1 mb-0 font-400 opacity-40 font-12">Freelance Photographer</h6>
 					</div>
-					<div class="ms-auto">
-						<a href="#" data-bs-toggle="dropdown" class="icon icon-m ps-3"><i class="fa fa-ellipsis-v font-18 color-theme"></i></a>
-						<div class="dropdown-menu bg-transparent border-0 mb-n5">
-							<div class="card card-style rounded-m shadow-xl me-1">
-								<div class="list-group list-custom-small list-icon-0 px-3 mt-n1">
-									<a href="#" class="mb-n2 mt-n1">
+					<div className="ms-auto">
+						<a href="#" data-bs-toggle="dropdown" className="icon icon-m ps-3"><i className="fa fa-ellipsis-v font-18 color-theme"></i></a>
+						<div className="dropdown-menu bg-transparent border-0 mb-n5">
+							<div className="card card-style rounded-m shadow-xl me-1">
+								<div className="list-group list-custom-small list-icon-0 px-3 mt-n1">
+									<a href="#" className="mb-n2 mt-n1">
 										<span>Your Profile</span>
-										<i class="fa fa-angle-right"></i>
+										<i className="fa fa-angle-right"></i>
 									</a>
-									<a href="#" class="mb-n2">
+									<a href="#" className="mb-n2">
 										<span>Messages</span>
-										<i class="fa fa-angle-right"></i>
+										<i className="fa fa-angle-right"></i>
 									</a>
-									<a href="#" class="mb-n2">
+									<a href="#" className="mb-n2">
 										<span>Settings</span>
-										<i class="fa fa-angle-right"></i>
+										<i className="fa fa-angle-right"></i>
 									</a>
-									<a href="#" class="mb-n1">
+									<a href="#" className="mb-n1">
 										<span>Sign Out</span>
-										<i class="fa fa-angle-right"></i>
+										<i className="fa fa-angle-right"></i>
 									</a>
 								</div>
 							</div>

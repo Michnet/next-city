@@ -472,6 +472,7 @@ function init_template(){
     //Activating Dark Mode
     const darkModeSwitch = document.querySelectorAll('[data-toggle-theme]')
     darkModeSwitch.forEach(el => el.addEventListener('click',e =>{
+        console.log('Clicked now');
         if(document.body.className == "theme-light"){ removeTransitions(); activateDarkMode();}
         else if(document.body.className == "theme-dark"){ removeTransitions(); activateLightMode();}
         setTimeout(function(){addTransitions();},350);

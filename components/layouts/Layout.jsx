@@ -192,10 +192,9 @@ export default function Layout({children, title}) {
 </div>
 {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}
 {/* <Script defer='true'  strategy={"afterInteractive"} onReady={() => console.log('Custom loaded')} src="/scripts/custom.js"/> */}
-
+{run_template()}
 <Script>
 {/* {run_boojs()} */}
- {run_template()}
  </Script>	
  <RouteLoader/>
 </main>

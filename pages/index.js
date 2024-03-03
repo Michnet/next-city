@@ -6,6 +6,7 @@ import { advancedFetchListingsUrl, fetcher } from "@/helpers/rest";
 import Layout from "@/components/layouts/Layout";
 import { cleanHtml, shuffleArray } from "@/helpers/universal";
 import { PriceView } from "@/components/UI/PriceView";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 
 export default function Home() {
@@ -17,6 +18,10 @@ export default function Home() {
 
   const isLoadingInitialData = !listings && !error;
   const isEmpty = listings?.length === 0;
+
+  const splideViews = {
+     640: { perPage: 2, }
+    }
 
   return (
     <Layout>
@@ -133,35 +138,31 @@ export default function Home() {
         </div>
     </div>
 
-    <div className="splide double-slider slider-no-dots visible-slider" id="double-slider-1a">
-        <div className="splide__track">
-            <div className="splide__list">
-                {listings?.length > 0 ? 
-                  listings.map((li) => {
+    <Splide  options={{autoplay: true, interval:4000, type:'loop', perPage: 4, breakpoints: {...splideViews}} }>
+      {listings?.length > 0 ? 
+          listings.map((li) => {
 
-                    let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
+            let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
 
-                    return <div key={id} className="splide__slide">
-                    <a href={`/events/${slug}`} className="mx-3" /* data-menu="menu-reserve" */>
-                        <div className="card card-style me-0 mb-0" style={{backgroundImage:`url('${xtra_large_thumb}')`}}data-card-height="250">
-                        <div className="card-top p-2">
-                          <span className="color-black bg-white px-2 py-1 rounded-xs font-11"><i className="fa fa-star color-yellow-dark pe-2"></i>{rating}</span>
-                        </div>
-                                        <div className="card-bottom p-2 px-2">
-                                            <h4 className="color-white line-height-s">{cleanHtml(title?.rendered)}<br/> Islands</h4>
-                          <span className="color-white font-10 opacity-60"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</span>
-                            </div>
-                            <div className="card-overlay bg-gradient"></div>
-                        </div>
-                    </a>
+            return <SplideSlide key={id}>
+            <a href={`/events/${slug}`} className="mx-3" /* data-menu="menu-reserve" */>
+                <div className="card card-style me-0 mb-0" style={{backgroundImage:`url('${xtra_large_thumb}')`, height: '250px'}}>
+                <div className="card-top p-2">
+                  <span className="color-black bg-white px-2 py-1 rounded-xs font-11"><i className="fa fa-star color-yellow-dark pe-2"></i>{rating}</span>
                 </div>
-                  })
-                  :
-                  <></>
-                }
-            </div>
-        </div>
-    </div>
+                                <div className="card-bottom p-2 px-2">
+                                    <h4 className="color-white line-height-s">{cleanHtml(title?.rendered)}<br/> Islands</h4>
+                  <span className="color-white font-10 opacity-60"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</span>
+                    </div>
+                    <div className="card-overlay bg-gradient"></div>
+                </div>
+            </a>
+        </SplideSlide>
+          })
+          :
+          <></>
+        }
+    </Splide>
 
     <div className="d-flex px-3 mb-2">
         <div className="align-self-center">
