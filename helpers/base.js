@@ -4,10 +4,12 @@ import ky from "ky";
 
 export const WPDomain = 'https://lyvecityclub.com';
 export const homeurl = 'https://lyvecity.com';
+export const userReviews = 'jet-reviews-api/v1';
 export const siteSettings = {
   logo_link : '/app/logos/Lyvecity.png',
   light_logo_link: '/app/logos/Lyvecity_light.png',
-  wpDomain : 'https://lyvecityclub.com'
+  wpDomain : 'https://lyvecityclub.com',
+  description: "Your portal to the places you love and events you can't miss"
 }
 
 

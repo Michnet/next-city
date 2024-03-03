@@ -1,4 +1,4 @@
-import { kyFetch, serializeQuery, WPDomain } from "./base";
+import { kyFetch, serializeQuery, userReviews, WPDomain } from "./base";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -70,7 +70,51 @@ try {
   } catch (error) {
     console.log('got failed', error)
   }  
-}    
+}   
+
+
+//Get listing reviews
+export const fetchListingReviews = async (payload) => {
+  let endPoint;
+  if(payload){
+     endPoint = `wp-json/${userReviews}/get-public-reviews-list?${serializeQuery({
+          ...payload
+      }) 
+      }`;
+  }else{
+      endPoint = `wp-json/${userReviews}/get-public-reviews-list`;
+  }
+
+  try {
+    const res = await kyFetch.post(`${WPDomain}/${endPoint}`).json();
+    if(res){
+        return res;
+      }else{
+        return null
+    }
+    } catch (error) {
+      console.log('got failed', error)
+  }    
+}
+
+ //Delete review
+ export const deleteReview = async (payload) => {
+
+  const endPoint = `wp-json/m-api/v1/delete-review?${serializeQuery({
+      ...payload
+  }) 
+  }`;
+      try {
+        const res = await kyFetch.post(`${WPDomain}/${endPoint}`).json();
+        if(res){
+            return res;
+          }else{
+            return null
+        }
+        } catch (error) {
+          console.log('got failed', error)
+      }  
+}
 
 
 export const fetchIdsUrl = (payload) => {

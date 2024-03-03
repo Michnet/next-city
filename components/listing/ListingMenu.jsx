@@ -45,7 +45,7 @@ export default function listingMenu({listing, userId}){
     id: 'reviews',
     icon:  "lar la-star", title : 'Reviews',
     subTitle :"User Rating",
-    widgetClass: 'pad_tab bg-white',
+    widgetClass: 'pad_tab',
     innerClass: 'bg_tab border-0',
     //content : <div className='inner_container'> <ListingReviews postID={id} user={user}/> </div>
   }
@@ -129,7 +129,7 @@ if(gallery?.length > 0){
       title: 'Gallery',
       subTitle : 'Photo Album',
       widgetClass : "_gallery  glass no-pad",
-      innerClass: 'inner__class',
+      innerClass: 'inner__class px-10',
      // content: <MegaGallery gallery={listing.gallery}/>
     }
    )

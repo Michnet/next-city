@@ -15,8 +15,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                     {localMenu.map((el) => {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
-                      return <>
-                      <a onClick={() => setActiveKey(id)} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
+                      return <a onClick={() => setActiveKey(id)} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
 							<i className={`fa font-12 fa-home gradient-green rounded-sm color-white`}></i>
 							<span>{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
@@ -24,22 +23,6 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                                       </span> : <></>}</span>
 							<i className="fa fa-angle-right"></i>
 						</a>
-                      {/* <li className={`${activeKey === id ? 'active' : ''}`} key={id}>
-                                <a className={`l_menu _item ${buttony ? 'btn mb-0 btn-loud radius-30 shadow px-20' : ''}`} data-bs-dismiss="offcanvas" data-bs-target="#l_menu" onClick={() => setActiveKey(id)}>
-                                    <i className="menu_pointer _left las la-caret-left"/>
-                                    <span className="icon">
-                                      <i className={`${icon}`}/>
-                                    </span>
-                                    <h6 className={`label position-relative ${buttony ? 'text-white' : ''}`}>
-                                      {buttony ? subTitle : title}
-                                      {badgeNumber > 0 ? <span className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
-                                         {badgeNumber}
-                                      </span> : <></>}
-                                    </h6>
-                                    <i className="menu_pointer _right las la-caret-right"/>
-                                </a>
-                              </li> */}
-                              </>
                       }
                     })}
                     </>

@@ -1231,7 +1231,7 @@ export function run_template(){
                 for (let i = 0; i < androidDev.length; i++) {androidDev[i].classList.add('disabled');}
             }
             if(isMobile.Android()){
-                document.querySelectorAll('#page')[0].classList.add('device-is-android');
+                document.querySelectorAll('#page')[0]?.classList.add('device-is-android');
                 for (let i = 0; i < iOSDev.length; i++) {iOSDev[i].classList.add('disabled');}
                 for (let i = 0; i < noDev.length; i++) {noDev[i].classList.add('disabled');}
             }
