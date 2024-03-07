@@ -1,0 +1,403 @@
+import  {useState, useEffect} from "react";
+import {Cookies} from "react-cookie";
+import { editUser,  getMe, getSocialUser, getUserRest } from '@/helpers/rest';
+//import { UICleanup } from "~/server/UniversalFunctions";
+import { atom, useSetRecoilState } from "recoil";
+import { authState, userMetaState } from "@/contexts/atoms";
+import { useSession, signOut, getSession, signIn } from "next-auth/react";
+import { authKey, kyFetch, serializeQuery, WPDomain } from './base';
+
+export const useAuthState = atom({
+  key: 'useAuthState', 
+  default: {}, 
+});
+
+function useProvideAuth () {
+  const setRecoilAuth = useSetRecoilState(authState);
+  const setUseAuthState = useSetRecoilState(useAuthState);
+  const setUMetaState = useSetRecoilState(userMetaState);
+
+  function setTheAuth(authObj){
+    localStorage.setItem('u_cred', JSON.stringify(authObj));
+    setRecoilAuth(authObj)
+  }
+
+   function theAuth(){
+    if (typeof window !== 'undefined') {
+    return JSON.parse(window.localStorage.getItem('u_cred'));
+    }
+   }
+
+   const {auth_type, soc_updater, user:ucred_user, token:ucred_token} = theAuth()  ?? {};
+
+   function sessionToken(){
+    if (typeof window !== 'undefined') {
+      return JSON.parse(window.localStorage.getItem('next-auth.session-token'));
+      }
+   }
+
+   function storeUser(userObj=null){
+    if (typeof window !== 'undefined') {
+        if(userObj){
+          localStorage.setItem('User', JSON.stringify(userObj));
+        }else{
+          return JSON.parse(window.localStorage.getItem('User'));
+        }
+      }
+   }
+
+   function deleteStoreUser(){
+    if (typeof window !== 'undefined') {
+          localStorage.removeItem('User');
+      }
+   }
+
+  const [userMeta, setUserMeta] = useState(null);
+  const [isLoadingUser, setLoadingUser] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { data: session, status } = useSession();
+
+  const {user, oauth_token, oauth_token_secret, provider, access_token} = useSession().session ?? {};
+
+
+  const cookies = new Cookies();
+
+  const fetchStart = () => {
+    setTheAuth({...theAuth, loading :true});
+    setError('');
+  }
+
+  const fetchSuccess = () => {
+    setTheAuth({...theAuth, loading:false});
+    setError('');
+  }
+
+  const logOutSuccess = () => {
+    setTheAuth({...theAuth, loading:false});
+    setError('');
+  }
+
+  const fetchError = (error) => {
+    setTheAuth({...theAuth, loading:false});
+    setError(error);
+    handleError(error);
+  }
+
+  function handleError (err){
+  }
+
+  async function fetchUserFunc({email, jwt, authType}){
+    const restUser = await getUserRest({key:'email', val: email, with_meta: true});
+    if(restUser){
+        storeUser(restUser.user);
+        setUMetaState(restUser?.user?.user_meta);
+        setTheAuth({...theAuth(), user: restUser.user, token:jwt, auth_type: authType})
+    }
+}
+/* 
+async function getUserMeta(){
+ const myData = await getMe();
+ if(myData){
+  setUserMeta(myData);
+  localStorage.setItem('UMeta', JSON.stringify(myData));
+ }
+}
+
+  const userUpdate = async(data, callbackFun) => {
+    fetchStart();
+    if (typeof window !== 'undefined') {
+      const editing = await editUser(data);
+      if(editing){
+        if(callbackFun){
+          callbackFun()
+        }
+        fetchSuccess();
+      }
+    }
+  };
+
+  function refreshWpBySocial(userData, token, func){
+  }
+
+  
+  async function fetchUserFunc({email, jwt, authType}){
+      const restUser = await getUserRest({key:'email', val: email, with_meta: true});
+      if(restUser){
+          storeUser(restUser.user);
+          setUMetaState(restUser?.user?.user_meta);
+          setTheAuth({...theAuth(), user: restUser.user, token:jwt, auth_type: authType})
+      }
+  }
+
+  async function updateClientSession(){
+   // let jwtTok = cookies.get('token');
+    const checkSession = await getSession();
+    if (checkSession?.user) {
+      const checkedUser = checkSession.user;
+       await fetchUserFunc({email: checkedUser.email});
+    }
+  }
+
+  */
+
+  function clearUser(){
+    setTheAuth({auth_type: 'none'});
+  }
+
+  const userSignup = async (payload, callbackFun) => {
+    fetchStart();
+    try{ 
+      const data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/users`, {json: {...payload, Auth_Key: authKey}}).json();
+      if(data){
+        if (data.result) {
+          fetchSuccess();
+          //WPRepository.defaults.headers.common['Authorization'] = 'Bearer ' + data.token.access_token;
+          cookies.set('token', data.token.access_token);
+          if (callbackFun) callbackFun();
+          //UICleanup();
+        } else {
+          fetchError(data.error);
+        }
+      }}catch(error) {
+        fetchError(error.message);
+      };
+  };
+
+  const sendReqTw = async(token, platform) => {
+    setTheAuth({...theAuth, loading :true});
+    const {oauth_token} = token;
+    const res = await getSocialUser(JSON.stringify(token), platform);
+    if(res){
+      const {user, jwt} = res;
+      userLoginBySocial(user, jwt, oauth_token, '');
+    }
+    setTheAuth({...theAuth, loading:false});
+  }
+
+  async function refreshUser(token, func){
+
+    if(status === "authenticated"){
+
+      try{ 
+        const refreshData = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth/refresh?JWT=${token}`).json()
+        if (refreshData.success) {
+
+          const newToken = refreshData.data.jwt;
+          cookies.remove('token');
+  
+          cookies.set('token', newToken);
+          setTheAuth({...theAuth(), token:newToken});
+          if(func){
+            func()
+          }
+          setLoadingUser(false);
+        }else{
+          
+        }
+      }catch(e){
+          console.log(e)
+          clearUser()
+          if(func){
+            func()
+          }
+          setLoadingUser(false);
+      }; 
+   }
+  }
+  
+const userLoginBySocial = async(userData, token, acc_token, soc_refresh_token, callbackFun) => {
+             
+    const {username} = userData;
+    fetchStart();
+
+    let oldSocToken = cookies.get("soc_token");
+    let oldToken = cookies.get("token");  
+
+    if(oldSocToken){
+      cookies.remove('soc_token');
+    } 
+
+    if(oldToken){
+      cookies.remove('token');
+    }
+
+    try {
+      const res = await kyFetch.get(`${WPDomain}/wp-json/jwt-auth/v1/autologin?JWT=${token}&name=${username}`).json();
+      if(res.success){
+        console.log('sucess', res)
+        cookies.set('token', token);
+        cookies.set('soc_token', acc_token);
+
+        localStorage.setItem('User', JSON.stringify(userData));
+        setTheAuth({...theAuth(), auth_type: 'social', token:token,  soc_token: acc_token, soc_updater: soc_refresh_token, user: userData});
+      }else{
+        console.log('failed', res)
+      }
+    } catch (error) {
+      console.log('error social login', error)
+      setTheAuth({...theAuth, loading:false}) 
+    }
+
+    if (callbackFun) callbackFun();  
+
+    fetchSuccess(); 
+    setTheAuth({...theAuth, loading:false})
+  };
+
+const userSignOut = async () => {
+    let localJwt = cookies.get('token');
+    if(localJwt){
+      cookies.remove('token');
+    }
+    setTheAuth({auth_type: 'none'})
+    deleteStoreUser();
+    if(session){
+      signOut()
+    }
+};
+
+
+async function loginFunc(jwt, username){
+  if(status === "authenticated"){
+      const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
+      if(provider && provider !== 'undefined'){
+        let accessTokenObj = {};
+
+        const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
+        if(provider == 'twitter'){
+          accessTokenObj = {oauth_token: oauth_token, oauth_token_secret: oauth_token_secret, user_id: `${user.id}`}
+        }else{
+          accessTokenObj = {access_token: access_token, id_token: `${user.sub}`}
+        }
+      sendReqTw(accessTokenObj, provider);
+    }else{
+      cookies.set('token', jwt);
+      signIn('lyve_city', {username: username, token: jwt, redirect: false}).then(async(res) => {
+       if(res.ok){
+         const checkSession = await getSession();
+         if (checkSession?.user) {
+           const checkedUser = checkSession.user;
+            await fetchUserFunc({email: checkedUser.email, jwt: jwt, authType: 'native'});
+         }
+       }
+      })
+    }
+   }else{
+    
+    try{ let data = await kyFetch.get(`${WPDomain}/wp-json/jwt-auth/v1/autologin?JWT=${jwt}&name=${username}`).json();
+    if(data){
+      const {data: loginData} = data;
+      if(loginData.success){
+          setTheAuth({auth_type: 'native', user: loginData.user, token:jwt});
+          setUser(loginData.user);
+          localStorage.setItem('User', JSON.stringify(loginData.user));
+          setToken(jwt);
+          //getSocials(parseInt(loginData?.user?.id), jwt);
+          //if (callbackFun) callbackFun();  
+          fetchSuccess(); 
+        }
+    }
+    }catch(error){
+        
+    }
+   }
+}
+
+
+ const userLogin = async(loginData, callbackFun) => {
+   const oldToken = cookies.get("token");
+   if(oldToken){
+     cookies.remove('token');
+   }
+   try {
+  let data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth`, {json: {...loginData}}).json();
+  if (data) {
+      console.log('ftched', data);
+      const jwtData = data.data;
+      if(jwtData.jwt){
+        const {username} = loginData;
+        cookies.set('token', jwtData.jwt);
+         signIn('lyve_city', {username: username, token: jwtData.jwt, redirect: false}).then(async(res) => {
+          if(res.ok){
+            const checkSession = await getSession();
+            if (checkSession?.user) {
+              const checkedUser = checkSession.user;
+               await fetchUserFunc({email: checkedUser.email, jwt: jwtData.jwt, authType: 'native'});
+            }
+          }
+         })
+      }
+     // setLoading(false)
+    }
+  }catch (error) {
+      console.log('got failed', error)
+      setTheAuth({...theAuth, loading:false})  
+    }
+ };
+
+ async function getAuthUser(){
+
+  if (typeof window !== 'undefined') {
+    const token = cookies.get("token");
+
+    if(auth_type == 'none'){
+      return;
+    }else{
+      const userData = JSON.parse(window.localStorage.getItem('User'));
+
+      if(token){
+         try{
+         const kyValid = await kyFetch.get(`${WPDomain}/wp-json/jwt-auth/v1/auth/validate?JWT=${token}`).json();
+            if (kyValid.success) {
+              console.log('option 1 auth', theAuth());
+              if(!ucred_user || auth_type == 'none'){
+                console.log('no recoil user', kyValid);
+                const validatedData = kyValid.data;
+                let validatedUsername = validatedData?.jwt[0].payload?.username
+                loginFunc(token, validatedUsername);
+              }
+            }else{
+              console.log('option 2', data);
+              refreshUser(token);
+            }
+         }catch(e){
+            console.log(e)
+         }
+      }else{
+        console.log('option 4 with no data');
+        refreshUser(ucred_token);
+      }
+    }
+  }
+}
+useEffect(() => {
+  getAuthUser();
+   /* const interval = setInterval(() => {
+     getAuthUser();
+   }, 600000);
+   return () => clearInterval(interval); */
+ }, []);
+
+  setUseAuthState({userLogin, userSignOut, userLoginBySocial, getAuthUser, userSignup/* , getAuthUser, userUpdate,  , , getUserMeta */});
+  return <></>;
+}
+
+
+export function AuthProvider() {
+  const authFunctions = useProvideAuth();
+
+  console.log('AuthProvider called')
+
+  useEffect(() => {
+    // getAuthUser();
+     /* const interval = setInterval(() => {
+       getAuthUser();
+     }, 600000);
+     return () => clearInterval(interval); */
+   }, []);
+
+   
+  return <div className = 'auth_provider'/>;
+}
+

@@ -1,7 +1,7 @@
 $_sizesBreaks: xl, lg, md, sm;
 
 $sizes:
-  0, 4, 5, 10, 15, 20, 24, 28, 30, 35, 40, 45, 50, 60, 70, 80, 90, 120
+  0, 1, 2, 3, 4, 5, 10, 15, 20, 24, 28, 30, 35, 40, 45, 50, 60, 70, 80, 90, 120
 ;
 
 @each $size in $sizes {
@@ -14,7 +14,7 @@ $sizes:
     padding-left: #{$size}px;
     padding-right: #{$size}px;
   }
-
+/* 
   .pt-#{$size} { padding-top: #{$size}px !important; }
   .pb-#{$size} { padding-bottom: #{$size}px !important; }
   .pl-#{$size} { padding-left: #{$size}px !important; }
@@ -22,7 +22,7 @@ $sizes:
   .mt-#{$size} { margin-top: #{$size}px !important; }
   .mb-#{$size} { margin-bottom: #{$size}px !important; }
   .ml-#{$size} { margin-left: #{$size}px !important; }
-  .mr-#{$size} { margin-right: #{$size}px !important; }
+  .mr-#{$size} { margin-right: #{$size}px !important; } */
 }
 
 @each $break in $_sizesBreaks {

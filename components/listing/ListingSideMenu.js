@@ -74,8 +74,8 @@ if(localMenu){
         </div>
         <div className="offcanvas-body px-30">
                 <div className="d-flex flex-column justify-between h-100">
-                <div class="card card-style">
-				          <div class="content my-0">
+                <div className="card card-style">
+				          <div className="content my-0">
                     <ul className="listing_menu">
                       {listView}
                     </ul>

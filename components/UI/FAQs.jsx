@@ -23,15 +23,15 @@ const FAQs = ({postID, faqs}) => {
       <><div className="border-0 accordion-s">
         {loading ? <LoaderDualRingBoxed/> : <>
         {faqs?.length > 0 ? 
-        <div class="accordion border-0 accordion-s" id={`accord_${postID}`}>{
+        <div className="accordion border-0 accordion-s" id={`accord_${postID}`}>{
           faqs.map((item, index) => (
-                <div key={index} class="accordion-item">
-                    <button aria-expanded={index == 0 ? true : false} class="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${postID}_${index}`}>
-                    <span class="font-600 font-13 line-height-s">{item.faq_question}</span>
-                    <i class="bi bi-plus font-20"></i>
+                <div key={index} className="accordion-item">
+                    <button aria-expanded={index == 0 ? true : false} className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${postID}_${index}`}>
+                    <span className="font-600 font-13 line-height-s">{item.faq_question}</span>
+                    <i className="bi bi-plus font-20"></i>
                     </button>
-                    <div id={`accord_${postID}_${index}`} class={`accordion-collapse collapse ${index == 0 ? 'show' : ''}`} data-bs-parent={`#accord_${postID}`}>
-                    <p class="pb-3 opacity-60">
+                    <div id={`accord_${postID}_${index}`} className={`accordion-collapse collapse ${index == 0 ? 'show' : ''}`} data-bs-parent={`#accord_${postID}`}>
+                    <p className="pb-3 opacity-60">
                      {item.faq_answer}
                     </p>
                     </div>

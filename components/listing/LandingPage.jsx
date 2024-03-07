@@ -78,13 +78,13 @@ import { Client } from "react-hydration-provider";
 
             {faqs?.length > 0 && <div className="card card-style shadow-0 border bg-transparent">
                 <div className="content">
-                    <div class="d-flex pb-2 border-bottom mb-3 ">
+                    <div className="d-flex pb-2 border-bottom mb-3 ">
                         <div>
-                            <h6 class="mb-n1 opacity-80 color-highlight">FAQs</h6>
+                            <h6 className="mb-n1 opacity-80 color-highlight">FAQs</h6>
                             <h3>Common Questions</h3>
                         </div>
-                        <div class="align-self-center ms-auto">
-                        <i class="bi bi-question-circle-fill font-24 color-red-dark"></i>
+                        <div className="align-self-center ms-auto">
+                        <i className="bi bi-question-circle-fill font-24 color-red-dark"></i>
                         </div>
                     </div>
                     {trimFaqs?.length > 0 && <FAQs faqs={trimFaqs} postID={id}/>}

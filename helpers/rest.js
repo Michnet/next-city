@@ -14,6 +14,22 @@ export const advancedFetchListingsUrl = (payload) => {
     return `${WPDomain}/${endpoint}`
 }
 
+export const getUserRest = async(reqObj) => {
+  const endPoint = `wp-json/m-api/v1/get-user?${serializeQuery({...reqObj})}`;
+
+  try{
+     const gotUser = await kyFetch.get(`${WPDomain}/${endPoint}`).json(); 
+     if(gotUser){
+      return gotUser;
+     }
+  }catch (error) {
+    console.log('got failed', error)
+    /* if (error.name === 'HTTPError') {
+      const errorJson = await error.response.json();
+    } */
+  }
+}
+
 export async function advancedFetchListings(payload){
     try {
         const res = await kyFetch.post(advancedFetchListingsUrl(payload)).json();
@@ -51,6 +67,23 @@ if(!payload?.event_id || payload?.event_id == 'undefined'){
     console.log('got failed', error)
   }
 }
+}
+
+
+export const getSocialUser = async(acc_token, platform/* , signal */) => {
+
+  const endPoint = `wp-json/m-api/v1/${platform}/get_social_user?${serializeQuery({
+      access_token : acc_token,
+  })}`;
+  try{ 
+    const res = await kyFetch.post(`${WPDomain}/${endPoint}`/* , {signal: signal} */).json()
+   if(res){
+      
+      return res; 
+  }
+  }catch(e){
+      console.log(e)
+  }; 
 }
 
 export const recordVisit = async (payload) => {
@@ -114,6 +147,51 @@ export const fetchListingReviews = async (payload) => {
         } catch (error) {
           console.log('got failed', error)
       }  
+}
+
+
+
+export const getDirTermsUrl = (taxonomy, payload) => {
+  function processedTax(){
+      switch (taxonomy) {
+      case 'categories':
+          return 'job_listing_category';
+          break;
+      case 'tags':
+          return 'case27_job_listing_tags';
+      case 'locations':
+          return 'dir_locations';
+      case 'product_cat':
+          return 'product_cat';
+      default:
+          return 'job_listing_category';
+          break;
+  }}
+  let endpoint;
+  if (payload) {
+      endpoint = `wp-json/wp/v2/${processedTax()}?${serializeQuery({
+          ...payload
+      })}`;
+  } else {
+      endpoint = `wp-json/wp/v2/${taxonomy}`;
+  }
+  return `${WPDomain}/${endpoint}`;
+}
+
+export const getDirTerms = async (taxonomy, payload) => {
+  const query = getDirTermsUrl(taxonomy, payload);
+  try {
+    const res = await kyFetch.get(query).json();
+    if(res){
+      console.log('queryyyyyyyyyyyyyyyyyyyy', res);
+
+        return res;
+      }else{
+        return null
+    }
+    } catch (error) {
+      console.log('terms failed', error)
+  } 
 }
 
 

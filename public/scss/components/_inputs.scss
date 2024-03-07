@@ -124,10 +124,14 @@ code{font-size:11px; line-height:22px;}
 	}
 }
 
+
 .btn, input, select{
-    box-shadow:none !important;
     outline:0px !important;
 }
+
+/* input, select{
+    box-shadow:none !important;
+} */
 
 //Custom Inputs
 input:hover,

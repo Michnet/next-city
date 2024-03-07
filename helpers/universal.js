@@ -30,6 +30,16 @@ export function textSizeClass({text, small=30, medium=90}){
   }
 }
 
+export const decodeJWT = (token) => {
+  if(token == null || token == undefined){
+    return null;
+  }
+  const base64String = token.split('.')[1];
+  const decodedValue = JSON.parse(Buffer.from(base64String,    
+                       'base64').toString('ascii'));
+  return decodedValue;
+}
+
 export const countdown_renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state

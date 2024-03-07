@@ -1,6 +1,6 @@
-export const LoaderDualRing = ({exClass}) => {
+export const LoaderDualRing = ({exClass, size}) => {
     return (
-      <div className={`loader-dual-ring ${exClass ?? ''}`}></div>
+      <div style={{width : size ?? 50, height : size ?? 50}} className={`loader-dual-ring ${exClass ?? ''}`}></div>
     )
   }
   

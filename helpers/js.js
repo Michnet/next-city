@@ -353,7 +353,7 @@ export function run_template(){
             }
 
             //Page Highlights
-            var highlightData = document.querySelectorAll('[data-change-highlight]');
+            /* var highlightData = document.querySelectorAll('[data-change-highlight]');
             highlightData.forEach(el => el.addEventListener('click', e =>{
                 var highlight = el.getAttribute('data-change-highlight');
                 var pageHighlight = document.querySelectorAll('.page-highlight');
@@ -456,7 +456,7 @@ export function run_template(){
                 document.body.classList.remove('theme-light', 'theme-dark');
                 document.body.classList.add('detect-theme')
                 setTimeout(function(){setColorScheme();},50)
-            }))
+            })) */
 
 
             //Accordion Rotate
@@ -581,7 +581,7 @@ export function run_template(){
             }
 
 
-            //Scroll Ads
+            /* //Scroll Ads
             var scrollItems = document.querySelectorAll('.scroll-ad, .header-auto-show')
             if(scrollItems.length){
                 var scrollAd = document.querySelectorAll('.scroll-ad');
@@ -608,7 +608,7 @@ export function run_template(){
                         }
                     }
                 });
-            }
+            } */
 
             //Stepper
             var stepperAdd = document.querySelectorAll('.stepper-add');
@@ -1036,7 +1036,7 @@ export function run_template(){
                 }));
             }
 
-            //Tabs
+            /* //Tabs
             var tabTrigger = document.querySelectorAll('.tab-controls a');
                 if(tabTrigger.length){
                 tabTrigger.forEach(function(e){
@@ -1056,7 +1056,7 @@ export function run_template(){
                     el.classList.add(highlightColor);
                     el.classList.add('no-click');
                 }));
-            }
+            } */
 
 
             //Extending Menu Functions
