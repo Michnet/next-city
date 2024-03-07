@@ -5,6 +5,7 @@ export const authKey = 'Q+#s)pEs;`Bhf+@J+I6Wf<Wx8;8?J6?.fcpEWAS0-nV6-FQW[x@L2IeJ
 export const WPDomain = 'https://lyvecityclub.com';
 export const homeurl = 'https://lyvecity.com';
 export const userReviews = 'jet-reviews-api/v1';
+
 export const siteSettings = {
   logo_link : '/app/logos/Lyvecity.png',
   light_logo_link: '/app/logos/Lyvecity_light.png',
@@ -12,14 +13,23 @@ export const siteSettings = {
   description: "Your portal to the places you love and events you can't miss",
   siteKeys: {g_auth_client_id:"815997455637-qs8kvv9h34ppnrlg73p3o40bntgdbu61.apps.googleusercontent.com",
   g_auth_client_secret :"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",
-  rebuild_key :"LJ[Z20|1I9gb<5w","wc_username":"ck_b79f7fccc4c7e16d4bebf701044f3be1ab446fb7",
+  rebuild_key :"LJ[Z20|1I9gb<5w",
+  wc_username :"ck_b79f7fccc4c7e16d4bebf701044f3be1ab446fb7",
   wc_password :"cs_fdb465d5c840d4f4694167b7fe5ce7a21ba9d7ae","tw_api_key":"TAKAyRQyz8txGTxIXBhlEymhf",
   tw_api_secret :"JWMXPN4zkZqV540JtzbAIy1ekF9o4MoRwnXnTt0J4zOEljScLp",
   "X-RapidAPI-Key":"84b45df611mshe08261c4563536ep135fbcjsn10f20cf7f28c",
   openAIRapidHost :"open-ai21.p.rapidapi.com"
   }
 }
+ export const WPRepository = () => {
+  
+ }
 
+export const oathInfo =  {
+  consumer_key: siteSettings.siteKeys.wc_username,
+  consumer_secret: siteSettings.siteKeys.wc_password,
+  //site : 'lyvecity'
+}
 
 export const fallbackImgBlur = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAYAAAB/qH1jAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAJ0lEQVR4nGOwTqj5v+v/fzAO7Fv1n4GBVeq/hl3of5OAzP/MYur/AVn6EhAbYAT8AAAAAElFTkSuQmCC";
 

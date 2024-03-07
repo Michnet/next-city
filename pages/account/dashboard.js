@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import GuestPrompt from "~/routes/userAuth/GuestPrompt";
-import { fetchListings } from "~/server/WpRest";
-import { BSModal, UserAvatar } from "~/appComponents/components/UI/components";
-import UpdateUser from "~/routes/userAuth/SignUp/update";
+//import GuestPrompt from "~/routes/userAuth/GuestPrompt";
+//import UpdateUser from "~/routes/userAuth/SignUp/update";
 //import Sidebar from "./common/Sidebar";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import DashboardCard from "~/components/dashboard/db-dashboard/components/DashboardCard";
-import Sidebar from "~/components/dashboard/common/Sidebar";
 import { useRecoilValue } from "recoil";
-import { authState } from "~/contexts/contexts";
-import { LoaderDualRingBoxed } from "~/appComponents/components/skeletons/React-content-loader/Loaders";
+import { fetchListings } from "@/helpers/rest";
+import { UserAvatar } from "@/components/UI/UserAvatar";
+import DashboardCard from "@/components/dashboard/DashboardCard";
+import Sidebar from "@/components/dashboard/Sidebar";
+import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
+import { authState } from "@/contexts/atoms";
+import { BSModal } from "@/components/UI/Offcanvas/BSModal";
+import Layout from "@/components/layouts/Layout";
 
 
 export async function getServerSideProps() {
@@ -56,27 +58,35 @@ const UserDashboard = (props) => {
   }
 
   useEffect(() => {
+    let loaded = true;
+    if(loaded){
     usersListings(payload);
+    }
+    return ()=>{
+      loaded = false;
+    }
   }, [user]);
+
+
 
   switch (page) {
     case 'booking':
-      PageView = dynamic(() => import("~/components/dashboard/db-booking/DBBooking"));
+      PageView = dynamic(() => import("@/components/dashboard/db-booking/DBBooking"));
       break;
     case 'saved':
-      PageView = dynamic(() => import("~/components/dashboard/db-wishlist/DBSaved"));
+     // PageView = dynamic(() => import("@/components/dashboard/db-wishlist/DBSaved"));
       break;
     
     case 'posted':
-      PageView = dynamic(() => import("~/components/dashboard/db-posted/DBPosted"));
+      PageView = dynamic(() => import("@/components/dashboard/db-posted/DBPosted"));
       break;
 
     case 'settings':
-      PageView = dynamic(() => import("~/components/dashboard/db-settings/DBSettings"));
+      //PageView = dynamic(() => import("@/components/dashboard/db-settings/DBSettings"));
       break;
 
     case 'chatroom':
-      PageView = dynamic(() => import("~/routes/ChatRoom"));
+      //PageView = dynamic(() => import("~/routes/ChatRoom"));
       break;
   
     default:
@@ -102,7 +112,7 @@ const UserDashboard = (props) => {
                             My account information.
                           </div>
                           <div className="action_group mt-20 mb-20">
-                            <BSModal modal_id={'edit_user'} btnLabel={'Edit Profile'} btnClass={'btn-sm btn-theme'} content={<UpdateUser id={id}/>}/>
+                            <BSModal modal_id={'edit_user'} btnLabel={'Edit Profile'} btnClass={'btn-sm btn-theme'} /* content={<UpdateUser id={id}/>} *//>
                           </div>
                           <button className="d-flex text-yellow-4 d-none md:d-block" data-bs-toggle="modal" data-bs-target="#user_menu">
                             <i className="icon-menu-2 text-20"></i>
@@ -123,21 +133,21 @@ const UserDashboard = (props) => {
                 </div>
   }else{
     accountView= <div className="dashboard__content min-h-250 bg-dark-1 p-3 pt-90 pb-90 h-100">
-                    <GuestPrompt/>
+                    {/* <GuestPrompt/> */}
                 </div>
   }
 
   return (
-    <>{accountView}</>
+    <Layout>{accountView}</Layout>
   );
 };
-
+/* 
 const PageLayout = dynamic(() => import('~/appComponents/core/Layout/PageLayout'));
 
 UserDashboard.getLayout = function getLayout({children}) {
   return (
       <PageLayout>{children}</PageLayout>
   )
-}
+} */
 
 export default UserDashboard;

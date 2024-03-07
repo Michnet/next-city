@@ -8,6 +8,7 @@ import { run_boojs } from "./../../helpers/boojs";
 import RouteLoader from "./RouteLoader";
 import SiteHead from "../UI/SiteHead";
 import { Client } from "react-hydration-provider";
+import AuthUI from "../auth/AuthUI";
 
 //const inter = Inter({ subsets: ["latin"] });
 
@@ -47,6 +48,9 @@ export default function Layout({ children, title }) {
                 </a>
                 <a href="#" data-toggle-search>
                   <i className="fa fa-search"></i>
+                </a>
+				<a href="#" data-menu='login_modal'>
+                  <i className="fa fa-user"></i>
                 </a>
                 {/* <div className="search-box pt-2">
                   <input type="text" className="px-3" placeholder="Search here.. - try the word demo " data-search/>
@@ -141,6 +145,35 @@ export default function Layout({ children, title }) {
                   <i className="fa fa-angle-right"></i>
                 </a>
               </div>
+            </div>
+          </div>
+
+		  {/*Login*/}
+		  <div
+            id="login_modal"
+            className="menu menu-box-bottom menu-box-detached"
+          >
+            <div className="menu-title">
+              <h1>Highlights</h1>
+              <p className="color-highlight">
+                Any Element can have a Highlight Color
+              </p>
+              <a href="#" className="close-menu">
+                <i className="fa fa-times"></i>
+              </a>
+            </div>
+            <div className="divider divider-margins mb-n2"></div>
+            <div className="content">
+              <div className="account-access">
+					<AuthUI/>
+              </div>
+              <a
+                href="#"
+                data-menu="menu-settings"
+                className="mb-3 btn btn-full btn-m rounded-sm bg-highlight shadow-xl text-uppercase font-900 mt-4"
+              >
+                Back to Settings
+              </a>
             </div>
           </div>
           {/* <!-- Menu Settings Highlights--> */}

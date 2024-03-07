@@ -28,3 +28,8 @@ export const LoaderDualRing = ({exClass, size}) => {
       <div className="lds-ripple"><div></div><div></div></div>
     )
   }
+
+  export const CircularProgress = ({className}) => <div className={`loader ${className}`}>
+  {/* <img src="/images/loader.svg" alt="loader" style={{height: 60}}/> */}
+  <div class={`loader-dual-ring`}></div>
+</div>;

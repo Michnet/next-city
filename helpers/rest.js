@@ -14,6 +14,49 @@ export const advancedFetchListingsUrl = (payload) => {
     return `${WPDomain}/${endpoint}`
 }
 
+export const fetchListings = async (payload) => {
+  let endpoint;
+  if (payload) {
+      if(payload.random){
+          endpoint = `wp-json/wp/v2/random_listings?${
+              serializeQuery({
+                  ...payload
+              }) 
+          }`;
+      }else{
+          endpoint = `wp-json/wp/v2/listings?${
+              serializeQuery({
+                  ...payload
+              }) 
+          }`;
+      }
+     
+  } else {
+      endpoint = 'wp-json/wp/v2/listings';
+  }
+
+
+  try{
+    const res = await kyFetch.get(`${WPDomain}/${endpoint}`).json(); 
+    if (res) {
+      console.log('listings res', res)
+      const data = {
+          items: res,
+          totalItems: res.headers['x-wp-total'],
+          totalPages: res.headers['x-wp-totalpages']
+      };
+      return data;
+  } else return null;
+ }catch (error) {
+   console.log('got failed', error)
+   /* if (error.name === 'HTTPError') {
+     const errorJson = await error.response.json();
+   } */
+ }
+
+}
+
+
 export const getUserRest = async(reqObj) => {
   const endPoint = `wp-json/m-api/v1/get-user?${serializeQuery({...reqObj})}`;
 
