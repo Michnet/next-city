@@ -57,6 +57,37 @@ export const fetchListings = async (payload) => {
 }
 
 
+export const bPActivitiesUrl = (payload) =>{
+  let endPoint;
+  if(payload){
+      endPoint = `wp-json/buddyboss/v1/activity?${serializeQuery({
+          ...payload
+      })}`
+  }else{
+      endPoint = `wp-json/buddyboss/v1/activity`
+  }
+
+  return `${WPDomain}/${endPoint}`;
+}
+
+
+
+export const bpPublicActivitiesUrl = (payload) =>{
+  let endPoint;
+  if(payload){
+      endPoint = `wp-json/m-api/v1/activity?${serializeQuery({
+          ...payload
+      })}`
+  }else{
+      endPoint = `wp-json/m-api/v1/activity`
+  }
+
+  return `${WPDomain}/${endPoint}`;
+}
+
+
+
+
 export const getUserRest = async(reqObj) => {
   const endPoint = `wp-json/m-api/v1/get-user?${serializeQuery({...reqObj})}`;
 

@@ -1,7 +1,7 @@
 const CallToActions = ({actionComponent, exClass, centered, title, descript, icon, light, bgClass, border, thin, noPadLeft}) => {
     return (
       <>
-      <section className={`${exClass ?? ''} ${border ? 'border' : ''} ${thin ? '' : 'layout-pt-md layout-pb-md'} position-relative ${bgClass ?? 'bg-secondary'}`}>
+      <section className={`cta ${exClass ?? ''} ${border ? 'border' : ''} ${thin ? '' : 'layout-pt-md layout-pb-md'} position-relative ${bgClass ?? 'bg-secondary'}`}>
         <div className={`container mw-100 ${noPadLeft ? 'pl-0' : ''}`}>
           <div className={`row y-gap-30 ${centered ? 'text-center justify-center' : 'justify-between'} items-center`}>
             <div className="col-auto px-0">

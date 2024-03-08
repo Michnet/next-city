@@ -7,7 +7,6 @@ import { cleanHtml } from "@/helpers/universal";
 import dynamic from "next/dynamic";
 import { memo, useState } from "react";
 import SiteHead from "@/components/UI/SiteHead";
-import listingMenu from "@/components/listing/ListingMenu";
 import { useRouter } from "next/router";
 import ListingSideMenu from "@/components/listing/ListingSideMenu";
 import { Client } from "react-hydration-provider";
@@ -80,7 +79,7 @@ console.log('liss', listing);
            />
     <div className="page-content">
 
-    <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '60vh' : '30vh'}}>
+    <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '60vh' : '35vh'}}>
         <div className="card-top m-3">
             <div className="notch-clear">
                 <a data-back-button href="#" className="icon icon-xs bg-white color-black rounded-m"><i className="fa fa-angle-left"></i></a>
@@ -99,7 +98,7 @@ console.log('liss', listing);
             </p>
             <div className="d-flex pb-4">
                 <div className="align-self-center flex-grow-1">
-                    <div className="mb-5"><span className="font-11 mb-5">
+                    <div className="mb-5"><span className="font-11">
                         User Reviews
                     </span></div>
                     <div className="d-flex -flex-row flex-nowrap mb-0">

@@ -22,7 +22,7 @@ export const siteSettings = {
   }
 }
  export const WPRepository = () => {
-  
+
  }
 
 export const oathInfo =  {
@@ -57,8 +57,8 @@ export const kyFetch = ky.create({
 
 
 export const serializeQuery = (query) => {
-  console.log('load', {...query, Auth_Key: authKey});
-    return Object.keys({...query, Auth_Key: authKey})
+    query.Auth_Key = authKey;
+    return Object.keys(query)
         .map(
             key =>
                 `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`

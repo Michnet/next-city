@@ -61,7 +61,7 @@ if(localMenu){
   return (
     <>
        <Client>
-      <div style={{width : 300}} className="l_menu_drawer offcanvas offcanvas-end" tabIndex="-1" id="listing_menu"> 
+      <div style={{width : 300}} className="l_menu_drawer menu menu-box-right" /* tabIndex="-1" */ id="listing_menu"> 
         <div className="underlay" style={{backgroundSize: 'cover', backgroundPosition: 'center', background: `url(${srcWithFallback(cover)})`}}>
         </div>
         <div className="offcanvas-header">

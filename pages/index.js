@@ -6,10 +6,11 @@ import { advancedFetchListingsUrl, fetcher, getDirTerms } from "@/helpers/rest";
 import Layout from "@/components/layouts/Layout";
 import { cleanHtml, shuffleArray } from "@/helpers/universal";
 import { PriceView } from "@/components/UI/PriceView";
-import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { siteSettings } from "@/helpers/base";
 import Link from "next/link";
 import { Client } from "react-hydration-provider";
+import Slider from "react-slick"
+import { fadingSlide, responsiveCarousel, largeResp } from "@/helpers/sliders";
 
 
 export async function getStaticProps() {
@@ -90,6 +91,14 @@ export default function Home(props) {
   const splideViews = {
      640: { perPage: 2, }
     }
+
+    var s_settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        variableWidth: true,
+        slidesToScroll: 1
+      };
 
   return (
     <Layout>
@@ -194,28 +203,26 @@ export default function Home(props) {
             </div>
         </div>
 
-		<Splide options={{pagination: false, autoWidth: true, padding: { left: 0, right: 15}, autoplay: false, perMove: 2, interval:4000, type:'loop'}}>
+		<Slider {...s_settings}>
             {
                 eventCategories?.map((cat) => {
                     let {name, slug, term_meta, id} = cat;
-                    let {color, image_url} = term_meta;
-                    return <SplideSlide key={id} className="splide__slide text-center me-n2 px-5">
-                                <div className="term_box" style={{maxWidth: '75px',}}>
-                                    <a href="#"  className="icon icon-xxl rounded-xl bg-cover" style={{width: 60, height: 60, border: `2px solid ${color ?? 'var(--highlight)'}`,  backgroundImage: `url('${image_url}')`}}>
-                                    {/* <i className="fa fa-coffee color-brown-dark"></i> */}
+                    let {color, image_url, rl_awesome} = term_meta;
+                    return <div key={id} className="term_box text-center me-n2 px-5" style={{width: '75px',}}>
+                                    <a href={`/explore/events?category=${slug}`}  className="icon icon-xxl rounded-xl d-block mb-2 shadow-bg shadow-bg-m" style={{width: 60, height: 60, border: `2px solid ${color ?? 'var(--highlight)'}`,  background: `${color}`}}>
+                                    <i className={`text-30 text-white ${rl_awesome}`}></i>
                                 </a>
                                     <div><span className="d-block  font-500 color-theme truncate-2 lh-1 text-11">{cleanHtml(name)}</span></div>
                                 </div>
-                            </SplideSlide>
                 })
             }
 					
 					
-		</Splide>
+		</Slider>
 
 		<div className="divider mt-4"></div>
 
-    <div className="d-flex px-3 mb-n3">
+    <div className="d-flex px-3 mb-3">
         <div className="align-self-center">
             <h4 className="mb-0">Recommended</h4>
         </div>
@@ -224,13 +231,12 @@ export default function Home(props) {
         </div>
     </div>
 
-    <Splide  options={{height: 300, padding: { left: 0, right: 15}, autoplay: true, perMove: 2, interval:4000, type:'loop', perPage: 4, breakpoints: {...splideViews}} }>
+    <Slider  {...responsiveCarousel}>
       {listings?.length > 0 ? 
           listings.map((li) => {
             let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
 
-            return <SplideSlide key={id}>
-            <Link href={`/events/${slug}`} className="mx-3" /* data-menu="menu-reserve" */>
+            return <Link key={id} href={`/events/${slug}`} className="mx-3" /* data-menu="menu-reserve" */>
                 <div className="card card-style me-0 mb-0" style={{backgroundImage:`url('${xtra_large_thumb}')`, height: '250px'}}>
                 <div className="card-top p-2">
                   <span className="color-black bg-white px-2 py-1 rounded-xs font-11"><i className="fa fa-star color-yellow-dark pe-2"></i>{rating}</span>
@@ -242,12 +248,11 @@ export default function Home(props) {
                     <div className="card-overlay bg-gradient"></div>
                 </div>
             </Link>
-        </SplideSlide>
           })
           :
           <></>
         }
-    </Splide>
+    </Slider>
 
     <div className="d-flex px-3 mb-2">
         <div className="align-self-center">
@@ -258,16 +263,15 @@ export default function Home(props) {
         </div>
     </div>
 
-    <Splide  options={{height: 300, autoplay: true, perMove: 2, interval:4000, type:'fade', perPage: 1 }}>
+    <Slider  {...fadingSlide} responsive = {[...largeResp]}>
       {listings?.length > 0 ? 
           listings.map((li) => {
             let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
 
-            return <SplideSlide key={id}>
-            <Link href={`/events/${slug}`} className="mx-3" /* data-menu="menu-reserve" */>
+            return <div key={id}>
                 <div className="card card-style" style={{backgroundImage:`url("${xtra_large_thumb}")`, height: '260px'}}>
                         <div className="card-top p-3">
-                            <a href="#" data-menu="menu-reserve" className="btn btn-s bg-white color-black rounded-s scale-box font-700 text-uppercase float-end">Get Offer</a>
+                            <Link href={`/events/${slug}`} data-menu="menu-reserve" className="btn btn-s bg-white color-black rounded-s scale-box font-700 text-uppercase float-end">Get Offer</Link>
                         </div>
                         <div className="card-bottom m-2">
                             <div className="d-block px-2 py-2 rounded-m">
@@ -287,13 +291,12 @@ export default function Home(props) {
                         </div>
                         <div className="card-overlay bg-gradient"></div>
                 </div>
-            </Link>
-        </SplideSlide>
+            </div>
           })
           :
           <></>
         }
-    </Splide>
+    </Slider>
 
 <div className="d-flex px-3">
   <div className="align-self-center">
@@ -311,13 +314,13 @@ export default function Home(props) {
             let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
             if(ind < 4){
                return <div className="col-6 ps-2" key={id}>
-                    <Link href={`/events/${slug}`} data-menu="menu-reserve" className="card card-style mx-0 mb-3">
+                    <Link href={`/events/${slug}`}  className="card card-style mx-0 mb-3">
                       <div className="card-top m-2">
                         <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">25% OFF</span>
                       </div>
                       <img src={xtra_large_thumb} alt="img" width="100" className="img-fluid" style={{height: '180px', objectFit: 'cover'}}/>
                       <div className="p-2">
-                        <h4 className="mb-0 truncate-2 text-14">{cleanHtml(title?.rendered)}</h4>
+                        <h4 className="mb-0 truncate text-14">{cleanHtml(title?.rendered)}</h4>
                         <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</p>
                       </div>
                       <div className="divider mb-0"></div>

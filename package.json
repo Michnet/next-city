@@ -24,10 +24,12 @@
     "react-hydration-provider": "^2.1.0",
     "react-multi-date-picker": "^4.4.1",
     "react-responsive-masonry": "^2.2.0",
+    "react-slick": "^0.30.2",
     "react-tagcloud": "^2.3.3",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
     "sass": "^1.71.1",
+    "slick-carousel": "^1.8.1",
     "swr": "^2.2.5",
     "yet-another-react-lightbox": "^3.17.0"
   }

@@ -80,6 +80,7 @@ const sendReq = async(token, platform) => {
        }
       }
     }
+    setLoading(false);
     return () => {controller.abort(); setLoading(false)};
 
   }, [session]);
@@ -113,7 +114,7 @@ const tw_x = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill
               Object.values(providers).map(provider => {
                 const {id} = provider;
                 if(id == 'lyve_city'){
-                  return <></>;
+                  return;
                 }
                 return <button id={id} style={{height: 50}} key={id} className={`auth_btn btn mb-3 rounded-sm text-dark w-100 rounded-0 mr-0 align-items-center d-flex gap-3 justify-center ${loadingId == id ? 'border-light' : ''}`} onClick={(e) => {setLoadingId(id); setLoading(true); signIn(provider.id)}} >
                   <>{loading && loadingId == id  ? <LoaderDualRing size={30}/> : 

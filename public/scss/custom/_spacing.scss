@@ -25,6 +25,11 @@ $sizes:
   .mr-#{$size} { margin-right: #{$size}px !important; } */
 }
 
+.px-5{
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
 @each $break in $_sizesBreaks {
   @include media-below($break) {
     @each $size in $sizes {
