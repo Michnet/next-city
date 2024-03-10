@@ -14,6 +14,18 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass = '', de
   )
 }
 
+export const ListingMeta = ({location, duration, filled}) => {
+  return <div className="listing_meta">
+            {duration ? <p className="lh-13 text-truncate">
+              <span className="lh-1"><i className={`bi bi-clock${filled ? '-fill' : ''} mr-5 sec-color`}></i></span>
+              {duration}+ hours
+            </p> : null}
+            {location ? <p className="lh-13  text-truncate">
+              <span className="lh-1"><i className={`bi bi-geo-alt${filled ? '-fill' : ''} mr-4`}></i></span>{location}
+            </p> : null}
+          </div>
+}
+
 export function PreviousRouteLink() {
     const router = useRouter()
    

@@ -121,7 +121,7 @@ export async function advancedFetchListings(payload){
       }
 }
 
-export const getEventDates = async (payload) => {
+export const getEventDates = async (payload, signal) => {
 
   const endPoint = `wp-json/m-api/v1/event-dates?${serializeQuery({
       ...payload
@@ -132,7 +132,7 @@ if(!payload?.event_id || payload?.event_id == 'undefined'){
 }else{
 
   try {
-    const res = await kyFetch.get(`${WPDomain}/${endPoint}`).json();
+    const res = await kyFetch.get(`${WPDomain}/${endPoint}`, {signal}).json();
     if(res){
         return res;
       }else{

@@ -14,8 +14,8 @@ var REQUIRED_FILES = [
 	'styles/style.css',
 	'styles/bootstrap.css',
 	// Scripts
-	'scripts/custom.js',
-	'scripts/bootstrap.min.js',
+	//'scripts/custom.js',
+	//'scripts/bootstrap.min.js',
 	// Plugins
 	'plugins/before-after/before-after.css',
 	'plugins/before-after/before-after.js',

@@ -10,7 +10,13 @@ import { siteSettings } from "@/helpers/base";
 import Link from "next/link";
 import { Client } from "react-hydration-provider";
 import Slider from "react-slick"
-import { fadingSlide, responsiveCarousel, largeResp } from "@/helpers/sliders";
+import { fadingSlide, responsiveCarousel, largeResp, variableWidth } from "@/helpers/sliders";
+import { useEffect } from 'react';
+import ListingCard from './../components/UI/Listings/cards/ListingCard';
+import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
+import { DualColorHeader } from "@/components/UI/Partials";
+import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
+import { TermIcon } from "@/components/UI/partials/termLinks";
 
 
 export async function getStaticProps() {
@@ -83,7 +89,15 @@ export default function Home(props) {
   let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
   listing_type:'event', per_page: 5}
 
-  const { data:listings, error } = useSWR(advancedFetchListingsUrl({...load, _embed : true }), fetcher, { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
+  let fetchy = true;
+  useEffect(() => {
+    return () => {
+      fetchy = false;
+    }
+  },[]);
+  
+
+  const { data:listings, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: true });
 
   const isLoadingInitialData = !listings && !error;
   const isEmpty = listings?.length === 0;
@@ -102,6 +116,7 @@ export default function Home(props) {
 
   return (
     <Layout>
+      <Client>
 
 <div className="page-content">
 
@@ -206,14 +221,7 @@ export default function Home(props) {
 		<Slider {...s_settings}>
             {
                 eventCategories?.map((cat) => {
-                    let {name, slug, term_meta, id} = cat;
-                    let {color, image_url, rl_awesome} = term_meta;
-                    return <div key={id} className="term_box text-center me-n2 px-5" style={{width: '75px',}}>
-                                    <a href={`/explore/events?category=${slug}`}  className="icon icon-xxl rounded-xl d-block mb-2 shadow-bg shadow-bg-m" style={{width: 60, height: 60, border: `2px solid ${color ?? 'var(--highlight)'}`,  background: `${color}`}}>
-                                    <i className={`text-30 text-white ${rl_awesome}`}></i>
-                                </a>
-                                    <div><span className="d-block  font-500 color-theme truncate-2 lh-1 text-11">{cleanHtml(name)}</span></div>
-                                </div>
+                    return <TermIcon item={cat} key={cat.id}/>
                 })
             }
 					
@@ -234,20 +242,7 @@ export default function Home(props) {
     <Slider  {...responsiveCarousel}>
       {listings?.length > 0 ? 
           listings.map((li) => {
-            let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
-
-            return <Link key={id} href={`/events/${slug}`} className="mx-3" /* data-menu="menu-reserve" */>
-                <div className="card card-style me-0 mb-0" style={{backgroundImage:`url('${xtra_large_thumb}')`, height: '250px'}}>
-                <div className="card-top p-2">
-                  <span className="color-black bg-white px-2 py-1 rounded-xs font-11"><i className="fa fa-star color-yellow-dark pe-2"></i>{rating}</span>
-                </div>
-                                <div className="card-bottom p-2 px-2">
-                                    <h4 className="color-white line-height-s truncate-2">{cleanHtml(title?.rendered)}<br/> Islands</h4>
-                  <span className="color-white font-10 opacity-60"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</span>
-                    </div>
-                    <div className="card-overlay bg-gradient"></div>
-                </div>
-            </Link>
+           return <ListingCard key={li.id} listing = {li}/>
           })
           :
           <></>
@@ -298,6 +293,25 @@ export default function Home(props) {
         }
     </Slider>
 
+    <div className="d-flex px-3">
+      <div className="align-self-center">
+        <DualColorHeader title={'Just Added'} subTitle={'Be the first to know'}/>
+      </div>
+      <div className="align-self-center ms-auto">
+        <a href="#" className="font-12">View All</a>
+      </div>
+    </div>
+
+    <Slider  {...variableWidth} centerPadding={'20px'}>
+      {listings?.length > 0 ? 
+          listings.map((li) => {
+            return <div className="px-2"><ActivityCard1 key={li.id} item = {li}/></div>
+          })
+          :
+          <></>
+        }
+    </Slider>
+
 <div className="d-flex px-3">
   <div className="align-self-center">
     <h4 className="mb-0">Great Deals</h4>
@@ -307,7 +321,9 @@ export default function Home(props) {
   </div>
 </div>
 
-<Client><div className="content mt-2 mb-n3">
+<div className="row">
+  <div className="col-12 col-md-8 px-0">
+    <Client><div className="content mt-2 mb-n3">
   <div className="row">
         {listings?.length > 0 ? 
           shuffleArray(listings).map((li, ind) => {
@@ -336,6 +352,18 @@ export default function Home(props) {
         }
   </div>
 </div></Client>
+</div>
+<div className="col-12 col-md-4 px-0">
+    <Slider  {...fadingSlide} slidesToShow={2} rows={2} vertical responsive ={[{ breakpoint: 768, settings: { slidesToShow: 2, rows: 2} }]}>
+      {listings?.length > 0 ? 
+          listings.map((li) => {
+            return <ListingCard2 key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }</Slider>
+</div>
+</div>
 
 
         <Client><div className="card card-style">
@@ -352,45 +380,28 @@ export default function Home(props) {
 				<div className="divider mb-3"></div>
 				<div className="clearfix mb-1"></div>
 				<div data-bs-parent="#tab-group-events" className="collapse show" id="tab-8">
-					<a href="#" className="d-flex mb-3" data-menu="menu-travel-sample">
-						<div>
-							<img src="/images/travel/8s.jpg" className="rounded-sm me-3" width="70"/>
-						</div>
-						<div>
-							<span className="color-highlight font-300 d-block text-uppercase font-10">01 - 07 August 2025</span>
-							<strong className="color-theme font-16 d-block mt-n2 mb-n2">Island Explorer</strong>
-							<span className="font-11 color-theme opacity-30 d-block pb-2 pt-2"><i className="fa fa-map-marker pe-2"></i>Maldives, Ocean</span>
-						</div>
-						<div className="align-self-center ms-auto">
-							<i className="fa fa-arrow-right font-12 color-theme opacity-20"></i>
-						</div>
-					</a>
-					<a href="#" className="d-flex mb-3" data-menu="menu-travel-sample">
-						<div>
-							<img src="/images/travel/1s.jpg" className="rounded-sm me-3" width="70"/>
-						</div>
-						<div>
-							<span className="color-highlight font-300 d-block text-uppercase font-10">07 - 14 August 2025</span>
-							<strong className="color-theme font-16 d-block mt-n2 mb-n2">Woodland Cabin</strong>
-							<span className="font-11 color-theme opacity-30 d-block pb-2 pt-2"><i className="fa fa-map-marker pe-2"></i>Mount Rushmore, USA</span>
-						</div>
-						<div className="align-self-center ms-auto">
-							<i className="fa fa-arrow-right font-12 color-theme opacity-20"></i>
-						</div>
-					</a>
-					<a href="#" className="d-flex mb-3" data-menu="menu-travel-sample">
-						<div>
-							<img src="images/travel/6s.jpg" className="rounded-sm me-3" width="70"/>
-						</div>
-						<div>
-							<span className="color-highlight font-300 d-block text-uppercase font-10">14 - 21 August 2025</span>
-							<strong className="color-theme font-16 d-block mt-n2 mb-n2">Island Paradise</strong>
-							<span className="font-11 color-theme opacity-30 d-block pb-2 pt-2"><i className="fa fa-map-marker pe-2"></i>Caraibe, Ocean</span>
-						</div>
-						<div className="align-self-center ms-auto">
-							<i className="fa fa-arrow-right font-12 color-theme opacity-20"></i>
-						</div>
-					</a>
+					
+          {listings?.length > 0 ? 
+            listings.map((li) => {
+              let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
+              return <a href="#" className="d-flex mb-3" data-menu="menu-travel-sample">
+                      <div>
+                        <img src={xtra_large_thumb} className="object-cover rounded-sm me-3" width="70" height="70"/>
+                      </div>
+                      <div>
+                        <span className="color-highlight font-300 d-block text-uppercase font-10">01 - 07 August 2025</span>
+                        <strong className="color-theme font-16 d-block mt-n2 mb-n2 truncate">{cleanHtml(title.rendered)}</strong>
+                        <span className="font-11 color-theme opacity-30 d-block pb-2 pt-2"><i className="fa fa-map-marker pe-2"></i>Maldives, Ocean</span>
+                      </div>
+                      <div className="align-self-center ms-auto">
+                        <i className="fa fa-arrow-right font-12 color-theme opacity-20"></i>
+                      </div>
+                    </a>
+            })
+            :
+            <></>
+          }
+					
 				</div>
 				
 				<div data-bs-parent="#tab-group-events" className="collapse" id="tab-9">
@@ -448,7 +459,7 @@ export default function Home(props) {
     </div>
 
 </div>
-{/* <!-- End of Page Content--> */}
+</Client>
     </Layout>
   );
 }

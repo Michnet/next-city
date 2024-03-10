@@ -1,9 +1,109 @@
+import dayjs from "dayjs";
+import { kyFetch } from "./base";
+var utc = require('dayjs/plugin/utc')
+var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 export function cleanHtml(str){
     return str?.replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&#038;/g, "&").replace(/&#8211;/g, "-");
   }
 
 export function shuffleArray(array) { 
   return array ? array.sort( ()=>Math.random()-0.5 ) : [];
+}
+
+
+export const createBPActivity = async (payload) =>{ 
+  try{
+    const data = await kyFetch.post(bPActivitiesUrl(payload)).json();
+      if(data){
+        return data
+      }
+  }catch(er){
+    return  null
+  }
+}
+
+export const bPSingleActivityCommentUrl = (act_ID, token, payload = {}) =>{
+
+  let endPoint = `wp-json/buddyboss/v1/activity/${act_ID}/comment?${serializeQuery({
+          JWT: token,
+          ...payload
+      })}`
+
+  return `${WPDomain}/${endPoint}`;
+}
+
+export const sendBPActivityComment = async (activityId, token,payload) =>{ 
+  try{
+    const data = await kyFetch.post(bPSingleActivityCommentUrl(activityId, token, payload)).json();
+    if(data){
+      return {activities: data}
+    }
+  }catch(e){
+    return null;
+  }
+}
+
+export const bPSingleActivityUrl = (act_ID, token, payload = {}) =>{
+
+  let endPoint = `wp-json/buddyboss/v1/activity/${act_ID}/?${serializeQuery({
+          JWT: token,
+          ...payload
+      })}`
+
+  return `${WPDomain}/${endPoint}`;
+}
+
+export const getBPActivityComments = async (activityId, token, payload) =>{ 
+  try{
+  const data = await kyFetch.get(bPSingleActivityCommentUrl(activityId, token, payload)).json();
+  if(data){
+    if(data){
+      return {activities: data}
+    }
+  }}catch(e){
+    return null;
+  }
+}
+
+export const updateBPActivity = async (activityId, token, payload) =>{ 
+  try{
+  const data = await kyFetch.post(bPSingleActivityUrl(activityId, token, payload)).json();
+  if(data) {
+          return {activities : data}
+      } else return null;
+    }
+  catch(e){
+      return null;
+  };
+}
+
+export const deleteBPActivity = async (activityId, token, payload) =>{ 
+  const data = await kyFetch.delete(bPSingleActivityUrl(activityId, token, payload)).json();
+  if(data){
+    return data;
+  }
+}
+
+export const likeBPActivity = async (act_ID, token) =>{
+
+  let endPoint = `wp-json/buddyboss/v1/activity/${act_ID}/favorite?${serializeQuery({
+          JWT: token,
+          id: act_ID
+      })}`
+
+      try{
+        const data = kyFetch.patch(`${WPDomain}/${endPoint}`).json();
+        if(data){
+          return data;
+        }
+      }catch(e){
+        return null;
+      }
+
 }
 
 export function localiseDate(date, format = null, localize = true) {
@@ -151,6 +251,30 @@ export function srcWithFallback(src, fb = '/images/bg/fallback.jpg'){
     return fb;
   }
 }
+
+
+export function createOccurenceClass(targetDate, targetEndDate){
+  const now = new Date();
+
+  if(dayjs(targetDate).isAfter(now, 'minute')){
+    if(dayjs(targetDate).diff(dayjs(now), 'day') > 1){
+      return '_future_dist'
+    }else{
+      return '_future'
+    }
+  }else{
+    if(targetEndDate){
+      if(dayjs(targetEndDate).isAfter(now, 'minute')){
+        return '_ongoing'
+      }else{
+        return '_past'
+      }
+    }else{
+      return '_past'
+    }
+  }
+}
+
   
 export const generateTempArray = (maxItems) => {
     let result = [];
@@ -160,6 +284,19 @@ export const generateTempArray = (maxItems) => {
     }
     return result;
   };
+
+export function hashtag(text){
+    var repl = text.replace(/#(\w+)/g, '<a href="/search?hashtag=#$1"><strong>#$1</strong></a>');
+    return `<p>${repl}</p>`;
+}
+
+
+export function clearInputField(id){
+  const textInput = document.getElementById(id);
+  if(textInput){
+    textInput.value = '';
+  }
+}
   
 
 export const slideActivator = ({carId, paramsObj={}}) =>{

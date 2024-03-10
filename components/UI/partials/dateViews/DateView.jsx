@@ -1,0 +1,63 @@
+import { getEventDates } from "@/helpers/rest";
+import { createOccurenceClass } from "@/helpers/universal";
+import dayjs from "dayjs"
+import { useEffect, useState } from "react";
+
+const DateView = ({eventId, format, stringy, exClass, customDate=null, customEndDate=null}) => {
+    let date = null, endDate = null;
+     ;
+    const [dates, setDates] = useState([]);
+   // const [update, setUpdate] = useState(0);
+   
+    if(dates?.length > 0){
+      date = dates[0].start;
+      endDate = dates[0].end;
+    }else{
+      date = customDate;
+      endDate = customEndDate ?? null;
+    }
+  
+    let targetDate = new Date(date);
+    let targetEndDate = date ? new Date(endDate) : null;
+  
+    const getDates = async(payload, signal) => {
+      const fetchdDates = await getEventDates(payload, signal);
+      if(fetchdDates){
+          setDates(fetchdDates.data)
+          //return fetchdDates.data;
+      }
+  }
+  //let fetchingDates = useMemo(async() => await getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1}), [update]);
+  
+  useEffect(() => {
+    //setUpdate(update + 1);
+    const controller = new AbortController();
+    const {signal} = controller;
+
+    if(!customDate){
+      getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1, signal: signal});
+    }else{
+      //date = customDate;
+      setDates([{start:customDate, end:customEndDate}])
+    }
+   /*  const interval = setInterval(() => {
+      setUpdate(update + 1);
+    }, 60000);*/
+    return () => controller.abort();
+  }, [customDate]);
+  
+  let localClass = createOccurenceClass(targetDate, targetEndDate);
+    
+   return <>
+          {date !== null ? <>{stringy ? <span className={`${localClass}`}>{dayjs(date).format(format ?? 'DD MMM YYYY')}</span> : <div className={`event_date h-100 ${localClass} ${exClass ?? ''}`}>
+            <h5 className='d-flex justify-content-center h-100 flex-column text-center lh-1' style={{fontSize: '30px'}}>
+              {dayjs(date).format(format ?? 'DD')}
+              <span className='_month fw-300 text-uppercase' style={{fontSize: '15px', letterSpacing: '0.1em'}}>{dayjs(date).format('MMM')}</span>
+            </h5>
+          </div>}</> :
+          <></>
+          }
+          </>
+  }
+
+export default DateView;

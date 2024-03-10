@@ -18,6 +18,7 @@ export const largeResp = [
   ];
 
 export const responsiveCarousel = {
+  pauseOnHover: true,
     dots: true,
     infinite: true,
     speed: 500,
@@ -54,6 +55,7 @@ export const responsiveCarousel = {
   };
 
   export  const fadingSlide = {
+    pauseOnHover: true,
     centerMode: true,
     centerPadding: '0px',
     dots: true,
@@ -65,3 +67,13 @@ export const responsiveCarousel = {
     slidesToScroll: 1,
     waitForAnimate: false
   };
+
+
+  export const variableWidth = {
+    pauseOnHover: true,
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    variableWidth: true,
+    slidesToScroll: 1
+  }

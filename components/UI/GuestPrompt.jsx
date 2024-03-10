@@ -1,0 +1,23 @@
+const GuestPrompt = ({title}) => {
+  let titleView;
+
+  if(title){
+      titleView = <h5>{title}</h5>
+  }
+  
+  return (
+    <>
+        <div className='guest_prompt d-flex flex-align-center py-4 justify-content-center'>
+            {titleView}
+            <div className='_guest_options'>
+                <button className="btn btn-theme mr-15"  data-menu='login_modal'>Sign In</button>
+                <button className="btn btn-outline-theme"  data-menu='login_modal'>Create Account</button>
+            </div>
+        </div>
+    </>
+
+  )
+}
+
+export default GuestPrompt;
+

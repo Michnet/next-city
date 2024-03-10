@@ -7,7 +7,7 @@ function Scaffold({children}) {
   return (<>
     <div className="container-fluid p-0">
         <div className="row flex-nowrap">
-            <div className="col-auto p-0 p-md-2" style={{height: '100vh', position: 'sticky', top: '0', maxWidth: '250px'}}>
+            <div className="col-auto d-none d-md-block p-0 p-md-2" style={{height: '100vh', position: 'sticky', top: '0', maxWidth: '250px'}}>
                 <div id="sidebar" className="_main collapse collapse-horizontal d-none d-md-block rounded-16 bg-white">
                     <MainMenu/>
                 </div>
@@ -15,7 +15,7 @@ function Scaffold({children}) {
             <div className="col px-0 main_content" style={{minWidth: '0'}}>
                 {children}
             </div>
-            <div className="md-sticky col p-2 flex-grow-0 d-none d-md-block" style={{width: '295px', top: '0px'}}>
+            <div className="md-sticky col p-2 flex-grow-0 d-none d-md-block right_view" style={{width: '295px', top: '0px'}}>
                 <Activity/>
             </div>
         </div>

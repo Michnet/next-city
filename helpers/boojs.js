@@ -1382,7 +1382,7 @@ function init_template(){
     }
 
     //Lazy Loading
-    var lazyLoad = new LazyLoad();
+    //var lazyLoad = new LazyLoad();
 
     // Check Documentation folder for detailed explanations on
     // Externally loading Javascript files for better performance.
