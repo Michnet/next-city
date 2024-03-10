@@ -143,6 +143,35 @@ if(!payload?.event_id || payload?.event_id == 'undefined'){
 }
 }
 
+export async function getLocalTaxonomy(payload){
+  const {taxonomy, parent_slug, setter} = payload;
+  console.log('slug', parent_slug);
+  try{
+  await fetch(`/data/${taxonomy ?? 'categories'}.JSON`, {headers:{'Content-Type': 'application/json',
+  'Accept': 'application/json'}}).then((dat) => dat.json()).then(
+      (items) => {
+          let currentArr;
+          if(parent_slug){
+              let  parentArr = items.filter((it) => it.slug === parent_slug);
+              if(parentArr?.length > 0){
+                  console.log('we have a parent', parentArr)
+                  let parentId= parentArr[0].id;
+                  currentArr = items.filter((it) => it.parent === parentId)
+              }else{
+                  console.log('no parent', parentArr)
+                  currentArr = items.filter((it) => it.parent === 106)
+              }
+          }else{
+              currentArr = items.filter((it) => it.parent === 106)
+          }
+          setter(currentArr);
+          return currentArr;
+      })
+  }catch(err){
+  return err
+  }
+}
+
 
 export const getSocialUser = async(acc_token, platform/* , signal */) => {
 

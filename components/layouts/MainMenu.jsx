@@ -16,12 +16,12 @@ function MainMenu({children}) {
                                                 <span>Homepage</span>
                                                 <i className="fa fa-angle-right"></i>
                                             </Link>
-                                            <a href="#">
-                                                <i className="fa font-12 fa-cog gradient-red rounded-sm color-white"></i>
-                                                <span>Components</span>
+                                            <Link href="/explore/events">
+                                                <i className="fa font-12 fa-calendar-check gradient-red rounded-sm color-white"></i>
+                                                <span>Explore</span>
                                                 <span className="badge bg-highlight">NEW</span>
                                                 <i className="fa fa-angle-right"></i>
-                                            </a>
+                                            </Link>
                                             <a href="#">
                                                 <i className="fa font-12 fa-file gradient-blue rounded-sm color-white"></i>
                                                 <span>Page Packs</span>

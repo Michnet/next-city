@@ -17,6 +17,14 @@ export const largeResp = [
     }
   ];
 
+export const s_settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  variableWidth: true,
+  slidesToScroll: 1
+};
+
 export const responsiveCarousel = {
   pauseOnHover: true,
     dots: true,
