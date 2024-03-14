@@ -2,7 +2,6 @@
 //import ExplorerFilter from "~/components/explorer/ExplorerFilter";
 //import SearchFilter from "~/components/explorer/SearchFilter";
 
-import dynamic from "next/dynamic";
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
@@ -120,7 +119,7 @@ const ExploreEvents = () => {
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">
-                    {/* <ActivityCarousel mini noFallback cardWidth={140} exCardClass={'bg-transparent _mini'} sort={'top-rated'} title={'Top rated'}  icon={<i className="bi bi-stars"/>} limit={10} cardType={2} exClass={'px-0'}  shadowHeight={144}/> */}
+                    <ActivityCarousel mini noFallback cardWidth={200} exCardClass={'bg-transparent _mini ml-0'} sort={'top-rated'} title={'Top rated'}  icon={<i className="bi bi-stars"/>} limit={10} cardType={2} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section px-2 mt-20">
@@ -164,7 +163,7 @@ const ExploreEvents = () => {
 };
 
 
-/* const PageLayout = dynamic(() => import('~/appComponents/core/Layout/PageLayout'));
+/* const PageLayout = dynamic(() => import('~/appComponents/core//PageLayout'));
 
 ExploreEvents.getLayout = function getLayout({children}) {
   return (

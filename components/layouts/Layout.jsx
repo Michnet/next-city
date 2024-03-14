@@ -9,58 +9,76 @@ import RouteLoader from "./RouteLoader";
 import SiteHead from "../UI/SiteHead";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
-import { onAppLoad } from "@/helpers/appjs";
+import { onAppLoad, openOffCanvas, toggleTheme } from "@/helpers/appjs";
 import { UserAvatar } from "../UI/UserAvatar";
 import Scaffold from "./Scaffold";
 
 //const inter = Inter({ subsets: ["latin"] });
 
-export default function Layout({ children, title }) {
+export default function Layout({ children, headerTitle, platform}) {
+
+  function pinHeader(){
+    if (typeof window !== 'undefined') {
+      const header_el = document.querySelector(".header-auto-show");
+      const inters_el = document.getElementById("header_intersector");
+      if(header_el){
+        console.log('got header')
+        const observer = new IntersectionObserver( 
+          ([e]) => header_el.classList.toggle("header-active", e.intersectionRatio < 1),
+          { threshold: [1] }
+        );
+        if(inters_el){
+          observer.observe(inters_el);
+        }
+      }else{
+        console.log('No header')
+      }
+    }
+  }
 
   console.log("loading layout");
   return (
     <>
-      <SiteHead title={title ?? "LyveCity Page"} />
       <main /* className={`${inter.className}`} */>
         <div id="preloader">
           <div className="spinner-border color-highlight" role="status"></div>
         </div>
-        <div id="page">
+        <div id="page" onLoad={() => pinHeader()}>
           <Client>
-            <div className="header header-bar header-fixed header-logo-center header-auto-show header-search">
-				<div className="_left">
-					<Client>
-						<button className="left_menu_btn d-flex items-center text-20 d-block d-md-none" data-menu='mobile_sidebar'>
-							<i class="bi bi-text-left"></i>
-						</button>
-						<button className="left_menu_btn d-flex items-center text-20 d-none d-md-block" aria-expanded='false' data-bs-target={"#sidebar"} data-bs-toggle={'collapse'}>
-							<i class="bi bi-text-left"></i>
-						</button>
-					</Client>
-					<a
-						href="#"
-						data-back-button
-						className="_left header-icon header-icon-1"
-					>
-						<i className="fas fa-arrow-left"></i>
-					</a>
-					<div className="title_box">
-						<Link href="/" className="header-title truncate mh-100">
-						{title ?? "LyveCity"}
-						</Link>
-					</div>
-				</div>
+            <div className={`header header-bar header-fixed header-logo-center ${platform == "Windows" ? 'header-always-show' : 'header-auto-show'} header-search`}>
+            <div className="_left">
+              <Client>
+                <button onClick={(e) => openOffCanvas(e)} className="left_menu_btn d-flex items-center text-20 d-block d-md-none" data-menu='mobile_sidebar'>
+                  <i class="bi bi-text-left"></i>
+                </button>
+                <button className="left_menu_btn d-flex items-center text-20 d-none d-md-block" aria-expanded='false' data-bs-target={"#sidebar"} data-bs-toggle={'collapse'}>
+                  <i class="bi bi-text-left"></i>
+                </button>
+              </Client>
+              <a
+                href="#"
+                data-back-button
+                className="_left header-icon header-icon-1"
+              >
+                <i className="fas fa-arrow-left"></i>
+              </a>
+              <div className="title_box">
+                <Link href="/" className="header-title truncate mh-100">
+                {headerTitle ?? "LyveCity"}
+                </Link>
+              </div>
+            </div>
               
               <div className="_right">
-                <a href="#" data-toggle-theme className="header-menu-icon header-icon-4" >
+                <a href="#" data-toggle-theme onClick={() => toggleTheme()}  className="header-menu-icon header-icon-4" >
                   <i className="bi bi-lamp-fill"></i>
                 </a>
-                <a href="#"  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
+                <span onClick={(e) => openOffCanvas(e)}  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
                   <i className="lar la-bell"></i>
-                </a>
-                <a href="#" data-menu="menu-sidebar-right-2">
+                </span>
+                <span onClick={(e) => openOffCanvas(e)} data-menu="menu-sidebar-right-2">
                   <i className="bi bi-text-indent-left"></i>
-                </a>
+                </span>
                 <a href="#" data-toggle-search>
                   <i className="fa fa-search"></i>
                 </a>
@@ -76,7 +94,7 @@ export default function Layout({ children, title }) {
             </div>
           </Client>
 
-          <div id="footer-bar" className="footer-bar-1">
+          <div id="footer-bar" className="footer-bar-1 d-md-none">
             <Link href="/">
               <i className="fa fa-home"></i>
               <span>Home</span>
@@ -93,14 +111,15 @@ export default function Layout({ children, title }) {
               <i className="fa fa-search"></i>
               <span>Search</span>
             </Link>
-            <Link href="#" data-menu="menu-settings">
+            <span className="link" onClick={(e) => openOffCanvas(e)} data-menu="menu-settings">
               <i className="fa fa-cog"></i>
               <span>Settings</span>
-            </Link>
+            </span>
           </div>
 
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
+          <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
           <Scaffold>{children}</Scaffold>
 
           {/*Settings*/}
@@ -122,7 +141,7 @@ export default function Layout({ children, title }) {
               <div className="list-group list-custom-small">
                 <a
                   href="#"
-                  data-toggle-theme
+                  data-toggle-theme onClick={() => toggleTheme()} 
                   data-trigger-switch="switch-dark-mode"
                   className="pb-2 ms-n1"
                 >
@@ -130,7 +149,7 @@ export default function Layout({ children, title }) {
                   <span>Dark Mode</span>
                   <div className="custom-control scale-switch ios-switch">
                     <input
-                      data-toggle-theme
+                      data-toggle-theme onClick={() => toggleTheme()} 
                       type="checkbox"
                       className="ios-input"
                       id="switch-dark-mode"
@@ -140,18 +159,18 @@ export default function Layout({ children, title }) {
                       htmlFor="switch-dark-mode"
                     ></label>
                   </div>
-                  <i className="fa fa-angle-right"></i>
+                  <i className="fa fa-angle-right"></i> 
                 </a>
               </div>
               <div className="list-group list-custom-large">
-                <a data-menu="menu-highlights" href="#">
+                <span className="link" data-menu="menu-highlights" href="#" onClick={(e) => openOffCanvas(e)}>
                   <i className="fa font-14 fa-tint bg-green-dark rounded-s"></i>
                   <span>Page Highlight</span>
                   <strong>16 Colors Highlights Included</strong>
                   <span className="badge bg-highlight color-white">HOT</span>
                   <i className="fa fa-angle-right"></i>
-                </a>
-                <a data-menu="menu-backgrounds" href="#" className="border-0">
+                </span>
+                <a data-menu="menu-backgrounds" href="#" className="border-0" onClick={(e) => openOffCanvas(e)}>
                   <i className="fa font-14 fa-cog bg-blue-dark rounded-s"></i>
                   <span>Background Color</span>
                   <strong>10 Page Gradients Included</strong>
@@ -466,5 +485,5 @@ export default function Layout({ children, title }) {
         <RouteLoader />
       </main>
     </>
-  );
+  )
 }

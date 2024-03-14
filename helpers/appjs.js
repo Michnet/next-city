@@ -24,7 +24,7 @@ function appjsCode(){
     }
 
   //Scroll Ads
-  var scrollItems = document.querySelectorAll('.scroll-ad, .header-auto-show')
+  /* var scrollItems = document.querySelectorAll('.scroll-ad, .header-auto-show')
   if(scrollItems.length){
        console.log('scrollers', scrollItems);
       var scrollAd = document.querySelectorAll('.scroll-ad');
@@ -54,7 +54,7 @@ function appjsCode(){
   }else{
     console.log('No scrollers in the dom', scrollItems);
 
-  }
+  } */
 
   var highlightData = document.querySelectorAll('[data-change-highlight]');
   highlightData.forEach(el => el.addEventListener('click', e =>{
@@ -109,21 +109,24 @@ function appjsCode(){
   //Set Background and Highlight
   var pageBackground = localStorage.getItem(pwaName+'-Gradient');
   if(pageBackground){document.body.setAttribute('data-gradient', 'body-'+pageBackground+'');}
+/* 
 const toggleDark = document.querySelectorAll('[data-toggle-theme]');
+
 function activateDarkMode(){
-    console.log('activating mode', toggleDark);
     document.body.classList.add('theme-dark');
     document.body.classList.remove('theme-light');
     document.body.classList.remove('detect-theme');
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
     localStorage.setItem(pwaName+'-Theme', 'dark-mode');
 }
+
 function activateLightMode(){
     document.body.classList.add('theme-light');
     document.body.classList.remove('theme-dark','detect-theme');
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=false};
     localStorage.setItem(pwaName+'-Theme', 'light-mode');
 }
+
 function removeTransitions(){var falseTransitions = document.querySelectorAll('.btn, .header, #footer-bar, .menu-box, .menu-active'); for(let i = 0; i < falseTransitions.length; i++) {falseTransitions[i].style.transition = "all 0s ease";}}
 function addTransitions(){var trueTransitions = document.querySelectorAll('.btn, .header, #footer-bar, .menu-box, .menu-active'); for(let i = 0; i < trueTransitions.length; i++) {trueTransitions[i].style.transition = "";}}
 
@@ -156,7 +159,7 @@ darkModeDetect.forEach(el => el.addEventListener('click',e =>{
     document.body.classList.remove('theme-light', 'theme-dark');
     document.body.classList.add('detect-theme')
     setTimeout(function(){setColorScheme();},50)
-}));
+})); */
 }
 
 export function onAppLoad(){
@@ -172,4 +175,147 @@ export function onAppLoad(){
             });
          }
   }
+}
+
+var pwaName = "LyveState"; 
+
+const toggleDark = typeof window !== 'undefined' ? document.querySelectorAll('[data-toggle-theme]') : [];
+
+function activateDarkMode(){
+    if (typeof window !== 'undefined') {
+    document.body.classList.add('theme-dark');
+    document.body.classList.remove('theme-light');
+    document.body.classList.remove('detect-theme');
+    for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
+    localStorage.setItem(pwaName+'-Theme', 'dark-mode');
+    }
+}
+
+function activateLightMode(){
+    if (typeof window !== 'undefined') {
+    document.body.classList.add('theme-light');
+    document.body.classList.remove('theme-dark','detect-theme');
+    for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=false};
+    localStorage.setItem(pwaName+'-Theme', 'light-mode');
+    }
+}
+
+function removeTransitions(){
+    if (typeof window !== 'undefined') {
+    var falseTransitions = document.querySelectorAll('.btn, .header, #footer-bar, .menu-box, .menu-active'); for(let i = 0; i < falseTransitions.length; i++) {falseTransitions[i].style.transition = "all 0s ease";}
+    }}
+
+function addTransitions(){
+    if (typeof window !== 'undefined') {
+    var trueTransitions = document.querySelectorAll('.btn, .header, #footer-bar, .menu-box, .menu-active'); for(let i = 0; i < trueTransitions.length; i++) {trueTransitions[i].style.transition = "";}
+    }}
+
+function setColorScheme() {
+    if (typeof window !== 'undefined') {
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+    const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+    const isNoPreference = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+    window.matchMedia("(prefers-color-scheme: dark)").addListener(e => e.matches && activateDarkMode())
+    window.matchMedia("(prefers-color-scheme: light)").addListener(e => e.matches && activateLightMode())
+    if(isDarkMode) activateDarkMode();
+    if(isLightMode) activateLightMode();
+    }
+}
+
+//Activating Dark Mode
+/* const darkModeSwitch = typeof window !== 'undefined' ? document.querySelectorAll('[data-toggle-theme]') : [];
+
+darkModeSwitch.forEach(el => el.addEventListener('click',e =>{
+    if(document.body.className == "theme-light"){ 
+        removeTransitions(); activateDarkMode();}
+    else if(document.body.className == "theme-dark"){ removeTransitions(); activateLightMode();}
+    setTimeout(function(){addTransitions();},350);
+})); */
+
+
+export function toggleTheme(){
+    if (typeof window !== 'undefined') {
+        if(document.body.className == "theme-light"){ 
+            removeTransitions(); activateDarkMode();}
+        else if(document.body.className == "theme-dark"){ removeTransitions(); activateLightMode();}
+        setTimeout(function(){addTransitions();},350);
+    }
+}
+
+/* 
+
+//Opening Menus
+var menuOpen = document.querySelectorAll('[data-menu]');
+var wrappers = document.querySelectorAll('.header, #footer-bar, .page-content');
+
+menuOpen.forEach(el => el.addEventListener('click',e =>{
+    //Close Existing Opened Menus
+    const activeMenu = document.querySelectorAll('.menu-active');
+    for(let i=0; i < activeMenu.length; i++){activeMenu[i].classList.remove('menu-active');}
+    //Open Clicked Menu
+    var menuData = el.getAttribute('data-menu');
+    document.getElementById(menuData).classList.add('menu-active');
+    document.getElementsByClassName('menu-hider')[0].classList.add('menu-active');
+    //Check and Apply Effects
+    var menu = document.getElementById(menuData);
+    var menuEffect = menu.getAttribute('data-menu-effect');
+    var menuLeft = menu.classList.contains('menu-box-left');
+    var menuRight = menu.classList.contains('menu-box-right');
+    var menuTop = menu.classList.contains('menu-box-top');
+    var menuBottom = menu.classList.contains('menu-box-bottom');
+    var menuWidth = menu.offsetWidth;
+    var menuHeight = menu.offsetHeight;
+
+    if(menuEffect === "menu-push"){
+        var menuWidth = document.getElementById(menuData).getAttribute('data-menu-width');
+        if(menuLeft){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX("+menuWidth+"px)"}}
+        if(menuRight){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX(-"+menuWidth+"px)"}}
+        if(menuBottom){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY(-"+menuHeight+"px)"}}
+        if(menuTop){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY("+menuHeight+"px)"}}
+    }
+    if(menuEffect === "menu-parallax"){
+        var menuWidth = document.getElementById(menuData).getAttribute('data-menu-width');
+        if(menuLeft){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX("+menuWidth/10+"px)"}}
+        if(menuRight){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX(-"+menuWidth/10+"px)"}}
+        if(menuBottom){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY(-"+menuHeight/5+"px)"}}
+        if(menuTop){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY("+menuHeight/5+"px)"}}
+    }
+})); */
+
+export function openOffCanvas(e){
+    if(typeof window !== 'undefined'){
+        let el = e.currentTarget;
+        //Close Existing Opened Menus
+        const activeMenu = document.querySelectorAll('.menu-active');
+        for(let i=0; i < activeMenu.length; i++){activeMenu[i].classList.remove('menu-active');}
+        //Open Clicked Menu
+        var menuData = el.getAttribute('data-menu');
+        var menu = document.getElementById(menuData);
+        menu.classList.add('menu-active');
+        document.getElementsByClassName('menu-hider')[0].classList.add('menu-active');
+        //Check and Apply Effects
+        // var menu = document.getElementById(menuData);
+        var menuEffect = menu.getAttribute('data-menu-effect');
+        var menuLeft = menu.classList.contains('menu-box-left');
+        var menuRight = menu.classList.contains('menu-box-right');
+        var menuTop = menu.classList.contains('menu-box-top');
+        var menuBottom = menu.classList.contains('menu-box-bottom');
+        var menuWidth = menu.offsetWidth;
+        var menuHeight = menu.offsetHeight;
+    
+        if(menuEffect === "menu-push"){
+            var menuWidth = document.getElementById(menuData).getAttribute('data-menu-width');
+            if(menuLeft){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX("+menuWidth+"px)"}}
+            if(menuRight){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX(-"+menuWidth+"px)"}}
+            if(menuBottom){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY(-"+menuHeight+"px)"}}
+            if(menuTop){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY("+menuHeight+"px)"}}
+        }
+        if(menuEffect === "menu-parallax"){
+            var menuWidth = document.getElementById(menuData).getAttribute('data-menu-width');
+            if(menuLeft){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX("+menuWidth/10+"px)"}}
+            if(menuRight){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX(-"+menuWidth/10+"px)"}}
+            if(menuBottom){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY(-"+menuHeight/5+"px)"}}
+            if(menuTop){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY("+menuHeight/5+"px)"}}
+        }
+    }
 }

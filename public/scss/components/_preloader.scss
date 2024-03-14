@@ -21,11 +21,11 @@
 }
 .theme-light {
 	#preloader {
-		background-color: $color_white;
+		background-color: $color_transparent_white;
 	}
 }
 .theme-dark {
 	#preloader {
-		background-color: $theme-dark-background;
+		background-color: $theme-dark-transparent-bg;
 	}
 }

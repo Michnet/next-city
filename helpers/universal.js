@@ -275,6 +275,36 @@ export function createOccurenceClass(targetDate, targetEndDate){
   }
 }
 
+export function createOccurenceState(targetDate, targetEndDate){
+  const now = new Date();
+
+  let stateClass, stateText;
+
+  if(dayjs(targetDate).isAfter(now, 'minute')){
+    if(dayjs(targetDate).diff(dayjs(now), 'day') > 1){
+      stateClass = '_future_dist';
+      stateText = 'Coming Soon';
+    }else{
+      stateClass = '_future';
+      stateText = 'Starting Soon';
+    }
+  }else{
+    if(targetEndDate){
+      if(dayjs(targetEndDate).isAfter(now, 'minute')){
+        stateClass = '_ongoing';
+        stateText = 'Happening Now';
+      }else{
+        stateClass = '_past';
+        stateText = 'Ended';
+      }
+    }else{
+      stateClass = '_past';
+      stateText = 'Ended';
+    }
+  }
+  return {stateClass:stateClass, stateText: stateText}
+}
+
   
 export const generateTempArray = (maxItems) => {
     let result = [];

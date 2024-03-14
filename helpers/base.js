@@ -48,7 +48,7 @@ export const kyFetch = ky.create({
      hooks: {
        beforeRequest: [
          (request) => {
-             console.log('request', request);
+            // console.log('request', request);
            //request.headers.set("Authorization", "Bearer token")
          },
        ],

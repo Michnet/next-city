@@ -13,13 +13,13 @@ import { onAppLoad } from "@/helpers/appjs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ActivityProvider from "@/contexts/ActivityContext";
+import Layout from "@/components/layouts/Layout";
 //import "@/public/scripts/bootstrap.min.js";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, platform }) {
+  const {headerTitle} = pageProps;
 
-  /* useEffect(() => {
-    require("@/public/scripts/custom.js");
-  }); */
+  console.log('platfor', platform)
 
   useEffect(() => {
     require("@/helpers/boojs.js");
@@ -39,7 +39,9 @@ function MyApp({ Component, pageProps }) {
       <SessionProvider>
         <RecoilRoot>
           <HydrationProvider>
-              <Component {...pageProps} />;
+            <Layout platform={platform} headerTitle={headerTitle}>
+              <Component {...pageProps}/>
+            </Layout>
           </HydrationProvider>
           <AuthProvider/>
           <ActivityProvider/>
@@ -53,7 +55,6 @@ function MyApp({ Component, pageProps }) {
   </>
 }
 
-
 MyApp.getInitialProps = async (cont) => {
   /* if (ctx && ctx.req && ctx.req.headers) {
     return {
@@ -64,9 +65,9 @@ MyApp.getInitialProps = async (cont) => {
 
   const initialProps = await App.getInitialProps(cont)
   //const userAgent = typeof window === "undefined" ? ctx.req.headers["user-agent"] : window.navigator.userAgent
-
-  console.log('contxx', cont?.ctx?.headers);
-  return {  ...initialProps }
+   const reqPlat = cont?.ctx?.req?.headers['sec-ch-ua-platform'];
+  //console.log('contxx', cont?.ctx?.req?.headers['sec-ch-ua-mobile']);
+  return {  ...initialProps , platform: reqPlat }
 }
 
 export default MyApp;

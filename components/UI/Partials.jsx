@@ -26,6 +26,17 @@ export const ListingMeta = ({location, duration, filled}) => {
           </div>
 }
 
+
+export const ListingMetaMini = ({page_views, ratings, exClass, page_likes, filled}) => {
+  return <div className={`listing_meta _mini ${exClass ?? ''}`}>
+            <ul className={`mb-0 gx-text-truncate _meta w-auto d-flex align-items-center`}>
+                {page_likes ? <li><i className={`bi bi-suit-heart${filled ? '-fill' : ''} mr-4`}></i>{page_likes}</li> : null}
+                {ratings ? <li><i className={`bi bi-star${filled ? '-fill' : ''}  mr-4`}/> {ratings} </li> : null}
+                {page_views ? <li><i className={`bi bi-eye${filled ? '-fill' : ''} mr-4`}></i>{page_views}</li> : null}
+            </ul>
+          </div>
+}
+
 export function PreviousRouteLink() {
     const router = useRouter()
    

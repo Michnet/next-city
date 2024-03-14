@@ -5,6 +5,7 @@ import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import { LoaderDualRing } from "../skeletons/Loaders";
 import { Avatar } from "./Partials";
+import {openOffCanvas} from "@/helpers/appjs";
 
 export function UserCard({size}){
    const {userSignOut} = useRecoilValue(useAuthState);
@@ -18,9 +19,9 @@ export function UserCard({size}){
     return <><Client><div className="bg-theme mx-3 rounded-m shadow-m my-3 user_card">
                <div className="d-flex px-2 pb-2 pt-2">
                      <div className="align-self-center">
-                     <span type="button" className="d-flex" data-menu='login_modal' >
+                     <span type="button" className="d-flex" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}>
                            <Client> {loading ? <LoaderDualRing exClass={'_mini'}/> : <>{user ? <div>{<Avatar width={size ?? 30} rounded src={avatarUrl}  className="gx-size-40 gx-pointer" alt=""/>
-                        } </div> : <>{sessionUser ? <Avatar width={size ?? 30} rounded src={sessionUser.image}  className="gx-size-40 gx-pointer" alt=""/> : <i className="bi bi-person" data-menu='login_modal'/>}</>}</>}</Client>
+                        } </div> : <>{sessionUser ? <Avatar width={size ?? 30} rounded src={sessionUser.image}  className="gx-size-40 gx-pointer" alt=""/> : <i className="bi bi-person" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}/>}</>}</>}</Client>
                            </span>
                      </div>
                      <div className="ps-2 align-self-center user_info">

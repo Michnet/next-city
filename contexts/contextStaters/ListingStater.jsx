@@ -9,8 +9,8 @@ function ListingStaterConst({id, author}) {
   const setActiveDates = useSetRecoilState(activeDateState);
   const {user} = useRecoilValue(authState);
  
-  const getDates = async(payload) => {
-    const fetchdDates = await getEventDates(payload);
+  const getDates = async(payload, signal) => {
+    const fetchdDates = await getEventDates(payload, signal);
     if(fetchdDates){
      setActiveDates({act_dates: fetchdDates, act_id:id});
     }
@@ -43,10 +43,14 @@ function ListingStaterConst({id, author}) {
 
 useEffect(() => {
  //const {act_id} = activeDates ?? {};
+ const controller = new AbortController();
+ const {signal} = controller;
+
  if(id != 'undefined'){
     setActiveDates({loading: true})
-    getDates({event_id: id, f_key : 'event-date', upcoming_instances : 5});
+    getDates({event_id: id, f_key : 'event-date', upcoming_instances : 5}, signal);
   }
+  return () => controller.abort();
 }, [id]);
 
   return <div className="listingStater"/>

@@ -241,7 +241,7 @@ export function run_template(){
                 var menuOpen = document.querySelectorAll('[data-menu]');
                 var wrappers = document.querySelectorAll('.header, #footer-bar, .page-content');
 
-                menuOpen.forEach(el => el.addEventListener('click',e =>{
+               /*  menuOpen.forEach(el => el.addEventListener('click',e =>{
                     //Close Existing Opened Menus
                     const activeMenu = document.querySelectorAll('.menu-active');
                     for(let i=0; i < activeMenu.length; i++){activeMenu[i].classList.remove('menu-active');}
@@ -273,7 +273,7 @@ export function run_template(){
                         if(menuBottom){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY(-"+menuHeight/5+"px)"}}
                         if(menuTop){for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateY("+menuHeight/5+"px)"}}
                     }
-                }));
+                })); */
 
                 //Closing Menus
                 const menuClose = document.querySelectorAll('.close-menu, .menu-hider');

@@ -1,5 +1,5 @@
 import RelatedByTaxSplide from "@/components/listing/RelatedByTaxSplide";
-import Layout from "@/components/layouts/Layout";
+import  from "@/components/layouts/";
 //import VisitRecord from "@/components/UI/VisitRecord";
 import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
@@ -43,10 +43,12 @@ export async function getStaticPaths() {
     const postArr = await singleRes.json();
     const post = postArr[0];
     serverObj.listing = post && post != 'undefined' ? post :  null;
+    const title = listing?.title;
     
     return {
       props: {
         ...serverObj,
+        headerTitle: title={cleanHtml(title?.rendered)}
       },
       revalidate: 6000, // In seconds
     }
@@ -63,7 +65,7 @@ export async function getStaticPaths() {
 
 console.log('liss', listing);  
 
-    return <Layout title={cleanHtml(title?.rendered)}> 
+    return <> 
         <>
         <SiteHead
            title={`${cleanHtml(listing?.title?.rendered)}`} 
@@ -135,14 +137,14 @@ console.log('liss', listing);
     <VisitRecord Id={listing.id}/>
     <ListingStater id={listing.id}/>
     </>
-</Layout>
+</>
 
   }
 
 
   const Listing = memo(ListingConst);
 
-  /* const CanvasLayout = dynamic(() => import('~/appComponents/core/Layout/CanvasLayout'));
+  /* const CanvasLayout = dynamic(() => import('~/appComponents/core//CanvasLayout'));
   
   Listing.getLayout = function getLayout({children}) {
     return (

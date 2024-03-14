@@ -1,42 +1,48 @@
+import { toggleTheme } from "@/helpers/appjs"
+import { isActiveLink } from "@/helpers/universal";
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { UserCard } from "../UI/UserCard"
+import {openOffCanvas} from "@/helpers/appjs";
 
-function MainMenu({children}) {
+function MainMenu() {
+ const router = useRouter();
+
+ const topLinks = [
+    {id: 1,
+        icon: "fa fa-home",
+        color: 'gradient-green',
+        name: "Home",
+        routePath: "/",
+    },
+    {id: 2,
+        icon: "fa fa-calendar-check",
+        color: 'gradient-red',
+        name: "Explore",
+        routePath: "/explore/events",
+        isNew: true
+    },
+ ]
   return (
   <div id="sidebar_menu" className="list-group border-0 rounded-0 text-sm-start h-100">
-                        <div id="menu-sidebar" className="bg-white" /* data-menu-width="320" data-menu-effect="menu-push" */>
+                        <div id="menu-sidebar"  /* data-menu-width="320" data-menu-effect="menu-push" */>
                             <div className="sidebar-content">
                                <UserCard/>
                                 <div className="card card-style shadow-0 border">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
                                         <div className="list-group list-custom-small list-icon-0">
-                                            <Link href="/">
-                                                <i className="fa font-12 fa-home gradient-green rounded-sm color-white"></i>
-                                                <span>Homepage</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </Link>
-                                            <Link href="/explore/events">
-                                                <i className="fa font-12 fa-calendar-check gradient-red rounded-sm color-white"></i>
-                                                <span>Explore</span>
-                                                <span className="badge bg-highlight">NEW</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </Link>
-                                            <a href="#">
-                                                <i className="fa font-12 fa-file gradient-blue rounded-sm color-white"></i>
-                                                <span>Page Packs</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i className="fa font-12 fa-camera gradient-yellow rounded-sm color-white"></i>
-                                                <span>Media</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i className="fa font-12 fa-image gradient-teal rounded-sm color-white"></i>
-                                                <span>Contact</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </a>
+                                            {topLinks.map((el) => {
+                                                let {id, icon, color, name, routePath, isNew} = el;
+                                                return <Link key={id} href={routePath}>
+                                                        <i className={`${icon} 
+                                                        ${isActiveLink(routePath, router.asPath)? 'gradient-menu color-white' : 'gradient-gray color-dark'} 
+                                                        rounded-sm`}></i>
+                                                        <span>{name}</span>
+                                                        {isNew && <span className="badge bg-highlight">NEW</span>}
+                                                        <i className="fa fa-angle-right"></i>
+                                                    </Link>
+                                            })}
                                         </div>
                                     </div>
                                 </div>
@@ -65,13 +71,13 @@ function MainMenu({children}) {
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Settings</h5>
                                         <div className="list-group list-custom-small list-icon-0">
-                                            <a href="#" data-menu="menu-highlights">
-                                                <i className="fa font-12 fa-droplet gradient-blue rounded-sm color-white"></i>
+                                            <a href="#" data-menu="menu-highlights" onClick={(e) => openOffCanvas(e)}>
+                                                <i className="fa font-12 fa-droplet gradient-blue rounded-sm color-theme"></i>
                                                 <span>Highlights</span>
                                                 <i className="fa fa-angle-right"></i>
                                             </a>
-                                            <a href="#" data-menu="menu-backgrounds">
-                                                <i className="fa font-12 fa-paint-brush gradient-orange rounded-sm color-white"></i>
+                                            <a href="#" data-menu="menu-backgrounds" onClick={(e) => openOffCanvas(e)}>
+                                                <i className="fa font-12 fa-paint-brush gradient-orange rounded-sm color-theme"></i>
                                                 <span>Backgrounds</span>
                                                 <i className="fa fa-angle-right"></i>
                                             </a>
@@ -83,11 +89,11 @@ function MainMenu({children}) {
                                 <div className="card card-style mb-3">
                                     <div className="content my-0 py-">
                                         <div className="list-group list-custom-small list-icon-0">
-                                            <a href="#" data-toggle-theme data-trigger-switch="switch-dark2-mode" className="border-0">
-                                                <i className="fa font-12 fa-moon gradient-yellow color-white rounded-sm"></i>
+                                            <a href="#" data-toggle-theme onClick={() => toggleTheme()}  data-trigger-switch="switch-dark2-mode" className="border-0">
+                                                <i className="fa font-12 fa-moon gradient-yellow color-theme rounded-sm"></i>
                                                 <span>Dark Mode</span>
                                                 <div className="custom-control ios-switch">
-                                                    <input data-toggle-theme type="checkbox" className="ios-input" id="switch-dark2-mode"/>
+                                                    <input data-toggle-theme onClick={() => toggleTheme()}  type="checkbox" className="ios-input" id="switch-dark2-mode"/>
                                                     <label className="custom-control-label" htmlFor="switch-dark2-mode"></label>
                                                 </div>
                                                 <i className="fa fa-angle-right"></i>

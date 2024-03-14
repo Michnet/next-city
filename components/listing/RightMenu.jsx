@@ -1,8 +1,10 @@
 import { authState } from "@/contexts/atoms";
+import { toggleTheme } from "@/helpers/appjs";
 import { cleanHtml } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
+import {openOffCanvas} from "@/helpers/appjs";
 
 function RightMenu({listing, activeKey, setActiveKey}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
@@ -29,7 +31,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
       }
   return (
     <Client>
-    <div id="menu-sidebar-right-2" className="menu menu-box-right menu-box-detached menu-sidebar" data-menu-width="310">
+    <div id="menu-sidebar-right-2" className="menu menu-box-right menu-box-detached menu-sidebar" style={{width: '310px'}}>
 		<div className="sidebar-content">
 			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
 				<div className="card-bottom m-3">
@@ -90,21 +92,21 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 				<div className="content my-0">
 					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Settings</h5>
 					<div className="list-group list-custom-small list-icon-0">
-						<a href="#" data-toggle-theme data-trigger-switch="switch-dark2-mode" className="border-0">
+						<a href="#" data-toggle-theme onClick={() => toggleTheme()}  data-trigger-switch="switch-dark2-mode" className="border-0">
 							<i className="fa font-12 fa-moon gradient-mint color-white rounded-sm"></i>
 							<span>Dark Mode</span>
 							<div className="custom-control ios-switch">
-								<input data-toggle-theme type="checkbox" className="ios-input" id="switch-dark2-mode"/>
+								<input data-toggle-theme onClick={() => toggleTheme()}  type="checkbox" className="ios-input" id="switch-dark2-mode"/>
 								<label className="custom-control-label" for="switch-dark2-mode"></label>
 							</div>
 							<i className="fa fa-angle-right"></i>
 						</a>
-						<a href="#" data-menu="menu-highlights">
+						<a href="#" data-menu="menu-highlights" onClick={(e) => openOffCanvas(e)}>
 							<i className="fa font-12 fa-droplet gradient-blue rounded-sm color-white"></i>
 							<span>Highlights</span>
 							<i className="fa fa-angle-right"></i>
 						</a>
-						<a href="#" data-menu="menu-backgrounds">
+						<a href="#" data-menu="menu-backgrounds" onClick={(e) => openOffCanvas(e)}>
 							<i className="fa font-12 fa-paint-brush gradient-orange rounded-sm color-white"></i>
 							<span>Backgrounds</span>
 							<i className="fa fa-angle-right"></i>

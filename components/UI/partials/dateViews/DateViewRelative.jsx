@@ -36,7 +36,7 @@ const DateViewRelative = ({eventId, customDate=null, customEndDate}) => {
     const controller = new AbortController();
     const {signal} = controller;
     if(!customDate){
-      getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1, signal: signal})
+      getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1}, signal)
     }else{
       setDates([{start: customDate, end: customEndDate}])
     }

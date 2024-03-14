@@ -83,6 +83,7 @@ $shadow-xl:0 5px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
 //Dark Mode Main Colors*/
 $color_transparent: rgba(0,0,0,0);
 $color_white: #FFF;
+$color_transparent_white: #ffffffe3;
 $color_black: #000;
 $color_dark: #1f1f1f;
 
@@ -91,6 +92,7 @@ $theme-light-structure:#FFFFFF;
 $theme-light-background:#f0f0f0;
 $theme-dark-structure: #21252a;
 $theme-dark-background: #0f1117;
+$theme-dark-transparent-bg: #0f1117e7;
 $theme-dark-lighter:rgba(255,255,255,0.05);
 
 $theme-dark-text: #898989;

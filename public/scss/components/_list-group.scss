@@ -56,7 +56,45 @@
 		}
 	}
 }
+
 .list-custom-large {
+	.link{
+			line-height: 70px;
+			color: $color_dark;
+			font-weight: 500;
+			font-size: 13px;
+			border-bottom: solid 1px rgba(0,0,0,0.05);
+			span {
+				&:not(.badge) {
+					font-size: 14px;
+					position: absolute;
+					margin-top: -6px;
+				}
+			}
+			strong {
+				font-size: 7px;
+				position: absolute;
+				font-size: 11px;
+				margin-top: 10px;
+				color: $gray-500;
+				font-weight: 500;
+			}
+			i {
+				&:first-child {
+					width: 32px;
+					height: 32px;
+					line-height: 32px;
+					margin-top: 21px;
+					text-align: center;
+					float: left;
+					margin-right: 15px;
+				}
+				&:last-child {
+					float: right;
+					font-size: 10px;
+				}
+			}
+		}
 	a {
 		line-height: 70px;
 		color: $color_dark;

@@ -17,6 +17,7 @@ import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
 import { DualColorHeader } from "@/components/UI/Partials";
 import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
 import { TermIcon } from "@/components/UI/partials/termLinks";
+import ActivityCard2 from "@/components/UI/Listings/cards/ActivityCard2";
 
 
 export async function getStaticProps() {
@@ -83,7 +84,6 @@ export async function getStaticProps() {
 
 export default function Home(props) {
     const {serverObj} = props;
-    console.log('home props', props);
    const {eventCategories, topLocations, busyLocations} = serverObj ?? {};
 
   let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
@@ -107,7 +107,7 @@ export default function Home(props) {
     }
 
     var s_settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         variableWidth: true,
@@ -115,7 +115,7 @@ export default function Home(props) {
       };
 
   return (
-    <Layout>
+    <>
       <Client>
 
 <div className="page-content">
@@ -218,7 +218,7 @@ export default function Home(props) {
             </div>
         </div>
 
-		<Slider {...s_settings}>
+		<Slider autoplay {...s_settings}>
             {
                 eventCategories?.map((cat) => {
                     return <TermIcon item={cat} key={cat.id}/>
@@ -228,7 +228,7 @@ export default function Home(props) {
 					
 		</Slider>
 
-		<div className="divider mt-4"></div>
+		<div className="divider mt-24"></div>
 
     <div className="d-flex px-3 mb-3">
         <div className="align-self-center">
@@ -294,9 +294,7 @@ export default function Home(props) {
     </Slider>
 
     <div className="d-flex px-3">
-      <div className="align-self-center">
-        <DualColorHeader title={'Just Added'} subTitle={'Be the first to know'}/>
-      </div>
+        <DualColorHeader exClass='mb-15' title={'Just Added'} subTitle={'Be the first to know'}/>
       <div className="align-self-center ms-auto">
         <a href="#" className="font-12">View All</a>
       </div>
@@ -305,7 +303,7 @@ export default function Home(props) {
     <Slider  {...variableWidth} centerPadding={'20px'}>
       {listings?.length > 0 ? 
           listings.map((li) => {
-            return <div className="px-2"><ActivityCard1 key={li.id} item = {li}/></div>
+            return <ActivityCard2 exClass={'ml-0'} key={li.id} item = {li}/>
           })
           :
           <></>
@@ -460,6 +458,6 @@ export default function Home(props) {
 
 </div>
 </Client>
-    </Layout>
+    </>
   );
 }

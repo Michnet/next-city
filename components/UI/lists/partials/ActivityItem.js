@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 //import LazyLoad from "react-lazyload";
 import { memo, Suspense, useEffect, useState } from "react";
+import {openOffCanvas} from "@/helpers/appjs";
 import { Avatar } from "../../Partials";
 import { clearInputField, deleteBPActivity, localiseDate, getBPActivityComments, likeBPActivity, sendBPActivityComment, updateBPActivity } from "@/helpers/universal";
 import GuestPrompt from "../../GuestPrompt";
@@ -114,7 +115,10 @@ dayjs.extend(relativeTime)
             return name;
           }
         }
+
+        if(content_stripped?.length > 0){
           activity_content = <div dangerouslySetInnerHTML={{__html: hashtag(content_stripped)}}/>
+        }
         
         
         if(activity_meta){
@@ -151,9 +155,7 @@ dayjs.extend(relativeTime)
                           </ul>
         }
         itemView = <>
-
-
-                    <div key={id} className={`${type} activity_card card card-style mb-3`}>
+                    <div key={id} className={`${type} activity_card card card-style mb-10`}>
                         <div className="content mb-0">
                             <div className="mt-n1">
                                 
@@ -161,7 +163,7 @@ dayjs.extend(relativeTime)
                                   
                                     <div className="d-flex align-items-center gap-2">
                                       <div>
-                                          <a href="#" data-menu="menu-story"><img src={user_avatar?.thumb} width="35" className="rounded-xl mt-1" /* className="rounded-xl mt-1 border border-m border-blue-dark" *//></a>
+                                          <a onClick={(e) => openOffCanvas(e)} href="#" data-menu="menu-story"><img src={user_avatar?.thumb} width="35" className="rounded-xl mt-1" /* className="rounded-xl mt-1 border border-m border-blue-dark" *//></a>
                                       </div>
                                         <div className="pe-3">
                                             <Client><h5 className="_title mb-0 font-16 font-700" dangerouslySetInnerHTML={{__html: getHeading()}}/></Client>
@@ -172,7 +174,7 @@ dayjs.extend(relativeTime)
                                                 <div><span className="opacity-60 font-11">{dayjs(localiseDate(date)).fromNow()}</span></div>
                                             </div>
                                         </div>
-                                        <div className="ms-auto"><a href="#" data-menu="menu-controls" className="icon icon-xss d-block color-theme"><i className="fa fa-ellipsis-v"></i></a>
+                                        <div className="ms-auto"><a href="#" data-menu="menu-controls" onClick={(e) => openOffCanvas(e)}className="icon icon-xss d-block color-theme"><i className="fa fa-ellipsis-v"></i></a>
                                         </div>
                                     </div>
                                     {head_extras}

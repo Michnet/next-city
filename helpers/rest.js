@@ -143,6 +143,26 @@ if(!payload?.event_id || payload?.event_id == 'undefined'){
 }
 }
 
+export const likePost = async (payload) => {
+
+  const endPoint = `wp-json/${userActions}/user-picks?${serializeQuery({
+      ...payload,
+     // JWT : getToken()
+  }) 
+  }`;
+  try{
+  const response = await kyFetch.post(`${WPDomain}/${endPoint}`).json();
+      if(response){
+          if(response){
+           return response;
+          } else return null;
+          
+      }
+    }catch(e){
+          console.log(e)
+    };    
+}
+
 export async function getLocalTaxonomy(payload){
   const {taxonomy, parent_slug, setter} = payload;
   console.log('slug', parent_slug);
@@ -286,7 +306,7 @@ export const getDirTerms = async (taxonomy, payload) => {
   try {
     const res = await kyFetch.get(query).json();
     if(res){
-      console.log('queryyyyyyyyyyyyyyyyyyyy', res);
+      //console.log('queryyyyyyyyyyyyyyyyyyyy', res);
 
         return res;
       }else{

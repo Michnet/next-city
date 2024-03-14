@@ -12,8 +12,8 @@ const CountDownUI = ({fromActive, date = null, eventId, light}) => {
     const activeDate = fromActive ? useRecoilValue(activeDateState) : null;
 
 
-  const getDates = async(payload) => {
-    const fetchdDates = await getEventDates(payload);
+  const getDates = async(payload, signal) => {
+    const fetchdDates = await getEventDates(payload, signal);
     if(fetchdDates?.length > 0){
         setTheDate(fetchdDates[0]?.start);
     }
@@ -22,6 +22,8 @@ const CountDownUI = ({fromActive, date = null, eventId, light}) => {
   
 useEffect(() => {
   setLoading(true);
+  const controller = new AbortController();
+  const {signal} = controller;
 
   if(!date){
     if(fromActive){
@@ -31,7 +33,7 @@ useEffect(() => {
         setTheDate(act_dates[0]?.start);
       }
     }else{
-      getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1});
+      getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1}, signal);
     }
   }else{
       setTheDate(date)
@@ -40,6 +42,7 @@ setLoading(false);
 return () => {
   setTheDate(null);
   setLoading(true);
+  controller.abort();
 }
 }, [date, eventId, activeDate]);
 

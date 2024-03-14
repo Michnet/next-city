@@ -12,7 +12,7 @@ import TermTag from "../../partials/TermTag";
 import { PriceView } from "../../PriceView";
 //import { getEventDates } from "~/server/WpRest";
 
-const ActivityCard1 = ({item, noButton, exClass, dateWidth}) => {
+const ActivityCard1 = ({item, noButton, exClass, dateWidth, width}) => {
 
   const {id, title, event_date, page_views, rating, ticket_min_price_html, category, locations, level, slug} = item;
   
@@ -23,12 +23,13 @@ const ActivityCard1 = ({item, noButton, exClass, dateWidth}) => {
             data-aos="fade"
             data-aos-once="true"
             data-aos-delay={60}
+            style={{width: width ?? 'auto'}}
           >
             <div
               className="activityCard1 -type-1  hover-inside-slider h-100"
             >
               <div className="activityCard1__content h-100">
-              <div className='d-grid align-items-stretch h-100' style={{ gridTemplateColumns: `${event_date && event_date[0] ? dateWidth ? `${dateWidth} calc(100% - ${dateWidth})` : '30% 70%' : '100%'}`}}>
+              <div className={`d-grid align-items-stretch h-100`} style={{ gridTemplateColumns: `${event_date && event_date[0] ? dateWidth ? `${dateWidth} calc(100% - ${dateWidth})` : '30% 70%' : '100%'}`}}>
               {event_date && event_date[0] ? <DateView customDate={event_date[0].start} eventId={id}/> : <></>}
                   <div className='px-10 py-10'>
                     <TermTag exTagClass={'mb-0'} term={category} type={'hash'}/>

@@ -2,6 +2,7 @@ import { useRecoilValue } from "recoil";
 import { authState } from "@/contexts/atoms";
 import { activityState } from "@/contexts/ActivityContext";
 import ActivityItem from "./partials/ActivityItem";
+import {openOffCanvas} from "@/helpers/appjs";
 
 function Activity() {
     const {activities, setSize, size, isLoadingInitialData, isLoadingMore} = useRecoilValue(activityState);
@@ -12,14 +13,14 @@ function Activity() {
 
   return (
     <div className="recent_active">
-		<img src="images/pictures/14w.jpg" className="img-fluid mb-n4"/>
+		<img src="/images/pictures/14w.jpg" className={`img-fluid mb-n4`}/>
         {user && <>
 		<a href="#" style={{zIndex:1}} className="position-relative ms-3">
-			{avatar_urls && <img data-menu="menu-story" src={avatar_urls[96]} width="80" className="border-m border-blue-dark rounded-circle mt-n3"/>}
+			{avatar_urls && <img onClick={(e) => openOffCanvas(e)} data-menu="menu-story" src={avatar_urls[96]} width="80" className="border-m border-blue-dark rounded-circle mt-n3"/>}
 		</a>
 		<div className="float-end mt-4 pt-2">
-			<a href="#" data-menu="menu-controls" className="icon icon-xxs border border-theme color-theme rounded-l me-2"><i className="fa fa-ellipsis-h"></i></a>
-			<a href="#" data-menu="menu-settings" className="btn btn-xs border border-theme color-theme rounded-l me-3 font-600">Following</a>
+			<a href="#" data-menu="menu-controls" onClick={(e) => openOffCanvas(e)} className="icon icon-xxs border border-theme color-theme rounded-l me-2"><i className="fa fa-ellipsis-h"></i></a>
+			<a href="#" data-menu="menu-settings" onClick={(e) => openOffCanvas(e)} className="btn btn-xs border border-theme color-theme rounded-l me-3 font-600">Following</a>
 		</div>
 		{name && <h1 className="ps-3 mb-n1 font-19 mb-0 text-capitalise truncate w-100"><span className='color-highlight'>Hi</span> {name}</h1>}
 		<p className="ps-3 mb-2">@JoeHandsome</p>
