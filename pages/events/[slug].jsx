@@ -1,5 +1,4 @@
 import RelatedByTaxSplide from "@/components/listing/RelatedByTaxSplide";
-import  from "@/components/layouts/";
 //import VisitRecord from "@/components/UI/VisitRecord";
 import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
@@ -43,12 +42,12 @@ export async function getStaticPaths() {
     const postArr = await singleRes.json();
     const post = postArr[0];
     serverObj.listing = post && post != 'undefined' ? post :  null;
-    const title = listing?.title;
+    const title = post?.title?.rendered;
     
     return {
       props: {
         ...serverObj,
-        headerTitle: title={cleanHtml(title?.rendered)}
+        headerTitle: title.rendered
       },
       revalidate: 6000, // In seconds
     }
