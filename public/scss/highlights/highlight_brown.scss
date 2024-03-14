@@ -1,7 +1,12 @@
 /* Generating Color Pack*/
-
 $colorHighlightLight: #BAA286;
 $colorHighlightDark: #AA8E69;
+$colorSec: #869eba;;
+
+:root{
+    --secTheme:#{$colorSec};
+    --highlight:#{$colorHighlightDark} !important;
+}
 
 .color-highlight{color:$colorHighlightDark!important;}
 .bg-highlight{background-color:$colorHighlightDark!important; color:#FFF!important;}

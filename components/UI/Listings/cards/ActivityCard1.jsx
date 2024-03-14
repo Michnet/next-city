@@ -18,7 +18,7 @@ const ActivityCard1 = ({item, noButton, exClass, dateWidth, width}) => {
   
   return (
           <div
-            className={`card card-style listing_card _horizontal m-0 ${exClass ?? ''}`}
+            className={`listing_card _horizontal m-0 ${exClass ?? ''}`}
             key={id}
             data-aos="fade"
             data-aos-once="true"

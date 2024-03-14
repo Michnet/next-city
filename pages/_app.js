@@ -14,12 +14,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ActivityProvider from "@/contexts/ActivityContext";
 import Layout from "@/components/layouts/Layout";
+import { UIProvider } from "@/contexts/UIContext";
 //import "@/public/scripts/bootstrap.min.js";
 
 function MyApp({ Component, pageProps, platform }) {
-  const {headerTitle} = pageProps;
+  const {headerTitle, settings} = pageProps;
 
-  console.log('platfor', platform)
+  console.log('platfor', settings)
 
   useEffect(() => {
     require("@/helpers/boojs.js");
@@ -39,11 +40,12 @@ function MyApp({ Component, pageProps, platform }) {
       <SessionProvider>
         <RecoilRoot>
           <HydrationProvider>
-            <Layout platform={platform} headerTitle={headerTitle}>
+            <Layout platform={platform} settings={settings} headerTitle={headerTitle}>
               <Component {...pageProps}/>
             </Layout>
           </HydrationProvider>
           <AuthProvider/>
+          <UIProvider platform={platform}/>
           <ActivityProvider/>
         </RecoilRoot>
       </SessionProvider>

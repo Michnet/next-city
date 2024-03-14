@@ -1,13 +1,13 @@
 // import ActivityCarousel from "~/components/activity/ActivityCarousel";
-//import ExplorerFilter from "~/components/explorer/ExplorerFilter";
-//import SearchFilter from "~/components/explorer/SearchFilter";
+import ExplorerFilter from "@/components/UI/search/ExplorerFilter";
+import SearchFilter from "@/components/UI/search/SearchFilter";
 
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
 import { Suspense, useState } from "react";
 import { Client } from "react-hydration-provider";
-//import Search from "~/routes/search";
+import Search from "@/components/UI/search/Search";
 import { useRecoilValue } from "recoil";
 import { UISizes } from "@/contexts/atoms";
 import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
@@ -23,12 +23,14 @@ export async function getStaticProps() {
         mMenu: 'show',
         mMenuContent:{
           icon : 'las la-filter', 
-          data_bs_toggle : "offcanvas",
-          'data_bs_target' : "#listingSidebar"}
+          btnProps:{
+          'data-menu' : "listingSidebar"}
+          
       }
     },
     revalidate: 6000, // In seconds
   }
+}
 }
 
 
@@ -65,7 +67,7 @@ const ExploreEvents = () => {
       <section className="p-0">
           <div className="container-fluid mw-100 p-0">
             <div
-                className="offcanvas offcanvas-start search_filter"
+                className="menu menu-box-left search_filter"
                 tabIndex="-1"
                 id="listingSidebar"
               >
@@ -83,15 +85,15 @@ const ExploreEvents = () => {
 
                 <div className="offcanvas-body pb-0">
                   <aside className="sidebar  xl:d-block">
-                    {/* <SearchFilter/> */}
+                    <SearchFilter/>
                   </aside>
                 </div>
             </div>
             <div className="row flex-column flex-md-row flex-md-nowrap m-0">
             <Client><div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-white no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
-               {/* <ExplorerFilter/> */}
+               <ExplorerFilter/>
                {isTab ? <></> : <div className="sidebar md:d-none mt-20">
-                  {/* <SearchFilter/> */}
+                  <SearchFilter/>
                 </div>
                 }
             </div></Client>
@@ -119,7 +121,7 @@ const ExploreEvents = () => {
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">
-                    <ActivityCarousel mini noFallback cardWidth={200} exCardClass={'bg-transparent _mini ml-0'} sort={'top-rated'} title={'Top rated'}  icon={<i className="bi bi-stars"/>} limit={10} cardType={2} exClass={'px-0'}  shadowHeight={144}/>
+                    <ActivityCarousel mini noFallback cardWidth={200} exCardClass={'_mini ml-0'} sort={'top-rated'} title={'Top rated'}  icon={<i className="bi bi-stars"/>} limit={10} cardType={2} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section px-2 mt-20">
@@ -128,7 +130,7 @@ const ExploreEvents = () => {
 
 
               <div className="inner_section bg-white">
-                  {/* <Search/> */}
+                  <Search cardExClass={'mx-0'}/>
                   {/* <ActivityMasonry  limit={3} cardType={2} columns={3} itemWidth={'auto'} exClass={'px-10'}/> */}
               </div>
 

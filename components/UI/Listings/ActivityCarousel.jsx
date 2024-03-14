@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { DualColorHeader } from "../Partials";
 
-function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback, exCardClass, title, mini, subtitle, icon, catSlug, orderMeta, exClass, sort, eventDate, orderby, order, cardWidth, shadowHeight}) {
+function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, sort, eventDate, orderby, order, cardWidth, shadowHeight}) {
 
     let theView, fetchy = true;
 
@@ -79,7 +79,7 @@ function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback
     if(listings?.length > 0){
 
         const itemArray =   listings.slice(0, 5).map((item, i) => (
-         <div key={i}><Card exClass={exCardClass}  width={cardWidth} key={i} item = {item}/></div>
+         <div key={i}><Card mini={mini} exClass={exCardClass}  width={cardWidth} key={i} item = {item}/></div>
        ));
      
         theView =  <>

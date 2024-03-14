@@ -65,7 +65,7 @@ export const activeDateState = atom({
 export const UIWidthState = atom({
   key: 'uiWidthState', 
   default: 575, 
-  effects_UNSTABLE: [persistAtom],
+  effects_UNSTABLE: [persistTheme],
 });
 
 
@@ -105,7 +105,8 @@ export const UISizes = selector({
     return {
       isMobile : 575 > wid,
       isTab : 768 > wid,
-      isLargeTab : 992 > wid
+      isLargeTab : 992 > wid,
+      isDeskTop : wid > 992
     }
   }  
 });

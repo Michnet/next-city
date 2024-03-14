@@ -121,7 +121,7 @@ const ActivityCard2Const = ({item, exClass, size, mini, width}) => {
                     
                     
                     {/* <p className="card_desc truncate-2 mb-1">{short_desc}</p> */}
-                    <div className={`d-flex flex-wrap justify-start align-items-center gap-2 ${mini ? '' : 'pt-5'}`}>
+                    <div className={`d-flex flex-wrap justify-start align-items-center gap-1`}>
                       {mini ? <></> : <ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
                       <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={item.duration}/>
                     </div>

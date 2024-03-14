@@ -70,7 +70,7 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
 
 
   return (
-    <div><Slider {...s_settings}>
+    <div><Slider {...s_settings} dots={false}>
     {catsArray}
     </Slider></div>
   )

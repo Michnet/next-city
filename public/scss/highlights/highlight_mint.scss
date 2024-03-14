@@ -2,6 +2,12 @@
 
 $colorHighlightLight: #48CFAD;
 $colorHighlightDark: #37BC9B;
+$colorSec: #bc3758;
+
+:root{
+    --secTheme:#{$colorSec};
+    --highlight:#{$colorHighlightDark} !important;
+}
 
 .color-highlight{color:$colorHighlightDark!important;}
 .bg-highlight{background-color:$colorHighlightDark!important; color:#FFF!important;}

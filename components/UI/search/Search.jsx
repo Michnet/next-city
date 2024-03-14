@@ -1,32 +1,39 @@
 import  {memo, useEffect, useRef, useState} from 'react';
 import dynamic from 'next/dynamic';
-import {Col, Row} from "react-bootstrap";
-import { advancedFetchListingsUrl } from '../../server/WpRest';
-import ListingCardHorizontal from '../../appComponents/components/dashboard/Listing/ListingCard-Horizontal';
+// import { advancedFetchListingsUrl } from '../../server/WpRest';
+// import ListingCardHorizontal from '../../appComponents/components/dashboard/Listing/ListingCard-Horizontal';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 //import { MOBILE_SIZE } from '../../constants/ThemeSetting';
 import useSWRInfinite from "swr/infinite";
 //import JavascriptMap from './JavascriptMap';
 //import ListingCard from 'appComponents/components/dashboard/Listing/ListingCard';
-import { fetcher } from 'server/WpBase';
-import { generateTempArray } from 'server/UniversalFunctions';
-import SkeletonProductHorizontal from 'appComponents/components/skeletons/SkeletonProductHorizontal';
-import SkeletonProduct from '~/appComponents/components/skeletons/SkeletonProduct';
+// import { fetcher } from 'server/WpBase';
+// import { generateTempArray } from 'server/UniversalFunctions';
+// import SkeletonProductHorizontal from 'appComponents/components/skeletons/SkeletonProductHorizontal';
+// import SkeletonProduct from '~/appComponents/components/skeletons/SkeletonProduct';
 //import { useMediaQuery } from 'react-responsive';
-const ActivityCard2 = dynamic(() => import('~/components/activity/ActivityCard2'));
+// const ActivityCard2 = dynamic(() => import('~/components/activity/ActivityCard2'));
 //import { isTab } from '~/appComponents/core/Layout/Layout';
 import { useRecoilValue } from 'recoil';
-import { authState, UISizes} from '~/contexts/contexts';
-const SearchFilter = dynamic(() => import('./SearchFilter'));
-import { BSDrawer} from '~/appComponents/components/UI/components';
-import ListingTimeline from '~/components/activity/partials/ListingTimeline';
-const DualColorHeader = dynamic(() => import('~/appComponents/components/partials/DualColorHeader'));
+import { authState, UISizes} from '@/contexts/atoms';
+// // const SearchFilter = dynamic(() => import('./SearchFilter'));
+// import { BSDrawer} from '~/appComponents/components/UI/components';
+// import ListingTimeline from '~/components/activity/partials/ListingTimeline';
+// const DualColorHeader = dynamic(() => import('~/appComponents/components/partials/DualColorHeader'));
 import { useRouter } from 'next/router';
+import ActivityCard2 from '../Listings/cards/ActivityCard2';
+import { advancedFetchListingsUrl, fetcher } from '@/helpers/rest';
+import { generateTempArray } from '@/helpers/universal';
+import SkeletonProduct from '@/components/skeletons/SkeletonProduct';
+import ListingTimeline from '../lists/timelines/ListingTimeline';
+import ActivityCard1 from '../Listings/cards/ActivityCard1';
+import { DualColorHeader } from '../Partials';
+const SearchFilter = dynamic(() => import('./SearchFilter'));
 
 const PAGE_SIZE = 20;
 
 
-const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6}) => {
+const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExClass}) => {
 
     const {query} = useRouter();
     const {user} = useRecoilValue(authState);
@@ -141,22 +148,22 @@ useEffect(() => {
     //setFilter(setUpFilters);
 }, [query]); 
 
-let defCols = {0: 1, 420: 2, 600: 2, 768:2, 992:3,  1200: 4}
+let defCols = {0: 1, 480: 2, 600: 3, 768:2, 1024:3,  1200: 4}
 let gridDisplay = (listings) => {
     return <>{timelineView ?  <ListingTimeline items={listings} dualColumn/> : <> 
                     {viewType === 'Grid' && <ResponsiveMasonry columnsCountBreakPoints={columnObj ?? defCols}>
                             <Masonry gutter={isMobile ? "10px" : "15px"}> 
                             {listings.map(listing => {
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
-                               return <ActivityCard2 exClass={'bg-transparent'} item={listing}/>
+                               return <ActivityCard2 width={'auto'} exClass={'m-0'} item={listing}/>
                             })
                             }
                             </Masonry>
                         </ResponsiveMasonry> 
                         }{viewType === 'Row' &&
-                        <Row className='gx-mx-0'>{listings.map(listing => {
-                            return <Col span={12} sm={6} md={12} xl={xlRow} className='sm:pl-0 sm:pr-0'><ListingCardHorizontal data={listing} key ={listing.id} user={user}/></Col>
-                        })}</Row>
+                        <div className='gx-mx-0'>{listings.map(listing => {
+                            return <div span={12} sm={6} md={12} xl={xlRow} className='sm:pl-0 sm:pr-0'><ActivityCard1 item={listing} key ={listing.id} user={user}/></div>
+                        })}</div>
                         }
                         {isLoadingMore && skeletonView}
                         <div ref={loaderRef}></div>
@@ -166,7 +173,6 @@ let gridDisplay = (listings) => {
 let itemsView, total, errorView, sidefilterView, MobDrawer;
 if(withSideFilter){
     sidefilterView = <SearchFilter/>
-    MobDrawer = () => <BSDrawer/>
 }
 let skeletonView = <> 
                 {viewType === 'Grid' && <ResponsiveMasonry columnsCountBreakPoints={columnObj ?? defCols}>
@@ -179,13 +185,13 @@ let skeletonView = <>
                 }
 
                 {viewType === 'Row' &&
-                <Row className='gx-mx-0'>
+                <div  className='row gx-mx-0'>
                     {generateTempArray(8).map((item, i) => (
-                        <Col key={i} span={24} md={8} sm={12}  className='gx-px-2'>
-                            <SkeletonProductHorizontal/>
-                        </Col>
+                        <div key={i} span={24} md={8} sm={12}  className='gx-px-2'>
+                            {/* <SkeletonProductHorizontal/> */}
+                        </div>
                     ))}
-                </Row>
+                </div>
 
                 }
                 </>
@@ -215,7 +221,7 @@ if(isEmpty){
 
  if(withSideFilter){
     if(isTab) {
-    filterView = <BSDrawer layout={'start'} content={sidefilterView} id={'mobileFilters'}  className='mobile_view filters'/>
+    //filterView = <BSDrawer layout={'start'} content={sidefilterView} id={'mobileFilters'}  className='mobile_view filters'/>
     }else{
         filterView = <div  className='col-3 bg-white filters sticky_col'>
                         {sidefilterView}

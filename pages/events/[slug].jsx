@@ -47,7 +47,7 @@ export async function getStaticPaths() {
     return {
       props: {
         ...serverObj,
-        headerTitle: title.rendered
+        headerTitle: title
       },
       revalidate: 6000, // In seconds
     }

@@ -4,7 +4,7 @@ import Script from "next/script";
 //import { useEffect } from "react";
 //import { Inter } from "next/font/google";
 import { run_template } from "./../../helpers/js";
-import { run_boojs } from "./../../helpers/boojs";
+import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
 import SiteHead from "../UI/SiteHead";
 import { Client } from "react-hydration-provider";
@@ -12,10 +12,21 @@ import AuthUI from "../auth/AuthUI";
 import { onAppLoad, openOffCanvas, toggleTheme } from "@/helpers/appjs";
 import { UserAvatar } from "../UI/UserAvatar";
 import Scaffold from "./Scaffold";
+import {UISizes, UIWidthState} from '@/contexts/atoms';
+import Header from "./partials/Header";
+import { isActiveLink } from "@/helpers/universal";
+import { useRouter } from "next/router"
+import { LoaderDualRing } from "../skeletons/Loaders";
 
 //const inter = Inter({ subsets: ["latin"] });
 
-export default function Layout({ children, headerTitle, platform}) {
+export default function Layout({ children, headerTitle, settings}) {
+  const uiSize = useRecoilValue(UISizes);
+  const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
+  const [width, setWidth] = useRecoilState(UIWidthState);
+  const router = useRouter();
+  const {mMenuContent} = settings ?? {};
+  const {btnProps, btnFunc} = mMenuContent ?? {}
 
   function pinHeader(){
     if (typeof window !== 'undefined') {
@@ -37,90 +48,108 @@ export default function Layout({ children, headerTitle, platform}) {
   }
 
   console.log("loading layout");
+
+  function sizing(){
+    console.log('running sizing')
+    if (typeof window !== 'undefined') {
+      if(window.innerWidth != width){
+        setWidth(window.innerWidth);
+      }
+      window.addEventListener('resize', () => {
+        let newWid = window.innerWidth;
+        setWidth(newWid);
+      }, {passive : true})
+    }
+  }
+
+  const defBottomLinks = [
+    {id: 1,
+        icon: "fa fa-home",
+        color: 'gradient-green',
+        name: "Home",
+        routePath: "/",
+        link: true
+    },
+    {id: 2,
+        icon: "fa fa-search-location",
+        color: 'gradient-red',
+        name: "Explore",
+        routePath: "/explore/events",
+        link: true
+    },
+    {id: 3,
+        icon: "fa fa-heart",
+        color: 'gradient-red',
+        name: "Pages",
+        routePath: "/pages",
+        link: true
+    },
+    {id: 4,
+        icon: "fa fa-search",
+        color: 'gradient-red',
+        name: "Search",
+        routePath: "/explore",
+        link: true
+    },
+    {id: 5,
+        icon: "fa fa-cog",
+        color: 'gradient-red',
+        name: "Settings",
+        routePath: "/explore/events",
+        func: openOffCanvas,
+        link: false,
+        props: {
+          'data-menu': 'menu-settings'
+        }
+    },
+ ]
   return (
     <>
-      <main /* className={`${inter.className}`} */>
+      <main /* className={`${inter.className}`} */ onLoad={() => sizing()}>
         <div id="preloader">
           <div className="spinner-border color-highlight" role="status"></div>
         </div>
         <div id="page" onLoad={() => pinHeader()}>
-          <Client>
-            <div className={`header header-bar header-fixed header-logo-center ${platform == "Windows" ? 'header-always-show' : 'header-auto-show'} header-search`}>
-            <div className="_left">
-              <Client>
-                <button onClick={(e) => openOffCanvas(e)} className="left_menu_btn d-flex items-center text-20 d-block d-md-none" data-menu='mobile_sidebar'>
-                  <i class="bi bi-text-left"></i>
-                </button>
-                <button className="left_menu_btn d-flex items-center text-20 d-none d-md-block" aria-expanded='false' data-bs-target={"#sidebar"} data-bs-toggle={'collapse'}>
-                  <i class="bi bi-text-left"></i>
-                </button>
-              </Client>
-              <a
-                href="#"
-                data-back-button
-                className="_left header-icon header-icon-1"
-              >
-                <i className="fas fa-arrow-left"></i>
-              </a>
-              <div className="title_box">
-                <Link href="/" className="header-title truncate mh-100">
-                {headerTitle ?? "LyveCity"}
-                </Link>
-              </div>
-            </div>
-              
-              <div className="_right">
-                <a href="#" data-toggle-theme onClick={() => toggleTheme()}  className="header-menu-icon header-icon-4" >
-                  <i className="bi bi-lamp-fill"></i>
-                </a>
-                <span onClick={(e) => openOffCanvas(e)}  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
-                  <i className="lar la-bell"></i>
-                </span>
-                <span onClick={(e) => openOffCanvas(e)} data-menu="menu-sidebar-right-2">
-                  <i className="bi bi-text-indent-left"></i>
-                </span>
-                <a href="#" data-toggle-search>
-                  <i className="fa fa-search"></i>
-                </a>
-				<UserAvatar/>
-                {/* <div className="search-box pt-2">
-                  <input type="text" className="px-3" placeholder="Search here.. - try the word demo " data-search/>
-                  <a href="#" data-toggle-search="" className="mt-0 me-n3 pt-2">
-                    <i className="fa fa-angle-up color-highlight"></i>
-                    <i className="clear-search"></i>
-                  </a>
-                </div> */}
-              </div>
-            </div>
-          </Client>
+          {isLargeTab && <Header headerTitle={headerTitle}/>}
 
           <div id="footer-bar" className="footer-bar-1 d-md-none">
-            <Link href="/">
-              <i className="fa fa-home"></i>
-              <span>Home</span>
-            </Link>
-            <Link href="index-components.html">
-              <i className="fa fa-star"></i>
-              <span>Features</span>
-            </Link>
-            <Link href="/pages" className="active-nav">
-              <i className="fa fa-heart"></i>
-              <span>Pages</span>
-            </Link>
-            <Link href="index-search.html">
-              <i className="fa fa-search"></i>
-              <span>Search</span>
-            </Link>
-            <span className="link" onClick={(e) => openOffCanvas(e)} data-menu="menu-settings">
-              <i className="fa fa-cog"></i>
-              <span>Settings</span>
-            </span>
+            {defBottomLinks.map((el) => {
+                let {id, icon, link, name, func, routePath, isNew, props} = el;
+                return <>{link ? <Link key={id} href={routePath} className={`${isActiveLink(routePath, router.asPath)? 'active-nav' : ''}`}>
+                        <i className={`${icon}`}/>
+                        <span>{name}</span>
+                        {isNew && <span className="badge bg-highlight">NEW</span>}
+                    </Link>
+                    :
+                    <span className="link" onClick={(e) => func(e)} {...props}>
+                      <i className={`${icon}`}/>
+                      <span>{name}</span>
+                    </span>
+                    }
+                    </>
+            })}
+              <button {...btnProps} onClick={(e) => openOffCanvas(e)} class="fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
+              <span  className={`text-center big_act`} /* onClick={(e) => {
+                if(data_bs_toggle){
+                   return;
+                }else if(btnComponent){
+                  return;
+                }else if(func){
+                  func();
+                }else{
+                  router.push(bigUrl ?? '/add-listing');
+                }
+                }} */>
+                {<i className={`link_i ${'fa fa-plus'}`}/>}
+              </span>
+              <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
+            </button>
           </div>
 
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
-          <Scaffold>{children}</Scaffold>
+          <Scaffold uiSize={uiSize}>{children}</Scaffold>
 
           {/*Settings*/}
 
