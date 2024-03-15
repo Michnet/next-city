@@ -25,7 +25,7 @@ export default function Layout({ children, headerTitle, settings}) {
   const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
   const [width, setWidth] = useRecoilState(UIWidthState);
   const router = useRouter();
-  const {mMenuContent} = settings ?? {};
+  const {mMenuContent, noHeader} = settings ?? {};
   const {btnProps, btnFunc} = mMenuContent ?? {}
 
   function pinHeader(){
@@ -103,7 +103,7 @@ export default function Layout({ children, headerTitle, settings}) {
           <div className="spinner-border color-highlight" role="status"></div>
         </div>
         <div id="page" onLoad={() => pinHeader()}>
-          {isLargeTab && <Header headerTitle={headerTitle}/>}
+          {!noHeader && isLargeTab && <Header headerTitle={headerTitle}/>}
 
           <div id="footer-bar" className="footer-bar-1 d-md-none">
             {defBottomLinks.map((el) => {

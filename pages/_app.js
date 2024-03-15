@@ -15,6 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ActivityProvider from "@/contexts/ActivityContext";
 import Layout from "@/components/layouts/Layout";
 import { UIProvider } from "@/contexts/UIContext";
+import SiteProvider from "@/contexts/siteContext";
 //import "@/public/scripts/bootstrap.min.js";
 
 function MyApp({ Component, pageProps, platform }) {
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps, platform }) {
           </HydrationProvider>
           <AuthProvider/>
           <UIProvider platform={platform}/>
+          <SiteProvider/>
           <ActivityProvider/>
         </RecoilRoot>
       </SessionProvider>

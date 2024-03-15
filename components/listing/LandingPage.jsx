@@ -11,7 +11,7 @@ import { Client } from "react-hydration-provider";
     let trimFaqs = faqs?.slice(0,3);
 
     return  <div className="landing_page">
-        <div className="card card-style">
+            <div className="card card-style">
                 <div className="content">          
                     <Client>{short_desc && <p className="mb-4 text-14 pb-2">
                         <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
@@ -67,9 +67,11 @@ import { Client } from "react-hydration-provider";
 
                     <div className="divider"></div>
 
-                    <a href="#" className="btn btn-full btn-m rounded-sm shadow-xl bg-highlight font-700 text-uppercase">Join Event</a>
-                    
                 </div>
+            </div>
+
+            <div className="mb-5 px-50">
+                <button className="w-1/1 shadow-bg btn btn-full btn-m rounded-lg shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
             </div>
 
             <div className="card card-style shadow-0 radius-0 bg-transparent">

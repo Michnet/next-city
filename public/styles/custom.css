@@ -892,6 +892,10 @@ div#footer-bar {
     border: none !important;
 }
 
+#sidebar:not(.show) .hide_in_collapse {
+    display: none;
+}
+
 #sidebar:not(.show) .user_card {
     box-shadow: none !important;
 }
@@ -949,11 +953,35 @@ div#footer-bar {
     /* position: sticky; */
     height: calc(100vh - 20px);
     overflow: hidden;
-    box-shadow: var(--bs-box-shadow);
+    box-shadow: var(--shadow-1);
 }
 
 #sidebar, #sidebar * {
     transition: all 0.4s;
+}
+
+#sidebar:not(.show) .term_box ._title {
+    display: none;
+}
+
+div#menu-sidebar {
+    height: inherit;
+}
+
+.sidebar-content {
+    overflow: hidden;
+    overflow-y: auto;
+    height: inherit;
+}
+
+.sidebar-content > .card-style {
+    height: fit-content;
+    display: block;
+    overflow: visible;
+}
+
+#sidebar .terms_grid .row {
+    gap: 10px;
 }
 
 #explore_nav,.explore_content {
@@ -1021,11 +1049,12 @@ div#footer-bar {
 }
 @media (max-width: 768px) {
 #explore_nav{
-    top: 56px;
+    top: 10px;
     left: 15px;
     right: 15px;
     width: calc(100vw - 30px);
     border-radius: 32px;
+    margin-bottom: 30px;
 }
 
 #explore_nav .nav-item.active {
@@ -1715,4 +1744,91 @@ div#footer-bar {
 .guest_prompt ._guest_options button {
     padding: 10px 17px;
     border-radius: 22px;
+}
+
+.shadow-bg-sm:after{
+        transform: scale(0.85) translateY(3px) translateZ(0px);
+        filter: blur(8px);
+        border-radius: inherit;
+}
+.terms_grid {
+    padding: 0 5%
+}
+
+.terms_grid .col.listy {
+    flex-basis: 100%;
+    width: 100%
+}
+
+.terms_grid .col.listy .term_box {
+    display: grid;
+    grid-template-columns: 50px auto;
+    width: 100% !important;
+    align-items: center;
+    justify-items: start;
+    text-align: left;
+    padding-left: 0 !important;
+}
+
+.terms_grid .col.listy .term_box a {
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px;
+}
+
+.terms_grid .col.listy .term_box a i {
+    line-height: 40px;
+    font-size: 22px !important;
+}
+
+.terms_grid .col.listy .term_box span {
+    text-align: left !important;
+    font-size: 12px !important;
+}
+
+#sidebar.collapse:not(.show) .hide_in_collapsed, #sidebar.collapse.collapsing .hide_in_collapsed {
+    display: none !important;
+}
+
+#sidebar.collapse:not(.show) .terms_grid .listy .term_item {
+    grid-gap: 0;
+    grid-template-columns: 50px;
+}
+
+#sidebar.collapse.collapsing ._menu .term_item ._name, #sidebar.collapse:not(.show) ._menu .term_item ._name {
+    font-size: 0;
+}
+
+#sidebar.collapse:not(.show) .nav-link, #sidebar.collapse:not(.show) .collapse_hidden {
+    font-size: 0;
+}
+
+.sidebar_content._menu .nav-link i, .sidebar_content._menu .flag_i {
+    font-size: 25px;
+    width: 55px;
+    text-align: center;
+    height: inherit;
+    line-height: inherit;
+    color: var(--textColor);
+}
+
+.sidebar_content._menu .nav-link:hover i {
+    color: var(--palette1);
+}
+
+#sidebar.collapse:not(.show) .pro-footer {
+    display: none;
+}
+
+#sidebar .terms_grid .listy .term_item .term_img {
+    border-radius: 5px;
+    line-height: 30px;
+}
+#sidebar .terms_grid .listy .term_item .term_img i {
+    font-size: 25px;
+}
+
+#sidebar .terms_grid {
+    padding: 0;
+    margin-bottom: 20px;
 }

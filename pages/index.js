@@ -92,7 +92,7 @@ export default function Home(props) {
    const {eventCategories, topLocations, busyLocations} = serverObj ?? {};
 
   let load={_fields : `address, id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
-  listing_type:'event', per_page: 10}
+  listing_type:'event', per_page: 1}
 
   let fetchy = true;
   useEffect(() => {
@@ -102,7 +102,7 @@ export default function Home(props) {
   },[]);
   
 
-  const { data:listings, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: true });
+  const { data:listings, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true, 'event-date':'any-day' }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: true });
 
   console.log('listings', listings)
 
@@ -227,7 +227,7 @@ export default function Home(props) {
 
 		
     
-    <Splider height={100} options={{pagination: false, height: 100, autoWidth: true, wheel: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'} }>
+    <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'} }>
     {
                 eventCategories?.map((cat) => {
                     return <TermIcon flipped item={cat}/>

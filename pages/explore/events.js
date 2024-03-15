@@ -26,7 +26,8 @@ export async function getStaticProps() {
           btnProps:{
           'data-menu' : "listingSidebar"}
           
-      }
+      },
+      noHeader: true
     },
     revalidate: 6000, // In seconds
   }

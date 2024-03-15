@@ -4,6 +4,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { UserCard } from "../UI/UserCard"
 import {openOffCanvas} from "@/helpers/appjs";
+import TermsGrid from './../UI/lists/TermsGrid';
+import { DualColorHeader } from "../UI/Partials";
+import { quickLinks } from "@/helpers/data";
 
 function MainMenu() {
  const router = useRouter();
@@ -49,20 +52,26 @@ function MainMenu() {
 
                                 <div className="card card-style shadow-0 border">
                                     <div className="content my-0">
-                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Contacts</h5>
-                                        <div className="list-group list-custom-small list-icon-0">
-                                            <a href="#">
-                                                <img src="/images/avatars/5s.png" className="gradient-blue rounded-sm" width="27"/>
-                                                <span>Steve Johnson</span>
-                                                <span className="badge bg-highlight badge-small rounded-xl me-n1">2</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </a>
-                                            <a href="#">
-                                                <img src="/images/avatars/1s.png" className="gradient-magenta rounded-sm" width="27"/>
-                                                <span>Anna Smith</span>
-                                                <span className="badge bg-highlight badge-small rounded-xl me-n1">15</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </a>
+                                        <DualColorHeader exClass={'sm-font px-15 mb-2 hide_in_collapsed'} title={'Browse categories'}/>
+                                        <TermsGrid id={106} listy/>
+                                    </div>
+                                </div>
+                                <div className="card card-style shadow-0 border hide_in_collapse">
+                                    <div className="content my-0">
+                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Quick Links</h5>
+                                        <div className="quick_links">
+                                        {quickLinks?.map((item) => (
+                                        <div className="mb-28" key={item.id}>
+                                        <h5 className="text-15 fw-300 mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
+                                        <div className="d-flex flex-column y-gap-10">
+                                            {item.menuList.map((menu, i) => (
+                                            <Link  href={menu.routerPath} as={menu.routerPath} key={i}>
+                                                {menu.name}
+                                            </Link>
+                                            ))}
+                                        </div>
+                                        </div>
+                                    ))}
                                         </div>
                                     </div>
                                 </div>
