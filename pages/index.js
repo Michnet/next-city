@@ -14,10 +14,15 @@ import { fadingSlide, responsiveCarousel, largeResp, variableWidth } from "@/hel
 import { useEffect } from 'react';
 import ListingCard from './../components/UI/Listings/cards/ListingCard';
 import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
-import { DualColorHeader } from "@/components/UI/Partials";
+import { DualColorHeader, SectionHeader } from "@/components/UI/Partials";
 import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
 import { TermIcon } from "@/components/UI/partials/termLinks";
 import ActivityCard2 from "@/components/UI/Listings/cards/ActivityCard2";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import Splider from "@/components/UI/partials/Splider";
+import EventCard from "@/components/UI/Listings/cards/EventCard";
+import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
+import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 
 
 export async function getStaticProps() {
@@ -86,8 +91,8 @@ export default function Home(props) {
     const {serverObj} = props;
    const {eventCategories, topLocations, busyLocations} = serverObj ?? {};
 
-  let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
-  listing_type:'event', per_page: 5}
+  let load={_fields : `address, id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
+  listing_type:'event', per_page: 10}
 
   let fetchy = true;
   useEffect(() => {
@@ -98,6 +103,8 @@ export default function Home(props) {
   
 
   const { data:listings, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: true });
+
+  console.log('listings', listings)
 
   const isLoadingInitialData = !listings && !error;
   const isEmpty = listings?.length === 0;
@@ -218,36 +225,28 @@ export default function Home(props) {
             </div>
         </div>
 
-		<Slider autoplay {...s_settings}>
-            {
+		
+    
+    <Splider height={100} options={{pagination: false, height: 100, autoWidth: true, wheel: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'} }>
+    {
                 eventCategories?.map((cat) => {
-                    return <TermIcon item={cat} key={cat.id}/>
+                    return <TermIcon flipped item={cat}/>
                 })
             }
-					
-					
-		</Slider>
+    </Splider>
 
-		<div className="divider mt-24"></div>
+    <div className="divider mt-4"></div>
 
-    <div className="d-flex px-3 mb-3">
-        <div className="align-self-center">
-            <h4 className="mb-0">Recommended</h4>
-        </div>
-        <div className="align-self-center ms-auto">
-            <a href="#" className="font-12">View All</a>
-        </div>
-    </div>
-
-    <Slider  {...responsiveCarousel}>
+   <SectionHeader iconClass={'far fa-clock'} bgClass={'bg-mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
+   <Splider height={325} options={{arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 0, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'} }>
       {listings?.length > 0 ? 
           listings.map((li) => {
-           return <ListingCard key={li.id} listing = {li}/>
+           return <EventCard2 width={300} key={li.id} listing = {li}/>
           })
           :
           <></>
         }
-    </Slider>
+    </Splider>
 
     <div className="d-flex px-3 mb-2">
         <div className="align-self-center">
@@ -263,82 +262,48 @@ export default function Home(props) {
           listings.map((li) => {
             let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
 
-            return <div key={id}>
-                <div className="card card-style" style={{backgroundImage:`url("${xtra_large_thumb}")`, height: '260px'}}>
-                        <div className="card-top p-3">
-                            <Link href={`/events/${slug}`} data-menu="menu-reserve" className="btn btn-s bg-white color-black rounded-s scale-box font-700 text-uppercase float-end">Get Offer</Link>
-                        </div>
-                        <div className="card-bottom m-2">
-                            <div className="d-block px-2 py-2 rounded-m">
-                    <div className="d-flex">
-                        <div className="pe-3">
-                        <h1 className="color-white font-23 font-800">{cleanHtml(title.rendered)}</h1>
-                        <p className="color-white font-12 mb-0 line-height-s opacity-70">{cleanHtml(short_desc)}</p>
-                        </div>
-                        <div className="w-50 align-self-center text-end ms-auto">
-                        <h1 className="color-white">$1.450</h1>
-                        <p className="color-white mb-0 mt-n2 font-9 line-height-xs">
-                            All Expenses Paid
-                        </p>
-                        </div>
-                    </div>
-                            </div>
-                        </div>
-                        <div className="card-overlay bg-gradient"></div>
-                </div>
-            </div>
+            return <EventCard3 listing={li} key={id}/>
           })
           :
           <></>
         }
     </Slider>
 
-    <div className="d-flex px-3">
-        <DualColorHeader exClass='mb-15' title={'Just Added'} subTitle={'Be the first to know'}/>
-      <div className="align-self-center ms-auto">
-        <a href="#" className="font-12">View All</a>
-      </div>
-    </div>
 
-    <Slider  {...variableWidth} centerPadding={'20px'}>
+    <SectionHeader exClass='mb-4 px-3' link={'See All'} title={'Just Added'} subTitle={'Be the first to know'}/>
+
+
+<div className="row mb-3">
+<div className="col-12 col-md-8 px-0">
+  <div className="row">
       {listings?.length > 0 ? 
           listings.map((li) => {
-            return <ActivityCard2 exClass={'ml-0'} key={li.id} item = {li}/>
+            return <div className="col-12 p-0"><ListingCard2 exClass={'m-3 mt-0'} key={li.id} listing = {li}/></div>
           })
           :
           <></>
         }
-    </Slider>
-
-<div className="d-flex px-3">
-  <div className="align-self-center">
-    <h4 className="mb-0">Great Deals</h4>
-  </div>
-  <div className="align-self-center ms-auto">
-    <a href="#" className="font-12">View All</a>
-  </div>
+      </div>
 </div>
-
-<div className="row">
-  <div className="col-12 col-md-8 px-0">
+  <div className="col-12 col-md-4 px-0">
     <Client><div className="content mt-2 mb-n3">
-  <div className="row">
+  <div className="row gap-1">
         {listings?.length > 0 ? 
           shuffleArray(listings).map((li, ind) => {
             let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
-            if(ind < 4){
-               return <div className="col-6 ps-2" key={id}>
+            if(ind < 2){
+               return <div className="md-sticky col-12 p-0 col-sm-6 col-md-12" key={id}>
                     <Link href={`/events/${slug}`}  className="card card-style mx-0 mb-3">
                       <div className="card-top m-2">
                         <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">25% OFF</span>
                       </div>
-                      <img src={xtra_large_thumb} alt="img" width="100" className="img-fluid" style={{height: '180px', objectFit: 'cover'}}/>
-                      <div className="p-2">
+                      <img src={xtra_large_thumb} alt="img" width="100" className="img-fluid" style={{height: '160px', objectFit: 'cover'}}/>
+                      <div className="px-2">
                         <h4 className="mb-0 truncate text-14">{cleanHtml(title?.rendered)}</h4>
                         <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</p>
                       </div>
-                      <div className="divider mb-0"></div>
-                      <div className="d-flex flex-row flex-nowrap justify-between p-2 font-12">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
+                      {/* <div className="divider mb-0"></div> */}
+                      <div className="d-flex flex-row flex-nowrap justify-between px-2 font-12">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline color-highlight'} priceHTml={ticket_min_price_html}/> }
                       <span className="float-end font-400 font-11 color-yellow-dark">5 Left</span>
                       </div>
                     </Link>
@@ -350,16 +315,6 @@ export default function Home(props) {
         }
   </div>
 </div></Client>
-</div>
-<div className="col-12 col-md-4 px-0">
-    <Slider  {...fadingSlide} slidesToShow={2} rows={2} vertical responsive ={[{ breakpoint: 768, settings: { slidesToShow: 2, rows: 2} }]}>
-      {listings?.length > 0 ? 
-          listings.map((li) => {
-            return <ListingCard2 key={li.id} listing = {li}/>
-          })
-          :
-          <></>
-        }</Slider>
 </div>
 </div>
 

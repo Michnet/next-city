@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useRouter } from "next/router"
 
 export function DualColorHeader({title, subTitle, iconClass, colorClass = '', desc, exClass}) {
@@ -10,6 +11,23 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass = '', de
         <div className="align-self-center ms-auto">
         {iconClass && <i className={`bi bi-${iconClass} font-24 ${colorClass}`}></i>}
         </div>
+    </div>
+  )
+}
+
+export function SectionHeader({title, subTitle, link, linkUrl='#', iconClass='fa fa-angle-left', bgClass='bg-highlight', colorClass = 'color-white', desc, exClass=''}){
+  return (
+    <div className={`d-flex pb-2 ${exClass}`}>
+        <div className="align-self-center pe-3">
+          <span className={`icon icon-xs rounded-m ${bgClass}`}><i className={`${iconClass} ${colorClass}`}></i></span>
+        </div>
+        <div className="align-self-center">
+          <p className="mb-n2 mt-n1 font-700 font-11 color-highlight">{subTitle}</p>
+          <h2 className="font-700 mb-0">{title}</h2>
+        </div>
+        {link ? <div className="align-self-center ms-auto me-2">
+           <Link href={linkUrl}>{link}</Link>
+        </div> : <></>}
     </div>
   )
 }

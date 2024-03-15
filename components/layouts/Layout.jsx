@@ -85,13 +85,6 @@ export default function Layout({ children, headerTitle, settings}) {
         link: true
     },
     {id: 4,
-        icon: "fa fa-search",
-        color: 'gradient-red',
-        name: "Search",
-        routePath: "/explore",
-        link: true
-    },
-    {id: 5,
         icon: "fa fa-cog",
         color: 'gradient-red',
         name: "Settings",

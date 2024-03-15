@@ -21,7 +21,7 @@ export function UserCard({size}){
                      <div className="align-self-center">
                      <span type="button" className="d-flex" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}>
                            <Client> {loading ? <LoaderDualRing exClass={'_mini'}/> : <>{user ? <div>{<Avatar width={size ?? 30} rounded src={avatarUrl}  className="gx-size-40 gx-pointer" alt=""/>
-                        } </div> : <>{sessionUser ? <Avatar width={size ?? 30} rounded src={sessionUser.image}  className="gx-size-40 gx-pointer" alt=""/> : <i className="bi bi-person" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}/>}</>}</>}</Client>
+                        } </div> : <>{sessionUser ? <Avatar width={size ?? 30} rounded src={sessionUser.image}  className="gx-size-40 gx-pointer" alt=""/> : <i className="bi bi-person user_i" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}/>}</>}</>}</Client>
                            </span>
                      </div>
                      <div className="ps-2 align-self-center user_info">
@@ -29,7 +29,7 @@ export function UserCard({size}){
                         {/* <h6 className="ps-1 mb-0 font-400 opacity-40 font-12 lh-1">Freelance Photographer</h6> */}
                      </div>
                      {<div className="ms-auto">
-                        <a href="#" data-bs-toggle="dropdown" className="icon icon-m ps-1"><i className="fa fa-ellipsis-v font-18 color-theme"></i></a>
+                        {user ? <a href="#" data-bs-toggle="dropdown" className="icon icon-m ps-1"><i className="fa fa-ellipsis-v font-18 color-theme"></i></a> : <></>}
                         <div className="dropdown-menu bg-transparent border-0 mb-n5">
                            <div className="card card-style rounded-m shadow-xl me-1">
                                  <div className="list-group list-custom-small list-icon-0 px-3 mt-n1">

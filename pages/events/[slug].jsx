@@ -11,6 +11,7 @@ import ListingSideMenu from "@/components/listing/ListingSideMenu";
 import { Client } from "react-hydration-provider";
 import RightMenu from "@/components/listing/RightMenu";
 import Content from "@/components/listing/Content";
+import RatingView from "@/components/listing/reviews/RatingView";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 
@@ -102,21 +103,7 @@ console.log('liss', listing);
                     <div className="mb-5"><span className="font-11">
                         User Reviews
                     </span></div>
-                    <div className="d-flex -flex-row flex-nowrap mb-0">
-                        <strong className="color-theme pe-2">{rating}</strong>
-                        <div id={`score_stars_${id}`} className='score_stars'
-                        style={{
-                            width: '100px',
-                            height: '18px',
-                            backgroundColor: 'var(--bs-gray-200)',
-                            backgroundImage: 'linear-gradient(45deg, var(--highlight), #FF9800)',
-                            maskImage: `url(/img/general/stars.svg)`,
-                            backgroundSize: `${parseFloat(rating)*10}% 100%`,
-                            backgroundRepeat: 'no-repeat',
-                            maskRepeat: 'no-repeat'
-                        }}
-                        />                    
-                    </div>
+                    <RatingView rating={rating} id={id}/>
                 </div>
                 <div className="align-self-center flex-shrink-1">
                     <button onClick={() => setActiveKey('tickets')} href="#"  className="btn btn-full btn-s me-3 font-900 text-uppercase rounded-sm shadow-xxl bg-dark-dark">Booking</button>
