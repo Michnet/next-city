@@ -4,11 +4,10 @@ import Link from "next/link";
 import { PriceView } from "../../PriceView";
 
 
-const EventCard3 = ({listing, width=320, height=260}) => {
+const EventCard3 = ({listing, width=320, height=260, exClass=''}) => {
     let {id, title, address, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
     return (<>
-                <div key={id}>
-                    <div className="card card-style" style={{backgroundImage:`url("${xtra_large_thumb}")`, height: height}}>
+                    <div className={`card card-style ${exClass}`} style={{backgroundImage:`url("${xtra_large_thumb}")`, height: height, width: width}}>
                             <div className="card-top p-3">
                                 <Link href={`/events/${slug}`} data-menu="menu-reserve" className="btn btn-s bg-white color-black rounded-s scale-box font-700 text-uppercase float-end">Get Offer</Link>
                             </div>
@@ -30,7 +29,6 @@ const EventCard3 = ({listing, width=320, height=260}) => {
                             </div>
                             <div className="card-overlay bg-gradient"></div>
                     </div>
-                </div>
         </>
     )
 }

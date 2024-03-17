@@ -106,7 +106,7 @@ export const getUserRest = async(reqObj) => {
 
 export async function advancedFetchListings(payload){
     try {
-        const res = await kyFetch.post(advancedFetchListingsUrl(payload)).json();
+        const res = await kyFetch.get(advancedFetchListingsUrl(payload)).json();
         if(res){
             console.log('got them', res)
             return res;
@@ -299,6 +299,72 @@ export const getDirTermsUrl = (taxonomy, payload) => {
       endpoint = `wp-json/wp/v2/${taxonomy}`;
   }
   return `${WPDomain}/${endpoint}`;
+}
+
+export const getProducts = async (payload) => {
+  const response = await kyFetch.get(getProductsUrl(payload)).json();
+    try{if(response){
+          if (response.data && response.data.length > 0) {
+              const data = {
+                  items: response.data,
+                 /*  totalItems: response.headers['x-wp-total'],
+                  totalPages: response.headers['x-wp-totalpages'], */
+              };
+              return data;
+          } else return null;
+      }
+    }catch (e){
+          console.log(e)
+      };
+}
+
+export const getProductsUrl = (payload) => {
+  let endpoint;
+  if (payload) {
+      endpoint = `wp-json/wc/v3/products?${serializeQuery({
+          ...payload,
+          ...oathInfo,
+      })}`;
+  } else {
+      endpoint = `wp-json/wc/v3/products?${serializeQuery({
+          ...oathInfo,
+      })}`;
+  }
+  return `${WPDomain}/${endpoint}`
+}
+
+export const getBookableProductsUrl = (payload) => {
+  let endpoint;
+  if (payload) {
+      endpoint = `wp-json/wc-bookings/v1/products?${serializeQuery({
+          ...payload,
+          ...oathInfo,
+      })}`;
+  } else {
+      endpoint = `wp-json/wc-bookings/v1/products?${serializeQuery({
+          ...oathInfo,
+      })}`;
+  }
+  return `${WPDomain}/${endpoint}`
+}
+
+
+export const getBookableProducts = async (payload) => {
+  const response = await kyFetch.get(getBookableProductsUrl(payload)).json();
+    try{
+      if(response){
+          if (response.data && response.data.length > 0) {
+              const data = {
+                  items: response.data,
+                 /*  totalItems: response.headers['x-wp-total'],
+                  totalPages: response.headers['x-wp-totalpages'], */
+              };
+              return data;
+          } else return null;
+      }
+    }catch(e){
+          console.log('error', e);
+      };
 }
 
 export const getDirTerms = async (taxonomy, payload) => {

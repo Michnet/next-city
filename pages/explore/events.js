@@ -11,14 +11,33 @@ import Search from "@/components/UI/search/Search";
 import { useRecoilValue } from "recoil";
 import { UISizes } from "@/contexts/atoms";
 import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
+import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
+import Splider from "@/components/UI/partials/Splider";
+import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
+import { advancedFetchListings } from "@/helpers/rest";
 //import { AvatarsRow } from "~/appComponents/components/skeletons/React-content-loader/Skeletons";
 //import SiteHead from "~/appComponents/components/SiteHead";
 
 export async function getStaticProps() {
 
+  let serverObj = {};
+
+  async function topListings(){
+    let thumbsize = 'xtra_large_thumb'
+    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+    listing_type:'event', per_page: 5, 'event-day':'any-day'};
+
+    const list = await advancedFetchListings(load);
+    if(list){
+      serverObj.topList = list;
+    }
+  }
+
+  await topListings();
+
   return {
     props: {
-      //serverObj: serverObj,
+       ...serverObj,
       settings : {
         mMenu: 'show',
         mMenuContent:{
@@ -35,13 +54,12 @@ export async function getStaticProps() {
 }
 
 
-const ExploreEvents = () => {
+const ExploreEvents = ({topList}) => {
  const {query} = useRouter();
  const {sort, category, tags, region} = query;
  const eventDate = query['event-date'] ?? null;
  const [showHint, setShowHint] = useState(true);
  const {isTab} = useRecoilValue(UISizes);
-
 
  function translateDate(string){
  return string.replaceAll("-", " ");
@@ -64,7 +82,9 @@ const ExploreEvents = () => {
             // <ActivityCarousel cardType={4}/>
           </div>
       </section> */}
-
+     {isTab && <HeaderWrapper header_id={'explore_nav'}>
+        <ExplorerFilter/>
+     </HeaderWrapper>}
       <section className="p-0">
           <div className="container-fluid mw-100 p-0">
             <div
@@ -91,16 +111,28 @@ const ExploreEvents = () => {
                 </div>
             </div>
             <div className="row flex-column flex-md-row flex-md-nowrap m-0">
-            <Client><div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-white no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
+            
+            <Client>{!isTab &&  <div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-white no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
                <ExplorerFilter/>
                {isTab ? <></> : <div className="sidebar md:d-none mt-20">
                   <SearchFilter/>
                 </div>
                 }
-            </div></Client>
+            </div>}</Client>
             <div className="explore_content col minw-0 p-0">
-              <div className="inner_section">
-                 <Suspense fallback={'Loading'}><TermsCarousel /* items={categories} */ queryKey={'category'} queryLink={'/explore/events?category='} exClass={'mb-30 pt-10'} slug={'events'}  type={'dir_cats'} infinity/></Suspense>
+              <div className="inner_section mb-4">
+                <Splider height={325} options={{arrows: false, wheel:false, height: 325, autoWidth: true, padding: { left: 0, right: 0}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'fade'} }>
+                  {topList?.length > 0 ? 
+                      topList.map((li) => {
+                      return <EventCard3 height={'100%'} exClass='m-0 radius-0' width={'100%'} key={li.id} listing = {li}/>
+                      })
+                      :
+                      <></>
+                    }
+                </Splider>
+              </div>
+              <div className="inner_section mb-4">
+                 <Suspense fallback={'Loading'}><TermsCarousel /* items={categories} */ queryKey={'category'} queryLink={'/explore/events?category='} exClass={'pt-10'} slug={'events'}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="p-2">
@@ -122,7 +154,7 @@ const ExploreEvents = () => {
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">
-                    <ActivityCarousel mini noFallback cardWidth={200} exCardClass={'_mini ml-0'} sort={'top-rated'} title={'Top rated'}  icon={<i className="bi bi-stars"/>} limit={10} cardType={2} exClass={'px-0'}  shadowHeight={144}/>
+                    <ActivityCarousel mini noFallback cardWidth={200} exCardClass={'_mini ms-0 me-2'} sort={'top-rated'} title={'Top rated'}  icon={<i className="bi bi-stars"/>} limit={10} cardType={2} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section px-2 mt-20">
@@ -167,6 +199,7 @@ const ExploreEvents = () => {
 
 
 /* const PageLayout = dynamic(() => import('~/appComponents/core//PageLayout'));
+import HeaderWrapper from './../../components/layouts/partials/HeaderWrapper';
 
 ExploreEvents.getLayout = function getLayout({children}) {
   return (

@@ -54,6 +54,15 @@ export async function getStaticPaths() {
     }
   }
 
+
+  export const BookingView = ({text = null, exClass, children, simple=true, setActiveKey}) => {
+    if(children){
+       return <div onClick={() => setActiveKey('tickets')}> {children} </div>
+     }else{
+       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn mr-0 mb-0 ${!simple ? 'ui-2' : 'bg-white hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
+     }
+  }
+
   const ListingConst = ({listing}) => {
     //const {listing} = serverObj;
     const {short_desc, meta, cover, categories, about_us, logo,rating, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
@@ -79,7 +88,7 @@ console.log('liss', listing);
            longitude={longitude}
            slug={`/events/${slug}`}
            />
-    <div className="page-content">
+    <div className="page-content single_listing ">
 
     <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '60vh' : '35vh'}}>
         <div className="card-top m-3">

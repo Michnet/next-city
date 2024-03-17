@@ -92,7 +92,7 @@ export default function Home(props) {
    const {eventCategories, topLocations, busyLocations} = serverObj ?? {};
 
   let load={_fields : `address, id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
-  listing_type:'event', per_page: 1}
+  listing_type:'event', per_page: 10}
 
   let fetchy = true;
   useEffect(() => {
@@ -277,8 +277,10 @@ export default function Home(props) {
 <div className="col-12 col-md-8 px-0">
   <div className="row">
       {listings?.length > 0 ? 
-          listings.map((li) => {
+          listings.map((li, ind) => {
+            if(ind < 2){
             return <div className="col-12 p-0"><ListingCard2 exClass={'m-3 mt-0'} key={li.id} listing = {li}/></div>
+            }
           })
           :
           <></>

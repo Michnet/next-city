@@ -44,6 +44,24 @@ export const ListingMeta = ({location, duration, filled}) => {
           </div>
 }
 
+export  const CustomRow = ({exClass, headContent, bodyContent, sideContent}) => {
+  return (
+      <section className={`custom_section ${exClass} ${sideContent ? 'with_side' : ''}`}>
+        {sideContent && <>{sideContent}</>}
+          
+          <div className="row_content">
+              
+              {headContent && <div className="head_content">
+                  {headContent}
+              </div>}
+              <div className="body_content">
+                  {bodyContent}
+              </div>
+          </div>
+
+      </section>
+  )
+}
 
 export const ListingMetaMini = ({page_views, ratings, exClass, page_likes, filled}) => {
   return <div className={`listing_meta _mini ${exClass ?? ''}`}>

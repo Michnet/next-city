@@ -51,8 +51,7 @@ const ActivityCard2Const = ({item, exClass, size, mini, width}) => {
   }
   
   return (
-          <div style={{width: width ?? 300}}
-            className={`card card-style listing_card ${exClass ?? ''}`}
+          <div style={{width: width ?? 300}} className={`card card-style listing_card ${exClass ?? ''}`}
             key={id} /* data-aos="fade" data-aos-once="true" data-aos-delay={60} */
           >
             <div

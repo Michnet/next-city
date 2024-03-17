@@ -1010,7 +1010,7 @@ div#menu-sidebar {
 }
 
 #explore_nav .nav-item button {
-    color: var(--textColor);
+    font-weight: 600;
     padding: 0 12px 0 5px
 }
 .sticky_col {
@@ -1048,11 +1048,19 @@ div#menu-sidebar {
     }
 }
 @media (max-width: 768px) {
+    #explore_nav .view_filter>div {
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+
+#explore_nav .view_filter {
+    width: inherit;
+}
 #explore_nav{
     top: 10px;
-    left: 15px;
-    right: 15px;
-    width: calc(100vw - 30px);
+    left: 10px;
+    right: 10px;
+    width: calc(100vw - 20px);
     border-radius: 32px;
     margin-bottom: 30px;
 }

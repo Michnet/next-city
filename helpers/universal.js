@@ -164,6 +164,60 @@ export const isActiveParentChaild = (data = [], path) => {
   }
 };
 
+export function ProductPrice(product) {
+  let view;
+  const { price, regular_price } = product;
+
+  if (price < regular_price) {
+    const offer = Math.round(((regular_price - price) / regular_price) * 100);
+    view = (
+      <div className="ant-row-flex _price">
+        <h4 className="sale-price">{price} </h4>
+        <h5 className="gx-text-muted gx-px-2 reg_price">
+          <del>{regular_price}</del>
+        </h5>
+        <div className="price-discount">
+          <div className="offer-fig">
+            {" "}
+            <h5>{offer}</h5>
+            <h6>% </h6> <span className="offer-unit">Off</span>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    view = (
+      <div className="ant-row-flex">
+        <h4 className="sale-price">{price} </h4>
+      </div>
+    );
+  }
+  return view;
+}
+
+export function PostThumbnailSrc(post, size) {
+  let src;
+  if (post._embedded["wp:featuredmedia"]) {
+    const thumbnail = post._embedded["wp:featuredmedia"].find(
+      (item) => item.id === post.featured_media
+    );
+    if (size) {
+      let srcSize = thumbnail?.media_details?.sizes[`${size}`];
+      if (srcSize) {
+        src = srcSize?.source_url;
+      } else {
+        src = thumbnail?.source_url;
+      }
+    } else {
+      src = thumbnail?.source_url;
+    }
+  } else {
+    src = "/static/img/undefined-product-thumbnail.jpg";
+  }
+  return src;
+}
+
+
 // is active link check
 export const isActiveLink = (menuPath, routePath) => {
   if (menuPath && routePath) {

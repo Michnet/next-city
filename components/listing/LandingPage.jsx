@@ -3,6 +3,8 @@ import { memo } from "react";
 import FAQs from "@/components/UI/FAQs";
 import MegaGallery from "@/components/UI/Galleries/MegaGallery";
 import { Client } from "react-hydration-provider";
+import BusinessOne from "./landingPages/Business1";
+import styles from './styles/home1.module.css';
 
   const LandingConst = ({listing, setActiveKey}) => {
     //const {listing} = serverObj;
@@ -95,7 +97,7 @@ import { Client } from "react-hydration-provider";
                     </button>
                 </div>
             </div>}
-            
+            <BusinessOne styles={styles} /* upcoming={upcoming} */ /* color={color} */ listing ={listing} cover={cover} setActiveKey={setActiveKey}/>
         </div>
         }
 

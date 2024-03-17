@@ -38,7 +38,6 @@ function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback
   
     }
 
-
     useEffect(() => {
     
       return () => {
