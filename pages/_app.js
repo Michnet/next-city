@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
 import "@/public/scss/bootstrap.scss";
+import "@/styles/globals.css";
 import "@/public/scss/style.scss";
 import "@/public/styles/custom.min.css";
 import { RecoilRoot } from "recoil";

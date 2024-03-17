@@ -66,7 +66,7 @@
   color: var(--textColor);
   padding: 0 12px 0 5px;
 }
-p, body, .ant-timeline-item, .listing_content{
+ .ant-timeline-item, .listing_content{
 line-height: 1.5;
 font-size: var(--fontSize);
 }
@@ -5803,6 +5803,7 @@ footer .container.overlay {
 
 .tag-cloud-tag {
   cursor: pointer;
+  line-height: 1em;
 }
 
 .activityCard1.-type-1 {
