@@ -11,8 +11,8 @@ import { UIState } from '@/contexts/atoms';
 const TagsCloudConst = ({ids, dark, hue, itemsList, onClickFunc}) => {
 
   const [items, setItems] = useState([]);
-  const {colorTheme} = useRecoilValue(UIState);
-  const {colors} = colorTheme;
+  //const {colorTheme} = useRecoilValue(UIState);
+ // const {colors} = colorTheme;
 
   async function getTags(signal){
     const filterArr = {
@@ -48,7 +48,7 @@ useEffect(() => {
 
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
-  hue: hue ?? colors[0] ?? 'monochrome',
+  //hue: hue ?? colors[0] ?? 'monochrome',
 }
 
   function createTags(ids){
