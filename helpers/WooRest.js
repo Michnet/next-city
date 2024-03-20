@@ -36,6 +36,8 @@ export async function  getCategoryByID(id, payload) {
 
 
 
+
+
 export async function  getAttributeByID(id, payload) {
     let endpoint;
     if(payload){
@@ -161,27 +163,28 @@ export function getVendorInfoUrl(payload){
 }
 
 export async function getSlotAvailability(payload){
-    return await WPRepository.get(`${WPDomain}/wp-json/m-api/v1/check_slot?${serializeQuery(
+    try{
+        const response =  await kyFetch.get(`${WPDomain}/wp-json/m-api/v1/check_slot?${serializeQuery(
         payload
-    )}`)
-        .then((response) => {
-            return response.data;
-        })
-        .catch(() => {
+    )}`).json();
+        if(response){
+            return response;
+        }}catch(e){
             return null;
-        });
+        }
 }
 
 export async function createBooking(payload){
-    return await WPRepository.post(`${WPDomain}/wp-json/m-api/v1/create_booking?${serializeQuery(
+    try{
+    const response = await kyFetch.post(`${WPDomain}/wp-json/m-api/v1/create_booking?${serializeQuery(
         payload
-    )}`)
-        .then((response) => {
-            return response.data;
-        })
-        .catch(() => {
-            return null;
-        });
+    )}`).json();
+        if(response){
+            return response;
+        }
+    }catch(e){
+            console.log(e);
+        };
 }
 
 export async function getBookings(payload){

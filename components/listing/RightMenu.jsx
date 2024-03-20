@@ -5,6 +5,7 @@ import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
 import {openOffCanvas} from "@/helpers/appjs";
+import Link from "next/link";
 
 function RightMenu({listing, activeKey, setActiveKey}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
@@ -17,21 +18,21 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                     {localMenu.map((el) => {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
-                      return <a onClick={() => setActiveKey(id)} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
+                      return <Link onClick={() => setActiveKey(id)} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
 							<i className={`fa font-12 fa-home gradient-green rounded-sm color-white`}></i>
-							<span>{buttony ? subTitle : title}
-                                      {badgeNumber > 0 ? <span className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
+							<span className="position-relative">{buttony ? subTitle : title}
+                                      {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
                                       </span> : <></>}</span>
 							<i className="fa fa-angle-right"></i>
-						</a>
+						</Link>
                       }
                     })}
                     </>
       }
   return (
     <Client>
-    <div id="menu-sidebar-right-2" className="menu menu-box-right menu-box-detached menu-sidebar" style={{width: '310px'}}>
+    <div id="listingMenuRight" className="menu menu-box-right menu-box-detached menu-sidebar" style={{width: '310px'}}>
 		<div className="sidebar-content">
 			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
 				<div className="card-bottom m-3">

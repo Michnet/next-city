@@ -5,6 +5,7 @@ import Countdown from "react-countdown"
 import { useRecoilValue } from "recoil";
 import { getEventDates } from "@/helpers/rest";
 import SkeletonCube from "../skeletons/SkeletonCube";
+import dayjs from "dayjs"
 
 const CountDownUI = ({fromActive, date = null, eventId, light}) => {
     const [loading, setLoading] = useState(true);
@@ -52,7 +53,7 @@ let now = new Date();
   if(theDate){
     if(dayjs(theEndDate).isBefore(now, 'minute')){
       return <div className="event_date">
-      <p className="text-13 lh-14  text-truncate">
+      <p className="text-13">
         <span className="mr-5 lh-1"><i className="las la-stopwatch"></i></span>
           Ended {dayjs(theEndDate).fromNow()}
       </p>

@@ -17,6 +17,7 @@ import Header from "./partials/Header";
 import { isActiveLink } from "@/helpers/universal";
 import { useRouter } from "next/router"
 import { LoaderDualRing } from "../skeletons/Loaders";
+import BottomMenu from "./BottomMenu";
 
 //const inter = Inter({ subsets: ["latin"] });
 
@@ -104,48 +105,11 @@ export default function Layout({ children, headerTitle, settings}) {
         </div>
         <div id="page" onLoad={() => pinHeader()}>
           {!noHeader && isTab && <Header headerTitle={headerTitle}/>}
-
-          <div id="footer-bar" className="footer-bar-1 d-md-none">
-            {defBottomLinks.map((el) => {
-                let {id, icon, link, name, func, routePath, isNew, props} = el;
-                return <>{link ? <Link key={id} href={routePath} className={`${isActiveLink(routePath, router.asPath)? 'active-nav' : ''}`}>
-                        <i className={`${icon}`}/>
-                        <span>{name}</span>
-                        {isNew && <span className="badge bg-highlight">NEW</span>}
-                    </Link>
-                    :
-                    <span className="link" onClick={(e) => func(e)} {...props}>
-                      <i className={`${icon}`}/>
-                      <span>{name}</span>
-                    </span>
-                    }
-                    </>
-            })}
-              <button {...btnProps} onClick={(e) => openOffCanvas(e)} className="fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
-              <span  className={`text-center big_act`} /* onClick={(e) => {
-                if(data_bs_toggle){
-                   return;
-                }else if(btnComponent){
-                  return;
-                }else if(func){
-                  func();
-                }else{
-                  router.push(bigUrl ?? '/add-listing');
-                }
-                }} */>
-                {<i className={`link_i ${icon ?? 'fa fa-plus'}`}/>}
-              </span>
-              <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
-            </button>
-          </div>
-
+          <BottomMenu btnProps={btnProps} icon={icon}/>
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
-          <Scaffold uiSize={uiSize}>{children}</Scaffold>
-
-          {/*Settings*/}
-
+          <Scaffold settings={settings} uiSize={uiSize}>{children}</Scaffold>
           <Client>
 		  <div
             id="menu-settings"
@@ -204,20 +168,17 @@ export default function Layout({ children, headerTitle, settings}) {
           </div>
 
 		  {/*Login*/}
-		  <div
-            id="login_modal"
-            className="menu menu-box-bottom"
-          >
-            <div className="menu-title">
-              <a href="#" className="close-menu">
-                <i className="fa fa-times"></i>
-              </a>
-            </div>
-            <div className="content">
-              <div className="account-access">
-					<AuthUI/>
+          <div id="login_modal" className="menu menu-box-bottom" >
+              <div className="menu-title">
+                <a href="#" className="close-menu">
+                  <i className="fa fa-times"></i>
+                </a>
               </div>
-            </div>
+              <div className="content">
+                <div className="account-access">
+                  <AuthUI/>
+                </div>
+              </div>
           </div>
           {/* <!-- Menu Settings Highlights--> */}
 

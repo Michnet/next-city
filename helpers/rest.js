@@ -348,6 +348,50 @@ export const getBookableProductsUrl = (payload) => {
   return `${WPDomain}/${endpoint}`
 }
 
+export const bpGroupUrl = (group_id, payload, base) =>{
+  let endPoint;
+  if(payload){
+      endPoint = `wp-json/buddyboss/v1/groups/${group_id}/${base ? base : ''}?${serializeQuery({
+          ...payload
+      })}`
+  }else{
+      endPoint = `wp-json/buddyboss/v1/groups/${group_id}/${base ? base : ''}`
+  }
+
+  return `${WPDomain}/${endPoint}`;
+}
+
+
+export async function addGroupMember(group_id, payload){
+  try {
+      const res = await kyFetch.post(bpGroupUrl(group_id, payload, `members`)).json();
+      if(res){
+          console.log('geo succeeded', res)
+          return res;
+        }else{
+        console.log('failed', res)
+      }
+    } catch (error) {
+      console.log('geo failed', error)
+      /* if (error.name === 'HTTPError') {
+        const errorJson = await error.response.json();
+      } */
+    }
+}
+
+export const createBPActivity = async (payload) =>{ 
+  const data = await WPRepository.post(bPActivitiesUrl(payload))
+  .then((response) => {
+      if (response.data) {
+          return response.data
+      } else return null;
+  })
+  .catch(() => {
+      return null;
+  });
+return data;
+}
+
 
 export const getBookableProducts = async (payload) => {
   const response = await kyFetch.get(getBookableProductsUrl(payload)).json();

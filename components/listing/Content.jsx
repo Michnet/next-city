@@ -2,15 +2,18 @@ import { authState } from "@/contexts/atoms";
 import dynamic from "next/dynamic";
 import { useRecoilValue } from "recoil";
 import { DualColorHeader } from "../UI/Partials";
+import ComponentActivity from "../UI/partials/ComponentActivity";
+import { EventDatesActive } from "../UI/partials/dateViews/EventDates";
 const FAQs = dynamic(() => import("../UI/FAQs"));
 const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
 import listingMenu from "./ListingMenu";
+import { ListingContact } from "./partials/ListingContact";
 import ListingStore from "./shop/ListingStore";
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
 function Content({listing, activeView,  activeKey, color, setActiveKey}) {
-    const {id,about_us, listing_store} = listing;
+    const {id,about_us, listing_store, community_id} = listing;
     const {tickets} = listing_store;
     const {faqs} = about_us;
 
@@ -27,9 +30,22 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
             return <ListingReviews postID={listing.id} user={user}/>
             case 'home':
             return <LandingPage activeKey={activeKey} listing={listing} setActiveKey={setActiveKey}/>
+            case 'community':
+            return <ComponentActivity
+            setActiveKey={setActiveKey}
+            noLink
+            scope={'groups'}
+            scope_slug = 'group_id'
+            scope_id={community_id}
+            />
             case 'faqs':
             return <div className="card card-style shadow-0 border bg-transparent">
             <div className="content"><FAQs  faqs={faqs} postID={id}/> </div></div>
+            case 'occurrences':
+              return <EventDatesActive Id = {listing.id} dualColumn upcoming = {5} 
+              fallBack={
+                <ListingContact light listing={listing} title={'No future occurrences'} descript={'The listing owner has not added any future occurences for it. This may mean that the event has ended. Contact them to inquire further'}/>
+              }/>;
             case 'tickets':
             return tickets?.length > 0 ? <div className="card card-style shadow-0 border bg-transparent">
             <div className="content">

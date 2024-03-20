@@ -2,6 +2,7 @@ import { openOffCanvas, toggleTheme } from "@/helpers/appjs";
 import Link from "next/link";
 import { Client } from "react-hydration-provider";
 import { UserAvatar } from "@/components/UI/UserAvatar";
+import MainMenuBtn from "./MainMenuBtn";
 
 const Header = ({headerTitle, headerClass}) => {
  
@@ -9,12 +10,7 @@ const Header = ({headerTitle, headerClass}) => {
     <div className={`header header-bar header-fixed header-logo-center ${headerClass ?? 'header-auto-show'} header-search`}>
     <div className="_left">
       <Client>
-        <button onClick={(e) => openOffCanvas(e)} className="left_menu_btn d-flex items-center text-20 d-block d-md-none" data-menu='mobile_sidebar'>
-          <i class="bi bi-text-left"></i>
-        </button>
-        <button className="left_menu_btn d-flex items-center text-20 d-none d-md-block" aria-expanded='false' data-bs-target={"#sidebar"} data-bs-toggle={'collapse'}>
-          <i class="bi bi-text-left"></i>
-        </button>
+        <MainMenuBtn/>
       </Client>
       <a
         href="#"
@@ -36,9 +32,6 @@ const Header = ({headerTitle, headerClass}) => {
         </a>
         <span onClick={(e) => openOffCanvas(e)}  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
           <i className="lar la-bell"></i>
-        </span>
-        <span onClick={(e) => openOffCanvas(e)} data-menu="menu-sidebar-right-2">
-          <i className="bi bi-text-indent-left"></i>
         </span>
         <a href="#" data-toggle-search>
           <i className="fa fa-search"></i>

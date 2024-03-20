@@ -6,21 +6,22 @@ import { Client } from "react-hydration-provider";
 import BusinessOne from "./landingPages/Business1";
 import styles from './styles/home1.module.css';
 import DateViewString from "../UI/partials/dateViews/DateViewString";
+import { PriceView } from "../UI/PriceView";
 
   const LandingConst = ({listing, setActiveKey}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, categories, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, ticket_min_price_html, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
     const {faqs} = about_us ?? {};
     let trimFaqs = faqs?.slice(0,3);
 
     return  <div className="landing_page">
             <div className="card card-style">
                 <div className="content">          
-                    <Client>{short_desc && <p className="mb-4 text-14 pb-2">
+                    <Client>{short_desc && <p className="mb-3 text-14 pb-2">
                         <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
                     </p>}</Client>
-                    <CountDownUI fromActive /* eventId={id} */ />
-                    <div className="row mb-3">
+                    <CountDownUI fromActive eventId={listing?.id} /* eventId={id} */ />
+                    <div className="row mb-3 mt-2 meta_card">
                         <div className="col-6">
                             <div className="d-flex">
                                 <div className="align-self-center">
@@ -28,7 +29,7 @@ import DateViewString from "../UI/partials/dateViews/DateViewString";
                                 </div>
                                 <div className="align-self-center">
                                     <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Date</span>
-                                    <strong className="d-block font-12 pb-1 color-theme">Sun, 28 August</strong>
+                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive /* date={event_date[0].start} */ format={'ddd, DD MMMM'}/></strong>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +40,7 @@ import DateViewString from "../UI/partials/dateViews/DateViewString";
                                 </div>
                                 <div className="align-self-center">
                                     <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Time</span>
-                                    <strong className="d-block font-12 pb-1 color-theme">06:00 - 12:00 PM <DateViewString fromActive /* date={event_date[0].start} */ format={'hh:mm A'}/></strong>
+                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive format={'hh:mm A'}/></strong>
                                 </div>
                             </div>
                         </div>
@@ -50,8 +51,8 @@ import DateViewString from "../UI/partials/dateViews/DateViewString";
                                     <i style={{width:"20px"}} className="bi bi-geo-alt color-yellow-dark font-23 me-3 text-center"></i>
                                 </div>
                                 <div className="align-self-center">
-                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Place</span>
-                                    <strong className="d-block font-12 pb-1 color-theme">Area 51, Nevada</strong>
+                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Where</span>
+                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme">{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</strong>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +62,8 @@ import DateViewString from "../UI/partials/dateViews/DateViewString";
                                     <i style={{width:"20px"}} className="bi bi-wallet color-green-dark font-23 me-3 text-center"></i>
                                 </div>
                                 <div className="align-self-center">
-                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Ticket</span>
-                                    <strong className="d-block font-12 pb-1 color-theme">$10 USD</strong>
+                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">From</span>
+                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</strong>
                                 </div>
                             </div>
                         </div>

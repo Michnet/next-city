@@ -21,7 +21,9 @@ const DateViewString = ({date, fromActive = false, format, eventId}) => {
       setLoading(true);
       if(!date){
         if(fromActive){
+          
           const {act_id, act_dates} = activeDate;
+          console.log('activeDate', act_dates)
           if(act_dates && act_id == eventId){
             setTheDate(act_dates[0]?.start);
           }

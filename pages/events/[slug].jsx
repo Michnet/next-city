@@ -2,7 +2,7 @@ import RelatedByTaxSplide from "@/components/listing/RelatedByTaxSplide";
 //import VisitRecord from "@/components/UI/VisitRecord";
 import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
-import { cleanHtml } from "@/helpers/universal";
+import { cleanHtml, srcWithFallback } from "@/helpers/universal";
 import dynamic from "next/dynamic";
 import { memo, useEffect, useState } from "react";
 import SiteHead from "@/components/UI/SiteHead";
@@ -18,6 +18,11 @@ import { useRecoilState } from "recoil";
 import VisitorActions from "@/components/listing/partials/VisitorActions";
 import CallToActions from "@/components/UI/CallToActions";
 import Link from "next/link";
+import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
+import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
+import Mirrored from "@/components/UI/partials/Mirrored";
+import Image from "next/image";
+import {fallbackImgSrcSet } from "@/helpers/base";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 
@@ -75,7 +80,7 @@ export async function getStaticPaths() {
     if(children){
        return <div onClick={() => setActiveKey('tickets')}> {children} </div>
      }else{
-       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn mr-0 mb-0 ${!simple ? 'ui-2' : 'bg-white hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
+       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn shadow-bg shadow-bg-sm bg-highlight mr-0 mb-0 ${!simple ? 'ui-2' : 'bg-white hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
      }
   }
 
@@ -135,19 +140,39 @@ if(listing){
            longitude={longitude}
            slug={`/events/${slug}`}
            />
+           <HeaderWrapper header_id={'listing_header'}>
+                <ListingTopMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+            </HeaderWrapper>
     <div className="page-content single_listing ">
 
-    <div className="card preload-img" /* data-src={cover} data-card-height="480" */ style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '60vh' : '35vh'}}>
+    <div className={`card preload-img listing_hero`} /* data-src={cover} data-card-height="480" */ style={{/* backgroundImage: `url(${cover})`, */ height: activeKey == 'home' ? '60vh' : '35vh'}}>
+            <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
+                <div className='hero_cover position-relative w-100'>
+                  <Image                   
+                    //placeholder="blur"
+                   changerKey={listing.id}
+                   //blurDataURL={coverBlur}
+                   fill
+                   priority
+                   alt="image"
+                   src={srcWithFallback(cover)}
+                   className={`object-cover`}
+                   //onError={(e) => {e.target.src = '/images/bg/fallback.jpg'}}
+                   onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
+                   //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+            </Mirrored>
         <div className="card-top m-3">
             <div className="notch-clear">
                 <a data-back-button href="#" className="icon icon-xs bg-white color-black rounded-m"><i className="fa fa-angle-left"></i></a>
             </div>
         </div>
         <div className="card-bottom bg-gradient-fade p-3">
-            {activeKey == 'home' && <span className="bg-highlight color-white font-700 p-2 rounded-s">
+            {activeKey == 'home' && <span className="bg-highlight color-white font-700 p-1">
                 {categories[0]?.name}
             </span>}
-            <h1 className="font-40 font-900 line-height-xl mt-4">
+            <h1 className="font-40 font-900 line-height-xl mt-1">
                 {cleanHtml(title?.rendered)}
             </h1>
             <p className="mb-3">
@@ -218,6 +243,9 @@ if(listing){
 
   /* const CanvasLayout = dynamic(() => import('~/appComponents/core//CanvasLayout'));
   import VisitorActions from './../../components/listing/partials/VisitorActions';
+import { fallbackImgSrcSet } from '@/helpers/base';
+import { fallbackImgSrcSet } from '@/helpers/base';
+import { fallbackImgSrcSet } from './../../helpers/base';
 
   Listing.getLayout = function getLayout({children}) {
     return (

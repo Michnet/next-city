@@ -222,8 +222,8 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                                         </div>
                                 </div>
 
-                                <Splider dots centerMode variableWidth swipe autoplaySpeed={6000} autoplay  className="p-0">
-                                    {special_guests.map((tmMember, index) => <TeamMember2 styles={styles} mirrored height={150} width={150} member={tmMember} key={index}/>
+                                <Splider options={{...spliderVariableWidth, height:260, pagination: true, gap:20, type:'slide', padding: { left: 10, right: 20 }}} className="p-0">
+                                    {special_guests.map((tmMember, index) => <TeamMember2 avatarSize={140} styles={styles} mirrored height={150} width={150} member={tmMember} key={index}/>
                                                     )} 
                                 </Splider>
                             </div>

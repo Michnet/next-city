@@ -3,8 +3,9 @@ import { Client } from "react-hydration-provider";
 import Activity from "../UI/lists/Activity";
 import Header from "./partials/Header";
 
-function Scaffold({children, uiSize}) {
+function Scaffold({children, uiSize, settings}) {
     const {isDeskTop, isTab} = uiSize;
+    const {mMenuContent, noHeader} = settings ?? {};
   return (<>
     <div className="container-fluid p-0">
         <div className="row flex-nowrap _scaffold">
@@ -13,8 +14,8 @@ function Scaffold({children, uiSize}) {
                     <MainMenu/>
                 </div>
             </div>
-            <div className="col px-0 main_content" style={{minWidth: '0', minHeight: '100vh'}}>
-                {!isTab && <Header headerClass={'header-always-show position-sticky'}/>}
+            <div className="col px-0 main_content position-relative" style={{minWidth: '0', minHeight: '100vh'}}>
+                {/* {!isTab && !noHeader ? <Header headerClass={'header-always-show position-sticky'}/> : <></>} */}
                 {children}
             </div>
             <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>

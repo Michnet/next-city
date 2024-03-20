@@ -31,14 +31,14 @@ function MainMenu() {
                         <div id="menu-sidebar"  /* data-menu-width="320" data-menu-effect="menu-push" */>
                             <div className="sidebar-content">
                                <UserCard/>
-                                <div className="card card-style shadow-0 border">
+                                <div className="card card-style mb-15 shadow-0 border">
                                     <div className="content my-0">
-                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
+                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Navigation</h5>
                                         <div className="list-group list-custom-small list-icon-0">
                                             {topLinks.map((el) => {
                                                 let {id, icon, color, name, routePath, isNew} = el;
-                                                return <Link key={id} href={routePath}>
-                                                        <i className={`close-menu ${icon} 
+                                                return <Link key={id} href={routePath} className='close-menu'>
+                                                        <i className={`${icon} 
                                                         ${isActiveLink(routePath, router.asPath)? 'gradient-menu color-white' : 'gradient-gray color-dark'} 
                                                         rounded-sm`}></i>
                                                         <span>{name}</span>
@@ -50,22 +50,22 @@ function MainMenu() {
                                     </div>
                                 </div>
 
-                                <div className="card card-style shadow-0 border">
+                                <div className="card card-style mb-15 shadow-0 border">
                                     <div className="content my-0">
-                                        <DualColorHeader exClass={'sm-font px-15 mb-2 hide_in_collapsed'} title={'Browse categories'}/>
+                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Top Categories</h5>
                                         <TermsGrid shadowy={false} id={106} listy/>
                                     </div>
                                 </div>
-                                <div className="card card-style shadow-0 border hide_in_collapse">
+                                <div className="card card-style mb-15 shadow-0 border hide_in_collapse">
                                     <div className="content my-0">
-                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Quick Links</h5>
+                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Quick Links</h5>
                                         <div className="quick_links">
                                         {quickLinks?.map((item) => (
                                         <div className="mb-28" key={item.id}>
                                         <h5 className="text-15 fw-300 mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
                                         <div className="d-flex flex-column y-gap-10">
                                             {item.menuList.map((menu, i) => (
-                                            <Link  href={menu.routerPath} as={menu.routerPath} key={i}>
+                                            <Link className='close-menu' href={menu.routerPath} as={menu.routerPath} key={i}>
                                                 {menu.name}
                                             </Link>
                                             ))}
@@ -76,9 +76,9 @@ function MainMenu() {
                                     </div>
                                 </div>
 
-                                <div className="card card-style shadow-0 border">
+                                <div className="card card-style mb-15 shadow-0 border">
                                     <div className="content my-0">
-                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Settings</h5>
+                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Settings</h5>
                                         <div className="list-group list-custom-small list-icon-0">
                                             <a href="#" data-menu="menu-highlights" onClick={(e) => openOffCanvas(e)}>
                                                 <i className="fa font-12 fa-droplet gradient-blue rounded-sm color-theme"></i>

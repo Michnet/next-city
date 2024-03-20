@@ -32,6 +32,7 @@ export function SectionHeader({title, subTitle, link, linkUrl='#', iconClass='fa
   )
 }
 
+
 export const ListingMeta = ({location, duration, filled}) => {
   return <div className="listing_meta">
             {duration ? <p className="lh-13 text-truncate">
