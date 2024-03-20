@@ -9,6 +9,7 @@ import SkeletonCube from "../skeletons/SkeletonCube";
 const CountDownUI = ({fromActive, date = null, eventId, light}) => {
     const [loading, setLoading] = useState(true);
     const [theDate, setTheDate] = useState(null);
+    const [theEndDate, setTheEndDate] = useState(null);
     const activeDate = fromActive ? useRecoilValue(activeDateState) : null;
 
 
@@ -31,6 +32,7 @@ useEffect(() => {
       if(act_dates && act_id == eventId){
         console.log('act_dates', act_dates)
         setTheDate(act_dates[0]?.start);
+        setTheEndDate(act_dates[0]?.end);
       }
     }else{
       getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1}, signal);
@@ -45,9 +47,19 @@ return () => {
   controller.abort();
 }
 }, [date, eventId, activeDate]);
+let now = new Date();
 
   if(theDate){
-    return <div><Countdown renderer={countdown_renderer} autoStart date={theDate}/></div>
+    if(dayjs(theEndDate).isBefore(now, 'minute')){
+      return <div className="event_date">
+      <p className="text-13 lh-14  text-truncate">
+        <span className="mr-5 lh-1"><i className="las la-stopwatch"></i></span>
+          Ended {dayjs(theEndDate).fromNow()}
+      </p>
+    </div>;
+    }else{
+      return <div><Countdown renderer={countdown_renderer} autoStart date={theDate}/></div>
+    }
   }else{
     if(loading){
       return <div className="flex_horizontal loader_skeleton gap-2 w-fit">{generateTempArray(4).map((item, i) => (

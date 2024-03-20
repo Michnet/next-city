@@ -1,10 +1,13 @@
+import { activeDateState } from "@/contexts/atoms";
 import { getEventDates } from "@/helpers/rest";
 import dayjs from "dayjs"
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 
-const DateViewString = ({date, format, eventId}) => {
+const DateViewString = ({date, fromActive = false, format, eventId}) => {
     const [theDate, setTheDate] = useState(null);
     const [loading, setLoading] = useState(true);
+    const activeDate = fromActive ? useRecoilValue(activeDateState) : null;
      ;
     const getDates = async(payload, signal) => {
       const fetchdDates = await getEventDates(payload, signal);
@@ -17,7 +20,14 @@ const DateViewString = ({date, format, eventId}) => {
         const {signal} = controller;
       setLoading(true);
       if(!date){
-        getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1}, signal)
+        if(fromActive){
+          const {act_id, act_dates} = activeDate;
+          if(act_dates && act_id == eventId){
+            setTheDate(act_dates[0]?.start);
+          }
+        }else{
+          getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1}, signal);
+        }
       }else{
         setTheDate(date)
       }

@@ -62,14 +62,17 @@ export const responsiveCarousel = {
     ]
   };
 
+  export const spliderVariableWidth = {pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}
+
   export  const fadingSlide = {
     pauseOnHover: true,
     centerMode: true,
     centerPadding: '0px',
     dots: true,
-    autoplay: true,
+    autoplay: false,
     fade: true,
     infinite: true,
+    interval: 5000,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,

@@ -23,6 +23,8 @@ import Splider from "@/components/UI/partials/Splider";
 import EventCard from "@/components/UI/Listings/cards/EventCard";
 import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
 import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
+import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
+import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
 
 
 export async function getStaticProps() {
@@ -227,7 +229,7 @@ export default function Home(props) {
 
 		
     
-    <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'} }>
+    <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {
                 eventCategories?.map((cat) => {
                     return <TermIcon flipped item={cat}/>
@@ -248,6 +250,17 @@ export default function Home(props) {
         }
     </Splider>
 
+   <SectionHeader iconClass={'far fa-heart'} bgClass={'bg-twitter'} exClass='px-3 mb-2' link={'See All'} title={'Most Liked'} subTitle={'Meet the favourites'}/>
+   <Splider height={130} options={{arrows: false, navigation: false, wheel:false, height: 'auto', gap: 10, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+      {listings?.length > 0 ? 
+          listings.map((li) => {
+           return <EventCard4 width={300} key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }
+    </Splider>
+
     <div className="d-flex px-3 mb-2">
         <div className="align-self-center">
             <h4 className="mb-0">Last Minute Deal</h4>
@@ -262,7 +275,7 @@ export default function Home(props) {
           listings.map((li) => {
             let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
 
-            return <EventCard3 listing={li} key={id}/>
+            return <EventCard3 width={'inherit'} listing={li} key={id}/>
           })
           :
           <></>
@@ -292,24 +305,9 @@ export default function Home(props) {
   <div className="row gap-1">
         {listings?.length > 0 ? 
           shuffleArray(listings).map((li, ind) => {
-            let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
+            let {id} = li;
             if(ind < 2){
-               return <div className="md-sticky col-12 p-0 col-sm-6 col-md-12" key={id}>
-                    <Link href={`/events/${slug}`}  className="card card-style mx-0 mb-3">
-                      <div className="card-top m-2">
-                        <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl">25% OFF</span>
-                      </div>
-                      <img src={xtra_large_thumb} alt="img" width="100" className="img-fluid" style={{height: '160px', objectFit: 'cover'}}/>
-                      <div className="px-2">
-                        <h4 className="mb-0 truncate text-14">{cleanHtml(title?.rendered)}</h4>
-                        <p className="mb-0 font-11 mt-n1 opacity-70"><i className="fa fa-map-marker pe-2"></i>{locations[0]?.name}</p>
-                      </div>
-                      {/* <div className="divider mb-0"></div> */}
-                      <div className="d-flex flex-row flex-nowrap justify-between px-2 font-12">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline color-highlight'} priceHTml={ticket_min_price_html}/> }
-                      <span className="float-end font-400 font-11 color-yellow-dark">5 Left</span>
-                      </div>
-                    </Link>
-                  </div>
+               return <ListingCard3 listing={li} key={id}/>
             }
           })
           :
@@ -339,7 +337,7 @@ export default function Home(props) {
           {listings?.length > 0 ? 
             listings.map((li) => {
               let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
-              return <a href="#" className="d-flex mb-3" data-menu="menu-travel-sample">
+              return <Link href="#" className="d-flex mb-3" data-menu="menu-travel-sample">
                       <div>
                         <img src={xtra_large_thumb} className="object-cover rounded-sm me-3" width="70" height="70"/>
                       </div>
@@ -351,7 +349,7 @@ export default function Home(props) {
                       <div className="align-self-center ms-auto">
                         <i className="fa fa-arrow-right font-12 color-theme opacity-20"></i>
                       </div>
-                    </a>
+                    </Link>
             })
             :
             <></>

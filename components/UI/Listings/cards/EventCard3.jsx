@@ -16,7 +16,7 @@ const EventCard3 = ({listing, width=320, height=260, exClass=''}) => {
                         <div className="d-flex">
                             <div className="pe-3">
                             <h1 className="color-white font-23 font-800">{cleanHtml(title.rendered)}</h1>
-                            <p className="color-white font-12 mb-0 line-height-s opacity-70">{cleanHtml(short_desc)}</p>
+                            <div><p className="color-white font-12 mb-0 opacity-70 truncate-5">{cleanHtml(short_desc)}</p></div>
                             </div>
                             <div className="w-50 align-self-center text-end ms-auto">
                             <h1 className="color-white">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</h1>

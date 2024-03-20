@@ -164,6 +164,10 @@ export const isActiveParentChaild = (data = [], path) => {
   }
 };
 
+export function isListingAuthor(user, author_id){
+  return user && user?.id == author_id;
+ }
+
 export function ProductPrice(product) {
   let view;
   const { price, regular_price } = product;

@@ -155,7 +155,7 @@ dayjs.extend(relativeTime)
                           </ul>
         }
         itemView = <>
-                    <div key={id} className={`${type} activity_card card card-style mb-10`}>
+                    <div key={id} className={`${type} activity_card card card-style mb-2`}>
                         <div className="content mb-0">
                             <div className="mt-n1">
                                 

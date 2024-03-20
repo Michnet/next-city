@@ -13,6 +13,7 @@ import MegaGalleryMini from '@/components/UI/Galleries/MegaGalleryMini';
 import ListingProductsMini from '../partials/ListingProductsMini';
 import TeamMember2 from '../team/TeamMember2';
 import { BookingView } from '@/pages/events/[slug]';
+import {spliderVariableWidth} from '@/helpers/sliders'
 //const TeamMember = dynamic(() => import('../Team/TeamMember'));
 
 function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcoming, styles}) {
@@ -53,7 +54,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         if(sponsors?.length > 0){
             sponsorsView = <div className={'d-block w-100 bg-white image_links py-28'}>
                    <div className='mb-20 mt-10 sc_heading_3 text-center'><h5>Proudly Sponsored By</h5></div>
-                    <Splider>
+                    <Splider options={{...spliderVariableWidth}}>
                         {sponsors?.map((el, index) => {
                                     const {img_name, img_link, mylisting_accordion_photo} = el;
                                     return <a className='w-auto' href={img_link} target="_blank"><img
@@ -139,7 +140,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             }
         }else{
             greetingView =
-                    <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
+                    <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{__html: listing?.title?.rendered}}/></p>
         }
 
        /*  if(rating > 0){

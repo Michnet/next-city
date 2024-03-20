@@ -26,7 +26,7 @@ export default function Layout({ children, headerTitle, settings}) {
   const [width, setWidth] = useRecoilState(UIWidthState);
   const router = useRouter();
   const {mMenuContent, noHeader} = settings ?? {};
-  const {btnProps, btnFunc} = mMenuContent ?? {}
+  const {btnProps, btnFunc, icon} = mMenuContent ?? {}
 
   function pinHeader(){
     if (typeof window !== 'undefined') {
@@ -103,7 +103,7 @@ export default function Layout({ children, headerTitle, settings}) {
           <div className="spinner-border color-highlight" role="status"></div>
         </div>
         <div id="page" onLoad={() => pinHeader()}>
-          {!noHeader && isLargeTab && <Header headerTitle={headerTitle}/>}
+          {!noHeader && isTab && <Header headerTitle={headerTitle}/>}
 
           <div id="footer-bar" className="footer-bar-1 d-md-none">
             {defBottomLinks.map((el) => {
@@ -121,7 +121,7 @@ export default function Layout({ children, headerTitle, settings}) {
                     }
                     </>
             })}
-              <button {...btnProps} onClick={(e) => openOffCanvas(e)} class="fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
+              <button {...btnProps} onClick={(e) => openOffCanvas(e)} className="fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
               <span  className={`text-center big_act`} /* onClick={(e) => {
                 if(data_bs_toggle){
                    return;
@@ -133,7 +133,7 @@ export default function Layout({ children, headerTitle, settings}) {
                   router.push(bigUrl ?? '/add-listing');
                 }
                 }} */>
-                {<i className={`link_i ${'fa fa-plus'}`}/>}
+                {<i className={`link_i ${icon ?? 'fa fa-plus'}`}/>}
               </span>
               <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
             </button>
@@ -220,6 +220,12 @@ export default function Layout({ children, headerTitle, settings}) {
             </div>
           </div>
           {/* <!-- Menu Settings Highlights--> */}
+
+          {/* Snackbars*/}
+          <div id="snackbar-liked" className="snackbar-toast rounded-m bg-green-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-check me-3"></i>Added to favourites</div>
+          <div id="snackbar-unliked" className="snackbar-toast rounded-m bg-yellow-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-info me-3"></i>Removed from favourites!</div>
+
+
           <div
             id="menu-highlights"
             className="menu menu-box-bottom menu-box-detached"

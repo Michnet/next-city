@@ -235,44 +235,48 @@ h6 {
     background: var(--bs-gray-600) !important;
   }
 
-.truncate,.text-truncate,.truncate-2,.truncate-3,.truncate-5,.truncate-7 {
+.truncate,.text-truncate,.truncate-2,.truncate-4,.truncate-3,.truncate-5,.truncate-7 {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    line-height: 1.3
+    line-height: 1.4
 }
 
 .truncate {
     --max-lines: 1;
-    max-height: 1.3em;
+    max-height: 1.5em;
     -webkit-line-clamp: 1
 }
 
 .truncate-2 {
     --max-lines: 2;
-    max-height: 2.6em;
+    max-height: 2.8em;
     -webkit-line-clamp: 2
 }
 
 .truncate-3 {
     --max-lines: 3;
-    max-height: 3.9em;
+    max-height: 4.2em;
     -webkit-line-clamp: 3
+}
+
+.truncate-4 {
+    --max-lines: 4;
+    max-height: 5.6em;
+    -webkit-line-clamp: 4
 }
 
 .truncate-5 {
     --max-lines: 5;
-    max-height: 6.2em;
-    line-height: 1.3;
+    max-height: 7em;
     -webkit-line-clamp: 5
 }
 
 .truncate-7 {
     --max-lines: 7;
     -webkit-line-clamp: 7;
-    max-height: 9.1em;
-    line-height: 1.3
+    max-height: 9.8em;
 }
 .bb-thin {
     border-bottom: solid 1px rgba(0,0,0,.05);
@@ -911,6 +915,19 @@ div#footer-bar {
     margin-left: auto;
 }
 
+#sidebar .terms_grid .col.listy .term_box a, 
+#menu-sidebar .terms_grid .col.listy .term_box a{
+    height: 30px !important;
+    width: 30px !important;
+    line-height: 30px;
+    border-radius: 10px;
+}
+
+#sidebar term_.terms_grid .col.listy .term_box a i, 
+#menu-sidebar .terms_grid .col.listy .term_box a i{
+    font-size: 18px !important;
+}
+
 #sidebar:not(.show) .card .content a {
     border-bottom: none;
 }
@@ -964,7 +981,7 @@ div#footer-bar {
     display: none;
 }
 
-div#menu-sidebar {
+#menu-sidebar {
     height: inherit;
 }
 
@@ -972,6 +989,10 @@ div#menu-sidebar {
     overflow: hidden;
     overflow-y: auto;
     height: inherit;
+}
+
+.sidebar-content .terms_grid {
+    padding: 0 0;
 }
 
 .sidebar-content > .card-style {
@@ -1779,13 +1800,13 @@ div#menu-sidebar {
 }
 
 .terms_grid .col.listy .term_box a {
-    width: 40px !important;
-    height: 40px !important;
+    width: 40px;
+    height: 40px;
     line-height: 40px;
 }
 
 .terms_grid .col.listy .term_box a i {
-    line-height: 40px;
+    line-height: inherit;
     font-size: 22px !important;
 }
 
@@ -1839,4 +1860,15 @@ div#menu-sidebar {
 #sidebar .terms_grid {
     padding: 0;
     margin-bottom: 20px;
+}
+
+.term_box a {border-radius: 50%}
+
+.sidebar-content h5 {
+    margin: 0 0 9px 0;
+}
+
+.quick_links a {
+    font-size: 13px;
+    line-height: 1.2em;
 }

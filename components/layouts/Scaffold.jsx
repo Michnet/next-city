@@ -4,7 +4,7 @@ import Activity from "../UI/lists/Activity";
 import Header from "./partials/Header";
 
 function Scaffold({children, uiSize}) {
-    const {isDeskTop} = uiSize;
+    const {isDeskTop, isTab} = uiSize;
   return (<>
     <div className="container-fluid p-0">
         <div className="row flex-nowrap _scaffold">
@@ -14,7 +14,7 @@ function Scaffold({children, uiSize}) {
                 </div>
             </div>
             <div className="col px-0 main_content" style={{minWidth: '0'}}>
-                {isDeskTop && <Header headerClass={'header-always-show position-sticky'}/>}
+                {!isTab && <Header headerClass={'header-always-show position-sticky'}/>}
                 {children}
             </div>
             <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>

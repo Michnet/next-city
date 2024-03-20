@@ -53,7 +53,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, ra
         </div>
     </div>
 
-    <Splide options={{height: 200, wheel: true, padding: { left: 0, right: 15}, autoplay: true, perMove: 2, interval:4000, type:'loop', perPage: 4, breakpoints: {...splideViews}} }>
+    <Splide options={{height: 200, padding: { left: 0, right: 15}, autoplay: true, perMove: 2, interval:4000, type:'loop', perPage: 4, breakpoints: {...splideViews}} }>
                 {listings?.length > 0 ?
                    listings.map((item) => {
                     let {title, large_thumb, slug, id} = item;

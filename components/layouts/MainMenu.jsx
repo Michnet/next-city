@@ -38,7 +38,7 @@ function MainMenu() {
                                             {topLinks.map((el) => {
                                                 let {id, icon, color, name, routePath, isNew} = el;
                                                 return <Link key={id} href={routePath}>
-                                                        <i className={`${icon} 
+                                                        <i className={`close-menu ${icon} 
                                                         ${isActiveLink(routePath, router.asPath)? 'gradient-menu color-white' : 'gradient-gray color-dark'} 
                                                         rounded-sm`}></i>
                                                         <span>{name}</span>
@@ -53,7 +53,7 @@ function MainMenu() {
                                 <div className="card card-style shadow-0 border">
                                     <div className="content my-0">
                                         <DualColorHeader exClass={'sm-font px-15 mb-2 hide_in_collapsed'} title={'Browse categories'}/>
-                                        <TermsGrid id={106} listy/>
+                                        <TermsGrid shadowy={false} id={106} listy/>
                                     </div>
                                 </div>
                                 <div className="card card-style shadow-0 border hide_in_collapse">

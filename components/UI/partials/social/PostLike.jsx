@@ -5,15 +5,10 @@ import { authState } from "@/contexts/atoms";
 import { likePost } from "@/helpers/rest";
 
 
-const PostLike = ({listing}) => {
+const PostLike = ({listing, likedEl=null, unlikedEl=null}) => {
   const {user, token} = useRecoilValue(authState);
   const [liked, setLiked] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-
-
-  const handleCancel = () => {
-    setLoginModal(false);
-  };
 
 function showLike(){
 
@@ -52,14 +47,14 @@ useEffect(() => {
 
   let likeView;
   if(user){
-      likeView = <div className="action_box _likes"> {liked ? 
-                    <i className="las la-heart" onClick={() => unlikeItem({JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}></i> : 
-                    <i className="lar la-heart" onClick={() => likeItem({JWT: token, liked_id: listing, user_id : parseInt(user.id)})}></i>
+      likeView = <div className="likes_box _likes"> 
+              {liked ? <span data-toast="snackbar-unliked" onClick={() => unlikeItem({JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}>{likedEl ?? <i className="fa fa-heart"/>}</span>
+                     : <span data-toast="snackbar-liked" onClick={() => likeItem({JWT: token, liked_id: listing, user_id : parseInt(user.id)})}>{unlikedEl ?? <i className="far fa-heart"/>}</span>
                  }
                 </div>
   }else{
-      likeView = <div className="action_box _likes">  
-                    <i className="lar la-heart" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}/>
+      likeView = <div className="likes_box _likes">  
+                   <span data-menu='login_modal' onClick={(e) => openOffCanvas(e)}>{unlikedEl ?? <i className="far fa-heart"/>}</span>
                 </div>
   }
   
