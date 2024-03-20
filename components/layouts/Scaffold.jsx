@@ -13,7 +13,7 @@ function Scaffold({children, uiSize}) {
                     <MainMenu/>
                 </div>
             </div>
-            <div className="col px-0 main_content" style={{minWidth: '0'}}>
+            <div className="col px-0 main_content" style={{minWidth: '0', minHeight: '100vh'}}>
                 {!isTab && <Header headerClass={'header-always-show position-sticky'}/>}
                 {children}
             </div>

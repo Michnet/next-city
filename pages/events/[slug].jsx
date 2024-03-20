@@ -91,7 +91,7 @@ export async function getStaticPaths() {
 console.log('liss', listing);  
 
 useEffect(() => {
-  setActiveKey(view);
+  setActiveKey(query?.page ?? view);
 }, [listing.id])
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
