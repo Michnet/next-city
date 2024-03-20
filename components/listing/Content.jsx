@@ -13,7 +13,7 @@ import ListingStore from "./shop/ListingStore";
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
 function Content({listing, activeView,  activeKey, color, setActiveKey}) {
-    const {id,about_us, listing_store, community_id} = listing;
+    const {id,about_us, listing_store, community_id, type} = listing;
     const {tickets} = listing_store;
     const {faqs} = about_us;
 

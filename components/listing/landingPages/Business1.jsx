@@ -110,7 +110,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                     <div className="_location icon_box align-items-start d-inline-flex">
                       <span className="icon_icon"><i className="bi bi-pin-map"/></span> 
                       <p>{address && <><span className="list_location loc_address">{address}</span><br/></>}
-                        {locations ? <><span className="list_location loc_name">{locations[0]?.name}</span></> : <></>}
+                        {locations?.length > 0 ? <><span className="list_location loc_name">{locations[0]?.name}</span></> : <></>}
                         </p>
                     </div>
                   </div>
