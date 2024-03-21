@@ -23,6 +23,7 @@ import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
 import Mirrored from "@/components/UI/partials/Mirrored";
 import Image from "next/image";
 import {fallbackImgSrcSet } from "@/helpers/base";
+import { closeMenus } from "@/helpers/appjs";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 
@@ -203,7 +204,7 @@ if(listing){
     <RightMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title">
-            <a href="#" className="close-menu">
+            <a href="#" className="close-menu" onClick={() => closeMenus()}>
             <i className="fa fa-times"></i>
             </a>
         </div>
@@ -222,7 +223,7 @@ if(listing){
         <div className="menu-title mt-0 pt-0">
               <h1>{cleanHtml(listing?.title.rendered)}</h1>
               <p className="color-highlight">Options ...</p>
-              <a href="#" className="close-menu">
+              <a href="#" className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
               </a>
             </div>

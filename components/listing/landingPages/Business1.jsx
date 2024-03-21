@@ -94,8 +94,8 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             </div>
             <div className="section_overlay_content flex_container">
                 {<div className='border_box listing_greeting'>
-                    <div className="featuredImg_box" >
-                    <Image fill style={{objectFit:"cover"}} src= {srcWithFallback(xtra_large_thumb)} priority/> 
+                    <div className="featuredImg_box" style={{backgroundImage: `url('${srcWithFallback(xtra_large_thumb)}')`}}>
+                    {/* <Image fill style={{objectFit:"cover"}} src= {srcWithFallback(xtra_large_thumb)} priority/>  */}
                     </div>
                 </div>}
                 <div className={'excerptView'}>
@@ -281,7 +281,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                                             <div className="serv_number"><span>{`0${index + 1}`}</span></div>
                                             {service.mylisting_accordion_photo &&  
                                                 <div className="serv_image" >
-                                                    <div className="image_bg" style={{  backgroundImage: `url("${service?.mylisting_accordion_photo}")`  }}></div>
+                                                    <div className="image_bg shadow-card shadow-card-l" style={{  backgroundImage: `url("${service?.mylisting_accordion_photo}")`  }}></div>
                                                 </div>
                                             }
                                             <div className="serv_content">

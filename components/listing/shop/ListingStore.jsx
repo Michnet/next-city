@@ -3,19 +3,34 @@ function ListingStore({listingId, ids}) {
 				<div class="card card-style mx-0 shadow-0">
 					<div class="content">
 						<div class="row mb-0">
-							<div class="col-6">
-								<div class="card card-style m-0 bg-30" data-card-height="140">
-									<div class="card-top p-2">
-										<span class="bg-green-dark p-2 py-1 rounded-sm font-13 font-600">-50%</span>
-									</div>
-									<div class="card-bottom text-center pb-3">
-										<a href="#" data-toast="snackbar-favorites" class="icon icon-xxs bg-theme rounded-l shadow-xl rounded-m mx-2 color-theme"><i class="fa fa-heart color-red-dark font-12"></i></a>
-										<a href="#" data-toast="snackbar-cart" class="icon icon-xxs bg-theme rounded-l shadow-xl rounded-m mx-2 color-theme"><i class="fa fa-shopping-bag font-12"></i></a>
-									</div>
+							<div class="col-12">
+								<div class=" m-0">
+									<article class="card card-style ticket_card fl-left">
+										<section class="date">
+											<time datetime="23th feb">
+											<span>23</span><span>feb</span>
+											</time>
+										</section>
+										<section class="card-cont">
+											<small>dj khaled</small>
+											<h3>corner obsest program</h3>
+											<div class="even-date">
+											<i class="fa fa-calendar"></i>
+											<time>
+											<span>wednesday 28 december 2014</span>
+											<span>08:55pm to 12:00 am</span>
+											</time>
+											</div>
+											<div class="even-info">
+											<i class="fa fa-map-marker"></i>
+											<p>
+												nexen square for people australia, sydney
+											</p>
+											</div>
+											<a href="#">tickets</a>
+										</section>
+									</article>
 								</div>
-								<h5 class="font-600 font-16 line-height-sm pt-3">Apple Watch, Ceramic Edition, White Leather Band</h5>
-								<span class="color-blue-dark d-block font-11 font-600">Featured this Week</span>
-								<h2 class="pb-3 mt-n1">$2999.<sup class="font-14 font-400 opacity-50">99</sup></h2>
 							</div>
 							<div class="col-6">
 								<div class="card card-style m-0 bg-28" data-card-height="140">

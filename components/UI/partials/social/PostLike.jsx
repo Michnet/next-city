@@ -1,5 +1,5 @@
 import  {useEffect, useState } from "react";
-import {openOffCanvas} from "@/helpers/appjs";
+import {openOffCanvas, showToast} from "@/helpers/appjs";
 import { useRecoilValue } from "recoil";
 import { authState } from "@/contexts/atoms";
 import { likePost } from "@/helpers/rest";
@@ -33,23 +33,23 @@ useEffect(() => {
     setLiked(true);
     const postLike = await likePost(payload);
     if (postLike) {
-      
+       showToast(e)
     }
   }
 
-  async function unlikeItem(payload){
+  async function unlikeItem(e, payload){
     setLiked(false);
     const postdislike = await likePost(payload);
     if (postdislike) {
-      
+      showToast(e)
     }
   }
 
   let likeView;
   if(user){
       likeView = <div className="likes_box _likes"> 
-              {liked ? <span data-toast="snackbar-unliked" onClick={() => unlikeItem({JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}>{likedEl ?? <i className="fa fa-heart"/>}</span>
-                     : <span data-toast="snackbar-liked" onClick={() => likeItem({JWT: token, liked_id: listing, user_id : parseInt(user.id)})}>{unlikedEl ?? <i className="far fa-heart"/>}</span>
+              {liked ? <span data-toast="snackbar-unliked" onClick={(e) => unlikeItem(e, {JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}>{likedEl ?? <i className="fa fa-heart"/>}</span>
+                     : <span data-toast="snackbar-liked" onClick={(e) => likeItem(e, {JWT: token, liked_id: listing, user_id : parseInt(user.id)})}>{unlikedEl ?? <i className="far fa-heart"/>}</span>
                  }
                 </div>
   }else{

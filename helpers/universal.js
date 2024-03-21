@@ -385,7 +385,17 @@ export function clearInputField(id){
     textInput.value = '';
   }
 }
-  
+export const productsSortList = [
+  {id: 1, label: 'Newest', name: 'newest', orderby: 'date', order : 'desc'},
+  {id: 2, label: 'Oldest', name: 'oldest', orderby: 'date', order : 'asc'},
+  {id: 3, label: 'Cheapest', name: 'cheapest', orderby: 'price', order : 'asc'},
+  {id: 4, label: 'Most expensive', name: 'most-expensive', orderby: 'price', order : 'desc'},
+  {id: 5, label : 'Most discounted', name : 'most-discounted', orderby: 'discount', order : 'desc'},
+  {id: 6, label: 'Most popular',name: 'most-popular',  orderby: 'popularity', order : 'desc'},
+  {id: 7, label: 'Top Rated', name: 'top-rated', orderby : 'rating', order: 'desc'}
+];
+
+export const basicProductFields = "id,name,featured,short_description,price,regular_price,average_rating,rating_counts,images,attributes";
 
 export const slideActivator = ({carId, paramsObj={}}) =>{
   let params = {
@@ -401,3 +411,14 @@ export const slideActivator = ({carId, paramsObj={}}) =>{
   sliderNext.forEach(el => el.addEventListener('click', el => {single.go('>');}));
   sliderPrev.forEach(el => el.addEventListener('click', el => {single.go('<');}));
 }
+
+export const scrollToSpot = (ref, offset) => {
+  window.scrollTo({
+    top: ref.current.offsetTop - offset,
+    behavior: "smooth",
+  });
+};
+
+export const scrollTop = (ref, offset) => {
+  window.scrollTo(0, offset);
+};

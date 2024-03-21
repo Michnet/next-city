@@ -1,4 +1,4 @@
-import { toggleTheme } from "@/helpers/appjs"
+import { closeMenus, toggleTheme } from "@/helpers/appjs"
 import { isActiveLink } from "@/helpers/universal";
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -37,7 +37,7 @@ function MainMenu() {
                                         <div className="list-group list-custom-small list-icon-0">
                                             {topLinks.map((el) => {
                                                 let {id, icon, color, name, routePath, isNew} = el;
-                                                return <Link key={id} href={routePath} className='close-menu'>
+                                                return <Link key={id} href={routePath} className='close-menu' onClick={() => closeMenus()}>
                                                         <i className={`${icon} 
                                                         ${isActiveLink(routePath, router.asPath)? 'gradient-menu color-white' : 'gradient-gray color-dark'} 
                                                         rounded-sm`}></i>
@@ -65,7 +65,7 @@ function MainMenu() {
                                         <h5 className="text-15 fw-300 mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
                                         <div className="d-flex flex-column y-gap-10">
                                             {item.menuList.map((menu, i) => (
-                                            <Link className='close-menu' href={menu.routerPath} as={menu.routerPath} key={i}>
+                                            <Link className='close-menu' onClick={() => closeMenus()} href={menu.routerPath} as={menu.routerPath} key={i}>
                                                 {menu.name}
                                             </Link>
                                             ))}

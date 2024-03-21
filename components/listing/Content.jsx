@@ -9,6 +9,7 @@ const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
 import listingMenu from "./ListingMenu";
 import { ListingContact } from "./partials/ListingContact";
+import ListingProductsSimple from "./shop/ListingProductsSimple";
 import ListingStore from "./shop/ListingStore";
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
@@ -16,6 +17,7 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
     const {id,about_us, listing_store, community_id, type} = listing;
     const {tickets} = listing_store;
     const {faqs} = about_us;
+    let isSample = true;
 
     console.log('tickssss', tickets)
 
@@ -46,16 +48,12 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
               fallBack={
                 <ListingContact light listing={listing} title={'No future occurrences'} descript={'The listing owner has not added any future occurences for it. This may mean that the event has ended. Contact them to inquire further'}/>
               }/>;
-            case 'tickets':
-            return tickets?.length > 0 ? <div className="card card-style shadow-0 border bg-transparent">
-            <div className="content">
-            <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>
-            <ListingStore listy ids={tickets} productType="booking" listingId = {listing.id} relatedIds={tickets}/></div></div>
-            :
-            <>
-            <></>
-            {/* <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this event has not added any online booking options. Contact them to inquire further'}/> */}
-            </>
+              case 'tickets':
+                return tickets?.length > 0 ? <div>
+                <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>
+                <ListingStore isSample ={isSample} listy ids={tickets} productType="booking" listingId = {id} relatedIds={tickets}/></div>
+                :
+                <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this event has not added any online booking options. Contact them to inquire further'}/>
         }
     }
 

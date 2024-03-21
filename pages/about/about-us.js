@@ -1,27 +1,20 @@
-import dynamic from "next/dynamic";
-//const PageLayout = dynamic(() => import('./../../appComponents/core/Layout/PageLayout'));
-//import WhyChoose from "../../components/block/BlockGuide";
-// import Block1 from "../../components/about/Block1";
 import Image from "next/image";
 import SiteHead from "@/components/UI/SiteHead";
 import Block1 from "@/components/UI/about/Block1";
-//import Counter from "../../components/counter/Counter";
-//import Team1 from "../../components/team/Team1";
-//import Testimonial from "../../components/testimonial/Testimonial";
-//import Counter2 from "../../components/counter/Counter2";
-//import Brand from "../../components/brand/Brand";
-// import SiteHead from "~/appComponents/components/SiteHead";
 import BlockGuide from './../../components/UI/about/BlockGuide';
 
 const About = () => {
   return (
     <>
       <SiteHead title={'About LyveCity'}/>
+      <div className="page-content">
       <section className="section-bg layout-pt-lg layout-pb-lg pos-relative">
         <div className="section-bg__item col-12">
           <Image
-            width={1920}
-            height={400}
+            //width={1920}
+            //height={400}
+            fill
+            className="object-cover"
             src="/img/events/pexels-jonas-von-werne-2897462.jpg"
             alt="image"
             priority
@@ -131,6 +124,7 @@ const About = () => {
           </div>
         </div>
       </section> */}
+      </div>
     </>
   );
 };

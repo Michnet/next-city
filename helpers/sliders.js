@@ -69,7 +69,7 @@ export const responsiveCarousel = {
     centerMode: true,
     centerPadding: '0px',
     dots: true,
-    autoplay: false,
+    autoplay: true,
     fade: true,
     infinite: true,
     interval: 5000,

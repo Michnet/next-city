@@ -27,6 +27,11 @@
     rgba(27, 29, 33,0.9) 75%,
     rgba(27, 29, 33,1) 100%);
 }
+:root{
+    --colorTheme:#{$color_white};
+    --bgTheme:#{$theme-dark-background};
+    --borderTheme:rgba(255,255,255,0.12);
+}
 
 
 /*Basic Colors*/
@@ -91,7 +96,6 @@
 .theme-dark .footer .footer-title{
     color:$color_white!important;
 }
-
 .theme-dark .loader-main,
 .theme-dark .instant-article,
 .theme-dark .divider-icon i,

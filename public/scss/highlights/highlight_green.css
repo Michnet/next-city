@@ -1,7 +1,7 @@
 /* Generating Color Pack*/
 :root {
-  --secTheme: #8752c1;
-  --highlight: #8CC152 !important;
+  --secTheme:#8752c1;
+  --highlight:#8CC152 !important;
 }
 
 .color-highlight {
@@ -38,6 +38,10 @@
   color: #8CC152;
 }
 
+.form-floating-over > .form-control:not(:-moz-placeholder-shown) ~ label {
+  color: #8CC152;
+}
+
 .form-floating-over > .form-control:not(:placeholder-shown) ~ label {
   color: #8CC152;
 }
@@ -58,4 +62,4 @@
 .interest-check input:checked ~ label {
   color: #FFF !important;
   background-color: #8CC152 !important;
-}
+}/*# sourceMappingURL=highlight_green.css.map */

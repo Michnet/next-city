@@ -15,6 +15,8 @@ import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 import Splider from "@/components/UI/partials/Splider";
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import { advancedFetchListings } from "@/helpers/rest";
+import Slider from "react-slick";
+import { fadingSlide, largeResp } from "@/helpers/sliders";
 //import { AvatarsRow } from "~/appComponents/components/skeletons/React-content-loader/Skeletons";
 //import SiteHead from "~/appComponents/components/SiteHead";
 
@@ -121,7 +123,7 @@ const ExploreEvents = ({topList}) => {
             </div>}</Client>
             <div className="explore_content col minw-0 p-0">
               <div className="inner_section mb-4">
-                <Splider height={325} options={{arrows: false, wheel:false, height: 325, autoWidth: true, padding: { left: 0, right: 0}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'fade'} }>
+                {/* <Splider height={325} options={{arrows: false, wheel:false, height: 325, autoWidth: true, padding: { left: 0, right: 0}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'fade'} }>
                   {topList?.length > 0 ? 
                       topList.map((li) => {
                       return <EventCard3 height={'100%'} exClass='m-0 radius-0' width={'100%'} key={li.id} listing = {li}/>
@@ -129,14 +131,24 @@ const ExploreEvents = ({topList}) => {
                       :
                       <></>
                     }
-                </Splider>
+                </Splider> */}
+                <Slider  {...fadingSlide} responsive = {[...largeResp]} >
+                {topList?.length > 0 ? 
+                    topList.map((li) => {
+                      let {id} = li;
+                      return <EventCard3 width={'inherit'} listing={li} key={id} exClass='m-0 radius-0'/>
+                    })
+                    :
+                    <></>
+                  }
+              </Slider>
               </div>
               <div className="inner_section mb-4">
                  <Suspense fallback={'Loading'}><TermsCarousel /* items={categories} */ queryKey={'category'} queryLink={'/explore/events?category='} exClass={'pt-10'} slug={'events'}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="p-2">
-              {showHint ? <div className="query_hint bg-dark-4 text-white p-3 rounded">
+              {showHint ? <div className="query_hint  text-white p-3 rounded">
                   <p className="mb-2"><span>Exploring {category ? <span><span className="text-info pointer">{translateDate(category)} </span></span> : ''}
                     listings </span>
                     {eventDate ? <span>scheduled for <span className="text-warning pointer">{translateDate(eventDate)}</span></span> : ''}

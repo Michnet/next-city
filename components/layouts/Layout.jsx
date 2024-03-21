@@ -1,25 +1,15 @@
-//import dynamic from "next/dynamic";
-import Link from "next/link";
 import Script from "next/script";
-//import { useEffect } from "react";
-//import { Inter } from "next/font/google";
 import { run_template } from "./../../helpers/js";
 import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
-import SiteHead from "../UI/SiteHead";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
-import { onAppLoad, openOffCanvas, toggleTheme } from "@/helpers/appjs";
-import { UserAvatar } from "../UI/UserAvatar";
+import { closeMenus, onAppLoad, openOffCanvas, toggleTheme } from "@/helpers/appjs";
 import Scaffold from "./Scaffold";
 import {UISizes, UIWidthState} from '@/contexts/atoms';
 import Header from "./partials/Header";
-import { isActiveLink } from "@/helpers/universal";
 import { useRouter } from "next/router"
-import { LoaderDualRing } from "../skeletons/Loaders";
 import BottomMenu from "./BottomMenu";
-
-//const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({ children, headerTitle, settings}) {
   const uiSize = useRecoilValue(UISizes);
@@ -104,7 +94,7 @@ export default function Layout({ children, headerTitle, settings}) {
           <div className="spinner-border color-highlight" role="status"></div>
         </div>
         <div id="page" onLoad={() => pinHeader()}>
-          {!noHeader && isTab && <Header headerTitle={headerTitle}/>}
+          {/* {!noHeader && <Header headerTitle={headerTitle}/>} */}
           <BottomMenu btnProps={btnProps} icon={icon}/>
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
@@ -118,7 +108,7 @@ export default function Layout({ children, headerTitle, settings}) {
             <div className="menu-title mt-0 pt-0">
               <h1>Settings</h1>
               <p className="color-highlight">Flexible and Easy to Use</p>
-              <a href="#" className="close-menu">
+              <a href="#" className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
               </a>
             </div>
@@ -170,7 +160,7 @@ export default function Layout({ children, headerTitle, settings}) {
 		  {/*Login*/}
           <div id="login_modal" className="menu menu-box-bottom" >
               <div className="menu-title">
-                <a href="#" className="close-menu">
+                <a href="#" className="close-menu" onClick={() => closeMenus()}>
                   <i className="fa fa-times"></i>
                 </a>
               </div>
@@ -196,7 +186,7 @@ export default function Layout({ children, headerTitle, settings}) {
               <p className="color-highlight">
                 Any Element can have a Highlight Color
               </p>
-              <a href="#" className="close-menu">
+              <a href="#" className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
               </a>
             </div>
@@ -284,7 +274,7 @@ export default function Layout({ children, headerTitle, settings}) {
               <p className="color-highlight">
                 Change Page Color Behind Content Boxes
               </p>
-              <a href="#" className="close-menu">
+              <a href="#" className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
               </a>
             </div>
@@ -352,7 +342,7 @@ export default function Layout({ children, headerTitle, settings}) {
               <p className="color-highlight">
                 Just Tap the Social Icon. We'll add the Link
               </p>
-              <a href="#" className="close-menu">
+              <a href="#" className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
               </a>
             </div>

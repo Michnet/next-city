@@ -1,11 +1,12 @@
 import { homeurl, siteSettings } from "@/helpers/base";
 import Head from "next/head";
+import { usePathname} from "next/navigation";
 //import { useRecoilValue } from "recoil";
 //import { UIState } from "/contexts/contexts";
 //import { homeurl, siteSettings } from "~/server/Base";
 
 export default function SiteHead({pageColor, street_address, children, latitude, longitude,description, title, updated_time, image, slug, type, phone_number, robots }) {
-
+  const pathname = usePathname()
   //const {colorTheme} = useRecoilValue(UIState);
   //const {colors} = colorTheme;
 
@@ -101,7 +102,7 @@ export default function SiteHead({pageColor, street_address, children, latitude,
         content={`${image ? image : originalImage}`}
         key="twimage"
       />
-      <meta property="og:url" content={`${currentURL}${slug}`} key="ogurl" />
+      <meta property="og:url" content={`${currentURL}${pathname}`} key="ogurl" />
       <meta
         property="og:image"
         content={`${image ? image : originalImage}`}

@@ -6,7 +6,7 @@ import { DualColorHeader } from "../Partials";
 const Block1 = () => {
   return (
     <div className="row">
-      <div className="col-lg-5">
+      <div className="col-12">
         <section className="p-3 p-md-5">
         <h2 className="text-30 fw-600">About LyveCity</h2>
         <p className="mb-3 fw-bold">Where discoveries that matter happen</p>
@@ -25,7 +25,7 @@ const Block1 = () => {
         </section>
         </div>
 
-        <div className="col-lg-7 px-0">
+        <div className="col-12 px-0">
         <section className="bg-blue-2 p-3 p-md-5">
           <h2 className="text-22 mb-4 fw-300 text-end">For EveryOne</h2>
         <div className="row mb-5">

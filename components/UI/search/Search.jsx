@@ -223,7 +223,7 @@ if(isEmpty){
     if(isTab) {
     //filterView = <BSDrawer layout={'start'} content={sidefilterView} id={'mobileFilters'}  className='mobile_view filters'/>
     }else{
-        filterView = <div  className='col-3 bg-white filters sticky_col'>
+        filterView = <div  className='col-3 filters sticky_col'>
                         {sidefilterView}
                     </div>
     }

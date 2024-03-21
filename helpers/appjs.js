@@ -130,6 +130,26 @@ function activateLightMode(){
 function removeTransitions(){var falseTransitions = document.querySelectorAll('.btn, .header, #footer-bar, .menu-box, .menu-active'); for(let i = 0; i < falseTransitions.length; i++) {falseTransitions[i].style.transition = "all 0s ease";}}
 function addTransitions(){var trueTransitions = document.querySelectorAll('.btn, .header, #footer-bar, .menu-box, .menu-active'); for(let i = 0; i < trueTransitions.length; i++) {trueTransitions[i].style.transition = "";}}
 
+
+//Detect Dark/Light Mode
+const darkModeDetect = document.querySelectorAll('.detect-dark-mode');
+darkModeDetect.forEach(el => el.addEventListener('click',e =>{
+    document.body.classList.remove('theme-light', 'theme-dark');
+    document.body.classList.add('detect-theme')
+    setTimeout(function(){setColorScheme();},50)
+})); 
+
+
+//Activating Dark Mode
+const darkModeSwitch = document.querySelectorAll('[data-toggle-theme]')
+darkModeSwitch.forEach(el => el.addEventListener('click',e =>{
+    if(document.body.className == "theme-light"){ 
+        removeTransitions(); activateDarkMode();}
+    else if(document.body.className == "theme-dark"){ removeTransitions(); activateLightMode();}
+    setTimeout(function(){addTransitions();},350);
+}));
+*/
+
 function setColorScheme() {
     const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
     const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
@@ -140,26 +160,23 @@ function setColorScheme() {
     if(isLightMode) activateLightMode();
 }
 
-//Activating Dark Mode
-const darkModeSwitch = document.querySelectorAll('[data-toggle-theme]')
-darkModeSwitch.forEach(el => el.addEventListener('click',e =>{
-    if(document.body.className == "theme-light"){ 
-        removeTransitions(); activateDarkMode();}
-    else if(document.body.className == "theme-dark"){ removeTransitions(); activateLightMode();}
-    setTimeout(function(){addTransitions();},350);
-}));
+
 
 //Set Color Based on Remembered Preference.
-if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};document.body.className = 'theme-dark';}
-if(localStorage.getItem(pwaName+'-Theme') == "light-mode"){document.body.className = 'theme-light';} if(document.body.className == "detect-theme"){setColorScheme();}
+if(localStorage.getItem(pwaName+'-Theme')){
+    if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){
+        for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
+        document.body.className = 'theme-dark';
+        themeCssLink('_dark')
 
-//Detect Dark/Light Mode
-const darkModeDetect = document.querySelectorAll('.detect-dark-mode');
-darkModeDetect.forEach(el => el.addEventListener('click',e =>{
-    document.body.classList.remove('theme-light', 'theme-dark');
-    document.body.classList.add('detect-theme')
-    setTimeout(function(){setColorScheme();},50)
-})); */
+    }
+    if(localStorage.getItem(pwaName+'-Theme') == "light-mode"){
+        document.body.className = 'theme-light';
+        themeCssLink('_light')
+    }
+}else{
+    if(document.body.className == "detect-theme"){setColorScheme();}
+}
 }
 
 export function onAppLoad(){
@@ -181,6 +198,43 @@ var pwaName = "LyveState";
 
 const toggleDark = typeof window !== 'undefined' ? document.querySelectorAll('[data-toggle-theme]') : [];
 
+function themeCssLink(fileName = null){
+    if (typeof window !== 'undefined') {
+
+        if(!fileName){
+
+            console.log('No file theme themeCssLink', fileName)
+
+            if(localStorage.getItem(pwaName+'-Theme')){
+                    if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){
+                        fileName = '_dark'
+                    }else{
+                        fileName = '_light';
+                    }
+                }else{
+                    if(document.body.className == "theme-dark"){ 
+                        fileName = '_dark'
+                    }else{
+                        fileName = '_light';
+                    }
+                }
+        }
+        
+        var link = document.getElementById('theme-css-link');
+        if(link){
+            link.href = '/scss/sticky/' + fileName +'.css';
+        }else{
+            var loadThemeCss = document.createElement("link");
+            loadThemeCss.rel = "stylesheet";
+            loadThemeCss.className = "theme-css";
+            loadThemeCss.id = "theme-css-link";
+            loadThemeCss.type = "text/css";
+            loadThemeCss.href = '/scss/sticky/' + fileName +'.css';
+            document.getElementsByTagName("head")[0].appendChild(loadThemeCss);
+        }
+    }
+}
+
 function activateDarkMode(){
     if (typeof window !== 'undefined') {
     document.body.classList.add('theme-dark');
@@ -188,6 +242,7 @@ function activateDarkMode(){
     document.body.classList.remove('detect-theme');
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
     localStorage.setItem(pwaName+'-Theme', 'dark-mode');
+    themeCssLink('_dark')
     }
 }
 
@@ -197,6 +252,7 @@ function activateLightMode(){
     document.body.classList.remove('theme-dark','detect-theme');
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=false};
     localStorage.setItem(pwaName+'-Theme', 'light-mode');
+    themeCssLink('_light')
     }
 }
 
@@ -319,3 +375,27 @@ export function openOffCanvas(e){
         }
     }
 }
+
+//Closing menus
+export function closeMenus(){
+    if(typeof window !== 'undefined'){
+        //let el = e.currentTarget;
+
+        const activeMenu = document.querySelectorAll('.menu-active');
+        for(let i=0; i < activeMenu.length; i++){activeMenu[i].classList.remove('menu-active');}
+        //for(let i=0; i < wrappers.length; i++){wrappers[i].style.transform = "translateX(-"+0+"px)"}
+        var iframes = document.querySelectorAll('iframe');
+        iframes.forEach(el => {var hrefer = el.getAttribute('src'); el.setAttribute('newSrc', hrefer); el.setAttribute('src',''); var newSrc = el.getAttribute('newSrc');el.setAttribute('src', newSrc)});
+    }
+}
+
+ //Toasts
+ export function showToast(e){
+    if(typeof window !== 'undefined'){
+        let el = e.currentTarget;
+        var toastData = el.getAttribute('data-toast')
+        var notificationToast = document.getElementById(toastData);
+        var notificationToast = new bootstrap.Toast(notificationToast);
+        notificationToast.show();
+    }
+ }

@@ -1,3 +1,4 @@
+import { closeMenus } from "@/helpers/appjs";
 import React, { useState } from "react";
 // import SlotBooking from "~/appComponents/components/timeline/SlotBooking";
 //import TimeLineItem from "../../../appComponents/components/timeline/TimeLineItem";
@@ -34,7 +35,7 @@ const EventTimeline = ({dates, dualColumn, productId, slots, user, cost}) => {
       }
       {productId ? <><div id="avail_modal" className="menu menu-box-bottom" >
               <div className="menu-title">
-                <a href="#" className="close-menu">
+                <a href="#" className="close-menu" onClick={() => closeMenus()}>
                   <i className="fa fa-times"></i>
                 </a>
               </div>

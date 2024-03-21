@@ -1,4 +1,5 @@
 import CallToActions from "@/components/UI/CallToActions";
+import Link from "next/link";
 
 export const ListingContact = ({listing, title, thin = false, descript, border=false, light=false, bgClass}) => {
     // const {isMobile} = useRecoilValue(UISizes);

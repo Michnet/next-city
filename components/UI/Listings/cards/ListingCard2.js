@@ -27,7 +27,7 @@ function ListingCard2({listing, exClass}) {
                             <PostLike listing={id}  
                                 likedEl={<span className="icon icon-s bg-theme rounded-l shadow-xl rounded-m ms-2 color-theme"><i className="fa fa-heart color-highlight font-14"></i></span>}
                                 unlikedEl={<span className="icon icon-s bg-theme rounded-l shadow-xl rounded-m ms-2 color-theme"><i className="far fa-heart color-highlight font-14"></i></span>}/>
-                            <Link href={`/events/${slug}?page=tickets`} data-toast="snackbar-cart" className="icon icon-s bg-theme rounded-l shadow-xl rounded-m ms-2 color-theme"><i className="fa fa-shopping-bag font-14"></i></Link>
+                            <Link href={`/events/${slug}?page=tickets`} className="icon icon-s bg-theme rounded-l shadow-xl rounded-m ms-2 color-theme"><i className="fa fa-shopping-bag font-14"></i></Link>
                         </div>
                     </div>
                 </div>
