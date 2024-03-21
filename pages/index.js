@@ -240,7 +240,7 @@ export default function Home(props) {
     <div className="divider mt-4"></div>
 
    <SectionHeader iconClass={'far fa-clock'} bgClass={'bg-mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
-   <Splider height={325} options={{arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 0, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'} }>
+   <Splider height={325} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'} }>
       {listings?.length > 0 ? 
           listings.map((li) => {
            return <EventCard2 width={300} key={li.id} listing = {li}/>

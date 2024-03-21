@@ -1,11 +1,10 @@
 import { nextPostState } from "@/contexts/atoms";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { cleanHtml } from '@/helpers/universal';
 import { advancedFetchListingsUrl, fetcher } from "@/helpers/rest";
 import useSWR from 'swr';
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import Link from "next/link";
+import Splider from "../UI/partials/Splider";
+import EventCard2 from "../UI/Listings/cards/EventCard2";
 
 function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, random, nextUpdater=false}) {
 
@@ -53,26 +52,15 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, ra
         </div>
     </div>
 
-    <Splide options={{height: 200, padding: { left: 0, right: 15}, autoplay: true, perMove: 2, interval:4000, type:'loop', perPage: 4, breakpoints: {...splideViews}} }>
-                {listings?.length > 0 ?
-                   listings.map((item) => {
-                    let {title, large_thumb, slug, id} = item;
-                    return (
-                    <SplideSlide key={id}>
-                        <Link href={`/events/${slug}`} className="mx-3">
-                            <div className="card card-style me-0 mb-0" style={{backgroundImage: `url(${large_thumb})`, height: '150px'}} >
-                                <div className="card-bottom p-2 px-3">
-                                    <h4 className="color-white truncate-2">{cleanHtml(title?.rendered)}</h4>
-                                </div>
-                                <div className="card-overlay bg-gradient opacity-80"></div>
-                            </div>
-                        </Link>
-                    </SplideSlide>)
-                   }) 
-                :
-                <></>
-                }
-    </Splide>
+    <Splider height={325} options={{gap:15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'} }>
+      {listings?.length > 0 ? 
+          listings.map((li) => {
+           return <EventCard2 width={300} key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }
+    </Splider>
     </>
   )
 }

@@ -912,6 +912,7 @@ div#footer-bar {
 .mega_gallery .gallery_plate {
     flex-grow: 1;
     position: relative;
+    border-radius: 10px;
 }
 
 ._date_plate ._date_box {
@@ -1350,7 +1351,7 @@ div#footer-bar {
 #explore_nav .nav-item button{
     color: var(--colorTheme);
 }
-    .main_content{padding-bottom: 62px;}
+    .main_content{/* padding-bottom: 62px; */}
     
     #explore_nav .view_filter>div {
     padding: 7px;
@@ -2197,7 +2198,7 @@ div#footer-bar {
     padding: 0 5px 0 10px;
 }
 
-.landing_row .mega_gallery .mega_item {
+.landing_row .mega_gallery .mega_item, .landing_row  .mega_gallery .gallery_plate {
     border-radius: 0;
 }
 
@@ -2205,10 +2206,6 @@ div#footer-bar {
     font-size: 14px;
     font-weight: 500;
 }
-
-.meta_card .meta_info {
-}
-
 .listing_hero .card-top {
     z-index: 3;
 }

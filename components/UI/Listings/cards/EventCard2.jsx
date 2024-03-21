@@ -2,10 +2,10 @@ import { cleanHtml } from "@/helpers/universal";
 import Link from "next/link";
 import DateViewString from "../../partials/dateViews/DateViewString";
 
-const EventCard2 = ({listing, width=260, height=200}) => {
+const EventCard2 = ({listing, width=260, height=200, exClass=''}) => {
     let {id, title, address, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
     return (<>
-    <div className={`card card-style`} style={{width: width}}>
+    <div className={`card card-style m-0 ${exClass}`} style={{width: width}}>
             <div className="card shadow-l mb-0 bg-18" style={{width: 'inherit', height:height, backgroundImage: `url('${xtra_large_thumb}')`}}>
                 <div className="card-bottom ms-3">
                     {event_date[0]?.start ? <p className="color-white font-10 opacity-80 mb-n1"><i className="color-highlight far fa-calendar"></i> <DateViewString date={event_date[0].start} format={'MMMM D'}/> <i className="color-highlight ms-3 far fa-clock"></i> <DateViewString date={event_date[0].start} format={'hh:mm A'}/> </p> : <></>}
