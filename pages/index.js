@@ -250,16 +250,6 @@ export default function Home(props) {
         }
     </Splider>
 
-   <SectionHeader iconClass={'far fa-heart'} bgClass={'bg-twitter'} exClass='px-3 mb-2' link={'See All'} title={'Most Liked'} subTitle={'Meet the favourites'}/>
-   <Splider height={130} options={{arrows: false, navigation: false, wheel:false, height: 'auto', gap: 10, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
-      {listings?.length > 0 ? 
-          listings.map((li) => {
-           return <EventCard4 width={300} key={li.id} listing = {li}/>
-          })
-          :
-          <></>
-        }
-    </Splider>
 
     <div className="d-flex px-3 mb-2">
         <div className="align-self-center">
@@ -281,6 +271,18 @@ export default function Home(props) {
           <></>
         }
     </Slider>
+
+
+    <SectionHeader iconClass={'far fa-heart'} bgClass={'bg-twitter'} exClass='px-3 mb-2' link={'See All'} title={'Most Liked'} subTitle={'Meet the favourites'}/>
+   <Splider height={130} options={{arrows: false, navigation: false, wheel:false, height: 'auto', gap: 10, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+      {listings?.length > 0 ? 
+          listings.map((li) => {
+           return <EventCard4 width={300} key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }
+    </Splider>
 
 
     <SectionHeader exClass='mb-4 px-3' link={'See All'} title={'Just Added'} subTitle={'Be the first to know'}/>

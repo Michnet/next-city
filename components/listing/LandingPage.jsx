@@ -10,7 +10,7 @@ import { PriceView } from "../UI/PriceView";
 
   const LandingConst = ({listing, setActiveKey}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, ticket_min_price_html, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, ticket_min_price_html, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, locations} = listing ?? {};
     const {faqs} = about_us ?? {};
     let trimFaqs = faqs?.slice(0,3);
 
