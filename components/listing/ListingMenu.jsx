@@ -182,6 +182,7 @@ if(type === 'event'){
     icon: "las la-ticket-alt", title: 'Tickets',
     subTitle : "Booking Options",
     widgetClass: 'shop widgey ',
+    innerClass: 'px-3 sm:px-10',
     badgeNumber: tickets?.length ?? 0,
     badgeClass: 'bg-info',
     buttony: true

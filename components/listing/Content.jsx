@@ -1,16 +1,18 @@
 import { authState } from "@/contexts/atoms";
+import { useSignal } from "@preact/signals-react";
 import dynamic from "next/dynamic";
 import { useRecoilValue } from "recoil";
 import { DualColorHeader } from "../UI/Partials";
-import ComponentActivity from "../UI/partials/ComponentActivity";
+const ComponentActivity = dynamic(() => import("../UI/partials/ComponentActivity"));
 import { EventDatesActive } from "../UI/partials/dateViews/EventDates";
 const FAQs = dynamic(() => import("../UI/FAQs"));
 const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
 import listingMenu from "./ListingMenu";
 import { ListingContact } from "./partials/ListingContact";
-import ListingProductsSimple from "./shop/ListingProductsSimple";
-import ListingStore from "./shop/ListingStore";
+import ProfileContact from "./partials/ProfileContact";
+const ListingProductsSimple = dynamic(() => import("./shop/ListingProductsSimple"));
+const ListingStore = dynamic(() => import("./shop/ListingStore"));
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
 function Content({listing, activeView,  activeKey, color, setActiveKey}) {
@@ -18,6 +20,7 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
     const {tickets} = listing_store;
     const {faqs} = about_us;
     let isSample = true;
+    let chatCount = useSignal(0)
 
     console.log('tickssss', tickets)
 
@@ -40,6 +43,8 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
             scope_slug = 'group_id'
             scope_id={community_id}
             />
+            case 'private-chat':
+            return <ProfileContact listing={listing} count={chatCount}/>
             case 'faqs':
             return <div className="card card-style shadow-0 border bg-transparent">
             <div className="content"><FAQs  faqs={faqs} postID={id}/> </div></div>
@@ -48,12 +53,12 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
               fallBack={
                 <ListingContact light listing={listing} title={'No future occurrences'} descript={'The listing owner has not added any future occurences for it. This may mean that the event has ended. Contact them to inquire further'}/>
               }/>;
-              case 'tickets':
-                return tickets?.length > 0 ? <div>
-                <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>
-                <ListingStore isSample ={isSample} listy ids={tickets} productType="booking" listingId = {id} relatedIds={tickets}/></div>
-                :
-                <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this event has not added any online booking options. Contact them to inquire further'}/>
+            case 'tickets':
+              return tickets?.length > 0 ? <div>
+              <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>
+              <ListingProductsSimple isSample ={isSample} listy ids={tickets} productType="booking" listingId = {id} relatedIds={tickets}/></div>
+              :
+              <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this event has not added any online booking options. Contact them to inquire further'}/>
         }
     }
 

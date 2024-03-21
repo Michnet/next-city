@@ -1,5 +1,5 @@
 import { authState } from "@/contexts/atoms";
-import { toggleTheme } from "@/helpers/appjs";
+import { closeMenus, toggleTheme } from "@/helpers/appjs";
 import { cleanHtml } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
@@ -18,7 +18,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                     {localMenu.map((el) => {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
-                      return <Link onClick={() => setActiveKey(id)} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
+                      return <Link onClick={() => {closeMenus(); setActiveKey(id)}} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
 							<i className={`fa font-12 fa-home gradient-green rounded-sm color-white`}></i>
 							<span className="position-relative">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
@@ -98,7 +98,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 							<span>Dark Mode</span>
 							<div className="custom-control ios-switch">
 								<input data-toggle-theme onClick={() => toggleTheme()}  type="checkbox" className="ios-input" id="switch-dark2-mode"/>
-								<label className="custom-control-label" for="switch-dark2-mode"></label>
+								<label className="custom-control-label" htmlFor="switch-dark2-mode"></label>
 							</div>
 							<i className="fa fa-angle-right"></i>
 						</a>

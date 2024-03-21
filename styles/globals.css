@@ -7038,14 +7038,8 @@ section.ant-layout.single_listing .top_bar_toggle {right: 14px;}
 
    .ant-layout.search-page{padding-left: 10px;padding-right: 10px;}
    .profile_nav_menu > .nav > .extra-content{background: transparent;margin: 0 10px;}
-   .head_meta, .cta{
-     
-   flex-direction: column;grid-row-gap: 24px;display: none;}
    .product_card.gx-product-item.gx-product-vertical .gx-grid-thumb-cover.contain img{
      height: 100px;
-   }
-   .p-desc{
-     display: none
    }
 .gx-product-horizontal .gx-product-image{
      width: 100px;

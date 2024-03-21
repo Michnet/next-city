@@ -24,17 +24,16 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc, content, ex
     setLoading(false);
   }, [item])
   
-  return <div style={styleObj ?? null} className={`gallery_plate pointer ${exClass ?? ''}`} onClick={() => onclickFunc()} >
+  return <div style={{ backgroundImage: `url("${typeof item === 'string' ? item : item.url}")`}} className={`shadow-bg shadow-bg-m gallery_plate pointer ${exClass ?? ''}`} onClick={() => onclickFunc()} >
     {loading ? <div className="d-flex justify-center align-center h-100 align-items-center"><LoaderEllipsis/></div> : 
       <>
-      <div className={`mega_item`} >
+      <div className={`mega_item`}>
         {typeof item === 'string' ? 
         <Image unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
         /* onErrorCapture={() => {return <img src='/images/Lyvecity.png'/>;}} */ quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
                     alt="LyveCity" src={item}/>
                     :
-        <Image placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
-      /* onErrorCapture={() => {return <img src='/images/Lyvecity.png'/>;}} */ quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
+        <Image placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}} quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
                   alt="LyveCity" src={item.url}/>}
                   {content}
                    </div>

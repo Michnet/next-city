@@ -81,6 +81,7 @@ h6 {
 .slick-next{
     right: 0 !important;
 }
+.menu-active.menu{display: block}
 /*Tickets*/
 .fl-left {
     float: left
@@ -92,24 +93,26 @@ h6 {
 
 .ticket_card {
     display: table-row;
-    width: 49%;
+    width: 100%;
     background-color: #fff;
     color: #989898;
     margin-bottom: 10px;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
     border-radius: 4px;
     position: relative
 }
 
+.ticket_card > * {
+    z-index: 0;
+    position: relative;
+}
+
 .ticket_card+.ticket_card {
-    margin-left: 2%
 }
 
 .ticket_card
 .date {
     display: table-cell;
-    width: 25%;
+    width: 30%;
     position: relative;
     text-align: center;
     border-right: 2px dashed #dadde6
@@ -170,9 +173,31 @@ h6 {
 .ticket_card
 .card-cont {
     display: table-cell;
-    width: 75%;
-    font-size: 85%;
-    padding: 10px 10px 30px 50px
+    width: 70%;
+    font-size: 90%;
+    padding: 10px 10px 10px 50px;
+}
+
+.ticket_card .ticket_annex {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 154px;
+    height: 100%;
+    opacity: 0.1;
+    z-index: -1;
+    display: flex;
+    text-align: right;
+    align-items: center;
+    padding-right: 20px;
+    justify-content: flex-end;
+}
+
+.ticket_card .ticket_annex h3 {
+    font-size: 30px;
+    letter-spacing: 5px;
+    line-height: 1em;
+    font-weight: 900;
 }
 
 .ticket_card
@@ -203,34 +228,26 @@ h6 {
 }
 
 .card-cont .even-info p {
-    padding: 30px 50px 0 0
+    padding: 14px 0 0 0;
 }
 
 .card-cont .even-date time span {
     display: block
 }
 
-.card-cont a {
-    display: block;
-    text-decoration: none;
-    width: 80px;
-    height: 30px;
-    background-color: #D8DDE0;
-    color: #fff;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 2px;
-    position: absolute;
-    right: 10px;
-    bottom: 10px
-}
-
-.row:last-child .ticket_card:first-child .card-cont a {
-    background-color: #037FDD
-}
-
-.row:last-child .ticket_card:last-child .card-cont a {
-    background-color: #F8504C
+.pdt_actions .button_group button {
+    font-size: 13px;
+    padding: 0 9px;
+    line-height: 2em;
+    height: auto;
+    margin: 0;
+    background: 0 0;
+    justify-content: center;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0 !important;
 }
 
 @media screen and (max-width: 860px) {
@@ -245,13 +262,17 @@ h6 {
     }
     .card-cont .even-date,
     .card-cont .even-info {
-        font-size: 75%
     }
 }
 /*Tickets end*/
 
 
 /*Classes*/
+.flex_row{
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
 
 .bg-border {
     background-color: var(--borderTheme) !important;
@@ -1120,6 +1141,7 @@ div#footer-bar {
     max-height:100vh;
     overflow: hidden;
     overflow-y: auto;
+    transform: translate3d(0, 160%, 0);
 }
 
 .menu .close-menu {

@@ -46,10 +46,6 @@ export default function ActivityProvider(){
 
     useEffect(() => {
         setAtomState({activities, alert, setAlert, size, setSize, isLoadingInitialData, isLoadingMore});
-/* 
-      return () => {
-        second
-      } */
     }, [activities])
     
 

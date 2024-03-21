@@ -1,4 +1,4 @@
-import { kyFetch, serializeQuery, userReviews, WPDomain } from "./base";
+import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain } from "./base";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 

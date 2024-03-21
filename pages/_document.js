@@ -20,6 +20,7 @@ export default function Document() {
         <link rel="stylesheet" type="text/css" href="/fonts/css/fontawesome-all.min.css"/>    
         <link rel="manifest" href="/_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js"/>
         <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/icon-192x192.png"></link>
+        <link rel="shortcut icon" href="/favicon.ico"/>
       </Head>
       <body className="in_transit theme-light" data-highlight="highlight-red" data-gradient="body-default">
         
