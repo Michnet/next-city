@@ -325,8 +325,11 @@ h6 {
     border-top: 1px solid var(--color-border);
 }
 .menu-box-left{
-    transform: translate3d(-102%, 0, 0)
+    transform: translate3d(-102%, 0, 0);
+    width: 300px;
 }
+
+div#mobile_sidebar {}
 .object-cover{
   object-fit: cover;
 }
@@ -336,7 +339,11 @@ h6 {
 .border-light{
     border: 1px solid var(--color-border) !important;
 }
+.z-2{
+    z-index: 2;
+}
 .right-0{right: 0;}
+.left-0{left: 0;}
 .h-screen{height: 100vh;}
 
 .bg-cover{
@@ -2124,7 +2131,7 @@ div#footer-bar {
 
 .terms_grid .col.listy .term_box span {
     text-align: left !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
 }
 
 #sidebar.collapse:not(.show) .hide_in_collapsed, #sidebar.collapse.collapsing .hide_in_collapsed {
@@ -2194,9 +2201,10 @@ div#footer-bar {
 }
 
 .quick_links a {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.2em;
     color: var(--colorTheme);
+    margin-bottom: 5px;
 }
 
 .quick_links a:active, .quick_links a:hover {

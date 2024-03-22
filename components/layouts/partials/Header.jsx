@@ -7,7 +7,7 @@ import MainMenuBtn from "./MainMenuBtn";
 const Header = ({headerTitle, headerClass}) => {
  
     return <Client>
-    <div className={`header header-bar header-sticky header-logo-center ${headerClass ?? 'header-auto-show'} header-search`}>
+    <div id='header_bar' className={`header header-bar header-sticky header-logo-center ${headerClass ?? 'header-auto-show'} header-search`}>
     <div className="_left">
       <Client>
         <MainMenuBtn/>

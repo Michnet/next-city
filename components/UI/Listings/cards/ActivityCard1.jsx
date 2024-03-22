@@ -12,13 +12,13 @@ import TermTag from "../../partials/TermTag";
 import { PriceView } from "../../PriceView";
 //import { getEventDates } from "~/server/WpRest";
 
-const ActivityCard1 = ({item, noButton, exClass, dateWidth, width}) => {
+const ActivityCard1 = ({item, noButton, exClass, dateWidth='80px', width}) => {
 
   const {id, title, event_date, page_views, rating, ticket_min_price_html, category, locations, level, slug} = item;
   
   return (
           <div
-            className={`listing_card _horizontal m-0 ${exClass ?? ''}`}
+            className={`listing_card _horizontal mb-10  ${exClass ?? ''}`}
             key={id}
             data-aos="fade"
             data-aos-once="true"

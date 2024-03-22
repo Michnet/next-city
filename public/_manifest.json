@@ -11,8 +11,8 @@
 "short_name" : "LyveCity",
 "description" : "",
 "orientation" : "portrait",
-"background_color": "#000000",
-"theme_color": "#000000",
+"background_color": "#ffffff",
+"theme_color": "rgba(255, 255, 255, 0.098)",
 "generated" : "true",
   "icons": [
 	{

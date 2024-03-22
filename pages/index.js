@@ -86,6 +86,9 @@ export async function getStaticProps() {
     return {
       props: {
         serverObj: serverObj,
+        settings:{
+          autoShowHeader: true
+        }
       }
     }
   }
@@ -111,20 +114,6 @@ export default function Home(props) {
 
   const isLoadingInitialData = !listings && !error;
   const isEmpty = listings?.length === 0;
-
-  const splideViews = {
-     640: { perPage: 2, }
-    }
-
-    var s_settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        variableWidth: true,
-        slidesToScroll: 1
-      };
-
-
 
   return (
     <>
@@ -252,8 +241,10 @@ export default function Home(props) {
 					
           {listings?.length > 0 ? 
             listings.map((li) => {
-              let {id} = li;
-              return <ActivityCard1 key={id} item={li}/>
+              let {id, event_date} = li;
+              if(event_date && event_date[0]){
+                return <ActivityCard1 key={id} item={li}/>
+              }
             })
             :
             <></>

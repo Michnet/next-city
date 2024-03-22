@@ -10,7 +10,7 @@ import App from "next/app";
 import Script from "next/script";
 import { SessionProvider } from "next-auth/react";
 import { AuthProvider } from "@/helpers/use-auth";
-import { onAppLoad } from "@/helpers/appjs";
+import { closeMenus } from "@/helpers/appjs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ActivityProvider from "@/contexts/ActivityContext";
@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps, platform }) {
       <SessionProvider>
         <RecoilRoot>
           <HydrationProvider>
+            <div className="menu-hider" onClick={() => closeMenus()}/>
             <Layout platform={platform} settings={settings} headerTitle={headerTitle}>
               <Component {...pageProps}/>
             </Layout>

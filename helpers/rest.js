@@ -115,9 +115,10 @@ export const getUserRest = async(reqObj) => {
   }
 }
 
-export async function advancedFetchListings(payload){
+export async function advancedFetchListings(payload, signal){
     try {
-        const res = await kyFetch.get(advancedFetchListingsUrl(payload)).json();
+      console.log('abort signal', signal)
+        const res = await kyFetch.get(advancedFetchListingsUrl(payload), {signal}).json();
         if(res){
             return res;
           }else{
