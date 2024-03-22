@@ -12,7 +12,7 @@
 "description" : "",
 "orientation" : "portrait",
 "background_color": "#ffffff",
-"theme_color": "rgba(255, 255, 255, 0.098)",
+"theme_color": "rgba(255, 255, 255)",
 "generated" : "true",
   "icons": [
 	{

@@ -93,6 +93,7 @@ export async function getStaticProps() {
     }
   }
 
+  
 export default function Home(props) {
     const {serverObj} = props;
    const {eventCategories, topLocations, busyLocations} = serverObj ?? {};

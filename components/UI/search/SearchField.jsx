@@ -21,17 +21,14 @@ function SearchField() {
         keyword: keyWord.value,
         'event-day': 'any-day'
         };
-  let mainController = new AbortController();;
 
 async function runQuery(prevController){
-    //if(prevController){
        console.log('previous', prevController)
         prevController.abort();
-   // }
      let newController = new AbortController();
-     mainController = newController;
+     //mainController = newController;
 
-     let {signal} = mainController;
+     //let {signal} = mainController;
     
     const res = await advancedFetchListings({...payload}, signal);
     if(res){
@@ -39,22 +36,21 @@ async function runQuery(prevController){
     }
     }
 
-    //const controller = new AbortController();
-    //const {signal} = controller;
+    const controller = new AbortController();
+    const {signal} = controller;
 
   useSignalEffect(async() => {
     if(keyWord.value?.length > 2){
         
-        const res = await runQuery(mainController);
+        const res = await advancedFetchListings({...payload}, signal);
         if(res){
             listings.value = res;
         }
     }
   });
 
-
   function runSearch(e){
-    //controller.abort();
+    controller.abort();
     keyWord.value = e.target.value;
   }
  
