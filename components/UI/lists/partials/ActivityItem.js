@@ -13,7 +13,7 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
 
-    const ActivityItemConst = ({activity, user, token, avatarSize, noLink}) => {
+    const ActivityItemConst = ({activity, user, token, avatarSize, noLink, exClass=""}) => {
       
 
       const [compActivity, setCompActivity] = useState(activity ?? null);
@@ -155,7 +155,7 @@ dayjs.extend(relativeTime)
                           </ul>
         }
         itemView = <>
-                    <div key={id} className={`${type} activity_card card card-style mb-2`}>
+                    <div key={id} className={`${type} activity_card card card-style mb-2 ${exClass}`}>
                         <div className="content mb-0">
                             <div className="mt-n1">
                                 

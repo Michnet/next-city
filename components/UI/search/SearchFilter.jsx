@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 //import CustomScrollbars from 'util/CustomScrollbars';
 // import TaggedSearch from 'appComponents/components/SearchForms/TaggedSearch';
 import { Dir_categories, Dir_locations, Dir_tags } from '@/public/data/localCache';
+import TaggedSearch from './TaggedSearch';
 
 function SearchFilterConst() {
     const router = useRouter();
@@ -124,10 +125,10 @@ function SearchFilterConst() {
 
     return (
             <div className='filter_body'>
-                    {/* <TaggedSearch modal accordion   
+                    <TaggedSearch modal accordion   
                             category={category} location={location} queryTags={tags} setSearchCat={setSearchCat}
                             setSearchTags={setSearchTags}
-                            /> */}
+                            />
           {/*       <Collapse defaultActiveKey={'cats'} expandIconPosition='right' ghost>
                     {cats && 
                         <Panel header="By Category" key="cats">

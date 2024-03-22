@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SiteHead from "@/components/UI/SiteHead";
 import Block1 from "@/components/UI/about/Block1";
-import BlockGuide from './../../components/UI/about/BlockGuide';
+import WhyChooseUs from './../../components/UI/about/WhyChooseUs';
 
 const About = () => {
   return (
@@ -54,7 +54,7 @@ const About = () => {
           </div>
         </div>
         <div className="row y-gap-40 px-5 justify-between pt-50">
-            <BlockGuide/>
+            <WhyChooseUs/>
           </div>
       </section>
 

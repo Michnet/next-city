@@ -268,6 +268,7 @@ h6 {
 
 
 /*Classes*/
+._link{}
 .flex_row{
     display: flex !important;
     flex-direction: row;
@@ -516,6 +517,13 @@ h6 {
 .h-fit{
     height: fit-content;
 }
+.right-auto{
+    right: auto;
+}
+.left-auto{
+    left: auto;
+}
+
 /*Classes end*/
 
 /*Overrides*/
@@ -694,14 +702,19 @@ div#footer-bar {
     justify-content: space-between;
 }
 
-.header.header-sticky {
+.header.header-sticky.header-always-show {
+    position: sticky;
+}
+
+.header.header-auto-show.header-sticky {
     position: sticky;
     height: 0 !important;
     border-bottom: none;
 }
 
-.header.header-sticky.header-active {
+.header.header-auto-show.header-sticky.header-active {
     height: fit-content !important;
+    position: fixed;
 }
 
 #listing_header {
@@ -1145,6 +1158,10 @@ div#footer-bar {
     transform: translate3d(0, 160%, 0);
 }
 
+.menu-box-bottom.menu-box-detached {
+    max-height: calc(100vh - 40px);
+}
+
 .menu .close-menu {
     z-index: 2;
 }
@@ -1327,7 +1344,7 @@ div#footer-bar {
 }
 @media (min-width: 769px) {
     
-
+   .text-page .toc{}
     #explore_nav {
         overflow: hidden;
         overflow-y: auto;
@@ -1899,6 +1916,7 @@ div#footer-bar {
 .listing_card .-type-1 .event_date.h-100 {
     /* box-shadow: 1px 0px 1px black; */
     border: 1px solid #e0e0e0;
+    max-width: 100px;
 }
 .listing_card .-type-1 .event_date.h-100:before {
     content: '';
@@ -2022,7 +2040,7 @@ div#footer-bar {
     overflow-y: auto;
 }
 
-.fab {
+._fab {
     right: 15px;
     height: 60px;
     width: 60px;
@@ -2030,7 +2048,7 @@ div#footer-bar {
     border-radius: 50%;
 }
 
-.fab i {
+._fab i {
     font-size: 30px;
     color: #fff;
 }
@@ -2178,6 +2196,11 @@ div#footer-bar {
 .quick_links a {
     font-size: 13px;
     line-height: 1.2em;
+    color: var(--colorTheme);
+}
+
+.quick_links a:active, .quick_links a:hover {
+    color: var(--highlight);
 }
 
 #listing_header .menu_content {
@@ -2220,4 +2243,45 @@ div#footer-bar {
 
 .query_hint {
     background: var(--secTheme);
+}
+
+.section_header .icon-xs._big i {
+    font-size: 24px;
+}
+
+.section_header .icon-xs i {
+    font-size: 16px;
+}
+
+nav.toc ul {
+    list-style: none;
+    padding: 10px;
+}
+
+nav.toc > ul {
+    border: 1px solid var(--borderTheme);
+    margin: 10px 10px;
+}
+
+nav.toc > ul > li a {
+    color: var(--colorTheme);
+    text-transform: capitalize;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+nav.toc > ul > li a:active, nav.toc > ul > li a:hover {
+    color: var(--highlight);
+}
+
+nav.toc > ul > li a:first-letter {text-transform: uppercase !important;}
+
+nav.toc > ul > li {
+    margin-bottom: 15px;
+}
+
+.text-page .toc {
+    height: calc(100vh - 100px);
+    overflow: hidden;
+    overflow-y: auto;
 }

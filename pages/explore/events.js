@@ -17,6 +17,7 @@ import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import { advancedFetchListings } from "@/helpers/rest";
 import Slider from "react-slick";
 import { fadingSlide, largeResp } from "@/helpers/sliders";
+import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 //import { AvatarsRow } from "~/appComponents/components/skeletons/React-content-loader/Skeletons";
 //import SiteHead from "~/appComponents/components/SiteHead";
 
@@ -84,9 +85,11 @@ const ExploreEvents = ({topList}) => {
             // <ActivityCarousel cardType={4}/>
           </div>
       </section> */}
-     {isTab && <HeaderWrapper header_id={'explore_nav'}>
+     {isTab && <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
+        <MainMenuBtn/>
         <ExplorerFilter/>
      </HeaderWrapper>}
+     <div className="page-content">
       <section className="p-0">
           <div className="container-fluid mw-100 p-0">
             <div
@@ -186,6 +189,7 @@ const ExploreEvents = ({topList}) => {
           </div>
           </div>
       </section>
+      </div>
 
      {/*  <section>
           <div className="container">

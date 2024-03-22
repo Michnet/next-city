@@ -25,6 +25,7 @@ import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
 import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
 import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
+import SearchField from "@/components/UI/search/SearchField";
 
 
 export async function getStaticProps() {
@@ -123,6 +124,8 @@ export default function Home(props) {
         slidesToScroll: 1
       };
 
+
+
   return (
     <>
       <Client>
@@ -137,99 +140,10 @@ export default function Home(props) {
 			<div className="card-overlay bg-gradient rounded-0"></div>
 		</div>
 
-        <div className="content mt-n4">
-            <div className="search-box bg-theme color-theme rounded-m shadow-l">
-                <i className="fa fa-search"></i>
-                <input type="text" className="border-0" placeholder="Search for a place... (try island)" data-search/>
-				<a href="#" className="clear-search disabled no-click mt-0"></a>
-				<a href="#" data-menu="menu-filter" className="color-theme"><i className="fa fa-sliders me-n3"></i></a>
-            </div>
-            <div className="search-results disabled-search-list mt-3">
-                <div className="card card-style mx-0 px-2 p-0 mb-0">
-                    <a href="#" className="d-flex py-2" data-filter-item data-filter-name="all maldives tropical island escape">
-                        <div>
-                            <img src="/images/travel/6s.jpg" className="rounded-sm me-3" width="50" alt="img"/>
-                        </div>
-                        <div>
-                            <span className="color-highlight font-400 d-block pt-0 text-uppercase font-10">Tropical Island</span>
-                            <strong className="color-theme font-16 d-block mt-n2">Maldives</strong>
-                        </div>
-                        <div className="ms-auto text-end align-self-center pe-2">
-                            <h5 className="line-height-xs font-18 pt-3">$1450</h5>
-                            <span className="font-10 d-block mt-n2">For 7 Nights</span>
-                        </div>
-                    </a>
-                    <a href="#" className="d-flex py-2" data-filter-item data-filter-name="all weekend iceland escape explore hike">
-                        <div>
-                            <img src="/images/travel/7s.jpg" className="rounded-sm me-3" width="50" alt="img"/>
-                        </div>
-                        <div>
-                            <span className="color-highlight font-400 d-block pt-0 text-uppercase font-10">Weekend Escape</span>
-                            <strong className="color-theme font-16 d-block mt-n2">Iceland</strong>
-                        </div>
-                        <div className="ms-auto text-end align-self-center pe-2">
-                            <h5 className="line-height-xs font-18 pt-3">$675</h5>
-                            <span className="font-9 d-block mt-n2">For 3 Days</span>
-                        </div>
-                    </a>
-                    <a href="#" className="d-flex py-2" data-filter-item data-filter-name="all cave swim explore deep dive">
-                        <div>
-                            <img src="/images/travel/5s.jpg" className="rounded-sm me-3" width="50" alt="img"/>
-                        </div>
-                        <div>
-                            <span className="color-highlight font-400 d-block pt-0 text-uppercase font-10">Cave Exploring</span>
-                            <strong className="color-theme font-16 d-block mt-n2">Nicaragua</strong>
-                        </div>
-                        <div className="ms-auto text-end align-self-center pe-2">
-                            <h5 className="line-height-xs font-18 pt-3">$350</h5>
-                            <span className="font-9 d-block mt-n2">For 3 Dives</span>
-                        </div>
-                    </a>
-                    <a href="#" className="d-flex py-2" data-filter-item data-filter-name="all mountain cabin tent forest">
-                        <div>
-                            <img src="/images/travel/1s.jpg" className="rounded-sm me-3" width="50" alt="img"/>
-                        </div>
-                        <div>
-                            <span className="color-highlight font-400 d-block pt-0 text-uppercase font-10">Private Escape</span>
-                            <strong className="color-theme font-16 d-block mt-n2">Mount Hellen</strong>
-                        </div>
-                        <div className="ms-auto text-end align-self-center pe-2">
-                            <h5 className="line-height-xs font-18 pt-3">$1250</h5>
-                            <span className="font-9 d-block mt-n2">7 Days + Cabin</span>
-                        </div>
-                    </a>
-                    <a href="#" className="d-flex py-2" data-filter-item data-filter-name="all ocean cruise ship yacht swim">
-                        <div>
-                            <img src="/images/travel/4s.jpg" className="rounded-sm me-3" width="50" alt="img"/>
-                        </div>
-                        <div>
-                            <span className="color-highlight font-400 d-block pt-0 text-uppercase font-10">Ocean Cruise</span>
-                            <strong className="color-theme font-16 d-block mt-n2">Dubrovnik</strong>
-                        </div>
-                        <div className="ms-auto text-end align-self-center pe-2">
-                            <h5 className="line-height-xs font-18 pt-3">$2350</h5>
-                            <span className="font-9 d-block mt-n2">7 Days + Cruise</span>
-                        </div>
-                    </a>
 
-                </div>
-            </div>
-        </div>
-        <div className="search-no-results disabled mt-4">
-            <div className="card card-style">
-                <div className="content">
-                    <h1>No Results</h1>
-                    <p>
-                        Your search brought up no results. Try using a different keyword. Or try typying all
-                        to see all items in the demo. These can be linked to anything you want.
-                    </p>
-                </div>
-            </div>
-        </div>
+    <SearchField/>
 
-		
-    
-    <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
+    <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {
                 eventCategories?.map((cat) => {
                     return <TermIcon flipped item={cat}/>
@@ -239,7 +153,7 @@ export default function Home(props) {
 
     <div className="divider mt-4"></div>
 
-   <SectionHeader iconClass={'far fa-clock'} bgClass={'bg-mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
+   <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider height={325} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'} }>
       {listings?.length > 0 ? 
           listings.map((li) => {
@@ -338,20 +252,8 @@ export default function Home(props) {
 					
           {listings?.length > 0 ? 
             listings.map((li) => {
-              let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
-              return <Link href="#" className="d-flex mb-3" data-menu="menu-travel-sample">
-                      <div>
-                        <img src={xtra_large_thumb} className="object-cover rounded-sm me-3" width="70" height="70"/>
-                      </div>
-                      <div>
-                        <span className="color-highlight font-300 d-block text-uppercase font-10">01 - 07 August 2025</span>
-                        <strong className="color-theme font-16 d-block mt-n2 mb-n2 truncate">{cleanHtml(title.rendered)}</strong>
-                        <span className="font-11 color-theme opacity-30 d-block pb-2 pt-2"><i className="fa fa-map-marker pe-2"></i>Maldives, Ocean</span>
-                      </div>
-                      <div className="align-self-center ms-auto">
-                        <i className="fa fa-arrow-right font-12 color-theme opacity-20"></i>
-                      </div>
-                    </Link>
+              let {id} = li;
+              return <ActivityCard1 key={id} item={li}/>
             })
             :
             <></>

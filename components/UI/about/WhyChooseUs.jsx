@@ -1,4 +1,4 @@
-const BlockGuide = () => {
+const WhyChooseUs = () => {
   const blockContent = [
     {
       id: 1,
@@ -47,4 +47,4 @@ const BlockGuide = () => {
 
 };
 
-export default BlockGuide;
+export default WhyChooseUs;

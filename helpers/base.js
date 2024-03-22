@@ -5,6 +5,7 @@ export const authKey = 'Q+#s)pEs;`Bhf+@J+I6Wf<Wx8;8?J6?.fcpEWAS0-nV6-FQW[x@L2IeJ
 export const WPDomain = 'https://lyvecityclub.com';
 export const homeurl = 'https://lyvecity.com';
 export const userReviews = 'jet-reviews-api/v1';
+export const userActions = 'user-actions/v1';
 export const googleDirectionsUrl = 'https://www.google.com/maps/dir/';
 
 export const siteSettings = {

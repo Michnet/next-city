@@ -1,18 +1,14 @@
 import { useRecoilValue } from "recoil";
 import { authState } from "@/contexts/atoms";
-import { activityState } from "@/contexts/ActivityContext";
-import ActivityItem from "./partials/ActivityItem";
 import {openOffCanvas} from "@/helpers/appjs";
+import SiteActivity from "./SiteActivity";
 
 function Activity() {
-    const {activities, setSize, size, isLoadingInitialData, isLoadingMore} = useRecoilValue(activityState);
     const {user, token} = useRecoilValue(authState);
     const {name, avatar_urls} = user ?? {}
 
-    console.log('activities', activities);
-
   return (
-    <div className="recent_active">
+    <div className="recent_activity">
 		<img src="/images/pictures/14w.jpg" className={`img-fluid mb-n4`}/>
         {user && <>
 		<a href="#" style={{zIndex:1}} className="position-relative ms-3">
@@ -54,27 +50,7 @@ function Activity() {
 
 		<div className="mb-4"></div>
 
-        <div className="actz_timeline">
-            {activities?.length > 0 && <>
-                <div className="notice_drawer no-scrollbar">
-                    <div>
-                    {activities.map((activity) => {
-                        const {title, id, feature_media, content, name,  user_id, content_stripped, favorite_count, can_comment, can_delete, favorited, can_edit, can_favorite, user_avatar, activity_meta, comment_count, date, activity_data, type} = activity ?? {};
-                        const {category, listing} = activity_meta ?? {};
-
-
-                        return <ActivityItem avatarSize={30} key={activity.id} activity={activity} user={user} token={token}/>
-                    })}
-                    {/* {isLoadingMore && <CommentLoader num={4}/>} */}
-                    </div>
-                        <div className="activity-footer">                        
-                        <span className="gx-link gx-btn-link" onClick={() => setSize(size + 1)}>Load More</span>
-                        <span className="gx-link gx-btn-link" onClick={() => setSize(1)}> Reset</span>
-                        </div>
-                    </div>
-                </>
-            }
-        </div>
+        <SiteActivity user={user} token={token}/>
     </div>
     )
 }

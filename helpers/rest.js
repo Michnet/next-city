@@ -1,4 +1,4 @@
-import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain } from "./base";
+import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain, userActions } from "./base";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -13,6 +13,17 @@ export const advancedFetchListingsUrl = (payload) => {
     }
     return `${WPDomain}/${endpoint}`
 }
+
+export const fetchPageUrl = (id, fields) => {
+
+  const endPoint = `/wp-json/wp/v2/pages/${id}?${serializeQuery({
+      ...oathInfo,
+      _fields: fields
+  })}`;
+
+  return `${WPDomain}${endPoint}`;
+}
+
 
 export const fetchListings = async (payload) => {
   let endpoint;
@@ -108,7 +119,6 @@ export async function advancedFetchListings(payload){
     try {
         const res = await kyFetch.get(advancedFetchListingsUrl(payload)).json();
         if(res){
-            console.log('got them', res)
             return res;
           }else{
           console.log('failed', res)

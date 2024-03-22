@@ -15,12 +15,18 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass = '', de
   )
 }
 
-export function SectionHeader({title, subTitle, link, linkUrl='#', iconClass='fa fa-angle-left', bgClass='bg-highlight', colorClass = 'color-white', desc, exClass=''}){
+export function SectionHeader({inverted = false, bigIcon = true, title, subTitle, link, linkUrl='#', iconClass, color, desc, exClass=''}){
   return (
-    <div className={`d-flex pb-2 ${exClass}`}>
-        <div className="align-self-center pe-3">
-          <span className={`icon icon-xs rounded-m ${bgClass}`}><i className={`${iconClass} ${colorClass}`}></i></span>
-        </div>
+    <div className={`section_header d-flex pb-2 ${exClass}`}>
+        {iconClass && <div className={`align-self-center ${bigIcon ? 'pe-1' : 'pe-3'}`}>
+          {bigIcon ? 
+            <span className={`icon icon-xs bg-transparent _big`}>
+              <i className={`${iconClass} color-${color ?? 'theme'}`}/>
+              </span> 
+            : 
+            <span className={`icon icon-xs rounded-m bg-${color ? inverted ? color : 'white' : 'transparent'}`}><i className={`${iconClass} color-${color ? inverted ? 'white' : color : 'theme'}`}></i>
+          </span>}
+        </div>}
         <div className="align-self-center">
           <p className="mb-n2 mt-n1 font-700 font-11 color-highlight">{subTitle}</p>
           <h2 className="font-700 mb-0">{title}</h2>

@@ -6,6 +6,7 @@ import Header from "./partials/Header";
 function Scaffold({children, uiSize, settings}) {
     const {isDeskTop, isTab} = uiSize;
     const {mMenuContent, noHeader} = settings ?? {};
+    
   return (<>
     <div className="container-fluid p-0">
         <div className="row flex-nowrap _scaffold">
@@ -15,7 +16,9 @@ function Scaffold({children, uiSize, settings}) {
                 </div>
             </div>
             <div className="col px-0 main_content position-relative" style={{minWidth: '0', minHeight: '100vh'}}>
-                {!noHeader ? <Header headerClass={'header-always-show position-sticky'}/> : <></>}
+                {!noHeader && <>
+                    {<Header headerClass={isTab ? 'header-auto-show' : 'header-always-show'}/>}
+                </>}
                 {children}
             </div>
             <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>

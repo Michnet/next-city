@@ -6,14 +6,6 @@ import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 //import { MOBILE_SIZE } from '../../constants/ThemeSetting';
 import useSWRInfinite from "swr/infinite";
 //import JavascriptMap from './JavascriptMap';
-//import ListingCard from 'appComponents/components/dashboard/Listing/ListingCard';
-// import { fetcher } from 'server/WpBase';
-// import { generateTempArray } from 'server/UniversalFunctions';
-// import SkeletonProductHorizontal from 'appComponents/components/skeletons/SkeletonProductHorizontal';
-// import SkeletonProduct from '~/appComponents/components/skeletons/SkeletonProduct';
-//import { useMediaQuery } from 'react-responsive';
-// const ActivityCard2 = dynamic(() => import('~/components/activity/ActivityCard2'));
-//import { isTab } from '~/appComponents/core/Layout/Layout';
 import { useRecoilValue } from 'recoil';
 import { authState, UISizes} from '@/contexts/atoms';
 // // const SearchFilter = dynamic(() => import('./SearchFilter'));
@@ -262,7 +254,7 @@ if(isEmpty){
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <SearchFilter/> */}
+                                    <SearchFilter/>
                                     {itemsView}
                                     {errorView}                                
                                 </div>
