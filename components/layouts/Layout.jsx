@@ -10,6 +10,8 @@ import {UISizes, UIWidthState} from '@/contexts/atoms';
 import Header from "./partials/Header";
 import { useRouter } from "next/router"
 import BottomMenu from "./BottomMenu";
+import { BSReveal } from "../UI/partials/BSReveal";
+import SearchForm1 from "../UI/search/SearchForm1";
 
 export default function Layout({ children, headerTitle, settings}) {
   const uiSize = useRecoilValue(UISizes);
@@ -170,6 +172,11 @@ export default function Layout({ children, headerTitle, settings}) {
                 </div>
               </div>
           </div>
+
+          {/*Search form*/}
+          <BSReveal id='search_form_1'>
+            <SearchForm1/>
+          </BSReveal>
           {/* <!-- Menu Settings Highlights--> */}
 
           {/* Snackbars*/}

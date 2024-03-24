@@ -3,7 +3,6 @@
 //import styles from "@/styles/Home.module.css";
 import useSWR  from "swr";
 import { advancedFetchListingsUrl, fetcher, getDirTerms } from "@/helpers/rest";
-import Layout from "@/components/layouts/Layout";
 import { cleanHtml, shuffleArray } from "@/helpers/universal";
 import { PriceView } from "@/components/UI/PriceView";
 import { siteSettings } from "@/helpers/base";
@@ -18,7 +17,6 @@ import { DualColorHeader, SectionHeader } from "@/components/UI/Partials";
 import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
 import { TermIcon } from "@/components/UI/partials/termLinks";
 import ActivityCard2 from "@/components/UI/Listings/cards/ActivityCard2";
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import Splider from "@/components/UI/partials/Splider";
 import EventCard from "@/components/UI/Listings/cards/EventCard";
 import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
@@ -26,6 +24,7 @@ import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
 import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
 import SearchField from "@/components/UI/search/SearchField";
+import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 
 
 export async function getStaticProps() {
@@ -93,12 +92,12 @@ export async function getStaticProps() {
     }
   }
 
-  
+
 export default function Home(props) {
     const {serverObj} = props;
    const {eventCategories, topLocations, busyLocations} = serverObj ?? {};
 
-  let load={_fields : `address, id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
+  let load={_fields : `address, id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb,thumbnail`, 
   listing_type:'event', per_page: 10}
 
   let fetchy = true;
@@ -144,10 +143,10 @@ export default function Home(props) {
     <div className="divider mt-4"></div>
 
    <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
-   <Splider height={325} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'} }>
+   <Splider height={325} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'} }>
       {listings?.length > 0 ? 
           listings.map((li) => {
-           return <EventCard2 width={300} key={li.id} listing = {li}/>
+           return <EventCard2 width={270} key={li.id} listing = {li}/>
           })
           :
           <></>
@@ -205,15 +204,27 @@ export default function Home(props) {
           <></>
         }
       </div>
+
+      <SectionHeader inverted iconClass={'fas fa-store'} color={'magenta-dark'} exClass='px-3 mb-2' link={'See All'} title={'More Listings'} subTitle={'Your early bird advantage'}/>
+
+   <Splider height={240} options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'} }>
+      {listings?.length > 0 ? 
+          listings.map((li) => {
+           return <EventCard5 width={270} key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }
+    </Splider>
 </div>
   <div className="col-12 col-md-4 px-0">
     <Client><div className="content mt-2 mb-n3">
-  <div className="row gap-1">
+  <div className="row m-bs">
         {listings?.length > 0 ? 
           shuffleArray(listings).map((li, ind) => {
             let {id} = li;
-            if(ind < 2){
-               return <ListingCard3 listing={li} key={id}/>
+            if(ind < 4){
+               return <div className='col-6 p-1'><ListingCard3 listing={li} key={id}/></div>
             }
           })
           :

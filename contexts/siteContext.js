@@ -12,11 +12,8 @@ export const siteState = atom({
     default: {}, 
 });
 
+
 export default function SiteProvider(){
-/* const [shopCats, setShopCats] = useState(null);
-const [dirCats, setDirCats] = useState(null);
-const [dirLocations, setDirLocations] = useState(null);
-const [dirTags, setDirTags] = useState(null); */
 
 const setState = useSetRecoilState(siteState);
 
@@ -34,6 +31,7 @@ async function marketQuery(shopCatsLoad, dirCatsLoad, dirTagsLoad) {
     } */
 
     let stateObj = {}
+ 
 
 
 useEffect(() => {

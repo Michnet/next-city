@@ -68,4 +68,25 @@ export const serializeQuery = (query) => {
         .join('&');
 };
 
+export const siteColors = [
+  "highlight", 
+  "green", 
+  "grass", 
+  "red", 
+  "orange", 
+  "yellow", 
+  "sunny", 
+  "blue", 
+  "teal", 
+  "mint", 
+  "pink" , 
+  "pink2" , 
+  "magenta" , 
+  "brown" ,
+  "gray" ,
+  "aqua",
+  "night",
+  "dark"
+]
+
  

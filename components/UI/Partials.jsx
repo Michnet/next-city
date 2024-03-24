@@ -90,8 +90,8 @@ export function PreviousRouteLink() {
     )
   }
 
-  export const Avatar = ({alt, src, width, rounded, height, style, imgClass}) => {
-    return <div className="border-wrap _avatar" style={{borderRadius: rounded ? '50%' : 0}}><img className={imgClass ?? ''} src={src} alt={alt} style={{objectFit:'cover', minWidth: width ? width : 20, width: width ?? 35, borderRadius: rounded ? '50%' : '0', height: rounded ? width : height ?? 35, ...style}}/></div>
+  export const Avatar = ({alt, src, width, rounded, height, style, imgClass, exClass=''}) => {
+    return <div className={`border-wrap _avatar ${exClass}`} style={{borderRadius: rounded ? '50%' : 0}}><img className={imgClass ?? ''} src={src} alt={alt} style={{objectFit:'cover', minWidth: width ? width : 20, width: width ?? 35, borderRadius: rounded ? '50%' : '0', height: rounded ? width : height ?? 35, ...style}}/></div>
   }
   
 

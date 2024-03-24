@@ -476,10 +476,6 @@ display: flex;
   font-weight: normal;
 }
 
-.left_menu_btn {
-  margin-right: -8px;
-}
-
 .sidebar_content .pro-footer {
   background: var(--bs-gray-400);
 }
@@ -5470,9 +5466,8 @@ nav.toc > ul > li li {
   color: var(--bs-gray-600);
 }
 .form-container .form-horizontal .form-control{
-  color: #333;
   background: #ffffff;
-  font-size: 15px;
+  font-size: 14px;
   height: 40px;
   padding: 6px 20px;
   letter-spacing: 1px;

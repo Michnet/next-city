@@ -1,3 +1,4 @@
+import { openOffCanvas } from "@/helpers/appjs";
 import { advancedFetchListings } from "@/helpers/rest";
 import { cleanHtml } from "@/helpers/universal";
 import { useComputed, useSignal, useSignalEffect } from "@preact/signals-react";
@@ -22,26 +23,11 @@ function SearchField() {
         'event-day': 'any-day'
         };
 
-async function runQuery(prevController){
-       console.log('previous', prevController)
-        prevController.abort();
-     let newController = new AbortController();
-     //mainController = newController;
-
-     //let {signal} = mainController;
-    
-    const res = await advancedFetchListings({...payload}, signal);
-    if(res){
-        return res;
-    }
-    }
-
     const controller = new AbortController();
     const {signal} = controller;
 
   useSignalEffect(async() => {
     if(keyWord.value?.length > 2){
-        
         const res = await advancedFetchListings({...payload}, signal);
         if(res){
             listings.value = res;
@@ -61,7 +47,7 @@ async function runQuery(prevController){
                 <i className="fa fa-search"></i>
                 <input type="text" className="border-0" placeholder="Search for a place... (try island)" data-search onChange={(e) => runSearch(e)}/>
 				<a href="#" className="clear-search disabled no-click mt-0"></a>
-				<a href="#" data-menu="menu-filter" className="color-theme"><i className="fa fa-sliders me-n3"></i></a>
+				<span data-menu="search_form_1" onClick={(e) => openOffCanvas(e)} className="_link color-theme"><i className="fa fa-sliders me-n3"></i></span>
             </div>
             <div className="search-results mt-3 position-absolute left-0 right-0 z-2">
                 <div class="card card-style mx-0 px-2 p-0 mb-0 ">

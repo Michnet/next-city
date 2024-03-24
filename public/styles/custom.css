@@ -1052,8 +1052,16 @@ div#footer-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
-    column-gap: 5px;
+    column-gap: 10px;
     padding: 0 10px;
+}
+
+.header-bar ._left > * {
+    min-width: 20px;
+}
+
+button.back_link {
+    color: var(--highlight);
 }
 .header-bar ._right {
     justify-self: end;
@@ -1063,7 +1071,7 @@ div#footer-bar {
 }
 
 .header-bar ._right > * {
-    width: 35px;
+    width: 30px;
     height: 35px;
     line-height: 35px;
     text-align: center;
@@ -2226,7 +2234,7 @@ div#footer-bar {
 .listing_menu_toggler .menu_icon span {margin-bottom: -8px;}
 
 .left_menu_btn {
-    padding: 0 5px 0 10px;
+    padding: 0;
 }
 
 .landing_row .mega_gallery .mega_item, .landing_row  .mega_gallery .gallery_plate {
@@ -2292,4 +2300,40 @@ nav.toc > ul > li {
     height: calc(100vh - 100px);
     overflow: hidden;
     overflow-y: auto;
+}
+
+.menu-title .close-menu {
+    font-size: 20px;
+    color: #dc3545;
+    position: absolute;
+    text-align: center;
+    width: 55px;
+    line-height: 85px;
+    right: 0;
+    top: 0;
+}
+
+.form-group._features select {
+    height: 150px !important;
+    border-radius: 20px !important;
+    display: flex !important;
+}
+
+.form-group._features select option {
+    width: fit-content;
+}
+
+.search-description .descript_wrap .hint {
+    color: var(--theme);
+    opacity: 1 !important;
+}
+
+.border-type-1 {border: 1px dashed var(--borderTheme)}
+
+.form-container .form-horizontal .form-group label {
+    font-weight: 500;
+    font-size: 11px;
+}
+.event_card_2 .event_date {
+    height: fit-content !important;
 }

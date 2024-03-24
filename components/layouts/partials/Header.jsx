@@ -3,22 +3,21 @@ import Link from "next/link";
 import { Client } from "react-hydration-provider";
 import { UserAvatar } from "@/components/UI/UserAvatar";
 import MainMenuBtn from "./MainMenuBtn";
+import { useRouter } from "next/router";
 
 const Header = ({headerTitle, headerClass}) => {
- 
-    return <Client>
+  const router = useRouter();
+
+return <Client>
     <div id='header_bar' className={`header header-bar header-sticky header-logo-center ${headerClass ?? 'header-auto-show'} header-search`}>
     <div className="_left">
       <Client>
         <MainMenuBtn/>
       </Client>
-      <a
-        href="#"
-        data-back-button
-        className="_left header-icon header-icon-1"
+      <button className='back_link d-none' onClick={() => router.back()}
       >
-        <i className="fas fa-arrow-left"></i>
-      </a>
+        <i className="fas fa-chevron-left" />
+      </button>
       <div className="title_box">
         <Link href="/" className="header-title truncate mh-100">
         {headerTitle ?? "LyveCity"}
@@ -27,15 +26,15 @@ const Header = ({headerTitle, headerClass}) => {
     </div>
       
       <div className="_right">
-        <a href="#" data-toggle-theme onClick={() => toggleTheme()}  className="header-menu-icon header-icon-4" >
-          <i className="bi bi-lamp-fill"></i>
-        </a>
-        <span onClick={(e) => openOffCanvas(e)}  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
-          <i className="lar la-bell"></i>
+        <span data-toggle-theme onClick={() => toggleTheme()}  className="header-menu-icon header-icon-4" >
+          <i className="far fa-lightbulb"></i>
         </span>
-        <a href="#" data-toggle-search>
-          <i className="fa fa-search"></i>
-        </a>
+        <span onClick={(e) => openOffCanvas(e)}  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
+          <i className="far fa-bell"></i>
+        </span>
+        <span data-toggle-search onClick={(e) => openOffCanvas(e)} data-menu='search_form_1'>
+          <i className="fas fa-search-location"></i>
+        </span>
         <UserAvatar/>
         {/* <div className="search-box pt-2">
           <input type="text" className="px-3" placeholder="Search here.. - try the word demo " data-search/>
