@@ -17,7 +17,17 @@ const { persistAtom : persistLoc } = recoilPersist({
   key: 'Lyve_lx'
 });
 
+const { persistAtom : persistIntro } = recoilPersist({
+  key: 'LyveIntro'
+});
+
 /*Atoms & selectors*/
+export const introState = atom({
+  key: 'intro',
+  default: false, 
+  effects_UNSTABLE: [persistAtom],
+});
+
 export const UIState = atom({
   key: 'uiState',
   default: null, 

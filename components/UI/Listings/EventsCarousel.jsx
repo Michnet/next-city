@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import {  SectionHeader } from "../Partials";
 import Splider from "../partials/Splider";
 
-function EventsCarousel({defListings = null, spliderOptions, height, queryObj={}, cardType, exCardClass, title, mini = false, subtitle, iconClass, color, catSlug, orderMeta, exClass, sort, eventDate, orderby, order, cardWidth}) {
+function EventsCarousel({defListings = null, spliderOptions, height, queryObj={}, cardType, exCardClass, title, mini = false, subtitle, iconClass, color, catSlug, orderMeta, exClass, sort, eventDate, orderby, order, cardWidth, thumbnailSize='large_thumb'}) {
 
     let theView, fetchy = true;
 
@@ -15,8 +15,8 @@ function EventsCarousel({defListings = null, spliderOptions, height, queryObj={}
 
     let options = spliderOptions ? {...spliderOptions} : {gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}
 
-    let Card, thumbsize = 'xtra_large_thumb'
-    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+    let Card;
+    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,large_thumb,thumbnail,xtra_large_thumb`, 
     listing_type:'event', per_page: 5, ...queryObj, ...params};
 
     switch (cardType) {
@@ -31,6 +31,7 @@ function EventsCarousel({defListings = null, spliderOptions, height, queryObj={}
         break;
       case 4:
          Card = dynamic(() => import("./cards/EventCard4"));
+         break;
       case 5:
          Card = dynamic(() => import("./cards/EventCard5"));
         break;
@@ -84,7 +85,7 @@ function EventsCarousel({defListings = null, spliderOptions, height, queryObj={}
        ));
      
         theView =  <>
-                    <SectionHeader inverted iconClass={iconClass} color={color} exClass='px-3 mb-2' link={'See All'} title={title} subTitle={subtitle}/>
+                    <SectionHeader linkPath={'/search'} linkQuery={{load}} inverted iconClass={iconClass} color={color} exClass='px-3 mb-2' link={'See All'} title={title} subTitle={subtitle}/>
 
                     <Splider height={height} options={{...options}}>
                       {listings?.length > 0 ? 

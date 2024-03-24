@@ -15,7 +15,8 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass = '', de
   )
 }
 
-export function SectionHeader({inverted = false, bigIcon = true, title, subTitle, link, linkUrl='#', iconClass, color, desc, exClass=''}){
+export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = true, title, subTitle, link, linkUrl='#', iconClass, color, desc, exClass=''}){
+  const router = useRouter();
   return (
     <div className={`section_header d-flex pb-2 ${exClass}`}>
         {iconClass && <div className={`align-self-center ${bigIcon ? 'pe-1' : 'pe-3'}`}>
@@ -29,10 +30,10 @@ export function SectionHeader({inverted = false, bigIcon = true, title, subTitle
         </div>}
         <div className="align-self-center">
           <p className="mb-n2 mt-n1 font-700 font-11 color-highlight">{subTitle}</p>
-          <h2 className="font-700 mb-0">{title}</h2>
+          <h3 className="font-700 mb-0">{title}</h3>
         </div>
-        {link ? <div className="align-self-center ms-auto me-2">
-           <Link href={linkUrl}>{link}</Link>
+        {linkPath ? <div className="align-self-center ms-auto me-2">
+           <button onClick={() => router.push({ pathname: linkPath, query: linkQuery })}>{link}</button>
         </div> : <></>}
     </div>
   )

@@ -147,7 +147,7 @@ let gridDisplay = (listings) => {
                             <Masonry gutter={isMobile ? "10px" : "15px"}> 
                             {listings.map(listing => {
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
-                               return <EventCard2 width={'auto'} exClass={'m-0'} listing={listing}/>
+                               return <EventCard2 noButton width={'auto'} exClass={'m-0'} listing={listing}/>
                             })
                             }
                             </Masonry>

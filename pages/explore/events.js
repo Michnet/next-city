@@ -160,7 +160,7 @@ const ExploreEvents = ({topList}) => {
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section px-2 mt-20">
-                    <EventsCarousel mini noFallback cardWidth={350} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  icon={'fas fa-calendar-week'} limit={10} cardType={2} exClass={'px-0'} height={325} spliderOptions={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}/>
+                    <EventsCarousel mini noFallback cardWidth={350} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={240} spliderOptions={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}/>
               </div>}
 
 

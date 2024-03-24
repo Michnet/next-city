@@ -6523,7 +6523,7 @@ body:not(._fixed_top) .single_listing .ant-layout-header .gx-header-notification
   }
 
 .top_filter_item {
-  padding: 10px 0px;
+  padding: 5px 0px;
 }
   .mob-d-none {
     display: none;
@@ -6608,11 +6608,15 @@ section.landing_page .intro_content{
     font-size: 14px;
     line-height: 1;
     font-weight: 500;
-    color: var(--bs-gray-500);
+    color: var(--colorTheme);
+}
+
+.top_filter_item .nav-link span i {
+  opacity: 0.4;
 }
 
 #explore_nav .nav-item button {
-  border-left: 1px solid #e2e2e2;
+  border-left: 1px solid var(--borderTheme);
   padding: 4px 10px 10px 10px;
 }
 

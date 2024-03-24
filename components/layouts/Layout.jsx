@@ -12,6 +12,7 @@ import { useRouter } from "next/router"
 import BottomMenu from "./BottomMenu";
 import { BSReveal } from "../UI/partials/BSReveal";
 import SearchForm1 from "../UI/search/SearchForm1";
+import Splash from "../UI/Splash";
 
 export default function Layout({ children, headerTitle, settings}) {
   const uiSize = useRecoilValue(UISizes);
@@ -470,6 +471,7 @@ export default function Layout({ children, headerTitle, settings}) {
         <Script>{onAppLoad()}</Script>
         <RouteLoader />
       </main>
+      <Splash/>
     </>
   )
 }
