@@ -27,13 +27,13 @@ return <Client>
       
       <div className="_right">
         <span data-toggle-theme onClick={() => toggleTheme()}  className="header-menu-icon header-icon-4" >
-          <i className="far fa-lightbulb"></i>
+          <i className="far fa-lightbulb color-theme"></i>
         </span>
         <span onClick={(e) => openOffCanvas(e)}  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
-          <i className="far fa-bell"></i>
+          <i className="far fa-bell color-theme"></i>
         </span>
         <span data-toggle-search onClick={(e) => openOffCanvas(e)} data-menu='search_form_1'>
-          <i className="fas fa-search-location"></i>
+          <i className="fas fa-search-location color-theme"></i>
         </span>
         <UserAvatar/>
         {/* <div className="search-box pt-2">

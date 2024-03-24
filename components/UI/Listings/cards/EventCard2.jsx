@@ -19,7 +19,7 @@ const EventCard2 = ({listing, width=220, height=180, exClass=''}) => {
                 </div>
                 <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>
             </div>  
-            <div className="d-flex flex-row flex-nowrap m-3 align-items-center gap-2">
+            <div className="d-flex flex-row flex-nowrap m-3 align-items-center gap-2 justify-between">
                 <div className="">
                 <Link href={`/events/${slug}`}><h3 className="truncate-2 text-15">{cleanHtml(title.rendered)}</h3></Link>
                     <p className="truncate font-11 mb-2 pb-1"><i className="fa fa-map-marker-alt me-2"></i>{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</p>

@@ -1,5 +1,5 @@
 function appjsCode(){
-    var pwaName = "Sticky"; 
+    var pwaName = "LyveState"; 
 
     //Tabs
     var tabTrigger = document.querySelectorAll('.tab-controls a');
@@ -240,6 +240,9 @@ function activateDarkMode(){
     document.body.classList.add('theme-dark');
     document.body.classList.remove('theme-light');
     document.body.classList.remove('detect-theme');
+
+    console.log('toggler group', toggleDark);
+
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
     localStorage.setItem(pwaName+'-Theme', 'dark-mode');
     themeCssLink('_dark')
@@ -293,7 +296,9 @@ export function toggleTheme(){
     if (typeof window !== 'undefined') {
         if(document.body.className == "theme-light"){ 
             removeTransitions(); activateDarkMode();}
-        else if(document.body.className == "theme-dark"){ removeTransitions(); activateLightMode();}
+        else if(document.body.className == "theme-dark"){ 
+            removeTransitions(); activateLightMode();
+        }
         setTimeout(function(){addTransitions();},350);
     }
 }

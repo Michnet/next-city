@@ -13,7 +13,7 @@ import { authState, UISizes} from '@/contexts/atoms';
 // import ListingTimeline from '~/components/activity/partials/ListingTimeline';
 // const DualColorHeader = dynamic(() => import('~/appComponents/components/partials/DualColorHeader'));
 import { useRouter } from 'next/router';
-import ActivityCard2 from '../Listings/cards/ActivityCard2';
+import EventCard2 from '../Listings/cards/EventCard2';
 import { advancedFetchListingsUrl, fetcher } from '@/helpers/rest';
 import { generateTempArray } from '@/helpers/universal';
 import SkeletonProduct from '@/components/skeletons/SkeletonProduct';
@@ -147,7 +147,7 @@ let gridDisplay = (listings) => {
                             <Masonry gutter={isMobile ? "10px" : "15px"}> 
                             {listings.map(listing => {
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
-                               return <ActivityCard2 width={'auto'} exClass={'m-0'} item={listing}/>
+                               return <EventCard2 width={'auto'} exClass={'m-0'} listing={listing}/>
                             })
                             }
                             </Masonry>
@@ -254,7 +254,7 @@ if(isEmpty){
                                             </div>
                                         </div>
                                     </div>
-                                    <SearchFilter/>
+                                    {/* <SearchFilter/> */}
                                     {itemsView}
                                     {errorView}                                
                                 </div>

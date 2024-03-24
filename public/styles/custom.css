@@ -408,6 +408,10 @@ div#mobile_sidebar {}
     padding: 12px 18px
 }
 
+.btn-sm {
+    padding: 3px 8px !important;
+}
+
 .btn-m {
     font-size: 12px;
     padding: 13px 20px
@@ -795,6 +799,11 @@ div#footer-bar {
     height: auto;
 }
 
+.search_form .accordion-button {
+    padding: 5px 0;
+    gap: 10px;
+}
+
 .accordion-m .accordion-button {
     height: auto
 }
@@ -812,7 +821,9 @@ div#footer-bar {
     background-color: transparent
 }
 
-.accordion .accordion-item:first-child {
+h6.tax_pare {}
+
+.accordion .accordion-ite:first-child {
     border-top: 0
 }
 
@@ -826,10 +837,6 @@ div#footer-bar {
 
 .accordion-button:not(.collapsed) {
     box-shadow: inset 0 -1px 0 rgba(0,0,0,.05)
-}
-
-.accordion-button {
-    font-family: Inter,sans-serif;
 }
 
 .accordion .accordion-button:not(.collapsed) {
@@ -866,9 +873,35 @@ div#footer-bar {
     right: 0;
     width: 40px;
     height: 40px;
-    color: #1f1f1f;
+    color: var(--colorTheme);
     text-align: center;
     line-height: 40px
+}
+
+.filter_body .search_form .fa-plus {
+    font-size: 13px;
+}
+
+.filter_body .search_form .accordion-button.collapsed .fa-plus {
+    opacity: 0.3;
+}
+
+.accordion-button .group_icon {
+    /* height: 30px; */
+    /* width: 30px; */
+    /* line-height: 30px; */
+}
+
+.accordion-button .group_icon i {
+    position: relative;
+    margin-top: 0;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border: 1px solid var(--borderTheme);
+    border-radius: 3px;
+    top: 0;
+    transform: none !important;
 }
 
 
@@ -1314,7 +1347,7 @@ button.back_link {
 }
 
 #explore_nav,.explore_content {
-    top: 70px
+    top: 58px;
 }
 
 .search_filter .filter_actions {
@@ -1338,6 +1371,11 @@ button.back_link {
     border-radius: 5px 35px 35px 5px
 }
 
+#explore_nav .nav-item {
+    width: fit-content;
+    padding-right: 12px;
+}
+
 #explore_nav .nav-item button {
     font-weight: 600;
     padding: 0 8px 0 8px;
@@ -1358,14 +1396,17 @@ button.back_link {
     }
 }
 @media (min-width: 769px) {
+    .page-content{
+        padding-bottom:0;
+    }
     
    .text-page .toc{}
     #explore_nav {
         overflow: hidden;
         overflow-y: auto;
-        border-radius: 7px;
+        border-radius: 0;
         margin-bottom: 10px;
-        height: calc(100vh - 80px)
+        height: calc(100vh - 65px);
     }
 
     .view_filter i {
@@ -1398,8 +1439,12 @@ button.back_link {
     left: 10px;
     right: 10px;
     width: calc(100vw - 20px);
-    border-radius: 32px;
+    border-radius: 10px;
     margin-bottom: 0;
+}
+
+div#explore_nav .left_menu_btn {
+    padding: 0 10px;
 }
 
 #explore_nav .nav-item.active {
@@ -2336,4 +2381,12 @@ nav.toc > ul > li {
 }
 .event_card_2 .event_date {
     height: fit-content !important;
+}
+
+.search_form .group_title h6 {
+    font-size: 15px;
+}
+
+.search_form .group_title p {
+    font-size: 12px;
 }

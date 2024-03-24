@@ -3859,8 +3859,6 @@ ul.listing_navigator li .l_menu._item .label, .gx-card-profile .gx-mr-3 i {
   font-weight: bold;
 }
 
-.search_tags_accordion .accordion-header button.accordion-button:not(.collapsed), .accordion-button:focus {padding: 8px 10px !important;border: none;box-shadow: none;}
-
 .search_tags_accordion .accordion-header button {
   left: 0;
   flex-direction: row;

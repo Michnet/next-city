@@ -143,7 +143,7 @@ export default function Home(props) {
     <div className="divider mt-4"></div>
 
    <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
-   <Splider height={325} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'} }>
+   <Splider height={325} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {listings?.length > 0 ? 
           listings.map((li) => {
            return <EventCard2 width={270} key={li.id} listing = {li}/>
@@ -236,7 +236,7 @@ export default function Home(props) {
 </div>
 
 
-        <Client><div className="card card-style">
+        <Client><div className="card card-style shadow-0 bg-transparent">
 			<div className="content mb-0" id="tab-group-events">
 				<h4>Find Fast Travel Places</h4>
 				<p className="mb-3">

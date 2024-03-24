@@ -14,10 +14,12 @@ import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
 import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 import Splider from "@/components/UI/partials/Splider";
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
+import Header from "@/components/layouts/partials/Header";
 import { advancedFetchListings } from "@/helpers/rest";
 import Slider from "react-slick";
 import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
+import EventsCarousel from "@/components/UI/Listings/EventsCarousel";
 //import { AvatarsRow } from "~/appComponents/components/skeletons/React-content-loader/Skeletons";
 //import SiteHead from "~/appComponents/components/SiteHead";
 
@@ -80,16 +82,11 @@ const ExploreEvents = ({topList}) => {
   return (
     <>
       <SiteHead title={'Explore Events'}/>
-      {/* <section className="layout-pb-sm">
-          <div className="row">
-            // <ActivityCarousel cardType={4}/>
-          </div>
-      </section> */}
-     {isTab && <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
+     <div className="page-content" style={{overflow: 'initial'}}>
+     {isTab ? <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
         <MainMenuBtn/>
         <ExplorerFilter/>
-     </HeaderWrapper>}
-     <div className="page-content">
+     </HeaderWrapper> : <Header headerTitle='Explore' headerClass={'header-always-show'}/>}
       <section className="p-0">
           <div className="container-fluid mw-100 p-0">
             <div
@@ -119,22 +116,12 @@ const ExploreEvents = ({topList}) => {
             
             <Client>{!isTab &&  <div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-white no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
                <ExplorerFilter/>
-               {isTab ? <></> : <div className="sidebar md:d-none mt-20">
+               <div className="sidebar md:d-none mt-20">
                   <SearchFilter/>
-                </div>
-                }
+               </div>
             </div>}</Client>
-            <div className="explore_content col minw-0 p-0">
+            <div className="explore_content col minw-0 p-md-2 p-0">
               <div className="inner_section mb-4">
-                {/* <Splider height={325} options={{arrows: false, wheel:false, height: 325, autoWidth: true, padding: { left: 0, right: 0}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'fade'} }>
-                  {topList?.length > 0 ? 
-                      topList.map((li) => {
-                      return <EventCard3 height={'100%'} exClass='m-0 radius-0' width={'100%'} key={li.id} listing = {li}/>
-                      })
-                      :
-                      <></>
-                    }
-                </Splider> */}
                 <Slider  {...fadingSlide} responsive = {[...largeResp]} >
                 {topList?.length > 0 ? 
                     topList.map((li) => {
@@ -173,7 +160,7 @@ const ExploreEvents = ({topList}) => {
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section px-2 mt-20">
-                    {/* <ActivityCarousel mini noFallback cardWidth={350} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  icon={<i className="bi bi-calendar4-week"/>} limit={10} cardType={3} exClass={'px-0'}  shadowHeight={144}/> */}
+                    <EventsCarousel mini noFallback cardWidth={350} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  icon={'fas fa-calendar-week'} limit={10} cardType={2} exClass={'px-0'} height={325} spliderOptions={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}/>
               </div>}
 
 

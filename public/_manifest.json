@@ -6,7 +6,7 @@
 "lang" : "en",
 "name" : "LyveCity",
 "scope" : "/",
-"display" : "fullscreen",
+"display" : "standalone",
 "start_url" : "/",
 "short_name" : "LyveCity",
 "description" : "",

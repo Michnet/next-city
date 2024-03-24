@@ -90,8 +90,12 @@ const TaggedSearchConst = ({accordion, category, location, queryTags, setSearchC
 
   useEffect(() => {
     if(Dir_categories){
-      const childsArr = Dir_categories.filter(child => child.parent === parentCat.id);
+     
+      const childsArr = Dir_categories.filter(child => child.parent == parentCat.id);
+      console.log('found', childsArr)
       setCatOptions(childsArr);
+    }else{
+      console.log('Not found', Dir_categories)
     }
   }, [Dir_categories, parentCat]);
 
@@ -110,7 +114,7 @@ const TaggedSearchConst = ({accordion, category, location, queryTags, setSearchC
 
   useEffect(() => {
     if(Dir_locations){
-      const locsArr = Dir_locations.filter(child => child.parent === parentLoc.id);
+      const locsArr = Dir_locations.filter(child => child.parent == parentLoc.id);
       setLocOptions(locsArr);
     }
   }, [Dir_locations, parentLoc]);
@@ -271,42 +275,47 @@ const customRenderer = (tag, size, color) => {
     return arrView;
   }
 
-  let searhID = 'lc_search'
+  let searchID = 'lc_search'
 
 
   return (
     <div className={`search_form tagged ${modal? '_modal' : ''}`}>
 
         <div className='search_form_content'>
-        <div className="accordion border-0 accordion-s" id={`accord_${searhID}`}>
+        <div className="accordion accordion-s" id={`accord_${searchID}`}>
 
                 <div className="accordion-item">
-                    <button  className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${searhID}_keyword`}>
+                    <button  className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${searchID}_keyword`}>
 
-                      <i className="las la-search"></i>
-                      {/* <span className="font-600 font-13 line-height-s">keyword(s)</span> */}
-                      <h6 className='tax_parent hiden'><span className='field_label'>Key Word(s)</span>{`${keyword}`}</h6>
-                      <i className="bi bi-plus font-20"></i>
+                    <span className='group_icon'> <i className={`color-magenta-light fas fa-search`}/></span>
+                      <div className='group_title'>
+                        <h6 className='group_label'>Key word(s)</h6>
+                        <p className='group_status lh-13 opacity-70'>{`${keyword}`}</p>
+                      </div>
+                      <i className="fas fa-plus"></i>
                     </button>
 
-                    <div id={`accord_${searhID}_keyword`} className={`accordion-collapse collapse `} data-bs-parent={`#accord_${searhID}`}>
+                    <div id={`accord_${searchID}_keyword`} className={`accordion-collapse collapse `} data-bs-parent={`#accord_${searchID}`}>
                      <input className='border-0' placeholder="Enter Key words ..." onChange={(e) => setKeyword(e.target.value)}/>
                     </div>
                 </div>
 
                 {/**cats */}
                 {catOptions && <div className="accordion-item">
-                    <button className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${searhID}_category`}>
+                    <button className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${searchID}_category`}>
 
-                      <span className='group_icon'> <i className="las la-project-diagram"></i></span>
-                      <h6 className='tax_parent'><span className='field_label'>Category</span>{`${processTitle(parentCat, catOptions, 'All Categories', 'All in ')}`}</h6>
-                      <i className="bi bi-plus font-20"></i>
+                      <span className='group_icon'> <i className="color-blue-light fas fa-network-wired"></i></span>
+                      <div className='group_title'>
+                        <h6 className='group_label'>Category</h6>
+                        <p className='group_status lh-13 opacity-70'>{`${processTitle(parentCat, catOptions, 'All Categories', 'All in ')}`}</p>
+                      </div>
+                      <i className="fas fa-plus"></i>
 
                     </button>
 
-                    <div id={`accord_${searhID}_category`} className={`accordion-collapse collapse `} data-bs-parent={`#accord_${searhID}`}>
+                    <div id={`accord_${searchID}_category`} className={`accordion-collapse collapse `} data-bs-parent={`#accord_${searchID}`}>
                         {catOptions.length > 0 && <>
-                        <input className='group_filter' placeholder="Type a category name ..." onChange={(e) => filterOptions(e.target.value,  filterCats, setCatOptions)}/>
+                        <input className='group_filter w-100' placeholder="Type a category name ..." onChange={(e) => filterOptions(e.target.value,  filterCats, setCatOptions)}/>
                         <div className='list_box' >
                         <TagCloud
                             className={`search_tags tag-cloud ${parentCat.id !== 0 ? 'buttoned' : ''}`}
@@ -319,69 +328,69 @@ const customRenderer = (tag, size, color) => {
                             onClick={tag => selectParent(tag.props.id, catOptions, setGrandCatId, setParentCat, Dir_categories, setSearchCat)}
                         />
                         </div></>}
-                        {parentCat.id !== 0 && <div className='list_buttons'>
+                        {parentCat.id !== 0 && <div className='list_buttons mt-2'>
 
-                      {grandCatId && <button className='_back_list btn-sm' onClick={() => selectParent(grandCatId, catOptions, setGrandCatId, setParentCat, Dir_categories, setSearchCat)}>Step Back</button>}
+                      {grandCatId && <button className='_back_list btn-sm border btn-s' onClick={() => selectParent(grandCatId, catOptions, setGrandCatId, setParentCat, Dir_categories, setSearchCat)}>Step Back</button>}
                     </div>}
                     </div>
                 </div>}
-        </div>
-            {/* <Accordion flush expandIconPosition='end' accordion={accordion} className='search_tags_accordion' ghost >
-            {catOptions &&  
-            <AccordionItem  eventKey="2">
-                <AccordionHeader></AccordionHeader>
-                <AccordionBody>{catOptions.length > 0 && <>
-                    <input className='group_filter' placeholder="Type a category name ..." onChange={(e) => filterOptions(e.target.value,  filterCats, setCatOptions)}/>
-                    <div className='list_box' >
-                    <TagCloud
-                        className={`search_tags tag-cloud ${parentCat.id !== 0 ? 'buttoned' : ''}`}
-                        shuffle={false}
-                        minSize={12}
-                        maxSize={38}
-                        tags={createOptions(catOptions, parentCat, grandCatId, 'All Categories')}
-                        colorOptions={color_options}
-                        renderer={customRenderer}
-                        onClick={tag => selectParent(tag.props.id, catOptions, setGrandCatId, setParentCat, Dir_categories, setSearchCat)}
-                    />
-                    </div></>}
-                    {parentCat.id !== 0 && <div className='list_buttons'>
+                {/**Locations */}
+                {locOptions && 
+                    <div className="accordion-item">
+                    <button className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${searchID}_location`}>
 
-                      {grandCatId && <button className='_back_list btn-sm' onClick={() => selectParent(grandCatId, catOptions, setGrandCatId, setParentCat, Dir_categories, setSearchCat)}>Step Back</button>}
-                    </div>}</AccordionBody>
-                </AccordionItem>}
-            {locOptions && 
-                <AccordionItem  extra={<span className='group_icon'> <i className="las la-map-marker-alt"></i></span>}  eventKey="3">
-                  <AccordionHeader><h6 className='tax_parent'><span className='field_label'>Location</span>{`${processTitle(parentLoc, locOptions, 'Everywhere', 'Everywhere in ')}`}</h6></AccordionHeader>
-                    <AccordionBody>
-                      {locOptions.length > 0 && <><input className='group_filter' placeholder="Type a location name ..." onChange={(e) => filterOptions(e.target.value, filterLocs, setLocOptions)}/>
-                       <div className='list_box'>
-                    <TagCloud
-                        className='search_tags tag-cloud'
-                        shuffle={false}
-                        minSize={12}
-                        maxSize={38}
-                        tags={createOptions(locOptions, parentLoc, grandLocId, 'Everywhere')}
-                        colorOptions={{
-                            luminosity: 'light',
-                            hue: 'purple',
-                          }}
-                        renderer={customRenderer}
-                        onClick={tag => selectParent(tag.props.id, locOptions, setGrandLocId, setParentLoc, Dir_locations)}
-                    />
-                      </div> </>}
-                    {parentLoc.id !== 0 && <div className='list_buttons'>
-                      
+                      <span className='group_icon'> <i className="fas fa-map-marker-alt color-brown-light"></i></span>
+                      <div className='group_title'>
+                        <h6 className='group_label'>Location</h6>
+                        <p className='group_status lh-13 opacity-70'>{`${processTitle(parentLoc, locOptions, 'Everywhere', 'Everywhere in ')}`}</p>
+                      </div>
+                      <i className="fas fa-plus"></i>
 
-                      {grandLocId && <button className='_back_list btn-sm' onClick={() => selectParent(grandLocId, locOptions, setGrandLocId, setParentLoc, Dir_locations)}>Step Back</button>}
-                    </div>}</AccordionBody>
-            </AccordionItem>}
+                    </button>
 
-            {Dir_tags && Dir_tags.length > 0 && 
-                <AccordionItem  extra={<span className='group_icon'> <i className="las la-tags"></i></span>} eventKey="4">
-                  <AccordionHeader><div><h6 className='tax_parent'><span className='field_label'>Place Features</span>{`${selectTags.length > 0 ? '' : 'All Features'}`}</h6><div className='select_tags'>{processTagsTitle(selectTags)}</div></div></AccordionHeader>
+                    <div id={`accord_${searchID}_location`} className={`accordion-collapse collapse `} data-bs-parent={`#accord_${searchID}`}>
+                        {locOptions.length > 0 && <>
+                        <input className='group_filter w-100' placeholder="Type a location name ..." onChange={(e) => filterOptions(e.target.value, filterLocs, setLocOptions)}/>
+                          <div className='list_box'>
+                        <TagCloud
+                            className='search_tags tag-cloud'
+                            shuffle={false}
+                            minSize={12}
+                            maxSize={38}
+                            tags={createOptions(locOptions, parentLoc, grandLocId, 'Everywhere')}
+                            colorOptions={{
+                                luminosity: 'light',
+                                hue: 'purple',
+                              }}
+                            renderer={customRenderer}
+                            onClick={tag => selectParent(tag.props.id, locOptions, setGrandLocId, setParentLoc, Dir_locations)}
+                        />
+                          </div> </>}
+                        {parentLoc.id !== 0 && <div className='list_buttons mt-2'>
+                          
 
-                     <AccordionBody> 
-                      <input className='group_filter' placeholder="Type to filter ..." onChange={(e) => filterOptions(e.target.value, Dir_tags, setTags)}/>
+                          {grandLocId && <button className='_back_list btn-sm border btn-s' onClick={() => selectParent(grandLocId, locOptions, setGrandLocId, setParentLoc, Dir_locations)}>Step Back</button>}
+                        </div>}
+                    </div>
+                </div>
+                }
+
+                {/**Tags */}
+                {Dir_tags && Dir_tags.length > 0  && 
+                    <div className="accordion-item">
+                    <button className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${searchID}_tags`}>
+
+                      <span className='group_icon'> <i className="fas fa-hashtag color-brown-light"></i></span>
+                      <div className='group_title'>
+                        <h6 className='group_label'>Features</h6>
+                        <p className='group_status lh-13 opacity-70'>{processTagsTitle(selectTags)}</p>
+                      </div>
+                      <i className="fas fa-plus"></i>
+
+                    </button>
+
+                    <div id={`accord_${searchID}_tags`} className={`accordion-collapse collapse `} data-bs-parent={`#accord_${searchID}`}>
+                    <input className='group_filter w-100' placeholder="Type to filter ..." onChange={(e) => filterOptions(e.target.value, Dir_tags, setTags)}/>
                       <div className='list_box'>
                     <TagCloud
                         className='search_tags tag-cloud  listing_tags'
@@ -395,14 +404,15 @@ const customRenderer = (tag, size, color) => {
                         renderer={customTagRenderer}
                         onClick={tag =>  setupTags(tag.props, selectTags, setSelectTags)}
                     />
-                    </div></AccordionBody>
-            </AccordionItem>}
-            </Accordion> */}
-        
+                    </div>
+                    </div>
+                </div>
+                }
+        </div>
            {infoView}
         </div>
 
-        <button className='btn btn-success rounded-22' onClick={() => submit()}>Search</button>
+        <div className='position-sticky' style={{bottom: '20px'}}><button className='btn btn-success rounded-22' onClick={() => submit()}>Search</button></div>
     </div>
   );
 };
