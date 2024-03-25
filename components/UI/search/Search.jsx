@@ -8,7 +8,6 @@ import useSWRInfinite from "swr/infinite";
 //import JavascriptMap from './JavascriptMap';
 import { useRecoilValue } from 'recoil';
 import { authState, UISizes} from '@/contexts/atoms';
-// // const SearchFilter = dynamic(() => import('./SearchFilter'));
 // import { BSDrawer} from '~/appComponents/components/UI/components';
 // import ListingTimeline from '~/components/activity/partials/ListingTimeline';
 // const DualColorHeader = dynamic(() => import('~/appComponents/components/partials/DualColorHeader'));
@@ -254,7 +253,6 @@ if(isEmpty){
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <SearchFilter/> */}
                                     {itemsView}
                                     {errorView}                                
                                 </div>

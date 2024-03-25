@@ -14,21 +14,21 @@ export default function listingMenu({listing, userId}){
  let tabList = [
   {
     id : 'home',
-    icon : "las la-home",
+    icon : "fas fa-home",
     title : 'Home', 
     subTitle : "This is home", 
     widgetClass: 'pt-0 no-pad',
   },
   /* {
     id: 'profile',
-    icon : 'lar la-id-card',
+    icon : 'far fa-id-card',
     title: 'About',
     subTitle: 'Profile Info',
     widgetClass : 'profile widgey',
   }, */
  /*  { 
     id: 'community',
-    icon: "lar la-comments",
+    icon: "far fa-comments",
     title: 'Community', subTitle : "Public Chat", 
     widgetClass: "pad_tab",
     innerClass: 'bg_tab',
@@ -43,7 +43,7 @@ export default function listingMenu({listing, userId}){
   
   {
     id: 'reviews',
-    icon:  "lar la-star", title : 'Reviews',
+    icon:  "far fa-star", title : 'Reviews',
     subTitle :"User Rating",
     widgetClass: 'pad_tab',
     innerClass: 'bg_tab border-0',
@@ -55,7 +55,7 @@ export default function listingMenu({listing, userId}){
   tabList.push(
     { 
       id: 'community',
-      icon: "lar la-comments",
+      icon: "far fa-comments",
       title: 'Community', subTitle : "Public Chat", 
       widgetClass: "pad_tab bg-white",
       innerClass: 'bg_tab border-0 pb-0 mb-0',
@@ -73,7 +73,7 @@ if(!userId || userId != author_id){
   tabList.push(
     {
       id: 'private-chat',
-      icon: "las la-sms", 
+      icon: "far fa-comment-dots", 
       title: 'Contact Us',
       subTitle : "Private Chat", 
       widgetClass : "widgey",
@@ -86,7 +86,7 @@ if(type === 'event'){
   tabList.push(
     {
       id: 'occurrences',
-      icon: 'lar la-calendar',
+      icon: 'far fa-calendar',
       title: 'Dates',
       subTitle : 'Occurences', 
       widgetClass:  'profile widgey',
@@ -99,7 +99,7 @@ if(type === 'event'){
 if(faqs?.length > 0){
   tabList.push({
     id : 'faqs',
-    icon: "lar la-question-circle", 
+    icon: "far fa-question-circle", 
     title: 'FAQs',
     subTitle : "Frequent Questions",
     widgetClass: 'widgey',
@@ -111,7 +111,7 @@ if(faqs?.length > 0){
    tabList.push(
   {
     id: 'schedule',
-    icon: 'lar la-calendar-check',
+    icon: 'far fa-calendar-check',
     title: 'Schedule',
     subTitle:  'Business Hours',
     widgetClass: 'pad_tab',
@@ -144,7 +144,7 @@ if(listing_articles){
  tabList.push(
   {
     id : 'articles',
-    icon : "las la-book", 
+    icon : "fas fa-book", 
     title: 'Blog',
     subTitle : "Our Articles", 
     widgetClass: "pad_tab",  
@@ -161,7 +161,7 @@ if(listing_articles){
 if(general_merchandise?.length > 0){
     tabList.push({
       id : 'merchandise',
-      icon: "las la-store-alt", title: 'Shop',
+      icon: "fas fa-store-alt", title: 'Shop',
       subTitle : "Our Products",
       widgetClass: 'shop widgey gx-px-lg-0 bg-transparent',
       badgeNumber: general_merchandise?.length ?? 0,
@@ -179,7 +179,7 @@ if(type === 'event'){
 
   tabList.push({
     id : 'tickets',
-    icon: "las la-ticket-alt", title: 'Tickets',
+    icon: "fas fa-credit-card", title: 'Tickets',
     subTitle : "Booking Options",
     widgetClass: 'shop widgey ',
     innerClass: 'px-3 sm:px-10',

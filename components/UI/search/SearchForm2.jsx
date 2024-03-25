@@ -2,8 +2,10 @@ import  { useState, useEffect} from 'react';
 import { useRouter } from 'next/router';
 import { Dir_tags, Dir_categories, Dir_locations } from '@/public/data/localCache';
 import { closeMenus } from '@/helpers/appjs';
+import { siteColors } from '@/helpers/base';
+import { randomEither } from '@/helpers/universal';
 
-const SearchForm1 = ({cancelSearchModal}) => {
+const SearchForm2 = ({cancelSearchModal}) => {
 
   const baseCat = 106;
 
@@ -19,6 +21,7 @@ const SearchForm1 = ({cancelSearchModal}) => {
   const [tagOptions, setTagOptions] = useState(null);
   const [selectTags, setSelectTags] = useState([]);
   const [tagList, setTagList] = useState([]);
+  const [summary, setSummary] = useState(true);
 
   const router = useRouter();
 
@@ -155,10 +158,18 @@ const onSubmit = () => {
       query: payload
     }); 
   }
-
- 
 };
+//console.log(selectTags);
+/* function  processTagsTitle(tagOptions){
+  let arrView;
+  if(tagOptions && tagOptions.length > 0){
+      arrView = <> {tagOptions.map((tag) => {
+        return <span>{tag.replace(/&amp;/g, '&')}<span onClick={() => setupTags(tag, selectTags, setSelectTags)} className='clear_tag'>x</span></span>;
+      }) }</>
+  }
 
+  return arrView;
+} */
 let featuresView;
 
 if(tagList.length > 0){
@@ -170,17 +181,18 @@ if(tagList.length > 0){
 
       return arr;
   }
-
+  let colorClass = `color-${randomEither(siteColors)}-dark`;
   if(tagList.length > 1){
+    
     let tempArr = [...tagList];
     const lastTag = tempArr.pop();
     const firstPart = tempArr.map((tag) => {
-      return <span><span className='hint _tag' dangerouslySetInnerHTML={{__html: tag}}/>, </span>
+      return <span><span className={`hint _tag ${colorClass}`} dangerouslySetInnerHTML={{__html: tag}}/>, </span>
     });
-    const lastPart = (<span className='hint _tag'>{lastTag}</span>)
+    const lastPart = (<span className={`hint _tag ${colorClass}`}>{lastTag}</span>)
     featuresView = <>{firstPart.concat(" and ", lastPart)}</>
   }else{
-    featuresView = <>{<span className='hint _tag'>{tagList.toString()}</span>}</>
+    featuresView = <>{<span className={`hint _tag ${colorClass}`}>{tagList.toString()}</span>}</>
   }
  
 }
@@ -206,6 +218,12 @@ function setupTags(value, arr, setArr){
   }
 }
 
+function setupTagsWithLabels(e){
+  setupTags(e.target.value, selectTags, setSelectTags); 
+  setupTags(e.target.label, tagList, setTagList)
+}
+
+  let filled = parentCat.id != baseCat || parentLoc.id != 0 || selectTags.length > 0 || keyword?.length > 0;
 
   return (
     <div className='search_form'>
@@ -213,37 +231,59 @@ function setupTags(value, arr, setArr){
         <div class="form-bg">
     <div class="container">
                 <div class="form-container shadow-none bg-transparent">
+                {summary && <>{filled && 
+                  <div className='search-description rounded-8 p-3 mb-4 border-type-1 position-sticky bg-theme z-2' style={{top: '10px'}}>
+                    <p className='descript_wrap'> Searching 
+                      {keyword && <span> for <span className='hint fw-600 color-theme text_underline'>{keyword}</span></span>}
+                      {<span> in <span className={`hint color-${randomEither(siteColors)}-dark`} dangerouslySetInnerHTML={{__html : `${parentCat.name ? parentCat.name : 'all'}`}}/> listings</span>}
+                      {parentLoc.name && <span> located in <span className={`hint color-${randomEither(siteColors)}-dark`} dangerouslySetInnerHTML={{__html: parentLoc.name}}/></span>}
+                      {selectTags?.length > 0 && <span> with {featuresView}</span>}
+                    </p>
+                  </div>}</>}
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label>Key word(s)</label>
+                            <label className="color-highlight text-uppercase font-700 font-11 pos-relative mb-0">Key word(s)</label>
                             <input placeholder="Enter Key words ..." onChange={(e) => setKeyword(e.target.value)} type="text" class="form-control" />
+
+                           {/*  <div className="input-style has-borders no-icon mb-4 input-style-always-active">
+                                <label className="color-highlight text-uppercase font-700 font-11">Key word(s)</label>
+                                <input placeholder="Enter Key words ..." onChange={(e) => setKeyword(e.target.value)} type="text"/>
+                            </div> */}
                         </div>
                         {catOptions && 
                           <div class="form-group">
-                          <label>Category</label>
-                          <select 
-                            className="form-control"
-                            value={parentCat.id}
+                            <div className="input-style has-borders no-icon mb-4 input-style-always-active">
+                                <label className="color-highlight text-uppercase font-700 font-11">Category</label>
+                                <select value={parentCat.id}
                             onChange={(e) => {selectParent(e.target.value, catOptions, setGrandCatId, setParentCat, Dir_categories);}}>
-                            {createOptions(catOptions, parentCat, grandCatId, 'All Categories', 106)}
-                          </select>
+                                  {createOptions(catOptions, parentCat, grandCatId, 'All Categories', 106)}
+                                </select>
+                                <span><i className="fa fa-chevron-down"></i></span>
+                            </div>
                           </div>
                         }
                         {locOptions && 
                           <div class="form-group">
-                          <label>Location</label>
-                          <select 
-                            className="form-control"
-                            value={parentLoc.id}
+
+                            <div className="input-style has-borders no-icon mb-4 input-style-always-active">
+                                <label className="color-highlight text-uppercase font-700 font-11">Location</label>
+                                <select value={parentLoc.id}
                             onChange={(e) => selectParent(e.target.value, locOptions, setGrandLocId, setParentLoc, Dir_locations)}>
-                            {createOptions(locOptions, parentLoc, grandLocId, 'Everywhere', 0)}
-                          </select>
+                                  {createOptions(locOptions, parentLoc, grandLocId, 'Everywhere', 0)}
+                                </select>
+                                <span><i className="fa fa-chevron-down"></i></span>
+                            </div>
                           </div>}
                         <div class="form-group _features">
-                            <label>Features</label>
-                            <select className="form-control" multiple>
-                            {createTagOptions(tagOptions, 'All Features')}
-                            </select>
+                        <label className="color-highlight text-uppercase font-700 font-11 pos-relative ms-2 mb-0">Tags</label>
+                                {/* <p className='group_status lh-13 opacity-70 ms-2'>{processTagsTitle(tagList)}</p> */}
+                            <div className="input-style has-borders no-icon mb-4 input-style-always-active">
+                               
+                                <select  multiple>
+                                {createTagOptions(tagOptions, 'All Features')}
+                                </select>
+                                <span><i className="fa fa-chevron-down"></i></span>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -251,22 +291,12 @@ function setupTags(value, arr, setArr){
 </div>
 
       
-
-        {!parentCat === {id : 0} || !parentLoc === {id : 0} || selectTags.length > 0 && 
-        <div className='search-description rounded-8 p-3 mb-4 border-type-1'>
-          <p className='descript_wrap'> Searching 
-            {keyword && <span> for <span className='hint fw-600 color-theme'>{keyword}</span></span>}
-            {<span> in <span className='hint' dangerouslySetInnerHTML={{__html : `${parentCat.name ? parentCat.name : 'all'}`}}/> listings</span>}
-            {parentLoc.name && <span> located in <span className='hint' dangerouslySetInnerHTML={{__html: parentLoc.name}}/></span>}
-            {selectTags?.length > 0 && <span> with {featuresView}</span>}
-          </p>
-        </div>}
-
-        <div className='position-sticky' style={{bottom: '20px'}}>
+        <div className='position-sticky row_flex justify-between align-items-center' style={{bottom: '20px'}}>
             <button className='btn btn-theme rounded-22 px-35' onClick={() => {closeMenus(); onSubmit()}}>Search</button>
+            {filled && <button className="btn btn-xs mb-0 btn-secondary px-3 bg-theme color-theme border opacity-70" onClick={() => setSummary(!summary)}>{summary ? 'Hide Summary' : 'Show Summary'}</button>}
         </div>
     </div>
   );
 };
 
-export default SearchForm1;
+export default SearchForm2;

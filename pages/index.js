@@ -13,7 +13,7 @@ import { fadingSlide, responsiveCarousel, largeResp, variableWidth } from "@/hel
 import { useEffect } from 'react';
 import ListingCard from './../components/UI/Listings/cards/ListingCard';
 import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
-import { DualColorHeader, SectionHeader } from "@/components/UI/Partials";
+import {SectionHeader } from "@/components/UI/Partials";
 import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
 import { TermIcon } from "@/components/UI/partials/termLinks";
 import ActivityCard2 from "@/components/UI/Listings/cards/ActivityCard2";

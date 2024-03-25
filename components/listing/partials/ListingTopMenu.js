@@ -72,7 +72,7 @@ const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?
               <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
               <div className={`menu_icon d-flex flex-column px-2`}>
                     <span className='position-relative'>
-                      <i className={`las la-caret-square-left`}/> 
+                      <i className={`fas fa-ellipsis-h`}/> 
                   </span>
                   <h5 className="profile_title">More</h5>
               </div>

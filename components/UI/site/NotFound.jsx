@@ -15,19 +15,19 @@ const NotFound = () => {
       <div className="container">
         <div className="row y-gap-30 justify-between items-center">
           <div className="col-lg-6">
-            <img src={data.imageSrc} alt="image" />
+            <img className='w-100' src={data.imageSrc} alt="image"/>
           </div>
           <div className="col-lg-5">
             <div className="no-page">
-              <div className="no-page__title">
-                40<span className="text-blue-1">4</span>
+              <div className="no-page__title font-22 fw-700 mb-3">
+                Not<span className="color-highlight">found</span>
               </div>
               <h2 className="text-30 fw-600">{data.title}</h2>
-              <div className="pr-30 mt-5">{data.description}</div>
+              <div className="pr-30 mt-5 font-14">{data.description}</div>
               <div className="d-inline-block mt-40 md:mt-20">
                 <Link
                   href={data.buttonUrl}
-                  className="button -md -dark-1 bg-blue-1 text-white"
+                  className="button btn gradient-highlight -md -dark-1 bg-blue-1 text-white"
                 >
                   {data.buttonLabel}
                 </Link>

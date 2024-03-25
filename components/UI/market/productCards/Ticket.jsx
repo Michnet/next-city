@@ -1,11 +1,12 @@
 import { cleanHtml } from "@/helpers/universal";
 import Link from "next/link";
 import { Client } from "react-hydration-provider";
+import { PriceView } from "../../PriceView";
 import ProductActions from "../partials/ProductActions";
 
 const Ticket = ({product, user}) => {
 
-    const {id, listing, name, price, rating, short_description, occurrence_slots, images} = product ?? {};
+    const {id, listing, name, price, rating, short_description,price_html, occurrence_slots, images} = product ?? {};
     const {phone, whatsapp, cover, logo, title, id:listing_id, type, slug} = listing ?? {};
 
     let imgUrl = images?.length > 0 ? images[0].medium : cover;
@@ -20,20 +21,21 @@ const Ticket = ({product, user}) => {
       <small className="text-uppercase">{cleanHtml(title)}</small>
       <h3 className="text-uppercase lh-1 mb-15">{cleanHtml(name)}</h3>
 
-      <Client><p className="p-desc" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
-      <div className="even-date lh-15">
+      <Client><p className="p-desc font-13" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
+      {/* <div className="even-date lh-15">
       <i className="fa fa-calendar"></i>
       <time>
       <span>wednesday 28 december 2014</span>
       <span>08:55pm to 12:00 am</span>
       </time>
-      </div>
-      <div className="even-info lh-15">
+      </div> */}
+      {price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={price_html}/> }
+      {/* <div className="even-info lh-15">
         <i className="fa fa-map-marker"></i>
         <p>
             nexen square for people australia, sydney
         </p>
-      </div>
+      </div> */}
       <div className="card_footer flex_row justify-between mt-15">
         <ProductActions smallIcons whatsApp={whatsapp} phone={phone} user={user}/>
         <Link href={`/market/event-tickets/${id}`}>Details</Link>

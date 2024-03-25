@@ -84,7 +84,7 @@ export function run_template(){
                     }
                 }));
 
-                var selectField = document.querySelectorAll('.input-style select')
+            /*     var selectField = document.querySelectorAll('.input-style select')
                 selectField.forEach(el => el.addEventListener('change', e => {
                     if(el.value !== "default"){
                         el.parentElement.classList.add('input-style-active');
@@ -96,7 +96,7 @@ export function run_template(){
                         el.parentElement.querySelectorAll('.invalid')[0].classList.remove('disabled');
                         el.parentElement.classList.add('input-style-active');
                     }
-                }));
+                })); */
 
                 var dateField = document.querySelectorAll('.input-style input[type="date"]')
                 dateField.forEach(el => el.addEventListener('change', e => {

@@ -1,6 +1,23 @@
 //import { serializeQuery, oathInfo, WPDomain, WPRepository, userActions, userReviews} from './WpBase';
 import { kyFetch, serializeQuery, WPDomain, oathInfo } from './base';
 
+
+export const fetchProductUrl = (id, payload) => {
+    let endpoint;
+    if (payload) {
+        endpoint = `wp-json/wc/v3/products/${id}?${serializeQuery({
+            ...payload,
+            ...oathInfo,
+        })}`;
+    } else {
+        endpoint = `wp-json/wc/v3/products/${id}?${serializeQuery({
+            ...oathInfo,
+        })}`;
+    }
+  
+    return `${WPDomain}/${endpoint}`;
+}
+
 export async function  getCategoryByID(id, payload) {
     let endpoint;
     if(payload){

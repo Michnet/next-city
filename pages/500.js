@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <>
       <SiteHead robots={"noindex,nofollow"} title={'Not Served'}/>
-      <NotServed/>
+      <div className='page-content'><NotServed/></div>
     </>
   );
 };

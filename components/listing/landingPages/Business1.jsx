@@ -156,9 +156,9 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         if(wcu?.list?.length > 0){
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
-                return <div className="strength_item">
-                            <div className="content">
-                                <div className="image_bg" >
+                return <div className="strength_item"  style={{height: '250px', width: '400px', maxWidth: '95vw'}}>
+                            <div className="content m-0">
+                                <div className="image_bg">
                                   <Image fill style={{objectFit:"cover"}} src= {`${reason?.mylisting_accordion_photo}`}/>
                                 </div>
                                
@@ -178,12 +178,12 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                     <div className="listing_strengths  gray_bg">
                    {/*  <div className="vertical_label dark_bg _bold"><h3 className="vertical_text">Why You Can't Miss</h3></div> */}
                         <div className="row_content row">
-                            <div className="strengths_intro padded_container col-12 col-md-4">
+                            {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
                                 <h4 className="section_subHead gray_text">{wcu.wcu_intro_detail}</h4>
-                            </div>
+                            </div> : <></>}
                             <div className="strengths_body col-12 col-md-8 p-0">
-                                <Splider>{reasonArr}</Splider>
+                                <Splider exClass={'in_color'} options={{perMove:1, perPage:1, padding:{right: '20%'}}} height={'250px'} showDots>{reasonArr}</Splider>
                             </div>
                         </div>
                     </div>

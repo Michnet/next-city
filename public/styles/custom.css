@@ -113,6 +113,7 @@ h6 {
 .date {
     display: table-cell;
     width: 30%;
+    min-width: 100px;
     position: relative;
     text-align: center;
     border-right: 2px dashed #dadde6
@@ -195,8 +196,8 @@ h6 {
 
 .ticket_card .ticket_annex h3 {
     font-size: 30px;
-    letter-spacing: 5px;
-    line-height: 1em;
+    letter-spacing: 3px;
+    line-height: 0.8em;
     font-weight: 900;
 }
 
@@ -268,7 +269,11 @@ h6 {
 
 
 /*Classes*/
-._link{}
+.border-dotted{
+    border-style: dotted
+}
+.text_underline{text-decoration:underline}
+._link{cursor:pointer}
 .flex_row{
     display: flex !important;
     flex-direction: row;
@@ -368,7 +373,6 @@ div#mobile_sidebar {}
 }
 
 .btn {
-    text-transform: uppercase;
     font-weight: 700;
     border-radius: 12px;
     font-size: 12px;
@@ -399,8 +403,9 @@ div#mobile_sidebar {}
 }
 
 .btn-xs {
-    font-size: 12px;
-    padding: 9px 14px
+    height: fit-content;
+    font-size: 10px !important;
+    padding: 5px 8px !important;
 }
 
 .btn-s {
@@ -739,7 +744,7 @@ div#footer-bar {
     display: block;
     flex-wrap: nowrap;
     gap: 10px;
-    max-width: 130px;
+    max-width: 170px;
     display: flex;
     flex-direction: row;
 }
@@ -789,8 +794,10 @@ div#footer-bar {
 
 .cd_label {
     font-weight: 300;
-    font-size: 12px;
-    color: var(--bs-gray-500)
+    font-size: 11px;
+    color: var(--bs-gray-500);
+    line-height: 1em;
+    font-weight: 500;
 }
 
 /*Accordion*/
@@ -1451,13 +1458,25 @@ div#explore_nav .left_menu_btn {
     border-radius: 30px;
 }
 }
+
+@media (max-width: 575px){
+.profile-top-menu .menu_icon i {
+    font-size: 23px;
+}
+}
+
 /*media qs end*/
+
 .tags_row .row_content .vertical_text {
     right: 20px;
     position: absolute;
     top: auto;
     bottom: 30px;
     opacity: 0.4
+}
+
+.tags_row .row_content .vertical_text h3 {
+    font-size: 31px;
 }
 
 
@@ -2357,15 +2376,10 @@ nav.toc > ul > li {
     right: 0;
     top: 0;
 }
-
-.form-group._features select {
-    height: 150px !important;
-    border-radius: 20px !important;
-    display: flex !important;
-}
-
 .form-group._features select option {
-    width: fit-content;
+    min-height: 26px;
+    display: flex;
+    align-items: center;
 }
 
 .search-description .descript_wrap .hint {
@@ -2390,3 +2404,61 @@ nav.toc > ul > li {
 .search_form .group_title p {
     font-size: 12px;
 }
+
+.search_form .form-control {
+    border: 1px solid var(--borderTheme);
+}
+
+.search_form .search-description {
+    max-height: 150px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+span.clear_tag {
+    position: absolute;
+    background: var(--bs-gray-500);
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 50%;
+    right: -14px;
+    top: 0;
+}
+
+.form-group._features .group_status span:not(.clear_tag) {
+    margin-right: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.header .profile-top-menu {
+    padding-left: 20px;
+}
+
+#listingMenuRight .list-custom-small .badge {
+    margin-top: 0 !important;
+}
+
+.listing_menu_toggler .menu_icon .profile_title {
+    opacity: 0.5;
+}
+
+.splider.in_color .splide__slide:not(.is-active):before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: var(--highlight);
+    z-index: 2;
+    opacity: 0.3;
+    backdrop-filter: grayscale(1);
+}
+
+.splider.in_color .splide__slide {
+    position: relative;
+}
+
+.listing_intro .section_overlay.gray-fil {backdrop-filter: grayscale(1) blur(2px);}

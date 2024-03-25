@@ -2,8 +2,7 @@ import  { useState, useEffect, memo, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Dir_tags, Dir_categories, Dir_locations } from '@/public/data/localCache';
 import { TagCloud } from 'react-tagcloud';
-//import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from 'react-bootstrap';
-//import { Accordion } from 'react-bootstrap';
+import { closeMenus } from '@/helpers/appjs';
 
 const TaggedSearchConst = ({accordion, category, location, queryTags, setSearchCat, setSearchTags, modal}) => {
 
@@ -56,6 +55,36 @@ const TaggedSearchConst = ({accordion, category, location, queryTags, setSearchC
     })}
   }
 
+  
+    return optionsArr
+  }
+
+  function createSelectOptions(catOptions, parentCat, grandCatId, placeholder, baseId){
+    let optionsArr = [];
+    if(parentCat){
+      if(parentCat.id !== baseId){
+        if(catOptions.length > 0){
+         optionsArr.push(<option disabled value={parentCat.id} dangerouslySetInnerHTML={{__html: 'All in ' + parentCat.name}}/>)
+        }else{
+          optionsArr.push(<option disabled value={parentCat.id} dangerouslySetInnerHTML={{__html: parentCat.name}}/>)
+        }
+      }else{
+        optionsArr.push(<option className='parent' disabled value={parentCat.id} dangerouslySetInnerHTML={{__html: placeholder}}/>)
+      }
+    }
+
+    if(parentCat.id !== baseId){
+      optionsArr.push(<option className='reset' value={baseId} dangerouslySetInnerHTML={{__html: "Reset"}}/>)
+      }
+      if(grandCatId){
+        optionsArr.push(<option className='reset set-back' value={grandCatId} dangerouslySetInnerHTML={{__html: "Back"}}/>)
+        } 
+    
+    catOptions.map((each) => {
+       optionsArr.push(
+        <option tagName={each.name} value={each.id} dangerouslySetInnerHTML={{__html:`${each.name}<span class="option-label">${''}</span></p>`}}/>
+       )
+    });
   
     return optionsArr
   }
@@ -282,6 +311,7 @@ const customRenderer = (tag, size, color) => {
     <div className={`search_form tagged ${modal? '_modal' : ''}`}>
 
         <div className='search_form_content'>
+          
         <div className="accordion accordion-s" id={`accord_${searchID}`}>
 
                 <div className="accordion-item">
@@ -412,7 +442,7 @@ const customRenderer = (tag, size, color) => {
            {infoView}
         </div>
 
-        <div className='position-sticky' style={{bottom: '20px'}}><button className='btn btn-success rounded-22' onClick={() => submit()}>Search</button></div>
+        <div className='position-sticky' style={{bottom: '20px'}}><button className='btn btn-success rounded-22' onClick={() => {closeMenus() ;submit()}}>Search</button></div>
     </div>
   );
 };

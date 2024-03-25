@@ -1,6 +1,7 @@
 // import ActivityCarousel from "~/components/activity/ActivityCarousel";
 import ExplorerFilter from "@/components/UI/search/ExplorerFilter";
 import SearchFilter from "@/components/UI/search/SearchFilter";
+import SearchForm2 from "@/components/UI/search/SearchForm2";
 
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 import SiteHead from "@/components/UI/SiteHead";
@@ -20,6 +21,7 @@ import Slider from "react-slick";
 import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import EventsCarousel from "@/components/UI/Listings/EventsCarousel";
+import { closeMenus } from "@/helpers/appjs";
 //import { AvatarsRow } from "~/appComponents/components/skeletons/React-content-loader/Skeletons";
 //import SiteHead from "~/appComponents/components/SiteHead";
 
@@ -89,35 +91,13 @@ const ExploreEvents = ({topList}) => {
      </HeaderWrapper> : <Header headerTitle='Explore' headerClass={'header-always-show'}/>}
       <section className="p-0">
           <div className="container-fluid mw-100 p-0">
-            <div
-                className="menu menu-box-left search_filter"
-                tabIndex="-1"
-                id="listingSidebar"
-              >
-                <div className="offcanvas-header">
-                  <h5 className="offcanvas-title" id="offcanvasLabel">
-                    Filter Events
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                  ></button>
-                </div>
-
-                <div className="offcanvas-body pb-0">
-                  <aside className="sidebar  xl:d-block">
-                    <SearchFilter/>
-                  </aside>
-                </div>
-            </div>
+            
             <div className="row flex-column flex-md-row flex-md-nowrap m-0">
             
             <Client>{!isTab &&  <div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-white no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
                <ExplorerFilter/>
                <div className="sidebar md:d-none mt-20">
-                  <SearchFilter/>
+                  <SearchForm2/>
                </div>
             </div>}</Client>
             <div className="explore_content col minw-0 p-md-2 p-0">
@@ -177,25 +157,17 @@ const ExploreEvents = ({topList}) => {
           </div>
       </section>
       </div>
-
-     {/*  <section>
-          <div className="container">
-            <div className="row justify-center text-center m-0">
-            <div className="col-auto">
-              <div className="sectionTitle -md">
-                <h2 className="sectionTitle__title">Special Offers</h2>
-                <p className=" sectionTitle__text mt-5 sm:mt-0">
-                  These popular destinations have a lot to offer
-                </p>
-              </div>
+      <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="listingSidebar" >
+                <div class="menu-title"><h1>Filter Results</h1>
+                    <p class="color-highlight">Filter your Search Results</p>
+                      <i className="fas fa-times close-menu" onClick={() => closeMenus()}/>
+                  </div>
+                <div className="offcanvas-body pb-0">
+                  <aside className="sidebar  xl:d-block">
+                    <SearchForm2/>
+                  </aside>
+                </div>
             </div>
-          </div>
-          <div className="row y-gap-20 pt-40 m-0">
-            <AddBanner />
-          </div>
-          </div>
-      </section> */}
-      {/* End Footer Section */}
     </>
   );
 };

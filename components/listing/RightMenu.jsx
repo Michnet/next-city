@@ -19,7 +19,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
                       return <Link onClick={() => {closeMenus(); setActiveKey(id)}} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
-							<i className={`fa font-12 fa-home gradient-green rounded-sm color-white`}></i>
+							<i className={`${icon ?? 'far fa-square'} font-16 color-highlight bg-transparent border rounded color-white`}></i>
 							<span className="position-relative">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
@@ -32,8 +32,8 @@ function RightMenu({listing, activeKey, setActiveKey}) {
       }
   return (
     <Client>
-    <div id="listingMenuRight" className="menu menu-box-right menu-box-detached menu-sidebar" style={{width: '310px'}}>
-		<div className="sidebar-content">
+    <div id="listingMenuRight" className="menu menu-box-right menu-sidebar" style={{width: '310px'}}>
+		<div className="sidebar-content h-auto">
 			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
 				<div className="card-bottom m-3">
 					<h1 className="mb-n1 color-white truncate">{cleanHtml(title?.rendered)}</h1>
@@ -45,46 +45,11 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 				<div className="card-overlay bg-gradient"></div>
 				<div className="card-overlay bg-black opacity-10"></div>
 			</div>
-            <div className="card card-style">
+            <div className="card card-style bg-transparent shadow-0 border">
 				<div className="content my-0">
 					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
 					<div className="list-group list-custom-small list-icon-0">
 						{listView}
-					</div>
-				</div>
-			</div>
-
-
-			<div className="card card-style">
-				<div className="content my-0">
-					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
-					<div className="list-group list-custom-small list-icon-0">
-						<a href="#">
-							<i className="fa font-12 fa-home gradient-green rounded-sm color-white"></i>
-							<span>Homepage</span>
-							<i className="fa fa-angle-right"></i>
-						</a>
-						<a href="#">
-							<i className="fa font-12 fa-cog gradient-red rounded-sm color-white"></i>
-							<span>Components</span>
-							<span className="badge bg-highlight">NEW</span>
-							<i className="fa fa-angle-right"></i>
-						</a>
-						<a href="#">
-							<i className="fa font-12 fa-file gradient-blue rounded-sm color-white"></i>
-							<span>Page Packs</span>
-							<i className="fa fa-angle-right"></i>
-						</a>
-						<a href="#">
-							<i className="fa font-12 fa-camera gradient-yellow rounded-sm color-white"></i>
-							<span>Media</span>
-							<i className="fa fa-angle-right"></i>
-						</a>
-						<a href="#">
-							<i className="fa font-12 fa-image gradient-teal rounded-sm color-white"></i>
-							<span>Contact</span>
-							<i className="fa fa-angle-right"></i>
-						</a>
 					</div>
 				</div>
 			</div>

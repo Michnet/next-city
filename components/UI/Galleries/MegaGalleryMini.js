@@ -84,7 +84,7 @@ function setUpToggler(){
 useEffect(() => {
   setLoading(true)
   if(listing){
-    setGallery(listing.galleryWithBlurs)
+    setGallery(/* listing.galleryWithBlurs */listing.gallery)
     setLoading(false);
     setSlideIndex(-1);
   }

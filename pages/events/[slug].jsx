@@ -2,7 +2,7 @@ import RelatedByTaxSplide from "@/components/listing/RelatedByTaxSplide";
 //import VisitRecord from "@/components/UI/VisitRecord";
 import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
-import { cleanHtml, srcWithFallback } from "@/helpers/universal";
+import { cleanHtml, shadeRGBColor, srcWithFallback } from "@/helpers/universal";
 import dynamic from "next/dynamic";
 import { memo, useEffect, useState } from "react";
 import SiteHead from "@/components/UI/SiteHead";
@@ -26,6 +26,7 @@ import {fallbackImgSrcSet } from "@/helpers/base";
 import { closeMenus } from "@/helpers/appjs";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
+const ColorThief = require('colorthief');
 
 export async function getStaticPaths() {
     const res = await fetch(fetchIdsUrl({type: 'job_listing', listing_type:'event', slugs: true}));
@@ -53,9 +54,25 @@ export async function getStaticPaths() {
 
     const singleRes = await fetch(fetchSingleListingUrl(params.slug));
     const postArr = await singleRes.json();
-    const post = postArr[0];
-    serverObj.listing = post && post != 'undefined' ? post :  null;
-    const title = post?.title?.rendered;
+    const listing = postArr[0];
+    serverObj.listing = listing && listing != 'undefined' ? listing :  null;
+    const title = listing?.title?.rendered;
+
+    async function getThemeColor(){
+        if(listing?.cover?.length > 0 && listing?.cover?.startsWith('http')){
+          let gota = await ColorThief.getColor(listing?.cover)
+          .then(color => {return color})
+          .catch(err => { console.log(err) });
+          if(gota){
+            serverObj.themeColor = gota;
+          }
+        }
+    }
+
+    if(listing){
+        await getThemeColor();
+    }
+    
     
     return {
       props: {
@@ -64,7 +81,7 @@ export async function getStaticPaths() {
         settings : {
             mMenu: 'show',
             mMenuContent:{
-              icon : 'las la-ellipsis-h', 
+              icon : 'fas fa-ellipsis-h', 
               btnProps:{
               'data-menu' : "listingActions"}
               
@@ -85,7 +102,7 @@ export async function getStaticPaths() {
      }
   }
 
-  const ListingConst = ({listing}) => {
+  const ListingConst = ({listing, themeColor}) => {
     //const {listing} = serverObj;
     const {short_desc, meta, cover, categories, about_us, logo,rating, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
     const router = useRouter();
@@ -95,6 +112,7 @@ export async function getStaticPaths() {
     const [activeKey, setActiveKey] = useState(query?.page ?? view);
 
 console.log('liss', listing);  
+let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0) : '#000';
 
 useEffect(() => {
   setActiveKey(query?.page ?? view);
@@ -146,8 +164,8 @@ if(listing){
             </HeaderWrapper>
     <div className="page-content single_listing ">
 
-    <div className={`card preload-img listing_hero`} /* data-src={cover} data-card-height="480" */ style={{/* backgroundImage: `url(${cover})`, */ height: activeKey == 'home' ? '60vh' : '35vh'}}>
-            <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
+    <div className={`card preload-img listing_hero`} style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '60vh' : '35vh'}}>
+            {/* <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
                     //placeholder="blur"
@@ -163,7 +181,7 @@ if(listing){
                    //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-            </Mirrored>
+            </Mirrored> */}
         <div className="card-top m-3">
             <div className="notch-clear">
                 <a data-back-button href="#" className="icon icon-xs bg-white color-black rounded-m"><i className="fa fa-angle-left"></i></a>
@@ -195,7 +213,9 @@ if(listing){
         {/* <div className="card-overlay bg-gradient-fade-small"></div> */}
     </div>
     <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={listing}/>
-    <Client><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></Client>
+    <Client>
+        <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
+    </Client>
 </div>
 {/* <!-- End of Page Content--> */}
 

@@ -301,6 +301,20 @@ export function shortenNum(number, decPlaces) {
 
   return number;
 }
+export const listingUrlBase = (type) => {
+  switch (type) {
+    case 'event':
+      return 'events'
+      break;
+    case 'place':
+      return 'places'
+      break;
+    default:
+      return 'listing'
+      break;
+  }
+}
+
 
 export function srcWithFallback(src, fb = '/images/bg/fallback.jpg'){
   if(src?.includes('http') || src?.charAt(0) === '/'){
@@ -394,6 +408,13 @@ export const productsSortList = [
   {id: 6, label: 'Most popular',name: 'most-popular',  orderby: 'popularity', order : 'desc'},
   {id: 7, label: 'Top Rated', name: 'top-rated', orderby : 'rating', order: 'desc'}
 ];
+export const truncateString = (string, limit) => {
+  if (string.length > limit) {
+    return string.substring(0, limit) + "...";
+  } else {
+    return string;
+  }
+};
 
 export const basicProductFields = "id,name,featured,short_description,price,regular_price,average_rating,rating_counts,images,attributes";
 

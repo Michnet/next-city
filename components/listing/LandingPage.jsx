@@ -21,15 +21,15 @@ import { PriceView } from "../UI/PriceView";
                         <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
                     </p>}</Client>
                     <CountDownUI fromActive eventId={listing?.id} /* eventId={id} */ />
-                    <div className="row mb-3 mt-2 meta_card">
+                    <div className="row mb-3 mt-4 meta_card">
                         <div className="col-6">
                             <div className="d-flex">
                                 <div className="align-self-center">
-                                    <i style={{width:"20px"}} className="bi bi-calendar2-check color-teal-dark font-23 me-3 text-center"></i>
+                                    <i style={{width:"20px"}} className="far fa-calendar-check color-teal-dark font-23 me-3 text-center"></i>
                                 </div>
                                 <div className="align-self-center">
-                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Date</span>
-                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive /* date={event_date[0].start} */ format={'ddd, DD MMMM'}/></strong>
+                                    <span className="d-block font-11 mb-n1 pb-1 color-theme opacity-50 lh-1">Date</span>
+                                    <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive /* date={event_date[0].start} */ format={'ddd, DD MMMM'}/></strong>
                                 </div>
                             </div>
                         </div>
@@ -39,8 +39,8 @@ import { PriceView } from "../UI/PriceView";
                                     <i style={{width:"20px"}} className="bi bi-clock color-red-dark font-23 me-3 text-center"></i>
                                 </div>
                                 <div className="align-self-center">
-                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Time</span>
-                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive format={'hh:mm A'}/></strong>
+                                    <span className="d-block font-11 mb-n1 pb-1 color-theme opacity-50 lh-1">Time</span>
+                                    <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive format={'hh:mm A'}/></strong>
                                 </div>
                             </div>
                         </div>
@@ -51,8 +51,8 @@ import { PriceView } from "../UI/PriceView";
                                     <i style={{width:"20px"}} className="bi bi-geo-alt color-yellow-dark font-23 me-3 text-center"></i>
                                 </div>
                                 <div className="align-self-center">
-                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">Where</span>
-                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme">{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</strong>
+                                    <span className="d-block font-11 mb-n1 pb-1 color-theme opacity-50 lh-1">Where</span>
+                                    <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme">{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</strong>
                                 </div>
                             </div>
                         </div>
@@ -62,20 +62,20 @@ import { PriceView } from "../UI/PriceView";
                                     <i style={{width:"20px"}} className="bi bi-wallet color-green-dark font-23 me-3 text-center"></i>
                                 </div>
                                 <div className="align-self-center">
-                                    <span className="d-block font-10 mb-n1 pb-1 color-theme opacity-50 lh-1">From</span>
-                                    <strong className="d-block truncate-2 meta_info font-12 pb-1 color-theme">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</strong>
+                                    <span className="d-block font-11 mb-n1 pb-1 color-theme opacity-50 lh-1">From</span>
+                                    <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</strong>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="divider"></div>
+                    <div className="divider mb-1"></div>
 
                 </div>
             </div>
 
             <div className="mb-5 px-50">
-                <button className="w-1/1 shadow-bg btn btn-full btn-m rounded-lg shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
+                <button onClick={() => setActiveKey('tickets')} className="w-1/1 shadow-bg btn btn-full btn-m rounded-lg shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
             </div>
 
             <div className="card card-style shadow-0 radius-0 bg-transparent">
@@ -94,7 +94,7 @@ import { PriceView } from "../UI/PriceView";
                         </div>
                     </div>
                     {trimFaqs?.length > 0 && <FAQs faqs={trimFaqs} postID={id}/>}
-                    <button onClick={() => setActiveKey('faqs')} className="shadow-lg-m rounded-l bg-secondary mb-0 btn btn-xxs mb-3 font-900 shadow-lg">
+                    <button onClick={() => setActiveKey('faqs')} className="shadow-lg-m rounded-l color-white bg-secondary mb-0 btn btn-xxs mb-3 font-900 shadow-lg">
                         Get More Answers
                     </button>
                 </div>

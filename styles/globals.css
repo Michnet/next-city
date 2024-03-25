@@ -1454,7 +1454,6 @@ margin-top: 0;}
 }
 .search_form {
   padding: 20px 7%;
-  background: #ecf0f3;
 }
 
 .filter_body .search_form {
@@ -5469,7 +5468,6 @@ nav.toc > ul > li li {
   height: 40px;
   padding: 6px 20px;
   letter-spacing: 1px;
-  border: none;
   border-radius: 50px;
   border-top-left-radius: 0;
   box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #fff;
