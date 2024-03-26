@@ -25,6 +25,7 @@ import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
 import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
 import SearchField from "@/components/UI/search/SearchField";
 import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
+import { randomEither } from '@/helpers/universal';
 
 
 export async function getStaticProps() {
@@ -106,7 +107,12 @@ export default function Home(props) {
       fetchy = false;
     }
   },[]);
-  
+   
+  let imgArr = eventCategories.map((ct) => {
+    let {term_meta, id} = ct;
+    let {image_url} = term_meta;
+    return image_url;
+  })
 
   const { data:listings, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true, 'event-date':'any-day' }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: true });
 
@@ -121,10 +127,10 @@ export default function Home(props) {
 
 <div className="page-content">
 
-<div className="card card-style mx-0 mb-0 rounded-0" style={{height: '230px', backgroundImage: 'url("/images/listing/5m.jpg")'}}>
+<div className="card card-style mx-0 mb-0 rounded-0" style={{height: '230px', backgroundImage: `url("${randomEither(imgArr)}")`}}>
 			<div className="card-bottom mb-4">
-				<h1 className="color-white text-center mb-n1 font-24">Where are you going?</h1>
-				<p className="color-white text-center mb-3 ">Have a holiday you'll never forget!</p>
+				<h1 className="color-white text-center mb-n1 font-24">Great events all around you?</h1>
+				<p className="color-white text-center mb-3 ">What experiences are you looking for today?</p>
 			</div>
 			<div className="card-overlay bg-gradient rounded-0"></div>
 		</div>
@@ -140,7 +146,7 @@ export default function Home(props) {
             }
     </Splider>
 
-    <div className="divider mt-4"></div>
+    <div className="divider mt-2 mb-2"></div>
 
    <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider height={325} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>

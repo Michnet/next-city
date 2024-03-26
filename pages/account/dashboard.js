@@ -138,7 +138,7 @@ const UserDashboard = (props) => {
   }
 
   return (
-    <Layout>{accountView}</Layout>
+    <div className='page-content'>{accountView}</div>
   );
 };
 /* 
