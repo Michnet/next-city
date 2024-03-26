@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { kyFetch } from "./base";
+import { kyFetch, serializeQuery, WPDomain } from "./base";
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
 
@@ -59,14 +59,15 @@ export const bPSingleActivityUrl = (act_ID, token, payload = {}) =>{
 
 export const getBPActivityComments = async (activityId, token, payload={}) =>{ 
   try{
-    console.log('getBPActivityComments try', payload)
-
   const data = await kyFetch.get(bPSingleActivityCommentUrl(activityId, token, payload)).json();
   if(data){
+    console.log('getBPActivityComments try', data)
     if(data){
       return {activities: data}
     }
-  }}catch(e){
+  }
+}catch(e){
+    console.log('getBPActivityComments try', e)
     return null;
   }
 }
