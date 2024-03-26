@@ -14,6 +14,32 @@ export const advancedFetchListingsUrl = (payload) => {
     return `${WPDomain}/${endpoint}`
 }
 
+export const fetchListing = async (id, payload) => {
+  let endPoint;
+
+  if(payload){
+      endPoint = `wp-json/wp/v2/listings/${id}?${serializeQuery({
+          ...oathInfo,
+          ...payload
+      })}&_embed`;
+  }else{
+
+  endPoint = `wp-json/wp/v2/listings/${id}?_embed`;
+}
+  try{ let response = await kyFetch.get(`${WPDomain}/${endPoint}`).json();
+      if(response){
+          const data = {
+              listing: response,
+          };
+          return data;
+      }
+    }catch(e){
+          console.log(e)
+      };
+
+      
+}
+
 export const fetchPageUrl = (id, fields) => {
 
   const endPoint = `/wp-json/wp/v2/pages/${id}?${serializeQuery({

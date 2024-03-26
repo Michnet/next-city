@@ -27,6 +27,7 @@ const TicketProduct = ({product}) => {
     const {user} = useRecoilValue(authState);
 
     const priceView = ProductPrice(product);
+   
 
     useEffect(() => {
         if(product){
@@ -48,9 +49,9 @@ const TicketProduct = ({product}) => {
     }
 
    if(product){
-        productView = <div className='ps-box _ticket'>
+        productView = <div className='ps-box _ticket p-3'>
                             <div className='ps-main row'>
-                                <div className='col-12 col-sm-4 col-lg-3 pl-0 sm:pr-0 position-sm-sticky' style={{top: 70}}>
+                                <div className='col-12 col-sm-4 col-lg-3 pl-0 sm:pr-0 position-sm-sticky' style={{top: 0}}>
                                     <ProductHeaderTicket product={product} user={user}/>
                                 </div>
                                 <div className='product_body col-12 col-sm-8 col-lg-9 p-0'>

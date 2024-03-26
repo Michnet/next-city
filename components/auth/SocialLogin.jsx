@@ -65,6 +65,7 @@ const sendReq = async(token, platform) => {
   const signal = controller.signal;
 
     if(user){
+      setLoading(false);
         return;
     }else{
       if(status === "authenticated"){

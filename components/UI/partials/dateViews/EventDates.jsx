@@ -10,13 +10,18 @@ function EventDates({Id, dualColumn, upcoming, customDates=null, user, productId
   const [dates, setDates] = useState(customDates ? [customDates] : []);
   const [loading, setLoading] = useState(true);
 
+
+
   const getDates = async(payload) => {
         const fetchdDates = await getEventDates(payload);
         if(fetchdDates){
-            setDates(fetchdDates.data);
+          console.log('dates', fetchdDates);
+            setDates(fetchdDates);
             setLoading(false)
         }
   }
+
+ 
 
   useEffect(() => {
     if(!customDates){

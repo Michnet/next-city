@@ -6,6 +6,8 @@ import  {useState, useEffect} from 'react';
 
 const ProductHeaderTicket = ({product}) => {
     const [loading, setLoading] = useState(true);
+    const {listing} = product ?? {};
+    const {id, title, phone, whatsapp, cover, logo, slug, type} = listing ?? {};
 
     useEffect(() => {
         if(product){
@@ -17,13 +19,13 @@ const ProductHeaderTicket = ({product}) => {
     let headerView, vendorView;
     
     if(product){
-        const {listing} = product;
+        
         if(listing){
-        const {id, title, phone, whatsapp, cover, logo, slug, type} = listing;
+        
         console.log('listing', listing)
         
         vendorView = <>
-        <div className="coverImg_box position-relative" style={{ background: "var(--bg-gray)" }}> 
+        <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
             <div className='cover_content'>
                 Ticket Item for: 
                 <h4 dangerouslySetInnerHTML={{__html: title}}/>
@@ -31,20 +33,21 @@ const ProductHeaderTicket = ({product}) => {
             
         </div>
         <div className='content_box'>
-            {whatsapp && <Link href={`https://wa.me/${whatsapp}`} className='contact_link _whats bg-transparent'>
-                <i className="bi bi-whatsapp"/> WhatsApp
-            </Link>}
+            <div className='row_flex gap-2'>{whatsapp && <a href={`https://wa.me/${whatsapp}`} class="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
+					<i class="fab fa-whatsapp font-15 text-center"></i>
+					WhatsApp
+				</a>}
             
-            {phone && <button className='btn btn-theme w-fit'><Link href={`tel:${phone}`} className='bg-transparent contact_link _call'>
-                <i className="bi bi-telephone"/> Call Now
-            </Link></button>}
+            {phone && <a href={`tel:${phone}`} class="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-s text-uppercase text-nowrap color font-900 shadow-s bg-dark-dark btn-icon text-start">
+					<i class="fas fa-phone font-15 text-center"></i>
+					Call Now
+				</a>}</div>
+
 
             <div className='card_footer'>            
-                <button className='btn btn-outline-secondary listing_link'>
-                    <Link href={`/${listingUrlBase(type)}/${slug}`}>
-                        Business Page
-                    </Link>
-                </button>
+               
+
+                
             </div>
 
         </div>
@@ -56,12 +59,18 @@ const ProductHeaderTicket = ({product}) => {
     
     if(product){
         headerView = <>
-        <div className='product_header _ticket bg-white p-3'>
-                <div className='ps-data d-flex flex-column'>
+        <div className='product_header _ticket bg-theme p-0 bg-cover card card-style mb-3 m-0' style={{backgroundImage: `url("${cover}")`}}>
+                <div className='ps-data d-flex flex-column p-3 bg-gradient-fade backdropGray'>
                     {/* <ProductVendorCard product={product} noBg/>   */}
                     {vendorView}
+                    
                 </div>
         </div>
+        <button className='btn btn-outline-secondary listing_link border mb-3'>
+                    <Link href={`/${listingUrlBase(type)}/${slug}`}>
+                        Go to Business Page 
+                    </Link>
+                </button>
         </>
     } else{
         headerView = <div>Loading Header ..</div>

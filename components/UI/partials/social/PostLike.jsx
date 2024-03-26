@@ -29,7 +29,7 @@ useEffect(() => {
   showLike()
 }, [listing])
 
-  async function likeItem(payload){
+  async function likeItem(e, payload){
     setLiked(true);
     const postLike = await likePost(payload);
     if (postLike) {

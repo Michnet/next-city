@@ -645,7 +645,7 @@ export function run_template(){
             }
 
             //Toasts
-            var toastTrigger = document.querySelectorAll('[data-toast]');
+           /*  var toastTrigger = document.querySelectorAll('[data-toast]');
             if(toastTrigger.length){
                 toastTrigger.forEach(el => el.addEventListener('click', event => {
                     var toastData = el.getAttribute('data-toast')
@@ -653,7 +653,7 @@ export function run_template(){
                     var notificationToast = new bootstrap.Toast(notificationToast);
                     notificationToast.show();
                 }));
-            }
+            } */
 
 
             //Tooltips

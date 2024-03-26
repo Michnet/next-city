@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import { LoaderDualRing } from "../skeletons/Loaders";
 import { Avatar } from "./Partials";
 import {openOffCanvas} from "@/helpers/appjs";
+import Link from "next/link";
 
 export function UserCard({size}){
    const {userSignOut} = useRecoilValue(useAuthState);
@@ -33,10 +34,10 @@ export function UserCard({size}){
                         <div className="dropdown-menu bg-transparent border-0 mb-n5">
                            <div className="card card-style rounded-m shadow-xl me-1">
                                  <div className="list-group list-custom-small list-icon-0 px-3 mt-n1">
-                                    <a href="#" className="mb-n2 mt-n1">
+                                    <Link href="/account/dashboard" className="mb-n2 mt-n1">
                                        <span>Your Profile</span>
                                        <i className="fa fa-angle-right"></i>
-                                    </a>
+                                    </Link>
                                     <a href="#" className="mb-n2">
                                        <span>Messages</span>
                                        <i className="fa fa-angle-right"></i>
@@ -45,7 +46,7 @@ export function UserCard({size}){
                                        <span>Settings</span>
                                        <i className="fa fa-angle-right"></i>
                                     </a>
-                                    <span onClick={() => {userSignOut()}} href="#" className="mb-n1">
+                                    <span onClick={() => {userSignOut()}} href="#" className="mb-n1 _link">
                                        <span>Sign Out</span>
                                        <i className="fa fa-angle-right"></i>
                                     </span>

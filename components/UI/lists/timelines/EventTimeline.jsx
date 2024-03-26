@@ -11,6 +11,7 @@ import TimeLineItem from "./partials/TimelineItem";
 const EventTimeline = ({dates, dualColumn, productId, slots, user, cost}) => {
   const {id:userId} = user ?? {};
 
+
   const baseSlotObj = {
     cost : cost, 
     userId:userId,

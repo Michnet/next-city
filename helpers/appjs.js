@@ -399,8 +399,8 @@ export function closeMenus(){
     if(typeof window !== 'undefined'){
         let el = e.currentTarget;
         var toastData = el.getAttribute('data-toast')
-        var notificationToast = document.getElementById(toastData);
-        var notificationToast = new bootstrap.Toast(notificationToast);
+        var notificationElement = document.getElementById(toastData);
+        var notificationToast = new bootstrap.Toast(notificationElement);
         notificationToast.show();
     }
  }

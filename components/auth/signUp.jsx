@@ -25,16 +25,16 @@ const onFinish = async(e) => {
   return (
                     <form>
                         <div class="input-style no-borders has-icon validate-field mt-2">
-                            <i class="fa fa-at"></i>
-                            <input value={data.email ?? ''} required onChange={(e) => setData({...data, email: e.target.value})} name='useremail' type="email" class="form-control validate-name" id="form1aa" placeholder="Email"/>
+                            <i class="fa fa-at" style={{left: '8px'}}></i>
+                            <input value={data.email ?? ''} required onChange={(e) => setData({...data, email: e.target.value})} name='useremail' type="email" class="form-control border rounded validate-name" id="form1aa" placeholder="Email"/>
                             <label for="form1aa" class="color-blue-dark font-10 mt-1">Email</label>
                             <i class="fa fa-times disabled invalid color-red-dark"></i>
                             <i class="fa fa-check disabled valid color-green-dark"></i>
                             <em>(required)</em>
                         </div>
                         <div className="input-style no-borders has-icon validate-field">
-                            <i className="fa fa-user"></i>
-                            <input value={data.username ?? ''} required onChange={(e) => setData({...data, username: e.target.value})}  name='name' type="text" className="form-control validate-name" id="form1a" placeholder="Name"/>
+                            <i className="fa fa-user" style={{left: '8px'}}></i>
+                            <input value={data.username ?? ''} required onChange={(e) => setData({...data, username: e.target.value})}  name='name' type="text" className="form-control border rounded validate-name" id="form1a" placeholder="Name"/>
                             <label htmlFor="form1a" className="color-blue-dark font-10 mt-1">Name</label>
                             <i className="fa fa-times disabled invalid color-red-dark"></i>
                             <i className="fa fa-check disabled valid color-green-dark"></i>
@@ -42,8 +42,8 @@ const onFinish = async(e) => {
                         </div>
 
                         <div className="input-style no-borders has-icon validate-field mt-4">
-                            <i className="fa fa-lock"></i>
-                            <input value={data.password ?? ''} type={`${viewPass ? 'text' : 'password'}`} onChange={(e) => setData({...data, password: e.target.value})} required name='password' className="form-control validate-password pe-5" id="form3a" placeholder="Password"/>
+                            <i className="fa fa-lock" style={{left: '8px'}}></i>
+                            <input value={data.password ?? ''} type={`${viewPass ? 'text' : 'password'}`} onChange={(e) => setData({...data, password: e.target.value})} required name='password' className="form-control border rounded validate-password pe-5" id="form3a" placeholder="Password"/>
                             <label htmlFor="form3a" className="color-blue-dark font-10 mt-1">Password</label>
                             <i className="fa fa-times disabled invalid color-red-dark"></i>
                             <i className="fa fa-check disabled valid color-green-dark"></i>

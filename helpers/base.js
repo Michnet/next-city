@@ -47,7 +47,54 @@ export const kyFetch = ky.create({
        "Content-Type": "application/json",
      },
      // use a hook to add the authorization header before each request
-     hooks: {
+     hooks: { 
+        beforeError: [
+          error => {
+            const {response} = error;
+            if (response && response.body) {
+              error.name = 'GitHubError';
+              if(response.status == 400){
+                error.message = `${response.body.message}`;
+                error.status = `${response.status}`;
+              }
+              
+            }
+            console.log('error in ky', error);
+            return error;
+          }
+        ],
+      afterResponse: [
+        (_request, _options, response) => {
+          // You could do something with the response, for example, logging.
+          //console.log('afterResponse request', _request);
+          if(response.ok){
+            return response
+          }else{
+            const obj = {message:'An error has occured',responseStatus:response.status,success:false};
+            const blob = new Blob([JSON.stringify(obj, null, 2)], {
+              type: "application/json",
+            });
+            return new Response(blob, {status: 200});
+            //new Response(array|string $body = '', ?string $type = null, ?int $code = null, ?array $headers = null, ?string $charset = null)
+          }
+  
+          // Or return a `Response` instance to overwrite the response.
+         // return new Response('A different response', {status: 200});
+        },
+  
+        // Or retry with a fresh token on a 403 error
+        /* async (request, options, response) => {
+          if (response.status === 403) {
+            // Get a fresh token
+            const token = await ky('https://example.com/token').text();
+  
+            // Retry with the token
+            request.headers.set('Authorization', `token ${token}`);
+  
+            return ky(request);
+          }
+        } */
+      ],
        beforeRequest: [
          (request) => {
             // console.log('request', request);

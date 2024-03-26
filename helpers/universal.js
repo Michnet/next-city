@@ -36,7 +36,7 @@ export const bPSingleActivityCommentUrl = (act_ID, token, payload = {}) =>{
   return `${WPDomain}/${endPoint}`;
 }
 
-export const sendBPActivityComment = async (activityId, token,payload) =>{ 
+export const sendBPActivityComment = async (activityId, token,payload={}) =>{ 
   try{
     const data = await kyFetch.post(bPSingleActivityCommentUrl(activityId, token, payload)).json();
     if(data){
@@ -57,8 +57,10 @@ export const bPSingleActivityUrl = (act_ID, token, payload = {}) =>{
   return `${WPDomain}/${endPoint}`;
 }
 
-export const getBPActivityComments = async (activityId, token, payload) =>{ 
+export const getBPActivityComments = async (activityId, token, payload={}) =>{ 
   try{
+    console.log('getBPActivityComments try', payload)
+
   const data = await kyFetch.get(bPSingleActivityCommentUrl(activityId, token, payload)).json();
   if(data){
     if(data){

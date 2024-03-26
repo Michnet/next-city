@@ -216,9 +216,9 @@ dayjs.extend(relativeTime)
                                     }
                                     {imagesView}
                                     {commenting &&  <div className="comment_box mt-15">
-                                        <form onSubmit={(e) => sendReply(e)}>
-                                          {sending ? <LoaderEllipsis/> : <textarea id='com_content' name='com_content' className="com_content border rounded p-2 text-13" style={{height: 80}}/>}
-                                          <button type="submit" className="btn btn-xs btn-outline-theme mb-0">Post Reply</button>
+                                        <form onSubmit={(e) => sendReply(e)} className="w-100">
+                                          {/* sending ? <div className='d-flex justify-center align-items-center border rounded' style={{height: '80px'}}><LoaderEllipsis/></div> : */ <textarea rows={4} id='com_content' name='com_content' className="d-block w-100 com_content border rounded p-2 text-13" />}
+                                          <button type="submit" className="btn btn-xs btn-outline-theme mb-0 mt-10">Post Reply</button>
                                         </form>
                                         {sending ? <LoaderDualRingBoxed/> : <>{comments?.length > 0 && 
                                         <div className='act_comments mt-15'>

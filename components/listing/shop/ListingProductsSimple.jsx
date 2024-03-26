@@ -5,12 +5,12 @@ import useSWRInfinite from "swr/infinite";
 // import { fetcher } from "server/WpBase";
 import { DualColorHeader } from "@/components/UI/Partials";
 import { fetcher, getBookableProductsUrl, getProductsUrl } from "@/helpers/rest";
-import SkeletonProduct from "@/components/skeletons/SkeletonProduct";
 import { generateTempArray, productsSortList, scrollToSpot } from "@/helpers/universal";
 import { useSignal } from "@preact/signals-react";
 import Ticket from "@/components/UI/market/productCards/Ticket";
 import {useRecoilValue} from "recoil";
 import {authState} from '@/contexts/atoms'
+import { Skeleton } from "@/components/skeletons/Skeletons";
 
 function ListingProductsSimple({ids, isSample, exClass, title, listy, productType, listingId, relatedIds}) {
   const {user} = useRecoilValue(authState);
@@ -80,15 +80,15 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
         let itemsView;
       
         const loaderSkeleton = <div className="gx-mx-0">
-                              {generateTempArray(6).map((item, i) => (
+                              {generateTempArray(3).map((item, i) => (
                                   <div key={i} xl={4} md={6} sm={8} xs={12}
                                       >
-                                      <SkeletonProduct/>
+                                      <Skeleton height={200}/>
                                   </div> 
                                       ))
                                   }
                                   </div>
-        
+      
         if(isLoading){
           console.log('loading now')
             itemsView = <>{loaderSkeleton}</>

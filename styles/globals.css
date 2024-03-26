@@ -1272,22 +1272,17 @@ align-items: center;}
   width: 55%;
   padding: 2%;
 }
-
+/* 
 ._ticket .header_gallery,  ._ticket .header_info {
   width: 100%;
   padding: 0;
   display: block;
   margin-bottom: 15px;
-}
+} */
 
 ._ticket .header_gallery > figure {
   margin-bottom: 0;
 }
-
-._ticket .header_info {
-  background: #fff;
-}
-
 ._ticket .ps-wrapper.in_view img {
   height: 200px;
 }
@@ -1297,7 +1292,7 @@ align-items: center;}
   flex-basis: auto;
 }
 .content_section {
-  background: #fff;
+  background: var(--bg-theme);
   padding: 2% 3%;
   margin-bottom: 20px;
 }

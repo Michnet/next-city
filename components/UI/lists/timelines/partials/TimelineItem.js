@@ -4,10 +4,13 @@ import { UISizes } from "@/contexts/atoms";
 import DateView from "@/components/UI/partials/dateViews/DateView";
 import DateViewRelative from "@/components/UI/partials/dateViews/DateViewRelative";
 import DateViewString from "@/components/UI/partials/dateViews/DateViewString";
+import { openOffCanvas } from "@/helpers/appjs";
 
 const TimeLineItem = ({slotObj, setSlotObj, styleName, productId, timeLine, children, flipped}) => {
   const {start, gcal_link, end, is_over, time_zone, url, title, location, desc} = timeLine;
   const {isMobile} = useRecoilValue(UISizes);
+  
+  console.log('user in timeline', slotObj);
   return (
     <>
     <div
@@ -18,7 +21,7 @@ const TimeLineItem = ({slotObj, setSlotObj, styleName, productId, timeLine, chil
     <div className={`gx-timeline-item gx-timeline-time-item ${styleName ?? ''}`}>
       <div className={`gx-timeline-badge gray_bg`}>{children}</div>
       <div className="gx-timeline-panel">
-        <div className= 'box_content d-grid' style={{gridTemplateColumns : '70px auto'}}>
+        <div className= 'box_content d-grid card card-style m-0' style={{gridTemplateColumns : '70px auto'}}>
           <div className="item_left"><DateView customDate={start}/></div>
           <div className="item_right p-2">
             <div className="mb-10"><h4 className={`gx-timeline-tile text-15`}> <DateViewString date={start} format={'hh:mm A'}/></h4>
@@ -43,7 +46,7 @@ const TimeLineItem = ({slotObj, setSlotObj, styleName, productId, timeLine, chil
               </div> */}
               {productId ? 
               <div>
-                <button onClick={() => setSlotObj({...slotObj, endDate:end, startDate:start})} className="btn btn-sm btn-secondary mb-0"  data-menu="avail_modal">Check Availability</button>
+                <button onClick={(e) => {setSlotObj({...slotObj, endDate:end, startDate:start}); openOffCanvas(e)}} className="btn btn-sm btn-secondary mb-0"  data-menu="avail_modal">Check Availability</button>
               </div> : <></>}
               </div>
           </div>

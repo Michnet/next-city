@@ -29,10 +29,10 @@ const ProductSide = ({listingId}) => {
     const {general_merchandise} = listing?.acf ?? {}
 
     if(general_merchandise?.length > 0){
-      console.log('gnr', general_merchandise)
+      //console.log('gnr', general_merchandise)
       //storeMerchView = <SideGrid title={'On sale at this event'} ids={general_merchandise}  orderby={'price'} listy border/>
     }else{ 
-      console.log('Not long', listing);
+      //console.log('Not long', listing);
       storeMerchView = <></>}
  }
   

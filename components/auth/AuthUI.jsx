@@ -35,9 +35,9 @@ const [loginForm, setLoginForm] = useState(true);
                     <SignUp/>
                     }
                     <div className="d-flex mt-4 mb-4">
-                        <div className="w-50 font-11 pb-2 text-start"><span onClick={() => setLoginForm(!loginForm)} href="page-signup-2.html">{loginForm ? "I'm new here " : 'Already a member'}</span></div>
+                        <div className="w-50 font-13 pb-2 text-start"><span onClick={() => setLoginForm(!loginForm)} href="page-signup-2.html">{loginForm ? "I'm new here " : 'Already a member'}</span></div>
                         
-                        <div className="w-50 font-11 pb-2 text-end"><a target={'_blank'} href={`${WPDomain}/my-account/lost-password`}>Forgot Credentials</a></div>
+                        <div className="w-50 font-13 pb-2 text-end"><a target={'_blank'} href={`${WPDomain}/my-account/lost-password`}>Forgot Credentials</a></div>
                     </div>
 
                     <div className="divider mt-4"></div>

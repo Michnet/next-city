@@ -242,7 +242,8 @@ const userLoginBySocial = async(userData, token, acc_token, soc_refresh_token, c
     if (callbackFun) callbackFun();  
 
     fetchSuccess(); 
-    setTheAuth({...theAuth, loading:false})
+    setTheAuth({...theAuth, loading:false});
+    return true;
   };
 
 const userSignOut = async () => {
@@ -305,14 +306,14 @@ async function loginFunc(jwt, username){
 }
 
 
- const userLogin = async(loginData, callbackFun) => {
+ const userLogin = async(loginData, signal) => {
    const oldToken = cookies.get("token");
    if(oldToken){
      cookies.remove('token');
    }
    try {
-  let data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth`, {json: {...loginData}}).json();
-  if (data) {
+  let data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth`, {json: {...loginData}, signal:signal}).json();
+  if (data?.success) {
       console.log('ftched', data);
       const jwtData = data.data;
       if(jwtData.jwt){
@@ -329,11 +330,17 @@ async function loginFunc(jwt, username){
          })
       }
      // setLoading(false)
+     return data;
+    }else{
+      console.log('failed', data)
+      return data;
     }
   }catch (error) {
       console.log('got failed', error)
       setTheAuth({...theAuth, loading:false})  
     }
+
+   
  };
 
  async function getAuthUser(){

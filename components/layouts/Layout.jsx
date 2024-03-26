@@ -13,6 +13,8 @@ import BottomMenu from "./BottomMenu";
 import { BSReveal } from "../UI/partials/BSReveal";
 import SearchForm1 from "../UI/search/SearchForm1";
 import Splash from "../UI/Splash";
+import SnackBar from "../UI/partials/SnackBar";
+import UserSideMenu from "../UI/user/UserSideMenu";
 
 export default function Layout({ children, headerTitle, settings}) {
   const uiSize = useRecoilValue(UISizes);
@@ -179,8 +181,10 @@ export default function Layout({ children, headerTitle, settings}) {
             <SearchForm1/>
           </BSReveal>
           {/* <!-- Menu Settings Highlights--> */}
+          <UserSideMenu/>
 
           {/* Snackbars*/}
+            <SnackBar/>
           <div id="snackbar-liked" className="snackbar-toast rounded-m bg-green-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-check me-3"></i>Added to favourites</div>
           <div id="snackbar-unliked" className="snackbar-toast rounded-m bg-yellow-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-info me-3"></i>Removed from favourites!</div>
 
