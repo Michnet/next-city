@@ -14,6 +14,25 @@ export const advancedFetchListingsUrl = (payload) => {
     return `${WPDomain}/${endpoint}`
 }
 
+
+export const editUser = async (payload) => {
+
+  const endPoint = `wp-json/${userActions}/edit-user?${serializeQuery({
+      ...payload,
+     // JWT : getToken()
+  }) 
+  }`;
+  try{
+    const response = await kyFetch.post(`${WPDomain}/${endPoint}`).json();
+          if(response){
+           return response;
+          } else return null;
+          
+      }catch(e){
+          console.log(e)
+      };    
+}
+
 export const fetchListing = async (id, payload) => {
   let endPoint;
 
@@ -74,13 +93,12 @@ export const fetchListings = async (payload) => {
 
 
   try{
-    const res = await kyFetch.get(`${WPDomain}/${endpoint}`).json(); 
+    const res = await kyFetch.get(`${WPDomain}/${endpoint}`); 
     if (res) {
-      console.log('listings res', res)
       const data = {
-          items: res,
-          totalItems: res.headers['x-wp-total'],
-          totalPages: res.headers['x-wp-totalpages']
+          items: await res.json(),
+          totalItems: res.headers.get('x-wp-total'),
+          totalPages: res.headers.get('x-wp-totalpages')
       };
       return data;
   } else return null;
@@ -92,7 +110,18 @@ export const fetchListings = async (payload) => {
  }
 
 }
+export const getBPThreadsUrl = (payload, jwt) =>{
 
+  const endPoint = `wp-json/buddyboss/v1/messages?${serializeQuery({
+      ...payload,
+      //...oathInfo,
+      JWT : jwt,
+      //username : 'bb-arianna',
+      //password : '123@abc'
+  })}`
+
+return `${WPDomain}/${endPoint}`;
+}
 
 export const bPActivitiesUrl = (payload) =>{
   let endPoint;
@@ -384,6 +413,34 @@ export const getBookableProductsUrl = (payload) => {
       })}`;
   }
   return `${WPDomain}/${endpoint}`
+}
+
+export const getBPThread = async (id, payload, jwt) =>{
+
+  let endPoint;
+
+  if(payload){
+      endPoint = `wp-json/buddyboss/v1/messages/${id}?${serializeQuery({
+          ...payload,
+          JWT : jwt
+      })}`;
+
+  }else{
+      endPoint = `wp-json/buddyboss/v1/messages/${id}?${serializeQuery({
+          JWT : jwt
+      })}`;
+  }
+
+   const data = await kyFetch.get(`${WPDomain}/${endPoint}`)
+   .then((response) => {
+       if (response) {
+           return response.json()
+       } else return null;
+   })
+   .catch(() => {
+       return null;
+   });
+   return data;
 }
 
 export const bpGroupUrl = (group_id, payload, base) =>{

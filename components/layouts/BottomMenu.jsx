@@ -4,7 +4,7 @@ import { isActiveLink } from "@/helpers/universal";
 import { useRouter } from "next/router"
 import { LoaderDualRing } from "../skeletons/Loaders";
 
-export default function BottomMenu({settings, btnProps, btnFunc, icon}) {
+export default function BottomMenu({settings, btnProps, exClass='', icon, content=null}) {
   const router = useRouter();
   const {mMenuContent} = settings ?? {};
   //const {btnProps, btnFunc, icon} = mMenuContent ?? {}
@@ -44,7 +44,7 @@ export default function BottomMenu({settings, btnProps, btnFunc, icon}) {
     },
  ]
   return (
-    <>
+    <>{ content ??
           <div id="footer-bar" className="footer-bar-1 d-md-none">
             {defBottomLinks.map((el) => {
                 let {id, icon, link, name, func, routePath, isNew, props} = el;
@@ -68,6 +68,6 @@ export default function BottomMenu({settings, btnProps, btnFunc, icon}) {
               <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
             </button>
           </div>
-    </>
+   } </>
   )
 }

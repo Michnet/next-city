@@ -8,7 +8,7 @@ function ListingCard3({listing, exClass, imgHeight=130}) {
     let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
     return  <Link href={`/events/${slug}`}  className="card card-style m-0">
                       <div className="card-top m-2">
-                      {ticket_min_price_html ?  <span className="bg-white color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl"><PriceView preText={''}  exClass={'_inline color-highlight'} priceHTml={ticket_min_price_html}/></span> : <></>}
+                      {ticket_min_price_html ?  <span className="bg-theme color-black font-11 px-2 py-1 font-700 rounded-xs shadow-xxl"><PriceView preText={''}  exClass={'_inline color-highlight'} priceHTml={ticket_min_price_html}/></span> : <></>}
                       </div>
                       <img src={xtra_large_thumb} alt="img" width="100" className="img-fluid" style={{height:imgHeight, objectFit: 'cover'}}/>
                       <div className="p-2">

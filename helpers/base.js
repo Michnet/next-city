@@ -68,6 +68,10 @@ export const kyFetch = ky.create({
           // You could do something with the response, for example, logging.
           //console.log('afterResponse request', _request);
           if(response.ok){
+            //console.log('res in ky', response.headers);
+            for(let entry of response.headers.entries()) {
+              console.log(entry);
+          }
             return response
           }else{
             const obj = {message:'An error has occured',responseStatus:response.status,success:false};

@@ -94,7 +94,7 @@ const ExploreEvents = ({topList}) => {
             
             <div className="row flex-column flex-md-row flex-md-nowrap m-0">
             
-            <Client>{!isTab &&  <div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-white no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
+            <Client>{!isTab &&  <div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-theme no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
                <ExplorerFilter/>
                <div className="sidebar md:d-none mt-20">
                   <SearchForm2/>
@@ -144,7 +144,7 @@ const ExploreEvents = ({topList}) => {
               </div>}
 
 
-              <div className="inner_section bg-white">
+              <div className="inner_section bg-theme">
                   <Search cardExClass={'mx-0'}/>
                   {/* <ActivityMasonry  limit={3} cardType={2} columns={3} itemWidth={'auto'} exClass={'px-10'}/> */}
               </div>

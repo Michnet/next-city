@@ -5,7 +5,7 @@ import Header from "./partials/Header";
 
 function Scaffold({children, uiSize, settings}) {
     const {isDeskTop, isTab} = uiSize;
-    const {mMenuContent, noHeader, autoShowHeader} = settings ?? {};
+    const {mMenuContent, noHeader, autoShowHeader, hideNews} = settings ?? {};
     
   return (<>
     <div className="container-fluid p-0">
@@ -21,9 +21,9 @@ function Scaffold({children, uiSize, settings}) {
                 </>}
                 {children}
             </div>
-            <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
+            {!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>
-            </div>
+            </div>}
         </div>
     </div>
     <Client>

@@ -21,7 +21,7 @@ export default function Layout({ children, headerTitle, settings}) {
   const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
   const [width, setWidth] = useRecoilState(UIWidthState);
   const router = useRouter();
-  const {mMenuContent, noHeader} = settings ?? {};
+  const {mMenuContent, noHeader, hideFooter} = settings ?? {};
   const {btnProps, btnFunc, icon} = mMenuContent ?? {}
 
   function pinHeader(){
@@ -100,7 +100,7 @@ export default function Layout({ children, headerTitle, settings}) {
         </div>
         <div id="page" onLoad={() => pinHeader()}>
           {/* {!noHeader && <Header headerTitle={headerTitle}/>} */}
-          <BottomMenu btnProps={btnProps} icon={icon}/>
+          {hideFooter ? <></> : <BottomMenu btnProps={btnProps} icon={icon}/>}
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>

@@ -95,6 +95,20 @@ function useProvideAuth () {
         setTheAuth({...theAuth(), user: restUser.user, token:jwt, auth_type: authType})
     }
 }
+
+const userUpdate = async(data, callbackFun) => {
+  fetchStart();
+  if (typeof window !== 'undefined') {
+    const editing = await editUser(data);
+    if(editing){
+      if(callbackFun){
+        callbackFun()
+      }
+      fetchSuccess();
+    }
+  }
+};
+
 /* 
 async function getUserMeta(){
  const myData = await getMe();
@@ -104,18 +118,6 @@ async function getUserMeta(){
  }
 }
 
-  const userUpdate = async(data, callbackFun) => {
-    fetchStart();
-    if (typeof window !== 'undefined') {
-      const editing = await editUser(data);
-      if(editing){
-        if(callbackFun){
-          callbackFun()
-        }
-        fetchSuccess();
-      }
-    }
-  };
 
   function refreshWpBySocial(userData, token, func){
   }
@@ -193,16 +195,17 @@ async function getUserMeta(){
           }
           setLoadingUser(false);
         }else{
-          
+          userSignOut();
         }
       }catch(e){
           console.log(e)
-          clearUser()
-          if(func){
-            func()
-          }
-          setLoadingUser(false);
+          userSignOut()
       }; 
+
+      if(func){
+        func()
+      }
+      setLoadingUser(false);
    }
   }
   
@@ -386,7 +389,7 @@ useEffect(() => {
    return () => clearInterval(interval); */
  }, []);
 
-  setUseAuthState({userLogin, userSignOut, userLoginBySocial, getAuthUser, userSignup/* , getAuthUser, userUpdate,  , , getUserMeta */});
+  setUseAuthState({userLogin, userSignOut, userLoginBySocial, getAuthUser, userSignup, userUpdate/* , getAuthUser, userUpdate,  , , getUserMeta */});
   return <></>;
 }
 

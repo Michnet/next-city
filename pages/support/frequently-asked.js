@@ -7,7 +7,7 @@ const HelpCenter = () => {
     <>
       <SiteHead title="Help Center" />
       <div className="page-content">
-      <section className="layout-pt-lg layout-pb-lg bg-white">
+      <section className="layout-pt-lg layout-pb-lg bg-theme">
         <div className="container">
           <div className="row justify-center text-center">
             <div className="col-auto">

@@ -5,7 +5,7 @@ export const ListingContact = ({listing, title, thin = false, descript, border=f
     // const {isMobile} = useRecoilValue(UISizes);
      const {phone, whatsapp} = listing ?? {};
    
-     return <CallToActions thin={thin} border={border} light={light} bgClass={bgClass ?? 'bg-white'} title={title ?? null} descript={descript ??  null} actionComponent={
+     return <CallToActions thin={thin} border={border} light={light} bgClass={bgClass ?? 'bg-theme'} title={title ?? null} descript={descript ??  null} actionComponent={
        <div className= 'listing_contact'>
          {/* <button className="link_box btn btn-outline-secondary rounded-3 mb-0 mr-0" data-bs-toggle={isMobile ? 'offcanvas' : 'modal'} data-bs-target="#listing_chat">
          <i className="las la-sms"/><span>Chat</span></button> */}

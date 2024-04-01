@@ -6,7 +6,12 @@ import { useEffect, useState } from "react";
 //import { localiseDate } from "~/server/UniversalFunctions";
 //import { fetchProductUrl } from "~/server/WpRest";
 //import Pagination from "../../common/Pagination";
-import ActionsButton from "../components/ActionsButton";
+//import ActionsButton from "../components/ActionsButton";
+
+import { localiseDate} from "@/helpers/universal";
+var relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
+
 
 const BookingTable = ({userId}) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -59,56 +64,47 @@ const BookingTable = ({userId}) => {
         ))}
       </div> */}
 
-      <div className="tabs__content pt-30 js-tabs-content">
-        <div className="tabs__pane -tab-item-1 is-tab-el-active">
-          <div className="overflow-scroll scroll-bar-1">
-            <table className="table-3 -border-bottom col-12">
-              <thead className="bg-light-2">
-                <tr>
-                  <th></th>
-                  <th>Title</th>
-                  <th>Order Date</th>
-                 {/*  <th>Check In</th>
-                  <th>Check Out</th> */}
-                  <th>Price</th>
-                  <th>Status</th>
-                 {/*  <th>Action</th> */}
-                </tr>
-              </thead>
-              <tbody>
-                {bookings?.map((el) => {
+            <table className="table table-borderless text-center rounded-sm shadow-l" style={{overflow: 'hidden'}}>
+                <thead>
+                    <tr className="bg-night-light">
+                        <th></th>
+                        <th scope="col" className="color-white">Title</th>
+                        <th scope="col" className="color-white">Order date</th>
+                        <th scope="col" className="color-white">Event date</th>
+                        <th scope="col" className="color-white">Price</th>
+                        <th scope="col" className="color-white">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {bookings?.map((el, ind) => {
                   const {cost, start, status, product_id, product_thumb, product_title, end, date_created} = el;
-                  return <tr>
-                  <td><img src={product_thumb}/></td>
-                  <td><Link href={`/market/product/${product_id}`}>{product_title}</Link></td>
+                  return <tr key={ind}>
+                  <td><img width='80' height='80' src={product_thumb}/></td>
+                  <td scope="row"><Link href={`/market/product/${product_id}`}>{product_title}</Link></td>
                   <td>{`${dayjs.unix(date_created)}`}</td>
-                 {/*  <td className="lh-16">
+                  <td className="lh-16">
                     <span className="text-black-50">Check in :</span> {`${dayjs(localiseDate(dayjs.unix(start)))}`}
                   </td>
-                  <td>
-                    <span className="text-black-50">Check out :</span> {`${dayjs.unix(end)}`}
-                  </td> */}
                   <td className="fw-500">{cost}</td>
                   <td>
                     <span className={`py-1 px-10 text-center text-14 fw-500 ${statusObj(status).classNm}`}>
                       {`${statusObj(status).text}`}
                     </span>
                   </td>
-                 {/*  <td>
-                    <ActionsButton />
-                  </td> */}
                 </tr>
                 })}
-              </tbody>
+                   {/*  <tr>
+                        <th scope="row">Apple</th>
+                        <td className="color-green-dark">$500</td>
+                        <td><i className="fa fa-arrow-up rotate-45 color-green-dark"></i></td>
+                    </tr> */}
+                </tbody>
             </table>
-          </div>
-        </div>
-      </div>
     </div>
    {/*  <Pagination /> */}
   </>
   }else{
-    pageView = <CallToActions light bgClass={'bg-white'} icon={'bi-calendar-check'} title={'No bookings yet'} descript={'We have not recorded any booking made through your user account. You can start your booking today'} actionComponent={<Link className="btn btn-theme" href={'/explore/events'}>Explore Listings</Link>}/>
+    pageView = <CallToActions light bgClass={'bg-theme'} icon={'bi-calendar-check'} title={'No bookings yet'} descript={'We have not recorded any booking made through your user account. You can start your booking today'} actionComponent={<Link className="btn btn-theme" href={'/explore/events'}>Explore Listings</Link>}/>
   }
 
   return (

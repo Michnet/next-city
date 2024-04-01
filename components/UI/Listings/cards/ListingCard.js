@@ -7,7 +7,7 @@ function ListingCard({listing}) {
     return <Link href={`/events/${slug}`} className="mx-3" /* data-menu="menu-reserve" */>
         <div className="card card-style me-0 mb-0" style={{backgroundImage:`url('${xtra_large_thumb}')`, height: '180px'}}>
         <div className="card-top p-2">
-        <span className="color-black bg-white px-2 py-1 rounded-xs font-11"><i className="fa fa-star color-yellow-dark pe-2"></i>{rating}</span>
+        <span className="color-black bg-theme px-2 py-1 rounded-xs font-11"><i className="fa fa-star color-yellow-dark pe-2"></i>{rating}</span>
         </div>
                         <div className="card-bottom p-2 px-2">
                             <h4 className="color-white line-height-s truncate-2">{cleanHtml(title?.rendered)}<br/> Islands</h4>

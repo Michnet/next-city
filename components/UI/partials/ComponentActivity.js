@@ -146,7 +146,7 @@ useEffect(() => {
               {/*  <p className="text-sm text-blue-900 ">Enter atleast 15 characters</p> */}
               </div>
               :
-              <CallToActions exClass='mb-24' thin descript={"Only followers of this community can see and participate in it's public chat"} light bgClass={'bg-white'} title={'Not a follower'} 
+              <CallToActions exClass='mb-24' thin descript={"Only followers of this community can see and participate in it's public chat"} light bgClass={'bg-theme'} title={'Not a follower'} 
               actionComponent={
                 <>
                   <button variant="primary" onClick={() => addMember()}>Follow Community</button>

@@ -57,7 +57,7 @@ export default function listingMenu({listing, userId}){
       id: 'community',
       icon: "far fa-comments",
       title: 'Community', subTitle : "Public Chat", 
-      widgetClass: "pad_tab bg-white",
+      widgetClass: "pad_tab bg-theme",
       innerClass: 'bg_tab border-0 pb-0 mb-0',
       /* content: <ComponentActivity
             noLink

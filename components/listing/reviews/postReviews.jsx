@@ -81,7 +81,7 @@ function PostReviews({id, carousel, limit, reload, bgImage}) {
          }
     
          }else{
-            reviewsView = <CallToActions bgClass={'bg-white'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'}/>
+            reviewsView = <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'}/>
          }
          if(rating){
              const computed = rating/10;

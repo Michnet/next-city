@@ -30,8 +30,8 @@ const ActivityCard2Const = ({item, exClass, size, mini, width}) => {
   function Arrow(props) {
     let className =
       props.type === "next"
-        ? "slick_arrow-between slick_arrow -next arrow-md flex-center button -blue-1 bg-white shadow-1 size-30 rounded-full sm:d-none js-next"
-        : "slick_arrow-between slick_arrow -prev arrow-md flex-center button -blue-1 bg-white shadow-1 size-30 rounded-full sm:d-none js-prev";
+        ? "slick_arrow-between slick_arrow -next arrow-md flex-center button -blue-1 bg-theme shadow-1 size-30 rounded-full sm:d-none js-next"
+        : "slick_arrow-between slick_arrow -prev arrow-md flex-center button -blue-1 bg-theme shadow-1 size-30 rounded-full sm:d-none js-prev";
     className += " arrow";
     const char =
       props.type === "next" ? (
@@ -93,7 +93,7 @@ const ActivityCard2Const = ({item, exClass, size, mini, width}) => {
                   <div className="stats_box">
                     <div className="_lefty d-flex flex-column align-items-start gap-2">
                     {/* {mini ? <></> : <ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>} */}
-                    {!mini && event_date && event_date[0] ? <DateViewState exClass={mini ? '_texty bg-white' : ''} customDate={event_date[0].start} customEndDate={event_date[0].end} eventId={id}/> : <></>}
+                    {!mini && event_date && event_date[0] ? <DateViewState exClass={mini ? '_texty bg-theme' : ''} customDate={event_date[0].start} customEndDate={event_date[0].end} eventId={id}/> : <></>}
                     </div>
                     <div className="cardImage__leftBadge position-relative bottom-0">
                     

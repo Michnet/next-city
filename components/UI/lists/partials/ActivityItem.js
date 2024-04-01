@@ -193,7 +193,7 @@ dayjs.extend(relativeTime)
                                             : 
                                             <>
                                             
-                                            <p className="mb-0 line-height-sm color-theme">{activity_content}</p>
+                                            <div className="mb-0 line-height-sm color-theme">{activity_content}</div>
                                             </>
                                             
                                             }

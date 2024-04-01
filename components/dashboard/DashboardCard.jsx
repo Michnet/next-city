@@ -6,9 +6,9 @@ const DashboardCard = ({user, ownPosts, setPage, loading}) => {
   const {likes, following} = user?.user_meta ? user?.user_meta : {};
 
   return (
-    <div className="row d-grid gap-3 mb-20 dash_cards">
+    <div className="row d-grid gap-3 mb-20 dash_cards p-0">
         {likes?.length > 0 && 
-          <div className="px-30 rounded-4 bg-white shadow-3">
+          <div className="px-10 pb-10 rounded-4 bg-theme shadow-3">
             <div className="row justify-between items-center">
               <div className="col-auto py-3">
                 <div className="fw-500 lh-14">Favourites</div>
@@ -23,7 +23,7 @@ const DashboardCard = ({user, ownPosts, setPage, loading}) => {
             </div>
         </div>}
 
-          <div className="px-30 rounded-4 bg-white shadow-3">
+          <div className="px-10 pb-10 rounded-4 bg-theme shadow-3">
             <div className="row justify-between items-center">
               <div className="col-auto py-3">
                 <div className="fw-500 lh-14">Posted Listings</div>

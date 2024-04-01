@@ -3356,7 +3356,7 @@ aside.news_room .activity-head ._title, aside.news_room .activity-head ._title a
 
 .gx-chat-sidenav-header {background: #00000017;}
 
-.gx-chat-sidenav-main {background: #ebebeb;left: 0;height: 100%;}
+.gx-chat-sidenav-main {left: 0;height: 100%;}
 
 img.loader_media.bars {max-width: 120px;}
 
@@ -6398,7 +6398,6 @@ body:not(._fixed_top) .single_listing .ant-layout-header .gx-header-notification
 }
   .md_sticky_col{
     position: sticky;
-    top: 80px;
     height: fit-content;
     background: var(--bs-gray-200);
     padding: 0;

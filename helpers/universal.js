@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import Image from "next/image";
 import { kyFetch, serializeQuery, WPDomain } from "./base";
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
@@ -222,6 +223,42 @@ export function PostThumbnailSrc(post, size) {
     src = "/static/img/undefined-product-thumbnail.jpg";
   }
   return src;
+}
+
+
+export function PostThumbnail(post, size) {
+  let view, srcUrl = null;
+  if (post?._embedded["wp:featuredmedia"]) {
+    const thumbnail = post._embedded["wp:featuredmedia"][0]
+
+    if (size) {
+      let srcSize = thumbnail?.media_details?.sizes[`${size}`];
+      if (srcSize) {
+        srcUrl = srcSize?.source_url;
+      } else {
+        srcUrl = thumbnail?.source_url;
+      }
+    } else {
+      srcUrl = thumbnail?.source_url;
+    }
+
+    //view = ( <picture> <source srcSet={`${srcUrl}.webp`} /> <LazyLoad  preventLoading placeholder={<SkeletonCube/>} offset={200} once><img src={srcUrl} /></LazyLoad> </picture>);
+    if(srcUrl){
+      view = <Image
+      quality={90} 
+      data-aos="fade"
+      data-aos-once="true"
+      data-aos-delay={30} alt={post?.title.rendered} blurDataURL={`${srcUrl}`} src={`${srcUrl}`} placeholder="blur" fill  className={'pos-relative'}/>
+    }
+  } else {
+    view = (
+      <img
+        src="/static/img/undefined-product-thumbnail.jpg"
+        alt={post.title.rendered}
+      />
+    );
+  }
+  return view;
 }
 
 

@@ -98,7 +98,7 @@ export async function getStaticPaths() {
     if(children){
        return <div onClick={() => setActiveKey('tickets')}> {children} </div>
      }else{
-       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn shadow-bg shadow-bg-sm bg-highlight mr-0 mb-0 ${!simple ? 'ui-2' : 'bg-white hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
+       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn shadow-bg shadow-bg-sm bg-highlight mr-0 mb-0 ${!simple ? 'ui-2' : 'bg-theme hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
      }
   }
 
@@ -184,7 +184,7 @@ if(listing){
             </Mirrored> */}
         <div className="card-top m-3">
             <div className="notch-clear">
-                <a data-back-button href="#" className="icon icon-xs bg-white color-black rounded-m"><i className="fa fa-angle-left"></i></a>
+                <a data-back-button href="#" className="icon icon-xs bg-theme color-black rounded-m"><i className="fa fa-angle-left"></i></a>
             </div>
         </div>
         <div className="card-bottom bg-gradient-fade p-3">

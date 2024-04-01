@@ -33,6 +33,27 @@
 			z-index: 2;
 		}
 	}
+	._link {
+		color: $color-dark;
+		padding-top: 12px;
+		position: relative;
+		flex: 1 1 auto;
+		span {
+			position: relative;
+			z-index: 2;
+			display: block;
+			font-size: 10px;
+			font-weight: 500;
+			margin-top: -6px;
+			opacity: 0.7;
+			font-family: $font-main-family !important;
+		}
+		i {
+			font-size: 18px;
+			position: relative;
+			z-index: 2;
+		}
+	}
 	.badge {
 		font-style: normal;
 		z-index: 5;
@@ -146,6 +167,14 @@
 				opacity: 0.6;
 			}
 		}
+		._link {
+			i {
+				padding-top: 13px;
+			}
+			span {
+				opacity: 0.6;
+			}
+		}
 	}
 }
 
@@ -158,6 +187,10 @@
 	margin: 0px;
 	padding: 0px;
 	a {
+		display: inline-block;
+		width: 19.5%;
+	}
+	._link {
 		display: inline-block;
 		width: 19.5%;
 	}

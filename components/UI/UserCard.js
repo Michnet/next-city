@@ -5,7 +5,7 @@ import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import { LoaderDualRing } from "../skeletons/Loaders";
 import { Avatar } from "./Partials";
-import {openOffCanvas} from "@/helpers/appjs";
+import {closeMenus, openOffCanvas} from "@/helpers/appjs";
 import Link from "next/link";
 
 export function UserCard({size}){
@@ -34,7 +34,7 @@ export function UserCard({size}){
                         <div className="dropdown-menu bg-transparent border-0 mb-n5">
                            <div className="card card-style rounded-m shadow-xl me-1">
                                  <div className="list-group list-custom-small list-icon-0 px-3 mt-n1">
-                                    <Link href="/account/dashboard" className="mb-n2 mt-n1">
+                                    <Link href="/account/dashboard" className="mb-n2 mt-n1" onClick={() => closeMenus()}>
                                        <span>Your Profile</span>
                                        <i className="fa fa-angle-right"></i>
                                     </Link>

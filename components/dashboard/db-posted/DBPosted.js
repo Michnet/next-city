@@ -16,7 +16,7 @@ const DBPosted = ({userId}) => {
                 <div className="text-15 text-light-1 mb-20">
                 </div>
 
-            <div className="p-2 rounded-4 bg-white shadow-3">
+            <div className="p-2 rounded-4 bg-theme shadow-3">
               {/* <WishlistTable /> */}
               {postedView}
             </div>

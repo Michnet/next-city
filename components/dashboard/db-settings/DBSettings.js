@@ -1,5 +1,7 @@
-import UpdateUser from "~/routes/userAuth/SignUp/update";
+// import UpdateUser from "~/routes/userAuth/SignUp/update";
 //import SettingsTabs from "./components/SettingsTabs";
+
+import UpdateUser from "@/components/auth/update";
 
 const DBSettings = ({userId}) => {
   return (
@@ -10,7 +12,7 @@ const DBSettings = ({userId}) => {
                   Edit your profile.
                 </div>
 
-            <div className="py-30 px-30 rounded-4 bg-white shadow-3">
+            <div className="py-30 px-30 rounded-4 bg-theme shadow-3">
               {/* <SettingsTabs /> */}
               <UpdateUser id={userId}/>
             </div>

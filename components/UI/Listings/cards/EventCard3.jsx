@@ -9,13 +9,13 @@ const EventCard3 = ({listing, width=320, height=260, exClass=''}) => {
     return (<>
                     <div className={`card card-style ${exClass}`} style={{backgroundImage:`url("${xtra_large_thumb}")`, height: height, width: width}}>
                             <div className="card-top p-3">
-                                <Link href={`/events/${slug}`} data-menu="menu-reserve" className="btn btn-s bg-white color-black rounded-s scale-box font-700 text-uppercase float-end">Get Offer</Link>
+                                <Link href={`/events/${slug}`} className="btn btn-s bg-theme color-black rounded-s scale-box font-700 text-uppercase float-end">Get Offer</Link>
                             </div>
                             <div className="card-bottom m-2">
                                 <div className="d-block px-2 py-2 rounded-m">
                         <div className="d-flex">
                             <div className="pe-3">
-                            <h1 className="color-white font-23 font-800">{cleanHtml(title.rendered)}</h1>
+                            <Link href={`/events/${slug}`}><h1 className="color-white font-23 font-800">{cleanHtml(title.rendered)}</h1></Link>
                             <div><p className="color-white font-12 mb-0 opacity-70 truncate-5">{cleanHtml(short_desc)}</p></div>
                             </div>
                             <div className="w-50 align-self-center text-end ms-auto">

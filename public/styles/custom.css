@@ -11,7 +11,7 @@
     --palette2: #00BCD4;
     --palette3: #5a5a5a;
     --palette4: #FFC107;
-    --darkText: #1f1f1f;
+    --darkText: var(--colorTheme);
     --shadow-1: 0 4px 24px 0 rgba(0,0,0,.08);
     --loudTheme: #bc6303;
     }
@@ -28,6 +28,9 @@
     /* visibility: hidden; */
     backdrop-filter: blur(6px);
     opacity: 0;
+}
+body{
+    color: var(--colorTheme)
 }
 body.in_transit #preloader{display: block;visibility:visible;opacity: 1;} 
 p{
@@ -261,14 +264,17 @@ h6 {
     .ticket_card+.ticket_card {
         margin-left: 0
     }
-    .card-cont .even-date,
-    .card-cont .even-info {
-    }
 }
 /*Tickets end*/
 
 
 /*Classes*/
+.overflow-initial{
+    overflow: initial;
+}
+.bg-opaque{
+    background: #7979791f;
+}
 .border-dotted{
     border-style: dotted
 }
@@ -278,6 +284,9 @@ h6 {
     display: flex !important;
     flex-direction: row;
     flex-wrap: nowrap;
+}
+.headed-height{
+    height: calc(100vh - 80px);
 }
 
 .bg-border {
@@ -2319,6 +2328,7 @@ nav.toc > ul > li {
 }
 
 .border-type-1 {border: 1px dashed var(--borderTheme)}
+.border{border: 1px solid var(--borderTheme) !important}
 
 .form-container .form-horizontal .form-group label {
     font-weight: 500;

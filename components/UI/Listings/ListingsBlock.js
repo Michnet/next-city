@@ -139,7 +139,7 @@ if(cats){
 
 if(listings){
   if(forAuthor){
-    //Card = dynamic(() => import("./AuthorListingCard"));
+    Card = dynamic(() => import("./cards/AuthorListingCard"));
     listingsView = <div className="row md:ml-0 md:mr-0"> { listings.map((listing) =>{
       return <div className={`col-12 ${sidebar ? 'col-md-6' : 'col-md-12 '} col-xl-12 md:pl-0 md:pr-0`}> 
         <Card token={token} user={user}  key={listing.id} data={listing} mini={mini}/>
@@ -161,14 +161,14 @@ if(listings){
   })} 
     </div>
   }else{
-    //Card = dynamic(() => import("~/components/activity/ActivityCard2"));
+    Card = dynamic(() => import("./cards/EventCard2"));
     listingsView = <ResponsiveMasonry columnsCountBreakPoints={sidebar ? {0 : 1, 479 : 2, 768 : 3, 1199 : 1} : {479: 2, 750: 3, 900: 3}}>
     <Masonry gutter="10px">{ listings.map((listing) => {
       const {type} = listing;
       if(type === 'event'){
-        return <Card exClass={`mb-1 bg-transparent ${mini ? ' _mini' : ''}`} item={listing}/>
+        return <Card key={listing.id} listing={listing} exClass={`mb-1 bg-transparent ${mini ? ' _mini' : ''}`} /* item={listing} *//>
       }
-      //Card = dynamic(() => import("./ListingCard"));
+      //Card = dynamic(() => import("./cards/EventCard2"));
       <Card key={listing.id} listing={listing} user={user} layout={layout}/> 
   })
   }  </Masonry>
@@ -177,7 +177,7 @@ if(listings){
   }
 }  else {
   if(forAuthor){
-    listingsView = <CallToActions light bgClass={'bg-white'} icon={'bi-add'} title={'Create your first page'} descript={"You have not created your first listing page yet. You can start now. It's totally free"} actionComponent={<Link className="btn btn-theme" href={'/add-listing'}>Create Your First Page</Link>}/>
+    listingsView = <CallToActions light bgClass={'bg-theme'} icon={'bi-add'} title={'Create your first page'} descript={"You have not created your first listing page yet. You can start now. It's totally free"} actionComponent={<Link className="btn btn-theme" href={'/add-listing'}>Create Your First Page</Link>}/>
   }else{
     listingsView = <div>No pages found that match your search ...</div>
   }

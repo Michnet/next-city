@@ -52,7 +52,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         largeFeaturedImgSrc = PostThumbnailSrc(listing, 'medium_large');
 
         if(sponsors?.length > 0){
-            sponsorsView = <div className={'d-block w-100 bg-white image_links py-28'}>
+            sponsorsView = <div className={'d-block w-100 bg-theme image_links py-28'}>
                    <div className='mb-20 mt-10 sc_heading_3 text-center'><h5>Proudly Sponsored By</h5></div>
                     <Splider height={110} options={{...spliderVariableWidth}}>
                         {sponsors?.map((el, index) => {

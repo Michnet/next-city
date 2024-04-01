@@ -51,7 +51,7 @@ const AvatarUploader = () => {
             />
             <div className="d-flex justify-end px-10 py-10 h-100 w-1/1 absolute">
               <div
-                className="size-40 bg-white rounded-4 flex-center cursor-pointer"
+                className="size-40 bg-theme rounded-4 flex-center cursor-pointer"
                 onClick={() => setImage("")}
               >
                 <i className="icon-trash text-16" />
@@ -68,7 +68,7 @@ const AvatarUploader = () => {
               className="img-ratio rounded-4"
             />
             <div className="d-flex justify-end px-10 py-10 h-100 w-1/1 absolute">
-              <div className="size-40 bg-white rounded-4 flex-center cursor-pointer">
+              <div className="size-40 bg-theme rounded-4 flex-center cursor-pointer">
                 <i className="icon-trash text-16" />
               </div>
             </div>

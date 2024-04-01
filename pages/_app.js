@@ -18,6 +18,7 @@ import ActivityProvider from "@/contexts/ActivityContext";
 import Layout from "@/components/layouts/Layout";
 import { UIProvider } from "@/contexts/UIContext";
 import SiteProvider from "@/contexts/siteContext";
+import MessagesStater from "@/contexts/contextStaters/MessagesStater";
 //import "@/public/scripts/bootstrap.min.js";
 
 function MyApp({ Component, pageProps, platform }) {
@@ -51,6 +52,7 @@ function MyApp({ Component, pageProps, platform }) {
           <AuthProvider/>
           <UIProvider platform={platform}/>
           <SiteProvider/>
+          <MessagesStater/>
           <ActivityProvider/>
         </RecoilRoot>
       </SessionProvider>
