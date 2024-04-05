@@ -427,7 +427,7 @@ div#mobile_sidebar {}
 }
 
 .btn-sm {
-    padding: 3px 8px !important;
+    padding: 5px 8px !important;
 }
 
 .btn-m {
@@ -1256,6 +1256,11 @@ button.back_link {
     display: none;
 }
 
+#sidebar:not(.show) .card .content a span.term_icon_box {
+    display: block;
+    visibility: visible;
+}
+
 #sidebar:not(.show) .card.border {
     border: none !important;
 }
@@ -1276,7 +1281,7 @@ button.back_link {
 
 #sidebar:not(.show) .card .content a i {
     margin-right: auto;
-    margin-left: auto;
+    margin-left: auto !important;
 }
 
 #sidebar .terms_grid .col.listy .term_box a, 
@@ -1294,6 +1299,7 @@ button.back_link {
 
 #sidebar:not(.show) .card .content a {
     border-bottom: none;
+    display: flex;
 }
 
 #sidebar.collapse:not(.show) .hide_in_collapsed, #sidebar.collapse.collapsing .hide_in_collapsed {
@@ -1416,7 +1422,7 @@ button.back_link {
     position: absolute;
     top: auto;
     bottom: 0;
-    opacity: 0.4;
+    opacity: 0.2;
     writing-mode: horizontal-tb;
 }
 
@@ -2409,6 +2415,10 @@ span.clear_tag {
 
 .listing_intro .section_overlay.gray-fil {backdrop-filter: grayscale(1) blur(2px);}
 
+.theme-dark .section_overlay {
+    background: var(--bgThemeTransparent);
+}
+
 
 .gx-timeline-left {
     float: left;
@@ -2858,15 +2868,15 @@ div#explore_nav .left_menu_btn {
 }
 
 .terms_grid .col.listy .term_box .term_icon_box {
-    width: 35px !important;
-    height: 35px !important;
-    line-height: 35px;
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 30px;
     border-radius: 10px;
 }
 
 .terms_grid .col.listy .term_box .term_icon_box i {
     line-height: inherit;
-    font-size: 24px !important;
+    font-size: 20px !important;
 }
 
 .terms_grid .col.listy .icon_bound {

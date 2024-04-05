@@ -23,7 +23,9 @@ import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
 import Mirrored from "@/components/UI/partials/Mirrored";
 import Image from "next/image";
 import {fallbackImgSrcSet } from "@/helpers/base";
-import { closeMenus } from "@/helpers/appjs";
+import { closeMenus, openOffCanvas } from "@/helpers/appjs";
+import BottomMenu from "@/components/layouts/BottomMenu";
+import { LoaderDualRing } from "@/components/skeletons/Loaders";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 const ColorThief = require('colorthief');
@@ -79,6 +81,7 @@ export async function getStaticPaths() {
         ...serverObj,
         headerTitle: title,
         settings : {
+            noFooter: true,
             mMenu: 'show',
             mMenuContent:{
               icon : 'fas fa-ellipsis-h', 
@@ -104,7 +107,7 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing, themeColor}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, categories, about_us, logo,rating, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, categories, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
     const router = useRouter();
     const {query} = router;
     const [view, setView] = useRecoilState(listingViewState);
@@ -143,7 +146,30 @@ if(listing){
             />
         </div>
 }
+   let bottomContent = <>
+   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2">
+
+            <div className='row_flex gap-2'>
+                <button onClick={()=> setActiveKey('tickets')} class="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s bg-highlight btn-icon text-start">
+					<i class="far fa-calendar-check font-15 text-center"></i>
+					Booking
+				</button>
+                {<a href={`https://wa.me/${whatsapp}`} >
+                    <i class="fab fa-whatsapp color-whatsapp font-15 text-center"></i>
+                </a>}
+                
+            
+            {phone && <a className={'color-white'} href={`tel:${phone}`}><i class="fas fa-phone font-15 text-center"></i></a>}</div>
+              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
+              <span  className={`text-center big_act`}>
+                {<i className={`link_i fas fa-ellipsis-h`}/>}
+              </span>
+              <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
+            </button>
+          </div>
    
+   
+ </>
 
     return <> 
         <>
@@ -162,6 +188,8 @@ if(listing){
            <HeaderWrapper header_id={'listing_header'}>
                 <ListingTopMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
+
+    <BottomMenu content={bottomContent}/>
     <div className="page-content single_listing ">
 
     <div className={`card preload-img listing_hero`} style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '65vh' : '40vh'}}>

@@ -27,9 +27,14 @@
     rgba(27, 29, 33,0.9) 75%,
     rgba(27, 29, 33,1) 100%);
 }
+
+$theme-dark-transparent-background: #0f1117a7;
+$theme-dark-background-light: #232426;
 :root{
     --colorTheme:#{$color_white};
     --bgTheme:#{$theme-dark-background};
+    --bgThemeLight:#{$theme-dark-background-light};
+    --bgThemeTransparent:#{$theme-dark-transparent-background};
     --borderTheme:rgba(255,255,255,0.12);
 }
 
@@ -178,6 +183,11 @@
     border-top:solid 1px $theme-dark-lighter!important;
 }
 
+.theme-dark #footer-bar{
+    background-color:$theme-dark-transparent-background!important;
+    color:$color_white;
+}
+
 .theme-dark .border-bottom{border-bottom:1px solid $theme-dark-lighter!important;}
 .theme-dark .border-top{border-top:1px solid $theme-dark-lighter!important;}
 .theme-dark .border-left{border-left:1px solid $theme-dark-lighter!important;}
@@ -189,7 +199,6 @@
 .theme-dark .polaroid-effect,
 .theme-dark .timeline-item-content,
 .theme-dark .tab-controls,
-.theme-dark #footer-bar,
 .theme-dark .menu .form-style label,
 .theme-dark .menu .form-floating-style label,
 .theme-dark .menu .form-border-bottom label,
