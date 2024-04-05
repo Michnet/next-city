@@ -164,7 +164,7 @@ if(listing){
             </HeaderWrapper>
     <div className="page-content single_listing ">
 
-    <div className={`card preload-img listing_hero`} style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '60vh' : '35vh'}}>
+    <div className={`card preload-img listing_hero`} style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '65vh' : '40vh'}}>
             {/* <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
@@ -187,7 +187,7 @@ if(listing){
                 <a data-back-button href="#" className="icon icon-xs bg-theme color-black rounded-m"><i className="fa fa-angle-left"></i></a>
             </div>
         </div>
-        <div className="card-bottom bg-gradient-fade p-3">
+        <div className="card-bottom bg-gradient-fade p-3 pt-5">
             {activeKey == 'home' && <span className="bg-highlight color-white font-700 p-1">
                 {categories[0]?.name}
             </span>}

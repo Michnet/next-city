@@ -19,6 +19,7 @@ import SkeletonProduct from '@/components/skeletons/SkeletonProduct';
 import ListingTimeline from '../lists/timelines/ListingTimeline';
 import ActivityCard1 from '../Listings/cards/ActivityCard1';
 import { DualColorHeader } from '../Partials';
+import { Skeleton } from '@/components/skeletons/Skeletons';
 const SearchFilter = dynamic(() => import('./SearchFilter'));
 
 const PAGE_SIZE = 20;
@@ -169,7 +170,7 @@ let skeletonView = <>
                 {viewType === 'Grid' && <ResponsiveMasonry columnsCountBreakPoints={columnObj ?? defCols}>
                     <Masonry gutter={isMobile ? "10px" : "20px"}> 
                         {generateTempArray(8).map((item, i) => (
-                            <SkeletonProduct height={280} key={i}/>
+                            <Skeleton roundy height={180} key={i}/>
                         ))}
                     </Masonry>
                 </ResponsiveMasonry> 

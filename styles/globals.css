@@ -5766,7 +5766,7 @@ footer .container.overlay {
   transition: all .4s ease 0s;
   position: relative;
   background-size: 400%;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .__next-auth-theme-auto .signin .card {

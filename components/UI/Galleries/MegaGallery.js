@@ -177,10 +177,11 @@ function revealMore(e){
   }
 }
 
+
 galleryView = <>
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
           <div id='wall_gallery' className="mega_gallery _vertical" onLoad={() =>   setUpToggler()}>
-        {megaGall.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
+        {megaGall.length > 2 && <ResponsiveMasonry columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
             <Masonry gutter="10px">
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
@@ -219,7 +220,7 @@ galleryView = <>
             </Masonry>
         </ResponsiveMasonry>}
         </div>
-        <div id='gallery_extender' className="w-100 d-flex align-items-end h-100 w-100 justify-center"><button onClick={() => revealMore()}  className="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Show more Wall</button></div>
+        <>{megaGall.length > 2 ? <div id='gallery_extender' className="w-100 d-flex align-items-end h-100 w-100 justify-center"><button onClick={() => revealMore()}  className="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Show more Wall</button></div>  : <></>}</>
         </div>
         
 </>

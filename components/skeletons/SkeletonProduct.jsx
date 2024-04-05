@@ -1,8 +1,6 @@
 
 //import Skeleton from 'react-loading-skeleton'
 //import 'react-loading-skeleton/dist/skeleton.css';
-
-import SkeletonCube from "./SkeletonCube";
 import { Skeleton } from "./Skeletons";
 
 // import { Skeleton } from "../UI/components";

@@ -7,12 +7,16 @@ import BusinessOne from "./landingPages/Business1";
 import styles from './styles/home1.module.css';
 import DateViewString from "../UI/partials/dateViews/DateViewString";
 import { PriceView } from "../UI/PriceView";
+import { useRecoilValue } from "recoil";
+import { activeDateState } from "@/contexts/atoms";
 
   const LandingConst = ({listing, setActiveKey}) => {
     //const {listing} = serverObj;
     const {short_desc, meta, cover, ticket_min_price_html, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, locations} = listing ?? {};
     const {faqs} = about_us ?? {};
     let trimFaqs = faqs?.slice(0,3);
+    const activeDate =  useRecoilValue(activeDateState);
+    const {act_id, act_dates} = activeDate;
 
     return  <div className="landing_page">
             <div className="card card-style">
@@ -22,7 +26,7 @@ import { PriceView } from "../UI/PriceView";
                     </p>}</Client>
                     <CountDownUI fromActive eventId={listing?.id} /* eventId={id} */ />
                     <div className="row mb-3 mt-4 meta_card">
-                        <div className="col-6">
+                        {act_dates && act_id == listing?.id ? <div className="col-6">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="far fa-calendar-check color-teal-dark font-23 me-3 text-center"></i>
@@ -32,8 +36,8 @@ import { PriceView } from "../UI/PriceView";
                                     <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive /* date={event_date[0].start} */ format={'ddd, DD MMMM'}/></strong>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-6">
+                        </div> : <></>}
+                        {act_dates && act_id == listing?.id ? <div className="col-6">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="bi bi-clock color-red-dark font-23 me-3 text-center"></i>
@@ -43,9 +47,9 @@ import { PriceView } from "../UI/PriceView";
                                     <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive format={'hh:mm A'}/></strong>
                                 </div>
                             </div>
-                        </div>
+                        </div> : <></>}
                         <div className="col-12 mb-2"></div>
-                        <div className="col-6">
+                        {address?.length > 0 || locations?.length > 0 ? <div className="col-6">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="bi bi-geo-alt color-yellow-dark font-23 me-3 text-center"></i>
@@ -55,7 +59,7 @@ import { PriceView } from "../UI/PriceView";
                                     <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme">{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</strong>
                                 </div>
                             </div>
-                        </div>
+                        </div> : <></>}
                         <div className="col-6">
                             <div className="d-flex">
                                 <div className="align-self-center">

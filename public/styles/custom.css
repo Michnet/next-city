@@ -1415,8 +1415,9 @@ button.back_link {
     right: 20px;
     position: absolute;
     top: auto;
-    bottom: 30px;
-    opacity: 0.4
+    bottom: 0;
+    opacity: 0.4;
+    writing-mode: horizontal-tb;
 }
 
 .tags_row .row_content .vertical_text h3 {
@@ -2266,7 +2267,7 @@ button.back_link {
 }
 
 .query_hint {
-    background: var(--secTheme);
+    border: 1px solid var(--secTheme);
 }
 
 .section_header .icon-xs._big i {

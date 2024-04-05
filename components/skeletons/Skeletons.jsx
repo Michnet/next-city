@@ -4,8 +4,8 @@ import { generateTempArray } from '@/helpers/universal'
 //import Skeleton from 'react-loading-skeleton';
 //import 'react-loading-skeleton/dist/skeleton.css'
 
-export const Skeleton = ({height, width, rounded, exClass, maxWidth='none', bottom='10'}) => {
-    return <div className={`loader_skeleton mb-${bottom}`} style={{maxWidth: maxWidth, borderRadius: rounded ? '50%' : '0', height :  height ?? 40, width : width ?? '100%'}}/>
+export const Skeleton = ({height, width, rounded, roundy=false, maxWidth='none', bottom='10'}) => {
+    return <div className={`loader_skeleton mb-${bottom} ${roundy ? 'rounded' : ''}`} style={{maxWidth: maxWidth, borderRadius: rounded ? '50%' : '0', height :  height ?? 40, width : width ?? '100%'}}/>
   }
   
 

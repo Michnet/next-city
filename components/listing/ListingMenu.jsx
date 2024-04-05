@@ -86,7 +86,7 @@ if(type === 'event'){
   tabList.push(
     {
       id: 'occurrences',
-      icon: 'far fa-calendar',
+      icon: 'far fa-calendar-check',
       title: 'Dates',
       subTitle : 'Occurences', 
       widgetClass:  'profile widgey',
@@ -179,7 +179,7 @@ if(type === 'event'){
 
   tabList.push({
     id : 'tickets',
-    icon: "fas fa-credit-card", title: 'Tickets',
+    icon: "fas fa-qrcode", title: 'Tickets',
     subTitle : "Booking Options",
     widgetClass: 'shop widgey ',
     innerClass: 'px-3 sm:px-10',
