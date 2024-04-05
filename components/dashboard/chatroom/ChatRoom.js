@@ -158,7 +158,7 @@ const Chat = () => {
     if(messages?.length > 0){
       messagesView = <div id="scroll_box" className="h-100 no-scrollbar" style={{ overflow: 'auto', display : 'flex', flexDirection : 'column-reverse' }} >
                       <InfiniteScroll dataLength={messages.length} next={fetchChat} hasMore={nextStamp === ""? false : true} 
-                       loader={<LoaderEllipsis/>} endMessage={ <p style={{ textAlign: 'center' }}> <b>No more Messages</b> </p> } inverse={true} scrollableTarget='scroll_box' initialScrollY = {800} style={{ display: 'flex', flexDirection: 'column-reverse' }} scrollThreshold="200px"                       
+                       loader={<LoaderEllipsis/>} endMessage={ <p style={{ textAlign: 'center' }}> <b>No more Messages</b> </p> } inverse={true} scrollableTarget='scroll_box' initialScrollY = {800} style={{ display: 'flex', flexDirection: 'column-reverse' }} scrollThreshold="50px"                       
                        //height= {500}
                        >
                             {messages.map((item, index) => {

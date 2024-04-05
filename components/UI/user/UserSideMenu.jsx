@@ -15,7 +15,7 @@ const UserSideMenu = () => {
 				<div class="content my-0">
 					<h5 class="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
 					<div class="list-group list-custom-small list-icon-0">
-						<Link href="/account/dashboard" onClick={() => closeMenus}>
+						<Link href="/account/dashboard" onClick={() => closeMenus()}>
 							<i class="fa font-12 fa-home gradient-green rounded-sm color-white"></i>
 							<span>Home</span>
 							<i class="fa fa-angle-right"></i>
