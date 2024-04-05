@@ -71,9 +71,9 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
 
 
   return (
-    <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:7}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
+    <>{catsArray?.length > 0 ? <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:7}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
         {catsArray}
-    </Splider>
+    </Splider> : <></>}</>
   )
 }
 export default TermsCarousel

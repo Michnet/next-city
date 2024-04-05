@@ -2855,3 +2855,19 @@ div#explore_nav .left_menu_btn {
     font-size: 10px;
     opacity: 0.5;
 }
+
+.terms_grid .col.listy .term_box .term_icon_box {
+    width: 35px !important;
+    height: 35px !important;
+    line-height: 35px;
+    border-radius: 10px;
+}
+
+.terms_grid .col.listy .term_box .term_icon_box i {
+    line-height: inherit;
+    font-size: 24px !important;
+}
+
+.terms_grid .col.listy .icon_bound {
+    width: 100% !important;
+}

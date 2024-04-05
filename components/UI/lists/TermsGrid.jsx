@@ -1,4 +1,5 @@
 import { siteState } from '@/contexts/siteContext';
+import { closeMenus } from "@/helpers/appjs"
 import { useRouter } from 'next/router';
 //import { useSearchParams } from 'next/navigation';
 import  {useEffect, useState} from 'react';
@@ -40,7 +41,7 @@ getTaxonomies();
   let catsArray;
   if(cats){
    catsArray = cats.map(cat => {
-       return <div className={`${listy ? 'col listy px-0' : 'col-md-3 col-sm-4 col-xs-6'}`}> <TermIcon shadowy exClass={cat.slug === queryCategory ? 'active' : null}  key = {cat.id} item = {cat} /> </div>
+       return <div className={`${listy ? 'col listy px-0' : 'col-md-3 col-sm-4 col-xs-6'}`}> <TermIcon onClick={() => closeMenus()} shadowy exClass={cat.slug === queryCategory ? 'active' : null}  key = {cat.id} item = {cat} /> </div>
    })
   }
 
