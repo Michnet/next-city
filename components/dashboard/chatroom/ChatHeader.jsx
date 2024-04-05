@@ -3,12 +3,13 @@ function ChatHeader({exClass='', conversation, setConversation}) {
         name: 'Select a conversation'
     }
 
+    console.log('conversation', conversation);
   return (
     <div><div className={`header ${exClass}`}>
     <div className="d-flex notch-clear">
-        <div className="align-self-center">
-            <a href="#" data-back-button className="icon icon-l color-theme" onClick={() => setConversation(null)}><i className="fa fa-arrow-left font-13"></i></a>
-        </div>
+        {conversation ? <div className="align-self-center">
+            <span className="icon icon-l color-theme" onClick={() => setConversation(null)}><i className="fa fa-arrow-left font-13"></i></span>
+        </div> : <></>}
         <div className="align-self-center">
             {thumb ? <a href="#" data-menu="menu-user"><img src={thumb} width="31" className="rounded-l"/></a> : <></>}
         </div>

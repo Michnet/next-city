@@ -5325,7 +5325,7 @@ opacity: 1;
   cursor: pointer;
 }
 
-.sidebar.-dashboard .sidebar__button > span {
+.sidebar.-dashboard .sidebar__button > span, .sidebar.-dashboard .sidebar__button > a {
   grid-column-gap: 10px;
 }
 
@@ -5954,7 +5954,7 @@ footer .container.overlay {
 
 
 .sidebar__item {
-  padding: 15px 0;
+  padding: 5px 0;
   z-index: 1;
   position: relative;
 }
@@ -7197,10 +7197,6 @@ font-size: 20px;
 
 .rev_avatar img {
   width: 45px;
-}
-
-.dashboard__main {
-  background: var(--bs-gray-200);
 }
 
 .dashboard__main .dash_cards {

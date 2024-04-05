@@ -8,6 +8,7 @@ dayjs.extend(relativeTime);
 
 
 const SentMessageCell = ({conversation, user}) => {
+  const {message, date_sent,name} = conversation ?? {};
   let avatarUrl = null;
   if(user){
     const {avatar_urls} = user;

@@ -64,6 +64,16 @@
 		margin-top: 3px;
 		transform: translateY(10px);
 	}
+	._link {
+		padding-top: 0px !important;
+		display: block;
+		border-radius: 35px;
+		width: 35px;
+		height: 35px;
+		line-height: 35px;
+		margin-top: 3px;
+		transform: translateY(10px);
+	}
 }
 
 .speech-icon-left, .speech-icon-right{position:relative;  display:block;}

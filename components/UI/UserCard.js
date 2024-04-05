@@ -38,14 +38,14 @@ export function UserCard({size}){
                                        <span>Your Profile</span>
                                        <i className="fa fa-angle-right"></i>
                                     </Link>
-                                    <a href="#" className="mb-n2">
+                                    <Link href="/account/chatroom" className="mb-n2 mt-n1" onClick={() => closeMenus()}>
                                        <span>Messages</span>
                                        <i className="fa fa-angle-right"></i>
-                                    </a>
-                                    <a href="#" className="mb-n2">
+                                    </Link>
+                                    <Link href="/account/dashboard?station=settings" className="mb-n2 mt-n1" onClick={() => closeMenus()}>
                                        <span>Settings</span>
                                        <i className="fa fa-angle-right"></i>
-                                    </a>
+                                    </Link>
                                     <span onClick={() => {userSignOut()}} href="#" className="mb-n1 _link">
                                        <span>Sign Out</span>
                                        <i className="fa fa-angle-right"></i>

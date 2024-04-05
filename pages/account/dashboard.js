@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 //import UpdateUser from "~/routes/userAuth/SignUp/update";
-//import Sidebar from "./common/Sidebar";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useRecoilValue } from "recoil";
@@ -12,6 +11,7 @@ import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
 import { authState } from "@/contexts/atoms";
 import BottomMenu from "@/components/layouts/BottomMenu";
 import GuestPrompt from "@/components/UI/GuestPrompt";
+import { closeMenus } from "@/helpers/appjs";
 
 
 export async function getServerSideProps() {
@@ -66,6 +66,10 @@ const UserDashboard = (props) => {
       loaded = false;
     }
   }, [user]);
+  useEffect(() => {
+    setLoading(true);
+    setLoading(false);
+  }, [query]);
 
 
 
@@ -105,7 +109,7 @@ const UserDashboard = (props) => {
                   <div className="dashboard__main p-0">
                     
                     <div className="row position-relative flex-nowrap" style={{rowGap : 15}}>
-                          <div className="col-12 col-md-3 col-lg-2 md:px-0 d-none d-md-block md_sticky_col" style={{width:'300px', top: '20px'}}>
+                          <div className="col-12 col-md-3 pt-3 col-lg-2 md:px-0 d-none d-md-block md_sticky_col" style={{ top: '50px'}}>
                           <Sidebar user={user} page={page} setPage={setPage}/>
                           </div>
                           <div className="col-12 col-md-9 col-lg-10 p-3">
@@ -122,8 +126,17 @@ const UserDashboard = (props) => {
 
   return (<>
      <BottomMenu icon={'fa fa-user'} btnProps={{'data-menu':'user_menu'}}/>
-    <div className='page-content'>{accountView}</div>
-    <div id='user_menu' className="menu menu-box-left"><Sidebar page={page} setPage={setPage}/></div>
+    <div className='page-content overflow-initial'>{accountView}</div>
+    <div id='user_menu' className="menu menu-box-left pt-3">
+      <div className="menu-title mt-0 pt-0">
+        <h1>My Account</h1>
+{/*         <p className="color-highlight">Flexible and Easy to Use</p>
+ */}        <span className="close-menu" onClick={() => closeMenus()}>
+          <i className="fa fa-times"></i>
+        </span>
+      </div>
+      <Sidebar exClass='bg-transparent shadow-0' page={page} setPage={setPage}/>
+    </div>
 
     </>
   );

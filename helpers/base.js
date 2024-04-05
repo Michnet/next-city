@@ -64,21 +64,29 @@ export const kyFetch = ky.create({
           }
         ],
       afterResponse: [
-        (_request, _options, response) => {
+        async(request, options, response) => {
           // You could do something with the response, for example, logging.
           //console.log('afterResponse request', _request);
           if(response.ok){
-            //console.log('res in ky', response.headers);
-            for(let entry of response.headers.entries()) {
-              console.log(entry);
-          }
+            //console.log('res in ky', response);
+            
             return response
           }else{
-            const obj = {message:'An error has occured',responseStatus:response.status,success:false};
+            let obj = {message:'An error has occured',responseStatus:response.status,success:false};
+            let badResp = await response.json();
+            if(badResp?.data){
+              const {data} = badResp;
+              obj = {...obj, ...data, ...badResp}
+            }
             const blob = new Blob([JSON.stringify(obj, null, 2)], {
               type: "application/json",
             });
-            return new Response(blob, {status: 200});
+           /*  let badResp = await response.json();
+            if(badResp?.data){
+              const {errorCode} = badResp.data;
+            } */
+            let newRsp = new Response(blob, {status: 200})
+            return newRsp;
             //new Response(array|string $body = '', ?string $type = null, ?int $code = null, ?array $headers = null, ?string $charset = null)
           }
   
@@ -101,7 +109,7 @@ export const kyFetch = ky.create({
       ],
        beforeRequest: [
          (request) => {
-            // console.log('request', request);
+             console.log('request in ky', request);
            //request.headers.set("Authorization", "Bearer token")
          },
        ],

@@ -163,7 +163,7 @@ export default function Layout({ children, headerTitle, settings}) {
           </div>
 
 		  {/*Login*/}
-          <div id="login_modal" className="menu menu-box-bottom" >
+        {/*   <div id="" className="menu menu-box-bottom" >
               <div className="menu-title">
                 <a href="#" className="close-menu" onClick={() => closeMenus()}>
                   <i className="fa fa-times"></i>
@@ -171,10 +171,13 @@ export default function Layout({ children, headerTitle, settings}) {
               </div>
               <div className="content">
                 <div className="account-access">
-                  <AuthUI/>
                 </div>
               </div>
-          </div>
+          </div> */}
+          <BSReveal id={'login_modal'}>
+          <AuthUI/>
+
+          </BSReveal>
 
           {/*Search form*/}
           <BSReveal id='search_form_1'>

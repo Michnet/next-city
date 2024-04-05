@@ -206,6 +206,8 @@ async function getUserMeta(){
         func()
       }
       setLoadingUser(false);
+   }else{
+    console.log('not authenticated')
    }
   }
   
@@ -368,10 +370,11 @@ async function loginFunc(jwt, username){
                 loginFunc(token, validatedUsername);
               }
             }else{
-              console.log('option 2', data);
+              console.log('option 2');
               refreshUser(token);
             }
          }catch(e){
+          console.log('option 3', e);
             console.log(e)
          }
       }else{

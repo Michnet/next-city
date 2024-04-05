@@ -5,8 +5,10 @@ import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { BSModal } from "../UI/Offcanvas/BSModal";
 import { UserAvatar } from "../UI/UserAvatar";
+import { closeMenus } from "@/helpers/appjs";
 
-const Sidebar = ({page, setPage, user}) => {
+
+const Sidebar = ({page, setPage, user, exClass=''}) => {
   const router = useRouter();
   const {name, id} = user ?? {};
   const {userSignOut} = useRecoilValue(useAuthState);
@@ -65,9 +67,9 @@ const Sidebar = ({page, setPage, user}) => {
     },
   ];
   return (
-    <div className="sidebar -dashboard card card-style p-3 m-md-0">
-      <div className="dashboard__content bg-dark-1 p-0">
-          <div className="row y-gap-20 justify-between items-end">
+    <div className={`sidebar -dashboard card card-style p-3 m-md-0 ${exClass}`}>
+      <div className="dashboard__content bg-dark-1 card card-style shadow-0 border mx-0 bg-transparent">
+          <div className="row justify-between items-end">
             <div className="col-12">
               <div className="d-flex flex-row flex-nowrap gap-2 align-items-center"><UserAvatar/><h1 className="text-30 lh-14 fw-600 text-white">{name}</h1></div>
               <div className="text-15 text-light-1">
@@ -86,10 +88,10 @@ const Sidebar = ({page, setPage, user}) => {
       {sidebarContent.map((item) => {
         const {func, link, routePath} = item;
       return  <div className="sidebar__item dash_menu_item mb-2" key={item.id}>
-          <div
+          <div onClick={() => closeMenus()}
             className={`${
               isActiveLink(item.routePath, router.asPath) ? "-is-active" : ""
-            } sidebar__button `}
+            } sidebar__button`}
           >
             <>{link ? <Link href={`${routePath}`} className='d-flex items-center text-15 lh-1 fw-500'><i className={`bi ${item.icon}`}/>
               {item.name}</Link>

@@ -1,18 +1,7 @@
 import  {useState, useEffect} from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-// import ChatUserList from "../appComponents/components/chat/ChatUserList";
-//import users from "./inbuiltApps/Chat/data/chatUsers";
-//import IntlMessages from "../util/IntlMessages";
-//import SearchBox from "../appComponents/components/SearchBox";
-//import { authContext } from "util/use-auth";
-// import { getBPThread, sendBPMessage } from "server/WpRest";
 import {getBPThread, sendBPMessage } from "@/helpers/rest";
-// import SentMessageCell from "appComponents/components/chat/Conversation/SentMessageCell";
-// import ReceivedMessageCell from "appComponents/components/chat/Conversation/ReceivedMessageCell";
 import { useRouter } from "next/router";
-//import dynamic from "next/dynamic";
-// import GuestPrompt from "./userAuth/GuestPrompt";
-// import { Avatar } from "~/appComponents/components/UI/components";
 import { useRecoilValue } from "recoil";
 import { authState, messagesState } from "@/contexts/atoms";
 import SentMessageCell from "@/components/UI/chat/conversation/SentMsg";
@@ -24,8 +13,6 @@ import ReceivedMessageCell from "@/components/UI/chat/conversation/ReceivedMsg";
 import ChatHeader from "./ChatHeader";
 import BottomMenu from "@/components/layouts/BottomMenu";
 import { openOffCanvas } from "@/helpers/appjs";
-
-//const CustomScrollbars = dynamic(() => import('../util/CustomScrollbars'), { ssr: false });
 
 const Chat = () => {
   const {user} = useRecoilValue(authState);
@@ -60,6 +47,7 @@ const Chat = () => {
         const {recipients, avatar, subject, excerpt, unread_count, date, id, next_messages_timestamp, messages} = thread;
         const recArray = Object.values(recipients);
         const targetObj = recArray.filter((el) => el.user_id !== user.id)[0];
+       // let usersArr = recArray.map((el) => el.user_id);
         const {name} = targetObj ?? {};
 
        const messagesArr = messages.map((item) => {
@@ -168,22 +156,21 @@ const Chat = () => {
 
   if(conversation){
     if(messages?.length > 0){
-      messagesView = <div id="scroll_box" className="no-scrollbar" style={{ height: 500, overflow: 'auto', display : 'flex', flexDirection : 'column-reverse' }} >
+      messagesView = <div id="scroll_box" className="h-100 no-scrollbar" style={{ overflow: 'auto', display : 'flex', flexDirection : 'column-reverse' }} >
                       <InfiniteScroll dataLength={messages.length} next={fetchChat} hasMore={nextStamp === ""? false : true} 
                        loader={<LoaderEllipsis/>} endMessage={ <p style={{ textAlign: 'center' }}> <b>No more Messages</b> </p> } inverse={true} scrollableTarget='scroll_box' initialScrollY = {800} style={{ display: 'flex', flexDirection: 'column-reverse' }} scrollThreshold="200px"                       
                        //height= {500}
                        >
-                            {messages.map((item, index) => item.sender_id === user.id ?
-                                        <div> <div className="speech-bubble speech-left bg-green-dark">
-                                        Yeap!
-                                    </div>
+                            {messages.map((item, index) => {
+                               const {message, date_sent,name, sender_id} = item;
+                                   return item.sender_id === user.id ?
+                                        <div> <div className="speech-bubble speech-left bg-green-dark" dangerouslySetInnerHTML={{   __html: message.rendered }}/>
                                     <div className="clearfix"></div> </div>:
                                         <div> 
-                                          <div className="speech-bubble speech-right color-black">
-                                              These are chat bubbles, right? They look awesome don't they?
-                                          </div>
+                                          <div className="speech-bubble speech-right color-black" dangerouslySetInnerHTML={{   __html: message.rendered }}/>
                                           <div className="clearfix"></div>
-                                        </div>)}  
+                                        </div>
+                                        })}  
                             {/* {messages.map((item, index) => item.sender_id === user.id ?
                                         <div><SentMessageCell key={index} conversation={item} user={user}/> </div>:
                                         <div> <ReceivedMessageCell key={index} conversation={item} user={conversation}/> </div>)} */}  
@@ -193,18 +180,14 @@ const Chat = () => {
                       </div>
                           
     }else{
-      messagesView = <div className="d-flex justify-center align-items-center" style={{minHeight: '70vh'}}><LoaderEllipsis/></div>
+      messagesView = <div className="d-flex justify-center align-items-center" style={{minHeight: '50vh'}}><LoaderEllipsis/></div>
     }
 
-  chatArea = <div className="gx-chat-main">
-      <div className="gx-chat-main-header d-flex flex-row justify-between sticky_col shadow-2">
-       
-       {/*  <button className="lh-16 btn btn-sm mb-0 btn-outline-secondary rounded-22" onClick={() => onToggleDrawer()}><i className="bi bi-chat-left-text mr-5"/>Select Conversation</button> */}
-      </div>
+  chatArea = <>
      
          {messagesView}
 
-      <div className="gx-chat-main-footer">
+      {/* <div className="gx-chat-main-footer">
       <form onSubmit={(e) => {e.preventDefault(); submitText(e.target.elements)}}>
 
         <div className="gx-flex-row gx-align-items-center" style={{maxHeight: 51}}>
@@ -215,9 +198,6 @@ const Chat = () => {
                                   required
                                   id="text_field"
                                   className="gx-border-0 ant-input gx-chat-textarea"
-                                  //onKeyUp={(e) => _handleKeyPress(e)}
-                                  //onChange={(e) => updateMessageValue(e)}
-                                  //value={message}
                                   name='text_message'
                                   placeholder="Type your message"
                                 />
@@ -227,8 +207,8 @@ const Chat = () => {
           <button type="submit"><i className="bi bi-send"/></button>
         </div>
         </form>
-      </div>
-    </div>
+      </div> */}
+    </>
   }
 
   const AppUsersInfo = () => {
@@ -279,7 +259,7 @@ const Chat = () => {
 
   const showCommunication = () => {
     return (
-      <div className="gx-chat-box">
+      <div className="gx-chat-box h-100">
         {conversation ? <>{chatArea}</>
         : <div className="py-15 mx-n3">
                           {userState === 1 ? ChatUsers() : AppUsersInfo()}
@@ -301,7 +281,8 @@ const Chat = () => {
       const payload = {
         id : conversation.id,
         message : text,
-        sender_id : user.id
+        sender_id : user.id,
+        //recipients: conversation.recipients
       }
       let oldChat = conversation.messages;
       oldChat.unshift({
@@ -313,8 +294,7 @@ const Chat = () => {
 
       const sentMsg = await sendBPMessage(payload, token);
       if(sentMsg){
-
-        const processed = processThread(sentMsg.data);
+        const processed = processThread(sentMsg);
         setNextStamp(processed.date);
         const {message_id, messages} = processed;
 
@@ -363,27 +343,25 @@ const Chat = () => {
 
   let chatAreaView;
 
-  const bottMenu =  <div id="footer-bar" className="d-flex position-sticky">
-  <div className="me-2 ms-1 speach-icon">
+  const bottMenu =  <div id="footer-bar" className="h-auto py-10 d-flex position-sticky pe-0" style={{minHeight: 'auto'}}>
+  {/* <div className="me-2 ms-1 speach-icon">
       <a href="#" data-menu="menu-upload" className="bg-gray-dark ms-2"><i className="fa fa-plus font-12 pt-2"></i></a>
-  </div>
-  <form className={'row_flex'} onSubmit={(e) => {e.preventDefault(); submitText(e.target.elements)}}>
-      <div className="flex-fill speach-input">
+  </div> */}
+  <form className={'row_flex h-fit ps-2'} onSubmit={(e) => {e.preventDefault(); submitText(e.target.elements)}}>
           <textarea required
                                   id="text_field"
-                                  className="gx-border-0 ant-input gx-chat-textarea"
+                                  className="gx-border-0 ant-input gx-chat-textarea w-100"
                                   name='text_message'
                                   placeholder="Type your message"/>
-      </div>
       <div className="ms-2 ms-1 speach-icon">
-          <button type={'submit'} className="_link bg-blue-dark me-2"><i className="fa fa-arrow-up font-12 pt-2"></i></button>
+          <button type={'submit'} className="_link bg-blue-dark me-2"><span className=""><i className="fa fa-arrow-up font-12 pt-2"></i></span></button>
       </div>
   </form>
-  <button data-menu={'user_menu'} onClick={(e) => openOffCanvas(e)} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m">
+  {/* <button data-menu={'user_menu'} onClick={(e) => openOffCanvas(e)} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m">
 <span  className={`text-center big_act`}>
 {<i className={`link_i fa fa-user`}/>}
 </span>
-</button>
+</button> */}
 </div>
 
   if(user){
@@ -399,7 +377,7 @@ const Chat = () => {
                         </div>
                         <div className={'bg-theme justify-between d-flex flex-column'} style={{flex: 'auto'}}>
                         <ChatHeader setConversation={setConversation} conversation={conversation} exClass='header-sticky header-always-show'/>
-                        <div className='px-3'>{showCommunication()}</div>
+                        <div className='px-3 flex-grow-1 flex-shrink-1' style={{minHeight: '100px'}}>{showCommunication()}</div>
                         {conversation ? <BottomMenu icon={'fa fa-user'} btnProps={{'data-menu':'user_menu'}} content={bottMenu}/> : <></>}
                         </div>
                       </div>

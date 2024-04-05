@@ -48,7 +48,7 @@ const BookingTable = ({userId}) => {
   if(bookings?.length > 0){
     pageView = <>
 
-    <div className="tabs -underline-2 js-tabs">
+    <div className="tabs -underline-2 js-tabs" style={{overflow: 'hidden', overflowX: 'auto'}}>
      {/*  <div className="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
         {tabItems.map((item, index) => (
           <div className="col-auto" key={index}>
@@ -64,7 +64,7 @@ const BookingTable = ({userId}) => {
         ))}
       </div> */}
 
-            <table className="table table-borderless text-center rounded-sm shadow-l" style={{overflow: 'hidden'}}>
+            <table className="table table-borderless text-center" >
                 <thead>
                     <tr className="bg-night-light">
                         <th></th>

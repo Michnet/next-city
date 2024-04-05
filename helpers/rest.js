@@ -15,6 +15,25 @@ export const advancedFetchListingsUrl = (payload) => {
 }
 
 
+export const sendBPMessage = async (payload, jwt) =>{
+  const endPoint = `wp-json/buddyboss/v1/messages?${serializeQuery({
+    ...payload,
+   JWT : jwt
+})}`;
+ console.log('msg payload', payload);
+   const data = await kyFetch.post(`${WPDomain}/${endPoint}`)
+   .then(async(response) => {
+       if (response) {
+           return await response.json()
+       } 
+   })
+   .catch((e) => {
+       return e.message;
+   });
+   return data;
+}
+
+
 export const editUser = async (payload) => {
 
   const endPoint = `wp-json/${userActions}/edit-user?${serializeQuery({
@@ -432,9 +451,9 @@ export const getBPThread = async (id, payload, jwt) =>{
   }
 
    const data = await kyFetch.get(`${WPDomain}/${endPoint}`)
-   .then((response) => {
+   .then(async (response) => {
        if (response) {
-           return response.json()
+           return await response.json()
        } else return null;
    })
    .catch(() => {
