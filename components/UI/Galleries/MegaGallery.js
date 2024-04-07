@@ -177,6 +177,17 @@ function revealMore(e){
   }
 }
 
+let backGs = ['100', '200', '300', '400'];
+
+if(typeof window !== 'undefined'){
+  if(localStorage.getItem('LyveState-Theme')){
+    if(localStorage.getItem('LyveState-Theme') == "dark-mode"){
+      backGs = ['600', '700', '800', '900'];
+    }
+}
+}
+
+
 
 galleryView = <>
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
@@ -189,7 +200,6 @@ galleryView = <>
                   return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
                 }else{
                   if(item?.length > 0){
-                    let backGs = ['100', '200', '300', '400'];
                   return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
                     <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
                   </div>

@@ -192,10 +192,7 @@ export default function Layout({ children, headerTitle, settings}) {
           <div id="snackbar-unliked" className="snackbar-toast rounded-m bg-yellow-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-info me-3"></i>Removed from favourites!</div>
 
 
-          <div
-            id="menu-highlights"
-            className="menu menu-box-bottom menu-box-detached"
-          >
+            <BSReveal id={'menu-highlights'}>
             <div className="menu-title">
               <h1>Highlights</h1>
               <p className="color-highlight">
@@ -278,7 +275,7 @@ export default function Layout({ children, headerTitle, settings}) {
                 Back to Settings
               </a>
             </div>
-          </div>
+            </BSReveal>
           {/* <!-- Menu Settings Backgrounds--> */}
           <div
             id="menu-backgrounds"

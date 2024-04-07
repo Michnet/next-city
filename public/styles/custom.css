@@ -2854,6 +2854,11 @@ div#explore_nav .left_menu_btn {
 
 /*media qs end*/
 
+#listingMenuRight .sidebar-content {
+    background: var(--bgThemeTransparent);
+    backdrop-filter: blur(1px) grayscale(1);
+}
+
 .list-custom-small ._link {
     color: #1f1f1f;
     font-weight: 500;

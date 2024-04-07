@@ -1,6 +1,6 @@
 import { authState } from "@/contexts/atoms";
 import { closeMenus, toggleTheme } from "@/helpers/appjs";
-import { cleanHtml } from "@/helpers/universal";
+import { cleanHtml, srcWithFallback } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
@@ -32,7 +32,8 @@ function RightMenu({listing, activeKey, setActiveKey}) {
       }
   return (
     <Client>
-    <div id="listingMenuRight" className="menu menu-box-right menu-sidebar" style={{width: '310px'}}>
+    <div id="listingMenuRight" className="menu menu-box-right menu-sidebar bg-cover" style={{width: '310px', backgroundSize: 'cover', backgroundPosition: 'center', background: `url(${srcWithFallback(cover)})`}}
+	>
 		<div className="sidebar-content h-auto">
 			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
 				<div className="card-bottom m-3">
@@ -81,7 +82,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 				</div>
 			</div>
 		</div>
-		<div className="position-sticky w-100 bottom-0 end-0 pb-1">
+		{/* <div className="position-sticky w-100 bottom-0 end-0 pb-1">
 			<div className="bg-theme mx-3 rounded-m shadow-m">
 				<div className="d-flex px-2 pb-2 pt-2">
 					<div className="align-self-center">
@@ -118,7 +119,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> */}
 	</div>
     </Client>
   )

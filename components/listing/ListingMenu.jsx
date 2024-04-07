@@ -55,7 +55,7 @@ export default function listingMenu({listing, userId}){
   tabList.push(
     { 
       id: 'community',
-      icon: "far fa-comment-dots",
+      icon: "far fa-comments",
       title: 'Community', subTitle : "Public Chat", 
       widgetClass: "pad_tab bg-theme",
       innerClass: 'bg_tab border-0 pb-0 mb-0',

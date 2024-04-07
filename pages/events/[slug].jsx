@@ -150,16 +150,13 @@ if(listing){
    <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2">
 
             <div className='row_flex gap-2'>
-                <button onClick={()=> setActiveKey('tickets')} class="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s bg-highlight btn-icon text-start">
-					<i class="far fa-calendar-check font-15 text-center"></i>
-					Booking
-				</button>
-                {<a href={`https://wa.me/${whatsapp}`} >
-                    <i class="fab fa-whatsapp color-whatsapp font-15 text-center"></i>
+                <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
+
+                {<a style={{maxWidth: '50px'}} className={'border rounded px-2'} href={`https://wa.me/${whatsapp}`} >
+                    <i class="fab fa-whatsapp color-whatsapp text-center"></i>
                 </a>}
-                
             
-            {phone && <a className={'color-white'} href={`tel:${phone}`}><i class="fas fa-phone font-15 text-center"></i></a>}</div>
+            {phone && <a style={{maxWidth: '50px'}} className={'border rounded px-2'} href={`tel:${phone}`}><i class="fas fa-phone text-center"></i></a>}</div>
               <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
               <span  className={`text-center big_act`}>
                 {<i className={`link_i fas fa-ellipsis-h`}/>}
@@ -212,7 +209,7 @@ if(listing){
             </Mirrored> */}
         <div className="card-top m-3">
             <div className="notch-clear">
-                <a data-back-button href="#" className="icon icon-xs bg-theme color-black rounded-m"><i className="fa fa-angle-left"></i></a>
+                <a data-back-button href="#" className="icon icon-xs bg-theme color-theme rounded-m"><i className="fa fa-angle-left"></i></a>
             </div>
         </div>
         <div className="card-bottom bg-gradient-fade p-3 pt-5">

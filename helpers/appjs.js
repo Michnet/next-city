@@ -237,15 +237,13 @@ function themeCssLink(fileName = null){
 
 function activateDarkMode(){
     if (typeof window !== 'undefined') {
-    document.body.classList.add('theme-dark');
-    document.body.classList.remove('theme-light');
-    document.body.classList.remove('detect-theme');
+        document.body.classList.add('theme-dark');
+        document.body.classList.remove('theme-light');
+        document.body.classList.remove('detect-theme');
 
-    console.log('toggler group', toggleDark);
-
-    for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
-    localStorage.setItem(pwaName+'-Theme', 'dark-mode');
-    themeCssLink('_dark')
+        for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
+        localStorage.setItem(pwaName+'-Theme', 'dark-mode');
+        themeCssLink('_dark')
     }
 }
 

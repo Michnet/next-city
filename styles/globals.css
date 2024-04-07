@@ -5794,8 +5794,9 @@ footer .container.overlay {
 
 #gallery_extender {
   height: 100px;
-  background: linear-gradient(180deg, transparent, #fff);
+  background: linear-gradient(180deg, transparent, var(--bgTheme));
   font-size: 20px;
+  padding-bottom: 15px;
 }
 
 #gallery_extender .show_more {

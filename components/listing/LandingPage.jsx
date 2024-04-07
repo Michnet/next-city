@@ -60,7 +60,7 @@ import { activeDateState } from "@/contexts/atoms";
                                 </div>
                             </div>
                         </div> : <></>}
-                        <div className="col-6">
+                        {ticket_min_price_html && <div className="col-6">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="bi bi-wallet color-green-dark font-23 me-3 text-center"></i>
@@ -70,7 +70,7 @@ import { activeDateState } from "@/contexts/atoms";
                                     <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme">{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</strong>
                                 </div>
                             </div>
-                        </div>
+                        </div>}
                     </div>
 
                     <div className="divider mb-1"></div>
@@ -79,7 +79,7 @@ import { activeDateState } from "@/contexts/atoms";
             </div>
 
             <div className="mb-5 px-50">
-                <button onClick={() => setActiveKey('tickets')} className="w-1/1 shadow-bg btn btn-full btn-m rounded-lg shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
+                
             </div>
 
             <div className="card card-style shadow-0 radius-0 bg-transparent">
