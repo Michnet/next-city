@@ -118,7 +118,7 @@ const ExploreEvents = ({topList}) => {
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="p-2">
-              {showHint ? <div className="query_hint  text-white p-3 rounded">
+              {showHint ? <div className="query_hint  text-white ps-3">
                   <p className="mb-2"><span>Exploring {category ? <span><span className="text-info pointer">{translateDate(category)} </span></span> : ''}
                     listings </span>
                     {eventDate ? <span>scheduled for <span className="text-warning pointer">{translateDate(eventDate)}</span></span> : ''}

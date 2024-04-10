@@ -25,7 +25,6 @@ const onFinish = async(e) => {
     setLoading(true);
     const connect = await userLogin(data, signal);
     if(connect){
-        console.log('connn', connect)
 
         const {success} = connect;
         controller.abort();

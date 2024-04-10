@@ -13,7 +13,7 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
 
-    const ActivityItemConst = ({activity, user, token, avatarSize, noLink, exClass=""}) => {
+    const ActivityItemConst = ({activity, user, token, avatarSize='35', noLink, exClass="", mainClass='bg-theme p-3'}) => {
       
 
       const [compActivity, setCompActivity] = useState(activity ?? null);
@@ -155,20 +155,17 @@ dayjs.extend(relativeTime)
                           </ul>
         }
         itemView = <>
-                    <div key={id} className={`${type} activity_card card card-style mb-2 ${exClass}`}>
-                        <div className="content mb-0">
-                            <div className="mt-n1">
-                                
-                                <div className="mt-n1 mb-2">
-                                  
-                                    <div className="d-flex align-items-center gap-2">
+                    <div key={id} className={`${type} activity_card card card-style mx-0 mb-2 shadow-0 rounded-0 bg-transparent  ${exClass}`}>
+                        <div className="content m-0">
+                                <div className={`activity_main ${mainClass}`}>
+                                    <div className="d-flex align-items-center gap-2 activity_header mb-2">
                                       <div>
-                                          <a onClick={(e) => openOffCanvas(e)} href="#" data-menu="menu-story"><img src={user_avatar?.thumb} width="35" className="rounded-xl mt-1" /* className="rounded-xl mt-1 border border-m border-blue-dark" *//></a>
+                                          <img src={user_avatar?.thumb} width={avatarSize} className="rounded-xl mt-1"/>
                                       </div>
                                         <div className="pe-3">
                                             <Client><h5 className="_title mb-0 font-16 font-700" dangerouslySetInnerHTML={{__html: getHeading()}}/></Client>
                                             {noLink ? <></> : <>{group_name ? <>{listing?.type ? <Link className="pointer" href={`/${listing.type == 'event' ? 'events' : 'places'}/${listing?.slug}`}><h6 className="_sub_title truncate-2 lh-12 opacity-60 text-13">{group_name}</h6></Link> : <h6 className="lh-12 _sub_title truncate-2 opacity-60 text-13">{group_name}</h6>}</> : <></>}</>}
-                                            <div className="title_meta d-flex align-items-center">
+                                            <div className="title_meta d-flex align-items-center mt-n2 opacity-50">
                                                 {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11">@joesome</span></div>
                                                 <div className="pe-2">&middot;</div> */}
                                                 <div><span className="opacity-60 font-11">{dayjs(localiseDate(date)).fromNow()}</span></div>
@@ -178,7 +175,7 @@ dayjs.extend(relativeTime)
                                         </div>
                                     </div>
                                     {head_extras}
-                                    <div className="border border-theme rounded-m overflow-hidden mb-3 activity_body">
+                                    <div className="overflow-hidden mb-3 activity_body">
                                         {/* <img src={type == 'new_job_listing' ? listing?.thumb_url : '/images/bg/fallback.jpg'} className="img-fluid"/> */}
                                         {type === 'new_job_listing' && <Suspense offset={150} once><img className="img-fluid feat_img mb-10 w-100 object-cover" src={listing?.thumb_url}/></Suspense>}
                                         <div className="content mt-0 mb-1">
@@ -200,36 +197,37 @@ dayjs.extend(relativeTime)
                                         </div>
                                         </div>
                                     </div>
-                                    {user ? 
+                                    <div className='activity_footer'>{user ? 
                                       <div className="reactions_i_group d-flex pb-1">
                                         {can_comment && <span /* data-menu="menu-reply" */  className="color-theme me-2 opacity-60 
-                                        reaction_i pointer" onClick={() => {fetchComments(); setCommenting(!commenting)}}><i className="bi bi-chat-left pe-1"/>  {comment_count > 0 && <span class="badge rounded-pill bg-warning">{comment_count}</span>}</span>}
+                                        pointer" onClick={() => {fetchComments(); setCommenting(!commenting)}}><i className="bi bi-chat-left pe-1"/>  {comment_count > 0 && <span class="badge rounded-pill bg-warning">{comment_count}</span>}</span>}
 
                                         {can_favorite && <span onClick={() => toggleLike()} className={`me-2 opacity-60`}><i className={`pe-1 bi ${liked ? 'bi-heart-fill color-highlight' : 'bi-heart'}`}/>{favorite_count > 0 && <span className="badge rounded-pill bg-info">{favorite_count}</span>}</span>}
 
                                         
-                                        {can_delete && user?.id == user_id && <span className="reaction_i pointer color-theme me-0 ms-auto opacity-60" onClick={() => deleteActivity()}><i className="bi bi-trash"/></span>}
+                                        {can_delete && user?.id == user_id && <span className="pointer color-theme me-0 ms-auto opacity-60" onClick={() => deleteActivity()}><i className="bi bi-trash"/></span>}
                                       </div>
                                     :
                                     <>
-                                    {showPrompt && <GuestPrompt title={'Sign in to respond to this post'}/>}<span className="reaction_i pointer" onClick={() => setShowPrompt(!showPrompt)}><i className="bi bi-three-dots"/></span></>
+                                    {showPrompt && <GuestPrompt title={'Sign in to respond to this post'}/>}<span className="pointer" onClick={() => setShowPrompt(!showPrompt)}><i className="bi bi-three-dots"/></span></>
                                     }
+                                    </div>
                                     {imagesView}
+                                    </div>
                                     {commenting &&  <div className="comment_box mt-15">
                                         <form onSubmit={(e) => sendReply(e)} className="w-100">
-                                          {/* sending ? <div className='d-flex justify-center align-items-center border rounded' style={{height: '80px'}}><LoaderEllipsis/></div> : */ <textarea rows={4} id='com_content' name='com_content' className="d-block w-100 com_content border rounded p-2 text-13" />}
+                                          {/* sending ? <div className='d-flex justify-center align-items-center border rounded' style={{height: '80px'}}><LoaderEllipsis/></div> : */ <textarea style={{border: 'none', borderBottom: '1px solid var(--borderTheme)'}} rows={2} id='com_content' name='com_content' className="d-block w-100 com_content border rounded-0 bg-transparent p-2 text-13" />}
                                           <button type="submit" className="btn btn-xs btn-outline-theme mb-0 mt-10">Post Reply</button>
                                         </form>
                                         {sending ? <LoaderDualRingBoxed/> : <>{comments?.length > 0 && 
                                         <div className='act_comments mt-15'>
                                         {comments.map((comItem) => {
-                                            return <ActivityItem avatarSize={avatarSize} key={comItem.id} activity={comItem} user={user} token={token}/>
+                                            return <ActivityItem mainClass={'bg-transparent px-2'} avatarSize={'25'} key={comItem.id} activity={comItem} user={user} token={token}/>
                                           })}
-                                        </div>}</>
+                                        </div>}
+                                        </>
                                       }
                                     </div>}
-                                </div>
-                            </div>
                         </div>
                     </div>
                     </>

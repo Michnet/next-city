@@ -150,13 +150,13 @@ if(listing){
    <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2">
 
             <div className='row_flex gap-2'>
-                <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
+                <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
 
                 {<a style={{maxWidth: '50px'}} className={'border rounded px-2'} href={`https://wa.me/${whatsapp}`} >
-                    <i class="fab fa-whatsapp color-whatsapp text-center"></i>
+                    <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
                 </a>}
             
-            {phone && <a style={{maxWidth: '50px'}} className={'border rounded px-2'} href={`tel:${phone}`}><i class="fas fa-phone text-center"></i></a>}</div>
+            {phone && <a style={{maxWidth: '50px'}} className={'border rounded px-2'} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}</div>
               <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
               <span  className={`text-center big_act`}>
                 {<i className={`link_i fas fa-ellipsis-h`}/>}
@@ -216,14 +216,14 @@ if(listing){
             {activeKey == 'home' && <span className="bg-highlight color-white font-700 p-1">
                 {categories[0]?.name}
             </span>}
-            <h1 className="font-40 font-900 line-height-xl mt-1">
+            <h1 className={`font-900 line-height-xl mt-1 ${activeKey == 'home' ? 'font-40' : 'truncate-2 font-30'}`}>
                 {cleanHtml(title?.rendered)}
             </h1>
             <p className="mb-3">
                 <i className="fa fa-map-marker font-11 me-2"></i>
                 {address}
             </p>
-            <div className="d-flex pb-4 align-items-center">
+            <div className="d-flex align-items-center">
                 {rating && rating > 0 && <div className="align-self-center flex-grow-1">
                     <div className="mb-1"><span className="font-11">
                         User Reviews
@@ -231,7 +231,7 @@ if(listing){
                     <RatingView rating={rating} id={id}/>
                 </div>}
                 <div className="align-self-center flex-shrink-1">
-                    <button onClick={() => setActiveKey('tickets')} href="#"  className="btn btn-full btn-s me-3 font-900 text-uppercase rounded-sm shadow-xxl bg-dark-dark">Booking</button>
+                    <button onClick={() => setActiveKey('tickets')} className="btn btn-full btn-s me-3 font-900 text-uppercase rounded-sm shadow-xxl bg-dark-dark">Booking</button>
                 </div>
             </div>
         </div>

@@ -114,8 +114,8 @@ useEffect(() => {
                         {isLoadingMore && <CommentLoader num={4}/>}
                       </div>
                           <div className="activity-footer">                        
-                            {isReachingEnd ? <></> : <span className="gx-link gx-btn-link" onClick={() => setSize(size + 1)}>Load More</span>}
-                            <span className="gx-link gx-btn-link" onClick={() => setSize(1)}> Reset</span>
+                            {isReachingEnd ? <></> : <span className="btn btn-sm" onClick={() => setSize(size + 1)}>Load More</span>}
+                            <span className="btn btn-sm" onClick={() => setSize(1)}> Reset</span>
                           </div>
                         </div>
                     </>
@@ -129,9 +129,9 @@ useEffect(() => {
       <div className="activity_wall gx-entrysec- mt-0">
         {user ? 
         <>
-          {groupMem ? <div className="new_post mb-20">
-              <form onSubmit={(e) => {createPost(e)}}>{sending ? <LoaderEllipsis/> : <> <textarea style={{height: 100}} name="content" className="rounded p-3 mb-10 text-13 outline-none w-full resize-none border rounded-lg placeholder:text-sm" placeholder="What's on your mind for this community">
-              </textarea></>}  
+          {groupMem ? <div className="new_post mb-20 card card-style mx-0 p-3 rounded-0">
+              <form className='d-flex flex-column' onSubmit={(e) => {createPost(e)}}>{sending ? <LoaderEllipsis/> : <> 
+              <textarea style={{height: 100, border: 'none', borderBottom: '1px solid var(--borderTheme)'}} name="content" className="p-3 d-block mb-10 text-13 outline-none w-full resize-none placeholder:text-sm" placeholder="What's on your mind for this community"/></>}  
             {/*  <input type="file" name='media_file' /> */}
             
             <div className="d-flex justify-between flex-row flex-nowrap"> 

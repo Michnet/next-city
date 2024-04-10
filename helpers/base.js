@@ -72,6 +72,7 @@ export const kyFetch = ky.create({
             
             return response
           }else{
+            console.log('corrected error in ky', error);
             let obj = {message:'An error has occured',responseStatus:response.status,success:false};
             let badResp = await response.json();
             if(badResp?.data){
@@ -81,10 +82,10 @@ export const kyFetch = ky.create({
             const blob = new Blob([JSON.stringify(obj, null, 2)], {
               type: "application/json",
             });
-           /*  let badResp = await response.json();
+            //let badResp = await response.json();
             if(badResp?.data){
               const {errorCode} = badResp.data;
-            } */
+            }
             let newRsp = new Response(blob, {status: 200})
             return newRsp;
             //new Response(array|string $body = '', ?string $type = null, ?int $code = null, ?array $headers = null, ?string $charset = null)
@@ -109,7 +110,7 @@ export const kyFetch = ky.create({
       ],
        beforeRequest: [
          (request) => {
-             console.log('request in ky', request);
+            // console.log('request in ky', request);
            //request.headers.set("Authorization", "Bearer token")
          },
        ],

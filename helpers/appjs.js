@@ -1,3 +1,5 @@
+//import { themeSignal } from "@/contexts/signals";
+
 function appjsCode(){
     var pwaName = "LyveState"; 
 
@@ -241,6 +243,8 @@ function activateDarkMode(){
         document.body.classList.remove('theme-light');
         document.body.classList.remove('detect-theme');
 
+        //themeSignal.value = 'dark';
+
         for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
         localStorage.setItem(pwaName+'-Theme', 'dark-mode');
         themeCssLink('_dark')
@@ -251,6 +255,7 @@ function activateLightMode(){
     if (typeof window !== 'undefined') {
     document.body.classList.add('theme-light');
     document.body.classList.remove('theme-dark','detect-theme');
+    //themeSignal.value = 'light';
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=false};
     localStorage.setItem(pwaName+'-Theme', 'light-mode');
     themeCssLink('_light')
