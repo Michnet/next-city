@@ -2276,7 +2276,7 @@ button.back_link {
 }
 
 .query_hint {
-    border: 1px solid var(--secTheme);
+    border-left: 4px solid var(--secTheme);
 }
 
 .section_header .icon-xs._big i {
@@ -2897,8 +2897,7 @@ div#explore_nav .left_menu_btn {
 }
 
 .activity_footer, .activity_body {
-    
-    margin-left: 17px;
+    margin-left: 15px;
 }
 
 .cta-descript{
