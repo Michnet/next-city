@@ -751,6 +751,9 @@ div#footer-bar {
     height: fit-content !important;
     /* position: fixed; */
 }
+.listing_services {
+    background: var(--bgThemeLight);
+}
 
 #listing_header {
     grid-template-columns: 100%;
@@ -766,6 +769,17 @@ div#footer-bar {
     max-width: 170px;
     display: flex;
     flex-direction: row;
+}
+.theme-dark .gray_bg {
+    background: #232327;
+}
+
+.theme-dark .ticket_card .date:after, .theme-dark .ticket_card .date:before {
+    background: #1a1c20;
+}
+
+.ticket_card .date {
+    border-color: #1b1d20;
 }
 
 .header.header-sticky .header_inner {

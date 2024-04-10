@@ -142,7 +142,7 @@ border-color: var(--highlight);
 }
 
 .single_listing .border-loud {
-  border-color: var(--listingTheme);
+  border-color: var(--highlight);
 }
 
 .services_body .service_item:nth-child(even) .serv_content hr {
@@ -623,10 +623,6 @@ section.landing_page .intro {
   bottom: 0;
   width: 100%;
   display: none;
-}
-
-.listing_services {
-  background: #efefef;
 }
 
 .dark-theme .listing_services {
