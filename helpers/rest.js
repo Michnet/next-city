@@ -494,10 +494,10 @@ export async function addGroupMember(group_id, payload){
 }
 
 export const createBPActivity = async (payload) =>{ 
-  const data = await WPRepository.post(bPActivitiesUrl(payload))
-  .then((response) => {
-      if (response.data) {
-          return response.data
+  const data = await kyFetch.post(bPActivitiesUrl(payload))
+  .then(async (response) => {
+      if (response) {
+          return await response.json()
       } else return null;
   })
   .catch(() => {
