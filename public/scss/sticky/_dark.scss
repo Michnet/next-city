@@ -183,11 +183,11 @@ $color_white: #FFF;
 .theme-dark .footer-links,
 .theme-dark #footer-bar,
 .theme-dark .footer-copyright{
-    border-top:solid 1px $theme-dark-lighter!important;
+    border-top:solid 1px $theme-dark-lighter;
 }
 
 .theme-dark #footer-bar{
-    background-color:$theme-dark-transparent-background!important;
+    background-color:$theme-dark-transparent-background;
     color:$color_white;
 }
 

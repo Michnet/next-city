@@ -99,10 +99,15 @@ galleryView = <>
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
                 if(item?.length > 0){
-                  let backGs = ['100', '200', '300', '400'];
-                return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
-                  <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
-                </div>
+                  if(item?.includes(siteSettings.wpDomain)){
+                    return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+                  }else{
+                    
+                      let backGs = ['100', '200', '300', '400'];
+                    return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
+                      <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
+                    </div>
+                  }
                 }
               }else{
                 if(item?.url?.includes(siteSettings.wpDomain)){

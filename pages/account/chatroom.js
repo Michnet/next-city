@@ -14,7 +14,7 @@ export async function getServerSideProps() {
         hideNews: true,
         transparentHeader: true,
        mMenu: 'hide',
-       hideFooter: true
+       noFooter: true
       }
     }
   }

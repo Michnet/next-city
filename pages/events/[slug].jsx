@@ -147,22 +147,24 @@ if(listing){
         </div>
 }
    let bottomContent = <>
-   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2">
+   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2 shadow-none bg-transparent border-0 border-top-0">
 
             <div className='row_flex gap-2'>
-                <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button>
+                {/* <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button> */}
 
-                {<a style={{maxWidth: '50px'}} className={'border rounded px-2'} href={`https://wa.me/${whatsapp}`} >
+                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
+                  <i class="far fa-calendar-check font-15 text-center"></i>
+                  Booking
+				          </button>}
+
+                {whatsapp && <a style={{maxWidth: '50px'}} className={'rounded px-2 bg-theme shadow-l'} href={`https://wa.me/${whatsapp}`} >
                     <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
                 </a>}
-            
-            {phone && <a style={{maxWidth: '50px'}} className={'border rounded px-2'} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}</div>
-              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
-              <span  className={`text-center big_act`}>
-                {<i className={`link_i fas fa-ellipsis-h`}/>}
-              </span>
-              <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
-            </button>
+                {phone && <a style={{maxWidth: '50px'}} className={'rounded px-2 bg-theme shadow-l'} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
+              </div>
+              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px', height: '50px', right: '10px'}} className={'d-flex align-items-center justify-center rounded px-2 bg-theme shadow-l position-absolute'}>
+                <i class="fas fa-ellipsis-h text-center text-24"/>
+              </button>
           </div>
    
    
@@ -242,9 +244,7 @@ if(listing){
         <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
     </Client>
 </div>
-{/* <!-- End of Page Content--> */}
 
-{/* <!-- All Menus, Action Sheets, Modals, Notifications, Toasts, Snackbars get Placed outside the <div className="page-content"> --> */}
     <ListingSideMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <RightMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
@@ -286,17 +286,5 @@ if(listing){
 
 
   const Listing = memo(ListingConst);
-
-  /* const CanvasLayout = dynamic(() => import('~/appComponents/core//CanvasLayout'));
-  import VisitorActions from './../../components/listing/partials/VisitorActions';
-import { fallbackImgSrcSet } from '@/helpers/base';
-import { fallbackImgSrcSet } from '@/helpers/base';
-import { fallbackImgSrcSet } from './../../helpers/base';
-
-  Listing.getLayout = function getLayout({children}) {
-    return (
-        <CanvasLayout>{children}</CanvasLayout>
-    )
-  } */
   
   export default Listing;

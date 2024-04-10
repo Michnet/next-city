@@ -21,7 +21,7 @@ import { activeDateState } from "@/contexts/atoms";
     return  <div className="landing_page">
             <div className="bg-highlight shadow-bg shadow-card mx-3" style={{borderRadius: '15px'}}>
                 <div className="card card-style m-0">
-                <div className="content bg-theme m-0 p-3">          
+                <div className="content bg-theme m-3 p-3 border-type-1" style={{borderRadius: '15px'}}>          
                     <Client>{short_desc && <p className="mb-3 text-14 pb-2">
                         <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
                     </p>}</Client>
@@ -73,8 +73,6 @@ import { activeDateState } from "@/contexts/atoms";
                             </div>
                         </div>}
                     </div>
-
-                    <div className="divider mb-1"></div>
 
                 </div>
             </div>
