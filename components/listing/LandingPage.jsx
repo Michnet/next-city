@@ -27,7 +27,7 @@ import { activeDateState } from "@/contexts/atoms";
                     </p>}</Client>
                     <CountDownUI fromActive eventId={listing?.id} /* eventId={id} */ />
                     <div className="row mb-3 mt-4 meta_card">
-                        {act_dates && act_id == listing?.id ? <div className="col-6">
+                        {act_dates && act_id == listing?.id ? <div className="col-6 p-0">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="far fa-calendar-check color-teal-dark font-23 me-3 text-center"></i>
@@ -38,7 +38,7 @@ import { activeDateState } from "@/contexts/atoms";
                                 </div>
                             </div>
                         </div> : <></>}
-                        {act_dates && act_id == listing?.id ? <div className="col-6">
+                        {act_dates && act_id == listing?.id ? <div className="col-6 p-0">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="bi bi-clock color-red-dark font-23 me-3 text-center"></i>
@@ -50,7 +50,7 @@ import { activeDateState } from "@/contexts/atoms";
                             </div>
                         </div> : <></>}
                         <div className="col-12 mb-2"></div>
-                        {address?.length > 0 || locations?.length > 0 ? <div className="col-6">
+                        {address?.length > 0 || locations?.length > 0 ? <div className="col-6 p-0">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="bi bi-geo-alt color-yellow-dark font-23 me-3 text-center"></i>
@@ -61,7 +61,7 @@ import { activeDateState } from "@/contexts/atoms";
                                 </div>
                             </div>
                         </div> : <></>}
-                        {ticket_min_price_html && <div className="col-6">
+                        {ticket_min_price_html && <div className="col-6 p-0">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="bi bi-wallet color-green-dark font-23 me-3 text-center"></i>

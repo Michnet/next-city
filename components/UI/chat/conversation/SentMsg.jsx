@@ -8,26 +8,23 @@ dayjs.extend(relativeTime);
 
 
 const SentMessageCell = ({conversation, user}) => {
-  const {message, date_sent,name} = conversation ?? {};
-  let avatarUrl = null;
-  if(user){
-    const {avatar_urls} = user;
-    avatarUrl = avatar_urls['48'];
-  }
+  const {message, date_sent,name, sender_data, subject} = conversation ?? {};
+  const {user_avatars} = sender_data ?? {}
+
 
   return (
     <div className="gx-chat-item gx-flex-row-reverse">
+       
+          <div className='row_flex justify-end gap-2 pe-2'>
+          <div className="d-flex align-items-end flex-column">
+            <div className="speech-bubble speech-left bg-green-dark mb-0" dangerouslySetInnerHTML={{   __html: message.rendered }}/>
+            <span className='msg_meta opacity-40 text-11'>{dayjs(localiseDate(date_sent, null)).fromNow()}</span>
 
-      {avatarUrl && <Avatar rounded width={35} className="gx-align-self-end" src={`${avatarUrl}`}
-              alt={conversation.name}/>}
-
-      <div className="gx-bubble-block">
-        <div className="gx-bubble">
-{/*           <div className="gx-message">{conversation.message}</div> */}
-          <div className="gx-message"   dangerouslySetInnerHTML={{   __html: conversation.message.rendered }} />
-          <div className="gx-time gx-text-muted gx-text-right gx-mt-2">{dayjs(localiseDate(conversation.date_sent, null)).fromNow()}</div>
-        </div>
-      </div>
+            </div>
+          {user_avatars?.thumb ? <Avatar rounded width={35} className="gx-align-self-end" src={`${user_avatars.thumb}`}
+              alt={name}/> : <></>}
+          </div>
+          <div className="clearfix"></div> 
 
     </div>
   )

@@ -7,6 +7,7 @@ import {openOffCanvas} from "@/helpers/appjs";
 import TermsGrid from './../UI/lists/TermsGrid';
 import { DualColorHeader } from "../UI/Partials";
 import { quickLinks } from "@/helpers/data";
+import Logo from "../UI/Logo";
 
 function MainMenu() {
  const router = useRouter();
@@ -28,7 +29,16 @@ function MainMenu() {
  ]
   return (
   <div id="sidebar_menu" className="list-group border-0 rounded-0 text-sm-start h-100">
-                        <div id="menu-sidebar"  /* data-menu-width="320" data-menu-effect="menu-push" */>
+                        <div id="menu-sidebar">
+                                
+                                <div className="position-sticky w-100 top-0 end-0 pb-1 z-2">
+                                <div className="card card-style my-2">
+                                    <div className='row_flex justify-between p-2'>
+                                        <Logo simple={false}/>
+                                        <span className="icon icon-xxs gradient-red rounded-sm close-menu" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="sidebar-content">
                                <UserCard/>
                                 <div className="card card-style mb-15 shadow-0 border pb-15">
@@ -80,25 +90,17 @@ function MainMenu() {
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Settings</h5>
                                         <div className="list-group list-custom-small list-icon-0">
-                                            <a href="#" data-menu="menu-highlights" onClick={(e) => openOffCanvas(e)}>
+                                            <span className='_link' data-menu="menu-highlights" onClick={(e) => openOffCanvas(e)}>
                                                 <i className="fa font-12 fa-droplet gradient-blue rounded-sm color-theme"></i>
                                                 <span>Highlights</span>
                                                 <i className="fa fa-angle-right"></i>
-                                            </a>
-                                            <a href="#" data-menu="menu-backgrounds" onClick={(e) => openOffCanvas(e)}>
+                                            </span>
+                                            <span className='_link'  data-menu="menu-backgrounds" onClick={(e) => openOffCanvas(e)}>
                                                 <i className="fa font-12 fa-paint-brush gradient-orange rounded-sm color-theme"></i>
                                                 <span>Backgrounds</span>
                                                 <i className="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="position-sticky w-100 bottom-0 end-0 pb-1">
-                                <div className="card card-style mb-3">
-                                    <div className="content my-0 py-">
-                                        <div className="list-group list-custom-small list-icon-0">
-                                            <a href="#" data-toggle-theme onClick={() => toggleTheme()}  data-trigger-switch="switch-dark2-mode" className="border-0">
+                                            </span>
+                                            <span data-toggle-theme onClick={() => toggleTheme()}  data-trigger-switch="switch-dark2-mode" className="_link border-0">
                                                 <i className="fa font-12 fa-moon gradient-yellow color-theme rounded-sm"></i>
                                                 <span>Dark Mode</span>
                                                 <div className="custom-control ios-switch">
@@ -106,11 +108,12 @@ function MainMenu() {
                                                     <label className="custom-control-label" htmlFor="switch-dark2-mode"></label>
                                                 </div>
                                                 <i className="fa fa-angle-right"></i>
-                                            </a>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                           
                         </div>
                     </div>
                 

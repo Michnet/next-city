@@ -4,19 +4,19 @@ import Link from "next/link"
 const Logo = ({simple, light, dark}) => {
   let styling = {objectFit: 'contain', maxHeight: 35}
   return (
-    <div className="header-logo" data-aos="zoom-in">
+    <div className="site-logo" data-aos="zoom-in">
         <div className={`d-flex flex-row flex-nowrap justify_start align-items-center`}>
-        <Link href="/" className="header-logo">
+        <Link href="/" className="logo_main">
           <div className={`d-flex flex-row flex-nowrap justify_start align-items-center`}>
           {light ? <></> : <img className="_logo_img _dark" src={siteSettings.logo_link} alt="LyveCity" style={styling}/>}
           {dark ? <></> : <img className="_logo_img _light" src={siteSettings.light_logo_link} alt="LyveCity" style={styling}/>}
-          <span className={`ml-10 _logo_text handy text-25 ${simple ? 'd-none d-sm-block' : ''}`}>Lyvecity</span>
+          <span className={`ml-10 _logo_text fw-bold text-20 color-theme ${simple ? 'd-none d-sm-block' : ''}`}>LyveCity</span>
           </div>
           </Link>
-          <Link className="logo_extras" href={'/about/whats-new'}>
+          <Link className="logo_extras color-theme" href={'/about/whats-new'}>
             <span className="app_version ml-10">
-            <span className="opacity-50">v</span>
-            <span className="text-20 app_version">1.3</span>
+              <span className="opacity-50">v</span>
+              <span className="text-16 app_version color-highlight">1.3</span>
           </span></Link>
         </div>
     </div>

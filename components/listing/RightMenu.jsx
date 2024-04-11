@@ -5,7 +5,6 @@ import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
 import {openOffCanvas} from "@/helpers/appjs";
-import Link from "next/link";
 
 function RightMenu({listing, activeKey, setActiveKey}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
@@ -18,21 +17,21 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                     {localMenu.map((el) => {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
-                      return <Link onClick={() => {closeMenus(); setActiveKey(id)}} className={`close-menu ${activeKey === id ? 'active' : ''}`} href="#" key={id}>
+                      return <span onClick={() => {closeMenus(); setActiveKey(id)}} className={`_link close-menu ${activeKey === id ? 'active' : ''}`}  key={id}>
 							<i className={`${icon ?? 'far fa-square'} font-16 color-highlight bg-transparent border rounded color-white`}></i>
 							<span className="position-relative">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
                                       </span> : <></>}</span>
 							<i className="fa fa-angle-right"></i>
-						</Link>
+						</span>
                       }
                     })}
                     </>
       }
   return (
     <Client>
-    <div id="listingMenuRight" className="menu menu-box-right menu-sidebar bg-cover" style={{width: '310px', backgroundSize: 'cover', backgroundPosition: 'center', background: `url(${srcWithFallback(cover)})`}}
+    <div id="listingMenuRight" className="menu menu-box-right menu-sidebar bg-cover bg-center" style={{width: '310px', backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage: `url(${srcWithFallback(cover)})`}}
 	>
 		<div className="sidebar-content h-auto">
 			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
@@ -41,7 +40,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 					{locations?.length > 0 && <p className="color-white mb-0 opacity-50">{locations[0]?.name}</p>}
 				</div>
 				<div className="card-top m-2">
-					<a href="#" className="icon icon-xxs gradient-red rounded-sm float-end close-menu"><i className="fa fa-times color-white"></i></a>
+					<span className="icon icon-xxs gradient-red rounded-sm float-end close-menu" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
 				</div>
 				<div className="card-overlay bg-gradient"></div>
 				<div className="card-overlay bg-black opacity-10"></div>

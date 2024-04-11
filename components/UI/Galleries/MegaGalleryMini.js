@@ -122,7 +122,7 @@ galleryView = <>
             </Masonry>
         </ResponsiveMasonry>}
         </div>
-        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-end h-100 w-100 justify-center"><span className="show_more btn">Show more Wall</span></div>
+        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-end w-100 justify-center"><span className="show_more btn">Show more Wall</span></div>
         </div>
         </div>
 </>

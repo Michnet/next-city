@@ -507,6 +507,35 @@ return data;
 }
 
 
+export const getBPRecipientThread = async (payload, jwt) =>{
+
+  let endPoint;
+
+  if(payload){
+      endPoint = `wp-json/buddyboss/v1/messages/search-thread?${serializeQuery({
+          ...payload,
+          JWT : jwt
+      })}`;
+
+  }else{
+      endPoint = `wp-json/buddyboss/v1/messages/search-thread?${serializeQuery({
+          JWT : jwt
+      })}`;
+  }
+
+   const data = await kyFetch.get(`${WPDomain}/${endPoint}`)
+   .then(async(response) => {
+       if (response) {
+           return await response.json();
+       } else return null;
+   })
+   .catch(() => {
+       return null;
+   });
+   return data;
+}
+
+
 export const getBookableProducts = async (payload) => {
   const response = await kyFetch.get(getBookableProductsUrl(payload)).json();
     try{

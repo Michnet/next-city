@@ -6,13 +6,11 @@ import { useRecoilValue } from "recoil";
 import { authState, messagesState } from "@/contexts/atoms";
 import SentMessageCell from "@/components/UI/chat/conversation/SentMsg";
 import GuestPrompt from "@/components/UI/GuestPrompt";
-import { Avatar } from "@/components/UI/Partials";
 import { LoaderDualRingBoxed, LoaderEllipsis } from "@/components/skeletons/Loaders";
 import ChatUserList from "@/components/UI/chat/ChatUserList/ChatUserList";
 import ReceivedMessageCell from "@/components/UI/chat/conversation/ReceivedMsg";
 import ChatHeader from "./ChatHeader";
 import BottomMenu from "@/components/layouts/BottomMenu";
-import { openOffCanvas } from "@/helpers/appjs";
 
 const Chat = () => {
   const {user} = useRecoilValue(authState);
@@ -30,10 +28,8 @@ const Chat = () => {
   const [nextStamp, setNextStamp] = useState(null);
   const [subject, setSubject] = useState(null);
   const [activeThreadId, setActiveThreadId] = useState(null);
-  const [showChats, setShowChats] = useState(true)
+  const [subjects, setSubjects] = useState([]);
 
-
-  const {name, avatar_urls} = user ?? {}
   const auth = useRecoilValue(authState);
   const stateMessages = useRecoilValue(messagesState);
   const {token} = auth;
@@ -44,20 +40,24 @@ const Chat = () => {
 
 
   function processThread(thread){
+        let tempSubjects = [...subjects];
         const {recipients, avatar, subject, excerpt, unread_count, date, id, next_messages_timestamp, messages} = thread;
         const recArray = Object.values(recipients);
         const targetObj = recArray.filter((el) => el.user_id !== user.id)[0];
-       // let usersArr = recArray.map((el) => el.user_id);
         const {name} = targetObj ?? {};
 
        const messagesArr = messages.map((item) => {
-          const {sender_id, message, subject, date_sent } = item;
+          const {sender_id, message, subject:msgSub, date_sent } = item;
+             console.log('procs', msgSub);
+              if(!tempSubjects.includes(msgSub.rendered)){
+                tempSubjects.push(msgSub.rendered);
+              }
               return {
                 sender_id, message, subject, date_sent
               }
         }); 
 
-        setSubject(subject);
+        setSubjects(tempSubjects);
 
          return { id : id, name : name, thumb : avatar[0].thumb, lastMessage : excerpt, unreadMessage : unread_count, subject : subject, lastMessageTime : date, next_messages_timestamp, messages : messagesArr.reverse() }
   }
@@ -161,19 +161,10 @@ const Chat = () => {
                        loader={<LoaderEllipsis/>} endMessage={ <p style={{ textAlign: 'center' }}> <b>No more Messages</b> </p> } inverse={true} scrollableTarget='scroll_box' initialScrollY = {800} style={{ display: 'flex', flexDirection: 'column-reverse' }} scrollThreshold="50px"                       
                        //height= {500}
                        >
-                            {messages.map((item, index) => {
-                               const {message, date_sent,name, sender_id} = item;
-                                   return item.sender_id === user.id ?
-                                        <div> <div className="speech-bubble speech-left bg-green-dark" dangerouslySetInnerHTML={{   __html: message.rendered }}/>
-                                    <div className="clearfix"></div> </div>:
-                                        <div> 
-                                          <div className="speech-bubble speech-right color-black" dangerouslySetInnerHTML={{   __html: message.rendered }}/>
-                                          <div className="clearfix"></div>
-                                        </div>
-                                        })}  
-                            {/* {messages.map((item, index) => item.sender_id === user.id ?
+                            
+                            {messages.map((item, index) => item.sender_id === user.id ?
                                         <div><SentMessageCell key={index} conversation={item} user={user}/> </div>:
-                                        <div> <ReceivedMessageCell key={index} conversation={item} user={conversation}/> </div>)} */}  
+                                        <div> <ReceivedMessageCell setSubject={setSubject} key={index} conversation={item} user={conversation}/> </div>)}  
                         
                       </InfiniteScroll>
                      

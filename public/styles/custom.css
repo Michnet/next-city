@@ -368,6 +368,10 @@ div#mobile_sidebar {}
     background-size: cover !important;
 }
 
+.bg-center {
+    background-position: center;
+}
+
 .btn {
     transition: all 120ms ease
 }
@@ -752,7 +756,7 @@ div#footer-bar {
     /* position: fixed; */
 }
 .listing_services {
-    background: var(--bgThemeLight);
+    background: var(--bgTheme);
 }
 
 #listing_header {
@@ -954,6 +958,9 @@ h6.tax_pare {}
 #gallery_extender {
     height: 100px;
     font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    top: auto;
 }
 
 #gallery_extender .show_more {
@@ -2767,6 +2774,7 @@ div#explore_nav .left_menu_btn {
 @media (max-width: 575px){
 .profile-top-menu .menu_icon i {
     font-size: 23px;
+    opacity: 0.8;
 }
     
     .gx-card-tabs .ant-tabs {
@@ -2916,4 +2924,12 @@ div#explore_nav .left_menu_btn {
 
 .cta-descript{
     opacity: 0.7;
+}
+
+._logo_img._light, ._logo_img._dark {
+    display: none;
+}
+
+.theme-light ._logo_img._dark, .theme-dark ._logo_img._light {
+    display: block;
 }

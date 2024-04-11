@@ -1036,11 +1036,11 @@ z-index: 0;}
 
 .serv_number span {
   font-size: 157px;
-  color: #ffffff;
+  color: var(--colorTheme);
+  opacity: 0.1;
   letter-spacing: -12px;
   line-height: 1em;
   font-weight: bold;
-  opacity: 0.6;
 }
 
 .serv_heading {

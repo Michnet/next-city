@@ -101,7 +101,7 @@ export async function getStaticPaths() {
     if(children){
        return <div onClick={() => setActiveKey('tickets')}> {children} </div>
      }else{
-       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn shadow-bg shadow-bg-sm bg-highlight mr-0 mb-0 ${!simple ? 'ui-2' : 'bg-theme hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
+       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn shadow-bg shadow-bg-sm  mr-0 mb-0 ${!simple ? 'ui-2' : 'bg-theme hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
      }
   }
 
@@ -147,12 +147,12 @@ if(listing){
         </div>
 }
    let bottomContent = <>
-   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2 shadow-none bg-transparent border-0 border-top-0">
+   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2 shadow-none bg-transparent border-0 border-top-0" style={{backdropFilter: 'none'}}>
 
             <div className='row_flex gap-2'>
                 {/* <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button> */}
 
-                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
+                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-s text-uppercase text-nowrap font-900 shadow-s bg-highlight btn-icon text-start">
                   <i class="far fa-calendar-check font-15 text-center"></i>
                   Booking
 				          </button>}

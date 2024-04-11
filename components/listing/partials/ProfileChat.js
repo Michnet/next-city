@@ -10,7 +10,7 @@ import { CircularProgress } from "@/components/skeletons/Loaders";
 import GuestPrompt from "@/components/UI/GuestPrompt";
 
 
-const ProfileChat = ({id, author, count}) => {
+const ProfileChat = ({id, author, count, slug, thumbnail}) => {
   const{user, token:jwt} = useRecoilValue(authState);
   const [loader, setLoader] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -24,7 +24,7 @@ const ProfileChat = ({id, author, count}) => {
     if(usersThread){
       const {messages:listingMessages, id:thread_id} = usersThread;
       const filteredThread = listingMessages?.filter((item) => {
-       return parseInt(item.subject.rendered) == id || item.subject.rendered == `Re: ${id}`;
+       return parseInt(item.subject.rendered) == id || item.subject.rendered == `Re: ${id}` || item.subject.raw == `${slug}` || item.subject.rendered == `${slug}`;
      }); 
          if(filteredThread){
            setThreadID(thread_id);
@@ -67,39 +67,6 @@ const ProfileChat = ({id, author, count}) => {
    }
   }
 
-  const createConversation = (thread) => {
-
-      if(thread){
- 
-        const {recipients, current_user, avatar, subject, excerpt, unread_count, date, id, messages, next_messages_timestamp} = thread;
-        const recArray = Object.values(recipients);
-        const targetObj = recArray.filter((el) => el.user_id !== current_user)[0];
-        const {user_id, name, user_avatars} = targetObj;
-
-        const messagesArr = messages.map((item) => {
-          const {sender_id, message, subject, date_sent } = item;
-              return {
-                sender_id, message, subject, date_sent
-              }
-        })
-        
-          const contactObj ={
-            id : id, 
-            name : name, 
-            thumb : avatar[0].thumb, 
-            lastMessage : excerpt, 
-            unreadMessage : unread_count,
-            subject : subject,
-            lastMessageTime : date,
-            current_user,
-            messages : messagesArr,
-            next_messages_timestamp
-          }
-          return contactObj;
-
-      }
-     
-  }
   
   useEffect(() => {
     if(user){
@@ -137,14 +104,14 @@ const ProfileChat = ({id, author, count}) => {
     return <div className="gx-chat-main">
       {threadView}
 
-      <div className="gx-chat-main-footer px-0 border-0">
+      <div className="gx-chat-main-footer border-0 card card-style p-3 mb-0">
         <div>
             {/* sending ?  <div className="d-flex justify-center align-items-center"><LoaderEllipsis/></div> : */ 
             <div className="gx-form-group">
                             <textarea 
                               required
-                              rows="5"
-                              id="listing_chat_box" className="border p-2 rounded mb-10"
+                              rows="3"
+                              id="listing_chat_box" className="p-2 rounded mb-10 w-100 border-none"
                               onKeyUp={(e) => _handleKeyPress(e)}
                               onChange={(e) => updateMessageValue(e)}
                               value={message}
@@ -180,19 +147,19 @@ const ProfileChat = ({id, author, count}) => {
         message : message,
         sender_id : user.id,
         recipient : [author],
-        subject: id
+        subject: slug
       }
       
 
       let pendingMsg = {sender_id: user.id, message:{rendered:message}, date_sent: new Date()};
       let tentativeConversation = conversation?.length > 0 ? conversation.concat(pendingMsg) : [{sender_id: user.id, message:{rendered:message}, date_sent: new Date()}];
+      setMessage('');
       setConversation(tentativeConversation);
 
       const sentMsg = await sendBPMessage(payload, jwt);
       if(sentMsg){
 
         processListingThread(sentMsg)
-          setMessage('');
         setSending(false);
       }else{
         setSending(false);
