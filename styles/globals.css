@@ -554,10 +554,6 @@ margin-bottom: 23px;
   gap: 5px;
 }
 
-.list_location.loc_venue {
-  color: var(--theme);
-}
-
 ._location .loc_name {
   font-weight: bold;
   color: var(--bs-black);
@@ -701,7 +697,7 @@ a:hover, a:hover * {
 }
 
 .wide_container.listing_team.white_bg {
-  padding: 40px 0 95px;
+  padding: 40px 0;
 }
 
 .listing_team .alice-carousel__stage-item {

@@ -147,7 +147,7 @@ if(listing){
         </div>
 }
    let bottomContent = <>
-   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2 shadow-none bg-transparent border-0 border-top-0" style={{backdropFilter: 'none'}}>
+   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2">
 
             <div className='row_flex gap-2'>
                 {/* <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button> */}
@@ -157,12 +157,12 @@ if(listing){
                   Booking
 				          </button>}
 
-                {whatsapp && <a style={{maxWidth: '50px'}} className={'rounded px-2 bg-theme shadow-l'} href={`https://wa.me/${whatsapp}`} >
+                {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                     <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
                 </a>}
-                {phone && <a style={{maxWidth: '50px'}} className={'rounded px-2 bg-theme shadow-l'} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
+                {phone && <a style={{maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
               </div>
-              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px', height: '50px', right: '10px'}} className={'d-flex align-items-center justify-center rounded px-2 bg-theme shadow-l position-absolute'}>
+              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px', height: '50px', right: '10px'}} className={'d-flex align-items-center justify-center rounded px-2 border position-absolute'}>
                 <i class="fas fa-ellipsis-h text-center text-24"/>
               </button>
           </div>
@@ -215,7 +215,7 @@ if(listing){
             </div>
         </div>
         <div className="card-bottom bg-gradient-fade p-3 pt-5">
-            {activeKey == 'home' && <span className="bg-highlight color-white font-700 p-1">
+            {activeKey == 'home' && <span className="bg-night-light color-white font-700 p-1">
                 {categories[0]?.name}
             </span>}
             <h1 className={`font-900 line-height-xl mt-1 ${activeKey == 'home' ? 'font-40' : 'truncate-2 font-30'}`}>
@@ -232,7 +232,7 @@ if(listing){
                     </span></div>
                     <RatingView rating={rating} id={id}/>
                 </div>}
-                <div className="align-self-center flex-shrink-1">
+                <div className="align-self-center flex-shrink-1 d-none d-md-block">
                     <button onClick={() => setActiveKey('tickets')} className="btn btn-full btn-s me-3 font-900 text-uppercase rounded-sm shadow-xxl bg-dark-dark">Booking</button>
                 </div>
             </div>

@@ -1,8 +1,7 @@
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
 const Splider = ({children, options={}, height, showDots=false, exClass=''}) => {
-    let optObj = {type: 'loop', autoWidth: true, ...options,  pagination: showDots}
-    console.log('opt', optObj)
+    let optObj = {type: 'loop', autoWidth: true, ...options,  pagination: showDots, wheel: false}
     return (
         <div className={`splider ${exClass}`} style={{height: height ?? 'auto'}}>
             {children?.length > 0 && <Splide hasTrack={false} style={{height: 'inherit'}} options={...optObj}>

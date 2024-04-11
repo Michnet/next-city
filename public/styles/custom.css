@@ -1031,7 +1031,7 @@ h6.tax_pare {}
 }
 
 .serv_descript{
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .mega_item.text_box {
@@ -2960,4 +2960,9 @@ div#explore_nav .left_menu_btn {
 }
 .gx-timeline-panel .thumb{
     /* height: 100%; */
+}
+
+
+#listingMenuRight .list-custom-small ._link {
+    border: navajowhite;
 }

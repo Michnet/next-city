@@ -99,7 +99,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                     </div>
                 </div>}
                 <div className={'excerptView'}>
-                <div className="meta flex-grow-1 col-12 col-md-6 md:px-0">
+                <div className="meta flex-grow-1 col-12 col-md-6 md:px-0 opacity-70">
                     {catView}
                     <div className="_location icon_box align-items-start d-inline-flex">
                     {venue && <> <span className="icon_icon"><i>@</i></span> 
@@ -318,9 +318,9 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
     
     return (
         <div className={`landing_row ${styles['landing_page']}`}>
-            <div className={`${styles['_greeting']} home_intro _greeting`}>
+            <div className={`home_intro _greeting`}>
                <div className="flex_container row"> 
-                    <div className={`greeting_box col-12 col-md-8 ${styles['greeting_box']}`}>
+                    <div className={`greeting_box col-12 col-md-8`}>
                     <div className="greetingView">
                     <Client>{greetingView}</Client>
                     </div>
@@ -330,7 +330,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             </div> 
 
             <Client>{descriptView}</Client>
-            <Client>{galleryView}</Client>
+            {/* <Client>{galleryView}</Client> */}
             <Client>{tagsView}</Client>        
             {/* {shopView} */} 
             {teamView}

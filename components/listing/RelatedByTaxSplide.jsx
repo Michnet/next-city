@@ -47,7 +47,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, ra
     <>
     <SectionHeader inverted iconClass={'fas fa-circle-notch'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Related Pages'} subTitle={'Need More Options?'}/>
 
-    <Splider height={280} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'} }>
+    <Splider height={250} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'} }>
       {listings?.length > 0 ? 
           listings.map((li) => {
            return <EventCard2 width={300} key={li.id} listing = {li}/>
