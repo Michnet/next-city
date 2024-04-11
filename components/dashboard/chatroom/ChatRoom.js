@@ -251,11 +251,14 @@ const Chat = () => {
   const showCommunication = () => {
     return (
       <div className="gx-chat-box h-100">
-        <div className="position-sticky top-0 py-2">
-            <button className="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
-            <i class="fab fa-whatsapp font-15 text-center"></i>
-            WhatsApp
-          </button>
+          <div className="position-sticky top-0 py-2" style={{overflow:'hidden', overflowX: 'auto'}}>
+            <div className='row_flex gap-2 flex-nowrap'>{listings?.length > 0 && listings.map((li) => {
+                const {title, slug, id, xtra_large_thumb} = li;
+                return <button style={{backgroundImage: `url("${xtra_large_thumb}")`}} className="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s color-white btn-icon text-start">
+                <i class="fas fa-chevron-down font-15 text-center"></i>
+                <span dangerouslySetInnerHTML={{__html: title.rendered}}/>
+              </button>
+            })}</div>
           </div>
         {conversation ? <>{chatArea}</>
         : <div className="py-15 mx-n3">
@@ -365,9 +368,9 @@ const Chat = () => {
                         <div className="gx-chat-sidenav d-none d-flex d-lg-block" style={{width: '300px'}}>
                           {userState === 1 ? ChatUsers() : AppUsersInfo()}
                         </div>
-                        <div className={'bg-theme justify-between d-flex flex-column'} style={{flex: 'auto'}}>
+                        <div className={'bg-theme justify-between d-flex flex-column w-100'} style={{flex: 'auto'}}>
                         <ChatHeader setConversation={setConversation} conversation={conversation} exClass='header-sticky header-always-show'/>
-                        <div className='px-3 flex-grow-1 flex-shrink-1' style={{minHeight: '100px'}}>
+                        <div className='px-3 flex-grow-1 flex-shrink-1 w-100' style={{minHeight: '100px'}}>
                           
                           {showCommunication()}
                         </div>
