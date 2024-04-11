@@ -14,31 +14,42 @@ import ListingProductsMini from '../partials/ListingProductsMini';
 import TeamMember2 from '../team/TeamMember2';
 import { BookingView } from '@/pages/events/[slug]';
 import {spliderVariableWidth} from '@/helpers/sliders'
-//const TeamMember = dynamic(() => import('../Team/TeamMember'));
+import PostReviews from '../reviews/postReviews';
+import FAQs from "@/components/UI/FAQs";
 
 function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcoming, styles}) {
     
-    const {address, venue, locations, id, short_desc, dir_tags, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta} = listing ?? {};
+    const {address, venue, about_us, rating, id, short_desc, dir_tags, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta} = listing ?? {};
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests} = meta ?? {};
     const {list:wcu_list} = _wcu ? _wcu[0] : {};
     const { general_merchandise} = listing?.acf ?? {};
     const {wcu, what_we_do} = marketing ??  {};
-
-    const aliceCar1 = {
-
-        infinite: true,
-        autoPlay: false,
-        autoWidth : true,
-        autoPlayInterval : 5000,
-        animationDuration : 1000,
-        paddingRight: 50,
-        responsive: { 0: { items: 2, }, 500: { items: 4 }, 600: { items: 5 }, 768: { items: 6 }, 1024: { items: 8 }, 1200: { items: 10 } }
-    }
+    const {faqs} = about_us ?? {};
 
 
-    let greetingView, catView, strengthsView, galleryView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView;
+    let greetingView, faqsView, strengthsView, galleryView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView;
 
     if(listing){
+        if(faqs?.length > 0){
+            let trimFaqs = faqs?.slice(0,3);
+        faqsView = <div className="card card-style shadow-0 border bg-transparent mt-4">
+                <div className="content">
+                    <div className="d-flex pb-2 border-bottom mb-3 ">
+                        <div>
+                            <h6 className="mb-n1 opacity-80 color-highlight">FAQs</h6>
+                            <h3>Common Questions</h3>
+                        </div>
+                        <div className="align-self-center ms-auto">
+                        <i className="bi bi-question-circle-fill font-24 color-red-dark"></i>
+                        </div>
+                    </div>
+                    {trimFaqs?.length > 0 && <FAQs faqs={trimFaqs} postID={id}/>}
+                    <button onClick={() => setActiveKey('faqs')} className="shadow-lg-m rounded-l color-white bg-secondary mb-0 btn btn-xxs mb-3 font-900 shadow-lg">
+                        Get More Answers
+                    </button>
+                </div>
+            </div>
+        }
 
         if(category){
             const {rl_awesome, color, name:catName} = category;
@@ -83,6 +94,17 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         if(listing?.gallery.length > 0){
             galleryView = <MegaGalleryMini setActiveKey={setActiveKey} upcoming={upcoming} color={color} listing={listing}/>
         }
+        if(landing){
+            const {greeting} = landing;
+            if(greeting){
+                greetingView = <p className="greeting_msg">{greeting}</p>
+            }else{
+                greetingView = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
+            }
+        }else{
+            greetingView =
+                    <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{__html: listing?.title?.rendered}}/></p>
+        }
         
         if(short_desc){
             descriptView = <>
@@ -95,11 +117,11 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             <div className="section_overlay_content flex_container">
                 {<div className='border_box listing_greeting'>
                     <div className="featuredImg_box" style={{backgroundImage: `url('${srcWithFallback(xtra_large_thumb)}')`}}>
-                    {/* <Image fill style={{objectFit:"cover"}} src= {srcWithFallback(xtra_large_thumb)} priority/>  */}
                     </div>
                 </div>}
                 <div className={'excerptView'}>
-                <div className="meta flex-grow-1 col-12 col-md-6 md:px-0 opacity-70">
+                    {greetingView}
+                {/* <div className="meta flex-grow-1 col-12 col-md-6 md:px-0 opacity-70">
                     {catView}
                     <div className="_location icon_box align-items-start d-inline-flex">
                     {venue && <> <span className="icon_icon"><i>@</i></span> 
@@ -113,7 +135,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                         {locations?.length > 0 ? <><span className="list_location loc_name">{locations[0]?.name}</span></> : <></>}
                         </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
             </div>
         </div>
@@ -123,7 +145,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             
         }
         if(dir_tags){
-            tagsView = <div className='tags_row'>
+            tagsView = <div className='tags_row py-5'>
                 <div className='row_content'>
                     <TagsCloud dark ids={dir_tags} /* hue={color} *//>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
@@ -131,26 +153,14 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                  </div>
         }
        
-        if(landing){
-            const {greeting} = landing;
-            if(greeting){
-                greetingView = <p className="greeting_msg">{greeting}</p>
-            }else{
-                greetingView = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
-            }
-        }else{
-            greetingView =
-                    <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{__html: listing?.title?.rendered}}/></p>
-        }
-
-       /*  if(rating > 0){
+        if(rating > 0){
                 reviewsView = <Suspense offset={150} once height={200}>
                 <div className="wide_container" 
                     >
                     <Client><PostReviews id={id}  limit={3} carousel bgImage={processImg(gallery)}/></Client>
                     </div>
                     </Suspense>
-        } */
+        }
 
         if(Array.isArray(wcu?.list)){
         if(wcu?.list?.length > 0){
@@ -193,7 +203,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         }
         if(team?.length > 0){
                     teamView = <Suspense offset={150} once height={200}>
-                                    <div className="wide_container listing_team white_bg">
+                                    <div className="wide_container listing_team card card-style">
                                         <div className="team_intro padded_container" >
                                             {/* <h3 className="section_head dark_text">{team_intro.team_intro_title}</h3> */}
                                             {/* <DualColorHeader title={team_intro.team_intro_title}/>
@@ -211,8 +221,8 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
 
         if(special_guests?.length > 0){
             guestsView = <Suspense offset={150} once height={200}>
-                            <div className="wide_container listing_team _square white_bg">
-                                <div className="team_intro padded_container" >
+                            <div className="wide_container listing_team _square ">
+                                <div className="team_intro px-3" >
                                     {/* <h3 className="section_head dark_text">{team_intro.team_intro_title}</h3> */}
                                     {/* <DualColorHeader title={team_intro.team_intro_title}/>
                                     <h4 className="section_subHead">{team_intro.team_intro_description}</h4> */}
@@ -222,7 +232,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                                         </div>
                                 </div>
 
-                                <Splider options={{...spliderVariableWidth, height:260, pagination: true, gap:20, type:'slide', padding: { left: 10, right: 20 }}} className="p-0">
+                                <Splider exClass='card card-style righty py-3' options={{...spliderVariableWidth, height:260, pagination: true, gap:20, type:'slide', padding: { left: 20, right: 40 }}} className="p-0">
                                     {special_guests.map((tmMember, index) => <TeamMember2 avatarSize={140} styles={styles} mirrored height={150} width={150} member={tmMember} key={index}/>
                                                     )} 
                                 </Splider>
@@ -320,24 +330,25 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         <div className={`landing_row ${styles['landing_page']}`}>
             <div className={`home_intro _greeting`}>
                <div className="flex_container row"> 
-                    <div className={`greeting_box col-12 col-md-8`}>
+                    <div className={`greeting_box col-12 col-md-12`}>
                     <div className="greetingView">
                     <Client>{greetingView}</Client>
                     </div>
                     </div>
-                    {gallery[1] && <div style={{backgroundSize: 'cover', minHeight: 200, background: `url(${gallery[1]})`}} className='bg-cover col-12 col-md-4'></div>}
+                    {gallery[1] && <div style={{backgroundSize: 'cover', minHeight: 200, background: `url(${gallery[1]})`}} className='bg-cover col-12 col-md-4 d-none'></div>}
                 </div>
             </div> 
 
             <Client>{descriptView}</Client>
-            {/* <Client>{galleryView}</Client> */}
+            <Client>{galleryView}</Client>
             <Client>{tagsView}</Client>        
             {/* {shopView} */} 
+            {reviewsView}
             {teamView}
             {guestsView}
             {servicesView}
             {strengthsView }
-            {/* {reviewsView} */}
+            {faqsView}
             {sponsorsView}
         </div>
     )

@@ -1,6 +1,5 @@
 import CountDownUI from "@/components/UI/CountDownUI";
 import { memo } from "react";
-import FAQs from "@/components/UI/FAQs";
 import MegaGallery from "@/components/UI/Galleries/MegaGallery";
 import { Client } from "react-hydration-provider";
 import BusinessOne from "./landingPages/Business1";
@@ -9,12 +8,11 @@ import DateViewString from "../UI/partials/dateViews/DateViewString";
 import { PriceView } from "../UI/PriceView";
 import { useRecoilValue } from "recoil";
 import { activeDateState } from "@/contexts/atoms";
+import MegaGalleryMini from "../UI/Galleries/MegaGalleryMini";
 
   const LandingConst = ({listing, setActiveKey}) => {
     //const {listing} = serverObj;
     const {short_desc, meta, cover, ticket_min_price_html, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, locations} = listing ?? {};
-    const {faqs} = about_us ?? {};
-    let trimFaqs = faqs?.slice(0,3);
     const activeDate =  useRecoilValue(activeDateState);
     const {act_id, act_dates} = activeDate;
 
@@ -83,26 +81,8 @@ import { activeDateState } from "@/contexts/atoms";
             </div>
 
             <div className="card card-style shadow-0 radius-0 bg-transparent">
-            <MegaGallery listing={listing} /* color={color} *//>
+            {/* <MegaGalleryMini listing={listing}/> */}
             </div>
-
-            {faqs?.length > 0 && <div className="card card-style shadow-0 border bg-transparent">
-                <div className="content">
-                    <div className="d-flex pb-2 border-bottom mb-3 ">
-                        <div>
-                            <h6 className="mb-n1 opacity-80 color-highlight">FAQs</h6>
-                            <h3>Common Questions</h3>
-                        </div>
-                        <div className="align-self-center ms-auto">
-                        <i className="bi bi-question-circle-fill font-24 color-red-dark"></i>
-                        </div>
-                    </div>
-                    {trimFaqs?.length > 0 && <FAQs faqs={trimFaqs} postID={id}/>}
-                    <button onClick={() => setActiveKey('faqs')} className="shadow-lg-m rounded-l color-white bg-secondary mb-0 btn btn-xxs mb-3 font-900 shadow-lg">
-                        Get More Answers
-                    </button>
-                </div>
-            </div>}
             <BusinessOne styles={styles} /* upcoming={upcoming} */ /* color={color} */ listing ={listing} cover={cover} setActiveKey={setActiveKey}/>
         </div>
         }

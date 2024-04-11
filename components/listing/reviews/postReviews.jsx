@@ -8,6 +8,7 @@ import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 import { fetchListingReviews } from '@/helpers/rest';
 import ReviewCard from './ReviewCard';
 import SingleReview from './SingleReview';
+import Splider from '@/components/UI/partials/Splider';
 
 
 function PostReviews({id, carousel, limit, reload, bgImage}) {
@@ -71,9 +72,9 @@ function PostReviews({id, carousel, limit, reload, bgImage}) {
         if(list?.length > 0){
     
          if(carousel){
-             reviewsView = <Splide>  {list.map((item) => {
-                 return <SplideSlide><ReviewText review={item} key={item.id} user={user} listingId={id}/></SplideSlide>
-             })} </Splide> 
+             reviewsView = <Splider>  {list.map((item) => {
+                 return <SingleReview reload={reload} review={item} key={item.id} user={user} listingId={id}/>
+             })} </Splider> 
          }else{
              reviewsView = list.map((item) => {
                  return <SingleReview reload={reload} review={item} key={item.id} user={user} listingId={id}/>
