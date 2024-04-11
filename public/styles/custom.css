@@ -2966,3 +2966,9 @@ div#explore_nav .left_menu_btn {
 #listingMenuRight .list-custom-small ._link {
     border: navajowhite;
 }
+
+.card.righty {
+    margin-right: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
