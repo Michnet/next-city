@@ -33,7 +33,7 @@ function MainMenu() {
                                 
                                 <div className="position-sticky w-100 top-0 end-0 pb-1 z-2">
                                 <div className="card card-style my-2">
-                                    <div className='row_flex justify-between p-2'>
+                                    <div className='row_flex justify-between p-2' onClick={() => closeMenus()}>
                                         <Logo simple={false}/>
                                         <span className="icon icon-xxs gradient-red rounded-sm close-menu" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
                                     </div>

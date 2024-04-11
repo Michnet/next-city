@@ -11,7 +11,6 @@ const SentMessageCell = ({conversation, user}) => {
   const {message, date_sent,name, sender_data, subject} = conversation ?? {};
   const {user_avatars} = sender_data ?? {}
 
-
   return (
     <div className="gx-chat-item gx-flex-row-reverse">
        

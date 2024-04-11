@@ -24,7 +24,7 @@ const ProfileChat = ({id, author, count, slug, thumbnail}) => {
     if(usersThread){
       const {messages:listingMessages, id:thread_id} = usersThread;
       const filteredThread = listingMessages?.filter((item) => {
-       return parseInt(item.subject.rendered) == id || item.subject.rendered == `Re: ${id}` || item.subject.raw == `${slug}` || item.subject.rendered == `${slug}`;
+       return parseInt(item.subject.rendered) == id || item.subject.rendered == `Re: ${id}` || item.subject.rendered == `Re: ${slug}` || item.subject.raw == `${slug}` || item.subject.rendered == `${slug}`;
      }); 
          if(filteredThread){
            setThreadID(thread_id);

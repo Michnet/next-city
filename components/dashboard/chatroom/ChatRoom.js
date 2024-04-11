@@ -1,6 +1,6 @@
 import  {useState, useEffect} from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {getBPThread, sendBPMessage } from "@/helpers/rest";
+import {advancedFetchListings, getBPThread, sendBPMessage } from "@/helpers/rest";
 import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { authState, messagesState } from "@/contexts/atoms";
@@ -24,11 +24,11 @@ const Chat = () => {
   const [message, setMessage] = useState('');
   const [chatUsers, setChatUsers] = useState([]);
   const [conversation, setConversation] = useState(null);
-  //const [messages, setMessages] = useState([]);
   const [nextStamp, setNextStamp] = useState(null);
   const [subject, setSubject] = useState(null);
   const [activeThreadId, setActiveThreadId] = useState(null);
   const [subjects, setSubjects] = useState([]);
+  const [listings, setListings] = useState(null);
 
   const auth = useRecoilValue(authState);
   const stateMessages = useRecoilValue(messagesState);
@@ -40,24 +40,18 @@ const Chat = () => {
 
 
   function processThread(thread){
-        let tempSubjects = [...subjects];
+
         const {recipients, avatar, subject, excerpt, unread_count, date, id, next_messages_timestamp, messages} = thread;
         const recArray = Object.values(recipients);
         const targetObj = recArray.filter((el) => el.user_id !== user.id)[0];
         const {name} = targetObj ?? {};
-
        const messagesArr = messages.map((item) => {
-          const {sender_id, message, subject:msgSub, date_sent } = item;
-             console.log('procs', msgSub);
-              if(!tempSubjects.includes(msgSub.rendered)){
-                tempSubjects.push(msgSub.rendered);
-              }
+          const {sender_id, message, subject, date_sent } = item;
               return {
                 sender_id, message, subject, date_sent
               }
         }); 
 
-        setSubjects(tempSubjects);
 
          return { id : id, name : name, thumb : avatar[0].thumb, lastMessage : excerpt, unreadMessage : unread_count, subject : subject, lastMessageTime : date, next_messages_timestamp, messages : messagesArr.reverse() }
   }
@@ -85,7 +79,6 @@ const Chat = () => {
     const initialThread = await getBPThread(id, null, token);
     if(initialThread){
       const cleanedUpThread = processThread(initialThread);
-      //const {messages :newMsgs} = cleanedUpThread;
       setConversation(cleanedUpThread);
         //setMessages(messages.concat(newMsgs.reverse()));
         setNextStamp(cleanedUpThread.next_messages_timestamp);
@@ -109,9 +102,23 @@ const Chat = () => {
   
   async function setChat(){
     if(conversation){
+      
+      let tempSubjects = [...subjects];
       const {messages :preloadMsgs, next_messages_timestamp : preloadNext} = conversation;
-        //setMessages(preloadMsgs.reverse());
+        preloadMsgs.map((item) => {
+          const {subject:msgSub} = item;
+              let cleanedSub = msgSub.rendered.replace('Re: ', '');
+              if(!tempSubjects.includes(cleanedSub)){
+                tempSubjects.push(cleanedSub);
+              }
+        }); 
+
+       
+        setSubjects(tempSubjects);
         setNextStamp(preloadNext);
+  }else{
+    setSubjects([]);
+    setNextStamp(null);
   }
   }
 
@@ -128,6 +135,25 @@ const Chat = () => {
   useEffect(() => {
     setChat()
   }, [conversation]);
+
+  async function getlistings(){
+    if(subjects?.length > 0){
+    let thumbsize = 'xtra_large_thumb';
+    let load={_fields : `id,title,slug,event_date, ${thumbsize}`, 
+    listing_type:'event', 'event-day':'any-day', include_ids: subjects};
+
+    const list = await advancedFetchListings(load);
+    if(list){
+      setListings(list);
+    }
+    }else{
+      setListings(null);
+    }
+  }
+
+  useEffect(() => {
+    getlistings()
+  }, [subjects]);
   
   
   useEffect(() => {
@@ -175,30 +201,7 @@ const Chat = () => {
     }
 
   chatArea = <>
-     
          {messagesView}
-
-      {/* <div className="gx-chat-main-footer">
-      <form onSubmit={(e) => {e.preventDefault(); submitText(e.target.elements)}}>
-
-        <div className="gx-flex-row gx-align-items-center" style={{maxHeight: 51}}>
-          <div className="gx-col">
-          
-            <div className="gx-form-group">
-                             <> <textarea
-                                  required
-                                  id="text_field"
-                                  className="gx-border-0 ant-input gx-chat-textarea"
-                                  name='text_message'
-                                  placeholder="Type your message"
-                                />
-                            </>
-            </div>
-          </div>
-          <button type="submit"><i className="bi bi-send"/></button>
-        </div>
-        </form>
-      </div> */}
     </>
   }
 
@@ -226,9 +229,6 @@ const Chat = () => {
             </div>
       </div>
     </div>
-
-
-    
     </>
   };
 
@@ -251,6 +251,12 @@ const Chat = () => {
   const showCommunication = () => {
     return (
       <div className="gx-chat-box h-100">
+        <div className="position-sticky top-0 py-2">
+            <button className="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
+            <i class="fab fa-whatsapp font-15 text-center"></i>
+            WhatsApp
+          </button>
+          </div>
         {conversation ? <>{chatArea}</>
         : <div className="py-15 mx-n3">
                           {userState === 1 ? ChatUsers() : AppUsersInfo()}
@@ -315,21 +321,14 @@ const Chat = () => {
   }
 }
 
-  
-
   function updateMessageValue(evt) {
     setMessage(evt.target.value)
   }
 
   function updateSearchChatUser(evt) {
-
       setSearchChatUser(evt.target.value);
       setFilterContact(evt.target.value);
       setChatUsers(filterUsers(evt.target.value));
-  }
-
-  function onToggleDrawer() {
-      setDrawerState(!drawerState)
   }
 
   let chatAreaView;
@@ -368,7 +367,10 @@ const Chat = () => {
                         </div>
                         <div className={'bg-theme justify-between d-flex flex-column'} style={{flex: 'auto'}}>
                         <ChatHeader setConversation={setConversation} conversation={conversation} exClass='header-sticky header-always-show'/>
-                        <div className='px-3 flex-grow-1 flex-shrink-1' style={{minHeight: '100px'}}>{showCommunication()}</div>
+                        <div className='px-3 flex-grow-1 flex-shrink-1' style={{minHeight: '100px'}}>
+                          
+                          {showCommunication()}
+                        </div>
                         {conversation ? <BottomMenu icon={'fa fa-user'} btnProps={{'data-menu':'user_menu'}} content={bottMenu}/> : <></>}
                         </div>
                       </div>
