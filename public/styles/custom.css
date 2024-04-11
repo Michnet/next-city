@@ -2944,4 +2944,20 @@ div#explore_nav .left_menu_btn {
 .theme-light ._logo_img._dark, .theme-dark ._logo_img._light {
     display: block;
 }
+.view_type button{
+    background: var(--bgThemeLight);
+    border: none;
+}
 
+.form-check-input, .form-switch .form-check-input {
+    border-radius: 20px;
+    width: 3.5em;
+    height: 2em;
+}
+
+.theme-dark label {
+    background: transparent !important;
+}
+.gx-timeline-panel .thumb{
+    /* height: 100%; */
+}
