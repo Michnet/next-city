@@ -41,7 +41,7 @@ function MainMenu() {
                             </div>
                             <div className="sidebar-content">
                                <UserCard/>
-                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15">
+                                <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Navigation</h5>
                                         <div className="list-group list-custom-small list-icon-0">
@@ -60,13 +60,13 @@ function MainMenu() {
                                     </div>
                                 </div>
 
-                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15">
+                                <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Top Categories</h5>
                                         <TermsGrid shadowy={false} id={106} listy/>
                                     </div>
                                 </div>
-                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15 hide_in_collapse">
+                                <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15 hide_in_collapse">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Quick Links</h5>
                                         <div className="quick_links">
@@ -86,7 +86,7 @@ function MainMenu() {
                                     </div>
                                 </div>
 
-                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15">
+                                <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Settings</h5>
                                         <div className="list-group list-custom-small list-icon-0">
