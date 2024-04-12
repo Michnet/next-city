@@ -160,6 +160,9 @@ function setColorScheme() {
     window.matchMedia("(prefers-color-scheme: light)").addListener(e => e.matches && activateLightMode())
     if(isDarkMode) activateDarkMode();
     if(isLightMode) activateLightMode();
+    if(isNoPreference){
+        activateLightMode();
+    }
 }
 
 
@@ -167,18 +170,18 @@ function setColorScheme() {
 //Set Color Based on Remembered Preference.
 if(localStorage.getItem(pwaName+'-Theme')){
     if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){
-        for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
-        document.body.className = 'theme-dark';
-        themeCssLink('_dark')
-
+       activateDarkMode()
     }
     if(localStorage.getItem(pwaName+'-Theme') == "light-mode"){
-        document.body.className = 'theme-light';
-        themeCssLink('_light')
+        activateLightMode()
     }
 }else{
-    if(document.body.className == "detect-theme"){setColorScheme();}
-}
+    if(document.body.className == "detect-theme"){
+        setColorScheme();}
+        else{
+            activateLightMode();
+        }
+    }
 }
 
 export function onAppLoad(){
@@ -204,8 +207,6 @@ function themeCssLink(fileName = null){
     if (typeof window !== 'undefined') {
 
         if(!fileName){
-
-            console.log('No file theme themeCssLink', fileName)
 
             if(localStorage.getItem(pwaName+'-Theme')){
                     if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){

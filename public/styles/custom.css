@@ -279,7 +279,7 @@ h6 {
     background-color: var(--bgThemeTransparent) !important;
 }
 .handy{
-    font-family: var(--handFont)
+    font-family: var(--handFont) !important;
 }
 .overflow-initial{
     overflow: initial;
@@ -2994,5 +2994,5 @@ div#explore_nav .left_menu_btn {
 .hero_title .profile_name {border-right: 3px dashed #cdcccc;}
 
 .footer-link.l_menu._item .label, .footer-link {
-    font-family: var(--fontFamily);
+    font-family: var(--fontFamily) !important;
 }
