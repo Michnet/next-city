@@ -778,10 +778,12 @@ a:hover, a:hover * {
 
 ._fixed_top .profile_nav_menu > .nav .menu_logo ._title {display: block;color: var(--grayText);}
 
-.cover_overlay.full_ht {background: #e8e8e8;opacity: 0.9;height: 100%;position: absolute;width: 100%;top: 0;left: 0;}
+.cover_overlay.full_ht {
+  background: var(--bgThemeTransparent);
+  height: 100%;position: absolute;width: 100%;top: 0;left: 0;}
 
 .cover_overlay._blur {
-  backdrop-filter: grayscale(1) blur(3px);
+  backdrop-filter: grayscale(1) blur(1px);
 }
 
 .cover_overlay._gray {
@@ -3304,7 +3306,7 @@ aside.news_room .activity_body .body_main {grid-template-columns: 50px auto;}
 
 .gx-time.gx-text-muted {font-size: 10px;}
 
-.listing_reviews._slider {padding: 10% 7%;}
+.listing_reviews._slider {padding: 10% 0;}
 
 .with_overlay {position: relative;}
 
@@ -6108,7 +6110,6 @@ grid-template-columns: 55% 20% auto;
   border-radius: 10px;
   overflow: hidden;
   gap: 10px;
-  display: flex !important;
 }
 
 .hero2.listing_hero .hero_images .grid_box {

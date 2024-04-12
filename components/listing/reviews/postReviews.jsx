@@ -11,7 +11,7 @@ import SingleReview from './SingleReview';
 import Splider from '@/components/UI/partials/Splider';
 
 
-function PostReviews({id, carousel, limit, reload, bgImage}) {
+function PostReviews({id, carousel, limit, reload, title, bgImage=false, transparentCards=false}) {
     const [auth, setAuth] = useRecoilState(authState);
     const {user} = auth ?? {};
     const user_meta = user?.user_meta;
@@ -72,9 +72,9 @@ function PostReviews({id, carousel, limit, reload, bgImage}) {
         if(list?.length > 0){
     
          if(carousel){
-             reviewsView = <Splider height={150} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}>  
+             reviewsView = <Splider height={200} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}>  
              {list.map((item) => {
-                 return <SingleReview reload={reload} review={item} key={item.id} user={user} listingId={id}/>
+                 return <SingleReview transparent={transparentCards} exClass={'mx-0 border'} width={300} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
              })} 
              </Splider> 
          }else{
@@ -103,6 +103,7 @@ function PostReviews({id, carousel, limit, reload, bgImage}) {
   return (
    <>{reviews?.list?.length > 0 ? 
     <div className={`listing_reviews pos-relative _wall ${carousel ? '_slider' : ''}`}>
+        
        {!carousel && <div className='overall_score'>
            {totalView}
        </div>}
@@ -112,10 +113,14 @@ function PostReviews({id, carousel, limit, reload, bgImage}) {
             <div className='cover_overlay full_ht whitey _blur'></div>
        </> 
        : <></>}
-   </div> : <></>}
-   <div className="reviews">
+       <div className='mb-40 mx-4 mt-10 sc_heading_3 pos-relative'>
+            <h5>What others are saying</h5>
+            <h4>User Reviews</h4>
+        </div>
+       <div className="reviews">
             {reviewsView}
-    </div>
+        </div>
+   </div> : <></>}
    </>
   )
 }

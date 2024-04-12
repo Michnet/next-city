@@ -20,7 +20,7 @@ const ListingFooter = (props) => {
   }
 
   return (
-    <footer className={`listing_footer px-30 footer-footer section-container ${props.rootClassName}`}>
+    <footer className={`listing_footer px-30 footer-footer section-container card card-style mb-2 mx-2 ${props.rootClassName}`}>
       <div
         className={`footer-max-width max-content-container`}
       >
@@ -49,7 +49,7 @@ const ListingFooter = (props) => {
         <div className={'footer-bottom-container'}>
           <div className={'footer-left-side'}>
             {logoView}
-            {short_desc && <span className={'footer-text06'}>
+            {short_desc && <span className={'truncate-5 footer-text06'}>
               {short_desc}
             </span>}
             {links?.length > 0 && <div className={'footer-social-media'}>

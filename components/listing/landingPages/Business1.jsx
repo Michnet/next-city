@@ -157,7 +157,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                 reviewsView = <Suspense offset={150} once height={200}>
                 <div className="wide_container" 
                     >
-                    <Client><PostReviews id={id}  limit={3} carousel bgImage={processImg(gallery)}/></Client>
+                    <Client><PostReviews transparentCards id={id}  limit={3} carousel bgImage={processImg(gallery)}/></Client>
                     </div>
                     </Suspense>
         }
@@ -229,7 +229,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                                     <div className='mb-20 mt-10 sc_heading_3'>
                                         <h5>Who Else Is Coming</h5>
                                         <h4>Meet our guests</h4>
-                                        </div>
+                                    </div>
                                 </div>
 
                                 <Splider height={270} exClass='card card-style righty py-3' options={{...spliderVariableWidth, pagination: true, gap:20, type:'slide', padding: { left: 20, right: 40 }}} className="p-0">

@@ -68,7 +68,7 @@ const MegaGallery = ({listing, color, upcoming}) => {
   function slides() {
     return gallery.map((pic) => {
       return {
-        src : pic.url 
+        src : pic 
       }
     })
   }
