@@ -11,7 +11,7 @@ function Scaffold({children, uiSize, settings}) {
     <div className="container-fluid p-0">
         <div className="row flex-nowrap _scaffold">
             <div className="col-auto d-none d-md-block p-0 p-md-2" style={{height: '100vh', position: 'sticky', top: '0', maxWidth: '250px'}}>
-                <div id="sidebar" className="_main collapse collapse-horizontal d-none d-md-block rounded-m bg-theme">
+                <div id="sidebar" className="_main collapse collapse-horizontal d-none d-md-block rounded-m bg-theme-transparent" style={{backdropFilter: 'blur(2px)'}}>
                     <MainMenu/>
                 </div>
             </div>
@@ -27,7 +27,7 @@ function Scaffold({children, uiSize, settings}) {
         </div>
     </div>
     <Client>
-        <div id="mobile_sidebar" className="_main menu menu-box-left d-block d-md-none rounded-16 bg-theme">
+        <div id="mobile_sidebar" className="_main menu menu-box-left d-block d-md-none rounded-16 bg-theme-transparent" style={{backdropFilter: 'blur(2px)'}}>
             <MainMenu/>
         </div>
         <div style={{width: '300px'}} id="mobile_news" className="menu menu-box-right d-block d-lg-none rounded-16 bg-theme">

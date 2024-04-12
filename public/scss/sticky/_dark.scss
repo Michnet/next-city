@@ -102,7 +102,7 @@ $color_white: #FFF;
 .theme-dark .vcard-field *,
 .theme-dark .search-header input,
 .theme-dark .footer .footer-title{
-    color:$color_white!important;
+    color:$color_white;
 }
 .theme-dark .loader-main,
 .theme-dark .instant-article,
@@ -206,7 +206,7 @@ $color_white: #FFF;
 .theme-dark .menu .form-floating-style label,
 .theme-dark .menu .form-border-bottom label,
 .theme-dark .timeline-item-content-full{
-    background-color:$theme-dark-structure!important;
+    background-color:$theme-dark-structure;
     color:$color_white;
 }
 

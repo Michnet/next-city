@@ -19,7 +19,7 @@ import FAQs from "@/components/UI/FAQs";
 
 function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcoming, styles}) {
     
-    const {address, venue, about_us, rating, id, short_desc, dir_tags, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta} = listing ?? {};
+    const {address, venue, about_us, locations, rating, id, short_desc, dir_tags, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta} = listing ?? {};
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests} = meta ?? {};
     const {list:wcu_list} = _wcu ? _wcu[0] : {};
     const { general_merchandise} = listing?.acf ?? {};
@@ -91,19 +91,20 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
     
         }
 
-        if(listing?.gallery.length > 0){
+        //if(listing?.gallery.length > 0){
             galleryView = <MegaGalleryMini setActiveKey={setActiveKey} upcoming={upcoming} color={color} listing={listing}/>
-        }
+        //}
+        let fbGreeting = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{__html: listing?.title?.rendered}}/></p>
+
         if(landing){
             const {greeting} = landing;
             if(greeting){
                 greetingView = <p className="greeting_msg">{greeting}</p>
             }else{
-                greetingView = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
+                greetingView = <>{fbGreeting}</>
             }
         }else{
-            greetingView =
-                    <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{__html: listing?.title?.rendered}}/></p>
+            greetingView = <>{fbGreeting}</>
         }
         
         if(short_desc){
@@ -120,8 +121,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                     </div>
                 </div>}
                 <div className={'excerptView'}>
-                    {greetingView}
-                {/* <div className="meta flex-grow-1 col-12 col-md-6 md:px-0 opacity-70">
+                <div className="meta flex-grow-1 col-12 col-md-6 md:px-0 opacity-70">
                     {catView}
                     <div className="_location icon_box align-items-start d-inline-flex">
                     {venue && <> <span className="icon_icon"><i>@</i></span> 
@@ -135,7 +135,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                         {locations?.length > 0 ? <><span className="list_location loc_name">{locations[0]?.name}</span></> : <></>}
                         </p>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         if(dir_tags){
             tagsView = <div className='tags_row py-5'>
                 <div className='row_content'>
-                    <TagsCloud dark ids={dir_tags} /* hue={color} *//>
+                    <TagsCloud hue={'var(--highlight)'} dark ids={dir_tags} /* hue={color} *//>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
                  </div>
                  </div>
@@ -188,7 +188,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                     <div className="listing_strengths  gray_bg">
                    {/*  <div className="vertical_label dark_bg _bold"><h3 className="vertical_text">Why You Can't Miss</h3></div> */}
                         <div className="row_content row">
-                            {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4">
+                            {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
                                 <h4 className="section_subHead gray_text">{wcu.wcu_intro_detail}</h4>
                             </div> : <></>}
@@ -232,7 +232,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                                         </div>
                                 </div>
 
-                                <Splider exClass='card card-style righty py-3' options={{...spliderVariableWidth, height:260, pagination: true, gap:20, type:'slide', padding: { left: 20, right: 40 }}} className="p-0">
+                                <Splider height={270} exClass='card card-style righty py-3' options={{...spliderVariableWidth, pagination: true, gap:20, type:'slide', padding: { left: 20, right: 40 }}} className="p-0">
                                     {special_guests.map((tmMember, index) => <TeamMember2 avatarSize={140} styles={styles} mirrored height={150} width={150} member={tmMember} key={index}/>
                                                     )} 
                                 </Splider>
@@ -328,16 +328,16 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
     
     return (
         <div className={`landing_row ${styles['landing_page']}`}>
-            <div className={`home_intro _greeting`}>
+            {/* <div className={`home_intro _greeting`}>
                <div className="flex_container row"> 
-                    <div className={`greeting_box col-12 col-md-12`}>
+                    <div className={`greeting_box col-12 col-md-8`}>
                     <div className="greetingView">
                     <Client>{greetingView}</Client>
                     </div>
                     </div>
-                    {gallery[1] && <div style={{backgroundSize: 'cover', minHeight: 200, background: `url(${gallery[1]})`}} className='bg-cover col-12 col-md-4 d-none'></div>}
+                    {gallery[1] && <div style={{backgroundSize: 'cover', minHeight: 200, background: `url(${gallery[1]})`}} className='bg-cover col-12 col-md-4'></div>}
                 </div>
-            </div> 
+            </div>  */}
 
             <Client>{descriptView}</Client>
             <Client>{galleryView}</Client>

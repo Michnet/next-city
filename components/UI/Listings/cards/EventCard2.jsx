@@ -24,7 +24,7 @@ const EventCard2 = ({listing, width=220, height=180, exClass='', noButton=true, 
                 <Link href={`/events/${slug}`}><h3 className={`text-15 ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
                     <p className="truncate font-11 mb-2 pb-1"><i className="fa fa-map-marker-alt me-2"></i>{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</p>
                 </div>
-                {noButton ? <></> : <Link className='text-nowrap h-fit btn bg-highlight rounded-xl shadow-xl text-uppercase p-1 px-2 font-900 font-10' href={`/events/${slug}`}>Learn More</Link>}
+                {noButton ? <></> : <Link className='text-nowrap h-fit btn bg-highlight rounded-xl shadow-xl text-uppercase p-2 font-900 font-10' href={`/events/${slug}`}>Learn More</Link>}
             </div>
         </div>
         </>

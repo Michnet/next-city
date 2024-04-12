@@ -1,12 +1,6 @@
 import { getDirTermsUrl } from '@/helpers/rest';
 import {useEffect, useState, memo } from 'react';
-//import { Dir_tags } from 'public/data/localCache';
 import { TagCloud } from 'react-tagcloud';
-// import { getDirTermsUrl } from '~/server/WpRest';
-import { useRecoilValue } from 'recoil';
-import { UIState } from '@/contexts/atoms';
-//import useSWRImmutable from 'swr/immutable'
-//import { fetcher } from '~/server/UniversalFunctions';
 
 const TagsCloudConst = ({ids, dark, hue, itemsList, onClickFunc}) => {
 
@@ -48,7 +42,7 @@ useEffect(() => {
 
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
-  //hue: hue ?? colors[0] ?? 'monochrome',
+  hue: hue ?? 'monochrome',
 }
 
   function createTags(ids){

@@ -14,6 +14,19 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass = '', de
     </div>
   )
 }
+export const SocialLinks = ({links, iconsOnly=true}) => {
+  
+  return <div className="links_container">
+      <div className="links_box">
+        {links.map((el) => {
+          const {network, url} = el;
+          return <a target={'_blank'} href={url} className="link_link">
+            <i className={`bi bi-${network.toLowerCase()}`}/>
+          </a>
+        })}
+      </div>
+  </div>
+}
 
 export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = true, title, subTitle, link, linkUrl='#', iconClass, color, desc, exClass=''}){
   const router = useRouter();

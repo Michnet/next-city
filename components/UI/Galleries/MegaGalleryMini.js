@@ -2,7 +2,6 @@
 
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import {useEffect, useState } from "react";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
 import { GalleryPlate } from "./MegaGallery";
 
 import { cleanHtml, randomBetween, shuffleArray, textSizeClass } from "@/helpers/universal";
@@ -36,19 +35,7 @@ const MegaGalleryMini = ({listing, color, setActiveKey}) => {
   let megaGall = shuffleArray([...textOptions, ...miniGall]);
 
   let highlightIndex = [4,7,11,17]
-  let Grid1 = () => <HorizontalGrid>
-  {shuffleArray([gallery[0], gallery[1], gallery[3]]).map((item, index) => {
-    if (typeof item?.url === 'string') {
-      if(item?.url.includes(siteSettings.wpDomain)){
-        return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))}  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == 3}/>;
-        }
-    }else{
-      return <>{item}</>
-    }
-  }
-  )}
-  
-  </HorizontalGrid>;
+
 
 let chunkHeight = 500;
 
@@ -97,17 +84,16 @@ galleryView = <>
         {megaGall.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
             <Masonry>
             {megaGall.map((item, index) => {
-              if (typeof item === 'string') {
+              if (typeof item == 'string') {
                 if(item?.length > 0){
                   if(item?.includes(siteSettings.wpDomain)){
                     return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
-                  }else{
-                    
+                  }/* else{
                       let backGs = ['100', '200', '300', '400'];
                     return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
                       <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
                     </div>
-                  }
+                  } */
                 }
               }else{
                 if(item?.url?.includes(siteSettings.wpDomain)){
@@ -122,7 +108,7 @@ galleryView = <>
             </Masonry>
         </ResponsiveMasonry>}
         </div>
-        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-end w-100 justify-center"><span className="show_more btn">Show more Wall</span></div>
+        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-end w-100 h-100 justify-center"><span className="show_more btn">Show more Wall</span></div>
         </div>
         </div>
 </>

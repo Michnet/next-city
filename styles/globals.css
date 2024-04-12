@@ -7057,7 +7057,7 @@ section.ant-layout.single_listing .top_bar_toggle {right: 14px;}
 .mirror_box .mirror {
   overflow: hidden;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   opacity: 0.5;
 }
 

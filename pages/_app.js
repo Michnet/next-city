@@ -7,7 +7,6 @@ import "@/public/styles/custom.min.css";
 import { RecoilRoot } from "recoil";
 import { HydrationProvider } from "react-hydration-provider";
 import App from "next/app";
-import Script from "next/script";
 import { SessionProvider } from "next-auth/react";
 import { AuthProvider } from "@/helpers/use-auth";
 import { closeMenus } from "@/helpers/appjs";
@@ -23,8 +22,6 @@ import MessagesStater from "@/contexts/contextStaters/MessagesStater";
 
 function MyApp({ Component, pageProps, platform }) {
   const {headerTitle, settings} = pageProps;
-
-  console.log('platfor', settings)
 
   useEffect(() => {
     require("@/helpers/boojs.js");
@@ -56,11 +53,6 @@ function MyApp({ Component, pageProps, platform }) {
           <ActivityProvider/>
         </RecoilRoot>
       </SessionProvider>
-      <Script>
-        {`  
-           console.log('app loaded');
-        `}
-      </Script>
   </>
 }
 

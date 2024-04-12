@@ -72,9 +72,11 @@ function PostReviews({id, carousel, limit, reload, bgImage}) {
         if(list?.length > 0){
     
          if(carousel){
-             reviewsView = <Splider>  {list.map((item) => {
+             reviewsView = <Splider height={150} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}>  
+             {list.map((item) => {
                  return <SingleReview reload={reload} review={item} key={item.id} user={user} listingId={id}/>
-             })} </Splider> 
+             })} 
+             </Splider> 
          }else{
              reviewsView = list.map((item) => {
                  return <SingleReview reload={reload} review={item} key={item.id} user={user} listingId={id}/>

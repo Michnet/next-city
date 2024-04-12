@@ -2,7 +2,7 @@ import RelatedByTaxSplide from "@/components/listing/RelatedByTaxSplide";
 //import VisitRecord from "@/components/UI/VisitRecord";
 import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
-import { cleanHtml, shadeRGBColor, srcWithFallback } from "@/helpers/universal";
+import { cleanHtml, shadeRGBColor } from "@/helpers/universal";
 import dynamic from "next/dynamic";
 import { memo, useEffect, useState } from "react";
 import SiteHead from "@/components/UI/SiteHead";
@@ -11,21 +11,20 @@ import ListingSideMenu from "@/components/listing/ListingSideMenu";
 import { Client } from "react-hydration-provider";
 import RightMenu from "@/components/listing/RightMenu";
 import Content from "@/components/listing/Content";
-import RatingView from "@/components/listing/reviews/RatingView";
 //import { useRecoilValue } from "recoil";
-import { listingViewState } from "@/contexts/atoms";
-import { useRecoilState } from "recoil";
+import { authState, listingViewState } from "@/contexts/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 import VisitorActions from "@/components/listing/partials/VisitorActions";
 import CallToActions from "@/components/UI/CallToActions";
 import Link from "next/link";
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
-import Mirrored from "@/components/UI/partials/Mirrored";
-import Image from "next/image";
-import {fallbackImgSrcSet } from "@/helpers/base";
 import { closeMenus, openOffCanvas } from "@/helpers/appjs";
 import BottomMenu from "@/components/layouts/BottomMenu";
-import { LoaderDualRing } from "@/components/skeletons/Loaders";
+import Hero2 from "@/components/listing/landingPages/hero/Hero2";
+import ListingFooter from "@/components/listing/landingPages/footer/ListingFooter";
+import listingMenu from "@/components/listing/ListingMenu";
+//import Hero from "@/components/listing/landingPages/hero/Hero";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 const ColorThief = require('colorthief');
@@ -108,9 +107,11 @@ export async function getStaticPaths() {
   const ListingConst = ({listing, themeColor}) => {
     //const {listing} = serverObj;
     const {short_desc, meta, cover, categories, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {_links} = meta ?? {};
     const router = useRouter();
     const {query} = router;
     const [view, setView] = useRecoilState(listingViewState);
+    const {user} = useRecoilValue(authState);
     //const activeView = useRecoilValue(listingViewState);
     const [activeKey, setActiveKey] = useState(query?.page ?? view);
 
@@ -123,6 +124,7 @@ useEffect(() => {
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
 let VisitorActionsView;
+let localMenu = listingMenu({listing:listing, userId: user?.id});
 
 if(listing){
     VisitorActionsView = <div>
@@ -191,58 +193,13 @@ if(listing){
     <BottomMenu content={bottomContent}/>
     <div className="page-content single_listing ">
 
-    <div className={`card preload-img listing_hero`} style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '65vh' : '40vh'}}>
-            {/* <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
-                <div className='hero_cover position-relative w-100'>
-                  <Image                   
-                    //placeholder="blur"
-                   changerKey={listing.id}
-                   //blurDataURL={coverBlur}
-                   fill
-                   priority
-                   alt="image"
-                   src={srcWithFallback(cover)}
-                   className={`object-cover`}
-                   //onError={(e) => {e.target.src = '/images/bg/fallback.jpg'}}
-                   onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
-                   //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-            </Mirrored> */}
-        <div className="card-top m-3">
-            <div className="notch-clear">
-                <a data-back-button href="#" className="icon icon-xs bg-theme color-theme rounded-m"><i className="fa fa-angle-left"></i></a>
-            </div>
-        </div>
-        <div className="card-bottom bg-gradient-fade p-3 pt-5">
-            {activeKey == 'home' && <span className="bg-night-light color-white font-700 p-1">
-                {categories[0]?.name}
-            </span>}
-            <h1 className={`font-900 line-height-xl mt-1 ${activeKey == 'home' ? 'font-40' : 'truncate-2 font-30'}`}>
-                {cleanHtml(title?.rendered)}
-            </h1>
-            <p className="mb-3">
-                <i className="fa fa-map-marker font-11 me-2"></i>
-                {address}
-            </p>
-            <div className="d-flex align-items-center">
-                {rating && rating > 0 && <div className="align-self-center flex-grow-1">
-                    <div className="mb-1"><span className="font-11">
-                        User Reviews
-                    </span></div>
-                    <RatingView rating={rating} id={id}/>
-                </div>}
-                <div className="align-self-center flex-shrink-1 d-none d-md-block">
-                    <button onClick={() => setActiveKey('tickets')} className="btn btn-full btn-s me-3 font-900 text-uppercase rounded-sm shadow-xxl bg-dark-dark">Booking</button>
-                </div>
-            </div>
-        </div>
-        {/* <div className="card-overlay bg-gradient-fade-small"></div> */}
-    </div>
+    {/* <Hero listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/> */}
+    <Hero2 /* palette={palette} color={color} */ listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}  />
     <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={listing}/>
     <Client>
         <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
     </Client>
+    <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
 </div>
 
     <ListingSideMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>

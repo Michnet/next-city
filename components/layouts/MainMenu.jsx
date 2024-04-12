@@ -35,13 +35,13 @@ function MainMenu() {
                                 <div className="card card-style my-2">
                                     <div className='row_flex justify-between p-2' onClick={() => closeMenus()}>
                                         <Logo simple={false}/>
-                                        <span className="icon icon-xxs gradient-red rounded-sm close-menu" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
+                                        <span className="icon icon-xxs gradient-red rounded-sm close-menu d-block d-md-none" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div className="sidebar-content">
                                <UserCard/>
-                                <div className="card card-style mb-15 shadow-0 border pb-15">
+                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Navigation</h5>
                                         <div className="list-group list-custom-small list-icon-0">
@@ -60,13 +60,13 @@ function MainMenu() {
                                     </div>
                                 </div>
 
-                                <div className="card card-style mb-15 shadow-0 border pb-15">
+                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Top Categories</h5>
                                         <TermsGrid shadowy={false} id={106} listy/>
                                     </div>
                                 </div>
-                                <div className="card card-style mb-15 shadow-0 border pb-15 hide_in_collapse">
+                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15 hide_in_collapse">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Quick Links</h5>
                                         <div className="quick_links">
@@ -86,28 +86,28 @@ function MainMenu() {
                                     </div>
                                 </div>
 
-                                <div className="card card-style mb-15 shadow-0 border pb-15">
+                                <div className="card card-style bg-theme-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Settings</h5>
                                         <div className="list-group list-custom-small list-icon-0">
                                             <span className='_link' data-menu="menu-highlights" onClick={(e) => openOffCanvas(e)}>
                                                 <i className="fa font-12 fa-droplet gradient-blue rounded-sm color-theme"></i>
-                                                <span>Highlights</span>
-                                                <i className="fa fa-angle-right"></i>
+                                                <span className="hide_in_collapsed">Highlights</span>
+                                                <i className="hide_in_collapsed fa fa-angle-right"></i>
                                             </span>
                                             <span className='_link'  data-menu="menu-backgrounds" onClick={(e) => openOffCanvas(e)}>
                                                 <i className="fa font-12 fa-paint-brush gradient-orange rounded-sm color-theme"></i>
-                                                <span>Backgrounds</span>
-                                                <i className="fa fa-angle-right"></i>
+                                                <span className="hide_in_collapsed">Backgrounds</span>
+                                                <i className="hide_in_collapsed fa fa-angle-right"></i>
                                             </span>
                                             <span data-toggle-theme onClick={() => toggleTheme()}  data-trigger-switch="switch-dark2-mode" className="_link border-0">
                                                 <i className="fa font-12 fa-moon gradient-yellow color-theme rounded-sm"></i>
-                                                <span>Dark Mode</span>
-                                                <div className="custom-control ios-switch">
+                                                <span className="hide_in_collapsed">Dark Mode</span>
+                                                <div className="custom-control ios-switch hide_in_collapsed">
                                                     <input data-toggle-theme onClick={() => toggleTheme()}  type="checkbox" className="ios-input" id="switch-dark2-mode"/>
                                                     <label className="custom-control-label" htmlFor="switch-dark2-mode"></label>
                                                 </div>
-                                                <i className="fa fa-angle-right"></i>
+                                                <i className="hide_in_collapsed fa fa-angle-right"></i>
                                             </span>
                                         </div>
                                     </div>

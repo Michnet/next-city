@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { DualColorHeader } from "../UI/Partials";
 const ComponentActivity = dynamic(() => import("../UI/partials/ComponentActivity"));
 import { EventDatesActive } from "../UI/partials/dateViews/EventDates";
+import PageScroller from "../UI/partials/PageScroller";
 const FAQs = dynamic(() => import("../UI/FAQs"));
 const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
@@ -89,6 +90,7 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
 
   return (
     <>
+     <PageScroller activeKey={activeKey} resetKey={'home'}/>
      {showContent(activeKey)}
     </>
   )

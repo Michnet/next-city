@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { kyFetch, serializeQuery, WPDomain } from "./base";
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
@@ -15,6 +16,14 @@ export function shuffleArray(array) {
   return array ? array.sort( ()=>Math.random()-0.5 ) : [];
 }
 
+export const useDidMountEffect = (func, deps) => {
+  const didMount = useRef(false);
+
+  useEffect(() => {
+      if (didMount.current) func();
+      else didMount.current = true;
+  }, deps);
+}
 
 export const createBPActivity = async (payload) =>{ 
   try{

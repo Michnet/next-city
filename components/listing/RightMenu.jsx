@@ -54,7 +54,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 				</div>
 			</div>
 
-			<div className="card card-style">
+			{/* <div className="card card-style">
 				<div className="content my-0">
 					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Settings</h5>
 					<div className="list-group list-custom-small list-icon-0">
@@ -79,7 +79,7 @@ function RightMenu({listing, activeKey, setActiveKey}) {
 						</a>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 		{/* <div className="position-sticky w-100 bottom-0 end-0 pb-1">
 			<div className="bg-theme mx-3 rounded-m shadow-m">

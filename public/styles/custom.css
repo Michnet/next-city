@@ -14,6 +14,7 @@
     --darkText: var(--colorTheme);
     --shadow-1: 0 4px 24px 0 rgba(0,0,0,.08);
     --loudTheme: #bc6303;
+    --handFont: 'Dr Sugiyama', cursive;
     }
 
 .row:not(.m-bs) {
@@ -273,6 +274,13 @@ h6 {
 
 
 /*Classes*/
+.bg-theme-transparent{
+    background: var(--bgThemeTransparent) !important;
+    background-color: var(--bgThemeTransparent) !important;
+}
+.handy{
+    font-family: var(--handFont)
+}
 .overflow-initial{
     overflow: initial;
 }
@@ -961,6 +969,8 @@ h6.tax_pare {}
     position: absolute;
     bottom: 0;
     top: auto;
+    z-index: 10;
+    display: flex;
 }
 
 #gallery_extender .show_more {
@@ -1078,6 +1088,11 @@ h6.tax_pare {}
     flex-direction: row;
     flex-wrap: nowrap;
     width: 100%;
+}
+
+#sidebar:not(.show) .row_flex {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .horizontal_grid > * {
@@ -1307,7 +1322,7 @@ button.back_link {
 
 #sidebar .card .content {}
 
-#sidebar:not(.show) .card .content a i {
+#sidebar:not(.show) i {
     margin-right: auto;
     margin-left: auto !important;
 }
@@ -1449,9 +1464,9 @@ button.back_link {
     right: 20px;
     position: absolute;
     top: auto;
-    bottom: 0;
+    bottom: auto;
     opacity: 0.2;
-    writing-mode: horizontal-tb;
+    /* writing-mode: horizontal-tb; */
 }
 
 .tags_row .row_content .vertical_text h3 {
@@ -2431,9 +2446,8 @@ span.clear_tag {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: var(--highlight);
+    background: var(--bgThemeTransparent);
     z-index: 2;
-    opacity: 0.3;
     backdrop-filter: grayscale(1);
 }
 
@@ -2441,7 +2455,7 @@ span.clear_tag {
     position: relative;
 }
 
-.listing_intro .section_overlay.gray-fil {backdrop-filter: grayscale(1) blur(2px);}
+.listing_intro .section_overlay.gray-fil {backdrop-filter: grayscale(1);}
 
 .theme-dark .section_overlay {
     background: var(--bgThemeTransparent);
@@ -2892,7 +2906,8 @@ div#explore_nav .left_menu_btn {
 
 #listingMenuRight .sidebar-content {
     background: var(--bgThemeTransparent);
-    backdrop-filter: blur(1px) grayscale(1);
+    backdrop-filter: grayscale(1);
+    min-height: 100vh;
 }
 
 .list-custom-small ._link {
@@ -2971,4 +2986,14 @@ div#explore_nav .left_menu_btn {
     margin-right: 0;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.hero_title .profile_name {border-right: 3px dashed #cdcccc;}
+
+.footer-link.l_menu._item .label, .footer-link {
+    font-family: var(--fontFamily);
 }
