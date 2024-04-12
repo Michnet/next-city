@@ -138,7 +138,7 @@ const onSubmit = () => {
     payload.location=parentLoc.slug
   }
   if(keyword){
-    payload.keyword=keyword
+    payload.search_keywords=keyword
   }
   if(selectTags){
     payload.tag = selectTags.join(',')

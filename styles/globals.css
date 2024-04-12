@@ -750,7 +750,7 @@ a:hover, a:hover * {
   height: 355px;
 }
 
-.tabpane.pad_tab {padding: 20px 2%;}
+.tabpane.pad_tab {padding: 20px 0;}
 
 .gx-profile-content .nav {
   margin-bottom: 20px;
@@ -6751,7 +6751,7 @@ section.landing_page .intro_content{
     justify-content: center;
 }
    .tabpane.pad_tab{
-    padding: 12px 2%;
+    padding: 12px 0;
 }
    ul.listing_navigator li.visible{
     /* border: none; */

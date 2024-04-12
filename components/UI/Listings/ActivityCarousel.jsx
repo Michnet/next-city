@@ -30,7 +30,7 @@ function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback
         // Card = dynamic(() => import("./ActivityCard3"));
         break;
       case 4:
-        // Card = dynamic(() => import("./ActivityCard4"));
+         Card = dynamic(() => import("./cards/EventCard4"));
         break;
       default:
        // Card = dynamic(() => import("./ActivityCard"));
@@ -78,13 +78,13 @@ function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback
     if(listings?.length > 0){
 
         const itemArray =   listings.slice(0, 5).map((item, i) => (
-         <div key={i}><Card mini={mini} exClass={exCardClass}  width={cardWidth} key={i} item = {item}/></div>
+         <div key={i}><Card mini={mini} exClass={exCardClass}  width={cardWidth} key={i} listing = {item}/></div>
        ));
      
         theView =  <>
                     <div className="d-flex px-3 mb-3">
                     <div className="align-self-center">
-                      <DualColorHeader title={title} subtitle={subtitle} exClass={'mb-20'} icon={icon}/>
+                      <DualColorHeader title={title} subTitle={subtitle} exClass={'mb-20'} icon={icon}/>
                     </div>
                     <div className="align-self-center ms-auto">
                         <a href="#" className="font-12">View All</a>

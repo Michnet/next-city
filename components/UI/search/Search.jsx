@@ -140,7 +140,7 @@ useEffect(() => {
     //setFilter(setUpFilters);
 }, [query]); 
 
-let defCols = {0: 1, 480: 2, 600: 3, 768:2, 1024:3,  1200: 4}
+let defCols = {0: 1, 480: 2, 600: 3, 768:2, 1200: 3}
 let gridDisplay = (listings) => {
     return <>{timelineView ?  <ListingTimeline items={listings} dualColumn/> : <> 
                     {viewType === 'Grid' && <ResponsiveMasonry columnsCountBreakPoints={columnObj ?? defCols}>
@@ -154,7 +154,7 @@ let gridDisplay = (listings) => {
                         </ResponsiveMasonry> 
                         }{viewType === 'Row' &&
                         <div className='gx-mx-0'>{listings.map(listing => {
-                            return <div span={12} sm={6} md={12} xl={xlRow} className='sm:pl-0 sm:pr-0'><ActivityCard1 item={listing} key ={listing.id} user={user}/></div>
+                            return <div span={12} sm={6} md={12} xl={xlRow} className='sm:pl-0 sm:pr-0'><ActivityCard1 listing={listing} key ={listing.id} user={user}/></div>
                         })}</div>
                         }
                         {isLoadingMore && skeletonView}

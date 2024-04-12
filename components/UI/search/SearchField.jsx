@@ -19,7 +19,7 @@ function SearchField() {
         //page: page,
         _embed: true,
         listing_type: 'event', 
-        keyword: keyWord.value,
+        search_keywords: keyWord.value,
         'event-day': 'any-day'
         };
 

@@ -2,9 +2,9 @@ const CallToActions = ({actionComponent, exClass, centered, title, descript, ico
     return (
       <>
       <section className={`cta ${exClass ?? ''} ${border ? 'border' : ''} ${thin ? '' : 'layout-pt-md layout-pb-md'} position-relative ${bgClass ?? 'bg-secondary'}`}>
-        <div className={`container mw-100 ${noPadLeft ? 'pl-0' : ''}`}>
-          <div className={`row y-gap-30 ${centered ? 'text-center justify-center' : 'justify-between'} items-center`}>
-            <div className="col-auto px-0">
+        <div className={`container py-24 mw-100 ${noPadLeft ? 'pl-0' : ''}`}>
+          <div className={`row ${centered ? 'text-center justify-center' : 'justify-between'} items-center`}>
+            <div className="col-auto px-0 mb-3">
               <div className="row y-gap-20  flex-wrap items-center">
                 {icon && <div className="col-auto cta_icon_col">
                   <i className={`bi ${icon ?? 'bi-megaphone'} text-sec-theme cta_icon`}/>

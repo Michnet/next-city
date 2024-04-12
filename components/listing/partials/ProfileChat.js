@@ -104,7 +104,7 @@ const ProfileChat = ({id, author, count, slug, thumbnail}) => {
     return <div className="gx-chat-main">
       {threadView}
 
-      <div className="gx-chat-main-footer border-0 card card-style p-3 mb-0">
+      <div className="gx-chat-main-footer border-0 card card-style p-3 mb-0 mx-0">
         <div>
             {/* sending ?  <div className="d-flex justify-center align-items-center"><LoaderEllipsis/></div> : */ 
             <div className="gx-form-group">
@@ -147,7 +147,7 @@ const ProfileChat = ({id, author, count, slug, thumbnail}) => {
         message : message,
         sender_id : user.id,
         recipient : [author],
-        subject: slug
+        subject: id
       }
       
 

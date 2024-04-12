@@ -76,7 +76,7 @@ if(!userId || userId != author_id){
       icon: "far fa-comment-dots", 
       title: 'Contact Us',
       subTitle : "Private Chat", 
-      widgetClass : "widgey",
+      widgetClass : "widgey pad_tab",
       innerClass: 'bg_tab private_chat',
     }
   )
@@ -89,7 +89,7 @@ if(type === 'event'){
       icon: 'far fa-calendar-check',
       title: 'Dates',
       subTitle : 'Occurences', 
-      widgetClass:  'profile widgey',
+      widgetClass:  'profile widgey pad_tab',
       badgeNumber: act_dates?.length ?? 0,
       badgeClass: 'bg-success'
     }
@@ -102,7 +102,7 @@ if(faqs?.length > 0){
     icon: "far fa-question-circle", 
     title: 'FAQs',
     subTitle : "Frequent Questions",
-    widgetClass: 'widgey',
+    widgetClass: 'widgey pad_tab',
   });
 }
 

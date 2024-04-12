@@ -1,8 +1,6 @@
 // import ActivityCarousel from "~/components/activity/ActivityCarousel";
 import ExplorerFilter from "@/components/UI/search/ExplorerFilter";
-import SearchFilter from "@/components/UI/search/SearchFilter";
 import SearchForm2 from "@/components/UI/search/SearchForm2";
-
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
@@ -132,7 +130,7 @@ const ExploreEvents = ({topList}) => {
               <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Hints</button> 
               }</div></> : <></>}</>
               <div className="inner_section px-2 mt-20">
-                    <ActivityCarousel title={'Latest Events'} subtitle={'Fresh and New Events you may like'} icon={<i className="bi bi-calendar-plus"/>} limit={4} cardType={1} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
+                    <ActivityCarousel exCardClass={'me-2'} title={'Latest Events'} subtitle={'Fresh and New Events'} icon={<i className="bi bi-calendar-plus"/>} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">

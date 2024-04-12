@@ -3,8 +3,7 @@
 //import styles from "@/styles/Home.module.css";
 import useSWR  from "swr";
 import { advancedFetchListingsUrl, fetcher, getDirTerms } from "@/helpers/rest";
-import { cleanHtml, shuffleArray } from "@/helpers/universal";
-import { PriceView } from "@/components/UI/PriceView";
+import {shuffleArray } from "@/helpers/universal";
 import { siteSettings } from "@/helpers/base";
 import Link from "next/link";
 import { Client } from "react-hydration-provider";
@@ -261,7 +260,7 @@ export default function Home(props) {
             listings.map((li) => {
               let {id, event_date} = li;
               if(event_date && event_date[0]){
-                return <ActivityCard1 key={id} item={li}/>
+                return <ActivityCard1 key={id} listing={li}/>
               }
             })
             :

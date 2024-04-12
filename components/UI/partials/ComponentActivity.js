@@ -149,8 +149,8 @@ useEffect(() => {
               <CallToActions exClass='mb-24' thin descript={"Only followers of this community can see and participate in it's public chat"} light bgClass={'bg-theme'} title={'Not a follower'} 
               actionComponent={
                 <>
-                  <button variant="primary" onClick={() => addMember()}>Follow Community</button>
-                  <button variant="secondary" onClick={() => setActiveKey('private-chat')}>Private Chat Instead</button>   
+                  <button className="btn btn-sm" variant="primary" onClick={() => addMember()}>Follow Community</button>
+                  <button className="btn btn-sm" variant="secondary" onClick={() => setActiveKey('private-chat')}>Private Chat Instead</button>   
                 </>}/> 
               }
             </> : 

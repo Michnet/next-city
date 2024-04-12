@@ -10,9 +10,9 @@ import DateViewState from "../../partials/dateViews/DateViewState";
 import PostLike from "../../partials/social/PostLike";
 import { PriceView } from "../../PriceView";
 
-const ActivityCard2Const = ({item, exClass, size, mini, width}) => {
+const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
 
-  const {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery} = item;
+  const {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery} = listing;
   const slicedGal = shuffleArray(gallery).slice(0, 5);
   const imgArr = [xtra_large_thumb, ...slicedGal];
   const {likes} = acf?.community ?? {};
@@ -112,7 +112,7 @@ const ActivityCard2Const = ({item, exClass, size, mini, width}) => {
               {!mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky border-light'/> : <></>}
                 <div className=' mb-0 w-100 content-collapsible'>
                   <div className="flex-grow-1">
-                    <Link href={`/events/${item.slug}`}>
+                    <Link href={`/events/${listing.slug}`}>
                       <h4 className={`activityCard__title lh-13 text-dark-1 ${mini ? 'd-block text-truncate mb-0' : ''}`}>
                         <span >{cleanHtml(title?.rendered)}</span>
                       </h4>
@@ -122,7 +122,7 @@ const ActivityCard2Const = ({item, exClass, size, mini, width}) => {
                     {/* <p className="card_desc truncate-2 mb-1">{short_desc}</p> */}
                     <div className={`d-flex flex-wrap justify-start align-items-center gap-1`}>
                       {mini ? <></> : <ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
-                      <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={item.duration}/>
+                      <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
                     </div>
                     <div className={`d-flex flex-${mini ? 'column' : 'row'} justify-between align-items-${mini ? 'start' : 'center'}`}></div>
                   </div>

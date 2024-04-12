@@ -41,19 +41,20 @@ const Chat = () => {
 
   function processThread(thread){
 
-        const {recipients, avatar, subject, excerpt, unread_count, date, id, next_messages_timestamp, messages} = thread;
+        const {recipients, avatar,  excerpt, unread_count, date, id, next_messages_timestamp, messages} = thread;
         const recArray = Object.values(recipients);
         const targetObj = recArray.filter((el) => el.user_id !== user.id)[0];
         const {name} = targetObj ?? {};
        const messagesArr = messages.map((item) => {
-          const {sender_id, message, subject, date_sent } = item;
-              return {
-                sender_id, message, subject, date_sent
-              }
+          const {sender_id, message, subject:msgSub, date_sent } = item;
+                return {
+                  sender_id, message, subject:msgSub.rendered.replace('Re: ', ''), date_sent
+                }
+              
         }); 
 
 
-         return { id : id, name : name, thumb : avatar[0].thumb, lastMessage : excerpt, unreadMessage : unread_count, subject : subject, lastMessageTime : date, next_messages_timestamp, messages : messagesArr.reverse() }
+         return {id : id, recipients: recipients, name : name, thumb : avatar[0].thumb, lastMessage : excerpt, unreadMessage : unread_count, lastMessageTime : date, next_messages_timestamp, messages : messagesArr.reverse() }
   }
 
   async function fetchChat(){
@@ -107,13 +108,11 @@ const Chat = () => {
       const {messages :preloadMsgs, next_messages_timestamp : preloadNext} = conversation;
         preloadMsgs.map((item) => {
           const {subject:msgSub} = item;
-              let cleanedSub = msgSub.rendered.replace('Re: ', '');
-              if(!tempSubjects.includes(cleanedSub)){
-                tempSubjects.push(cleanedSub);
+              //let cleanedSub = msgSub.rendered.replace('Re: ', '');
+              if(!tempSubjects.includes(msgSub)){
+                tempSubjects.push(msgSub);
               }
         }); 
-
-       
         setSubjects(tempSubjects);
         setNextStamp(preloadNext);
   }else{
@@ -121,7 +120,7 @@ const Chat = () => {
     setNextStamp(null);
   }
   }
-
+  
   useEffect(() => {
     if(router.query){
       const {threadID} = router.query;
@@ -182,20 +181,30 @@ const Chat = () => {
 
   if(conversation){
     if(messages?.length > 0){
-      messagesView = <div id="scroll_box" className="h-100 no-scrollbar" style={{ overflow: 'auto', display : 'flex', flexDirection : 'column-reverse' }} >
-                      <InfiniteScroll dataLength={messages.length} next={fetchChat} hasMore={nextStamp === ""? false : true} 
-                       loader={<LoaderEllipsis/>} endMessage={ <p style={{ textAlign: 'center' }}> <b>No more Messages</b> </p> } inverse={true} scrollableTarget='scroll_box' initialScrollY = {800} style={{ display: 'flex', flexDirection: 'column-reverse' }} scrollThreshold="50px"                       
-                       //height= {500}
-                       >
-                            
-                            {messages.map((item, index) => item.sender_id === user.id ?
-                                        <div><SentMessageCell key={index} conversation={item} user={user}/> </div>:
-                                        <div> <ReceivedMessageCell setSubject={setSubject} key={index} conversation={item} user={conversation}/> </div>)}  
-                        
-                      </InfiniteScroll>
-                     
-                      </div>
-                          
+      let filteredMsgs;
+      if(subject){
+        filteredMsgs = messages.filter((el) => el.subject == subject);
+      }else{
+        filteredMsgs = [...messages]
+      }
+
+      if(filteredMsgs?.length > 0){
+          
+          messagesView = <div id="scroll_box" className="h-100 no-scrollbar" style={{ overflow: 'auto', display : 'flex', flexDirection : 'column-reverse' }} >
+          <InfiniteScroll dataLength={filteredMsgs.length} next={fetchChat} hasMore={nextStamp === ""? false : true} 
+          loader={<LoaderEllipsis/>} endMessage={ <p style={{ textAlign: 'center' }}> <b>No more Messages</b> </p> } inverse={true} scrollableTarget='scroll_box' initialScrollY = {800} style={{ display: 'flex', flexDirection: 'column-reverse' }} scrollThreshold="50px"                       
+          //height= {500}
+          >
+                
+                {
+                filteredMsgs.map((item, index) => item.sender_id === user.id ?
+                            <div><SentMessageCell key={index} conversation={item} user={user}/> </div>:
+                            <div> <ReceivedMessageCell setSubject={setSubject} key={index} conversation={item} user={conversation}/> </div>)}  
+            
+          </InfiniteScroll>
+        
+          </div>
+      }
     }else{
       messagesView = <div className="d-flex justify-center align-items-center" style={{minHeight: '50vh'}}><LoaderEllipsis/></div>
     }
@@ -237,7 +246,7 @@ const Chat = () => {
     
       setLoading(true),
       setActiveThreadId(newChat.id);
-      setSubject(newChat.subject);
+      //setSubject(newChat.subject);
       setNextStamp(null);
       setSelectedSectionId(user.id),
       setDrawerState(false),
@@ -251,15 +260,7 @@ const Chat = () => {
   const showCommunication = () => {
     return (
       <div className="gx-chat-box h-100">
-          <div className="position-sticky top-0 py-2" style={{overflow:'hidden', overflowX: 'auto'}}>
-            <div className='row_flex gap-2 flex-nowrap'>{listings?.length > 0 && listings.map((li) => {
-                const {title, slug, id, xtra_large_thumb} = li;
-                return <button style={{backgroundImage: `url("${xtra_large_thumb}")`}} className="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s color-white btn-icon text-start">
-                <i class="fas fa-chevron-down font-15 text-center"></i>
-                <span dangerouslySetInnerHTML={{__html: title.rendered}}/>
-              </button>
-            })}</div>
-          </div>
+          
         {conversation ? <>{chatArea}</>
         : <div className="py-15 mx-n3">
                           {userState === 1 ? ChatUsers() : AppUsersInfo()}
@@ -282,6 +283,7 @@ const Chat = () => {
         id : conversation.id,
         message : text,
         sender_id : user.id,
+        subject: subject ?? 'general',
         //recipients: conversation.recipients
       }
       let oldChat = conversation.messages;
@@ -369,7 +371,7 @@ const Chat = () => {
                           {userState === 1 ? ChatUsers() : AppUsersInfo()}
                         </div>
                         <div className={'bg-theme justify-between d-flex flex-column w-100'} style={{flex: 'auto'}}>
-                        <ChatHeader setConversation={setConversation} conversation={conversation} exClass='header-sticky header-always-show'/>
+                        <ChatHeader setSubject={setSubject} listings={listings} setConversation={setConversation} conversation={conversation} exClass='header-sticky header-always-show'/>
                         <div className='px-3 flex-grow-1 flex-shrink-1 w-100' style={{minHeight: '100px'}}>
                           
                           {showCommunication()}

@@ -184,7 +184,7 @@ const submit = () => {
     payload.location=parentLoc.slug
   }
   if(keyword){
-    payload.keyword=keyword
+    payload.search_keywords=keyword
   }
 
   if(selectTags && selectTags.length > 0){

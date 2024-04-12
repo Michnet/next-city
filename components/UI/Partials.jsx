@@ -1,11 +1,10 @@
-import Link from "next/link"
 import { useRouter } from "next/router"
 
 export function DualColorHeader({title, subTitle, iconClass, colorClass = '', desc, exClass}) {
   return (
     <div className={`d-flex pb-2 border-bottom mb-3 ${exClass ?? ''}`}>
         <div>
-            {subTitle && <h6 className="mb-n1 opacity-80 color-highlight">{subTitle}</h6>}
+            {<h6 className="mb-n1 opacity-80 color-highlight">{subTitle}</h6>}
             <h3>{title}</h3>
         </div>
         <div className="align-self-center ms-auto">
