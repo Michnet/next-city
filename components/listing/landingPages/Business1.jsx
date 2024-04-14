@@ -19,7 +19,8 @@ import FAQs from "@/components/UI/FAQs";
 
 function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcoming, styles}) {
     
-    const {address, venue, about_us, locations, rating, id, short_desc, dir_tags, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta} = listing ?? {};
+    const {address, venue, about_us, locations, rating, id, short_desc, dir_tags, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
+    const {tickets} = listing_store;
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests} = meta ?? {};
     const {list:wcu_list} = _wcu ? _wcu[0] : {};
     const { general_merchandise} = listing?.acf ?? {};
@@ -157,7 +158,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                 reviewsView = <Suspense offset={150} once height={200}>
                 <div className="wide_container" 
                     >
-                    <Client><PostReviews transparentCards id={id}  limit={3} carousel bgImage={processImg(gallery)}/></Client>
+                    <Client><PostReviews  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
                     </Suspense>
         }

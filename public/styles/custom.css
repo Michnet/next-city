@@ -963,7 +963,7 @@ h6.tax_pare {}
 
 
 #gallery_extender {
-    height: 100px;
+    height: 124px;
     font-size: 20px;
     position: absolute;
     bottom: 0;
@@ -3009,4 +3009,9 @@ div#explore_nav .left_menu_btn {
 
 .title_meta .target {
     color: var(--highlight) !important;
+}
+
+#wall_gallery_container {
+    -webkit-mask-image: linear-gradient(transparent 40%, white 99%);
+    mask-image: linear-gradient(white 60%, transparent 99%);
 }

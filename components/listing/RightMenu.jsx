@@ -4,7 +4,6 @@ import { cleanHtml, srcWithFallback } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
-import {openOffCanvas} from "@/helpers/appjs";
 
 function RightMenu({listing, activeKey, setActiveKey}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
@@ -17,8 +16,17 @@ function RightMenu({listing, activeKey, setActiveKey}) {
                     {localMenu.map((el) => {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
+					  if(buttony){
+						return <button onClick={() => {closeMenus(); setActiveKey(id)}} className="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s bg-highlight btn-icon text-start">
+						<i className={`${icon}  font-15 text-center`}></i>
+						<span className="position-relative">{subTitle}
+                                      {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
+                                         {badgeNumber}
+                                      </span> : <></>}</span>
+					</button>
+					  }
                       return <span onClick={() => {closeMenus(); setActiveKey(id)}} className={`_link close-menu ${activeKey === id ? 'active' : ''}`}  key={id}>
-							<i className={`${icon ?? 'far fa-square'} font-16 color-highlight bg-transparent border rounded color-white`}></i>
+							<i className={`${icon ?? 'far fa-square'} font-16 bg-transparent rounded opacity-50`}></i>
 							<span className="position-relative">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}

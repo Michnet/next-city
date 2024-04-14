@@ -74,7 +74,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
          if(carousel){
              reviewsView = <Splider height={200} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}>  
              {list.map((item) => {
-                 return <SingleReview transparent={transparentCards} exClass={'mx-0 border'} width={300} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
+                 return <SingleReview transparent={transparentCards} exClass={`mx-0 ${transparentCards ? 'border' : ''}`} width={300} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
              })} 
              </Splider> 
          }else{

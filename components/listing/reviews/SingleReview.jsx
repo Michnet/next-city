@@ -4,7 +4,7 @@ function SingleReview({ review, user, listingId, noTime, reload, width='auto', e
     const {rating, id} = review ?? {}
 
   return (
-    <div className={`card card-style mb-15 shadow-sm ${exClass} ${transparent ? 'bg-transparent shadow-0 border-o' : ''}`} style={{width: width}}>
+    <div className={`card card-style mb-0 shadow-sm ${exClass} ${transparent ? 'bg-transparent shadow-0 border-o' : ''}`} style={{width: width}}>
       <div className="content">
         <div>
           <div className="d-flex mb-10">

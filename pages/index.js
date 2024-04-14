@@ -5,19 +5,15 @@ import useSWR  from "swr";
 import { advancedFetchListingsUrl, fetcher, getDirTerms } from "@/helpers/rest";
 import {shuffleArray } from "@/helpers/universal";
 import { siteSettings } from "@/helpers/base";
-import Link from "next/link";
 import { Client } from "react-hydration-provider";
 import Slider from "react-slick"
-import { fadingSlide, responsiveCarousel, largeResp, variableWidth } from "@/helpers/sliders";
+import { fadingSlide, largeResp } from "@/helpers/sliders";
 import { useEffect } from 'react';
-import ListingCard from './../components/UI/Listings/cards/ListingCard';
 import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
 import {SectionHeader } from "@/components/UI/Partials";
 import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
 import { TermIcon } from "@/components/UI/partials/termLinks";
-import ActivityCard2 from "@/components/UI/Listings/cards/ActivityCard2";
 import Splider from "@/components/UI/partials/Splider";
-import EventCard from "@/components/UI/Listings/cards/EventCard";
 import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
 import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
@@ -114,8 +110,6 @@ export default function Home(props) {
   })
 
   const { data:listings, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true, 'event-date':'any-day' }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: true });
-
-  console.log('listings', listings)
 
   const isLoadingInitialData = !listings && !error;
   const isEmpty = listings?.length === 0;

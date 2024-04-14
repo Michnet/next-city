@@ -181,7 +181,7 @@ if(type === 'event'){
     id : 'tickets',
     icon: "fas fa-qrcode", title: 'Tickets',
     subTitle : "Booking Options",
-    widgetClass: 'shop widgey ',
+    widgetClass: 'shop widgey pad_tab',
     innerClass: 'px-3 sm:px-10',
     badgeNumber: tickets?.length ?? 0,
     badgeClass: 'bg-info',
