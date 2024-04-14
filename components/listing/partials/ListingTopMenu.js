@@ -12,14 +12,16 @@ import { UserAvatar } from '@/components/UI/UserAvatar';
 import listingMenu from '../ListingMenu';
 import { openOffCanvas } from '@/helpers/appjs';
 import MainMenuBtn from '@/components/layouts/partials/MainMenuBtn';
+import { useRouter } from 'next/router';
 
 const ListingTopMenuConst = ({listing, activeKey, setActiveKey}) => {
   const {logo, thumbnail, title} = listing ?? {};
   const {user} = useRecoilValue(authState);
+  const router = useRouter()
 
     let localMenu = listingMenu({listing:listing, userId: user?.id});
     
-  const {isTab, isMobile} = useRecoilValue(UISizes);
+  const {isMobile} = useRecoilValue(UISizes);
 
 
 let logoView, headerMenuView;
@@ -58,16 +60,17 @@ if(localMenu){
 }
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
         <div className="menu_content">
-            <div className="d-flex flex-row flex-nowrap gap-3">
-                <MainMenuBtn/>
+            <div className="d-flex flex-row flex-nowrap gap-3 align-items-center">
+                <i className="fas fa-chevron-left" onClick={() => router.back()}/>
+                <MainMenuBtn/> 
                 <div className="menu_logo" onClick={() => setActiveKey('home')}> 
                   {logoView} 
-                  {isMobile ? <></> : <div className='show_in_pinned' style={{width: 'calc(100% - 40px)'}}><h4 className="_title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
+                  {/* isMobile ? <></> : */ <div className='show_in_pinned' style={{width: 'calc(100% - 40px)'}}><h4 className="_title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
                     }
                 </div> 
            </div>
            <div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2">
-              {/* isMobile ? <></> : */ headerMenuView}
+              {/* isMobile ? <></> : */ /* headerMenuView */}
               {/* isMobile ? <></> :  */<>
               <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
               <div className={`menu_icon d-flex flex-column px-2`}>

@@ -142,7 +142,7 @@ const ExploreEvents = ({topList}) => {
               </div>}
 
 
-              <div className="inner_section bg-theme">
+              <div className="inner_section">
                   <Search cardExClass={'mx-0'}/>
                   {/* <ActivityMasonry  limit={3} cardType={2} columns={3} itemWidth={'auto'} exClass={'px-10'}/> */}
               </div>

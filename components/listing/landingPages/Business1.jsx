@@ -32,7 +32,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
     if(listing){
         if(faqs?.length > 0){
             let trimFaqs = faqs?.slice(0,3);
-        faqsView = <div className="card card-style shadow-0 border bg-transparent mt-4">
+        faqsView = <div className="card card-style shadow mt-4">
                 <div className="content">
                     <div className="d-flex pb-2 border-bottom mb-3 ">
                         <div>
@@ -111,12 +111,12 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             descriptView = <>
             {/* <TextBox text={short_desc} bgUrl= {`${processImg(gallery)}`} imgUrl= {`${listing.xtra_large_thumb}`}/> */}
 
-            <div className={`_text_box_block listing_intro padded_container pos-relative`} >
+            <div className={`_text_box_block listing_intro padded_container pos-relative pb-5`} >
             {<Image fill style={{objectFit:"cover"}} src= {srcWithFallback(processImg(gallery))}/>}
             <div className="section_overlay gray-fil">
             </div>
             <div className="section_overlay_content flex_container">
-                {<div className='border_box listing_greeting'>
+                {<div className='border_box listing_greeting'> 
                     <div className="featuredImg_box" style={{backgroundImage: `url('${srcWithFallback(xtra_large_thumb)}')`}}>
                     </div>
                 </div>}
@@ -145,7 +145,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             
         }
         if(dir_tags){
-            tagsView = <div className='tags_row py-5'>
+            tagsView = <div className='tags_row py-5 card card-style mt-n4'>
                 <div className='row_content'>
                     <TagsCloud hue={'var(--highlight)'} dark ids={dir_tags} /* hue={color} *//>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
@@ -185,15 +185,15 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             });
             strengthsView = <>
                     <Suspense offset={150} once height={200}>
-                    <div className="listing_strengths  gray_bg">
+                    <div className="listing_strengths">
                    {/*  <div className="vertical_label dark_bg _bold"><h3 className="vertical_text">Why You Can't Miss</h3></div> */}
                         <div className="row_content row">
-                            {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3">
+                            {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
                                 <h4 className="section_subHead gray_text">{wcu.wcu_intro_detail}</h4>
                             </div> : <></>}
                             <div className="strengths_body col-12 col-md-8 p-0">
-                                <Splider exClass={'in_color'} options={{perMove:1, perPage:1, padding:{right: '20%'}}} height={'250px'} showDots>{reasonArr}</Splider>
+                                <Splider exClass={'in_color card card-style'} options={{perMove:1, perPage:1, padding:{right: '20%'}}} height={'250px'} showDots>{reasonArr}</Splider>
                             </div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         if(team?.length > 0){
                     teamView = <Suspense offset={150} once height={200}>
                                     <div className="wide_container listing_team card card-style">
-                                        <div className="team_intro padded_container" >
+                                        <div className="team_intro padded_container">
                                             {/* <h3 className="section_head dark_text">{team_intro.team_intro_title}</h3> */}
                                             {/* <DualColorHeader title={team_intro.team_intro_title}/>
                                             <h4 className="section_subHead">{team_intro.team_intro_description}</h4> */}
@@ -222,18 +222,18 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         if(special_guests?.length > 0){
             guestsView = <Suspense offset={150} once height={200}>
                             <div className="wide_container listing_team _square ">
-                                <div className="team_intro px-3" >
+                                <div className="team_intro px-3 ms-auto" >
                                     {/* <h3 className="section_head dark_text">{team_intro.team_intro_title}</h3> */}
                                     {/* <DualColorHeader title={team_intro.team_intro_title}/>
                                     <h4 className="section_subHead">{team_intro.team_intro_description}</h4> */}
-                                    <div className='mb-20 mt-10 sc_heading_3'>
+                                    <div className='mb-20 mt-10 sc_heading_3 righty'>
                                         <h5>Who Else Is Coming</h5>
                                         <h4>Meet our guests</h4>
                                     </div>
                                 </div>
 
                                 <Splider height={270} exClass='card card-style righty py-3' options={{...spliderVariableWidth, pagination: true, gap:20, type:'slide', padding: { left: 20, right: 40 }}} className="p-0">
-                                    {special_guests.map((tmMember, index) => <TeamMember2 avatarSize={140} styles={styles} mirrored height={150} width={150} member={tmMember} key={index}/>
+                                    {special_guests.map((tmMember, index) => <TeamMember2 avatarSize={110} styles={styles} mirrored height={120} width={120} member={tmMember} key={index}/>
                                                     )} 
                                 </Splider>
                             </div>

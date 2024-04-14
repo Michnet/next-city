@@ -763,7 +763,7 @@ div#footer-bar {
     /* position: fixed; */
 }
 .listing_services {
-    background: var(--bgTheme);
+    /* background: var(--bgTheme); */
 }
 
 #listing_header {
@@ -2047,7 +2047,7 @@ button.back_link {
 }
 
 ._mini .activityCard.-type-2 .activityCard__image {
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .activityCard.-type-2 ._meta {
@@ -2987,6 +2987,12 @@ div#explore_nav .left_menu_btn {
     border-top-right-radius: 0;
 }
 
+.card.lefty {
+    margin-left: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
 .footer-links {
     list-style: none;
 }
@@ -2995,4 +3001,12 @@ div#explore_nav .left_menu_btn {
 
 .footer-link.l_menu._item .label, .footer-link {
     font-family: var(--fontFamily) !important;
+}
+
+.sc_heading_3.righty {
+    text-align: end;
+}
+
+.title_meta .target {
+    color: var(--highlight) !important;
 }

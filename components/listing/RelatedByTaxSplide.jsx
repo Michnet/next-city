@@ -4,7 +4,7 @@ import { useSetRecoilState } from "recoil";
 import { advancedFetchListingsUrl, fetcher } from "@/helpers/rest";
 import useSWR from 'swr';
 import Splider from "../UI/partials/Splider";
-import EventCard2 from "../UI/Listings/cards/EventCard2";
+import ActivityCard2 from "../UI/Listings/cards/ActivityCard2";
 import { DualColorHeader, SectionHeader } from "@/components/UI/Partials";
 
 
@@ -50,7 +50,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, exclude, ra
     <Splider height={250} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}>
       {listings?.length > 0 ? 
           listings.map((li) => {
-           return <EventCard2 width={300} key={li.id} listing = {li}/>
+           return <ActivityCard2 exClass={'ms-0 me-2'} mini width={200} key={li.id} listing = {li}/>
           })
           :
           <></>

@@ -29,7 +29,6 @@ export default function Layout({ children, headerTitle, settings}) {
       const header_el = document.querySelector(".header-auto-show");
       const inters_el = document.getElementById("header_intersector");
       if(header_el){
-        console.log('got header')
         const observer = new IntersectionObserver( 
           ([e]) => header_el.classList.toggle("header-active", e.intersectionRatio < 1),
           { threshold: [1] }
@@ -37,8 +36,6 @@ export default function Layout({ children, headerTitle, settings}) {
         if(inters_el){
           observer.observe(inters_el);
         }
-      }else{
-        console.log('No header')
       }
     }
   }
@@ -58,40 +55,6 @@ export default function Layout({ children, headerTitle, settings}) {
     }
   }
 
-  const defBottomLinks = [
-    {id: 1,
-        icon: "fa fa-home",
-        color: 'gradient-green',
-        name: "Home",
-        routePath: "/",
-        link: true
-    },
-    {id: 2,
-        icon: "fa fa-search-location",
-        color: 'gradient-red',
-        name: "Explore",
-        routePath: "/explore/events",
-        link: true
-    },
-    {id: 3,
-        icon: "fa fa-heart",
-        color: 'gradient-red',
-        name: "Pages",
-        routePath: "/pages",
-        link: true
-    },
-    {id: 4,
-        icon: "fa fa-cog",
-        color: 'gradient-red',
-        name: "Settings",
-        routePath: "/explore/events",
-        func: openOffCanvas,
-        link: false,
-        props: {
-          'data-menu': 'menu-settings'
-        }
-    },
- ]
   return (
     <>
       <main /* className={`${inter.className}`} */ onLoad={() => sizing()}>
@@ -163,17 +126,6 @@ export default function Layout({ children, headerTitle, settings}) {
           </div>
 
 		  {/*Login*/}
-        {/*   <div id="" className="menu menu-box-bottom" >
-              <div className="menu-title">
-                <a href="#" className="close-menu" onClick={() => closeMenus()}>
-                  <i className="fa fa-times"></i>
-                </a>
-              </div>
-              <div className="content">
-                <div className="account-access">
-                </div>
-              </div>
-          </div> */}
           <BSReveal id={'login_modal'}>
           <AuthUI/>
 

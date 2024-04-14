@@ -119,7 +119,7 @@ const DateViewDescriptive = ({eventId, fromActive, iClass, customDate=null, cust
           return <div className="event_date">
                     {dates?.length > 0 && <p className="text-truncate">
                       <span className="mr-5 lh-1"><i className="las la-stopwatch"></i></span>
-                        Ended {dayjs(targetEndDate).toNow()}
+                        Ended {dayjs(targetEndDate).fromNow()}
                     </p>}
                   </div>;
         }

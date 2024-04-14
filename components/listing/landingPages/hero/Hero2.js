@@ -194,12 +194,12 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </div>
 
-
+          <div className='card card-style shadow shadow-bg shadow-bg-l bg-highlight'>
           <div
-            className={`z-1 p-5 position-relative bg-black ${styles['section-container']} `}
+            className={`z-1 p-5 position-relative bg-black ${styles['section-container']} card card-style w-auto m-0`}
           >
             {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
-            <div className={`row gap-5 md:flex-row flex-nowrap flex-col position-relative`}>
+            <div className={`row gap-5 md:flex-row flex-md-nowrap flex-col position-relative`}>
               <div className={`col-12 col-md-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']}><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
               {tagline && <span className={`${styles['text26']}`}>
@@ -218,6 +218,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </Client>
             </div>
+          </div>
           </div>
     </div></Suspense>
     <style jsx global>{`

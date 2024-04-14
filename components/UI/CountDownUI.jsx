@@ -52,12 +52,12 @@ let now = new Date();
 
   if(theDate){
     if(dayjs(theEndDate).isBefore(now, 'minute')){
-      return <div className="event_date">
+     /*  return <div className="event_date">
       <p className="text-13">
         <span className="mr-5 lh-1"><i className="las la-stopwatch"></i></span>
           Ended {dayjs(theEndDate).fromNow()}
       </p>
-    </div>;
+    </div>; */
     }else{
       return <div><Countdown renderer={countdown_renderer} autoStart date={theDate}/></div>
     }
