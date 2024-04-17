@@ -4,8 +4,9 @@ import { Client } from "react-hydration-provider";
 import { UserAvatar } from "@/components/UI/UserAvatar";
 import MainMenuBtn from "./MainMenuBtn";
 import { useRouter } from "next/router";
+import {memo } from "react";
 
-const Header = ({headerTitle, headerClass}) => {
+const HeaderConst = ({headerTitle, headerClass}) => {
   const router = useRouter();
 
 return <Client>
@@ -47,4 +48,6 @@ return <Client>
     </div>
   </Client>
 }
+
+const Header = memo(HeaderConst)
 export default Header;
