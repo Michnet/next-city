@@ -1,4 +1,4 @@
-import dynamic from 'next/dynamic';
+//import dynamic from 'next/dynamic';
 import Image from 'next/image';
 // const ListingProductsMini = dynamic(() => import('../ListingProducts/ListingProductsMini'));
 import { memo, Suspense } from 'react';
@@ -16,6 +16,8 @@ import { BookingView } from '@/pages/events/[slug]';
 import {spliderVariableWidth} from '@/helpers/sliders'
 import PostReviews from '../reviews/postReviews';
 import FAQs from "@/components/UI/FAQs";
+import { useRouter } from 'next/router';
+import ProfileInfo from '../profileInfo/ProfileInfo';
 
 function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcoming, styles}) {
     
@@ -26,7 +28,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
     const { general_merchandise} = listing?.acf ?? {};
     const {wcu, what_we_do} = marketing ??  {};
     const {faqs} = about_us ?? {};
-
+    const router = useRouter();
 
     let greetingView, faqsView, strengthsView, galleryView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView;
 
@@ -64,7 +66,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         largeFeaturedImgSrc = PostThumbnailSrc(listing, 'medium_large');
 
         if(sponsors?.length > 0){
-            sponsorsView = <div className={'d-block w-100 bg-theme image_links py-28'}>
+            sponsorsView = <div className={'d-block w-100 image_links py-28'}>
                    <div className='mb-20 mt-10 sc_heading_3 text-center'><h5>Proudly Sponsored By</h5></div>
                     <Splider height={110} options={{...spliderVariableWidth}}>
                         {sponsors?.map((el, index) => {
@@ -146,22 +148,33 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             
         }
         if(dir_tags){
-            tagsView = <div className='tags_row py-5 card card-style mt-n4'>
+            let tagClick = (tag) => {
+                router.push({
+                    pathname: '/explore/events',
+                    query: { tags: tag.slug },
+                  })
+            }
+            tagsView = <div>
+                <div className='mb-20 sc_heading_3 px-4 mt-4'>
+                    <h5>Listing Features</h5>
+                    <h4>Page Tags</h4>
+                </div>
+                <div className='tags_row py-5 card card-style'>
                 <div className='row_content'>
-                    <TagsCloud hue={'var(--highlight)'} dark ids={dir_tags} /* hue={color} *//>
+                    <TagsCloud hue={'var(--highlight)'} dark ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
                  </div>
-                 </div>
+                 </div></div>
         }
        
-        if(rating > 0){
+        //if(rating > 0){
                 reviewsView = <Suspense offset={150} once height={200}>
                 <div className="wide_container" 
                     >
                     <Client><PostReviews  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
                     </Suspense>
-        }
+        //}
 
         if(Array.isArray(wcu?.list)){
         if(wcu?.list?.length > 0){
@@ -191,7 +204,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                         <div className="row_content row">
                             {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
-                                <h4 className="section_subHead gray_text">{wcu.wcu_intro_detail}</h4>
+                                <h4 className="section_subHead gray_text mb-3">{wcu.wcu_intro_detail}</h4>
                             </div> : <></>}
                             <div className="strengths_body col-12 col-md-8 p-0">
                                 <Splider exClass={'in_color card card-style'} options={{perMove:1, perPage:1, padding:{right: '20%'}}} height={'250px'} showDots>{reasonArr}</Splider>
@@ -351,6 +364,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             {strengthsView }
             {faqsView}
             {sponsorsView}
+            <ProfileInfo exClass={'px-lg-0 px-2'} listing={listing} setActiveKey={setActiveKey}/>
         </div>
     )
 }

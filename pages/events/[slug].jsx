@@ -24,6 +24,7 @@ import BottomMenu from "@/components/layouts/BottomMenu";
 import Hero2 from "@/components/listing/landingPages/hero/Hero2";
 import ListingFooter from "@/components/listing/landingPages/footer/ListingFooter";
 import listingMenu from "@/components/listing/ListingMenu";
+import PageScroller from "@/components/UI/partials/PageScroller";
 //import Hero from "@/components/listing/landingPages/hero/Hero";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
@@ -193,7 +194,7 @@ if(listing){
     <BottomMenu content={bottomContent}/>
     <div className="page-content single_listing ">
 
-    {/* <Hero listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/> */}
+    <PageScroller activeKey={activeKey} resetKey={'home'}/>
     <Hero2 /* palette={palette} color={color} */ listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}  />
     <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={listing}/>
     <Client>

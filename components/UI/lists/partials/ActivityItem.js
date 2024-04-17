@@ -13,7 +13,7 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
 
-    const ActivityItemConst = ({activity, user, token, avatarSize='35', noLink, exClass="", mainClass='bg-theme p-3'}) => {
+    const ActivityItemConst = ({activity, user, token, avatarSize='35', noLink, exClass="", mainClass='bg-theme p-3', interactive=false}) => {
       
 
       const [compActivity, setCompActivity] = useState(activity ?? null);
@@ -164,8 +164,8 @@ dayjs.extend(relativeTime)
                                       </div>
                                         <div className="pe-3">
                                             <Client><h5 className="_title mb-0 font-16 font-700" dangerouslySetInnerHTML={{__html: getHeading()}}/></Client>
-                                            {noLink ? <></> : <>{group_name ? <>{listing?.type ? <Link className="pointer" href={`/${listing.type == 'event' ? 'events' : 'places'}/${listing?.slug}`}><h6 className="_sub_title truncate-2 lh-12 opacity-60 text-13">{group_name}</h6></Link> : <h6 className="lh-12 _sub_title truncate-2 opacity-60 text-13">{group_name}</h6>}</> : <></>}</>}
-                                            <div className="title_meta d-flex align-items-center mt-n2 opacity-50">
+                                            {noLink ? <></> : <>{group_name ? <>{listing?.type ? <Link className="_sub_title truncate-2 lh-12 opacity-60 text-13" href={`/${listing.type == 'event' ? 'events' : 'places'}/${listing?.slug}`}>{group_name}</Link> : <h6 className="lh-12 _sub_title truncate-2 opacity-60 text-13">{group_name}</h6>}</> : <></>}</>}
+                                            <div className="title_meta d-flex align-items-center lh-11 opacity-50">
                                                 {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11">@joesome</span></div>
                                                 <div className="pe-2">&middot;</div> */}
                                                 <div><span className="opacity-60 font-11">{dayjs(localiseDate(date)).fromNow()}</span></div>
@@ -179,7 +179,7 @@ dayjs.extend(relativeTime)
                                         {/* <img src={type == 'new_job_listing' ? listing?.thumb_url : '/images/bg/fallback.jpg'} className="img-fluid"/> */}
                                         {type === 'new_job_listing' && <Suspense offset={150} once><img className="img-fluid feat_img mb-10 w-100 object-cover" src={listing?.thumb_url}/></Suspense>}
                                         <div className="content mt-0 mb-1">
-                                            <span className="opacity-50 d-block pt-1 font-11">enableds.com</span>
+                                            <span className="opacity-50 d-block pt-1 font-11">LyveCity.com</span>
                                             
                                             <div className="_content gx-mb-0">
                                             {editing ? 
@@ -197,7 +197,8 @@ dayjs.extend(relativeTime)
                                         </div>
                                         </div>
                                     </div>
-                                    <div className='activity_footer'>{user ? 
+                                    <div className='activity_footer'>
+                                      {interactive ? <>{user ? 
                                       <div className="reactions_i_group d-flex pb-1">
                                         {can_comment && <span /* data-menu="menu-reply" */  className="color-theme me-2 opacity-60 
                                         pointer" onClick={() => {fetchComments(); setCommenting(!commenting)}}><i className="bi bi-chat-left pe-1"/>  {comment_count > 0 && <span class="badge rounded-pill bg-warning">{comment_count}</span>}</span>}
@@ -210,7 +211,7 @@ dayjs.extend(relativeTime)
                                     :
                                     <>
                                     {showPrompt && <GuestPrompt title={'Sign in to respond to this post'}/>}<span className="pointer" onClick={() => setShowPrompt(!showPrompt)}><i className="bi bi-three-dots"/></span></>
-                                    }
+                                    }</> : <></>}
                                     </div>
                                     {imagesView}
                                     </div>

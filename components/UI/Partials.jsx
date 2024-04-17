@@ -13,6 +13,14 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass = '', de
     </div>
   )
 }
+export const Floater = ({primText, secText, exClass}) =>{
+  return (
+    <div className={`floater ${exClass}`}>
+      <h4 className="prim_text">{primText}</h4>
+      {secText && <h5>{secText}</h5>}
+    </div>
+  )
+}
 export const SocialLinks = ({links, iconsOnly=true}) => {
   
   return <div className="links_container">

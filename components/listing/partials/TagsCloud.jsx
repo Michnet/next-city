@@ -1,4 +1,5 @@
 import { getDirTermsUrl } from '@/helpers/rest';
+import { getLocalTaxonomy } from "@/helpers/rest";
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 
@@ -13,17 +14,10 @@ const TagsCloudConst = ({ids, dark, hue, itemsList, onClickFunc}) => {
        _fields : "id,count,extra_meta,term_meta,description,parent,name,slug",
        include: ids.join(',')
    }
-     let data = await fetch(getDirTermsUrl('tags', filterArr, signal));
-     const theTags = await data.json();
-     if(theTags){
-        setItems(theTags);
-     }
+     //let data = await fetch(getDirTermsUrl('tags', filterArr, signal));
+     let data = await getLocalTaxonomy({taxonomy: 'tags', include_ids: ids, setter:setItems});
  
    }
-
-
-
-   //const items = useSWRImmutable(/* fetchCondition() ? null :  */getDirTermsUrl('tags', filterArr), fetcher)
 
 useEffect(() => {
   const controller = new AbortController();
@@ -33,11 +27,11 @@ useEffect(() => {
     setItems(itemsList)
   }else{
     if(ids){
-      getTags(signal)
+      getLocalTaxonomy({taxonomy: 'tags', include_ids: ids, setter:setItems, signal:signal})
       }
   }
   return () => controller.abort();
-}, [ids,/*  Dir_tags,  */hue, itemsList]) 
+}, [ids,hue, itemsList]) 
 
 
 const color_options = {
@@ -71,7 +65,6 @@ const color_options = {
     maxSize={38}
     tags={createTags()}
     colorOptions={color_options}
-    //onClick={tag => alert(`'${tag.slug}' was selected!`)}
     onClick = {onClickFunc ? (tag) => onClickFunc(tag) : null}
   />
   </>

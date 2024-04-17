@@ -90,7 +90,6 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
 
   return (
     <>
-     <PageScroller activeKey={activeKey} resetKey={'home'}/>
      {showContent(activeKey)}
     </>
   )

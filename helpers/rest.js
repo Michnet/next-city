@@ -249,32 +249,74 @@ export const likePost = async (payload) => {
     };    
 }
 
+export const getDirPaymentMethodsUrl = (payload) => {
+  let endpoint;
+  if (payload) {
+      endpoint = `wp-json/wp/v2/payment_methods?${serializeQuery({
+          ...payload
+      })}`;
+  } else {
+      endpoint = 'wp-json/wp/v2/payment_methods';
+  }
+
+  return `${WPDomain}/${endpoint}`;
+}
+
+
+export const getDirPaymentMethods = async (payload) => {
+  
+  const reponse = await kyFetch.get(`${getDirPaymentMethodsUrl(payload)}`)
+      .then(async(response) => {
+          if (response) {
+              const data = {
+                  items: response.json(),
+                 /*  totalItems: response.headers['x-wp-total'],
+                  totalPages: response.headers['x-wp-totalpages'], */
+              };
+              return data;
+          } else return null;
+      })
+      .catch(() => {
+          return null;
+      });
+  return reponse;
+}
+
 export async function getLocalTaxonomy(payload){
-  const {taxonomy, parent_slug, setter} = payload;
-  console.log('slug', parent_slug);
+  const {taxonomy, parent_slug, setter, include_ids, signal} = payload;
   try{
   await fetch(`/data/${taxonomy ?? 'categories'}.JSON`, {headers:{'Content-Type': 'application/json',
-  'Accept': 'application/json'}}).then((dat) => dat.json()).then(
+  'Accept': 'application/json'}, signal:signal}).then((dat) => dat.json()).then(
       (items) => {
           let currentArr;
-          if(parent_slug){
-              let  parentArr = items.filter((it) => it.slug === parent_slug);
-              if(parentArr?.length > 0){
-                  console.log('we have a parent', parentArr)
-                  let parentId= parentArr[0].id;
-                  currentArr = items.filter((it) => it.parent === parentId)
+          if(include_ids){
+            currentArr = [];
+            include_ids.map((inc_id) =>{
+              let currentItem = items.find((it) => it.id === inc_id)
+              if(currentItem){
+                currentArr.push(currentItem);
+              }
+            })
+          }else{
+              if(parent_slug){
+                let  parentArr = items.filter((it) => it.slug === parent_slug);
+                if(parentArr?.length > 0){
+                    let parentId= parentArr[0].id;
+                    currentArr = items.filter((it) => it.parent === parentId)
+                }else{
+                    currentArr = items.filter((it) => it.parent === 106)
+                }
               }else{
-                  console.log('no parent', parentArr)
                   currentArr = items.filter((it) => it.parent === 106)
               }
-          }else{
-              currentArr = items.filter((it) => it.parent === 106)
           }
-          setter(currentArr);
+          if(setter){
+            setter(currentArr);
+          }
           return currentArr;
       })
   }catch(err){
-  return err
+    return err
   }
 }
 

@@ -50,7 +50,7 @@ export default function listingMenu({listing, userId}){
     //content : <div className='inner_container'> <ListingReviews postID={id} user={user}/> </div>
   }
 ];
-
+/* 
  if(community_id){
   tabList.push(
     { 
@@ -59,15 +59,9 @@ export default function listingMenu({listing, userId}){
       title: 'Community', subTitle : "Public Chat", 
       widgetClass: "pad_tab",
       innerClass: 'bg_tab border-0 pb-0 mb-0',
-      /* content: <ComponentActivity
-            noLink
-            scope={'groups'}
-            scope_slug = 'group_id'
-            scope_id={community_id}
-          /> */
     }
   )
-}
+} */
 
 if(!userId || userId != author_id){
   tabList.push(

@@ -1,8 +1,6 @@
 import { getLocalTaxonomy } from "@/helpers/rest";
-import { s_settings } from "@/helpers/sliders"
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Slider from "react-slick"
 import Splider from "../partials/Splider";
 import { TermIcon } from "../partials/termLinks"
 
@@ -38,7 +36,6 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
     }
 
     useEffect(() => {
-        console.log('condition', fetchCondition());
          if(fetchCondition()){
             return;
          }else{

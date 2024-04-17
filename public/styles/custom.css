@@ -15,6 +15,7 @@
     --shadow-1: 0 4px 24px 0 rgba(0,0,0,.08);
     --loudTheme: #bc6303;
     --handFont: 'Dr Sugiyama', cursive;
+    --listingTheme: var(--highlight);
     }
 
 .row:not(.m-bs) {
@@ -3014,4 +3015,24 @@ div#explore_nav .left_menu_btn {
 #wall_gallery_container {
     -webkit-mask-image: linear-gradient(transparent 40%, white 99%);
     mask-image: linear-gradient(white 60%, transparent 99%);
+}
+
+span.term_icon_box {
+    display: block;
+    border-radius: 50%;
+}
+
+.search_form 
+ .container {
+    padding: 0;
+}
+
+.gx-profile-banner._mini > img {
+    webkit-mask-image: linear-gradient(white 10%, transparent 100%);
+    mask-image: linear-gradient(white 10%, transparent 100%);
+    width: inherit;
+}
+
+._mini .gx-profile-container {
+    background: transparent;
 }

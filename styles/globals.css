@@ -3641,7 +3641,7 @@ option.reset {color: var(--theme);}
   display: none;
 }
 
-.section_overlay {position: absolute;left: 0;top: 0;min-width: 100%;min-height: 100%;background: #ffffffc9;}
+.section_overlay {position: absolute;left: 0;top: 0; bottom: 0px;min-width: 100%;min-height: 100%;background: #ffffffc9;}
 
 .section_overlay.gradient_bg {
   background: linear-gradient(0deg, #eeeaea70, #fff);
@@ -5824,14 +5824,9 @@ footer .container.overlay {
   font-weight: bold;
   color: var(--bs-dark);
   margin-bottom: 15px;
-  background: -webkit-linear-gradient(var(--listingTheme), #121212);
+  background: -webkit-linear-gradient(var(--listingTheme), var(--colorTheme));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.numbers-container .stat_card .text {
-  color: var(--bs-black);
-  /* opacity: 0.7; */
 }
 
 .logo_image {
@@ -6750,7 +6745,7 @@ section.landing_page .intro_content{
     justify-content: center;
 }
    .tabpane.pad_tab{
-    padding: 12px 0;
+    padding: 12px 10px;
 }
    ul.listing_navigator li.visible{
     /* border: none; */
