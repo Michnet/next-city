@@ -70,7 +70,7 @@ const CommunityStats = ({listing, views, likes, comments, communitySize}) => {
     const {id, cssClass, iconClass, title,value} = it;
         return <li key={id} className={cssClass}>
         <i className={iconClass}></i>
-        <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">{value}</span>
+        <span className="gx-follower-title gx-fs-lg gx-font-weight-medium lh-11">{value}</span>
         <span className="gx-fs-sm">{title}</span>
       </li>
   })}</>;

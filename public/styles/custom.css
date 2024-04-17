@@ -1798,13 +1798,15 @@ button.back_link {
 }
 
 ._mini .activityCard.-type-2 .stats_box {
-    background: linear-gradient(180deg, transparent, white);
+    background: linear-gradient(180deg, transparent, black);
     flex-direction: row;
     padding: 0;
     align-items: center;
     column-gap: 10px;
     white-space: nowrap;
     padding-right: 10px;
+    padding-top: 25px;
+    color: #fff;
 }
 
 ._mini .activityCard.-type-2 .stats_box ._lefty {
@@ -2998,7 +3000,7 @@ div#explore_nav .left_menu_btn {
     list-style: none;
 }
 
-.hero_title .profile_name {border-right: 3px dashed #cdcccc;}
+.hero_title .profile_name {border-right: 3px dashed var(--borderTheme);}
 
 .footer-link.l_menu._item .label, .footer-link {
     font-family: var(--fontFamily) !important;
@@ -3035,4 +3037,13 @@ span.term_icon_box {
 
 ._mini .gx-profile-container {
     background: transparent;
+}
+
+
+.about_item i {
+    font-size: var(--bgFontSize);
+}
+
+.collapse:not(.show) .user_card > div {
+    padding: 0 !important;
 }

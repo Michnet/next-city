@@ -1,7 +1,7 @@
 import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
 import { cleanHtml, shuffleArray } from "@/helpers/universal";
 import Link from "next/link";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import Slider from "react-slick";
 // import PostLike from "~/appComponents/components/Social/PostLike";
 import { ListingMeta, ListingMetaMini } from "../../Partials";
@@ -9,6 +9,15 @@ import DateView from "../../partials/dateViews/DateView";
 import DateViewState from "../../partials/dateViews/DateViewState";
 import PostLike from "../../partials/social/PostLike";
 import { PriceView } from "../../PriceView";
+
+const processImg = (images, cover) => {
+  if(images && images.length > 0){
+      const targetImg = images[Math.floor(Math.random()*images.length)];
+      return targetImg
+  }else if(cover){
+      return cover;
+  }
+}
 
 const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
 
@@ -25,6 +34,9 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+
+  const imgSrc = useMemo(() => processImg(slicedGal), [listing.id] );
 
   // custom navigation
   function Arrow(props) {
@@ -52,14 +64,14 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
   
   return (
           <div style={{width: width ?? 300}} className={`card card-style listing_card ${exClass ?? ''} ${mini ? '_mini' : ''}`}
-            key={id} /* data-aos="fade" data-aos-once="true" data-aos-delay={60} */
+            key={id} data-aos="fade" data-aos-once="true" data-aos-delay={60}
           >
             <div
               className="activityCard -type-2  hover-inside-slider"
             >
-              <div className="activityCard__image position-relative">
+              <div className="activityCard__image position-relative ratio ratio-4x3">
                 <div className="inside-slider topped_dots roundy">
-                  <Slider
+                  {/* <Slider
                   focusOnSelect
                   autoplay
                   swipe={false}
@@ -88,7 +100,17 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                         </div>
                       </div>
                     ))}
-                  </Slider>
+                  </Slider> */}
+                  <img
+                          quality={90}
+                            width={size ? size  : '100%'}
+                            height={size ? size  : '100%'}
+                            className="object-cover js-lazy"
+                            placeholder={<LoaderSiteLogo/>}
+                            src={imgSrc}
+                            onError={(e) => {e.target.src = '/images/bg/fallback-sm.jpg'}}
+                            alt="image"
+                          />
                   {mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='card_date mr-10'/> : <></>}
                   <div className="stats_box">
                     <div className="_lefty d-flex flex-column align-items-start gap-2">

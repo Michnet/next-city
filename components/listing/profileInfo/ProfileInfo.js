@@ -1,4 +1,4 @@
-import  {useState, useEffect, memo} from "react";
+import  {useState, useEffect, memo, useMemo} from "react";
 import { Client } from "react-hydration-provider";
 // import ListingLoader from "~/appComponents/components/skeletons/React-content-loader/FullPage/ListingPage";
 //import StatCard from "../../LandingPages/teleportHq/conference1/components/StatCard";
@@ -17,19 +17,23 @@ import ListingSkeleton from "@/components/skeletons/fullPage/ListingSkeleton";
 import PayMeans from "./partials/PayMeans";
 import {srcWithFallback } from '@/helpers/universal';
 
+const processImg = (images, cover) => {
+  if(images && images.length > 0){
+      const targetImg = images[Math.floor(Math.random()*images.length)];
+      return targetImg
+  }else if(cover){
+      return cover;
+  }
+}
 
 const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
   //const [tags, setTags] = useState(null);
   const [fullContent, setFullContent] = useState(false);
   const {members_count} = community ?? {}
   const [loading, setLoading] = useState(true)
-/* 
-  async function fetchtags(load){
-    const dirTagsResult = await getDirTerms('tags', load);
-    if (dirTagsResult) {page
-      setTags(dirTagsResult.items)
-    }
-  } */
+
+
+  const cachedListing = useMemo(() => listing, [listing.id] );
 
 
   useEffect(() => {
@@ -44,15 +48,6 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
     if(listing){
       const {acf, content, cover, dir_tags, about_us, team, gallery, performers, meta} = listing;
       const {"_special-guests": special_guests, _stats} = meta ?? {}
-
-      const processImg = (images) => {
-        if(images && images.length > 0){
-            const targetImg = images[Math.floor(Math.random()*images.length)];
-            return targetImg
-        }else if(cover){
-            return cover;
-        }
-    }
 
       if(acf){
         const {contactDetails} = acf;
@@ -83,7 +78,8 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
      if(_stats?.length > 0){
       statsView = <Widget 
       title= 'Page stats'
-      cover= {srcWithFallback(processImg(gallery))}
+      coverClass={'backdropGray'}
+      cover= {srcWithFallback(processImg(gallery, cover))}
       icon = {'fas fa-stopwatch-20'}
       >
               <ListingStats stats={_stats}/>
@@ -187,7 +183,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
               <ResponsiveMasonry columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1199 : 1}}>
                 <Masonry gutter={'15px'}>
                   {contentView}
-                  <About communitySize={members_count ?? null} listing={listing} /> 
+                  <About communitySize={members_count ?? null} listing={cachedListing} /> 
                   {performersView}
                   {statsView}
                   {tagsView}

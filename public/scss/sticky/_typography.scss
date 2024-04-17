@@ -1,9 +1,11 @@
 /*Typography Settings*/
 
 $font-main-family: "Roboto", sans-serif !important;
+$font-main-size: 15px;
 
 :root{
 	--fontFamily: $font-main-family;
+	--font-size: $font-main-size;
 }
 body {
 	font-size: $font-main-size;

@@ -76,7 +76,7 @@ const TermTag = ({term, type, collection, colorText, exClass, exTagClass}) => {
           className={`${taxonomy} ${exClass ?? ''} term-link _icon-box`}>
           <div  className="icon_box">
                         <span className="icon_icon"> <i style={{backgroundColor : color}} className={rl_awesome}/> </span> 
-                        <span style={{color : colorText ? colorise() : 'initial' }} className="gx-text-truncate icon_text" dangerouslySetInnerHTML={{__html: name}}/>
+                        <span style={{color : colorText ? colorise() : 'var(--colorTheme)' }} className="gx-text-truncate icon_text" dangerouslySetInnerHTML={{__html: name}}/>
                       </div>
 
         </Link>;

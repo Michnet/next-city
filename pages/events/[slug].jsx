@@ -4,7 +4,7 @@ import ListingStater from "@/contexts/contextStaters/ListingStater";
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
 import { cleanHtml, shadeRGBColor } from "@/helpers/universal";
 import dynamic from "next/dynamic";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState, useMemo } from "react";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
 import ListingSideMenu from "@/components/listing/ListingSideMenu";
@@ -126,10 +126,13 @@ useEffect(() => {
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
 let VisitorActionsView;
 let localMenu = listingMenu({listing:listing, userId: user?.id});
+const cachedListing = useMemo( () => listing, [listing.id] );
+//const localMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing.id, user?.id] );
+
 
 if(listing){
     VisitorActionsView = <div>
-        <VisitorActions setActiveKey={setActiveKey} listing={listing} extraItem = {<div className="action_box" data-menu='activeViewModal'> <i className="las la-bullseye"/> <label>View Mode</label> </div>}/>
+        <VisitorActions setActiveKey={setActiveKey} listing={cachedListing} extraItem = {<div className="action_box" data-menu='activeViewModal'> <i className="las la-bullseye"/> <label>View Mode</label> </div>}/>
         <hr/>
         <CallToActions centered thin light bgClass={'bg-transparent'} actionComponent={
             <div className="d-flex  gap-3 flex-center">
@@ -188,23 +191,23 @@ if(listing){
            slug={`/events/${slug}`}
            />
            <HeaderWrapper header_id={'listing_header'}>
-                <ListingTopMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+                <ListingTopMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
 
     <BottomMenu content={bottomContent}/>
     <div className="page-content single_listing ">
 
     <PageScroller activeKey={activeKey} resetKey={'home'}/>
-    <Hero2 /* palette={palette} color={color} */ listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}  />
-    <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={listing}/>
+    <Hero2 /* palette={palette} color={color} */ listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
+    <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing}/>
     <Client>
         <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
     </Client>
     <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
 </div>
 
-    <ListingSideMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
-    <RightMenu listing={listing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+    <ListingSideMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+    <RightMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title">
             <a href="#" className="close-menu" onClick={() => closeMenus()}>

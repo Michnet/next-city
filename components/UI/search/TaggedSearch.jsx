@@ -158,7 +158,7 @@ const TaggedSearchConst = ({accordion, category, location, queryTags, setSearchC
   if(selectTags.length > 0){
     let arr = [];
     selectTags.map((tag) => {
-     arr.push(tag.id)
+     arr.push(tag?.id)
     });
     if(setSearchTags){
     setSearchTags(arr)
@@ -190,7 +190,7 @@ const submit = () => {
   if(selectTags && selectTags.length > 0){
     var tagArr = [];
     selectTags.map((tag) =>tagArr.push(tag.id));
-    payload.tag=tagArr.join(',')
+    payload.tags=tagArr.join(',')
   }
 
 router.push({
@@ -230,7 +230,7 @@ const customRenderer = (tag, size, color) => {
           //fontSize: size,
           display : 'block'
           }} 
-        className={`tag-cloud-tag ${tag.props.exClass ? tag.props.exClass : ''} ${selectTags.filter((el) => el.id === tag.props.id).length > 0 ? 'checked' : ''}`} >
+        className={`tag-cloud-tag ${tag.props.exClass ? tag.props.exClass : ''} ${selectTags.filter((el) => el?.id === tag.props.id).length > 0 ? 'checked' : ''}`} >
         {tag.value}
       </a>
     )
@@ -297,7 +297,7 @@ const customRenderer = (tag, size, color) => {
     let arrView;
     if(tagOptions && tagOptions.length > 0){
         arrView = <> {tagOptions.map((tag) => {
-          return <span>{tag.name.replace(/&amp;/g, '&')}<span onClick={() => setupTags(tag, selectTags, setSelectTags)} className='clear_tag'>x</span></span>;
+          return <span>{tag?.name.replace(/&amp;/g, '&')}<span onClick={() => setupTags(tag, selectTags, setSelectTags)} className='clear_tag'>x</span></span>;
         }) }</>
     }
 

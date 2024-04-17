@@ -1,7 +1,7 @@
 //import dynamic from 'next/dynamic';
 import Image from 'next/image';
 // const ListingProductsMini = dynamic(() => import('../ListingProducts/ListingProductsMini'));
-import { memo, Suspense } from 'react';
+import { memo, Suspense, useMemo, useEffect } from 'react';
 // const TeamMember2 = dynamic(() => import('../Team/TeamMember2'));
 import { Client } from 'react-hydration-provider';
 // import { BookingView } from '~/pages/events/[slug]';
@@ -30,6 +30,8 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
     const {faqs} = about_us ?? {};
     const router = useRouter();
 
+    const cachedListing = useMemo( () => listing, [listing.id] );
+    
     let greetingView, faqsView, strengthsView, galleryView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView;
 
     if(listing){
@@ -95,7 +97,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         }
 
         //if(listing?.gallery.length > 0){
-            galleryView = <MegaGalleryMini setActiveKey={setActiveKey} upcoming={upcoming} color={color} listing={listing}/>
+            galleryView = <MegaGalleryMini setActiveKey={setActiveKey} upcoming={upcoming} color={color} listing={cachedListing}/>
         //}
         let fbGreeting = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{__html: listing?.title?.rendered}}/></p>
 
@@ -364,7 +366,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             {strengthsView }
             {faqsView}
             {sponsorsView}
-            <ProfileInfo exClass={'px-lg-0 px-2'} listing={listing} setActiveKey={setActiveKey}/>
+            <ProfileInfo exClass={'px-lg-0 px-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </div>
     )
 }

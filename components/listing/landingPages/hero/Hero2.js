@@ -196,7 +196,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
           <div className='card card-style shadow shadow-bg shadow-bg-l bg-highlight'>
           <div
-            className={`z-1 p-5 position-relative bg-black ${styles['section-container']} card card-style w-auto m-0`}
+            className={`z-1 p-5 position-relative bg-black theme-dark ${styles['section-container']} card card-style w-auto m-0`}
           >
             {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
             <div className={`row gap-5 md:flex-row flex-md-nowrap flex-col position-relative`}>
