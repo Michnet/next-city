@@ -1,5 +1,5 @@
 import Script from "next/script";
-//import { run_template } from "./../../helpers/js";
+import { run_template } from "./../../helpers/js";
 import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
 import {useMemo, memo } from "react";
@@ -422,7 +422,7 @@ function LayoutConst({ children, headerTitle, settings}) {
         </div>
         {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}
         {/* <Script defer='true'  strategy={"afterInteractive"} onReady={() => console.log('Custom loaded')} src="/scripts/custom.js"/> */}
-        {/* {run_template()} */}
+        {run_template()}
         <Script>{onAppLoad()}</Script>
         <RouteLoader />
       </main>
