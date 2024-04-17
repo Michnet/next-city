@@ -2243,7 +2243,7 @@ section.custom_section .row_content .head_content {display: block;width: fit-con
 
 .single_listing .head_content .desc:empty {width: 0;}
 
-.menu_icon svg, .nav i {color: #fff;font-size: 18px;}
+.menu_icon svg, .nav i {font-size: 18px;}
 
 .listing_menu_toggler .bi.bi-person {
   font-size: 30px;

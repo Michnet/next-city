@@ -16,6 +16,8 @@
     --loudTheme: #bc6303;
     --handFont: 'Dr Sugiyama', cursive;
     --listingTheme: var(--highlight);
+    --fontFamily: "Jost", sans-serif !important;;
+    --font-size: 15px;
     }
 
 .row:not(.m-bs) {
@@ -32,6 +34,8 @@
     opacity: 0;
 }
 body{
+    font-size: var(--font-size);
+    font-family: var(--fontFamily);
     color: var(--colorTheme)
 }
 body {

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect } from "react";
+import { memo, useEffect, useMemo } from "react";
 import "@/public/scss/bootstrap.scss";
 import "@/styles/globals.css";
 import "@/public/scss/style.scss";
@@ -15,13 +15,18 @@ import "slick-carousel/slick/slick-theme.css";
 import "yet-another-react-lightbox/styles.css";
 import ActivityProvider from "@/contexts/ActivityContext";
 import Layout from "@/components/layouts/Layout";
-import { UIProvider } from "@/contexts/UIContext";
+import UIProvider from "@/contexts/UIContext";
 import SiteProvider from "@/contexts/siteContext";
 import MessagesStater from "@/contexts/contextStaters/MessagesStater";
+import { useRouter } from "next/router";
 //import "@/public/scripts/bootstrap.min.js";
 
-function MyApp({ Component, pageProps, platform }) {
+function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings} = pageProps;
+
+  const router = useRouter();
+
+  const cachedSettings = useMemo(() => settings, [router.asPath, headerTitle, platform]);
 
   useEffect(() => {
     require("@/helpers/boojs.js");
@@ -42,7 +47,7 @@ function MyApp({ Component, pageProps, platform }) {
         <RecoilRoot>
           <HydrationProvider>
             <div className="menu-hider" onClick={() => closeMenus()}/>
-            <Layout platform={platform} settings={settings} headerTitle={headerTitle}>
+            <Layout platform={platform} settings={cachedSettings} headerTitle={headerTitle}>
               <Component {...pageProps}/>
             </Layout>
           </HydrationProvider>
@@ -56,7 +61,7 @@ function MyApp({ Component, pageProps, platform }) {
   </>
 }
 
-MyApp.getInitialProps = async (cont) => {
+MyAppConst.getInitialProps = async (cont) => {
   /* if (ctx && ctx.req && ctx.req.headers) {
     return {
       userAgent: ctx.req.headers['user-agent']
@@ -71,4 +76,5 @@ MyApp.getInitialProps = async (cont) => {
   return {  ...initialProps , platform: reqPlat }
 }
 
+const MyApp = memo(MyAppConst);
 export default MyApp;

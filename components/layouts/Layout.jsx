@@ -1,13 +1,14 @@
 import Script from "next/script";
-import { run_template } from "./../../helpers/js";
+//import { run_template } from "./../../helpers/js";
 import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
+import {useMemo, memo } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
 import { closeMenus, onAppLoad, openOffCanvas, toggleTheme } from "@/helpers/appjs";
 import Scaffold from "./Scaffold";
 import {UISizes, UIWidthState} from '@/contexts/atoms';
-import Header from "./partials/Header";
+//import Header from "./partials/Header";
 import { useRouter } from "next/router"
 import BottomMenu from "./BottomMenu";
 import { BSReveal } from "../UI/partials/BSReveal";
@@ -16,48 +17,52 @@ import Splash from "../UI/Splash";
 import SnackBar from "../UI/partials/SnackBar";
 import UserSideMenu from "../UI/user/UserSideMenu";
 
-export default function Layout({ children, headerTitle, settings}) {
+function sizing(width, setWidth){
+  console.log('running sizing')
+  if (typeof window !== 'undefined') {
+    if(window.innerWidth != width){
+      setWidth(window.innerWidth);
+      console.log('running actual sizing')
+    }
+    window.addEventListener('resize', () => {
+      let newWid = window.innerWidth;
+      setWidth(newWid);
+    }, {passive : true})
+  }
+}
+
+function pinHeader(){
+  if (typeof window !== 'undefined') {
+    const header_el = document.querySelector(".header-auto-show");
+    const inters_el = document.getElementById("header_intersector");
+    if(header_el){
+      const observer = new IntersectionObserver( 
+        ([e]) => header_el.classList.toggle("header-active", e.intersectionRatio < 1),
+        { threshold: [1] }
+      );
+      if(inters_el){
+        observer.observe(inters_el);
+      }
+    }
+  }
+}
+
+function LayoutConst({ children, headerTitle, settings}) {
   const uiSize = useRecoilValue(UISizes);
-  const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
+  //const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
   const [width, setWidth] = useRecoilState(UIWidthState);
   const router = useRouter();
   const {mMenuContent, noHeader, noFooter} = settings ?? {};
-  const {btnProps, btnFunc, icon} = mMenuContent ?? {}
+  const {btnProps, icon} = mMenuContent ?? {}
 
-  function pinHeader(){
-    if (typeof window !== 'undefined') {
-      const header_el = document.querySelector(".header-auto-show");
-      const inters_el = document.getElementById("header_intersector");
-      if(header_el){
-        const observer = new IntersectionObserver( 
-          ([e]) => header_el.classList.toggle("header-active", e.intersectionRatio < 1),
-          { threshold: [1] }
-        );
-        if(inters_el){
-          observer.observe(inters_el);
-        }
-      }
-    }
-  }
+  const cachedChildren = useMemo(() => children, [router.asPath])
+  const cachedSettings = useMemo(() => settings, [router.asPath])
 
   console.log("loading layout");
 
-  function sizing(){
-    console.log('running sizing')
-    if (typeof window !== 'undefined') {
-      if(window.innerWidth != width){
-        setWidth(window.innerWidth);
-      }
-      window.addEventListener('resize', () => {
-        let newWid = window.innerWidth;
-        setWidth(newWid);
-      }, {passive : true})
-    }
-  }
-
   return (
     <>
-      <main /* className={`${inter.className}`} */ onLoad={() => sizing()}>
+      <main /* className={`${inter.className}`} */ onLoad={() => sizing(width, setWidth)}>
         <div id="preloader">
           <div className="spinner-border color-highlight" role="status"></div>
         </div>
@@ -67,7 +72,7 @@ export default function Layout({ children, headerTitle, settings}) {
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
-          <Scaffold settings={settings} uiSize={uiSize}>{children}</Scaffold>
+          <Scaffold path={router.asPath} settings={cachedSettings} uiSize={uiSize}>{cachedChildren}</Scaffold>
           <Client>
 		  <div
             id="menu-settings"
@@ -125,20 +130,16 @@ export default function Layout({ children, headerTitle, settings}) {
             </div>
           </div>
 
-		  {/*Login*/}
           <BSReveal id={'login_modal'}>
           <AuthUI/>
 
           </BSReveal>
 
-          {/*Search form*/}
           <BSReveal id='search_form_1'>
             <SearchForm1/>
           </BSReveal>
-          {/* <!-- Menu Settings Highlights--> */}
           <UserSideMenu/>
 
-          {/* Snackbars*/}
             <SnackBar/>
           <div id="snackbar-liked" className="snackbar-toast rounded-m bg-green-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-check me-3"></i>Added to favourites</div>
           <div id="snackbar-unliked" className="snackbar-toast rounded-m bg-yellow-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-info me-3"></i>Removed from favourites!</div>
@@ -191,7 +192,7 @@ export default function Layout({ children, headerTitle, settings}) {
                 </a>
                 <a href="#" data-change-highlight="green">
                   <i className="fa fa-circle color-green-light"></i>
-                  <span className="color-green-light">Green</span>
+                  <span className="color-green-light">Lemon</span>
                 </a>
                 <a href="#" data-change-highlight="grass">
                   <i className="fa fa-circle color-green-dark"></i>
@@ -207,7 +208,7 @@ export default function Layout({ children, headerTitle, settings}) {
                 </a>
                 <a href="#" data-change-highlight="brown">
                   <i className="fa fa-circle color-brown-dark"></i>
-                  <span className="color-brown-light">Wood</span>
+                  <span className="color-brown-light">Coffee</span>
                 </a>
                 <a href="#" data-change-highlight="night">
                   <i className="fa fa-circle color-dark-dark"></i>
@@ -228,7 +229,6 @@ export default function Layout({ children, headerTitle, settings}) {
               </a>
             </div>
             </BSReveal>
-          {/* <!-- Menu Settings Backgrounds--> */}
           <div
             id="menu-backgrounds"
             className="menu menu-box-bottom menu-box-detached"
@@ -296,7 +296,6 @@ export default function Layout({ children, headerTitle, settings}) {
               </a>
             </div>
           </div>
-          {/* <!-- Menu Share --> */}
           <div
             id="menu-share"
             className="menu menu-box-bottom menu-box-detached"
@@ -423,7 +422,7 @@ export default function Layout({ children, headerTitle, settings}) {
         </div>
         {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}
         {/* <Script defer='true'  strategy={"afterInteractive"} onReady={() => console.log('Custom loaded')} src="/scripts/custom.js"/> */}
-        {run_template()}
+        {/* {run_template()} */}
         <Script>{onAppLoad()}</Script>
         <RouteLoader />
       </main>
@@ -431,3 +430,6 @@ export default function Layout({ children, headerTitle, settings}) {
     </>
   )
 }
+
+const Layout = memo(LayoutConst);
+export default Layout;

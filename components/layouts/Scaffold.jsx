@@ -2,10 +2,13 @@ import MainMenu from "./MainMenu"
 import { Client } from "react-hydration-provider";
 import Activity from "../UI/lists/Activity";
 import Header from "./partials/Header";
+import {useMemo, memo } from "react";
 
-function Scaffold({children, uiSize, settings}) {
+function ScaffoldConst({children, uiSize, settings, path}) {
     const {isDeskTop, isTab} = uiSize;
-    const {mMenuContent, noHeader, autoShowHeader, hideNews} = settings ?? {};
+    const {mMenuContent, noHeader, autoShowHeader, hideNews, headerTitle} = settings ?? {};
+
+    const cachedChildren = useMemo(() => children, [path])
     
   return (<>
     <div className="container-fluid p-0">
@@ -17,9 +20,9 @@ function Scaffold({children, uiSize, settings}) {
             </div>
             <div className="col px-0 main_content position-relative" style={{minWidth: '0', minHeight: '100vh'}}>
                 {!noHeader && <>
-                    {<Header headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
+                    {<Header headerTitle={headerTitle} headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
                 </>}
-                {children}
+                {cachedChildren}
             </div>
             {!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>
@@ -37,4 +40,6 @@ function Scaffold({children, uiSize, settings}) {
     </>
   )
 }
+
+const Scaffold = memo(ScaffoldConst);
 export default Scaffold

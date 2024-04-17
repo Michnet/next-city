@@ -1,6 +1,6 @@
 import {useRecoilState, useRecoilValue, useSetRecoilValue } from "recoil";
 import { UIState, UIWidthState } from "@/contexts/atoms";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 
 export const defaultUI = {
   colorTheme:{
@@ -19,7 +19,7 @@ export const defaultUI = {
 }
   
 
-export const UIProvider = ({platform}) => {
+const UIProviderConst = ({platform}) => {
     
     const [UI, setUI] = useRecoilState(UIState);
     //const {colorTheme} = UI;
@@ -42,3 +42,6 @@ export const UIProvider = ({platform}) => {
         </>
     )
 } 
+
+const UIProvider = memo(UIProviderConst);
+export default UIProvider;
