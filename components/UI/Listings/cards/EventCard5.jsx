@@ -38,7 +38,7 @@ const EventCard5 = ({listing, width=300, height=200, exClass=''}) => {
                 <h5 className={`font-13 mb-n1 truncate ${color ? '' : `color-${randColor}-light`}`} style={{color: color}}>{catName}</h5>
                 <p className="color-white font-10 opacity-50">Category</p>
                 </div>
-                <Link href={`/events/${slug}`} className="h-fit bg-theme color-theme text-nowrap  btn btn-s rounded-xl font-900 mt-2 text-uppercase font-11">Learn More</Link>
+                <Link href={`/events/${slug}`} className="h-fit border-dark-light color-gray-dark text-nowrap  btn btn-s rounded-xl font-900 mt-2 text-uppercase font-11">Learn More</Link>
             </div>
             <div className={`card-overlay opacity-90 ${color ? '' : `bg-${randColor}-dark`}`} style={{background: color}}/>
             <div className="card-overlay bg-gradient"/>

@@ -19,7 +19,7 @@ const SiteNews = () => {
   
   return (
     <div className="page-content">
-      <div className="container sm:px-0 p-3"><SiteActivity user={user} token={token}/></div>
+      <div className="container p-sm-3 p-2"><SiteActivity user={user} token={token}/></div>
     </div>
   )
 }

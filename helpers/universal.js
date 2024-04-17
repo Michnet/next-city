@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { closeMenus } from "./appjs";
 import { kyFetch, serializeQuery, WPDomain } from "./base";
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
@@ -13,8 +14,22 @@ export function cleanHtml(str){
 }
 
 
+export function UICleanup(){
+  closeMenus()
+}
+
 export function shuffleArray(array) { 
   return array ? array.sort( ()=>Math.random()-0.5 ) : [];
+}
+
+export function sortArray(arr, key, ascending){
+  if(ascending){
+    // Low To High
+    return [...arr]?.sort((a, b) => (a[key] > b[key] ? 1 : -1))
+  }else{
+    // High To low
+    return [...arr]?.sort((a, b) => (a[key] > b[key] ? -1 : 1))
+  }
 }
 
 export const useDidMountEffect = (func, deps) => {

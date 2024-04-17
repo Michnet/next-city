@@ -1,6 +1,6 @@
 // import ActivityCarousel from "~/components/activity/ActivityCarousel";
 import ExplorerFilter from "@/components/UI/search/ExplorerFilter";
-import SearchForm2 from "@/components/UI/search/SearchForm2";
+import SearchFilter3 from "@/components/UI/search/SearchFilter3";
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
@@ -95,7 +95,7 @@ const ExploreEvents = ({topList}) => {
             <Client>{!isTab &&  <div id={"explore_nav"}  className="col-12 col-md-auto search_filter bg-theme no-scrollbar sticky_col shadow-1" style={{zIndex: 5, maxWidth: isTab ?  '100%' : '230px'}}>
                <ExplorerFilter/>
                <div className="sidebar md:d-none mt-20">
-                  <SearchForm2/>
+                  <SearchFilter3/>
                </div>
             </div>}</Client>
             <div className="explore_content col minw-0 p-md-2 p-0">
@@ -162,7 +162,7 @@ const ExploreEvents = ({topList}) => {
                   </div>
                 <div className="offcanvas-body pb-0">
                   <aside className="sidebar  xl:d-block">
-                    <SearchForm2/>
+                    <SearchFilter3/>
                   </aside>
                 </div>
             </div>

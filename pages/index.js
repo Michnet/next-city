@@ -8,7 +8,7 @@ import { siteSettings } from "@/helpers/base";
 import { Client } from "react-hydration-provider";
 import Slider from "react-slick"
 import { fadingSlide, largeResp } from "@/helpers/sliders";
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
 import {SectionHeader } from "@/components/UI/Partials";
 import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
@@ -21,6 +21,8 @@ import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
 import SearchField from "@/components/UI/search/SearchField";
 import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 import { randomEither } from '@/helpers/universal';
+import TagsCloud from "@/components/listing/partials/TagsCloud";
+import HeroSearch from "@/components/UI/search/HeroSearch";
 
 
 export async function getStaticProps() {
@@ -88,6 +90,9 @@ export async function getStaticProps() {
     }
   }
 
+function tagClick(tag){
+  router.push(`/explore/events?region=${tag.slug}`);
+}
 
 export default function Home(props) {
     const {serverObj} = props;
@@ -114,6 +119,9 @@ export default function Home(props) {
   const isLoadingInitialData = !listings && !error;
   const isEmpty = listings?.length === 0;
 
+  const cachedCategories = useMemo(() => eventCategories);
+  //const cachedLocations = useMemo(() => eventCategories);
+
   return (
     <>
       <Client>
@@ -130,6 +138,8 @@ export default function Home(props) {
 
 
     <SearchField/>
+
+    {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
     <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {
@@ -151,6 +161,15 @@ export default function Home(props) {
           <></>
         }
     </Splider>
+
+    <section  className="layout-pt-md layout-pb-md bg-white px-30 card card-style">
+    <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
+      <div className='tags_row bg-transparent'>
+                <div className='row_content' style={{minHeight : '130px'}}>                  
+        <TagsCloud dark itemsList={busyLocations} onClickFunc={tagClick}/>
+                  </div>
+                  </div>
+      </section>
 
 
     <div className="d-flex px-3 mb-2">

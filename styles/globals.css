@@ -5991,7 +5991,7 @@ footer .container.overlay {
  @media (min-width: 1200px) {
    
 .profile_main {margin-top: 70px;}
-     .masthead__bg .container.hero_content{margin: 0;width: calc(100vw - 95px);}
+     .masthead__bg .container.hero_content{margin: 0;/* width: calc(100vw - 95px); */}
    .profile_nav_menu > .nav{
     right: 300px !important;
 }
@@ -6655,9 +6655,6 @@ section.landing_page .intro_content{
     margin-right: -10%;
     border-radius: 0;
     background: var(--bs-gray-200);
-}
-     .masthead._hero .mainSearch{
-    margin-bottom: -60px;
 }
      .profile-actions{
          padding-left: 0;

@@ -242,18 +242,18 @@ function setupTagsWithLabels(e){
                   </div>}</>}
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label className="color-highlight text-uppercase font-700 font-11 pos-relative mb-0">Key word(s)</label>
+                            <label className="text-uppercase font-700 font-11 pos-relative mb-0">Key word(s)</label>
                             <input placeholder="Enter Key words ..." onChange={(e) => setKeyword(e.target.value)} type="text" class="form-control" />
 
                            {/*  <div className="input-style has-borders no-icon mb-4 input-style-always-active">
-                                <label className="color-highlight text-uppercase font-700 font-11">Key word(s)</label>
+                                <label className="text-uppercase font-700 font-11">Key word(s)</label>
                                 <input placeholder="Enter Key words ..." onChange={(e) => setKeyword(e.target.value)} type="text"/>
                             </div> */}
                         </div>
                         {catOptions && 
                           <div class="form-group">
                             <div className="input-style has-borders no-icon mb-4 input-style-always-active">
-                                <label className="color-highlight text-uppercase font-700 font-11">Category</label>
+                                <label className="text-uppercase font-700 font-11">Category</label>
                                 <select value={parentCat.id}
                             onChange={(e) => {selectParent(e.target.value, catOptions, setGrandCatId, setParentCat, Dir_categories);}}>
                                   {createOptions(catOptions, parentCat, grandCatId, 'All Categories', 106)}
@@ -266,7 +266,7 @@ function setupTagsWithLabels(e){
                           <div class="form-group">
 
                             <div className="input-style has-borders no-icon mb-4 input-style-always-active">
-                                <label className="color-highlight text-uppercase font-700 font-11">Location</label>
+                                <label className="text-uppercase font-700 font-11">Location</label>
                                 <select value={parentLoc.id}
                             onChange={(e) => selectParent(e.target.value, locOptions, setGrandLocId, setParentLoc, Dir_locations)}>
                                   {createOptions(locOptions, parentLoc, grandLocId, 'Everywhere', 0)}
@@ -275,7 +275,7 @@ function setupTagsWithLabels(e){
                             </div>
                           </div>}
                         <div class="form-group _features">
-                        <label className="color-highlight text-uppercase font-700 font-11 pos-relative ms-2 mb-0">Tags</label>
+                        <label className="text-uppercase font-700 font-11 pos-relative ms-2 mb-0">Tags</label>
                                 {/* <p className='group_status lh-13 opacity-70 ms-2'>{processTagsTitle(tagList)}</p> */}
                             <div className="input-style has-borders no-icon mb-4 input-style-always-active">
                                

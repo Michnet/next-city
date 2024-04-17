@@ -13,6 +13,14 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass = '', de
     </div>
   )
 }
+export const ActiveQueryOption = ({query, queryKey, label}) => {
+  return <>
+  <div className="active_slection mb-2">
+      <span className="text-12 text-light-1 d-block">{label ?? 'Current Selection'}</span> 
+      <span className="text-success">{query[`${queryKey}`]}</span>
+      </div>
+  </>
+}
 export const Floater = ({primText, secText, exClass}) =>{
   return (
     <div className={`floater ${exClass}`}>
