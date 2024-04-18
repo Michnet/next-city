@@ -94,7 +94,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
       paymentsView = <PayMeans listingId={listing.id}/>
 
      if(content){
-       contentView = <Widget subtitle={'More About Listing'} title= 'Event Detail' > <div className="position-relative">
+       contentView = <Widget freeHeader subtitle={'More About Listing'} title= 'Event Detail' > <div className="position-relative">
                           <Client><div className={`listing_content ${fullContent ? '' : 'truncate-5'}`} dangerouslySetInnerHTML={{ __html: content }}/>
                           </Client>
                           {fullContent ? <></> : <div className="_hidden_hint"></div>}

@@ -2,12 +2,12 @@
 //import Image from "next/image";
 //import styles from "@/styles/Home.module.css";
 import useSWR  from "swr";
-import { advancedFetchListingsUrl, fetcher, getDirTerms } from "@/helpers/rest";
+import { advancedFetchListings, getDirTerms } from "@/helpers/rest";
 import {shuffleArray } from "@/helpers/universal";
 import { siteSettings } from "@/helpers/base";
 import { Client } from "react-hydration-provider";
-import Slider from "react-slick"
-import { fadingSlide, largeResp } from "@/helpers/sliders";
+//import Slider from "react-slick"
+//import { fadingSlide, largeResp } from "@/helpers/sliders";
 import { useEffect, useMemo } from 'react';
 import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
 import {SectionHeader } from "@/components/UI/Partials";
@@ -15,14 +15,15 @@ import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
 import { TermIcon } from "@/components/UI/partials/termLinks";
 import Splider from "@/components/UI/partials/Splider";
 import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
-import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
+//import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
 import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
 import SearchField from "@/components/UI/search/SearchField";
 import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 import { randomEither } from '@/helpers/universal';
 import TagsCloud from "@/components/listing/partials/TagsCloud";
-import HeroSearch from "@/components/UI/search/HeroSearch";
+//import HeroSearch from "@/components/UI/search/HeroSearch";
+import AddListingCard from "@/components/UI/partials/AddListingCard";
 
 
 export async function getStaticProps() {
@@ -71,8 +72,21 @@ export async function getStaticProps() {
        serverObj.topLocations = topLocs;
       }
     }
+
+    async function topListings(){
+      let thumbsize = 'xtra_large_thumb'
+      let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+      listing_type:'event', per_page: 5, 'event-day':'any-day'};
+  
+      const list = await advancedFetchListings(load);
+      if(list){
+        serverObj.latestList = list;
+      }
+    }
+  
   
     async function serverQuery(){
+      await topListings();
       await getEvCats();
       await  getBusyLocs();
       await getTopLocs();
@@ -96,28 +110,15 @@ function tagClick(tag){
 
 export default function Home(props) {
     const {serverObj} = props;
-   const {eventCategories, topLocations, busyLocations} = serverObj ?? {};
+   const {eventCategories, topLocations, busyLocations, latestList} = serverObj ?? {};
+   console.log('serverObj', serverObj)
 
-  let load={_fields : `address, id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb,thumbnail`, 
-  listing_type:'event', per_page: 10}
-
-  let fetchy = true;
-  useEffect(() => {
-    return () => {
-      fetchy = false;
-    }
-  },[]);
    
   let imgArr = eventCategories.map((ct) => {
     let {term_meta, id} = ct;
     let {image_url} = term_meta;
     return image_url;
   })
-
-  const { data:listings, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true, 'event-date':'any-day' }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: true });
-
-  const isLoadingInitialData = !listings && !error;
-  const isEmpty = listings?.length === 0;
 
   const cachedCategories = useMemo(() => eventCategories);
   //const cachedLocations = useMemo(() => eventCategories);
@@ -153,8 +154,8 @@ export default function Home(props) {
 
    <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider height={275} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
-      {listings?.length > 0 ? 
-          listings.map((li) => {
+      {latestList?.length > 0 ? 
+          latestList.map((li) => {
            return <EventCard2 width={270} key={li.id} listing = {li}/>
           })
           :
@@ -162,7 +163,7 @@ export default function Home(props) {
         }
     </Splider>
 
-    <section  className="layout-pt-md layout-pb-md bg-white px-30 card card-style">
+    <section  className="layout-pt-md layout-pb-md bg-theme px-30 mb-5">
     <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
       <div className='tags_row bg-transparent'>
                 <div className='row_content' style={{minHeight : '130px'}}>                  
@@ -171,33 +172,12 @@ export default function Home(props) {
                   </div>
       </section>
 
-
-    <div className="d-flex px-3 mb-2">
-        <div className="align-self-center">
-            <h4 className="mb-0">Last Minute Deal</h4>
-        </div>
-        <div className="align-self-center ms-auto">
-            <a href="#" className="font-12">View All</a>
-        </div>
-    </div>
-
-    <Slider  {...fadingSlide} responsive = {[...largeResp]}>
-      {listings?.length > 0 ? 
-          listings.map((li) => {
-            let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = li;
-
-            return <EventCard3 width={'inherit'} listing={li} key={id}/>
-          })
-          :
-          <></>
-        }
-    </Slider>
-
+    <AddListingCard/>
 
     <SectionHeader iconClass={'far fa-heart'} bgClass={'bg-twitter'} exClass='px-3 mb-2' link={'See All'} title={'Most Liked'} subTitle={'Meet the favourites'}/>
    <Splider height={130} options={{arrows: false, navigation: false, wheel:false, height: 'auto', gap: 10, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
-      {listings?.length > 0 ? 
-          listings.map((li) => {
+      {latestList?.length > 0 ? 
+          latestList.map((li) => {
            return <EventCard4 width={300} key={li.id} listing = {li}/>
           })
           :
@@ -212,8 +192,8 @@ export default function Home(props) {
 <div className="row mb-3">
 <div className="col-12 col-md-8 px-0">
   <div className="row">
-      {listings?.length > 0 ? 
-          listings.map((li, ind) => {
+      {latestList?.length > 0 ? 
+          latestList.map((li, ind) => {
             if(ind < 2){
             return <div className="col-12 p-0"><ListingCard2 exClass={'m-3 mt-0'} key={li.id} listing = {li}/></div>
             }
@@ -226,8 +206,8 @@ export default function Home(props) {
       <SectionHeader inverted iconClass={'fas fa-store'} color={'magenta-dark'} exClass='px-3 mb-2' link={'See All'} title={'More Listings'} subTitle={'Your early bird advantage'}/>
 
    <Splider height={240} options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'} }>
-      {listings?.length > 0 ? 
-          listings.map((li) => {
+      {latestList?.length > 0 ? 
+          latestList.map((li) => {
            return <EventCard5 width={270} key={li.id} listing = {li}/>
           })
           :
@@ -238,8 +218,8 @@ export default function Home(props) {
   <div className="col-12 col-md-4 px-0">
     <Client><div className="content mt-2 mb-n3">
   <div className="row m-bs">
-        {listings?.length > 0 ? 
-          shuffleArray(listings).map((li, ind) => {
+        {latestList?.length > 0 ? 
+          shuffleArray(latestList).map((li, ind) => {
             let {id} = li;
             if(ind < 4){
                return <div className='col-6 p-1'><ListingCard3 listing={li} key={id}/></div>
@@ -269,8 +249,8 @@ export default function Home(props) {
 				<div className="clearfix mb-1"></div>
 				<div data-bs-parent="#tab-group-events" className="collapse show" id="tab-8">
 					
-          {listings?.length > 0 ? 
-            listings.map((li) => {
+          {latestList?.length > 0 ? 
+            latestList.map((li) => {
               let {id, event_date} = li;
               if(event_date && event_date[0]){
                 return <ActivityCard1 key={id} listing={li}/>

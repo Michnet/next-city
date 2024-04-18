@@ -134,7 +134,7 @@ export const siteColors = [
   "grass", 
   "red", 
   "orange", 
-  "yellow", 
+  //"yellow", 
   "sunny", 
   "blue", 
   "teal", 
@@ -143,10 +143,10 @@ export const siteColors = [
   "pink2" , 
   "magenta" , 
   "brown" ,
-  "gray" ,
+  //"gray" ,
   "aqua",
-  "night",
-  "dark"
+  //"night",
+  //"dark"
 ]
 
  

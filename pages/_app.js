@@ -29,7 +29,7 @@ function MyAppConst({ Component, pageProps, platform }) {
   const cachedSettings = useMemo(() => settings, [router.asPath, headerTitle, platform]);
 
   useEffect(() => {
-    require("@/helpers/boojs.js");
+    //require("@/helpers/boojs.js");
    // onAppLoad();
    // require("bootstrap/dist/js/bootstrap.bundle.min.js");
    /*  Aos.init({

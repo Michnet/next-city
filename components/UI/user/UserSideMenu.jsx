@@ -1,13 +1,17 @@
 import Link from "next/link";
 import {closeMenus} from "@/helpers/appjs";
+import { useRecoilValue } from "recoil";
+import ProfileHeader from "./ProfileHeader";
+import { authState } from "@/contexts/atoms";
+import { useAuthState } from "@/helpers/use-auth";
 
 
-const { authState } = require("@/contexts/atoms")
-const { useRecoilValue } = require("recoil")
-const { default: ProfileHeader } = require("./ProfileHeader")
+//const { authState } = require("@/contexts/atoms")
 
 const UserSideMenu = () => {
-    const {user} = useRecoilValue(authState)
+    const {user} = useRecoilValue(authState);
+	const {userSignOut} = useRecoilValue(useAuthState);
+
     return (
         <div id='user_side_menu' className="menu menu menu-box-right">
             <ProfileHeader user={user}/>
@@ -37,10 +41,15 @@ const UserSideMenu = () => {
 							<i class="fa fa-angle-right"></i>
 						</Link>
 						<Link href="/account/dashboard?station=settings">
-							<i class="fa font-12 fa-image gradient-teal rounded-sm color-white"></i>
+							<i class="fas fa-edit font-12 gradient-teal rounded-sm color-white"></i>
 							<span>Settings</span>
 							<i class="fa fa-angle-right"></i>
 						</Link>
+						<span className="_link" onClick={() => userSignOut()}>
+							<i class="fas fa-sign-out-alt font-12 gradient-dark rounded-sm color-white"></i>
+							<span>Sign Out</span>
+							<i class="fa fa-angle-right"></i>
+						</span>
 					</div>
 				</div>
 			</div>

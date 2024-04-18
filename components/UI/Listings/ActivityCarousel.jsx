@@ -3,12 +3,12 @@ import { variableWidth } from "@/helpers/sliders"
 import Slider from "react-slick"
 //import ListingCard from "./cards/ListingCard"
 import useSWR from 'swr';
-import { advancedFetchListingsUrl, fetcher } from "@/helpers/rest";
-import { useEffect } from "react";
+import { advancedFetchListingsUrl, fetcherWithSignal } from "@/helpers/rest";
+import { useEffect, memo } from "react";
 import { useRouter } from "next/router";
 import { DualColorHeader } from "../Partials";
 
-function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, sort, eventDate, orderby, order, cardWidth, shadowHeight}) {
+function ActivityCarouselConst({defListings = null, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, sort, eventDate, orderby, order, cardWidth, shadowHeight}) {
 
     let theView, fetchy = true;
 
@@ -38,9 +38,14 @@ function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback
   
     }
 
+    let controller = new AbortController();
+    let {signal} = controller;
+
     useEffect(() => {
-    
+    console.log('carousel leaving')
       return () => {
+        console.log('carousel leaving')
+        controller.abort();
         fetchy = false;
       }
     }, []);
@@ -70,7 +75,7 @@ function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback
 
     
 
-    const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, fetcher, { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
+    const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
     const isLoadingInitialData = !listings && !error;
     const isEmpty = listings?.length === 0;
@@ -106,4 +111,6 @@ function ActivityCarousel({defListings = null, queryObj={}, cardType, noFallback
     </div>
   )
 }
+
+const ActivityCarousel = memo(ActivityCarouselConst);
 export default ActivityCarousel

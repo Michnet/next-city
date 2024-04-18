@@ -30,6 +30,12 @@ const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: 
 
 const ColorThief = require('colorthief');
 
+
+import { siteColors } from "@/helpers/base";
+import { randomEither } from "@/helpers/universal";
+
+const randColor = randomEither(siteColors);
+
 export async function getStaticPaths() {
     const res = await fetch(fetchIdsUrl({type: 'job_listing', listing_type:'event', slugs: true}));
     const data = await res.json();
@@ -105,7 +111,7 @@ export async function getStaticPaths() {
      }
   }
 
-  const ListingConst = ({listing, themeColor}) => {
+  const ListingConst = ({listing, themeColor, color=randColor}) => {
     //const {listing} = serverObj;
     const {short_desc, meta, cover, categories, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
     const {_links} = meta ?? {};
@@ -158,10 +164,10 @@ if(listing){
             <div className='row_flex gap-2'>
                 {/* <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button> */}
 
-                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-s text-uppercase text-nowrap font-900 shadow-s bg-highlight btn-icon text-start">
+                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-l text-uppercase text-nowrap font-900 shadow-s bg-highlight btn-icon text-start">
                   <i class="far fa-calendar-check font-15 text-center"></i>
                   Booking
-				          </button>}
+                </button>}
 
                 {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                     <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
@@ -199,7 +205,7 @@ if(listing){
 
     <PageScroller activeKey={activeKey} resetKey={'home'}/>
     <Hero2 /* palette={palette} color={color} */ listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
-    <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing}/>
+    <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
     <Client>
         <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
     </Client>

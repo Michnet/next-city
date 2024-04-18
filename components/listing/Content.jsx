@@ -1,11 +1,12 @@
 import { authState } from "@/contexts/atoms";
 import { useSignal } from "@preact/signals-react";
 import dynamic from "next/dynamic";
+import {memo} from 'react';
 import { useRecoilValue } from "recoil";
 import { DualColorHeader } from "../UI/Partials";
 const ComponentActivity = dynamic(() => import("../UI/partials/ComponentActivity"));
 import { EventDatesActive } from "../UI/partials/dateViews/EventDates";
-import PageScroller from "../UI/partials/PageScroller";
+//import PageScroller from "../UI/partials/PageScroller";
 const FAQs = dynamic(() => import("../UI/FAQs"));
 const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
@@ -13,10 +14,10 @@ import listingMenu from "./ListingMenu";
 import { ListingContact } from "./partials/ListingContact";
 import ProfileContact from "./partials/ProfileContact";
 const ListingProductsSimple = dynamic(() => import("./shop/ListingProductsSimple"));
-const ListingStore = dynamic(() => import("./shop/ListingStore"));
+//const ListingStore = dynamic(() => import("./shop/ListingStore"));
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
-function Content({listing, activeView,  activeKey, color, setActiveKey}) {
+function ContentConst({listing, activeView,  activeKey, color, setActiveKey}) {
     const {id,about_us, listing_store, community_id, type} = listing;
     const {tickets} = listing_store;
     const {faqs} = about_us;
@@ -35,7 +36,7 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
             case 'reviews':
             return <ListingReviews postID={listing.id} user={user}/>
             case 'home':
-            return <LandingPage activeKey={activeKey} listing={listing} setActiveKey={setActiveKey}/>
+            return <LandingPage activeKey={activeKey} listing={listing} setActiveKey={setActiveKey} color={color}/>
             case 'community':
             return <ComponentActivity
             setActiveKey={setActiveKey}
@@ -94,4 +95,6 @@ function Content({listing, activeView,  activeKey, color, setActiveKey}) {
     </>
   )
 }
+
+const Content = memo(ContentConst);
 export default Content

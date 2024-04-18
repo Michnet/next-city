@@ -1,9 +1,4 @@
-//import { useGoogleLogin } from "@react-oauth/google";
 import { memo, useEffect, useState } from "react";
-//import { LoaderEllipsis } from "~/appComponents/components/skeletons/React-content-loader/Loaders";
-//import { serializeQuery, siteKeys } from "~/server/Base";
-//import { useRecoilState } from "recoil";
-//import { authState } from "~/contexts/contexts";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRecoilValue } from "recoil";
 import { useAuthState } from "@/helpers/use-auth";
@@ -105,7 +100,6 @@ const tw_x = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill
 
   return (
       <div className='social_auth'>
-        <p className="mb-3 fw-bold text-center">Other Options</p>
         {/* <button style={{lineHeight: '20px'}} className="btn btn-outline-danger soc_login"  onClick={() => googleLogin()}>
           {loading ? <LoaderEllipsis/> : <><i className="bi bi-google mr-10 text-18"></i> Sign in with Google</>  }
         </button> */}

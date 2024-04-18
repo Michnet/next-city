@@ -22,8 +22,6 @@ const ProductHeaderTicket = ({product}) => {
         
         if(listing){
         
-        console.log('listing', listing)
-        
         vendorView = <>
         <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
             <div className='cover_content'>
@@ -45,14 +43,9 @@ const ProductHeaderTicket = ({product}) => {
 
 
             <div className='card_footer'>            
-               
-
-                
             </div>
 
         </div>
-        
-        
         </>
         }
     }

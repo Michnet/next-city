@@ -6,27 +6,35 @@ import { atom, useSetRecoilState } from "recoil";
 import { authState, userMetaState } from "@/contexts/atoms";
 import { useSession, signOut, getSession, signIn } from "next-auth/react";
 import { authKey, kyFetch, serializeQuery, WPDomain } from './base';
+import { useRouter } from "next/router";
 
 export const useAuthState = atom({
   key: 'useAuthState', 
   default: {}, 
 });
 
+function theAuth(){
+  if (typeof window !== 'undefined') {
+  return JSON.parse(window.localStorage.getItem('u_cred'));
+  }
+ }
+
+ function deleteStoreUser(){
+  if (typeof window !== 'undefined') {
+        localStorage.removeItem('User');
+    }
+ }
+
 function useProvideAuth () {
   const setRecoilAuth = useSetRecoilState(authState);
   const setUseAuthState = useSetRecoilState(useAuthState);
   const setUMetaState = useSetRecoilState(userMetaState);
+  const router = useRouter();
 
   function setTheAuth(authObj){
     localStorage.setItem('u_cred', JSON.stringify(authObj));
     setRecoilAuth(authObj)
   }
-
-   function theAuth(){
-    if (typeof window !== 'undefined') {
-    return JSON.parse(window.localStorage.getItem('u_cred'));
-    }
-   }
 
    const {auth_type, soc_updater, user:ucred_user, token:ucred_token} = theAuth()  ?? {};
 
@@ -46,15 +54,7 @@ function useProvideAuth () {
       }
    }
 
-   function deleteStoreUser(){
-    if (typeof window !== 'undefined') {
-          localStorage.removeItem('User');
-      }
-   }
-
-  const [userMeta, setUserMeta] = useState(null);
   const [isLoadingUser, setLoadingUser] = useState(true);
-  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { data: session, status } = useSession();
 
@@ -142,10 +142,6 @@ async function getUserMeta(){
   }
 
   */
-
-  function clearUser(){
-    setTheAuth({auth_type: 'none'});
-  }
 
   const userSignup = async (payload, callbackFun) => {
     fetchStart();
@@ -285,6 +281,7 @@ async function loginFunc(jwt, username){
          if (checkSession?.user) {
            const checkedUser = checkSession.user;
             await fetchUserFunc({email: checkedUser.email, jwt: jwt, authType: 'native'});
+            router.reload()
          }
        }
       })
@@ -319,7 +316,6 @@ async function loginFunc(jwt, username){
    try {
   let data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth`, {json: {...loginData}, signal:signal}).json();
   if (data?.success) {
-      console.log('ftched', data);
       const jwtData = data.data;
       if(jwtData.jwt){
         const {username} = loginData;
@@ -330,6 +326,7 @@ async function loginFunc(jwt, username){
             if (checkSession?.user) {
               const checkedUser = checkSession.user;
                await fetchUserFunc({email: checkedUser.email, jwt: jwtData.jwt, authType: 'native'});
+               router.reload()
             }
           }
          })
@@ -364,7 +361,6 @@ async function loginFunc(jwt, username){
             if (kyValid.success) {
               console.log('option 1 auth', theAuth());
               if(!ucred_user || auth_type == 'none'){
-                console.log('no recoil user', kyValid);
                 const validatedData = kyValid.data;
                 let validatedUsername = validatedData?.jwt[0].payload?.username
                 loginFunc(token, validatedUsername);
@@ -399,9 +395,6 @@ useEffect(() => {
 
 export function AuthProvider() {
   const authFunctions = useProvideAuth();
-
-  console.log('AuthProvider called')
-
   useEffect(() => {
     // getAuthUser();
      /* const interval = setInterval(() => {

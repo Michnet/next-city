@@ -2939,6 +2939,7 @@ div#explore_nav .left_menu_btn {
     height: 30px !important;
     line-height: 30px;
     border-radius: 10px;
+    margin-bottom: 0;
 }
 
 .terms_grid .col.listy .term_box .term_icon_box i {
@@ -3031,6 +3032,7 @@ div#explore_nav .left_menu_btn {
 span.term_icon_box {
     display: block;
     border-radius: 50%;
+    margin-bottom: 5px;
 }
 
 .search_form 
@@ -3055,4 +3057,13 @@ span.term_icon_box {
 
 .collapse:not(.show) .user_card > div {
     padding: 0 !important;
+}
+
+span.list_title._first {
+    color: var(--highlight);
+}
+
+.btn-icon i {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
 }

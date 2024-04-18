@@ -61,7 +61,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
                     }
                     </>
             })}
-              <button {...btnProps} onClick={(e) => openOffCanvas(e)} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
+              <button /* {...btnProps} onClick={(e) => openOffCanvas(e)} */ onClick={() => router.push('/add-listing')} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
               <span  className={`text-center big_act`}>
                 {<i className={`link_i ${icon ?? 'fa fa-plus'}`}/>}
               </span>

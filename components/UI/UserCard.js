@@ -29,7 +29,7 @@ export function UserCard({size}){
                         {user || sessionUser ? <h5 className="ps-1 mb-1 pt-1 line-height-xs font-17 text-capitalize">Hello {name}</h5> : <></>}
                         {/* <h6 className="ps-1 mb-0 font-400 opacity-40 font-12 lh-1">Freelance Photographer</h6> */}
                      </div>
-                     {<div className="ms-auto">
+                     {<div className="ms-auto hide_in_collapsed">
                         {user ? <a href="#" data-bs-toggle="dropdown" className="icon icon-m ps-1"><i className="fa fa-ellipsis-v font-18 color-theme"></i></a> : <></>}
                         <div className="dropdown-menu bg-transparent border-0 mb-n5">
                            <div className="card card-style rounded-m shadow-xl me-1">

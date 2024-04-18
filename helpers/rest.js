@@ -1,6 +1,7 @@
 import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain, userActions } from "./base";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+export const fetcherWithSignal = (signal, ...args) => fetch(...args, {signal:signal}).then((res) => res.json());
 
 export const advancedFetchListingsUrl = (payload) => {
     let endpoint;

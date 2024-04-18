@@ -8,6 +8,8 @@ import TermsGrid from './../UI/lists/TermsGrid';
 import { DualColorHeader } from "../UI/Partials";
 import { quickLinks } from "@/helpers/data";
 import Logo from "../UI/Logo";
+import AddListingCard from "@/components/UI/partials/AddListingCard";
+
 
 function MainMenu() {
  const router = useRouter();
@@ -66,6 +68,9 @@ function MainMenu() {
                                         <TermsGrid shadowy={false} id={106} listy/>
                                     </div>
                                 </div>
+
+                                <AddListingCard exClass='hide_in_collapsed'/>
+
                                 <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15 hide_in_collapse">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Quick Links</h5>
@@ -85,6 +90,7 @@ function MainMenu() {
                                         </div>
                                     </div>
                                 </div>
+                                
 
                                 <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">

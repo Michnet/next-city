@@ -1,4 +1,4 @@
-import FAQs from "@/components/UI/FAQs";
+import SiteFAQs from "@/components/UI/site/SiteFAQs";
 import dynamic from "next/dynamic";
 //import CallToActions from "../components/common/CallToActions";
 //import DefaultHeader from "../components/header/default-header";
@@ -22,19 +22,19 @@ const CreateListing = () => {
     <>
       <SiteHead title="Add a listing" slug={'/add-listing'}/>
 
-      <section className="section-bg layout-pt-lg layout-pb-lg">
-        <div className="section-bg__item col-12">
+      <section className="section-bg layout-pt-lg layout-pb-lg position-relative">
+        <div className="section-bg__item col-12 bottom-0 w-100">
           <Image
-            width={1920}
-            height={400}
-            src="/img/pages/about/1.png"
+            fill
+            className='object-cover'
+            src="/img/general/1.png"
             alt="image"
             priority
           />
         </div>
         {/* End section-bg__item */}
 
-        <div className="container">
+        <div className="container pos-relative z-2">
           <div className="row justify-center text-center">
             <div className="col-xl-6 col-lg-8 col-md-10">
               <h1 className="text-40 md:text-25 fw-600 text-white">
@@ -69,7 +69,7 @@ const CreateListing = () => {
         </div>
       </section> */}
 
-      <section className="section-bg layout-pt-lg layout-pb-lg md:pt-0 md:pb-60 sm:pb-40 bg-blue-2 z-auto">
+      <section className="section-bg layout-pt-lg layout-pb-lg md:pt-0 md:pb-60 sm:pb-40 bg-light z-auto">
 <section class="call-action-area call-action-one">
    <div class="container pt-4">
       <div class="row align-items-center call-action-content">
@@ -118,7 +118,7 @@ const CreateListing = () => {
                 className="accordion -simple row y-gap-20 js-accordion"
                 id="Faq1"
               >
-                <FAQs />
+                <SiteFAQs/>
               </div>
             </div>
           </div>

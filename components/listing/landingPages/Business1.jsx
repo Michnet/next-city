@@ -18,10 +18,12 @@ import PostReviews from '../reviews/postReviews';
 import FAQs from "@/components/UI/FAQs";
 import { useRouter } from 'next/router';
 import ProfileInfo from '../profileInfo/ProfileInfo';
+import { PriceView } from '@/components/UI/PriceView';
 
-function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcoming, styles}) {
+
+function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcoming, styles}) {
     
-    const {address, venue, about_us, locations, rating, id, short_desc, dir_tags, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
+    const {address, venue, about_us, locations, rating, id, short_desc, dir_tags, ticket_min_price_html, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
     const {tickets} = listing_store;
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests} = meta ?? {};
     const {list:wcu_list} = _wcu ? _wcu[0] : {};
@@ -32,7 +34,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
 
     const cachedListing = useMemo( () => listing, [listing.id] );
     
-    let greetingView, faqsView, strengthsView, galleryView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView;
+    let greetingView, faqsView, strengthsView, galleryView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView, ticketsHint;
 
     if(listing){
         if(faqs?.length > 0){
@@ -56,13 +58,42 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             </div>
         }
 
+        if(tickets?.length > 0){
+            ticketsHint = <><div className='mb-20 sc_heading_3 px-4 mt-4'>
+            <h5>Engage Now</h5>
+            <h4>Booking Options</h4>
+        </div>
+        <div className='bg-theme p-0 bg-cover card card-style mb-3 lefty' style={{backgroundImage: `url("${cover}")`}}>
+                                <div className='ps-data d-flex flex-column p-3 bg-gradient-fade backdropGray'>
+                                        <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
+                                            <div className='cover_content pt-50'>
+                                                <h4>Online Booking Available</h4>
+                                                <>{ticket_min_price_html && <PriceView preText={'Starting from'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</> 
+                                            </div>
+                                            
+                                        </div>
+                                        <div className='content_box'>
+                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`bg-${color}-dark`}`}>
+                                                    <i className="fab fa-whatsapp font-15 text-center"></i>
+                                                      See Options
+                                                </button>}
+
+                                            <div className='card_footer'>            
+                                            </div>
+
+                                        </div>
+                                </div>
+                        </div>
+                        </>
+        }
+
         if(category){
             const {rl_awesome, color, name:catName} = category;
             catView = <div  className="icon_box">
                     <span className="icon_icon"> <i className="bi bi-hash"/>  </span>
                     <Client><span className="text-truncate icon_text" dangerouslySetInnerHTML={{__html: catName}}/></Client>
                   </div>
-          }
+        }
 
         featuredImgSrc = PostThumbnailSrc(listing, 'medium');
         largeFeaturedImgSrc = PostThumbnailSrc(listing, 'medium_large');
@@ -97,7 +128,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
         }
 
         //if(listing?.gallery.length > 0){
-            galleryView = <MegaGalleryMini setActiveKey={setActiveKey} upcoming={upcoming} color={color} listing={cachedListing}/>
+            galleryView = <MegaGalleryMini setActiveKey={setActiveKey} upcoming={upcoming} listing={cachedListing}/>
         //}
         let fbGreeting = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{__html: listing?.title?.rendered}}/></p>
 
@@ -149,7 +180,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
                             </>
             
         }
-        if(dir_tags){
+        if(dir_tags?.length > 0){
             let tagClick = (tag) => {
                 router.push({
                     pathname: '/explore/events',
@@ -362,6 +393,7 @@ function BusinessOneConst({listing, color, cover, scroller, setActiveKey, upcomi
             {reviewsView}
             {teamView}
             {guestsView}
+            {ticketsHint}
             {servicesView}
             {strengthsView }
             {faqsView}

@@ -29,9 +29,6 @@ export const authOptions = { providers: [
       },
 
        async authorize(credentials, req) {
-
-        console.log('authorise credentials', credentials);
-        console.log('authorise req', req);
         //return null;
              const {token, username} = credentials;
         
@@ -42,6 +39,8 @@ export const authOptions = { providers: [
             const loginObj = await res.json();
             
             const user = loginObj.user;
+
+            console.log('server user', user);
 
             if(user){
               return {
@@ -99,23 +98,21 @@ export const authOptions = { providers: [
   callbacks: {
 
     async signIn({ user, account, profile, email, credentials }) {
-      console.log('sign in credentials', credentials)
-
       let {type} = account;
       if(type == 'credentials'){
         account.userObj = user;
+        //console.log('signin user', user)
+        return user;
       }
       const isAllowedToSignIn = true;
       if (isAllowedToSignIn) {
-        return true
+        return user;
       } else {
         return false
       }
     },
 
     async jwt({ token, account, profile }) {
-      console.log('token', token)
-
       if (account) {
         let {type, userObj} = account ?? {};
         const {jwtObj, user} = userObj ?? {};
@@ -139,7 +136,7 @@ export const authOptions = { providers: [
       return token
     },
     async session({ session, token, user }) {
-      console.log('session', session)
+   
       session.access_token = token.accessToken
       session.oauth_token = token.oauthToken
       session.refresh_token = token.refreshToken

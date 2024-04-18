@@ -16,11 +16,11 @@ const EventCard5 = ({listing, width=300, height=200, exClass=''}) => {
                     <h2 className="color-white pt-0 pb-3 truncate-2">{cleanHtml(title.rendered)}</h2>
                     <Avatar exClass='mt-1' rounded width={35} src={thumbnail}/>
                 </div>
-                {event_date[0]?.start ? <p className="color-white font-10 opacity-80 mb-n1">
+                {event_date[0]?.start ? <p className="color-white font-11 opacity-80 mb-n1">
                     <i className="far fa-calendar"></i> <DateViewString date={event_date[0].start} format={'MMMM D'}/> 
                 <i className="ms-4 far fa-clock"></i> <DateViewString date={event_date[0].start} format={'hh:mm A'}/>
                 </p> : <></>}
-                <p className="color-white font-10 opacity-80"><i className="fa fa-map-marker-alt"></i> {address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</p>
+                <p className="color-white font-12 opacity-80"><i className="fa fa-map-marker-alt"></i> {address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</p>
             </div>
             <div className="card-bottom mb-3 me-3">
                 

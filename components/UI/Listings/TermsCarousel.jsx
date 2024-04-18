@@ -56,7 +56,7 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
         if(locItems?.length > 0){
             if(type === 'dir_cats'){
         catsArray = locItems.map(cat => {
-            return <><TermIcon item={cat} key={cat.id} flipped/></>
+            return <><TermIcon item={cat} key={cat.id}  shadowy/></>
         }) }/* if(type === 'shop_cats'){
             catsArray = locItems.map(cat => {
                 return <div onClick={() => setFilterArr({...filterArr, category:cat.id})}><TermCarouselItemImg key = {cat.id} term = {cat} inactive={inactiveLinks}/></div>

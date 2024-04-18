@@ -36,7 +36,7 @@ useEffect(() => {
 
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
-  hue: hue ?? 'monochrome',
+  //hue: hue ?? 'monochrome',
 }
 
   function createTags(ids){

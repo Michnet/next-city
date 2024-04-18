@@ -1,12 +1,24 @@
-const Widget = ({title, subtitle, children, exClass='', cover, coverClass='', extra, actions, icon, headless, width}) => {
+const Widget = ({title, freeHeader=false, subtitle, children, exClass='', cover, coverClass='', extra, actions, icon, headless, width}) => {
     let widgetView;
     let styleObj = {}
     if(cover){
       styleObj.backgroundImage = `url('${cover}')`
     }
-      widgetView = <div class={`card card-style m-0 ${exClass} ${title || subtitle ? 'headed' : ''}`} style={{...styleObj}}>
+      widgetView = <div>{freeHeader && <>
+                  {title || subtitle  ? <div class="card-header py-2 px-3">
+                      <div className="d-flex pb-2">
+                          <div>
+                              {subtitle && <h6 className="mb-n1 opacity-80 color-highlight">{subtitle}</h6>}
+                              <h3>{title}</h3>
+                          </div>
+                          <div className="align-self-center ms-auto">
+                          {icon && <i className={`${icon} font-24 color-red-dark`}/>}
+                          </div>
+                      </div>
+                      </div> : <></>}</>}
+        <div class={`card card-style m-0 ${exClass} ${title || subtitle ? 'headed' : ''}`} style={{...styleObj}}>
                     <div className={`content m-0 p-0 ${cover ? 'bg-theme-transparent' : ''} ${coverClass}`}>
-                      {title || subtitle  ? <div class="card-header py-2">
+                      {!freeHeader && <>{title || subtitle  ? <div class="card-header py-2">
                       <div className="d-flex pb-2">
                           <div>
                               {subtitle && <h6 className="mb-n1 opacity-80 color-highlight">{subtitle}</h6>}
@@ -17,10 +29,12 @@ const Widget = ({title, subtitle, children, exClass='', cover, coverClass='', ex
                           </div>
                       </div>
                       </div> : <></>}
+                      </>}
                       <div class="card-body">
                         {children}
                       </div>
                     </div>
+                  </div>
                   </div>
   
     return (

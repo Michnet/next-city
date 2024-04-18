@@ -4,7 +4,7 @@ import SearchFilter3 from "@/components/UI/search/SearchFilter3";
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useMemo } from "react";
 import { Client } from "react-hydration-provider";
 import Search from "@/components/UI/search/Search";
 import { useRecoilValue } from "recoil";
@@ -60,7 +60,8 @@ export async function getStaticProps() {
 
 
 const ExploreEvents = ({topList}) => {
- const {query} = useRouter();
+ const router = useRouter();
+ const {query} = router;
  const {sort, category, tags, region} = query;
  const eventDate = query['event-date'] ?? null;
  const [showHint, setShowHint] = useState(true);
@@ -69,6 +70,8 @@ const ExploreEvents = ({topList}) => {
  function translateDate(string){
  return string.replaceAll("-", " ");
  }
+
+ const cachedTopList = useMemo(() => topList, [router.asPath])
 
  function translateTags(string){
    let arr = string.split(',');
@@ -101,8 +104,8 @@ const ExploreEvents = ({topList}) => {
             <div className="explore_content col minw-0 p-md-2 p-0">
               <div className="inner_section mb-4">
                 <Slider  {...fadingSlide} responsive = {[...largeResp]} >
-                {topList?.length > 0 ? 
-                    topList.map((li) => {
+                {cachedTopList?.length > 0 ? 
+                    cachedTopList.map((li) => {
                       let {id} = li;
                       return <EventCard3 width={'inherit'} listing={li} key={id} exClass='m-0 radius-0'/>
                     })

@@ -1,7 +1,7 @@
 //import  HomeIcon from "react-line-awesome/dist/icons/HomeIcon";
 //import {CalendarPlusIcon, CheckCircleIcon, EyeIcon, FireIcon, HeartOIcon, StarOIcon, StreetViewIcon } from "react-line-awesome";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 //import LocationExtractor from "~/appComponents/components/UI/LocationExtractor";
 import { useRecoilValue } from "recoil";
 import { actionsState, authState, locationState } from "@/contexts/atoms";
