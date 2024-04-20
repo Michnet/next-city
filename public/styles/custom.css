@@ -94,6 +94,9 @@ h6 {
     right: 0 !important;
 }
 .menu-active.menu{display: block}
+.page-content.single_listing .color-highlight {
+    color: var(--listingTheme) !important;
+}
 /*Tickets*/
 .fl-left {
     float: left

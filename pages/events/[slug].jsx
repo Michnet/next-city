@@ -164,8 +164,8 @@ if(listing){
             <div className='row_flex gap-2'>
                 {/* <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button> */}
 
-                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-l text-uppercase text-nowrap font-900 shadow-s bg-highlight btn-icon text-start">
-                  <i class="far fa-calendar-check font-15 text-center"></i>
+                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-highlight btn-icon text-start">
+                  <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
                   Booking
                 </button>}
 
@@ -214,10 +214,10 @@ if(listing){
 
     <style>
         {`:root{
-          --listingTheme : ${siteColorObjs.filter((col) => col.name === color)[0].hex}
+          --listingTheme : ${siteColorObjs?.filter((col) => col.name === color)[0]?.hex}
         }
         `}
-       </style>
+    </style>
 
     <ListingSideMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <RightMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>

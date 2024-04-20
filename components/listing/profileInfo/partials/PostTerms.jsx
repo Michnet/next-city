@@ -4,7 +4,7 @@ import Widget from "@/components/UI/partials/Widget";
 import { getLocalTaxonomy } from "@/helpers/rest";
 import { useEffect, useState } from "react";
 
-const PostTerms = ({post, termKey, title,taxonomy}) => {
+const PostTerms = ({post, termKey, title,taxonomy, linkTax}) => {
     const [terms, setTerms] = useState(null)
 
   let termsView;
@@ -25,7 +25,7 @@ const PostTerms = ({post, termKey, title,taxonomy}) => {
                     >
                       <div className="listing_tags">
                         {terms.map((item) => {
-                          return <TermTag key={item.id} term={item} type={'icon-box'} collection/>
+                          return <TermTag linkTax={linkTax} key={item.id} term={item} type={'icon-box'} collection/>
                         })}
                       </div>
                     </Widget>

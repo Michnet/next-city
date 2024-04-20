@@ -88,7 +88,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
      }
 
      if(dir_tags){
-      groupView = <PostTerms post={listing} termKey='dir_categories' taxonomy={'categories'} title={'Category'}/>
+      groupView = <PostTerms linkTax={'category'} post={listing} termKey='dir_categories' taxonomy={'categories'} title={'Category'}/>
     }
 
       paymentsView = <PayMeans listingId={listing.id}/>

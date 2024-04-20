@@ -2,7 +2,7 @@ import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
 import { cleanHtml, shuffleArray } from "@/helpers/universal";
 import Link from "next/link";
 import { memo, useMemo } from "react";
-import Slider from "react-slick";
+//import Slider from "react-slick";
 // import PostLike from "~/appComponents/components/Social/PostLike";
 import { ListingMeta, ListingMetaMini } from "../../Partials";
 import DateView from "../../partials/dateViews/DateView";

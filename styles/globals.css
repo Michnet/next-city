@@ -4156,7 +4156,7 @@ a.tag-cloud-tag.checked {
 .abt_title {
   margin-bottom: 0;
   font-weight: normal;
-  color: var(--secTheme);
+  color: var(--listingTheme);
   font-size: var(--smFontSize);
 }
 

@@ -17,7 +17,7 @@ function AddListingCard({exClass='', height=200, shadowy=false}) {
                     <i className='fa'/>
                 </div>
                 <p className="color-white opacity-80 lh-13"> 
-                  Get the word out with a free lading page for your event
+                  Get the word out with a free landing page for your event
                 </p>
             </div>
             <div className="card-bottom mb-3 me-3">
