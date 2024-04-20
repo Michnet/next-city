@@ -122,7 +122,7 @@ export async function getStaticPaths() {
     //const activeView = useRecoilValue(listingViewState);
     const [activeKey, setActiveKey] = useState(query?.page ?? view);
 
-console.log('liss', listing);  
+//console.log('liss', listing);  
 let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0) : '#000';
 
 useEffect(() => {
@@ -164,7 +164,7 @@ if(listing){
             <div className='row_flex gap-2'>
                 {/* <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button> */}
 
-                {<button onClick={() => setActiveKey('tickets')} className="btn btn-m shadow-bg shadow-bg-m rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-highlight btn-icon text-start">
+                {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m shadow-bg shadow-bg-m rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-${color} btn-icon text-start`}>
                   <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
                   Booking
                 </button>}
@@ -196,7 +196,7 @@ if(listing){
            longitude={longitude}
            slug={`/events/${slug}`}
            />
-           <HeaderWrapper header_id={'listing_header'}>
+           <HeaderWrapper headerClass="header-invert header-always-show" header_id={'listing_header'}>
                 <ListingTopMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
 

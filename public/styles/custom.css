@@ -2728,6 +2728,16 @@ span.clear_tag {
 }
 
 @media (max-width: 991px) {
+.header.header-sticky.header-always-show.header-invert:not(.header-active){
+    height:0 !important;
+    overflow:visible;
+    color: #fff;
+}
+
+.header.header-sticky.header-always-show.header-invert.header-active {
+}
+
+#listing_header {border: none;}
   .gx-timeline-zigzag .gx-timeline-item+.gx-timeline-item {
         margin-top:-60px
     }
@@ -3064,4 +3074,8 @@ span.list_title._first {
 .btn-icon i {
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
+}
+
+.header.header-sticky.header-always-show.header-invert:not(.header-active) ._title {
+    color: #fff;
 }

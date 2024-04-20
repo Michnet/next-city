@@ -45,7 +45,7 @@ function ActivityCarouselConst({defListings = null, queryObj={}, cardType, noFal
     console.log('carousel leaving')
       return () => {
         console.log('carousel leaving')
-        controller.abort();
+       // controller.abort();
         fetchy = false;
       }
     }, []);
@@ -81,7 +81,7 @@ function ActivityCarouselConst({defListings = null, queryObj={}, cardType, noFal
     const isEmpty = listings?.length === 0;
 
     if(listings?.length > 0){
-
+      controller.abort();
         const itemArray =   listings.slice(0, 5).map((item, i) => (
          <div key={i}><Card mini={mini} exClass={exCardClass}  width={cardWidth} key={i} listing = {item}/></div>
        ));

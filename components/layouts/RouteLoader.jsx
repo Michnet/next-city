@@ -8,8 +8,8 @@ function RouteLoader() {
 
   const handleStart = (url) => {
     if (typeof window !== 'undefined') {
-      if(!document.body.classList.contains('in_motio')){
-        document.body.classList.add('in_motio');
+      if(!document.body.classList.contains('in_transit')){
+        document.body.classList.add('in_transit');
       }
       //UICleanup();
       }
@@ -17,7 +17,7 @@ function RouteLoader() {
   
   const handleStop = () => {
     if (typeof window !== 'undefined') {
-      document.body.classList.remove('in_motio');
+      document.body.classList.remove('in_transit');
     }
   }
 
@@ -26,7 +26,7 @@ function RouteLoader() {
           router?.events.on('routeChangeStart', handleStart)
           router?.events.on('routeChangeComplete', handleStop)
           router?.events.on('routeChangeError', handleStop)
-          document.body.classList.remove('in_motio');
+          document.body.classList.remove('in_transit');
           return () => {
             router?.events.off('routeChangeStart', handleStart)
             router?.events.off('routeChangeComplete', handleStop)

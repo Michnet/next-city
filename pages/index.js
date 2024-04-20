@@ -111,8 +111,6 @@ function tagClick(tag){
 export default function Home(props) {
     const {serverObj} = props;
    const {eventCategories, topLocations, busyLocations, latestList} = serverObj ?? {};
-   console.log('serverObj', serverObj)
-
    
   let imgArr = eventCategories.map((ct) => {
     let {term_meta, id} = ct;
