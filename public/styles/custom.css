@@ -15,7 +15,6 @@
     --shadow-1: 0 4px 24px 0 rgba(0,0,0,.08);
     --loudTheme: #bc6303;
     --handFont: 'Dr Sugiyama', cursive;
-    --listingTheme: var(--highlight);
     --fontFamily: "Jost", sans-serif !important;;
     --font-size: 15px;
     }
@@ -119,9 +118,9 @@ h6 {
     position: relative;
 }
 
-.ticket_card+.ticket_card {
+.color-listing-theme{
+    color: var(--listingTheme)
 }
-
 .ticket_card
 .date {
     display: table-cell;
@@ -3018,10 +3017,6 @@ div#explore_nav .left_menu_btn {
 
 .sc_heading_3.righty {
     text-align: end;
-}
-
-.title_meta .target {
-    color: var(--highlight) !important;
 }
 
 #wall_gallery_container {

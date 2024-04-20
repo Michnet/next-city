@@ -73,8 +73,8 @@ function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcomi
                                             
                                         </div>
                                         <div className='content_box'>
-                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`bg-${color}-dark`}`}>
-                                                    <i className="fab fa-whatsapp font-15 text-center"></i>
+                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`gradient-${color}`}`}>
+                                                    <i className="fas fa-qrcode font-15 text-center bg-transparent"/>
                                                       See Options
                                                 </button>}
 
@@ -398,7 +398,7 @@ function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcomi
             {strengthsView }
             {faqsView}
             {sponsorsView}
-            <ProfileInfo exClass={'px-lg-0 px-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
+            <ProfileInfo exClass={'px-lg-0 px-2 py-15'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </div>
     )
 }

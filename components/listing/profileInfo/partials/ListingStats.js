@@ -10,7 +10,7 @@ export const StatCard = (props) => {
           className={styles['image']}
         /> */}
         
-        <span className={'number'}>{number}{/* <CountUp scrollSpyOnce enableScrollSpy start={0} end={number}/> */}</span>
+        <span className={'number lh-1'}>{number}{/* <CountUp scrollSpyOnce enableScrollSpy start={0} end={number}/> */}</span>
         <span className={'text opacity-60'}>{text}</span>
       </div>
     )

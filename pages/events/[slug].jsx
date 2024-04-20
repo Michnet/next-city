@@ -31,7 +31,7 @@ const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: 
 const ColorThief = require('colorthief');
 
 
-import { siteColors } from "@/helpers/base";
+import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 
 const randColor = randomEither(siteColors);
@@ -203,14 +203,21 @@ if(listing){
     <BottomMenu content={bottomContent}/>
     <div className="page-content single_listing ">
 
-    <PageScroller activeKey={activeKey} resetKey={'home'}/>
-    <Hero2 /* palette={palette} color={color} */ listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
-    <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
-    <Client>
-        <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
-    </Client>
-    <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
-</div>
+        <PageScroller activeKey={activeKey} resetKey={'home'}/>
+        <Hero2 /* palette={palette}  */ color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
+        <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
+        <Client>
+            <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
+        </Client>
+        <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
+    </div>
+
+    <style>
+        {`:root{
+          --listingTheme : ${siteColorObjs.filter((col) => col.name === color)[0].hex}
+        }
+        `}
+       </style>
 
     <ListingSideMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <RightMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>

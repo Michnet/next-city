@@ -9,7 +9,8 @@ var CACHE_NAME = APP_NAME + '-' + APP_VER;
 // Leave REQUIRED_FILES = [] to disable offline.
 var REQUIRED_FILES = [
 	// HTML Files
-	'index.html',
+	'index.js',
+	'explore/events.js',
 	// Styles
 	'styles/style.css',
 	'styles/bootstrap.css',
@@ -64,15 +65,47 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-	event.respondWith(
+	console.log('worker', caches)
+	/* event.respondWith(
 		//Fetch Data from cache if offline
 		caches.match(event.request)
 			.then(function(response) {
-				if (response) {return response;}
+				if (response) {
+					co
+					return response;
+				}
 				return fetch(event.request);
 			}
 		)
-	);
+	); */
+
+	event.respondWith(
+		(async () => {
+		  // Try to get the response from a cache.
+		  const cache = await caches.open(CACHE_NAME);
+		  const cachedResponse = await cache.match(event.request);
+	
+		  if (cachedResponse) {
+			// If we found a match in the cache, return it, but also
+			// update the entry in the cache in the background.
+			//event.waitUntil(cache.add(event.request));
+			return cachedResponse;
+		  }
+	
+		  // If we didn't find a match in the cache, use the network.
+		  return fetch(event.request)
+          .then((res) => {
+            // response may be used only once
+            // we need to save clone to put one copy in cache
+            // and serve second one
+            let responseClone = res.clone();
+
+			cache.put(event.request, responseClone);
+            return res;
+          })
+		  //return fetch(event.request);
+		})(),
+	  );
 	if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
 });
 

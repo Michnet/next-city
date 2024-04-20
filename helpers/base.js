@@ -149,4 +149,24 @@ export const siteColors = [
   //"dark"
 ]
 
+export const siteColorObjs = [
+    {name: "green", hex: "#8CC152"}, 
+    {name: "grass", hex: "#2ABA66"}, 
+    {name: "red", hex: "#DA4453"}, 
+    {name: "orange", hex: "#E9573F"}, 
+    {name: "yellow", hex: "#F6BB42"}, 
+    {name: "sunny", hex: "#d99914"}, 
+    {name: "blue", hex: "#4A89DC"}, 
+    {name: "teal", hex: "#7DB1B1"}, 
+    {name: "mint", hex: "#37BC9B"}, 
+    {name: "pink", hex: "#D770AD"} , 
+    {name: "pink2", hex: "#fb3365"} , 
+    {name: "magenta", hex: "#967ADC"}, 
+    {name: "brown", hex: "#AA8E69"},
+    {name: "gray", hex: "#AAB2BD"},
+    {name: "aqua", hex: "#3BAFDA"},
+    {name: "night", hex: "#16181c"},
+    {name: "dark", hex: "#434A54"} 
+]
+
  

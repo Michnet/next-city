@@ -161,9 +161,9 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                 <div className='title_meta d-flex justify-end'>
                   <Client>
                 <p style={{lineHeight: '1.6em'}}>
-                  <span className="target mr-4 mb-4" style={{color: nowColor}}> {cleanHtml(catName)} </span>
-                  <span className="target mr-4 mb-4" style={{color: nowColor}}> {type} </span>
-                  {locations ? <><span className='gray_text'> In</span> <span style={{color: nowColor}} className="target mr-4"> {locations[0]?.name} </span></> : <></>}
+                  <span className={`target mr-4 mb-4 color-${color}-dark`}> {cleanHtml(catName)} </span>
+                  <span className="target mr-4 mb-4"> {type} </span>
+                  {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
                 </p>
                 </Client>
                 </div>
@@ -194,7 +194,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </div>
 
-          <div className='card card-style shadow shadow-bg shadow-bg-l bg-highlight'>
+          <div className={`card card-style shadow shadow-bg shadow-bg-l bg-${color}-dark`}>
           <div
             className={`z-1 p-5 position-relative bg-black theme-dark ${styles['section-container']} card card-style w-auto m-0`}
           >
