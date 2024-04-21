@@ -46,7 +46,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
   return (
     <>{ content ??
           <div id="footer-bar" className="footer-bar-1 d-md-none">
-            {defBottomLinks.map((el) => {
+            <div className="footer_content">{defBottomLinks.map((el) => {
                 let {id, icon, link, name, func, routePath, isNew, props} = el;
                 return <>{link ? <Link key={id} href={routePath} className={`${isActiveLink(routePath, router.asPath)? 'active-nav' : ''}`}>
                         <i className={`${icon}`}/>
@@ -60,13 +60,15 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
                     </span>
                     }
                     </>
-            })}
-              <button /* {...btnProps} onClick={(e) => openOffCanvas(e)} */ onClick={() => router.push('/add-listing')} className="_fab circle d-flex align-items-center justify-center bg-theme position-absolute gradient-menu shadow shadow-bg-m" style={{}}>
+            })}</div>
+            <div className="_fab">
+              <button  onClick={() => router.push('/add-listing')} className="circle d-flex align-items-center justify-center bg-theme  gradient-menu shadow shadow-bg-m" style={{}}>
               <span  className={`text-center big_act`}>
                 {<i className={`link_i ${icon ?? 'fa fa-plus'}`}/>}
               </span>
               <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
             </button>
+            </div>
           </div>
    } </>
   )

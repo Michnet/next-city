@@ -58,6 +58,18 @@ function MyAppConst({ Component, pageProps, platform }) {
           <ActivityProvider/>
         </RecoilRoot>
       </SessionProvider>
+      <style>
+        {`:root{
+           --miniFontSize: 13px;
+           --fontSize: var(--font-size);
+           --mdFontSise: 15px;--smFontSize: 14px;
+           --xsFontSize: 12px;
+           --bgFontSize: 19px;
+           --exBigFontSize: 22px;
+        }
+        `}
+    </style>
+     
   </>
 }
 

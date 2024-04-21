@@ -13,6 +13,14 @@ export function cleanHtml(str){
     return str?.replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&#038;/g, "&").replace(/&#8211;/g, "-");
 }
 
+/* 
+function reduceTextSize(){
+  textSizeChanger[0].querySelectorAll('*').forEach(function(element) {
+      const getFontSize = window.getComputedStyle(element).fontSize.split("px",2)[0]
+      element.style.fontSize = (+getFontSize -1) +'px';
+  });
+} */
+
 
 export function UICleanup(){
   closeMenus()

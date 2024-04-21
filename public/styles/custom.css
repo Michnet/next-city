@@ -595,13 +595,21 @@ div#mobile_sidebar {}
 }
 
 
-#footer-bar, .header {
+.header {
     background-color: rgba(255,255,255,.7);
     backdrop-filter: saturate(180%) blur(20px);
 }
 
-div#footer-bar {
-    padding-right: 100px;
+#footer-bar {
+    justify-content: space-between;
+    background: transparent;
+    box-shadow: none;
+    padding-right: 0;
+    border: none !important;
+}
+
+.theme-dark #footer-bar {
+    background: transparent;
 }
 
 
@@ -2111,6 +2119,10 @@ button.back_link {
   color: rgb(230,244,234);
   border-color: rgb(19,115,51);
 }
+.event_date._ongoing.outliney{
+  color: #61aeeb;
+  border-color: blue;
+}
 .event_date._future_dist.outliney.darky{
   border-color: rgb(230,244,234);
   color: rgb(19,115,51);
@@ -2127,11 +2139,30 @@ button.back_link {
 }
 
 ._fab {
-    right: 15px;
     height: 60px;
     width: 60px;
-    top: -20px;
+    background-image: url('/img/general/button-base.svg');
+    flex-basis: 98px;
+    width: 100px;
+    height: 65px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    /* flex-grow: 1; */
+}
+
+.theme-dark ._fab {
+    background-image: url('/img/general/button-base-dark.svg');
+}
+
+._fab button {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    margin-top: -36px;
 }
 
 ._fab i {
@@ -2757,6 +2788,10 @@ span.clear_tag {
     text-align: center;
     border-radius: 10px;
 }
+
+.header.header-sticky.header-always-show.header-invert:not(.header-active) button {
+    height: 32px;
+}
   .gx-timeline-zigzag .gx-timeline-item+.gx-timeline-item {
         margin-top:-60px
     }
@@ -3117,4 +3152,27 @@ span.list_title._first {
 
 .query_hint .query_content{
     background: var(--bgThemeTransparent);
+}
+#footer_box{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.footer_content{
+    background-color: var(--bgTheme);
+    box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.06);
+    display: flex;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.footer_content {
+    background-color: #000;
+}
+
+.footer_content {
+    box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.06);
 }

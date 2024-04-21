@@ -159,11 +159,9 @@ if(listing){
         </div>
 }
    let bottomContent = <>
-   <div id="footer-bar" className="footer-bar-1 d-md-none ps-2 py-2">
+   <div id="footer-bar" className="footer-bar-1 d-md-none">
 
-            <div className='row_flex gap-2'>
-                {/* <button onClick={() => setActiveKey('tickets')} className="shadow-bg btn btn-full btn-m rounded-l shadow-bg-m bg-highlight font-700 text-uppercase">Booking</button> */}
-
+            <div className='gap-2 footer_content ps-2 py-2'>
                 {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m shadow-bg shadow-bg-m rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-${color} btn-icon text-start`}>
                   <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
                   Booking
@@ -174,9 +172,11 @@ if(listing){
                 </a>}
                 {phone && <a style={{maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
               </div>
-              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px', height: '50px', right: '10px'}} className={'d-flex align-items-center justify-center rounded px-2 border position-absolute'}>
-                <i class="fas fa-ellipsis-h text-center text-24"/>
+              <div className='_fab'>
+              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} /* style={{width: '50px', height: '50px', right: '10px'}}  */className={'d-flex align-items-center justify-center  px-2 bg-theme'}>
+                <i class="fas fa-ellipsis-h text-center text-24 color-theme"/>
               </button>
+              </div>
           </div>
    
    

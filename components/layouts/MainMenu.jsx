@@ -115,6 +115,20 @@ function MainMenu() {
                                                 </div>
                                                 <i className="hide_in_collapsed fa fa-angle-right"></i>
                                             </span>
+                                            <div class="card card-style">
+                                            <div class="content mb-0">
+                                                <div class="d-flex mb-3">
+                                                    <div class="align-self-center">
+                                                        <h5>Text Size</h5>
+                                                    </div>
+                                                    <div class="align-self-center ms-auto">
+                                                        <a href="#" class="text-size-default float-end icon icon-xxs rounded-s color-white bg-highlight"><i class="fa fa-sync-alt"></i></a>
+                                                        <a href="#" class="text-size-increase float-end icon icon-xxs rounded-s color-white bg-highlight me-2 ms-2"><i class="fa fa-font font-16"></i></a>
+                                                        <a href="#" class="text-size-decrease float-end icon icon-xxs rounded-s color-white bg-highlight"><i class="fa fa-font font-10"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>

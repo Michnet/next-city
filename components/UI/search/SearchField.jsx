@@ -45,11 +45,11 @@ function SearchField() {
    <div className="content mt-n4 pos-relative">
             <div className="search-box bg-theme color-theme rounded-m shadow-l">
                 <i className="fa fa-search"></i>
-                <input type="text" className="border-0" placeholder="Search for a place... (try island)" data-search onChange={(e) => runSearch(e)}/>
+                <input type="text" className="border-0" placeholder="Search for events... " data-search onChange={(e) => runSearch(e)}/>
 				<a href="#" className="clear-search disabled no-click mt-0"></a>
 				<span data-menu="search_form_1" onClick={(e) => openOffCanvas(e)} className="_link color-theme"><i className="fa fa-sliders me-n3"></i></span>
             </div>
-            <div className="search-results mt-3 position-absolute left-0 right-0 z-2">
+            <div className="search-results mt-3 left-0 right-0 z-2">
                 <div class="card card-style mx-0 px-2 p-0 mb-0 ">
                     {listings.value?.length > 0 ? 
                     <>
