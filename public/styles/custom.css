@@ -3169,7 +3169,7 @@ span.list_title._first {
     flex-grow: 1;
 }
 
-.footer_content {
+.theme-dark .footer_content {
     background-color: #000;
 }
 
