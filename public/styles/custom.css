@@ -3172,7 +3172,6 @@ span.list_title._first {
 .theme-dark .footer_content {
     background-color: #000;
 }
-
 .footer_content {
-    box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: 0 -6px 10px 0 rgba(0, 0, 0, 0.06);
 }
