@@ -2295,6 +2295,7 @@ button.back_link {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+    height: 50px;
 }
 
 .listing_menu_toggler .menu_icon{
@@ -2329,7 +2330,8 @@ button.back_link {
 }
 
 .query_hint {
-    border-left: 4px solid var(--secTheme);
+    border-top: 4px solid var(--secTheme);
+    background: var(--secTheme);
 }
 
 .section_header .icon-xs._big i {
@@ -2447,6 +2449,7 @@ span.clear_tag {
 
 #listingMenuRight .list-custom-small .badge {
     margin-top: 0 !important;
+    padding: 3px 9px 3px 3px;
 }
 
 .listing_menu_toggler .menu_icon .profile_title {
@@ -2731,13 +2734,29 @@ span.clear_tag {
 .header.header-sticky.header-always-show.header-invert:not(.header-active){
     height:0 !important;
     overflow:visible;
-    color: #fff;
+}
+
+.header.header-sticky.header-always-show.header-invert:not(.header-active) .profile_title {
+    display: none;
+}
+
+#listing_header:not(.header-active) .show_in_pinned {
+    display: none;
 }
 
 .header.header-sticky.header-always-show.header-invert.header-active {
 }
 
-#listing_header {border: none;}
+#listing_header {border: none;top: 10px;width: calc(100% - 10px);margin: 0 auto;border-radius: 10px;}
+
+.header.header-sticky.header-always-show.header-invert:not(.header-active) i {
+    background: var(--bgThemeTransparent);
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 10px;
+}
   .gx-timeline-zigzag .gx-timeline-item+.gx-timeline-item {
         margin-top:-60px
     }
@@ -2780,6 +2799,11 @@ span.clear_tag {
 }
 
 @media (max-width: 768px) {
+    #listing_header{
+    top: 0;
+    width: 100%;
+    border-radius: 0;
+}
     .page-content {
     padding-bottom: 62px;
 }
@@ -3076,6 +3100,21 @@ span.list_title._first {
     border-bottom-left-radius: inherit;
 }
 
+.menu-sidebar .list-custom-small .btn-icon i {
+    height: 100% !important;
+    width: 40px;
+    line-height: 43px;
+    background: transparent;
+}
+
 .header.header-sticky.header-always-show.header-invert:not(.header-active) ._title {
     color: #fff;
+}
+
+#listingMenuRight .list-custom-small ._link {
+    font-size: 15px;
+}
+
+.query_hint .query_content{
+    background: var(--bgThemeTransparent);
 }

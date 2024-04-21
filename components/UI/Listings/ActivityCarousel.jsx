@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { variableWidth } from "@/helpers/sliders"
+import { spliderVariableWidth, variableWidth } from "@/helpers/sliders"
 import Slider from "react-slick"
 //import ListingCard from "./cards/ListingCard"
 import useSWR from 'swr';
@@ -7,10 +7,18 @@ import { advancedFetchListingsUrl, fetcherWithSignal } from "@/helpers/rest";
 import { useEffect, memo } from "react";
 import { useRouter } from "next/router";
 import { DualColorHeader } from "../Partials";
+import Splider from "@/components/UI/partials/Splider";
+import Link from "next/link";
 
-function ActivityCarouselConst({defListings = null, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, sort, eventDate, orderby, order, cardWidth, shadowHeight}) {
+function ActivityCarouselConst({defListings = null, height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
 
-    let theView, fetchy = true;
+    let theView, fetchy = true, linkQuery = null;
+
+
+    let spliderOptions = {...spliderVariableWidth, padding: { left: 10, right: 20 }}
+    if(gap){
+      spliderOptions.gap = gap;
+    }
 
     const {query} = useRouter();
     const params = query ?? {};
@@ -20,32 +28,38 @@ function ActivityCarouselConst({defListings = null, queryObj={}, cardType, noFal
     listing_type:'event', per_page: 5, ...queryObj, ...params};
 
     switch (cardType) {
-      case 1:
+      case 11:
         Card = dynamic(() => import("./cards/ActivityCard1"));
         break;
-      case 2:
+      case 22:
          Card = dynamic(() => import("./cards/ActivityCard2"));
         break;
-      case 3:
-        // Card = dynamic(() => import("./ActivityCard3"));
-        break;
-      case 4:
-         Card = dynamic(() => import("./cards/EventCard4"));
-        break;
-      default:
-       // Card = dynamic(() => import("./ActivityCard"));
-        break;
-  
+      
+        case 1:
+          Card = dynamic(() => import("./cards/EventCard"));
+          break;
+        case 2:
+           Card = dynamic(() => import("./cards/EventCard2"));
+          break;
+        case 3:
+           Card = dynamic(() => import("./cards/EventCard3"));
+          break;
+        case 4:
+           Card = dynamic(() => import("./cards/EventCard4"));
+           break;
+        case 5:
+           Card = dynamic(() => import("./cards/EventCard5"));
+          break;
+        default:
+          Card = dynamic(() => import("./cards/EventCard"));
+          break;
     }
 
     let controller = new AbortController();
     let {signal} = controller;
 
     useEffect(() => {
-    console.log('carousel leaving')
       return () => {
-        console.log('carousel leaving')
-       // controller.abort();
         fetchy = false;
       }
     }, []);
@@ -55,22 +69,30 @@ function ActivityCarouselConst({defListings = null, queryObj={}, cardType, noFal
         load.order_by=orderby;
         load.order=order;
         load.meta_key=orderMeta;
+        linkQuery=`order=${order}&order_by=${orderby}&meta_key=${orderMeta}`;
     }else if(orderby){
         load.order_by=orderby;
         load.order=order;
+        linkQuery=`order=${order}&order_by=${orderby}`;
     }
     if(sort){
-      load.sort = sort
+      load.sort = sort;
+      linkQuery=`sort=${sort}`;
     }
 
     if(eventDate){
       load['event-date'] = eventDate
+      linkQuery=`event-date=${eventDate}`;
+    }else{
+      load['event-date'] = 'any-date'
     }
 
     if(query.category){
       load.category = query.category
+      linkQuery=`category=${catSlug}`;
     }else if(catSlug){
       load.category = catSlug
+      linkQuery=`category=${catSlug}`;
     }
 
     
@@ -89,17 +111,17 @@ function ActivityCarouselConst({defListings = null, queryObj={}, cardType, noFal
         theView =  <>
                     <div className="d-flex px-3 mb-3">
                     <div className="align-self-center">
-                      <DualColorHeader title={title} subTitle={subtitle} exClass={'mb-20'} icon={icon}/>
+                      <DualColorHeader title={title} subTitle={subtitle} iconClass={iconClass}/>
                     </div>
                     <div className="align-self-center ms-auto">
-                        <a href="#" className="font-12">View All</a>
+                        <Link href={`explore/events${linkQuery ? '?'+linkQuery : ''}`} className="font-12">View All</Link>
                     </div>
                     </div>
-                    <Slider  {...variableWidth}>
+                    <Splider height={height}  options={{...spliderOptions}}>
                         {
                             itemArray
                         }
-                    </Slider>
+                    </Splider>
                     </>
        }
 

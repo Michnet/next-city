@@ -5,7 +5,7 @@ import DateViewString from "../../partials/dateViews/DateViewString";
 const EventCard4 = ({listing, width=260, height=200, exClass=''}) => {
     let {id, title, address, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
     return (<>
-        <div className={`card card-style event_card_2 p-3 mx-0 ${exClass}`} style={{width: width}}>
+        <div className={`card card-style event_card_4 p-3 m-0 ${exClass}`} style={{width: width}}>
             <Link href="#" className="d-flex align-items-center">
                 <div>
                     <img src={xtra_large_thumb} className="object-cover rounded-sm me-3" width="70" height="70"/>

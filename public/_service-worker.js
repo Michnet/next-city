@@ -1,7 +1,7 @@
 // To clear cache on devices, always increase APP_VER number after making changes.
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
 var APP_NAME = 'LyveCity';
-var APP_VER = '4.8.1';
+var APP_VER = '1.3.1';
 var CACHE_NAME = APP_NAME + '-' + APP_VER;
 
 // Files required to make this app work offline.
@@ -64,48 +64,54 @@ self.addEventListener('install', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Installed');}
 });
 
+const unCacheables = ['jwt-auth/v1']
+
 self.addEventListener('fetch', function(event) {
-	console.log('worker', caches)
-	/* event.respondWith(
+	event.respondWith(
 		//Fetch Data from cache if offline
 		caches.match(event.request)
 			.then(function(response) {
 				if (response) {
-					co
 					return response;
 				}
 				return fetch(event.request);
 			}
 		)
-	); */
-
+	);
+/* 
 	event.respondWith(
 		(async () => {
-		  // Try to get the response from a cache.
-		  const cache = await caches.open(CACHE_NAME);
-		  const cachedResponse = await cache.match(event.request);
-	
-		  if (cachedResponse) {
-			// If we found a match in the cache, return it, but also
-			// update the entry in the cache in the background.
-			//event.waitUntil(cache.add(event.request));
-			return cachedResponse;
-		  }
-	
-		  // If we didn't find a match in the cache, use the network.
-		  return fetch(event.request)
-          .then((res) => {
-            // response may be used only once
-            // we need to save clone to put one copy in cache
-            // and serve second one
-            let responseClone = res.clone();
+		  const requestURL = new URL(event.request.url);
+		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
+		  if(unCachList.test(requestURL)){
+			return fetch(event.request);
+		  }else{
+				// Try to get the response from a cache.
+				const cache = await caches.open(CACHE_NAME);
+				const cachedResponse = await cache.match(event.request);
+			
+				if (cachedResponse) {
+					// If we found a match in the cache, return it, but also
+					// update the entry in the cache in the background.
+					//event.waitUntil(cache.add(event.request));
+					return cachedResponse;
+				}
+			
+				// If we didn't find a match in the cache, use the network.
+				return fetch(event.request)
+				.then((res) => {
+					// response may be used only once
+					// we need to save clone to put one copy in cache
+					// and serve second one
+					let responseClone = res.clone();
 
-			cache.put(event.request, responseClone);
-            return res;
-          })
-		  //return fetch(event.request);
+					cache.put(event.request, responseClone);
+					return res;
+				})
+		  }
+		  
 		})(),
-	  );
+	  ); */
 	if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
 });
 

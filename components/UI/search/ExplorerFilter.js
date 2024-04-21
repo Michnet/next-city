@@ -1,7 +1,7 @@
 //import  HomeIcon from "react-line-awesome/dist/icons/HomeIcon";
 //import {CalendarPlusIcon, CheckCircleIcon, EyeIcon, FireIcon, HeartOIcon, StarOIcon, StreetViewIcon } from "react-line-awesome";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, memo } from "react";
 //import LocationExtractor from "~/appComponents/components/UI/LocationExtractor";
 import { useRecoilValue } from "recoil";
 import { actionsState, authState, locationState } from "@/contexts/atoms";
@@ -38,7 +38,7 @@ export const sortRandom = {
   sort: 'random'
 }
 
-const ExplorerFilter = () => {
+const ExplorerFilterConst = () => {
   const router = useRouter();
   const {query} = router;
   const {city, city_zone, coords} = useRecoilValue(locationState);
@@ -177,4 +177,5 @@ const ExplorerFilter = () => {
   );
 };
 
+const ExplorerFilter = memo(ExplorerFilterConst);
 export default ExplorerFilter;

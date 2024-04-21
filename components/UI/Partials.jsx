@@ -1,14 +1,14 @@
 import { useRouter } from "next/router"
 
-export function DualColorHeader({title, subTitle, iconClass, colorClass = '', desc, exClass}) {
+export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, exClass}) {
   return (
-    <div className={`d-flex pb-2 border-bottom mb-3 ${exClass ?? ''}`}>
+    <div className={`d-flex pb-2 align-items-center gap-2  ${exClass ?? ''}`}>
+        {iconClass ? <div className="align-self-center ms-auto">
+          {iconClass && <i className={`opacity-40 ${iconClass} font-24 ${colorClass}`}></i>}
+        </div> : <></>}
         <div>
             {<h6 className="mb-n1 opacity-80 color-highlight">{subTitle}</h6>}
             <h3>{title}</h3>
-        </div>
-        <div className="align-self-center ms-auto">
-        {iconClass && <i className={`bi bi-${iconClass} font-24 ${colorClass}`}></i>}
         </div>
     </div>
   )

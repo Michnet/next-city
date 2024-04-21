@@ -63,9 +63,9 @@ const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?
             <div className="d-flex flex-row flex-nowrap gap-3 align-items-center">
                 <i className="fas fa-chevron-left" onClick={() => router.back()}/>
                 <MainMenuBtn/> 
-                <div className="menu_logo" onClick={() => setActiveKey('home')}> 
+                <div className="menu_logo show_in_pinned" onClick={() => setActiveKey('home')}> 
                   {logoView} 
-                  {/* isMobile ? <></> : */ <div className='show_in_pinned' style={{width: 'calc(100% - 40px)'}}><h4 className="_title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
+                  {/* isMobile ? <></> : */ <div className='' style={{width: 'calc(100% - 40px)'}}><h4 className="_title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
                     }
                 </div> 
            </div>

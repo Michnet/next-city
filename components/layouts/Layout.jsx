@@ -33,7 +33,7 @@ function sizing(width, setWidth){
 
 function pinHeader(){
   if (typeof window !== 'undefined') {
-    const header_el = document.querySelector(".header-auto-show");
+    const header_el = document.querySelector(".header-bar");
     const inters_el = document.getElementById("header_intersector");
     if(header_el){
       const observer = new IntersectionObserver( 

@@ -171,7 +171,7 @@ export default function Home(props) {
       </section>
 
     <AddListingCard/>
-
+{/* 
     <SectionHeader iconClass={'far fa-heart'} bgClass={'bg-twitter'} exClass='px-3 mb-2' link={'See All'} title={'Most Liked'} subTitle={'Meet the favourites'}/>
    <Splider height={130} options={{arrows: false, navigation: false, wheel:false, height: 'auto', gap: 10, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
@@ -296,7 +296,7 @@ export default function Home(props) {
 					</a>
 				</div>
 			</div>
-		</div></Client>
+		</div></Client> */}
 
 
     <div className="footer card card-style">
@@ -313,6 +313,7 @@ export default function Home(props) {
         <p className="footer-links"><a href="#" className="color-highlight">Privacy Policy</a> | <a href="#" className="color-highlight">Terms and Conditions</a> | <a href="#" className="back-to-top color-highlight"> Back to Top</a></p>
         <div className="clear"></div>
     </div>
+    <div className="divider bg-transparent"/>
 
 </div>
 </Client>

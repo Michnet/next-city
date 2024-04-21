@@ -351,7 +351,11 @@ async function loginFunc(jwt, username){
     const token = cookies.get("token");
 
     if(auth_type == 'none'){
-      return;
+      if(status === "authenticated"){
+        userSignOut()
+      }else{
+        return;
+      }
     }else{
       const userData = JSON.parse(window.localStorage.getItem('User'));
 
@@ -373,30 +377,35 @@ async function loginFunc(jwt, username){
           console.log('option 3', e);
             console.log(e)
          }
-      }else{
+      }else if(ucred_token){
         console.log('option 4 with no data');
         refreshUser(ucred_token);
+      }else{
+        userSignOut();
       }
     }
   }
 }
 useEffect(() => {
-  getAuthUser();
+  //getAuthUser();
    /* const interval = setInterval(() => {
      getAuthUser();
    }, 600000);
    return () => clearInterval(interval); */
  }, []);
 
-  setUseAuthState({userLogin, userSignOut, userLoginBySocial, getAuthUser, userSignup, userUpdate/* , getAuthUser, userUpdate,  , , getUserMeta */});
-  return <></>;
+ let functionsObj = {userLogin, userSignOut, userLoginBySocial, getAuthUser, userSignup, userUpdate/* , getAuthUser, userUpdate,  , , getUserMeta */}
+  setUseAuthState(functionsObj);
+  return functionsObj;
 }
 
 
 export function AuthProvider() {
   const authFunctions = useProvideAuth();
+  const {getAuthUser} = authFunctions;
+  console.log('running auth provider')
   useEffect(() => {
-    // getAuthUser();
+     getAuthUser();
      /* const interval = setInterval(() => {
        getAuthUser();
      }, 600000);

@@ -5,19 +5,22 @@ import { authState } from '@/contexts/atoms';
 import { WPDomain } from '@/helpers/base';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-
+import { getProviders, signIn, useSession } from "next-auth/react";
 
 function AuthUI() {
 //const [loading, setLoading] = useState(false);
 const [loginForm, setLoginForm] = useState(true);
 const {user} = useRecoilValue(authState)
+console.log('user in authui', user)
+const { data: session, status } = useSession();
+
 
   return (
 
         <div className="card mb-0" >
             <div>
                 <div className="ps-5 pe-5 sm:px-15 py-5">
-                {user ? <></> : <><div className='d-flex flex-row justify-center gap-2 align-items-end mb-3'>  
+                {session ? <></> : <><div className='d-flex flex-row justify-center gap-2 align-items-end mb-3'>  
                     <div className={`access_toggler ${loginForm ? '_active' : ''}`} onClick ={() => setLoginForm(true)}>
                         <h1 className="text-center font-800 mb-0">Sign In</h1>
                         <p className="color-highlight text-center mt-1 form_desc">Let's get you logged in</p>
