@@ -281,7 +281,6 @@ async function loginFunc(jwt, username){
          if (checkSession?.user) {
            const checkedUser = checkSession.user;
             await fetchUserFunc({email: checkedUser.email, jwt: jwt, authType: 'native'});
-            router.reload()
          }
        }
       })
@@ -324,9 +323,9 @@ async function loginFunc(jwt, username){
           if(res.ok){
             const checkSession = await getSession();
             if (checkSession?.user) {
+             // router.reload();
               const checkedUser = checkSession.user;
                await fetchUserFunc({email: checkedUser.email, jwt: jwtData.jwt, authType: 'native'});
-               router.reload()
             }
           }
          })
