@@ -28,7 +28,7 @@ function theAuth(){
 function useProvideAuth () {
   const setRecoilAuth = useSetRecoilState(authState);
   const setUseAuthState = useSetRecoilState(useAuthState);
-  const setUMetaState = useSetRecoilState(userMetaState);
+  //const setUMetaState = useSetRecoilState(userMetaState);
   const router = useRouter();
 
   function setTheAuth(authObj){
@@ -91,7 +91,7 @@ function useProvideAuth () {
     const restUser = await getUserRest({key:'email', val: email, with_meta: true});
     if(restUser){
         storeUser(restUser.user);
-        setUMetaState(restUser?.user?.user_meta);
+        //setUMetaState(restUser?.user?.user_meta);
         setTheAuth({...theAuth(), user: restUser.user, token:jwt, auth_type: authType})
     }
 }
@@ -340,8 +340,6 @@ async function loginFunc(jwt, username){
       console.log('got failed', error)
       setTheAuth({...theAuth, loading:false})  
     }
-
-   
  };
 
  async function getAuthUser(){

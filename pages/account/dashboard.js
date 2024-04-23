@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useRecoilValue } from "recoil";
 import { fetchListings } from "@/helpers/rest";
-import { UserAvatar } from "@/components/UI/UserAvatar";
+//import { UserAvatar } from "@/components/UI/UserAvatar";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import Sidebar from "@/components/dashboard/Sidebar";
 import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
@@ -65,11 +65,7 @@ const UserDashboard = (props) => {
     return ()=>{
       loaded = false;
     }
-  }, [user]);
-  useEffect(() => {
-    setLoading(true);
-    setLoading(false);
-  }, [query]);
+  }, [user, query]);
 
 
 
@@ -135,7 +131,7 @@ const UserDashboard = (props) => {
           <i className="fa fa-times"></i>
         </span>
       </div>
-      <Sidebar exClass='bg-transparent shadow-0' page={page} setPage={setPage}/>
+      <Sidebar exClass='bg-transparent shadow-0' page={page} setPage={setPage} user={user}/>
     </div>
 
     </>

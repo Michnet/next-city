@@ -10,7 +10,7 @@ const DBBooking = ({userId}) => {
                   My Bookings
                 </div>
 
-            <div className="p-2 rounded-4 bg-theme shadow-3">
+            <div className="p-2 sm:px-0 rounded-4 bg-theme shadow-3">
               <BookingTable userId={userId}/>
               {/* End tabs */}
             </div>

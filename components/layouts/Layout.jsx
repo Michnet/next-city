@@ -80,10 +80,10 @@ function LayoutConst({ children, headerTitle, settings}) {
           >
             <div className="menu-title mt-0 pt-0">
               <h1>Settings</h1>
-              <p className="color-highlight">Flexible and Easy to Use</p>
-              <a href="#" className="close-menu" onClick={() => closeMenus()}>
+              <p className="color-highlight">Choose Your Style</p>
+              <span className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
-              </a>
+              </span>
             </div>
             <div className="divider divider-margins mb-n2"></div>
             <div className="content">
@@ -114,18 +114,18 @@ function LayoutConst({ children, headerTitle, settings}) {
               <div className="list-group list-custom-large">
                 <span className="link" data-menu="menu-highlights" href="#" onClick={(e) => openOffCanvas(e)}>
                   <i className="fa font-14 fa-tint bg-green-dark rounded-s"></i>
-                  <span>Page Highlight</span>
-                  <strong>16 Colors Highlights Included</strong>
+                  <span>Theme Color</span>
+                  <strong>16 Options Included</strong>
                   <span className="badge bg-highlight color-white">HOT</span>
                   <i className="fa fa-angle-right"></i>
                 </span>
-                <a data-menu="menu-backgrounds" href="#" className="border-0" onClick={(e) => openOffCanvas(e)}>
+                {/* <a data-menu="menu-backgrounds" href="#" className="border-0" onClick={(e) => openOffCanvas(e)}>
                   <i className="fa font-14 fa-cog bg-blue-dark rounded-s"></i>
                   <span>Background Color</span>
                   <strong>10 Page Gradients Included</strong>
                   <span className="badge bg-highlight color-white">NEW</span>
                   <i className="fa fa-angle-right"></i>
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -147,13 +147,11 @@ function LayoutConst({ children, headerTitle, settings}) {
 
             <BSReveal id={'menu-highlights'}>
             <div className="menu-title">
-              <h1>Highlights</h1>
-              <p className="color-highlight">
-                Any Element can have a Highlight Color
-              </p>
-              <a href="#" className="close-menu" onClick={() => closeMenus()}>
+              <h1>Theme Colors</h1>
+              
+              <span className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
-              </a>
+              </span>
             </div>
             <div className="divider divider-margins mb-n2"></div>
             <div className="content">
@@ -220,13 +218,12 @@ function LayoutConst({ children, headerTitle, settings}) {
                 </a>
                 <div className="clearfix"></div>
               </div>
-              <a
-                href="#"
-                data-menu="menu-settings"
-                className="mb-3 btn btn-full btn-m rounded-sm bg-highlight shadow-xl text-uppercase font-900 mt-4"
+              <button onClick={(e) => openOffCanvas(e)}
+                data-menu="menu-settings" 
+                className="w-100 mb-3 btn btn-full btn-m rounded-sm bg-highlight shadow-xl text-uppercase font-900 mt-4"
               >
                 Back to Settings
-              </a>
+              </button>
             </div>
             </BSReveal>
           <div

@@ -33,14 +33,11 @@ export const authOptions = { providers: [
              const {token, username} = credentials;
         
             let loginEnd = `wp-json/jwt-auth/v1/autologin?JWT=${token}&name=${username}`;
-            //return {end:loginEnd};
 
             const res = await fetch(`${WPDomain}/${loginEnd}`);
             const loginObj = await res.json();
             
             const user = loginObj.user;
-
-            console.log('server user', user);
 
             if(user){
               return {

@@ -4570,9 +4570,6 @@ color: rgb(19,115,51);
   justify-content: end;
 }
 
-.gx-timeline-center > ._flipped {
-  justify-content: flex-start;
-}
 
 .gx-timeline-time p {
   color: var(--grayText);
@@ -4993,7 +4990,6 @@ opacity: 0.6;
   float: right;
 }
 
-.mega_gallery .text_box:nth-child(3) {}
 
 .mega_gallery .text_box ._text {
   font-size: 16px;
@@ -6723,25 +6719,12 @@ section.landing_page .intro_content{
    .profile_nav_menu > .content-holder{
      padding-top: 0;
    }
-   .timeline_card .gx-timeline-badge {
-        top: 24px;
-        left: 9px !important;
-    }
 
-.gx-timeline-center .gx-timeline-inverted .gx-timeline-badge {
-  top: 25px;
-  left: 9px;
-}
    .cats_showcase .section_title{
     justify-content: center;
 }
    .tabpane.pad_tab{
     padding: 12px 10px;
-}
-   ul.listing_navigator li.visible{
-    /* border: none; */
-    /* box-shadow: none; */
-    /* background: transparent !important; */
 }
    .swiper_slider.multi-slider.products.layout1 .slide_content .swiper-slide .text{
     display: none;

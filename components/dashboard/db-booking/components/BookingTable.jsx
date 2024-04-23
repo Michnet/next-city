@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 //import ActionsButton from "../components/ActionsButton";
 
 import { localiseDate} from "@/helpers/universal";
+import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
@@ -16,12 +17,14 @@ dayjs.extend(relativeTime)
 const BookingTable = ({userId}) => {
   const [activeTab, setActiveTab] = useState(0);
   const [bookings, setBookings] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   async function getThem(){
     const theBooks = await getBookings({author:userId});
     if(theBooks){
         setBookings(theBooks)
     }
+    setLoading(false)
   }
 
   function statusObj(status){
@@ -70,7 +73,7 @@ const BookingTable = ({userId}) => {
                         <th></th>
                         <th scope="col" className="color-white">Title</th>
                         <th scope="col" className="color-white">Order date</th>
-                        <th scope="col" className="color-white">Event date</th>
+                        <th scope="col" className="color-white">Event date/time</th>
                         <th scope="col" className="color-white">Price</th>
                         <th scope="col" className="color-white">Status</th>
                     </tr>
@@ -81,9 +84,9 @@ const BookingTable = ({userId}) => {
                   return <tr key={ind}>
                   <td><img width='80' height='80' src={product_thumb}/></td>
                   <td scope="row"><Link href={`/market/product/${product_id}`}>{product_title}</Link></td>
-                  <td>{`${dayjs.unix(date_created)}`}</td>
+                  <td>{`${dayjs.unix(date_created).format('h:ma, DD MMM YYYY')}`}</td>
                   <td className="lh-16">
-                    <span className="text-black-50">Check in :</span> {`${dayjs(localiseDate(dayjs.unix(start)))}`}
+                    <span className="text-black-50"></span> {`${dayjs(localiseDate(dayjs.unix(start))).format('h:ma, DD MMM YYYY')}`}
                   </td>
                   <td className="fw-500">{cost}</td>
                   <td>
@@ -104,7 +107,7 @@ const BookingTable = ({userId}) => {
    {/*  <Pagination /> */}
   </>
   }else{
-    pageView = <CallToActions light bgClass={'bg-theme'} icon={'bi-calendar-check'} title={'No bookings yet'} descript={'We have not recorded any booking made through your user account. You can start your booking today'} actionComponent={<Link className="btn btn-theme" href={'/explore/events'}>Explore Listings</Link>}/>
+    pageView = <>{loading ?  <div style={{height: 300}}><LoaderDualRingBoxed/></div> : <CallToActions light bgClass={'bg-theme'} icon={'bi-calendar-check'} title={'No bookings yet'} descript={'We have not recorded any booking made through your user account. You can start your booking today'} actionComponent={<Link className="btn btn-theme" href={'/explore/events'}>Explore Listings</Link>}/>}</>
   }
 
   return (

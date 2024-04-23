@@ -53,8 +53,8 @@ const TermTag = ({term, type, collection, colorText, exClass, exTagClass, linkTa
     case 'hash':
       termView =  <Link
         href={`/explore/events?${linkTax}=${slug}`}
-        className={`d-block lh-1 ${taxonomy} ${exClass ?? ''} term-link _hash`}>
-          <Client><p className="gx-text-truncate" style={{color : color ?? '#2f2e2e'}}>#<span className="gx-mb-0" dangerouslySetInnerHTML={{__html:  name}}/></p></Client>
+        className={`d-block lh-1 ${taxonomy} ${exTagClass ?? ''} term-link _hash`}>
+          <Client><span className="truncate" style={{color : color ?? '#2f2e2e'}}>#<span className="gx-mb-0" dangerouslySetInnerHTML={{__html:  name}}/></span></Client>
 
       </Link>;
       break;

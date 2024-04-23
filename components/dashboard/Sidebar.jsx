@@ -6,12 +6,14 @@ import { useRecoilValue } from "recoil";
 import { BSModal } from "../UI/Offcanvas/BSModal";
 import { UserAvatar } from "../UI/UserAvatar";
 import { closeMenus } from "@/helpers/appjs";
+import GuestPrompt from "@/components/UI/GuestPrompt";
 
 
 const Sidebar = ({page, setPage, user, exClass=''}) => {
   const router = useRouter();
   const {name, id} = user ?? {};
   const {userSignOut} = useRecoilValue(useAuthState);
+  console.log('user in side', user)
 
   const sidebarContent = [
     {
@@ -67,20 +69,17 @@ const Sidebar = ({page, setPage, user, exClass=''}) => {
     },
   ];
   return (
-    <div className={`sidebar -dashboard card card-style p-3 m-md-0 ${exClass}`}>
+    <>{user ? <div className={`sidebar -dashboard card card-style p-3 m-md-0 ${exClass}`}>
       <div className="dashboard__content bg-dark-1 card card-style shadow-0 border mx-0 bg-transparent">
           <div className="row justify-between items-end">
-            <div className="col-12">
-              <div className="d-flex flex-row flex-nowrap gap-2 align-items-center"><UserAvatar/><h1 className="text-30 lh-14 fw-600 text-white">{name}</h1></div>
+            <div className="col-12 pt-3 pb-2">
+              <div className="d-flex flex-row flex-nowrap gap-2 align-items-center"><UserAvatar/><h1 className="text-30 lh-14 fw-600">{name}</h1></div>
               <div className="text-15 text-light-1">
                 My account information.
               </div>
-              <div className="action_group mt-20 mb-20">
-                <BSModal modal_id={'edit_user'} btnLabel={'Edit Profile'} btnClass={'btn-sm btn-theme'} /* content={<UpdateUser id={id}/>} *//>
-              </div>
-              <button className="d-flex text-yellow-4 d-none md:d-block" data-bs-toggle="modal" data-bs-target="#user_menu">
-                <i className="icon-menu-2 text-20"></i>
-              </button>
+              {<div className="action_group mt-20 mb-20">
+                <button className='btn'>Edit Profile</button>
+              </div>}
             </div>
           </div>
 
@@ -114,7 +113,7 @@ const Sidebar = ({page, setPage, user, exClass=''}) => {
           </div>
         </div>}
       )}
-    </div>
+    </div> : <GuestPrompt/>}</>
   );
 };
 

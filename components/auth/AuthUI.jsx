@@ -11,7 +11,6 @@ function AuthUI() {
 //const [loading, setLoading] = useState(false);
 const [loginForm, setLoginForm] = useState(true);
 const {user} = useRecoilValue(authState)
-console.log('user in authui', user)
 const { data: session, status } = useSession();
 
 
@@ -19,7 +18,7 @@ const { data: session, status } = useSession();
 
         <div className="card mb-0" >
             <div>
-                <div className="ps-5 pe-5 sm:px-15 py-5">
+                <div className="px-4 sm:px-15 py-3 pb-2">
                 {session ? <></> : <><div className='d-flex flex-row justify-center gap-2 align-items-end mb-3'>  
                     <div className={`access_toggler ${loginForm ? '_active' : ''}`} onClick ={() => setLoginForm(true)}>
                         <h1 className="text-center font-800 mb-0">Sign In</h1>

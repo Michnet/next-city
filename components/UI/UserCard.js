@@ -8,7 +8,7 @@ import { Avatar } from "./Partials";
 import {closeMenus, openOffCanvas} from "@/helpers/appjs";
 import Link from "next/link";
 
-export function UserCard({size}){
+export function UserCard({size, exClass=''}){
    const {userSignOut} = useRecoilValue(useAuthState);
     const {user, loading} = useRecoilValue(authState);
     const { data: session } = useSession();
@@ -17,8 +17,8 @@ export function UserCard({size}){
     const {name} = sessionUser ?? {};
   
     let avatarUrl = user?.avatar_urls ? user?.avatar_urls[96] : '';
-    return <><Client><div className="bg-theme mx-3 rounded-m shadow-m my-3 user_card">
-               <div className="d-flex px-2 pb-2 pt-2">
+    return <><Client><div className={`mx-3 my-3 user_card ${exClass}`}>
+               <div className="d-flex px-2 py-1">
                      <div className="align-self-center">
                      <span type="button" className="d-flex" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}>
                            <Client> {loading ? <LoaderDualRing exClass={'_mini'}/> : <>{user ? <div>{<Avatar width={size ?? 30} rounded src={avatarUrl}  className="gx-size-40 gx-pointer" alt=""/>
@@ -30,10 +30,11 @@ export function UserCard({size}){
                         {/* <h6 className="ps-1 mb-0 font-400 opacity-40 font-12 lh-1">Freelance Photographer</h6> */}
                      </div>
                      {<div className="ms-auto hide_in_collapsed">
-                        {user ? <a href="#" data-bs-toggle="dropdown" className="icon icon-m ps-1"><i className="fa fa-ellipsis-v font-18 color-theme"></i></a> : <></>}
+                        <span data-bs-toggle="dropdown" className="icon icon-m ps-1"><i className="fa fa-ellipsis-v font-18 color-theme"></i></span>
                         <div className="dropdown-menu bg-transparent border-0 mb-n5">
                            <div className="card card-style rounded-m shadow-xl me-1">
                                  <div className="list-group list-custom-small list-icon-0 px-3 mt-n1">
+                                    {user ? <>
                                     <Link href="/account/dashboard" className="mb-n2 mt-n1" onClick={() => closeMenus()}>
                                        <span>Your Profile</span>
                                        <i className="fa fa-angle-right"></i>
@@ -50,6 +51,12 @@ export function UserCard({size}){
                                        <span>Sign Out</span>
                                        <i className="fa fa-angle-right"></i>
                                     </span>
+                                    </> : 
+                                    <span data-menu='login_modal' onClick={(e) => {openOffCanvas(e)}} href="#" className="mb-n1 _link">
+                                       <span>Sign In</span>
+                                       <i className="fa fa-angle-right"></i>
+                                    </span>
+                                    }
                                  </div>
                            </div>
                         </div>

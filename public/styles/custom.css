@@ -282,7 +282,7 @@ h6 {
 
 /*Classes*/
 .bg-theme-transparent{
-    background: var(--bgThemeTransparent) !important;
+    background: #ffffffe6 !important;
     background-color: var(--bgThemeTransparent) !important;
 }
 .handy{
@@ -1844,10 +1844,15 @@ button.back_link {
 }
 
 
-._meta {color: var(--bs-gray-900);font-size: 13px;font-weight: 600;list-style: none;}
+._meta {/* color: var(--bs-gray-500); */font-size: 13px;list-style: none;font-weight: 400;}
+
+.listing_meta._mini ._meta {
+    list-style: none;
+    padding-left: 0;
+}
 
 .listing_meta p {
-    color: var(--bs-gray-700);
+    opacity: 0.6;
     font-size: 13px;
     font-weight: 600;
 }
@@ -2555,7 +2560,7 @@ span.clear_tag {
     border: 2px solid #cfcfcf;
     position: absolute;
     left: 0;
-    top: 16px;
+    top: 19px;
     z-index: 2;
     font-size: 16px;
     color: #fff;
@@ -2645,7 +2650,7 @@ span.clear_tag {
 .gx-timeline-center .gx-timeline-item {
     clear: both;
     width: 50%;
-    padding-left: 55px
+    padding-left: 40px;
 }
 
 .gx-timeline-center .gx-timeline-item:before {
@@ -2659,7 +2664,7 @@ span.clear_tag {
 
 .gx-timeline-center .gx-timeline-time {
     position: absolute;
-    top: 32px;
+    top: 15px;
     left: -150px;
     right: auto;
     z-index: 2
@@ -2668,7 +2673,10 @@ span.clear_tag {
 .gx-timeline-center .gx-timeline-inverted {
     text-align: right;
     padding-left: 0;
-    padding-right: 55px
+    padding-right: 40px;
+}
+
+.gx-timeline-panel .activityCard1.-type-1 {
 }
 
 .gx-timeline-center .gx-timeline-inverted:before {
@@ -2697,7 +2705,7 @@ span.clear_tag {
 
 .gx-timeline-center .gx-timeline-inverted .gx-timeline-time {
     position: absolute;
-    top: 32px;
+    top: 15px;
     right: -150px;
     left: auto;
     z-index: 2
@@ -2749,7 +2757,7 @@ span.clear_tag {
 }
 
 .gx-timeline-item:last-child:before {
-    bottom: 25px
+    /* bottom: 25px; */
 }
 
 
@@ -2878,6 +2886,12 @@ div#explore_nav .left_menu_btn {
 }
 }
 
+@media (min-width: 576px){
+.gx-timeline-center > ._flipped {
+  justify-content: flex-start;
+}
+}
+
 @media (max-width: 575px){
 .profile-top-menu .menu_icon i {
     font-size: 23px;
@@ -2891,14 +2905,23 @@ div#explore_nav .left_menu_btn {
     .gx-timeline-center .gx-timeline-item {
         float: none;
         padding-left: 50px;
-        width: 100%
+        width: 100%;
     }
+
+.gx-timeline-center .timeline_card {
+    margin-left: 50px;
+    width: calc(100% - 50px);
+}
+    
+
+.timeline_card._horizontal._flipped {}
 
     .gx-timeline-center .gx-timeline-item:before {
         left: 14px
     }
 
     .gx-timeline-center .gx-timeline-badge {
+        top: 20px;
         left: 4px
     }
 
@@ -2917,7 +2940,8 @@ div#explore_nav .left_menu_btn {
 
     .gx-timeline-center .gx-timeline-inverted .gx-timeline-badge {
         right: auto;
-        left: 4px
+        left: 4px;
+        top: 20px;
     }
 
     .gx-timeline-center .gx-timeline-inverted .gx-timeline-panel:before {
@@ -2972,11 +2996,12 @@ div#explore_nav .left_menu_btn {
     }
 
     .gx-timeline-center .gx-timeline-inverted .gx-timeline-time,.gx-timeline-center .gx-timeline-time {
-        position: relative;
         top: auto;
-        left: auto;
+        left: -50px;
         right: auto;
-        margin-bottom: 6px
+        margin-bottom: 6px;
+        width: 40px;
+        text-align: right;
     }
 
     .gx-timeline-center .gx-timeline-time-item .gx-timeline-panel:after,.gx-timeline-center .gx-timeline-time-item .gx-timeline-panel:before {
@@ -3057,7 +3082,14 @@ div#explore_nav .left_menu_btn {
     background: transparent !important;
 }
 .gx-timeline-panel .thumb{
-    /* height: 100%; */
+    /* height: inherit; */
+    width: 100%;
+    max-height: 130px;
+}
+
+.gx-timeline-panel .thumb img {
+    object-fit: cover;
+    width: 100%;
 }
 
 
@@ -3162,7 +3194,7 @@ span.list_title._first {
 }
 
 .footer_content{
-    background-color: var(--bgTheme);
+    background-color: #fff;
     box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.06);
     display: flex;
     text-align: center;
@@ -3174,4 +3206,13 @@ span.list_title._first {
 }
 .footer_content {
     box-shadow: 0 -6px 10px 0 rgba(0, 0, 0, 0.06);
+}
+
+.gx-timeline-panel .activityCard1.-type-1 .card_content {
+    background: var(--bgTheme);
+}
+
+
+.event_timeline.gx-timeline-center {
+    margin-bottom: 20px;
 }

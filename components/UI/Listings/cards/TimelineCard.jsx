@@ -41,20 +41,21 @@ const TimelineCard = ({item, noButton, styleName, color, flipped}) => {
           >
             <div className={`gx-timeline-item gx-timeline-time-item ${styleName ?? ''}`}>
               <div className="gx-timeline-time"><p className="fw-bold text-20">{event_date && event_date[0] ? <DateView  customDate={event_date[0].start} stringy/> : <></>}</p></div>
-              <div className={`gx-timeline-badge`} style={{background: `${color ?? 'var(--sectheme)'}`}}><p></p></div>
+              <div className={`gx-timeline-badge`} style={{background: `${color ?? 'var(--bgTheme)'}`}}><p></p></div>
               <div className="gx-timeline-panel p-0">
                 {/* <h4 className={`gx-timeline-tile gx-text-${color}`}>{title.rendered}</h4> */}
                 {/* <p>{short_desc}</p> */}
                 <div
               className="activityCard1 -type-1  hover-inside-slider"
             >
-              <div className='card_content d-grid align-items-stretch overflow-hidden' style={{borderRadius: '10px', background: '#f5f5f5', gridTemplateColumns: '30% 70%'}}>
-                  <div className="thumb"><img src={xtra_large_thumb} placeholder={<SkeletonCube height={'100%'}/>} style={{height: '100%', minWidth: '100%', objectFit: 'cover'}}/>
+              <div className='card_content row_flex align-items-stretch overflow-hidden'>
+                  <div className="thumb" style={{width: '30%'}}>
+                    <img src={xtra_large_thumb} placeholder={<SkeletonCube height={'100%'}/>} style={{height: '100%', minWidth: '100%', objectFit: 'cover'}}/>
                   </div>
-                  <div className='content px-10'>
-                    <TermTag exTagClass={'mb-0'} term={category} type={'hash'}/>
+                  <div className='content px-10 m-0' style={{width: '70%'}}>
+                    <TermTag exTagClass={'mb-0 font-13'} term={category} type={'hash'}/>
                     <Link href={`/events/${slug}`}>
-                      <h4 className="activityCard1__title lh-13 truncate-2 text-dark-1 text-14">
+                      <h4 className="activityCard1__title lh-13 truncate-2 text-dark-1 text-14 fw-600">
                         <span>{cleanHtml(title.rendered)}</span>
                       </h4>
                     </Link>

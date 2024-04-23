@@ -11,24 +11,24 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
 
   const defBottomLinks = [
     {id: 1,
-        icon: "fa fa-home",
+        icon: "fas fa-home",
         color: 'gradient-green',
         name: "Home",
         routePath: "/",
         link: true
     },
     {id: 2,
-        icon: "fa fa-search-location",
+        icon: "fas fa-search",
         color: 'gradient-red',
         name: "Explore",
         routePath: "/explore/events",
         link: true
     },
     {id: 3,
-        icon: "fa fa-heart",
+        icon: "far fa-user",
         color: 'gradient-red',
-        name: "Pages",
-        routePath: "/pages",
+        name: "Account",
+        routePath: "/account/dashboard",
         link: true
     },
     {id: 4,
@@ -62,7 +62,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
                     </>
             })}</div>
             <div className="_fab">
-              <button  onClick={() => router.push('/add-listing')} className="circle d-flex align-items-center justify-center bg-theme  gradient-menu shadow shadow-bg-m" style={{}}>
+              <button  onClick={(e) => {btnProps ? openOffCanvas(e) : router.push('/add-listing')}} {...btnProps}  className="circle d-flex align-items-center justify-center bg-theme  gradient-menu shadow shadow-bg-m" style={{}}>
               <span  className={`text-center big_act`}>
                 {<i className={`link_i ${icon ?? 'fa fa-plus'}`}/>}
               </span>
