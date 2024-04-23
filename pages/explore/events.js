@@ -1,4 +1,3 @@
-// import ActivityCarousel from "~/components/activity/ActivityCarousel";
 import ExplorerFilter from "@/components/UI/search/ExplorerFilter";
 import SearchFilter3 from "@/components/UI/search/SearchFilter3";
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
@@ -11,17 +10,13 @@ import { useRecoilValue } from "recoil";
 import { UISizes } from "@/contexts/atoms";
 import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
 import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
-//import Splider from "@/components/UI/partials/Splider";
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import Header from "@/components/layouts/partials/Header";
 import { advancedFetchListings } from "@/helpers/rest";
 import Slider from "react-slick";
 import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
-//import EventsCarousel from "@/components/UI/Listings/EventsCarousel";
 import { closeMenus } from "@/helpers/appjs";
-//import { AvatarsRow } from "~/appComponents/components/skeletons/React-content-loader/Skeletons";
-//import SiteHead from "~/appComponents/components/SiteHead";
 
 export async function getStaticProps() {
 
@@ -149,17 +144,14 @@ const ExploreEvents = ({topList}) => {
                   <Search cardExClass={'mx-0'}/>
               </div>
 
-              {/* <div className="inner_section mb-40">
-                  <ActivityGrid title={'This Month'} subtitle={'Update your calendar'} ={'px-10'} queryObj={eventsThisMonth} limit={3} noButton cardType={2} columns={3} columnClass={'col-12 col-sm-6 col-md-4 mb-10'}/>
-              </div> */}
             </div>
           </div>
           </div>
       </section>
       </div>
       <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="listingSidebar" >
-                <div class="menu-title"><h1>Filter Results</h1>
-                    <p class="color-highlight">Filter your Search Results</p>
+                <div className="menu-title"><h1>Filter Results</h1>
+                    <p className="color-highlight">Filter your Search Results</p>
                       <i className="fas fa-times close-menu" onClick={() => closeMenus()}/>
                   </div>
                 <div className="offcanvas-body pb-0">

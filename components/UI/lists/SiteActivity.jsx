@@ -13,7 +13,7 @@ function SiteActivity({user, token}) {
         <div className="actz_timeline">
             {activities?.length > 0 && <>
                 <div className="notice_drawer no-scrollbar">
-                    <div classname='mb-15'>
+                    <div className='mb-15'>
                     {activities.map((activity) => {
                         return <ActivityItem exClass={'shadow-0'} avatarSize={30} key={activity.id} activity={activity} user={user} token={token}/>
                     })}

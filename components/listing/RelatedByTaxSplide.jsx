@@ -6,7 +6,6 @@ import useSWR from 'swr';
 import Splider from "../UI/partials/Splider";
 import ActivityCard2 from "../UI/Listings/cards/ActivityCard2";
 import { SectionHeader } from "@/components/UI/Partials";
-//import { generateTempArray } from "@/helpers/universal";
 import { CardsRowLoader } from "../skeletons/Skeletons";
 
 
@@ -71,7 +70,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, slug, exclu
                 <></>
               }
           </Splider></>
-  }
+      }
   }
 
   return (

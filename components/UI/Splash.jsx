@@ -30,7 +30,7 @@ function Splash() {
             imgSrc: "/images/walkthrough/calendar.png",
             title: "Events near you",
             subtitle: "Stay updated with what's happening around", 
-            descript: "Powered by Bootstrap 5.x with AJAX Transitions providing full PWA, RTL and Dark Mode integrations!"
+            descript: "Be the first to know when something cool is happening in your neighbourhood!"
         }
     ];
 
