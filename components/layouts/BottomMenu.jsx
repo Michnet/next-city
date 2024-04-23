@@ -8,6 +8,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
   const router = useRouter();
   const {mMenuContent} = settings ?? {};
   //const {btnProps, btnFunc, icon} = mMenuContent ?? {}
+  
 
   const defBottomLinks = [
     {id: 1,

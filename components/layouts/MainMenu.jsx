@@ -5,7 +5,6 @@ import { useRouter } from "next/router"
 import { UserCard } from "../UI/UserCard"
 import {openOffCanvas} from "@/helpers/appjs";
 import TermsGrid from './../UI/lists/TermsGrid';
-import { DualColorHeader } from "../UI/Partials";
 import { quickLinks } from "@/helpers/data";
 import Logo from "../UI/Logo";
 import AddListingCard from "@/components/UI/partials/AddListingCard";

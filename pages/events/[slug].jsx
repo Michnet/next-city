@@ -33,6 +33,7 @@ const ColorThief = require('colorthief');
 
 import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
+import ListingBottomMenu from "@/components/listing/ListingBottomMenu";
 
 const randColor = randomEither(siteColors);
 
@@ -113,7 +114,7 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing, themeColor, color=randColor}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, categories, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, category, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
     const {_links} = meta ?? {};
     const router = useRouter();
     const {query} = router;
@@ -158,29 +159,9 @@ if(listing){
             />
         </div>
 }
-   let bottomContent = <>
-   <div id="footer-bar" className="footer-bar-1 d-md-none">
+      
 
-            <div className='gap-2 footer_content ps-2 py-2'>
-                {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m shadow-bg shadow-bg-m rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-${color} btn-icon text-start`}>
-                  <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
-                  Booking
-                </button>}
-
-                {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
-                    <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
-                </a>}
-                {phone && <a style={{maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
-              </div>
-              <div className='_fab'>
-              <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} /* style={{width: '50px', height: '50px', right: '10px'}}  */className={'d-flex align-items-center justify-center  px-2 bg-theme'}>
-                <i class="fas fa-ellipsis-h text-center text-24 color-theme"/>
-              </button>
-              </div>
-          </div>
-   
-   
- </>
+ console.log(listing)
 
     return <> 
         <>
@@ -200,14 +181,14 @@ if(listing){
                 <ListingTopMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
 
-    <BottomMenu content={bottomContent}/>
+    <ListingBottomMenu setActiveKey={setActiveKey} listing={listing} color={color}/>
     <div className="page-content single_listing ">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         <Hero2 /* palette={palette}  */ color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
         <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
         <Client>
-            <div className="pt-4"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} ids={dir_categories} exclude={id}/></div>
+            <div className="pt-3"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} slug={category.slug} ids={dir_categories} exclude={id}/></div>
         </Client>
         <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
     </div>

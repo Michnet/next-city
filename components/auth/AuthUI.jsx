@@ -5,12 +5,11 @@ import { authState } from '@/contexts/atoms';
 import { WPDomain } from '@/helpers/base';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { getProviders, signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 function AuthUI() {
 //const [loading, setLoading] = useState(false);
 const [loginForm, setLoginForm] = useState(true);
-const {user} = useRecoilValue(authState)
 const { data: session, status } = useSession();
 
 

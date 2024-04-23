@@ -2339,7 +2339,7 @@ button.back_link {
     justify-content: center;
 }
 
-.listing_menu_toggler .menu_icon span {margin-bottom: -8px;}
+.listing_menu_toggler .menu_icon span {/* margin-bottom: -8px; */}
 
 .left_menu_btn {
     padding: 0;
@@ -2490,6 +2490,7 @@ span.clear_tag {
 
 .listing_menu_toggler .menu_icon .profile_title {
     opacity: 0.5;
+    margin-top: -8px;
 }
 
 .splider.in_color .splide__slide:not(.is-active):before {
@@ -2771,8 +2772,10 @@ span.clear_tag {
 
 @media (max-width: 991px) {
 .header.header-sticky.header-always-show.header-invert:not(.header-active){
-    height:0 !important;
     overflow:visible;
+    position: absolute;
+    background: transparent;
+    backdrop-filter: none;
 }
 
 .header.header-sticky.header-always-show.header-invert:not(.header-active) .profile_title {
@@ -3215,4 +3218,8 @@ span.list_title._first {
 
 .event_timeline.gx-timeline-center {
     margin-bottom: 20px;
+}
+
+.btn-icon.btn-icon-2 {
+    padding-left: 40px !important;
 }

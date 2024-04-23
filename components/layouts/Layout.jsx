@@ -88,11 +88,9 @@ function LayoutConst({ children, headerTitle, settings}) {
             <div className="divider divider-margins mb-n2"></div>
             <div className="content">
               <div className="list-group list-custom-small">
-                <a
-                  href="#"
-                  data-toggle-theme onClick={() => toggleTheme()} 
-                  data-trigger-switch="switch-dark-mode"
-                  className="pb-2 ms-n1"
+                <div
+                  //data-trigger-switch="switch-dark-mode"
+                  className="pb-2 ms-n1 _link"
                 >
                   <i className="fa font-12 fa-moon rounded-s bg-highlight color-white me-3"></i>
                   <span>Dark Mode</span>
@@ -109,7 +107,7 @@ function LayoutConst({ children, headerTitle, settings}) {
                     ></label>
                   </div>
                   <i className="fa fa-angle-right"></i> 
-                </a>
+                </div>
               </div>
               <div className="list-group list-custom-large">
                 <span className="link" data-menu="menu-highlights" href="#" onClick={(e) => openOffCanvas(e)}>

@@ -36,7 +36,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
   };
 
 
-  const imgSrc = useMemo(() => processImg(slicedGal), [listing.id] );
+  const imgSrc = useMemo(() => processImg(imgArr), [listing.id] );
 
   // custom navigation
   function Arrow(props) {
@@ -139,7 +139,6 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                         <span >{cleanHtml(title?.rendered)}</span>
                       </h4>
                     </Link>
-                    
                     
                     {/* <p className="card_desc truncate-2 mb-1">{short_desc}</p> */}
                     <div className={`d-flex flex-wrap justify-start align-items-center gap-1`}>

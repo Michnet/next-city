@@ -5,10 +5,11 @@ import Header from "./partials/Header";
 import {useMemo, memo } from "react";
 
 function ScaffoldConst({children, uiSize, settings, path}) {
-    const {isDeskTop, isTab} = uiSize;
-    const {mMenuContent, noHeader, autoShowHeader, hideNews, headerTitle} = settings ?? {};
+    const {isTab} = uiSize;
+    const {noHeader, autoShowHeader, hideNews, headerTitle} = settings ?? {};
 
     const cachedChildren = useMemo(() => children, [path])
+    console.log('running scaffold')
     
   return (<>
     <div className="container-fluid p-0">

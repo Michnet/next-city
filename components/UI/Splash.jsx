@@ -1,21 +1,33 @@
-import { introState } from "@/contexts/atoms";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide"
-import { useRecoilState } from "recoil";
+import {useRouter} from 'next/router'
 
 function Splash() {
+    const router = useRouter();
 
-    const [intro, setIntro] = useRecoilState(introState);
+    let intro;
+
+    if(typeof window !== "undefined"){
+     intro = localStorage.getItem('lyveCity_intro');
+    }
+    function setIntro(){
+        if(typeof window !== "undefined"){
+            localStorage.setItem('lyveCity_intro', true);
+            router.reload();
+        }
+    }
+
+    
     const screens = [
         {
             id: 1,
-            imgSrc: "images/undraw/1.svg",
-            title: "StickyMobile 5.0",
-            subtitle: "Simply the Best Mobile Webkit on Envato", 
-            descript: "Powered by Bootstrap 5.x with AJAX Transitions providing full PWA, RTL and Dark Mode integrations!"
+            imgSrc: "/images/undraw/1.svg",
+            title: "Showcase your event",
+            subtitle: "Your event's landing page", 
+            descript: "Let the world know about your soon-coming event with a free beautiful landing page!"
         },
         {
             id: 2,
-            imgSrc: "images/walkthrough/calendar.png",
+            imgSrc: "/images/walkthrough/calendar.png",
             title: "Events near you",
             subtitle: "Stay updated with what's happening around", 
             descript: "Powered by Bootstrap 5.x with AJAX Transitions providing full PWA, RTL and Dark Mode integrations!"
@@ -35,7 +47,7 @@ function Splash() {
                                 <div  className="card" style={{height: '100vh', width: '100vw'}}>
                                     <div className="card-center text-center">
                                         <div className="content mt-n5">
-                                            <img className="mb-3 mx-auto" width="320" src={imgSrc}/>
+                                            <img className="mb-3 mx-auto" width="300" height="280" src={imgSrc}/>
                                             <h1 className="mt-5 mb-0 font-30">{title}</h1>
                                             <p className="mt-n1 color-highlight font-12">{subtitle}</p>
                                             <p className="boxed-text-xl">
@@ -53,19 +65,19 @@ function Splash() {
                         <div className="splide__progress__bar" />
                     </div>
         
-                    <div className="splide__arrows">
-                        <button className="splide__arrow splide__arrow--prev"><i class="fa fa-angle-left me-4 ms-4"/>Previous</button>
-                        <button className="splide__arrow splide__arrow--next">Next<i class="fa fa-angle-right me-4 ms-3"/></button>
+                    <div className="splide__arrows position-fixed bottom-0 w-100" style={{height: 60}}>
+                        <button className="bg-transparent w-auto splide__arrow splide__arrow--prev"><i className="fa fa-angle-left me-4 ms-4"/>Previous</button>
+                        <button className="bg-transparent w-auto splide__arrow splide__arrow--next">Next<i className="fa fa-angle-right me-4 ms-3"/></button>
                     </div>
         
                 </Splide>
         
                 <div className="cover-button-bottom">
-                    <a href="#" className="btn scale-box btn-m mt-5 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase" onClick={() => setIntro(true)}>Get Started</a>
+                    <button className="btn scale-box btn-m mt-5 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase" onClick={() => setIntro()}>Get Started</button>
                 </div>
                 
-                <a href="#" class="cover-next slider-next splide__arrow--next color-gray-dark">Next<i class="fa fa-angle-right me-4 ms-3"></i></a>
-                <a href="#" class="cover-prev slider-prev splide__arrow--prev color-gray-dark"><i class="fa fa-angle-left me-4 ms-4"></i>Previous</a>
+                {/* <span className="cover-next slider-next splide__arrow--next color-gray-dark">Next<i className="fa fa-angle-right me-4 ms-3"></i></span>
+                <span className="cover-prev slider-prev splide__arrow--prev color-gray-dark"><i className="fa fa-angle-left me-4 ms-4"></i>Previous</span> */}
         
                 </div>
           )
