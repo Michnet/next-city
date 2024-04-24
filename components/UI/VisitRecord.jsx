@@ -3,13 +3,17 @@ import {useRecoilValue, useRecoilState } from 'recoil';
 import { actionsState, locationState } from '@/contexts/atoms';
 import { recordVisit } from '@/helpers/rest';
 
+const controller = new AbortController();
+
 function VisitRecord({Id}) {
   const [actions, setActions] = useRecoilState(actionsState);
   const {city} = useRecoilValue(locationState);
   const {viewed} = actions;
 
-  const postVisit = async(payload) => {
-        await recordVisit(payload);
+  const {signal} = controller;
+
+  const postVisit = async(payload, signal) => {
+        await recordVisit(payload, signal);
         if(viewed?.length > 0){
           let index = viewed.indexOf(Id);
           if(index > -1){
@@ -20,6 +24,7 @@ function VisitRecord({Id}) {
         }else{
           setActions({...actions, viewed:[Id]});
         }
+        controller.abort();
   }
   
   useEffect(() => {
@@ -27,7 +32,8 @@ function VisitRecord({Id}) {
     if(city && city !== 'undefined'){
       load.city = city;
     }
-   postVisit(load)
+   postVisit(load, signal)
+   return () => controller.abort();
   }, [Id])
   
 

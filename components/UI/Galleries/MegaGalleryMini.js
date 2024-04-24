@@ -15,7 +15,8 @@ export const HorizontalGrid = ({children, height}) => {
 }
 
 const MegaGalleryMini = ({listing, color, setActiveKey}) => {
-  const {landing, marketing,id, galleryWithBlurs, gallery:l_gallery} = listing;
+  const {landing, marketing,id, galleryWithBlurs, meta} = listing;
+  const {_job_gallery:l_gallery} = meta ?? {};
   const {greeting} = landing;
   const {punch_lines} = marketing;
   const [slideIndex, setSlideIndex] = useState(-1);
@@ -71,16 +72,16 @@ function setUpToggler(){
 useEffect(() => {
   setLoading(true)
   if(listing){
-    setGallery(/* listing.galleryWithBlurs */listing.gallery)
+    setGallery(/* listing.galleryWithBlurs */listing?.meta?._job_gallery)
     setLoading(false);
     setSlideIndex(-1);
   }
 }, [listing.id]);
 
-galleryView = <>
+galleryView = <> 
         {/* <Grid1/> */}
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
-          <div id='wall_gallery' className="mega_gallery _vertical" onLoad={() =>   setUpToggler()}>
+          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1">
         {megaGall.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
             <Masonry>
             {megaGall.map((item, index) => {
@@ -110,7 +111,7 @@ galleryView = <>
         </div>
         <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-center w-100 h-100 justify-center"><span className="show_more btn">See Gallery</span></div>
         </div>
-        </div>
+      </div>
 </>
 
 return (

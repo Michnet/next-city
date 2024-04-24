@@ -26,6 +26,7 @@
     "react-dom": "^18",
     "react-hydration-provider": "^2.1.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-lazyload": "^3.2.1",
     "react-multi-date-picker": "^4.4.1",
     "react-responsive-masonry": "^2.2.0",
     "react-slick": "^0.30.2",

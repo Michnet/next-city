@@ -14,13 +14,12 @@ const ListingBottomMenuConst = ({listing, setActiveKey, color}) =>{
                         <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
                         Booking
                     </button>}
-
                     {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                         <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
                     </a>}
                     {phone && <a style={{maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
                     {/* <PreviousPostLink/> */}
-                    <NextPostLink current={listing.slug}/>
+                    <NextPostLink current={listing.slug} styleObj={{maxWidth: '50px'}}/>
                     </div>
                     <div className='_fab'>
                     <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} /* style={{width: '50px', height: '50px', right: '10px'}}  */className={'d-flex align-items-center justify-center  px-2 bg-theme'}>

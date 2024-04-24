@@ -1,39 +1,42 @@
-import RelatedByTaxSplide from "@/components/listing/RelatedByTaxSplide";
+import dynamic from "next/dynamic";
+
+const RelatedByTaxSplide = dynamic(() => import("@/components/listing/RelatedByTaxSplide"));
 //import VisitRecord from "@/components/UI/VisitRecord";
-import ListingStater from "@/contexts/contextStaters/ListingStater";
+const ListingStater = dynamic(() => import("@/contexts/contextStaters/ListingStater"));
 import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
 import { cleanHtml, shadeRGBColor } from "@/helpers/universal";
-import dynamic from "next/dynamic";
 import { memo, useEffect, useState, useMemo } from "react";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
-import ListingSideMenu from "@/components/listing/ListingSideMenu";
+const ListingSideMenu = dynamic(() => import("@/components/listing/ListingSideMenu"));
 import { Client } from "react-hydration-provider";
-import RightMenu from "@/components/listing/RightMenu";
+const RightMenu = dynamic(() => import("@/components/listing/RightMenu"));
 import Content from "@/components/listing/Content";
 //import { useRecoilValue } from "recoil";
 import { authState, listingViewState } from "@/contexts/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import VisitorActions from "@/components/listing/partials/VisitorActions";
 import CallToActions from "@/components/UI/CallToActions";
-import Link from "next/link";
+const Link = dynamic(() => import("next/link"));
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
 import { closeMenus, openOffCanvas } from "@/helpers/appjs";
 //import BottomMenu from "@/components/layouts/BottomMenu";
 import Hero2 from "@/components/listing/landingPages/hero/Hero2";
-import ListingFooter from "@/components/listing/landingPages/footer/ListingFooter";
 import listingMenu from "@/components/listing/ListingMenu";
 import PageScroller from "@/components/UI/partials/PageScroller";
 //import Hero from "@/components/listing/landingPages/hero/Hero";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
+const ListingFooter = dynamic(() => import('@/components/listing/landingPages/footer/ListingFooter'), { ssr: false });
+const ListingBottomMenu = dynamic(() => import('@/components/listing/ListingBottomMenu'), { ssr: false });
 
 const ColorThief = require('colorthief');
 
 
 import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
-import ListingBottomMenu from "@/components/listing/ListingBottomMenu";
+import LazyLoad from "react-lazyload";
+import { Skeleton } from "@/components/skeletons/Skeletons";
 
 const randColor = randomEither(siteColors);
 
@@ -187,10 +190,14 @@ if(listing){
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         <Hero2 /* palette={palette}  */ color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
         <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
-        <Client>
-            <div className="pt-3"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} slug={category.slug} ids={dir_categories} exclude={id}/></div>
-        </Client>
+        <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
         <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
+        </LazyLoad>
+        <Client>
+          <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>
+              <div className="pt-3"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} slug={category.slug} ids={dir_categories} exclude={id}/></div>
+            </LazyLoad>
+        </Client>
     </div>
 
     <style>

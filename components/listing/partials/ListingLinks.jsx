@@ -3,14 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 
-export const NextPostLink = ({current}) => {
+export const NextPostLink = ({current, styleObj}) => {
     const nextP = useRecoilValue(nextPostState);
   
     return (
        <>{nextP ? <>{
         nextP == current ? <></> :
-        <Link href={`/events/${nextP}`}><button className="nav_switch">
-              <i className="fas fa-chevron-right"/>
+        <Link href={`/events/${nextP}`}><button className="nav_switch" style={{...styleObj}}>
+              <i className="fas fa-chevron-circle-right"/>
             </button></Link>}</>
             :
             <></>

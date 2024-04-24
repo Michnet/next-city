@@ -8,23 +8,16 @@ import PageContact from "../partials/PageContact";
 import Photos from "./partials/Photos";
 import Widget from "@/components/UI/partials/Widget";
 import { DualColorHeader, Floater } from "@/components/UI/Partials";
-import ListingStats from "./partials/ListingStats";
+//import ListingStats from "./partials/ListingStats";
 import TeamMini from "../team/TeamMini";
 import About from "./partials/About";
 import PostTerms from "./partials/PostTerms";
 import AuthorCard from "./partials/AuthorCard";
 import ListingSkeleton from "@/components/skeletons/fullPage/ListingSkeleton";
 import PayMeans from "./partials/PayMeans";
-import {srcWithFallback } from '@/helpers/universal';
+//import {srcWithFallback } from '@/helpers/universal';
 
-const processImg = (images, cover) => {
-  if(images && images.length > 0){
-      const targetImg = images[Math.floor(Math.random()*images.length)];
-      return targetImg
-  }else if(cover){
-      return cover;
-  }
-}
+
 
 const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
   //const [tags, setTags] = useState(null);
@@ -75,9 +68,10 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
               }
      }
 
-     if(_stats?.length > 0){
+    /*  if(_stats?.length > 0){
       statsView = <Widget 
-      title= 'Page stats'
+      title= 'Event stats'
+      subtitle={'Key stats about event'}
       coverClass={'backdropGray'}
       cover= {srcWithFallback(processImg(gallery, cover))}
       icon = {'fas fa-stopwatch-20'}
@@ -85,7 +79,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
               <ListingStats stats={_stats}/>
       </Widget>
       
-     }
+     } */
 
      if(dir_tags){
       groupView = <PostTerms linkTax={'category'} post={listing} termKey='dir_categories' taxonomy={'categories'} title={'Category'}/>
@@ -93,7 +87,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
 
       paymentsView = <PayMeans listingId={listing.id}/>
 
-     if(content){
+     /* if(content){
        contentView = <Widget freeHeader subtitle={'More About Listing'} title= 'Event Detail' > <div className="position-relative">
                           <Client><div className={`listing_content ${fullContent ? '' : 'truncate-5'}`} dangerouslySetInnerHTML={{ __html: content }}/>
                           </Client>
@@ -103,7 +97,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                           <button className="btn btn-sm mb-0 btn-outline-secondary" onClick={() => setFullContent(!fullContent)}>{fullContent ? 'Show Less' : 'Show More'}</button>
                         </div>
                       </Widget>
-     }
+     } */
     /*  if(tags){
             tagsView = <Widget title= {<DualColorHeader exClass={'mb-0 sm-font'} title={'Tagged In'}/>}
             styleName={'no-pad'}

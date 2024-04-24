@@ -4,15 +4,20 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 //import { getBPRecipientThread, getEventDates } from "~/server/WpRest";
 import { activeDateState, authState } from "../atoms";
 
+const controller = new AbortController();
+
 function ListingStaterConst({id, author}) {
 
   const setActiveDates = useSetRecoilState(activeDateState);
   const {user} = useRecoilValue(authState);
+
+ const {signal} = controller;
  
   const getDates = async(payload, signal) => {
     const fetchdDates = await getEventDates(payload, signal);
     if(fetchdDates){
      setActiveDates({act_dates: fetchdDates, act_id:id});
+     controller.abort();
     }
   }
   /* 
@@ -43,8 +48,6 @@ function ListingStaterConst({id, author}) {
 
 useEffect(() => {
  //const {act_id} = activeDates ?? {};
- const controller = new AbortController();
- const {signal} = controller;
 
  if(id != 'undefined'){
     setActiveDates({loading: true})

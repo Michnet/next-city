@@ -4,9 +4,10 @@ import { useRecoilValue } from "recoil";
 
 export default function listingMenu({listing, userId}){
 
-  const {type, about_us, author_id, gallery,community_id} = listing ?? {};
+  const {type, about_us, author_id,community_id,meta} = listing ?? {};
   const {faqs} = about_us ?? {};
   const {act_dates} = useRecoilValue(activeDateState);
+  let gallery = meta?._job_gallery;
   console.log('listing', listing)
 
   const acf = listing?.acf;
@@ -44,7 +45,8 @@ export default function listingMenu({listing, userId}){
   
   {
     id: 'reviews',
-    icon:  "far fa-star", title : 'Reviews',
+    icon:  "far fa-star", 
+    title : 'Reviews',
     subTitle :"User Rating",
     widgetClass: 'pad_tab',
     innerClass: 'bg_tab border-0',

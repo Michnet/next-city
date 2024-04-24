@@ -1,15 +1,16 @@
 import  {useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil';
 import Image from 'next/image';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+//import { Splide, SplideSlide } from '@splidejs/react-splide';
 import CallToActions from '@/components/UI/CallToActions';
 import { authState } from '@/contexts/atoms';
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 import { fetchListingReviews } from '@/helpers/rest';
-import ReviewCard from './ReviewCard';
+//import ReviewCard from './ReviewCard';
 import SingleReview from './SingleReview';
 import Splider from '@/components/UI/partials/Splider';
 
+const controller = new AbortController();
 
 function PostReviews({id, carousel, limit, reload, title, bgImage=false, transparentCards=false}) {
     const [auth, setAuth] = useRecoilState(authState);
@@ -17,7 +18,9 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
     const user_meta = user?.user_meta;
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [reviews, setReviews] = useState([]);
+    const [reviews, setReviews] = useState(null);
+
+    const {signal} = controller;
  
     async function getReviews(payload){
         const reviewsData = await fetchListingReviews(payload);
@@ -27,21 +30,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
             }
     }
 
-    const settings = {
-        className: "center",
-        centerMode: false,
-        infinite: true,
-        autoplay: true,
-        speed: 1000,
-        autoplaySpeed: 6000,
-        cssEase: "linear",
-        slidesPerRow: 1,
-        slidesToScroll: 1,
-        pauseOnHover: true,
-        dots : true,
-        fade : true
-        
-      };
+    console.log('reviews', reviews)
 
     useEffect(() => {
         const payload = {
@@ -59,11 +48,13 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
             getReviews(payload)
 
         }, 60000);*/
-        return () => {console.log('out')}; 
+        return () => {setReviews(null); controller.abort();
+        }; 
       
     }, [id])
 
-    let reviewsView, totalView;
+    let reviewsView, totalView; 
+    let fallBackView = <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'}/>
     if(loading){
         reviewsView = <div><LoaderDualRingBoxed height={300}/></div>
     }else if(reviews){
@@ -84,7 +75,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
          }
     
          }else{
-            reviewsView = <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'}/>
+            reviewsView = <>{fallBackView}</>
          }
          if(rating){
              const computed = rating/10;
@@ -97,7 +88,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
                  </>
          }
     }else{
-        reviewsView = <></>
+        reviewsView = <>{fallBackView}</>
     }
    
   return (
@@ -120,7 +111,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
        <div className="reviews">
             {reviewsView}
         </div>
-   </div> : <></>}
+   </div> : fallBackView}
    </>
   )
 }

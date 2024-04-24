@@ -19,13 +19,25 @@ import FAQs from "@/components/UI/FAQs";
 import { useRouter } from 'next/router';
 import ProfileInfo from '../profileInfo/ProfileInfo';
 import { PriceView } from '@/components/UI/PriceView';
+import ListingDetail from '../profileInfo/ListingDetail';
+import ListingStats from '../profileInfo/partials/ListingStats';
+import Widget from "@/components/UI/partials/Widget";
 
 
-function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcoming, styles}) {
+function processImg(images, cover){
+    if(images && images.length > 0){
+        const targetImg = images[Math.floor(Math.random()*images.length)];
+        return targetImg
+    }else if(cover){
+        return cover;
+    }
+}
+
+const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcoming, styles}) => {
     
-    const {address, venue, about_us, locations, rating, id, short_desc, dir_tags, ticket_min_price_html, landing,gallery,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
+    const {address, venue, about_us, locations, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
     const {tickets} = listing_store;
-    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests} = meta ?? {};
+    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery} = meta ?? {};
     const {list:wcu_list} = _wcu ? _wcu[0] : {};
     const { general_merchandise} = listing?.acf ?? {};
     const {wcu, what_we_do} = marketing ??  {};
@@ -34,9 +46,23 @@ function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcomi
 
     const cachedListing = useMemo( () => listing, [listing.id] );
     
-    let greetingView, faqsView, strengthsView, galleryView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView, ticketsHint;
+    let statsView, greetingView, faqsView, strengthsView, galleryView, detailView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView, ticketsHint;
 
     if(listing){
+        if(_stats?.length > 0){
+            statsView = <Widget
+            freeHeader 
+            title= 'Event stats'
+            subtitle={'Key stats about event'}
+            coverClass={'backdropGray'}
+            cover= {srcWithFallback(processImg(gallery, cover))}
+            icon = {'fas fa-stopwatch-20'}
+            >
+                    <ListingStats stats={_stats}/>
+            </Widget>
+            
+           }
+
         if(faqs?.length > 0){
             let trimFaqs = faqs?.slice(0,3);
         faqsView = <div className="card card-style shadow mt-4">
@@ -57,6 +83,10 @@ function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcomi
                 </div>
             </div>
         }
+
+        if(content){
+            detailView = <ListingDetail detail={content} id={listing.id}/>
+          }
 
         if(tickets?.length > 0){
             ticketsHint = <><div className='mb-20 sc_heading_3 px-4 mt-4'>
@@ -112,19 +142,6 @@ function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcomi
                                     )} 
                     </Splider>
                 </div>
-        }
-
-
-        const processImg = (images) => {
-            if(images && images.length > 0){
-                const targetImg = images[Math.floor(Math.random()*images.length)];
-                return targetImg
-            }else if(cover){
-                return cover;
-            }else{
-                return featuredImgSrc;
-            }
-    
         }
 
         //if(listing?.gallery.length > 0){
@@ -386,8 +403,10 @@ function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcomi
                 </div>
             </div>  */}
 
+
             <Client>{descriptView}</Client>
             <Client>{galleryView}</Client>
+            {detailView}
             <Client>{tagsView}</Client>        
             {/* {shopView} */} 
             {reviewsView}
@@ -395,6 +414,7 @@ function BusinessOneConst({listing, cover, color, scroller, setActiveKey, upcomi
             {guestsView}
             {ticketsHint}
             {servicesView}
+            {statsView}
             {strengthsView }
             {faqsView}
             {sponsorsView}

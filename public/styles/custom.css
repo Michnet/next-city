@@ -2168,6 +2168,7 @@ button.back_link {
     height: 60px;
     border-radius: 50%;
     margin-top: -36px;
+    box-shadow: var(--shadow-1);
 }
 
 ._fab i {
@@ -3126,7 +3127,7 @@ div#explore_nav .left_menu_btn {
     text-align: end;
 }
 
-#wall_gallery_container {
+#mini_wall_gallery {
     -webkit-mask-image: linear-gradient(transparent 40%, white 99%);
     mask-image: linear-gradient(white 60%, transparent 99%);
 }
@@ -3209,6 +3210,10 @@ span.list_title._first {
 }
 .footer_content {
     box-shadow: 0 -6px 10px 0 rgba(0, 0, 0, 0.06);
+}
+
+.footer_content > a {
+    max-width: 50px;
 }
 
 .gx-timeline-panel .activityCard1.-type-1 .card_content {

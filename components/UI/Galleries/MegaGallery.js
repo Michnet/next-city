@@ -230,7 +230,7 @@ galleryView = <>
             </Masonry>
         </ResponsiveMasonry>}
         </div>
-        <>{megaGall.length > 2 ? <div id='gallery_extender' className="w-100 d-flex align-items-end  w-100 justify-center"><button onClick={() => revealMore()}  className="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Show more Wall</button></div>  : <></>}</>
+        <>{megaGall.length > 2 ? <div id='gallery_extender' className="bg-gradient-fade w-100 d-flex align-items-end  w-100 justify-center"><button onClick={() => revealMore()}  className="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Show more Wall</button></div>  : <></>}</>
         </div>
         
 </>

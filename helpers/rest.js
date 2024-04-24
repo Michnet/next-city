@@ -338,7 +338,7 @@ export const getSocialUser = async(acc_token, platform/* , signal */) => {
   }; 
 }
 
-export const recordVisit = async (payload) => {
+export const recordVisit = async (payload, signal) => {
 
   const endPoint = `wp-json/m-api/v1/visit?${serializeQuery({
       ...payload
@@ -346,7 +346,7 @@ export const recordVisit = async (payload) => {
 }`;
 
 try {
-  const res = await kyFetch.post(`${WPDomain}/${endPoint}`).json();
+  const res = await kyFetch.post(`${WPDomain}/${endPoint}`, {signal:signal}).json();
   if(res){
       return res;
     }else{

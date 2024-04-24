@@ -5,7 +5,7 @@ const Widget = ({title, freeHeader=false, subtitle, children, exClass='', cover,
       styleObj.backgroundImage = `url('${cover}')`
     }
       widgetView = <div>{freeHeader && <>
-                  {title || subtitle  ? <div class="card-header py-2 px-3">
+                  {title || subtitle  ? <div class="py-2 px-3">
                       <div className="d-flex pb-2">
                           <div>
                               {subtitle && <h6 className="mb-n1 opacity-80 color-highlight">{subtitle}</h6>}

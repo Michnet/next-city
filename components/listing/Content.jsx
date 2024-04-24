@@ -12,7 +12,7 @@ const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
 import listingMenu from "./ListingMenu";
 import { ListingContact } from "./partials/ListingContact";
-import ProfileContact from "./partials/ProfileContact";
+const ProfileContact = dynamic(() => import("./partials/ProfileContact"));
 const ListingProductsSimple = dynamic(() => import("./shop/ListingProductsSimple"));
 //const ListingStore = dynamic(() => import("./shop/ListingStore"));
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
