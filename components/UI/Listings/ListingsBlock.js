@@ -148,25 +148,24 @@ if(listings){
       </div>
   }else{
     if(horizontal){
+      Card = dynamic(() => import("./cards/EventCard4"));
       listingsView = <div className="row md:ml-0 md:mr-0"> { listings.map((listing) =>{
     const {type} = listing;
-    if(type === "event"){
+   // if(type === "event"){
      // Card = dynamic(() => import("~/components/activity/ActivityCard3"));
-      return <Card key={listing.id} item={listing} exClass={'mb-3 p-0'} dateWidth = {'120px'}/>
-    }
-    //Card = dynamic(() => import("./ListingCard-Horizontal"));
-    return <div className={`col-12 ${sidebar ? 'col-md-6' : 'col-md-12 '} col-xl-12 md:pl-0 md:pr-0`}> 
-      <Card user={user}  key={listing.id} data={listing} mini={mini}/>
+      return <div className={`col-12  col-md-6 col-lg-4 md:pl-0 md:pr-0`}> 
+      <Card user={user}  key={listing.id} listing={listing} width='100%' exClass='m-2'/>
       </div> 
+    //}    
   })} 
     </div>
   }else{
     Card = dynamic(() => import("./cards/EventCard2"));
-    listingsView = <ResponsiveMasonry columnsCountBreakPoints={sidebar ? {0 : 1, 479 : 2, 768 : 3, 1199 : 1} : {479: 2, 750: 3, 900: 3}}>
+    listingsView = <ResponsiveMasonry columnsCountBreakPoints={sidebar ? {0 : 1, 479 : 2, 768 : 3, 1199 : 1} : {0: 1, 479: 2, 750: 3, 900: 3}}>
     <Masonry gutter="10px">{ listings.map((listing) => {
       const {type} = listing;
       if(type === 'event'){
-        return <Card key={listing.id} listing={listing} exClass={`mb-1 bg-transparent ${mini ? ' _mini' : ''}`} /* item={listing} *//>
+        return <Card key={listing.id} listing={listing} exClass={`mb-1 bg-transparent ${mini ? ' _mini' : ''}`} width={'auto'}/>
       }
       //Card = dynamic(() => import("./cards/EventCard2"));
       <Card key={listing.id} listing={listing} user={user} layout={layout}/> 
@@ -189,7 +188,7 @@ if(loading){
 
     return (
       <div className={`shadow-none ${widgey ? 'widgey' : ''} ${exClass ?? ''}`}>
-        <div className={`row justify-between block_head`}>
+        <div className={`row justify-between block_head mb-3`}>
           {title && <DualColorHeader exClass="col col-sm-3 px-0" antIcon={icon} title={title}/>}
           <div className="block_head_right col col-sm-9 px-0">
               {noCats ? <></> : <div className="gx-mx-sm-2">

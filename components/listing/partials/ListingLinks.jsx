@@ -10,7 +10,7 @@ export const NextPostLink = ({current}) => {
        <>{nextP ? <>{
         nextP == current ? <></> :
         <Link href={`/events/${nextP}`}><button className="nav_switch">
-              <i className="bi bi-chevron-right"/>
+              <i className="fas fa-chevron-right"/>
             </button></Link>}</>
             :
             <></>

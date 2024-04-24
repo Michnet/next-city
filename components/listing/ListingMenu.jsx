@@ -7,6 +7,7 @@ export default function listingMenu({listing, userId}){
   const {type, about_us, author_id, gallery,community_id} = listing ?? {};
   const {faqs} = about_us ?? {};
   const {act_dates} = useRecoilValue(activeDateState);
+  console.log('listing', listing)
 
   const acf = listing?.acf;
   const{listing_articles, general_merchandise, tickets} = acf ?? {};

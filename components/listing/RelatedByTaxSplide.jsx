@@ -50,10 +50,10 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, slug, exclu
       setLoading(true)
     }
   }, [exclude, slug]);
-
+/* 
   if(loading){
     listView = <CardsRowLoader/>
-  }else{
+  }else{ */
   if(listings?.length > 0){
     if(nextUpdater){
       setNextPost(listings[0]?.slug);
@@ -61,7 +61,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, slug, exclu
     listView = <>
           <SectionHeader inverted iconClass={'fas fa-th-large'}  exClass='px-3 mb-2' link={'See All'} title={'Related Pages'} subTitle={'Need More Options?'}/>
 
-          <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}>
+          <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>
             {listings?.length > 0 ? 
                 listings.map((li) => {
                 return <ActivityCard2 exClass={'ms-0 me-2 mb-0'} mini width={200} key={li.id} listing = {li}/>
@@ -71,7 +71,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, slug, exclu
               }
           </Splider></>
       }
-  }
+  
 
   return (
     <>

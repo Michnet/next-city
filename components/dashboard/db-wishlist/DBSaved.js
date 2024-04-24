@@ -20,7 +20,7 @@ const DBSaved = ({user_meta}) => {
                   My Favorites.
                 </div>
 
-            <div className="py-30 px-30 rounded-4 bg-theme shadow-3">
+            <div className="rounded-4 bg-theme shadow-3">
               {/* <WishlistTable /> */}
               {likesView}
             </div>

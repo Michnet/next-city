@@ -20,7 +20,7 @@ import Link from "next/link";
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
 import { closeMenus, openOffCanvas } from "@/helpers/appjs";
-import BottomMenu from "@/components/layouts/BottomMenu";
+//import BottomMenu from "@/components/layouts/BottomMenu";
 import Hero2 from "@/components/listing/landingPages/hero/Hero2";
 import ListingFooter from "@/components/listing/landingPages/footer/ListingFooter";
 import listingMenu from "@/components/listing/ListingMenu";

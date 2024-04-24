@@ -19,7 +19,7 @@ const ListingBottomMenuConst = ({listing, setActiveKey, color}) =>{
                         <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
                     </a>}
                     {phone && <a style={{maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
-                    <PreviousPostLink/>
+                    {/* <PreviousPostLink/> */}
                     <NextPostLink current={listing.slug}/>
                     </div>
                     <div className='_fab'>

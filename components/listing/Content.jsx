@@ -24,8 +24,6 @@ function ContentConst({listing, activeView,  activeKey, color, setActiveKey}) {
     let isSample = true;
     let chatCount = useSignal(0)
 
-    console.log('tickssss', tickets)
-
     const {user} = useRecoilValue(authState);
     let localMenu = listingMenu({listing:listing, userId: user?.id}); 
 
