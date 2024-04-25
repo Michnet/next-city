@@ -28,6 +28,7 @@ function SearchField() {
 
   useSignalEffect(async() => {
     if(keyWord.value?.length > 2){
+        console.log('keyyy pa', payload)
         const res = await advancedFetchListings({...payload}, signal);
         if(res){
             listings.value = res;
@@ -36,9 +37,11 @@ function SearchField() {
   });
 
   function runSearch(e){
-    controller.abort();
+    //controller.abort();
     keyWord.value = e.target.value;
   }
+
+  console.log('keyyy', keyWord.value)
  
   return (
    <>
@@ -50,24 +53,12 @@ function SearchField() {
 				<span data-menu="search_form_1" onClick={(e) => openOffCanvas(e)} className="_link color-theme"><i className="fa fa-sliders me-n3"></i></span>
             </div>
             <div className="search-results mt-3 left-0 right-0 z-2">
-                <div class="card card-style mx-0 px-2 p-0 mb-0 ">
+                <div class="card card-style mx-0 px-2 p-0 mb-0 bg-transparent shadow-0">
                     {listings.value?.length > 0 ? 
                     <>
                     {listings.value.map((el) => {
                     const {title, id, xtra_large_thumb} = el;
-                        return <Link key={id} href="#" class="d-flex py-2" data-filter-item data-filter-name="all maldives tropical island escape">
-                        <div>
-                            <img src={xtra_large_thumb} class="rounded-sm me-3 object-cover" width="50" height='50' alt="img"/>
-                        </div>
-                        <div>
-                            <span class="color-highlight font-400 d-block pt-0 text-uppercase font-10">Tropical Island</span>
-                            <strong class="color-theme font-16 d-block mt-n2">{cleanHtml(title.rendered)}</strong>
-                        </div>
-                        <div class="ms-auto text-end align-self-center pe-2">
-                            <h5 class="line-height-xs font-18 pt-3">$1450</h5>
-                            <span class="font-10 d-block mt-n2">For 7 Nights</span>
-                        </div>
-                    </Link>
+                        return <EventCard4 exClass='mb-2' listing={el} key={id}/>
                     })}
                     </> : <div/>}
                 </div>

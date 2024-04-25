@@ -1,10 +1,10 @@
 import SignIn from '@/components/auth/signIn';
 import SignUp from '@/components/auth/signUp';
 import SocialLogin from '@/components/auth/SocialLogin';
-import { authState } from '@/contexts/atoms';
+//import { authState } from '@/contexts/atoms';
 import { WPDomain } from '@/helpers/base';
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+//import { useRecoilValue } from 'recoil';
 import { useSession } from "next-auth/react";
 
 function AuthUI() {

@@ -10,29 +10,26 @@ import { fetchListingReviews } from '@/helpers/rest';
 import SingleReview from './SingleReview';
 import Splider from '@/components/UI/partials/Splider';
 
-const controller = new AbortController();
 
-function PostReviews({id, carousel, limit, reload, title, bgImage=false, transparentCards=false}) {
+function PostReviews({id, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false}) {
     const [auth, setAuth] = useRecoilState(authState);
     const {user} = auth ?? {};
-    const user_meta = user?.user_meta;
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState(null);
-
-    const {signal} = controller;
  
-    async function getReviews(payload){
-        const reviewsData = await fetchListingReviews(payload);
+    async function getReviews(payload, signal){
+        const reviewsData = await fetchListingReviews(payload, signal);
            if(reviewsData){
             setReviews(reviewsData.data); 
             setLoading(false); 
             }
     }
 
-    console.log('reviews', reviews)
-
     useEffect(() => {
+        const controller = new AbortController();
+        const {signal} = controller;
+
         const payload = {
             source_id : id,
             page : page
@@ -42,7 +39,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
             payload.per_page = limit
         }
         setLoading(true)
-        getReviews(payload)
+        getReviews(payload, signal)
 
         /* const interval = setInterval(() => {
             getReviews(payload)
@@ -51,10 +48,10 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
         return () => {setReviews(null); controller.abort();
         }; 
       
-    }, [id])
+    }, [id]);
 
     let reviewsView, totalView; 
-    let fallBackView = <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'}/>
+    let fallBackView = <>{loading ?  <div><LoaderDualRingBoxed height={300}/></div> : <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'} actionComponent={withButton ? <button className='btn' onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>
     if(loading){
         reviewsView = <div><LoaderDualRingBoxed height={300}/></div>
     }else if(reviews){
@@ -70,7 +67,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
              </Splider> 
          }else{
              reviewsView = list.map((item) => {
-                 return <SingleReview reload={reload} review={item} key={item.id} user={user} listingId={id}/>
+                 return <SingleReview exClass={'mx-0 mb-15'} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
              })
          }
     
@@ -95,7 +92,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
    <>{reviews?.list?.length > 0 ? 
     <div className={`listing_reviews pos-relative _wall ${carousel ? '_slider' : ''}`}>
         
-       {!carousel && <div className='overall_score'>
+       {!carousel && <div className='overall_score d-flex flex-column align-items-end px-3'>
            {totalView}
        </div>}
        {bgImage ? 

@@ -6159,9 +6159,6 @@ grid-template-columns: 55% 20% auto;
   .gx-profile-content .tabpane.widgey .ant-row.spacer {
     padding: 0;
 }
-  .tabpane.pad_tab{
-    padding: 20px  0;
-}
   
   .ant-col.results{flex: 0 0 calc(100% - 250px);}
   #main_box{

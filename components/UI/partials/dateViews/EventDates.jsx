@@ -34,6 +34,7 @@ function EventDates({Id, dualColumn, upcoming, customDates=null, user, productId
     }else{
       setLoading(false);
     }
+    return () => setLoading(true)
   }, [Id]);
   
   return (

@@ -7,7 +7,7 @@ input[type="range"] {
 		-webkit-appearance: none;
 		width: 20px;
 		height: 20px;
-		background: #F26B5E;
+		background: var(--highlight);
 		position: relative;
 		z-index: 3;
 		&:after {
@@ -17,7 +17,7 @@ input[type="range"] {
 			z-index: 1;
 			right: 20px;
 			top: 5px;
-			background: #ff5b32;
+			background: var(--highlight);
 			background: linear-gradient(to right, #f088fc 1%, #AC6CFF 70%);
 		}
 	}

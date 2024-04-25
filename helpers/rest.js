@@ -358,6 +358,87 @@ try {
 }   
 
 
+    //Submit reviews
+    export const submitReview = async (payload) => {
+
+      const endPoint = `wp-json/m-api/v1/submit-review?${serializeQuery({
+          ...payload
+      }) 
+      }`;
+      return await kyFetch.post(`${WPDomain}/${endPoint}`)
+          .then(async(response) => {
+              if(response){
+               return await response.json();
+              } else return null;
+              
+          })
+          .catch((e) => {
+              console.log(e)
+          });    
+  }
+
+  export const updateReview = async (payload) => {
+
+      const endPoint = `wp-json/${userReviews}/update-review?${serializeQuery({
+          ...payload
+      }) 
+      }`;
+      return await kyFetch.post(`${WPDomain}/${endPoint}`)
+          .then(async(response) => {
+              if(response){
+              return await response.json();
+              } else return null;
+              
+          })
+          .catch((e) => {
+              console.log(e)
+          });    
+  }
+
+ /*  export const deleteReview = async (id) => {
+
+      const endPoint = `wp-json/${userReviews}/delete-review?${serializeQuery({
+          ...id
+      }) 
+      }`;
+      return await WPRepository.post(`${WPDomain}/${endPoint}`)
+          .then((response) => {
+              if(response){
+               return response;
+              } else return null;
+              
+          })
+          .catch((e) => {
+              console.log(e)
+          });    
+  } */
+
+     //Get reviews
+     export const fetchReviews = async (payload) => {
+      let endPoint;
+      if(payload){
+         endPoint = `wp-json/${userReviews}/get-admin-reviews-list?${serializeQuery({
+              ...payload
+          }) 
+          }`;
+      }else{
+          endPoint = `wp-json/${userReviews}/get-admin-reviews-list`;
+      }
+
+     
+      return await kyFetch.post(`${WPDomain}/${endPoint}`)
+            .then(async(response) => {
+              if(response){
+              return await response.json();
+              } else return null;
+              
+          })
+          .catch((e) => {
+              console.log(e)
+          });    
+  }
+
+
 //Get listing reviews
 export const fetchListingReviews = async (payload) => {
   let endPoint;

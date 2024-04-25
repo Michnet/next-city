@@ -32,7 +32,7 @@ function ContentConst({listing, activeView,  activeKey, color, setActiveKey}) {
             case 'gallery':
             return <MegaGallery listing={listing} /* color={color} *//>;
             case 'reviews':
-            return <ListingReviews postID={listing.id} user={user}/>
+            return <ListingReviews postID={listing.id} user={user} setActiveKey={setActiveKey}/>
             case 'home':
             return <LandingPage activeKey={activeKey} listing={listing} setActiveKey={setActiveKey} color={color}/>
             case 'community':

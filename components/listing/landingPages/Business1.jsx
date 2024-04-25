@@ -221,7 +221,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                 reviewsView = <Suspense offset={150} once height={200}>
                 <div className="wide_container" 
                     >
-                    <Client><PostReviews  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
+                    <Client><PostReviews withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
                     </Suspense>
         //}
@@ -403,12 +403,11 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                 </div>
             </div>  */}
 
-
-            <Client>{descriptView}</Client>
             <Client>{galleryView}</Client>
             {detailView}
             <Client>{tagsView}</Client>        
-            {/* {shopView} */} 
+            {/* {shopView} */}
+            <Client>{descriptView}</Client> 
             {reviewsView}
             {teamView}
             {guestsView}

@@ -8,6 +8,7 @@ import TermsGrid from './../UI/lists/TermsGrid';
 import { quickLinks } from "@/helpers/data";
 import Logo from "../UI/Logo";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
+import UISettings from "./UISettings";
 
 
 function MainMenu() {
@@ -32,7 +33,7 @@ function MainMenu() {
   <div id="sidebar_menu" className="list-group border-0 rounded-0 text-sm-start h-100">
                         <div id="menu-sidebar">
                                 
-                                <div className="position-sticky w-100 top-0 end-0 px-1 z-2">
+                                <div className="position-sticky w-100 top-0 end-0 py-1 z-2">
                                 <div className="card card-style mt-2 mb-0 mx-2">
                                     <div className='row_flex justify-between p-2' onClick={() => closeMenus()}>
                                         <Logo simple={false}/>
@@ -74,41 +75,7 @@ function MainMenu() {
                                 <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Settings</h5>
-                                        <div className="list-group list-custom-small list-icon-0">
-                                            <span className='_link' data-menu="menu-highlights" onClick={(e) => openOffCanvas(e)}>
-                                                <i className="fa font-12 fa-droplet gradient-blue rounded-sm color-theme"></i>
-                                                <span className="hide_in_collapsed">Highlights</span>
-                                                <i className="hide_in_collapsed fa fa-angle-right"></i>
-                                            </span>
-                                            <span className='_link'  data-menu="menu-backgrounds" onClick={(e) => openOffCanvas(e)}>
-                                                <i className="fa font-12 fa-paint-brush gradient-orange rounded-sm color-theme"></i>
-                                                <span className="hide_in_collapsed">Backgrounds</span>
-                                                <i className="hide_in_collapsed fa fa-angle-right"></i>
-                                            </span>
-                                            <span data-toggle-theme onClick={() => toggleTheme()}  data-trigger-switch="switch-dark2-mode" className="_link border-0">
-                                                <i className="fa font-12 fa-moon gradient-yellow color-theme rounded-sm"></i>
-                                                <span className="hide_in_collapsed">Dark Mode</span>
-                                                <div className="custom-control ios-switch hide_in_collapsed">
-                                                    <input data-toggle-theme onClick={() => toggleTheme()}  type="checkbox" className="ios-input" id="switch-dark2-mode"/>
-                                                    <label className="custom-control-label" htmlFor="switch-dark2-mode"></label>
-                                                </div>
-                                                <i className="hide_in_collapsed fa fa-angle-right"></i>
-                                            </span>
-                                            {/* <div class="card card-style">
-                                            <div class="content mb-0">
-                                                <div class="d-flex mb-3">
-                                                    <div class="align-self-center">
-                                                        <h5>Text Size</h5>
-                                                    </div>
-                                                    <div class="align-self-center ms-auto">
-                                                        <a href="#" class="text-size-default float-end icon icon-xxs rounded-s color-white bg-highlight"><i class="fa fa-sync-alt"></i></a>
-                                                        <a href="#" class="text-size-increase float-end icon icon-xxs rounded-s color-white bg-highlight me-2 ms-2"><i class="fa fa-font font-16"></i></a>
-                                                        <a href="#" class="text-size-decrease float-end icon icon-xxs rounded-s color-white bg-highlight"><i class="fa fa-font font-10"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
-                                        </div>
+                                        <UISettings/>
                                     </div>
                                 </div>
 

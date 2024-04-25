@@ -16,6 +16,7 @@ import SearchForm1 from "../UI/search/SearchForm1";
 import Splash from "../UI/Splash";
 import SnackBar from "../UI/partials/SnackBar";
 import UserSideMenu from "../UI/user/UserSideMenu";
+import UISettings from "./UISettings";
 
 function sizing(width, setWidth){
   console.log('running sizing')
@@ -86,46 +87,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               </span>
             </div>
             <div className="divider divider-margins mb-n2"></div>
-            <div className="content">
-              <div className="list-group list-custom-small">
-                <div
-                  //data-trigger-switch="switch-dark-mode"
-                  className="pb-2 ms-n1 _link"
-                >
-                  <i className="fa font-12 fa-moon rounded-s bg-highlight color-white me-3"></i>
-                  <span>Dark Mode</span>
-                  <div className="custom-control scale-switch ios-switch">
-                    <input
-                      data-toggle-theme onClick={() => toggleTheme()} 
-                      type="checkbox"
-                      className="ios-input"
-                      id="switch-dark-mode"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="switch-dark-mode"
-                    ></label>
-                  </div>
-                  <i className="fa fa-angle-right"></i> 
-                </div>
-              </div>
-              <div className="list-group list-custom-large">
-                <span className="link" data-menu="menu-highlights" href="#" onClick={(e) => openOffCanvas(e)}>
-                  <i className="fa font-14 fa-tint bg-green-dark rounded-s"></i>
-                  <span>Theme Color</span>
-                  <strong>16 Options Included</strong>
-                  <span className="badge bg-highlight color-white">HOT</span>
-                  <i className="fa fa-angle-right"></i>
-                </span>
-                {/* <a data-menu="menu-backgrounds" href="#" className="border-0" onClick={(e) => openOffCanvas(e)}>
-                  <i className="fa font-14 fa-cog bg-blue-dark rounded-s"></i>
-                  <span>Background Color</span>
-                  <strong>10 Page Gradients Included</strong>
-                  <span className="badge bg-highlight color-white">NEW</span>
-                  <i className="fa fa-angle-right"></i>
-                </a> */}
-              </div>
-            </div>
+            <UISettings exClass='px-3'/>
           </div>
 
           <BSReveal id={'login_modal'}>

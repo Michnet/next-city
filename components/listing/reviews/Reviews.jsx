@@ -1,14 +1,14 @@
 import  {useState, useEffect, memo} from 'react';
 import PostReviews from './postReviews';
+import ReviewSubmit from './ReviewSubmit';
 //import ReviewSubmit from './Submit';
 
 
-function ListingReviewsConst({postID, user, bgImage}) {
+function ListingReviewsConst({postID, user, bgImage, setActiveKey}) {
     const [loading, setLoading] = useState(true);
     const [reloading, setReloading] = useState('forth');
 
     const {reviewed} = user?.user_meta ?? {};
-    console.log('Reviews on')
 
     let submitView;
     const reload = () =>{
@@ -31,10 +31,10 @@ function ListingReviewsConst({postID, user, bgImage}) {
                       </div>
       }else{
 
-       // submitView = <ReviewSubmit source_id={postID} reloadAll={reload}/>
+        submitView = <ReviewSubmit source_id={postID} reloadAll={reload}/>
       }
     }else{
-      //submitView = <ReviewSubmit source_id={postID} reloadAll={reload}/>
+      submitView = <ReviewSubmit source_id={postID} reloadAll={reload}/>
     }
 
 
@@ -51,7 +51,7 @@ function ListingReviewsConst({postID, user, bgImage}) {
     <div className='listing_reviews' key={reloading}>
         <>{submitView}</>
         {/* <PostReviews id={postID} reload={reload} carousel/> */}
-        <PostReviews id={postID} reload={reload}/>
+        <PostReviews id={postID} reload={reload} setActiveKey={setActiveKey}/>
     </div>
   )
 }
