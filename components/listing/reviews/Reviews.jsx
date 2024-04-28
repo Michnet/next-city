@@ -4,7 +4,7 @@ import ReviewSubmit from './ReviewSubmit';
 //import ReviewSubmit from './Submit';
 
 
-function ListingReviewsConst({postID, user, bgImage, setActiveKey}) {
+function ListingReviewsConst({postID, user, bgImage, setActiveKey, author_id}) {
     const [loading, setLoading] = useState(true);
     const [reloading, setReloading] = useState('forth');
 
@@ -31,10 +31,10 @@ function ListingReviewsConst({postID, user, bgImage, setActiveKey}) {
                       </div>
       }else{
 
-        submitView = <ReviewSubmit source_id={postID} reloadAll={reload}/>
+        submitView = <ReviewSubmit source_id={postID} reloadAll={reload} author_id={author_id}/>
       }
     }else{
-      submitView = <ReviewSubmit source_id={postID} reloadAll={reload}/>
+      submitView = <ReviewSubmit source_id={postID} reloadAll={reload} author_id={author_id}/>
     }
 
 
@@ -51,7 +51,7 @@ function ListingReviewsConst({postID, user, bgImage, setActiveKey}) {
     <div className='listing_reviews' key={reloading}>
         <>{submitView}</>
         {/* <PostReviews id={postID} reload={reload} carousel/> */}
-        <PostReviews id={postID} reload={reload} setActiveKey={setActiveKey}/>
+        <PostReviews fromActive id={postID} reload={reload} setActiveKey={setActiveKey} author_id={author_id}/>
     </div>
   )
 }

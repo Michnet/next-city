@@ -161,7 +161,7 @@ export default function Home(props) {
         }
     </Splider>
 
-    <section  className="layout-pt-md layout-pb-md bg-theme px-30 mb-5">
+    <section  className="layout-pt-md layout-pb-md bg-gradient-fade-reverse px-30 mb-5">
     <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
       <div className='tags_row bg-transparent'>
                 <div className='row_content' style={{minHeight : '130px'}}>                  

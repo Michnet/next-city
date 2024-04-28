@@ -71,6 +71,11 @@ export const activeDateState = atom({
   default: {}, 
   effects_UNSTABLE: [persistAtom],
 });
+export const activeReviewsState = atom({
+  key: 'activeReviews', 
+  default: {}, 
+  //effects_UNSTABLE: [persistAtom],
+});
 
 export const UIWidthState = atom({
   key: 'uiWidthState', 

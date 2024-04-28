@@ -6,7 +6,7 @@ export default function listingMenu({listing, userId}){
 
   const {type, about_us, author_id,community_id,meta} = listing ?? {};
   const {faqs} = about_us ?? {};
-  const {act_dates} = useRecoilValue(activeDateState);
+  const {act_dates} = useRecoilValue(activeDateState) ?? {};
   let gallery = meta?._job_gallery;
   console.log('listing', listing)
 

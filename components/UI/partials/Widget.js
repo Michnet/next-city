@@ -1,4 +1,4 @@
-const Widget = ({title, freeHeader=false, subtitle, children, exClass='', cover, coverClass='', extra, actions, icon, headless, width}) => {
+const Widget = ({title, freeHeader=false, subtitle, children, exClass='m-0', cover, coverClass='', extra, actions, icon, headless, width}) => {
     let widgetView;
     let styleObj = {}
     if(cover){
@@ -16,7 +16,7 @@ const Widget = ({title, freeHeader=false, subtitle, children, exClass='', cover,
                           </div>
                       </div>
                       </div> : <></>}</>}
-        <div class={`card card-style m-0 ${exClass} ${title || subtitle ? 'headed' : ''}`} style={{...styleObj}}>
+        <div class={`card card-style ${exClass} ${title || subtitle ? 'headed' : ''}`} style={{...styleObj}}>
                     <div className={`content m-0 p-0 ${cover ? 'bg-theme-transparent' : ''} ${coverClass}`}>
                       {!freeHeader && <>{title || subtitle  ? <div class="card-header py-2">
                       <div className="d-flex pb-2">

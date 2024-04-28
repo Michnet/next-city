@@ -10,8 +10,9 @@ import { submitReview } from '@/helpers/rest';
 import ReviewCard from './ReviewCard';
 import GuestPrompt from '@/components/UI/GuestPrompt';
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
+//import CallToActions from '@/components/UI/CallToActions';
 
-function ReviewSubmit({source_id, reloadAll}) {
+function ReviewSubmit({source_id, reloadAll, author_id}) {
 
     const initialScore = 7;
     const field_step = 0.5;
@@ -32,6 +33,8 @@ function ReviewSubmit({source_id, reloadAll}) {
 
     const [theAuth, setTheAuth] = useRecoilState(authState);
     const {user} = theAuth;
+    
+    let userOwned = user?.id === author_id; 
 
     useEffect(() => {
       setLoading(false);
@@ -117,45 +120,50 @@ function ReviewSubmit({source_id, reloadAll}) {
     if(loading){
         formView = <div className='d-flex align-items-center'><LoaderDualRingBoxed/></div>
     }else{if(user){
-        if(!response){
-            if(loading){
-                formView = <div className='d-flex align-items-center'><LoaderDualRingBoxed/></div>
-            }else{
-        formView = (
-            <><div className='mb-20 mt-10 sc_heading_3'>
-                <h5>Let others know</h5>
-                <h4>Add a review</h4>
-            </div>
-                <div className='d-flex flex-column'>
-                <input type={'text'} showCount maxLength={20} onChange={e => setTitle(e.target.value)} placeholder='Review Title' className='review_title d-block'/>
-                <textArea rows={3} showCount maxLength={300} onChange={e => setDescription(e.target.value)} placeholder="A brief description of your review" className='review_descript d-block'/>
+        if(userOwned){
+            formView = <></>
+        }else{
+            if(!response){
+                if(loading){
+                    formView = <div className='d-flex align-items-center'><LoaderDualRingBoxed/></div>
+                }else{
+            formView = (
+                <><div className='mb-20 mt-10 sc_heading_3'>
+                    <h5>Let others know</h5>
+                    <h4>Add a review</h4>
                 </div>
-            
-            <div className="review_criteria">
-                {paramArr.map((item, i) => {
-                let {field_label, field_value, field_setter} = item;
-                 return  <div className="review_item" key={i}>
-                            <h5>{field_label}</h5>
-                            <div className="review_score">
-                                <div className='slider_box'> 
-                                    <input onChange={(e) => field_setter(e.target.value)} type="range" class="form-range" min={0} max={field_max} value={field_value} step={field_step}/>
-                                </div> 
-                                <div className="score_box">
-                                    <h4>{field_value}</h4><span>/10</span>
+                    <div className='d-flex flex-column'>
+                    <input type={'text'} showCount maxLength={20} onChange={e => setTitle(e.target.value)} placeholder='Review Title' className='review_title d-block'/>
+                    <textArea rows={3} showCount maxLength={300} onChange={e => setDescription(e.target.value)} placeholder="A brief description of your review" className='review_descript d-block'/>
+                    </div>
+                
+                <div className="review_criteria">
+                    {paramArr.map((item, i) => {
+                    let {field_label, field_value, field_setter} = item;
+                     return  <div className="review_item" key={i}>
+                                <h5>{field_label}</h5>
+                                <div className="review_score">
+                                    <div className='slider_box'> 
+                                        <input onChange={(e) => field_setter(e.target.value)} type="range" class="form-range" min={0} max={field_max} value={field_value} step={field_step}/>
+                                    </div> 
+                                    <div className="score_box">
+                                        <h4>{field_value}</h4><span>/10</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                })
-                }
-                </div>
-                <div className="footer">
-                    <button className='btn btn-theme radius-30' onClick={submitScore}>Submit</button>
-                </div>
-            </>
-        )}}else{
-            const {data} = response;
-            formView = <ReviewCard review={data.item} noTime/>
+                    })
+                    }
+                    </div>
+                    <div className="footer">
+                        <button className='btn btn-theme radius-30' onClick={submitScore}>Submit</button>
+                    </div>
+                </>
+            )}}else{
+                const {data} = response;
+                formView = <ReviewCard review={data.item} noTime/>
+            }
         }
+        
     }else{
         formView = (
             <>

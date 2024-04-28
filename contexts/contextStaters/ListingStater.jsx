@@ -2,18 +2,18 @@ import { getEventDates } from "@/helpers/rest";
 import { memo, useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 //import { getBPRecipientThread, getEventDates } from "~/server/WpRest";
-import { activeDateState, authState } from "../atoms";
+import { activeDateState, authState, activeReviewsState } from "../atoms";
 
-const controller = new AbortController();
+
 
 function ListingStaterConst({id, author}) {
 
   const setActiveDates = useSetRecoilState(activeDateState);
+  const setActiveReviews = useSetRecoilState(activeReviewsState);
   const {user} = useRecoilValue(authState);
 
- const {signal} = controller;
  
-  const getDates = async(payload, signal) => {
+  const getDates = async(payload, signal, controller) => {
     const fetchdDates = await getEventDates(payload, signal);
     if(fetchdDates){
      setActiveDates({act_dates: fetchdDates, act_id:id});
@@ -46,17 +46,58 @@ function ListingStaterConst({id, author}) {
     }
   } */
 
+  function setUpMessaging(){
+    if (navigator.serviceWorker) {    
+      navigator.serviceWorker.addEventListener("message", (event) => {
+        // event is a MessageEvent object
+        const {type, listingId, swResponse} = event.data;
+        const {eventDates, reviews} = swResponse ?? {}
+        if(eventDates){
+          setActiveDates({act_dates: eventDates, act_id:id});
+        }
+        if(reviews){
+          const {success, data} = reviews
+          if(success){
+            setActiveReviews({act_reviews: eventDates, act_id:id})
+          }
+        }
+      });
+    }
+  }
+
+  function toServiceWorker(){
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.active.postMessage({type:'listingState', listingId:id, subTypes:['dates','reviews']});
+      });
+    }
+  }
+
+  useEffect(() => {
+     setUpMessaging();
+  
+    return () => {
+      navigator.serviceWorker.removeEventListener("message", (event) => {
+          //console.log(`The service event is removed :`, event);
+      });
+    }
+  }, [])
+  
+
 useEffect(() => {
- //const {act_id} = activeDates ?? {};
+ //const controller = new AbortController();
+ //const {signal} = controller;
 
  if(id != 'undefined'){
-    setActiveDates({loading: true})
-    getDates({event_id: id, f_key : 'event-date', upcoming_instances : 5}, signal);
+    setActiveDates({loading: true});
+    toServiceWorker();
+    //getDates({event_id: id, f_key : 'event-date', upcoming_instances : 5}, signal, controller);
   }
-  return () => controller.abort();
+  return () => setActiveDates({});
 }, [id]);
 
   return <div className="listingStater"/>
 }
+
 const ListingStater = memo(ListingStaterConst)
 export default ListingStater

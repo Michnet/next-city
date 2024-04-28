@@ -1,4 +1,9 @@
+
 // To clear cache on devices, always increase APP_VER number after making changes.
+
+//import { getEventDates } from "../helpers/rest";
+importScripts("/sw-rest.js");
+
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
 var APP_NAME = 'LyveCity';
 var APP_VER = '1.3.1';
@@ -9,38 +14,38 @@ var CACHE_NAME = APP_NAME + '-' + APP_VER;
 // Leave REQUIRED_FILES = [] to disable offline.
 var REQUIRED_FILES = [
 	// HTML Files
-	'index.js',
-	'explore/events.js',
+	'/index.js',
+	//'explore/events.js',
 	// Styles
-	'styles/style.css',
-	'styles/bootstrap.css',
+	'/styles/style.css',
+	'/styles/bootstrap.css',
 	// Scripts
 	//'scripts/custom.js',
 	//'scripts/bootstrap.min.js',
 	// Plugins
-	'plugins/before-after/before-after.css',
-	'plugins/before-after/before-after.js',
-	'plugins/charts/charts.js',
-	'plugins/charts/charts-call-graphs.js',
-	'plugins/countdown/countdown.js',
-	'plugins/filterizr/filterizr.js',
-	'plugins/filterizr/filterizr.css',
-	'plugins/filterizr/filterizr-call.js',
-	'plugins/galleryViews/gallery-views.js',
-	'plugins/glightbox/glightbox.js',
-	'plugins/glightbox/glightbox.css',
-	'plugins/glightbox/glightbox-call.js',
+	'/plugins/before-after/before-after.css',
+	'/plugins/before-after/before-after.js',
+	'/plugins/charts/charts.js',
+	'/plugins/charts/charts-call-graphs.js',
+	'/plugins/countdown/countdown.js',
+	'/plugins/filterizr/filterizr.js',
+	'/plugins/filterizr/filterizr.css',
+	'/plugins/filterizr/filterizr-call.js',
+	'/plugins/galleryViews/gallery-views.js',
+	'/plugins/glightbox/glightbox.js',
+	'/plugins/glightbox/glightbox.css',
+	'/plugins/glightbox/glightbox-call.js',
 	// Fonts
-	'fonts/css/fontawesome-all.min.css',
-	'fonts/webfonts/fa-brands-400.woff2',
-	'fonts/webfonts/fa-regular-400.woff2',
-	'fonts/webfonts/fa-solid-900.woff2',
+	'/fonts/css/fontawesome-all.min.css',
+	'/fonts/webfonts/fa-brands-400.woff2',
+	'/fonts/webfonts/fa-regular-400.woff2',
+	'/fonts/webfonts/fa-solid-900.woff2',
 	// Images
-	'images/empty.png',
+	'/images/empty.png',
 ];
 
 // Service Worker Diagnostic. Set true to get console logs.
-var APP_DIAG = false;
+var APP_DIAG = true;
 
 //Service Worker Function Below.
 self.addEventListener('install', function(event) {
@@ -129,4 +134,39 @@ self.addEventListener('activate', function(event) {
 		})
 	);
 	if(APP_DIAG){console.log('Service Worker: Activated')}
+});
+
+addEventListener("message", async (event) => {
+	// event is an ExtendableMessageEvent object
+	let swResponse = {};
+
+	//console.log(`The client sent me a message xx :`, event.data);
+	const {type, listingId, reviewsPage, subTypes} = event.data;
+	if(type == 'listingState'){
+
+		const controller = new AbortController();
+ 		const {signal} = controller;
+
+		if(subTypes?.length > 0){
+			//console.log('services subTypes', subTypes)
+			if(subTypes.includes('dates')){
+				let eDates = await getEventDates({event_id: listingId, f_key : 'event-date', upcoming_instances : 5}, signal);
+				if(eDates){
+					//controller.abort();
+					swResponse.eventDates = eDates; 
+				}
+			}
+
+			if(subTypes.includes('reviews')){
+				let eReviews = await fetchListingReviews({ source_id : listingId, page : reviewsPage ?? 0 }, signal);
+				if(eReviews){
+					//controller.abort();
+					swResponse.reviews  = eReviews; 
+				}
+			}
+		}
+
+	}
+  
+	event.source.postMessage({type, listingId, swResponse});
 });

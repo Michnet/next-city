@@ -13,7 +13,6 @@ const Sidebar = ({page, setPage, user, exClass=''}) => {
   const router = useRouter();
   const {name, id} = user ?? {};
   const {userSignOut} = useRecoilValue(useAuthState);
-  console.log('user in side', user)
 
   const sidebarContent = [
     {

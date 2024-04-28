@@ -20,8 +20,8 @@
 .header {
 	.header-title {
 		position: absolute;
-		height: 50px;
-		line-height: 50px;
+		height: 60px;
+		line-height: 60px;
         margin-top: calc((constant(safe-area-inset-top))*0.8) !important;
         margin-top: calc((env(safe-area-inset-top))*0.8) !important;
 		font-size: 14px;
@@ -44,9 +44,9 @@
 	top: 0px;
 	left: 0px;
 	right: 0px;
-	height: 50px;
-    height: calc(50px + (constant(safe-area-inset-top))*0.8) !important;
-    height: calc(50px + (env(safe-area-inset-top))*0.8) !important;
+	height: 60px;
+    height: calc(60px + (constant(safe-area-inset-top))*0.8) !important;
+    height: calc(60px + (env(safe-area-inset-top))*0.8) !important;
 	z-index: 99;
 	transition: $globalTransitions;
 	background-color: $color-white;
@@ -54,7 +54,7 @@
 	box-shadow: 0 4px 18px 0 rgba(0,0,0,0.08);
 	.header-icon {
 		position: absolute;
-		height: 50px;
+		height: 60px;
 		width: 45px;
 		text-align: center;
 		line-height: 49px;
@@ -72,8 +72,8 @@
 .header-nav {
 	.header-title {
 		position: absolute;
-		height: 50px;
-		line-height: 50px;
+		height: 60px;
+		line-height: 60px;
 		font-size: 14px;
 		color: $color-black;
 		font-weight: 600;
@@ -92,12 +92,12 @@
 	top: 0px;
 	left: 0px;
 	right: 0px;
-	height: 50px;
+	height: 60px;
 	z-index: 99;
 	transition: $globalTransitions;
 	.header-icon {
 		position: absolute;
-		height: 50px;
+		height: 60px;
 		width: 45px;
 		text-align: center;
 		line-height: 49px;
@@ -142,9 +142,9 @@
 }
 
 .header-clear {
-	padding-top: 50px;
-    padding-top: calc(50px + (constant(safe-area-inset-top))*0.8) !important;
-    padding-top: calc(50px + (env(safe-area-inset-top))*0.8) !important;
+	padding-top: 60px;
+    padding-top: calc(60px + (constant(safe-area-inset-top))*0.8) !important;
+    padding-top: calc(60px + (env(safe-area-inset-top))*0.8) !important;
 }
 .header-clear-small {
 	padding-top: 20px;

@@ -1,9 +1,9 @@
 import  {useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import Image from 'next/image';
 //import { Splide, SplideSlide } from '@splidejs/react-splide';
 import CallToActions from '@/components/UI/CallToActions';
-import { authState } from '@/contexts/atoms';
+import { authState, activeReviewsState } from '@/contexts/atoms';
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 import { fetchListingReviews } from '@/helpers/rest';
 //import ReviewCard from './ReviewCard';
@@ -11,12 +11,15 @@ import SingleReview from './SingleReview';
 import Splider from '@/components/UI/partials/Splider';
 
 
-function PostReviews({id, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false}) {
+function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false}) {
     const [auth, setAuth] = useRecoilState(authState);
     const {user} = auth ?? {};
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState(null);
+    const activeReviews = fromActive ? useRecoilValue(activeReviewsState) : null;
+
+    let userOwned = user?.id == author_id;
  
     async function getReviews(payload, signal){
         const reviewsData = await fetchListingReviews(payload, signal);
@@ -39,7 +42,15 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
             payload.per_page = limit
         }
         setLoading(true)
-        getReviews(payload, signal)
+        if(fromActive){
+            const {act_id, act_reviews} = activeReviews;
+            if(act_id == id && act_reviews?.length > 0){
+                setReviews(act_reviews); 
+            }
+            setLoading(false); 
+        }else{
+            getReviews(payload, signal)
+        }
 
         /* const interval = setInterval(() => {
             getReviews(payload)
@@ -51,7 +62,10 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
     }, [id]);
 
     let reviewsView, totalView; 
-    let fallBackView = <>{loading ?  <div><LoaderDualRingBoxed height={300}/></div> : <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'} actionComponent={withButton ? <button className='btn' onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>
+    let fallBackView = <>{loading ?  <div><LoaderDualRingBoxed height={300}/></div> : <>{
+        userOwned ? 
+        <CallToActions title={'No Reviews Yet'} light descript={'No one has submitted a review for your event yet. Share your page and encourage others to share their reviews of your event'}/> 
+        : <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'} actionComponent={withButton ? <button className='btn' onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>}</>
     if(loading){
         reviewsView = <div><LoaderDualRingBoxed height={300}/></div>
     }else if(reviews){
@@ -89,7 +103,12 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
     }
    
   return (
-   <>{reviews?.list?.length > 0 ? 
+   <>
+   <div className='mb-40 mx-4 mt-10 sc_heading_3 pos-relative'>
+            <h5>What others are saying</h5>
+            <h4>User Reviews</h4>
+        </div>
+        {reviews?.list?.length > 0 ? 
     <div className={`listing_reviews pos-relative _wall ${carousel ? '_slider' : ''}`}>
         
        {!carousel && <div className='overall_score d-flex flex-column align-items-end px-3'>
@@ -101,10 +120,7 @@ function PostReviews({id, carousel, limit, reload, title, bgImage=false, transpa
             <div className='cover_overlay full_ht whitey _blur'></div>
        </> 
        : <></>}
-       <div className='mb-40 mx-4 mt-10 sc_heading_3 pos-relative'>
-            <h5>What others are saying</h5>
-            <h4>User Reviews</h4>
-        </div>
+       
        <div className="reviews">
             {reviewsView}
         </div>

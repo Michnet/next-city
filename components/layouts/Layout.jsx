@@ -90,6 +90,7 @@ function LayoutConst({ children, headerTitle, settings}) {
             <UISettings exClass='px-3'/>
           </div>
 
+
           <BSReveal id={'login_modal'}>
           <AuthUI/>
 

@@ -1,7 +1,7 @@
-const CallToActions = ({actionComponent, exClass, centered, title, descript, icon, light, bgClass, border, thin, noPadLeft}) => {
+const CallToActions = ({actionComponent, exClass='', centered, title, descript, icon, light, bgClass='bg-theme', border, thin, noPadLeft}) => {
     return (
       <>
-      <section className={`cta ${exClass ?? ''} ${border ? 'border' : ''} ${thin ? '' : 'layout-pt-md layout-pb-md'} position-relative ${bgClass ?? 'bg-secondary'}`}>
+      <section className={`cta card card-style ${exClass} ${border ? 'border' : ''} ${thin ? '' : 'layout-pt-md layout-pb-md'} position-relative ${bgClass}`}>
         <div className={`container py-24 mw-100 ${noPadLeft ? 'pl-0' : ''}`}>
           <div className={`row ${centered ? 'text-center justify-center' : 'justify-between'} items-center`}>
             <div className="col-auto px-0 mb-3">

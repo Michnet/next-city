@@ -72,7 +72,7 @@ export const kyFetch = ky.create({
             
             return response
           }else{
-            console.log('corrected error in ky', error);
+            //console.log('corrected error in ky', error);
             let obj = {message:'An error has occured',responseStatus:response.status,success:false};
             let badResp = await response.json();
             if(badResp?.data){

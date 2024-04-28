@@ -6401,7 +6401,7 @@ body:not(._fixed_top) .single_listing .ant-layout-header .gx-header-notification
 }
     .footer-btns-container {
         width: 100%;
-        justify-content: center;
+        justify-content: space-around;
       }
     .masthead.-type-2 .masthead__content{
     padding-top: 30px;

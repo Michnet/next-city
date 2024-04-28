@@ -35,7 +35,7 @@ function processImg(images, cover){
 
 const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcoming, styles}) => {
     
-    const {address, venue, about_us, locations, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
+    const {address, venue, about_us, locations, author_id, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
     const {tickets} = listing_store;
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery} = meta ?? {};
     const {list:wcu_list} = _wcu ? _wcu[0] : {};
@@ -55,6 +55,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             title= 'Event stats'
             subtitle={'Key stats about event'}
             coverClass={'backdropGray'}
+            exClass=''
             cover= {srcWithFallback(processImg(gallery, cover))}
             icon = {'fas fa-stopwatch-20'}
             >
@@ -221,7 +222,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                 reviewsView = <Suspense offset={150} once height={200}>
                 <div className="wide_container" 
                     >
-                    <Client><PostReviews withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
+                    <Client><PostReviews fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
                     </Suspense>
         //}

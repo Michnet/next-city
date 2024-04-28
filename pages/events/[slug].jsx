@@ -147,12 +147,12 @@ if(listing){
         <CallToActions centered thin light bgClass={'bg-transparent'} actionComponent={
             <div className="d-flex  gap-3 flex-center">
                 <Link href={'/add-listing'}><button
-            className="btn btn-theme btn-sm rounded-22 w-auto px-10 h-full text-14 fw-500"
+            className="btn btn-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
             >
             Create event page
             </button></Link>
             <Link href={'/about/about-us'}><button
-            className="btn btn-outline-theme btn-sm rounded-22 w-auto px-10 h-full text-14 fw-500"
+            className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
             >
             Learn More
             </button></Link>
@@ -200,12 +200,14 @@ if(listing){
         </Client>
     </div>
 
-    <style>
-        {`:root{
-          --listingTheme : ${siteColorObjs?.filter((col) => col.name === color)[0]?.hex}
-        }
-        `}
-    </style>
+    <Client>
+      <style>
+          {`:root{
+            --listingTheme : ${siteColorObjs?.filter((col) => col.name === color)[0]?.hex}
+          }
+          `}
+      </style>
+    </Client>
 
     <ListingSideMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <RightMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
