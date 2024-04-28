@@ -2962,7 +2962,7 @@ span.list_title._first {
 }
 
 .footer_content > a {
-    max-width: 50px;
+    /* max-width: 50px; */
 }
 
 .gx-timeline-panel .activityCard1.-type-1 .card_content {

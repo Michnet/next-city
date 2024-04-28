@@ -140,7 +140,7 @@ export default function Home(props) {
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
-    <Splider height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
+    <Splider exClass="mb-4" height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'carousel'}}>
     {
                 eventCategories?.map((cat) => {
                     return <TermIcon flipped item={cat}/>
@@ -148,7 +148,7 @@ export default function Home(props) {
             }
     </Splider>
 
-    <div className="divider mt-2 mb-2"></div>
+    <div className="divider mt-2 mb-4"></div>
 
    <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider height={275} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
