@@ -21,7 +21,7 @@ function ListingReviewsConst({postID, user, bgImage, setActiveKey, author_id}) {
 
     if(reviewed){
       if(reviewed?.length > 0 && reviewed.includes(postID.toString())){
-          submitView = <div className="_info card bg-light mb-3 position-relative">
+          submitView = <div className="_info card mb-3 position-relative">
                         <div className="card-header">Already Reviewed</div>
                         <div className="card-body">
                           <h5 className="card-title">Thank You</h5> 

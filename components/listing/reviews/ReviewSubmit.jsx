@@ -99,10 +99,12 @@ function ReviewSubmit({source_id, reloadAll, author_id}) {
         rating_data : JSON.stringify(dataArr)
        
        }
+       console.log('review payload', payload)
        setLoading(true);
        const score = await submitReview(payload);
        if(score){
-        const {user_meta} = score.data.data;
+        console.log('score', score)
+        const {user_meta} = score.data;
             if(user_meta){
                 let oldUser = theAuth.user;
                 let oldUserMeta = oldUser.user_meta;
@@ -113,6 +115,7 @@ function ReviewSubmit({source_id, reloadAll, author_id}) {
            setLoading(false);
            reloadAll();
        }else{
+        console.log('score', score)
          setLoading(false);
        }
     }
@@ -133,7 +136,7 @@ function ReviewSubmit({source_id, reloadAll, author_id}) {
                     <h4>Add a review</h4>
                 </div>
                     <div className='d-flex flex-column'>
-                    <input type={'text'} showCount maxLength={20} onChange={e => setTitle(e.target.value)} placeholder='Review Title' className='review_title d-block'/>
+                    <input type={'text'} showCount maxLength={40} onChange={e => setTitle(e.target.value)} placeholder='Review Title' className='review_title d-block'/>
                     <textArea rows={3} showCount maxLength={300} onChange={e => setDescription(e.target.value)} placeholder="A brief description of your review" className='review_descript d-block'/>
                     </div>
                 
@@ -155,7 +158,7 @@ function ReviewSubmit({source_id, reloadAll, author_id}) {
                     }
                     </div>
                     <div className="footer">
-                        <button className='btn btn-theme radius-30' onClick={submitScore}>Submit</button>
+                        <button className='btn btn-theme radius-30' onClick={() => submitScore()}>Submit</button>
                     </div>
                 </>
             )}}else{

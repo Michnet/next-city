@@ -2227,7 +2227,7 @@ p.strength_descript {color: #ffffff;line-height: 1.3;}
 .toggle_holder {width: 65px;height: 50px;}
 
 .mini_head_content .profile-actions .action_box i {
-  background: #ffffffbf;
+  background: transparent;
 }
 
 section.custom_section .row_content .head_content {display: block;width: fit-content;}
