@@ -61,13 +61,13 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
         }
     }
 
-    const cachedContent = useMemo(() => itContent(id), [id] );
+   // const cachedContent = useMemo(() => itContent(id), [id] );
 
     function showContent(key){
         let tagGroup = lMenu.filter((el) => el.id == key)[0];
           if(tagGroup){
           const {id, icon, title, subTitle, innerClass, widgetClass, badge} = tagGroup;
-          let content = cachedContent;
+          let content = itContent(id);
           
           if(content !== 'empty'){
             if(id === 'occurrences'){

@@ -15,16 +15,16 @@ const ListingFooter = (props) => {
   if(thumbnail){
     logoView = <div className="l_logo d-flex flex-row flex-nowrap gap-2 align-items-center mb-20">
       <Avatar rounded width={40} height={40} src={thumbnail}/>
-      <h4 className="_title gx-text-truncate handy show_in_pinned lh-1" dangerouslySetInnerHTML={{__html: title}}/>
+      <h4 className="_title truncate-2 handy show_in_pinned lh-1" dangerouslySetInnerHTML={{__html: title}}/>
       </div>
   }
 
   return (
-    <footer className={`listing_footer px-30 footer-footer section-container card card-style mb-2 mx-2 md:px-15 md:py-15 ${props.rootClassName}`}>
+    <footer className={`listing_footer px-0 footer-footer section-container bg-transparent shadow-0 card card-style mb-2 mx-2 md:px-10 md:py-10 ${props.rootClassName}`}>
       <div
-        className={`footer-max-width max-content-container`}
+        className={`footer-max-width max-content-container gap-4`}
       >
-        <div className={'footer-banner overflow-hidden rounded-4'}>
+        <div className={'footer-banner overflow-hidden rounded-4 mb-0'}>
           <div className='footer_banner_content'>
              <h1 className={`footer-text heading2`}>
             <span>BOOK YOUR SLOT</span>
@@ -46,10 +46,10 @@ const ListingFooter = (props) => {
           </div>
         </div>
 
-        <div className={'footer-bottom-container'}>
+        <div className={'footer-bottom-container border p-5'}>
           <div className={'footer-left-side'}>
             {logoView}
-            {short_desc && <span className={'truncate-5 footer-text06'}>
+            {short_desc && <span className={'truncate-5 opacity-70'}>
               {short_desc}
             </span>}
             {links?.length > 0 && <div className={'footer-social-media'}>

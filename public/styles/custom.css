@@ -2337,7 +2337,6 @@ button.back_link {
 }
 
 .quick_links a {
-    font-size: 13px;
     line-height: 1.2em;
     color: var(--colorTheme);
     margin-bottom: 5px;

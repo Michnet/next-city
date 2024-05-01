@@ -15,7 +15,7 @@ import Content from "@/components/listing/Content";
 import { authState, listingViewState } from "@/contexts/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import VisitorActions from "@/components/listing/partials/VisitorActions";
-import CallToActions from "@/components/UI/CallToActions";
+const CallToActions = dynamic(() => import("@/components/UI/CallToActions"));
 const Link = dynamic(() => import("next/link"));
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
@@ -36,7 +36,7 @@ import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
-import Navigator from "@/components/listing/Navigator";
+const Navigator = dynamic(() => import("@/components/listing/Navigator"));
 
 const randColor = randomEither(siteColors);
 

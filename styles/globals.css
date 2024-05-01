@@ -4672,7 +4672,8 @@ color: rgb(19,115,51);
   padding-top: 50px;
 }
 .footer-max-width {
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -4696,7 +4697,7 @@ color: var(--bs-black);
 
 .footer-banner{
   width: 100%;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
 }
 .footer_banner_content {
   flex: 0 0 auto;
