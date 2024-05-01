@@ -1,11 +1,10 @@
-const Widget = ({title, freeHeader=false, subtitle, children, exClass='m-0', cover, coverClass='', extra, actions, icon, headless, width}) => {
+const Widget = ({title, freeHeader=false, styleObj={}, bodyClass='', subtitle, children, exClass='m-0', cover, coverClass='', extra, actions, icon, headless, width}) => {
     let widgetView;
-    let styleObj = {}
     if(cover){
       styleObj.backgroundImage = `url('${cover}')`
     }
       widgetView = <div>{freeHeader && <>
-                  {title || subtitle  ? <div class="py-2 px-3">
+                  {title || subtitle  ? <div className="py-2 px-3">
                       <div className="d-flex pb-2">
                           <div>
                               {subtitle && <h6 className="mb-n1 opacity-80 color-highlight">{subtitle}</h6>}
@@ -16,9 +15,9 @@ const Widget = ({title, freeHeader=false, subtitle, children, exClass='m-0', cov
                           </div>
                       </div>
                       </div> : <></>}</>}
-        <div class={`card card-style ${exClass} ${title || subtitle ? 'headed' : ''}`} style={{...styleObj}}>
+        <div className={`card card-style ${exClass} ${title || subtitle ? 'headed' : ''}`} style={{...styleObj}}>
                     <div className={`content m-0 p-0 ${cover ? 'bg-theme-transparent' : ''} ${coverClass}`}>
-                      {!freeHeader && <>{title || subtitle  ? <div class="card-header py-2">
+                      {!freeHeader && <>{title || subtitle  ? <div className="card-header py-2">
                       <div className="d-flex pb-2">
                           <div>
                               {subtitle && <h6 className="mb-n1 opacity-80 color-highlight">{subtitle}</h6>}
@@ -30,7 +29,7 @@ const Widget = ({title, freeHeader=false, subtitle, children, exClass='m-0', cov
                       </div>
                       </div> : <></>}
                       </>}
-                      <div class="card-body">
+                      <div className={`card-body ${bodyClass}`}>
                         {children}
                       </div>
                     </div>

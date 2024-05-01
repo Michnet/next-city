@@ -37,6 +37,8 @@ import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
+import Image from "next/image";
+import Navigator from "@/components/listing/Navigator";
 
 const randColor = randomEither(siteColors);
 
@@ -91,6 +93,7 @@ export async function getStaticPaths() {
         ...serverObj,
         headerTitle: title,
         settings : {
+           uiBackground:listing?.cover,
             noFooter: true,
             mMenu: 'show',
             mMenuContent:{
@@ -185,13 +188,16 @@ if(listing){
             </HeaderWrapper>
 
     <ListingBottomMenu setActiveKey={setActiveKey} listing={listing} color={color}/>
-    <div className="page-content single_listing ">
+    <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         <Hero2 /* palette={palette}  */ color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
         <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
+        <Client>
+            <Navigator setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
+        </Client>
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
-        <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
+          <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
         </LazyLoad>
         <Client>
           <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>

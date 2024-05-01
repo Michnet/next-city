@@ -31,7 +31,7 @@
   --ongoingColorLight: #b3b3ff;
 }
 .handy{
-  font-family: var(--handFont);
+  font-family: var(--handFont) !important;
   font-weight: 400 !important;
   text-transform: capitalize;
 }
@@ -393,7 +393,7 @@ z-index: 0;
     backdrop-filter: blur(3px);
 }
 
-.pad_tab .tab_inner, .gx-profile-content .tabpane.widgey .gx-card-widget {box-shadow: #0000000d 0px 0px 5px 1px;box-shadow: none;margin-bottom: 12px;/* overflow: hidden; */border: 2px solid #f3f3f3;overflow-y: visible;}
+.pad_tab .tab_inner, .gx-profile-content .tabpane.widgey .gx-card-widget {box-shadow: #0000000d 0px 0px 5px 1px;box-shadow: none;margin-bottom: 12px;/* overflow: hidden; */overflow-y: visible;}
 
 ._info.card .card-body * {
   z-index: 1;
@@ -582,9 +582,6 @@ margin-bottom: 23px;
   position: relative;
 }
 
-.single_listing .tags_row {
-  background: var(--bgTheme);
-}
 
 .single_listing .tags_row::before {
   width: 100%;
@@ -2334,9 +2331,7 @@ section.custom_section .row_content .head_content {display: block;width: fit-con
 ._mini .gx-profile-container {
   padding-bottom: 35px;
   padding-top: 94px;
-  background: #00000091;
   position: relative;
-  background: linear-gradient(180deg, #ffffff7d, white);
 }
 
 .schedule_signal span.marker:before, .schedule_signal.hide_label:hover  .marker::before {content: '';display: inline-block;border: 2px solid;width: 10px;height: 10px;margin-right: 10px;border-radius: 50%;}
@@ -3516,7 +3511,7 @@ ul.listing_navigator li.prev .label {color: #878787 !important;}
 
 a.l_menu._item.active .label {color: var(--theme);}
 
-.l_menu._item .label {font-size: 16px;margin-bottom: 0;color: var(--textColor);}
+.l_menu._item .label {font-size: 16px;margin-bottom: 0;}
 
 ul.listing_menu li.active .label {color: var(--theme);}
 
@@ -3535,11 +3530,27 @@ ul.listing_menu li.active .icon i {
 
 .ant-col.results {z-index: 0;height: 100%;padding: 10px;}
 
-ul.listing_navigator li {margin: 10px 0;list-style: none;border-radius: 30px;padding: 0;box-shadow: none;color: var(--secTheme);display: none;background: transparent;border: none;overflow: hidden;text-overflow: ellipsis;}
+ul.listing_navigator li {margin: 10px 0;list-style: none;border-radius: 30px;padding: 0;box-shadow: none;/* color: var(--secTheme); */display: none;background: transparent;border: none;overflow: hidden;text-overflow: ellipsis;}
 
-ul.listing_navigator li.visible.prev {background: linear-gradient(45deg, black, #777777);background: #f2f2f2;}
+ul.listing_navigator li.visible.prev {/* background: linear-gradient(45deg, black, #777777); */flex-direction: row-reverse;}
 
-ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: center;border: none;background: white;box-shadow: #00000021 1px 1px 8px 1px;}
+ul.listing_navigator li.visible.next {
+    background: var(--listingTheme);
+}
+
+ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: center;border: none;background: var(--bgDarkTransparent2);box-shadow: #00000021 1px 1px 8px 1px;}
+
+ul.listing_navigator li {
+    padding: 10px 22px;
+    gap: 8px;
+}
+
+ul.listing_navigator li i {
+}
+
+.listing_navigator li.prev .fa-angle-right, .listing_navigator li.next .fa-angle-left {
+    display: none;
+}
 
 ul.listing_navigator li.visible:before, ul.listing_navigator li.visible:after {font-family: 'Line Awesome Free';font-size: 20px;display: inline-block;position: relative;width: 30px;height: 30px;text-align: center;color: var(--theme);font-weight: 500;}
 
@@ -3551,7 +3562,7 @@ ul.listing_navigator li.visible.prev .menu_pointer._left {
 
 ul.listing_navigator li:hover {background: #6c6969;}
 
-ul.listing_navigator {display: flex;align-items: center;padding: 0;margin-bottom: 0;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;}
+ul.listing_navigator {display: flex;align-items: center;padding: 0;margin-bottom: 15px;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;}
 
 ul.listing_navigator li .l_menu._item svg {color: #b9b9b9;font-size: 16px;}
 
@@ -4666,7 +4677,6 @@ color: rgb(19,115,51);
   justify-content: space-between;
 }
 .footer-link.l_menu._item .label, .footer-link{
-color: var(--bs-gray-500);
 font-weight: 400 !important;
 font-size: var(--fontSize);
 line-height: 32px;
@@ -4686,7 +4696,6 @@ color: var(--bs-black);
 
 .footer-banner{
   width: 100%;
-  background: var(--bs-gray-dark);
   margin-bottom: 70px;
 }
 .footer_banner_content {
@@ -4698,7 +4707,7 @@ color: var(--bs-black);
   padding: 35px;
   flex-direction: column;
   background-size: cover;
-  background: #0000006e;
+  background: #00000026;
 }
 .links_box i{
 font-size: 25px;
@@ -4711,12 +4720,11 @@ opacity: 0.6;
   opacity: 1;
 }
 .footer-text {
-  color: #fff;
   text-align: center;
   margin-bottom: 0.6em;
 }
 .footer-text03 {
-  color: var(--bs-gray-500);
+  opacity: 0.7;
   font-style: normal;
   font-weight: 500;
   margin-bottom: 1em;
@@ -4737,9 +4745,7 @@ opacity: 0.6;
   display: none;
 }
 .footer-register-now {
-  color: var(--bs-gray-200);
-  margin-right: 0.5em;
-  background-color: #ffffff2e;
+  background-color: var(--listingTheme);
 }
 .footer-register-now:hover {
   color: #fff;
@@ -4747,7 +4753,7 @@ opacity: 0.6;
 }
 .footer-contact-us {
   color: #fff;
-  border-color: #9797975e;
+  background: var(--bgDarkTransparent2)
 }
 .footer-contact-us:hover {
   color: #fff;
@@ -5621,9 +5627,6 @@ footer .container.overlay {
   display: inline;
 }
 
-.price_view ._pre {
-  font-size: 19px;
-}
 
 .activityCard .price_view._free ._title {
   color: var(--loudTheme);
@@ -5909,7 +5912,7 @@ footer .container.overlay {
 }
 
 .single_listing .woocommerce-Price-amount.amount {
-  /* color: var(--listingTheme); */
+  color: var(--listingTheme);
 }
 
 .tab-pane.widgey .tab_inner {
@@ -6903,19 +6906,13 @@ section.ant-layout.single_listing .top_bar_toggle {right: 14px;}
 
  @media (max-width: 480px) {
    .listing_footer .footer-banner{
-  margin: -50px -30px 70px -30px;
   width: auto;
 }
     .footer-text03 {
         text-align: center;
       }
-      .footer-btns-container {
-        align-items: stretch;
-        flex-direction: column;
-      }
       .footer-register-now {
         margin-right: 0px;
-        margin-bottom: 1em;
       }
       .footer-links {
         flex-wrap: wrap;

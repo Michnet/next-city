@@ -15,16 +15,16 @@ const ListingFooter = (props) => {
   if(thumbnail){
     logoView = <div className="l_logo d-flex flex-row flex-nowrap gap-2 align-items-center mb-20">
       <Avatar rounded width={40} height={40} src={thumbnail}/>
-      <h4 className="_title gx-text-truncate handy show_in_pinned lh-1 text-white" dangerouslySetInnerHTML={{__html: title}}/>
+      <h4 className="_title gx-text-truncate handy show_in_pinned lh-1" dangerouslySetInnerHTML={{__html: title}}/>
       </div>
   }
 
   return (
-    <footer className={`listing_footer px-30 footer-footer section-container card card-style mb-2 mx-2 ${props.rootClassName}`}>
+    <footer className={`listing_footer px-30 footer-footer bg-dark-transparent section-container card card-style mb-2 mx-2 ${props.rootClassName}`}>
       <div
         className={`footer-max-width max-content-container`}
       >
-        <div className={'footer-banner'}>
+        <div className={'footer-banner overflow-hidden rounded-4'}>
           <div className='footer_banner_content'>
              <h1 className={`footer-text heading2`}>
             <span>BOOK YOUR SLOT</span>
@@ -33,7 +33,7 @@ const ListingFooter = (props) => {
             <span></span>
             <span>For your opportunity with {cleanHtml(title)}, ...</span>
           </span>
-          <div className={'footer-btns-container'}>
+          <div className={'footer-btns-container gap-2 align-items-center justify-center'}>
              <BookingView children={<button
               className={`footer-register-now w-100 button-primary button-lg button`}
             >See Options</button>} setActiveKey={setActiveKey} text='See Options'/>
@@ -89,7 +89,7 @@ const ListingFooter = (props) => {
                     <div key={item.id}>
                       <div className="d-flex flex-column">
                         {item.menuList.map((menu, i) => (
-                          <Link className='footer-link color-gray-dark py-1'  href={menu.routerPath} as={menu.routerPath} key={i}>
+                          <Link className='footer-link py-1'  href={menu.routerPath} as={menu.routerPath} key={i}>
                             {menu.name}
                           </Link>
                         ))}

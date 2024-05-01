@@ -301,7 +301,7 @@ export function toggleTheme(){
         if(document.body.className == "theme-light"){ 
             removeTransitions(); activateDarkMode();}
         else if(document.body.className == "theme-dark"){ 
-            removeTransitions(); activateLightMode();
+            removeTransitions(); activateLightMode(); 
         }
         setTimeout(function(){addTransitions();},350);
     }

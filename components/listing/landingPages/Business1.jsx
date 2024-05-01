@@ -99,7 +99,8 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                         <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
                                             <div className='cover_content pt-50'>
                                                 <h4>Online Booking Available</h4>
-                                                <>{ticket_min_price_html && <PriceView preText={'Starting from'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</> 
+                                                <div className='divider mt-3 w-25'/>
+                                                <>{ticket_min_price_html && <PriceView preText={'Starting from'}  exClass={'_inline text-20'} priceHTml={ticket_min_price_html}/> }</> 
                                             </div>
                                             
                                         </div>

@@ -3,18 +3,23 @@ import { Client } from "react-hydration-provider";
 import Activity from "../UI/lists/Activity";
 import Header from "./partials/Header";
 import {useMemo, memo } from "react";
+import Image from "next/image";
 
 function ScaffoldConst({children, uiSize, settings, path}) {
     const {isTab} = uiSize;
-    const {noHeader, autoShowHeader, hideNews, headerTitle} = settings ?? {};
+    const {noHeader, autoShowHeader, hideNews, headerTitle, uiBackground} = settings ?? {};
 
     const cachedChildren = useMemo(() => children, [path])
     console.log('running scaffold')
     
   return (<>
     <div className="container-fluid p-0">
-        <div className="row flex-nowrap _scaffold">
-            <div className="col-auto d-none d-md-block p-0 p-md-2" style={{height: '100vh', position: 'sticky', top: '0', maxWidth: '250px'}}>
+        {<div style={{height: '120vh', position:'fixed', top:'0', left:'0', width: '100vw'}} className='position-fixed top-0'>
+          <Image src={uiBackground} fill className='object-cover top-0'/>
+          <div  className="bg-overlay h-100 bg-theme-transparent-2 position-relative" style={{backdropFilter:'saturate(180%) blur(20px)'}}/>
+        </div>}
+        <div className="row flex-nowrap _scaffold" /* style={{zIndex: 0, position: 'relative'}} */>
+            <div className="col-auto d-none d-md-block p-0 p-md-2" style={{height: '100vh', position: 'sticky', top: '0', maxWidth: '250px', zIndex: '1'}}>
                 <div id="sidebar" className="_main collapse collapse-horizontal d-none d-md-block rounded-m bg-theme-transparent" style={{backdropFilter: 'blur(2px)'}}>
                     <MainMenu/>
                 </div>

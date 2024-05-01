@@ -97,6 +97,19 @@ h6 {
 .page-content.single_listing .color-highlight {
     color: var(--listingTheme) !important;
 }
+.page-content.single_listing .card {
+    background-color: var(--bgThemeTransparent2);
+}
+div.truncate-5 > p {
+    --max-lines: inherit;
+    max-height: inherit;
+    -webkit-line-clamp: inherit;
+    display: inherit;
+    line-height: inherit;
+    overflow: inherit;
+    text-overflow: inherit;
+    -webkit-box-orient: inherit
+}
 /*Tickets*/
 .fl-left {
     float: left
@@ -282,9 +295,13 @@ h6 {
 
 /*Classes*/
 .bg-theme-transparent{
-    background: #ffffffe6 !important;
-    background-color: var(--bgThemeTransparent) !important;
+    background: var(--bgThemeTransparent);
 }
+.bg-theme-transparent-2{
+    background: var(--bgThemeTransparent2);
+}
+.bg-dark-transparent{background: var(--bgDarkTransparent)};
+.bg-dark-transparent2{background: var(--bgDarkTransparent2)};
 .handy{
     font-family: var(--handFont) !important;
 }
@@ -1200,8 +1217,6 @@ button.back_link {
 }
 
 .price_view ._pre {
-    font-size: 12px;
-    color: var(--bs-gray-600);
     font-weight: 400;
 }
 
@@ -1328,6 +1343,7 @@ button.back_link {
 
 #sidebar:not(.show) .user_card {
     box-shadow: none !important;
+    border: none !important;
 }
 
 #sidebar:not(.show) .card .content {
@@ -1337,7 +1353,7 @@ button.back_link {
 #sidebar .card .content {}
 
 #sidebar:not(.show) i {
-    margin-right: auto;
+    margin-right: auto !important;
     margin-left: auto !important;
 }
 
@@ -1402,6 +1418,10 @@ button.back_link {
 
 #sidebar, #sidebar * {
     transition: all 0.4s;
+}
+
+#sidebar:not(.show) ._link, #sidebar:not(.show) .link {
+    margin: auto;
 }
 
 #sidebar_menu {
@@ -2089,7 +2109,7 @@ button.back_link {
 }
 
 .woocommerce-Price-currencySymbol {
-    color: var(--bs-gray-500);
+    opacity:0.6;
     font-weight: 300;
 }
 .woocommerce-Price-amount.amount {
@@ -2098,7 +2118,7 @@ button.back_link {
 }
 
 .activityCard.-type-2 .woocommerce-Price-currencySymbol {
-    color: var(--bs-gray-500);
+    opacity:0.6;
     font-weight: 500
 }
 
@@ -2870,6 +2890,7 @@ span.clear_tag {
 
 .footer-link.l_menu._item .label, .footer-link {
     font-family: var(--fontFamily) !important;
+    cursor: pointer;
 }
 
 .sc_heading_3.righty {
@@ -3408,5 +3429,12 @@ div#explore_nav .left_menu_btn {
 /*media qs end*/
 
 .footer-contact-us {
-    border: 1px solid var(--listingTheme);
+    border: 1px solid var(--borderTheme);
+}
+
+.listing_footer .footer-banner {
+}
+
+#sidebar.collapse:not(.show) ._logo_text, #sidebar.collapse:not(.show) .logo_extras {
+    display: none;
 }

@@ -51,7 +51,7 @@ function MainMenu() {
                                                 let {id, icon, color, name, routePath, isNew} = el;
                                                 return <Link key={id} href={routePath} className='close-menu' onClick={() => closeMenus()}>
                                                         <i className={`${icon} 
-                                                        ${isActiveLink(routePath, router.asPath)? 'gradient-menu color-white' : 'gradient-gray color-dark'} 
+                                                        ${isActiveLink(routePath, router.asPath)? 'gradient-menu color-white' : 'gradient-highlight color-white'} 
                                                         rounded-sm`}></i>
                                                         <span>{name}</span>
                                                         {isNew && <span className="badge bg-highlight">NEW</span>}

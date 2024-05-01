@@ -8,7 +8,7 @@ function UISettingsConst({exClass=''}) {
               <div className="list-group list-custom-small">
                 <div
                   //data-trigger-switch="switch-dark-mode"
-                  className="pb-2 ms-n1 _link"
+                  className="pb-2 _link"
                 >
                   <i className="fa font-12 fa-moon rounded-s bg-highlight color-white me-3"></i>
                   <span className='hide_in_collapsed'>Dark Mode</span>
