@@ -18,10 +18,10 @@ function ChatHeader({exClass='', conversation, setConversation, listings, setSub
                 {lastMessageTime ? <span className="mt-n3 color-blue-dark d-block font-10 mt-1 pt-2 color-blue-dark">{lastMessageTime}</span> : <></>}
             </a>
         </div>
-        <div className="align-self-center ms-auto d-flex">
+        {/* <div className="align-self-center ms-auto d-flex">
             <a href="#" data-toggle-theme className="icon ms-n2 icon-l color-theme"><i className="fas fa-lightbulb font-12"></i></a>
             <a href="#" data-menu="menu-user-cog" className="icon ms-n2 icon-l color-theme"><i className="fas fa-cog fa-spin font-13"></i></a>
-        </div>
+        </div> */}
     </div>
 
     <div className="px-10 top-0 py-2" style={{overflow:'hidden', overflowX: 'auto'}}>

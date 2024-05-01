@@ -25,6 +25,14 @@ function reduceTextSize(){
 export function UICleanup(){
   closeMenus()
 }
+export function messageServiceWorker(message){
+  console.log('run message')
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.active.postMessage(message);
+    });
+  }
+}
 
 export function shuffleArray(array) { 
   return array ? array.sort( ()=>Math.random()-0.5 ) : [];

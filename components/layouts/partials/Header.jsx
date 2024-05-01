@@ -34,7 +34,7 @@ return <Client>
           <i className="far fa-bell color-theme"></i>
         </span>
         <span data-toggle-search onClick={(e) => openOffCanvas(e)} data-menu='search_form_1'>
-          <i className="fas fa-search-location color-theme"></i>
+          <i className="fas fa-search color-theme"></i>
         </span>
         <UserAvatar/>
         {/* <div className="search-box pt-2">

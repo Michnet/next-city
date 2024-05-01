@@ -7,6 +7,7 @@ import { authState, userMetaState } from "@/contexts/atoms";
 import { useSession, signOut, getSession, signIn } from "next-auth/react";
 import { authKey, kyFetch, serializeQuery, WPDomain } from './base';
 import { useRouter } from "next/router";
+import { messageServiceWorker } from './universal';
 
 export const useAuthState = atom({
   key: 'useAuthState', 
@@ -307,14 +308,18 @@ async function loginFunc(jwt, username){
 }
 
 
- const userLogin = async(loginData, signal) => {
+ const userLogin = async(loginData) => {
    const oldToken = cookies.get("token");
    if(oldToken){
      cookies.remove('token');
    }
    try {
-  let data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth`, {json: {...loginData}, signal:signal}).json();
-  if (data?.success) {
+  //let data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth`, {json: {...loginData}, signal:signal}).json();
+    let data = messageServiceWorker({type:'auth', loginData});
+    if(data){
+      console.log('data', data)
+    }
+  /* if (data?.success) {
       const jwtData = data.data;
       if(jwtData.jwt){
         const {username} = loginData;
@@ -330,12 +335,11 @@ async function loginFunc(jwt, username){
           }
          })
       }
-     // setLoading(false)
      return data;
     }else{
       console.log('failed', data)
       return data;
-    }
+    } */
   }catch (error) {
       console.log('got failed', error)
       setTheAuth({...theAuth, loading:false})  

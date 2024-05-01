@@ -136,7 +136,7 @@ const ExploreEvents = ({topList}) => {
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section mt-20">
-                    <ActivityCarousel height={290} thumbsize={'thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
+                    <ActivityCarousel thumbsize={'thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
               </div>}
 
 

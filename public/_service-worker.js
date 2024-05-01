@@ -139,13 +139,24 @@ self.addEventListener('activate', function(event) {
 addEventListener("message", async (event) => {
 	// event is an ExtendableMessageEvent object
 	let swResponse = {};
-
+    const messageObj = event.data;
+	const controller = new AbortController();
+	const {signal} = controller;
 	//console.log(`The client sent me a message xx :`, event.data);
-	const {type, listingId, reviewsPage, subTypes} = event.data;
-	if(type == 'listingState'){
+	const {type} = messageObj;
+	if(type == 'auth'){
+		const {loginData} = messageObj;
+        
+		 let authResponse = await authenticate(loginData, signal);
+		 if(authResponse){
+			 //controller.abort();
+			 swResponse.authResponse = authResponse; 
+		 }
 
-		const controller = new AbortController();
- 		const {signal} = controller;
+	}
+
+	if(type == 'listingState'){
+		const {listingId, reviewsPage, subTypes} = messageObj;
 
 		if(subTypes?.length > 0){
 			//console.log('services subTypes', subTypes)
@@ -165,7 +176,6 @@ addEventListener("message", async (event) => {
 				}
 			}
 		}
-
 	}
   
 	event.source.postMessage({type, listingId, swResponse});

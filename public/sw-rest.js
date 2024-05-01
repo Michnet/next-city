@@ -15,6 +15,24 @@ const serializeQuery = (query) => {
       .join('&');
 };
 
+const authenticate = async (payload, signal) => {
+  console.log('running authenticate');
+
+  const endPoint = `/wp-json/jwt-auth/v1/auth?${serializeQuery({
+      ...payload
+  })
+}`;
+
+  try {
+    const res = await fetch(`${WPDomain}/${endPoint}`, {signal});
+    if(res){
+        return res.json();
+    }else{
+    }
+  } catch (error) {
+    console.log('got failed', error)
+  }
+}
 const getEventDates = async (payload, signal) => {
 
   const endPoint = `wp-json/m-api/v1/event-dates?${serializeQuery({
