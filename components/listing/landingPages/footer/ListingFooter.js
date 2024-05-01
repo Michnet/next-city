@@ -53,7 +53,7 @@ const ListingFooter = (props) => {
               {short_desc}
             </span>}
             {links?.length > 0 && <div className={'footer-social-media'}>
-              <span className={'footer-text07'}>Follow {cleanHtml(title)}</span>
+              <span>Follow {cleanHtml(title)}</span>
               <div className={`social_links footer-container`}>
                 <SocialLinks links={links}/>
               </div>

@@ -15,7 +15,7 @@ function ScaffoldConst({children, uiSize, settings, path}) {
   return (<>
     <div className="container-fluid p-0">
         {<div style={{height: '120vh', position:'fixed', top:'0', left:'0', width: '100vw'}} className='position-fixed top-0'>
-          <Image src={uiBackground} fill className='object-cover top-0'/>
+          <Image src={uiBackground ?? '/images/bg/pageBg.jpg'} fill className='object-cover top-0'/>
           <div  className="bg-overlay h-100 bg-theme-transparent-2 position-relative" style={{backdropFilter:'saturate(180%) blur(20px)'}}/>
         </div>}
         <div className="row flex-nowrap _scaffold" /* style={{zIndex: 0, position: 'relative'}} */>
