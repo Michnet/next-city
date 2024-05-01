@@ -20,7 +20,7 @@ const ListingFooter = (props) => {
   }
 
   return (
-    <footer className={`listing_footer px-30 footer-footer bg-dark-transparent section-container card card-style mb-2 mx-2 ${props.rootClassName}`}>
+    <footer className={`listing_footer px-30 footer-footer section-container card card-style mb-2 mx-2 md:px-15 md:py-15 ${props.rootClassName}`}>
       <div
         className={`footer-max-width max-content-container`}
       >
@@ -37,7 +37,7 @@ const ListingFooter = (props) => {
              <BookingView children={<button
               className={`footer-register-now w-100 button-primary button-lg button`}
             >See Options</button>} setActiveKey={setActiveKey} text='See Options'/>
-            <button data-bs-toggle={isMobile ? 'offcanvas' : 'modal'} data-bs-target='#listing_contact'
+            <button onClick={() => setActiveKey('private-chat')}
               className={`footer-contact-us button button-outline button-lg-border`}
             >
               Contact Listing

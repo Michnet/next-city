@@ -37,7 +37,7 @@ function Navigator({listing, activeKey, setActiveKey}) {
 					
                       return <li onClick={() => {closeMenus(); setActiveKey(id)}} className={`_link close-menu overflow-visible position-relative ${activeKey === id ? 'active' : ''}`}  key={id}>
 							<i className={`${icon ?? 'far fa-square'} font-16 bg-transparent rounded opacity-50 text-white`}></i>
-							<span className="text-white">{buttony ? subTitle : title}
+							<span className="text-white truncate">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 end-0 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
                                       </span> : <></>}</span>

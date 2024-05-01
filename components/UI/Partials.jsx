@@ -36,7 +36,7 @@ export const SocialLinks = ({links, iconsOnly=true}) => {
         {links.map((el) => {
           const {network, url} = el;
           return <a target={'_blank'} href={url} className="link_link">
-            <i className={`bi bi-${network.toLowerCase()}`}/>
+            <i className={`fab fa-${network.toLowerCase()} color-${network.toLowerCase()}`}/>
           </a>
         })}
       </div>

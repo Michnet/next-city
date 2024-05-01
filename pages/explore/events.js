@@ -128,15 +128,15 @@ const ExploreEvents = ({topList}) => {
               <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Hints</button> 
               }</div></> : <></>}</>
               <div className="inner_section mt-20">
-                    <ActivityCarousel height={120} exCardClass={'me-2'} title={'Latest Events'} subtitle={'Fresh and New Events'} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
+                    <ActivityCarousel thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={'Latest Events'} subtitle={'Fresh and New Events'} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">
-                    <ActivityCarousel mini noFallback cardWidth={200} exCardClass={'_mini ms-0 me-2'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
+                    <ActivityCarousel height={220} mini noFallback cardWidth={200} exCardClass={'_mini ms-0 me-2'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section mt-20">
-                    <ActivityCarousel cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
+                    <ActivityCarousel height={290} thumbsize={'thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
               </div>}
 
 

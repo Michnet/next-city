@@ -10,12 +10,12 @@ import { DualColorHeader } from "../Partials";
 import Splider from "@/components/UI/partials/Splider";
 import Link from "next/link";
 
-function ActivityCarouselConst({defListings = null, height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
+function ActivityCarouselConst({optionsObj = {}, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
 
     let theView, fetchy = true, linkQuery = null;
 
 
-    let spliderOptions = {...spliderVariableWidth, padding: { left: 10, right: 20 }}
+    let spliderOptions = {...spliderVariableWidth, padding: { left: 8, right: 20}, ...optionsObj}
     if(gap){
       spliderOptions.gap = gap;
     }
@@ -23,7 +23,7 @@ function ActivityCarouselConst({defListings = null, height=200, queryObj={}, car
     const {query} = useRouter();
     const params = query ?? {};
 
-    let Card, thumbsize = 'xtra_large_thumb'
+    let Card;
     let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
     listing_type:'event', per_page: 5, ...queryObj, ...params};
 

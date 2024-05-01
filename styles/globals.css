@@ -4712,8 +4712,6 @@ color: var(--bs-black);
 .links_box i{
 font-size: 25px;
 margin-right : 20px;
-color: #fff;
-opacity: 0.6;
 }
 
 .links_box i:hover {

@@ -2867,7 +2867,11 @@ span.clear_tag {
 
 
 #listingMenuRight .list-custom-small ._link {
-    border: navajowhite;
+    border: none;
+}
+
+#listingMenuRight .list-custom-small ._link.active {
+    color: var(--highlight);
 }
 
 .card.righty {
@@ -3437,4 +3441,23 @@ div#explore_nav .left_menu_btn {
 
 #sidebar.collapse:not(.show) ._logo_text, #sidebar.collapse:not(.show) .logo_extras {
     display: none;
+}
+
+ul.listing_navigator {
+    padding: 0 12px;
+}
+
+.card.event_card_2.bgClear {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.card.event_card_2.bgClear .card-img, .card.event_card_2.bgClear .card-img .card-overlay {
+    border-radius: 15px !important;
+    overflow: hidden;
+}
+
+.card.card-style.event_card_3 .card-overlay {
+    border-radius: 0;
 }
