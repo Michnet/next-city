@@ -1,8 +1,5 @@
-//import dynamic from "next/dynamic";
 import { memo } from 'react';
-//import { Avatar } from '~/appComponents/components/UI/components';
 import { useRecoilValue } from 'recoil';
-//import { authState } from '~/contexts/contexts';
 import { Client } from 'react-hydration-provider';
 import listingMenu from './ListingMenu';
 import { authState } from '@/contexts/atoms';
@@ -13,12 +10,9 @@ import { srcWithFallback } from '@/helpers/universal';
 //const HeaderAnnex = dynamic(() => import('~/appComponents/core/Topbar/HeaderAnnex'));
 
 
-const ListingSideMenuConst = ({listing, activeKey, setActiveKey}) => {
+const ListingSideMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
   const {logo, thumbnail, title, cover} = listing ?? {};
   const {user} = useRecoilValue(authState);
-
-    let localMenu = listingMenu({listing:listing, userId: user?.id});
-  
 
 
 let logoView, listView;
@@ -33,9 +27,9 @@ if(logo){
     </div>
 }
   */
-if(localMenu){
+if(lMenu){
   listView = <>
-              {localMenu.map((el) => {
+              {lMenu.map((el) => {
                 if(el?.content !== 'empty'){
                 const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
                 return <li className={`${activeKey === id ? 'active' : ''}`} key={id}>

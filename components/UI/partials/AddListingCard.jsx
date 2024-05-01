@@ -1,6 +1,7 @@
 import { siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import Link from "next/link";
+import { Client } from 'react-hydration-provider';
 
 
 const randColor = randomEither(siteColors);
@@ -9,6 +10,7 @@ const randColor = randomEither(siteColors);
 function AddListingCard({exClass='', height=200, shadowy=false}) {
 
   return ( <>
+  <Client>
 <div className={`card card-style round-medium  top-30 ${shadowy && 'shadow-bg shadow-bg-l'}  ${exClass} ${`bg-${randColor}-dark`}`} style={{ height: height}}>
             
             <div className="card-top mt-3 mx-3">
@@ -32,6 +34,7 @@ function AddListingCard({exClass='', height=200, shadowy=false}) {
             <div className={`card-overlay opacity-90 `} style={{background: randColor}}/>
             <div className="card-overlay bg-gradient"/>
         </div>
+        </Client>
 
 </>
   )

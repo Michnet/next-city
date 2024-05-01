@@ -387,15 +387,52 @@ async function loginFunc(jwt, username){
     }
   }
 }
+function setUpMessaging(){
+  if (navigator.serviceWorker) {    
+    navigator.serviceWorker.addEventListener("message", (event) => {
+      const oldToken = cookies.get("token");
+      if(oldToken){
+        cookies.remove('token');
+      }
+      let incoming = event.data; 
+      const {type, swResponse} = incoming;
+      if(type == 'auth'){
+        const {authResponse:data, loginData} = swResponse;
+        if (data?.success) {
+          const jwtData = data.data;
+          if(jwtData.jwt){
+            const {username} = loginData;
+            cookies.set('token', jwtData.jwt);
+             signIn('lyve_city', {username: username, token: jwtData.jwt, redirect: false}).then(async(res) => {
+              if(res.ok){
+                const checkSession = await getSession();
+                if (checkSession?.user) {
+                 // router.reload();
+                  const checkedUser = checkSession.user;
+                   await fetchUserFunc({email: checkedUser.email, jwt: jwtData.jwt, authType: 'native'});
+                }
+              }
+             })
+          }
+         return data;
+        }else{
+          console.log('failed', data)
+          return data;
+        }
+      }
+    });
+  }
+}
 useEffect(() => {
   //getAuthUser();
    /* const interval = setInterval(() => {
      getAuthUser();
    }, 600000);
    return () => clearInterval(interval); */
+   setUpMessaging();
  }, []);
 
- let functionsObj = {userLogin, userSignOut, userLoginBySocial, getAuthUser, userSignup, userUpdate/* , getAuthUser, userUpdate,  , , getUserMeta */}
+ let functionsObj = {userLogin,setUpMessaging, userSignOut, userLoginBySocial, getAuthUser, userSignup, userUpdate/* , getAuthUser, userUpdate,  , , getUserMeta */}
   setUseAuthState(functionsObj);
   return functionsObj;
 }
@@ -403,9 +440,10 @@ useEffect(() => {
 
 export function AuthProvider() {
   const authFunctions = useProvideAuth();
-  const {getAuthUser} = authFunctions;
+  const {getAuthUser,setUpMessaging} = authFunctions;
   console.log('running auth provider')
   useEffect(() => {
+    setUpMessaging();
      getAuthUser();
      /* const interval = setInterval(() => {
        getAuthUser();

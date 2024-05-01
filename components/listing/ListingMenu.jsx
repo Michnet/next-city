@@ -1,12 +1,12 @@
-import { activeDateState } from "@/contexts/atoms";
-import { useRecoilValue } from "recoil";
+//import { activeDateState } from "@/contexts/atoms";
+//import { useRecoilValue } from "recoil";
 //import { activeDateState, listingNoticesState } from "~/contexts/contexts";
 
 export default function listingMenu({listing, userId}){
 
   const {type, about_us, author_id,community_id,meta} = listing ?? {};
   const {faqs} = about_us ?? {};
-  const {act_dates} = useRecoilValue(activeDateState) ?? {};
+  //const {act_dates} = useRecoilValue(activeDateState) ?? {};
   let gallery = meta?._job_gallery;
   console.log('listing', listing)
 
@@ -87,7 +87,7 @@ if(type === 'event'){
       title: 'Dates',
       subTitle : 'Occurences', 
       widgetClass:  'profile widgey pad_tab',
-      badgeNumber: act_dates?.length ?? 0,
+      //badgeNumber: act_dates?.length ?? 0,
       badgeClass: 'bg-success'
     }
   );

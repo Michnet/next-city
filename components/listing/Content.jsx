@@ -1,7 +1,7 @@
 import { authState } from "@/contexts/atoms";
 import { useSignal } from "@preact/signals-react";
 import dynamic from "next/dynamic";
-import {memo} from 'react';
+import {memo, useMemo} from 'react';
 import { useRecoilValue } from "recoil";
 import { DualColorHeader } from "../UI/Partials";
 const ComponentActivity = dynamic(() => import("../UI/partials/ComponentActivity"));
@@ -10,14 +10,14 @@ import { EventDatesActive } from "../UI/partials/dateViews/EventDates";
 const FAQs = dynamic(() => import("../UI/FAQs"));
 const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
-import listingMenu from "./ListingMenu";
+//import listingMenu from "./ListingMenu";
 import { ListingContact } from "./partials/ListingContact";
 const ProfileContact = dynamic(() => import("./partials/ProfileContact"));
 const ListingProductsSimple = dynamic(() => import("./shop/ListingProductsSimple"));
 //const ListingStore = dynamic(() => import("./shop/ListingStore"));
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
-function ContentConst({listing, activeView,  activeKey, color, setActiveKey}) {
+function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKey}) {
     const {id,about_us, listing_store, community_id, type, author_id} = listing;
     const {tickets} = listing_store;
     const {faqs} = about_us;
@@ -25,7 +25,6 @@ function ContentConst({listing, activeView,  activeKey, color, setActiveKey}) {
     let chatCount = useSignal(0)
 
     const {user} = useRecoilValue(authState);
-    let localMenu = listingMenu({listing:listing, userId: user?.id}); 
 
     function itContent(id){
         switch (id) {
@@ -62,11 +61,13 @@ function ContentConst({listing, activeView,  activeKey, color, setActiveKey}) {
         }
     }
 
+    const cachedContent = useMemo(() => itContent(id), [id] );
+
     function showContent(key){
-        let tagGroup = localMenu.filter((el) => el.id == key)[0];
+        let tagGroup = lMenu.filter((el) => el.id == key)[0];
           if(tagGroup){
           const {id, icon, title, subTitle, innerClass, widgetClass, badge} = tagGroup;
-          let content = itContent(id);
+          let content = cachedContent;
           
           if(content !== 'empty'){
             if(id === 'occurrences'){

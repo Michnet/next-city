@@ -24,7 +24,7 @@ const authenticate = async (payload, signal) => {
 }`;
 
   try {
-    const res = await fetch(`${WPDomain}/${endPoint}`, {signal});
+    const res = await fetch(`${WPDomain}/${endPoint}`, {signal:signal, method: 'POST'});
     if(res){
         return res.json();
     }else{

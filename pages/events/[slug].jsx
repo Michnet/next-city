@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-
 const RelatedByTaxSplide = dynamic(() => import("@/components/listing/RelatedByTaxSplide"));
 //import VisitRecord from "@/components/UI/VisitRecord";
 const ListingStater = dynamic(() => import("@/contexts/contextStaters/ListingStater"));
@@ -37,7 +36,6 @@ import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
-import Image from "next/image";
 import Navigator from "@/components/listing/Navigator";
 
 const randColor = randomEither(siteColors);
@@ -138,9 +136,10 @@ useEffect(() => {
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
 let VisitorActionsView;
-let localMenu = listingMenu({listing:listing, userId: user?.id});
+//let lMenu = listingMenu({listing:listing, userId: user?.id});
+
 const cachedListing = useMemo( () => listing, [listing.id] );
-//const localMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing.id, user?.id] );
+const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing.id, user?.id] );
 
 
 if(listing){
@@ -184,7 +183,7 @@ if(listing){
            slug={`/events/${slug}`}
            />
            <HeaderWrapper headerClass="header-invert header-always-show" header_id={'listing_header'}>
-                <ListingTopMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+                <ListingTopMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
 
     <ListingBottomMenu setActiveKey={setActiveKey} listing={listing} color={color}/>
@@ -192,12 +191,12 @@ if(listing){
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         <Hero2 /* palette={palette}  */ color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
-        <Content activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
+        <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
         <Client>
-            <Navigator setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
+            <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
         </Client>
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
-          <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={localMenu}    rootClassName="root-class-name"/>
+          <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
         </LazyLoad>
         <Client>
           <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>
@@ -215,8 +214,8 @@ if(listing){
       </style>
     </Client>
 
-    <ListingSideMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
-    <RightMenu listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+    <ListingSideMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+    <RightMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title">
             <a href="#" className="close-menu" onClick={() => closeMenus()}>

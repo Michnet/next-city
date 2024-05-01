@@ -3,17 +3,15 @@ import { closeMenus, toggleTheme } from "@/helpers/appjs";
 import { cleanHtml, srcWithFallback } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
-import listingMenu from "./ListingMenu";
 
-function RightMenu({listing, activeKey, setActiveKey}) {
+function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
     const {user} = useRecoilValue(authState);
     let listView;
 
-    let localMenu = listingMenu({listing:listing, userId: user?.id});
-    if(localMenu){
+    if(lMenu){
         listView = <>
-                    {localMenu.map((el) => {
+                    {lMenu.map((el) => {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
 					  if(buttony){

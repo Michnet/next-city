@@ -138,19 +138,22 @@ self.addEventListener('activate', function(event) {
 
 addEventListener("message", async (event) => {
 	// event is an ExtendableMessageEvent object
-	let swResponse = {};
+	let swResponse = {}, swRespObj = {};
     const messageObj = event.data;
 	const controller = new AbortController();
 	const {signal} = controller;
 	//console.log(`The client sent me a message xx :`, event.data);
 	const {type} = messageObj;
+
 	if(type == 'auth'){
 		const {loginData} = messageObj;
         
 		 let authResponse = await authenticate(loginData, signal);
 		 if(authResponse){
 			 //controller.abort();
+			 console.log('authResponse', authResponse)
 			 swResponse.authResponse = authResponse; 
+			 swResponse.loginData = loginData
 		 }
 
 	}
@@ -159,7 +162,6 @@ addEventListener("message", async (event) => {
 		const {listingId, reviewsPage, subTypes} = messageObj;
 
 		if(subTypes?.length > 0){
-			//console.log('services subTypes', subTypes)
 			if(subTypes.includes('dates')){
 				let eDates = await getEventDates({event_id: listingId, f_key : 'event-date', upcoming_instances : 5}, signal);
 				if(eDates){
@@ -176,7 +178,8 @@ addEventListener("message", async (event) => {
 				}
 			}
 		}
+		swRespObj.listingId = listingId;
 	}
-  
-	event.source.postMessage({type, listingId, swResponse});
+	swRespObj.swResponse = swResponse;
+	event.source.postMessage({type, ...swRespObj});
 });

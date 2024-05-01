@@ -19,6 +19,7 @@ import UIProvider from "@/contexts/UIContext";
 import SiteProvider from "@/contexts/siteContext";
 import MessagesStater from "@/contexts/contextStaters/MessagesStater";
 import { useRouter } from "next/router";
+import SWMessaging from "@/contexts/contextStaters/SWMessaging";
 //import "@/public/scripts/bootstrap.min.js";
 
 function MyAppConst({ Component, pageProps, platform }) {
@@ -53,6 +54,7 @@ function MyAppConst({ Component, pageProps, platform }) {
           </HydrationProvider>
           <AuthProvider/>
           <UIProvider platform={platform}/>
+          <SWMessaging/>
           <SiteProvider/>
           <MessagesStater/>
           <ActivityProvider/>

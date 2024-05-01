@@ -4,22 +4,19 @@ import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { authState, UISizes } from '@/contexts/atoms';
 import { Client } from 'react-hydration-provider';
-// import listingMenu  from '~/appComponents/components/profile/ProfileContent/listing/ListingMenu';
 import { BookingView } from '@/pages/events/[slug]';
 import { cleanHtml } from '@/helpers/universal';
 import { Avatar } from '@/components/UI/Partials';
 import { UserAvatar } from '@/components/UI/UserAvatar';
-import listingMenu from '../ListingMenu';
 import { openOffCanvas } from '@/helpers/appjs';
 import MainMenuBtn from '@/components/layouts/partials/MainMenuBtn';
 import { useRouter } from 'next/router';
 
-const ListingTopMenuConst = ({listing, activeKey, setActiveKey}) => {
+const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
   const {logo, thumbnail, title} = listing ?? {};
   const {user} = useRecoilValue(authState);
   const router = useRouter()
 
-    let localMenu = listingMenu({listing:listing, userId: user?.id});
     
   const {isMobile} = useRecoilValue(UISizes);
 
@@ -38,9 +35,9 @@ if(logo){
 }
 
  
-if(localMenu){
+if(lMenu){
   headerMenuView = <>
-  {localMenu.map((el) => {
+  {lMenu.map((el) => {
     if(el?.content !== 'empty' && !mobileHideList.includes(el.id)){
       const {id, icon, title, badgeNumber, badge, badgeClass} = el;
     return <div onClick={() => setActiveKey(id)} className={`tab_link`}>{badge ? <span className="badge"> {badgeNumber}</span> : null}

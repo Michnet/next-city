@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
 import { memo, useEffect } from "react";
 
-function Navigator({listing, activeKey, setActiveKey}) {
+function Navigator({listing, activeKey, setActiveKey, lMenu}) {
     const {user} = useRecoilValue(authState);
     let listView;
 
@@ -28,10 +28,9 @@ function Navigator({listing, activeKey, setActiveKey}) {
 		}
 	  }, [activeKey]);
 
-    let localMenu = listingMenu({listing:listing, userId: user?.id});
-    if(localMenu){
+    if(lMenu){
         listView = <>
-                    {localMenu.map((el) => {
+                    {lMenu.map((el) => {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
 					
