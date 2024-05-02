@@ -3270,7 +3270,12 @@ input[type=range]::-webkit-slider-thumb {
         border-radius: 0;
         margin-bottom: 10px;
         height: calc(100vh - 65px);
+        padding: 0;
     }
+
+div#explore_nav .view_filter {
+    padding: 0 12px;
+}
 
     .view_filter i {
         color: var(--bs-gray-400)

@@ -1,6 +1,6 @@
 :root{
   --btnShadow: #00000040 0px 2px 16px 1px;
-  --textColor: #393939;
+  --textColor: var(--colorTheme);
   --darkTextColor: #fff;
   --darkGray: #ababab;
     --mediumGray: #c7c7c7;

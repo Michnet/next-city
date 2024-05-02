@@ -76,25 +76,16 @@ $theme-light-transparent-background-2: #f0f0f0d0;
     --borderTheme:rgba(255,255,255,0.12);
 } */
 
-.theme-dark body{
-    color:$color_white;
-}
-
 body{
     color: $theme-dark-background;
 }
 
+body.theme-dark{
+    color:$color_white;
+}
+
 .bg-body{background-color: var(--bgTheme) !important}
 
-.theme-dark .bg-theme-light{background-color: #{$theme-dark-background-light};}
-.theme-dark .bg-theme-transparent{
-    background-color: #{$theme-dark-transparent-background};
-}
-.theme-dark .bg-theme-transparent-2{
-    background-color: #{$theme-dark-transparent-background-2};
-}
-.theme-dark .bg-dark-transparent{background-color: #{$theme-dark-transparent-background};}
-.theme-dark .bg-dark-transparent2{background-color: #{$theme-dark-transparent-background-2}};
 
 /*Light*/
 .bg-theme-light{background-color: #{$theme-light-background-light};}
@@ -107,6 +98,17 @@ body{
 .bg-dark-transparent{background-color: #{$theme-light-transparent-background};}
 .bg-dark-transparent2{background-color: #{$theme-light-transparent-background-2}};
 
+
+
+.theme-dark .bg-theme-light{background-color: #{$theme-dark-background-light};}
+.theme-dark .bg-theme-transparent{
+    background-color: #{$theme-dark-transparent-background};
+}
+.theme-dark .bg-theme-transparent-2{
+    background-color: #{$theme-dark-transparent-background-2};
+}
+.theme-dark .bg-dark-transparent{background-color: #{$theme-dark-transparent-background};}
+.theme-dark .bg-dark-transparent2{background-color: #{$theme-dark-transparent-background-2}};
 
 /*Basic Colors*/
 .color-white{color:$color_white!important;}
