@@ -2400,8 +2400,9 @@ button.back_link {
 }
 
 .query_hint {
-    border-top: 4px solid var(--secTheme);
-    background: var(--secTheme);
+    border: 1px solid var(--secTheme);
+    background: transparent;
+    border-radius: 5px;
 }
 
 .section_header .icon-xs._big i {
@@ -2979,7 +2980,7 @@ span.list_title._first {
 }
 
 .query_hint .query_content{
-    background: var(--bgThemeTransparent);
+    /* background: var(--bgThemeTransparent); */
 }
 #footer_box{
     position: fixed;

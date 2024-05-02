@@ -70,7 +70,7 @@ self.addEventListener('install', function(event) {
 });
 
 const unCacheables = ['jwt-auth/v1']
-
+/* 
 self.addEventListener('fetch', function(event) {
 	event.respondWith(
 		//Fetch Data from cache if offline
@@ -83,7 +83,7 @@ self.addEventListener('fetch', function(event) {
 			}
 		)
 	);
-/* 
+
 	event.respondWith(
 		(async () => {
 		  const requestURL = new URL(event.request.url);
@@ -116,9 +116,9 @@ self.addEventListener('fetch', function(event) {
 		  }
 		  
 		})(),
-	  ); */
+	  );
 	if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
-});
+}); */
 
 self.addEventListener('activate', function(event) {
 	event.waitUntil(self.clients.claim());

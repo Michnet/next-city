@@ -115,8 +115,8 @@ const ExploreEvents = ({topList}) => {
                  <Suspense fallback={'Loading'}><TermsCarousel queryKey={'category'} queryLink={'/explore/events?category='} exClass={'pt-10'} slug={'events'}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
-              <><div className="query_hint mx-2 rounded-s">
-              {showHint ? <div className="query_content p-2 text-white ps-3">
+              <><div className="query_hint mx-2 p-2">
+              {showHint ? <div className="query_content text-white">
                   <p className="mb-2"><span>Exploring {category ? <span><span className="text-info pointer">{translateDate(category)} </span></span> : ''}
                     listings </span>
                     {eventDate ? <span>scheduled for <span className="text-warning pointer">{translateDate(eventDate)}</span></span> : ''}

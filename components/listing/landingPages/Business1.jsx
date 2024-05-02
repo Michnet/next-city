@@ -221,7 +221,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
        
         //if(rating > 0){
                 reviewsView = <Suspense offset={150} once height={200}>
-                <div className="wide_container" 
+                <div className="wide_container px-3" 
                     >
                     <Client><PostReviews fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
