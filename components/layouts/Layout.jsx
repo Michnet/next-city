@@ -2,10 +2,10 @@ import Script from "next/script";
 import { run_template } from "./../../helpers/js";
 import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
-import {useMemo, memo } from "react";
+import {useMemo, memo, useEffect } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
-import { closeMenus, onAppLoad, openOffCanvas, toggleTheme } from "@/helpers/appjs";
+import { closeMenus, onAppLoad, openOffCanvas } from "@/helpers/appjs";
 import Scaffold from "./Scaffold";
 import {UISizes, UIWidthState} from '@/contexts/atoms';
 //import Header from "./partials/Header";
@@ -17,6 +17,7 @@ import Splash from "../UI/Splash";
 import SnackBar from "../UI/partials/SnackBar";
 import UserSideMenu from "../UI/user/UserSideMenu";
 import UISettings from "./UISettings";
+import { getSession } from "next-auth/react";
 
 function sizing(width, setWidth){
   console.log('running sizing')
@@ -56,10 +57,22 @@ function LayoutConst({ children, headerTitle, settings}) {
   const {mMenuContent, noHeader, noFooter} = settings ?? {};
   const {btnProps, icon} = mMenuContent ?? {}
 
+  const Session = getSession();
+
   const cachedChildren = useMemo(() => children, [router.asPath])
   const cachedSettings = useMemo(() => settings, [router.asPath])
 
+  const cachedRunTemplate = useMemo(() => run_template(), [Session])
+  const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
+
   console.log("loading layout");
+
+  useEffect(() => {
+    cachedOnAppLoad;
+    cachedRunTemplate;
+  
+  }, [])
+  
 
   return (
     <>
@@ -187,73 +200,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               </button>
             </div>
             </BSReveal>
-          <div
-            id="menu-backgrounds"
-            className="menu menu-box-bottom menu-box-detached"
-          >
-            <div className="menu-title">
-              <h1>Backgrounds</h1>
-              <p className="color-highlight">
-                Change Page Color Behind Content Boxes
-              </p>
-              <a href="#" className="close-menu" onClick={() => closeMenus()}>
-                <i className="fa fa-times"></i>
-              </a>
-            </div>
-            <div className="divider divider-margins mb-n2"></div>
-            <div className="content">
-              <div className="background-changer">
-                <a href="#" data-change-background="default">
-                  <i className="bg-theme"></i>
-                  <span className="color-dark-dark">Default</span>
-                </a>
-                <a href="#" data-change-background="plum">
-                  <i className="body-plum"></i>
-                  <span className="color-plum-dark">Plum</span>
-                </a>
-                <a href="#" data-change-background="magenta">
-                  <i className="body-magenta"></i>
-                  <span className="color-dark-dark">Magenta</span>
-                </a>
-                <a href="#" data-change-background="dark">
-                  <i className="body-dark"></i>
-                  <span className="color-dark-dark">Dark</span>
-                </a>
-                <a href="#" data-change-background="violet">
-                  <i className="body-violet"></i>
-                  <span className="color-violet-dark">Violet</span>
-                </a>
-                <a href="#" data-change-background="red">
-                  <i className="body-red"></i>
-                  <span className="color-red-dark">Red</span>
-                </a>
-                <a href="#" data-change-background="green">
-                  <i className="body-green"></i>
-                  <span className="color-green-dark">Green</span>
-                </a>
-                <a href="#" data-change-background="sky">
-                  <i className="body-sky"></i>
-                  <span className="color-sky-dark">Sky</span>
-                </a>
-                <a href="#" data-change-background="orange">
-                  <i className="body-orange"></i>
-                  <span className="color-orange-dark">Orange</span>
-                </a>
-                <a href="#" data-change-background="yellow">
-                  <i className="body-yellow"></i>
-                  <span className="color-yellow-dark">Yellow</span>
-                </a>
-                <div className="clearfix"></div>
-              </div>
-              <a
-                href="#"
-                data-menu="menu-settings"
-                className="mb-3 btn btn-full btn-m rounded-sm bg-highlight shadow-xl text-uppercase font-900 mt-4"
-              >
-                Back to Settings
-              </a>
-            </div>
-          </div>
+          
           <div
             id="menu-share"
             className="menu menu-box-bottom menu-box-detached"

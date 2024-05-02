@@ -12,7 +12,7 @@ export function run_template(){
         //Global Variables
         let isPWA = true;  // Enables or disables the service worker and PWA
         let isAJAX = false; // AJAX transitions. Requires local server or server
-        var pwaName = "Sticky"; //Local Storage Names for PWA
+        var pwaName = "LyveCity"; //Local Storage Names for PWA
         var pwaRemind = 1; //Days to re-remind to add to home
         var pwaNoCache = false; //Requires server and HTTPS/SSL. Will clear cache with each visit
 
@@ -178,14 +178,14 @@ export function run_template(){
             } */
 
             //Don't jump on Empty Links
-            const emptyHref = document.querySelectorAll('a[href="#"]')
+            /* const emptyHref = document.querySelectorAll('a[href="#"]')
             emptyHref.forEach(el => el.addEventListener('click', e => {
                 e.preventDefault();
                 return false;
-            }));
+            })); */
 
             //Map Page
-            var fullMap = document.querySelectorAll('.map-full');
+            /* var fullMap = document.querySelectorAll('.map-full');
             if(fullMap.length){
                 var mapActivator = document.querySelectorAll('.show-map');
                 var mapDisabler = document.querySelectorAll('.hide-map');
@@ -200,12 +200,12 @@ export function run_template(){
                 document.getElementsByClassName('hide-map')[0].classList.add('disabled');
                 })
             }
-
+ */
 
 
 
             //To Do List
-            var toDoList = document.querySelectorAll('.todo-list a');
+          /*   var toDoList = document.querySelectorAll('.todo-list a');
             toDoList.forEach(el => el.addEventListener('click', e => {
                 el.classList.toggle('opacity-50');
                 el.querySelector('i:last-child').classList.toggle('far')
@@ -213,7 +213,7 @@ export function run_template(){
                 el.querySelector('i:last-child').classList.toggle('fa-check-square')
                 el.querySelector('i:last-child').classList.toggle('fa-square')
                 el.querySelector('i:last-child').classList.toggle('color-green-dark')
-            }));
+            })); */
 
             //Setting Sidebar Widths
             var menus = document.querySelectorAll('.menu');
@@ -288,14 +288,14 @@ export function run_template(){
 
 
             //Back Button
-            const backButton = document.querySelectorAll('[data-back-button]');
+            /* const backButton = document.querySelectorAll('[data-back-button]');
             if(backButton.length){
                 backButton.forEach(el => el.addEventListener('click',e =>{
                     e.stopPropagation;
                     e.preventDefault;
                     window.history.go(-1);
                 }));
-            }
+            } */
 
 
             //Back to Top
@@ -319,8 +319,8 @@ export function run_template(){
             if (iosVer.version > 14) {document.querySelectorAll('#page')[0].classList.add('min-ios15');}
 
             //Card Extender
-            const cards = document.getElementsByClassName('card');
-            function card_extender(){
+            //const cards = document.getElementsByClassName('card');
+            /* function card_extender(){
                 var headerHeight, footerHeight, headerOnPage;
                 var headerOnPage = document.querySelectorAll('.header:not(.header-transparent)')[0];
                 var footerOnPage = document.querySelectorAll('#footer-bar')[0];
@@ -345,12 +345,12 @@ export function run_template(){
                         }
                     }
                 }
-            }
+            } */
 
-            if(cards.length){
+            /* if(cards.length){
                 card_extender();
                 window.addEventListener("resize", card_extender);
-            }
+            } */
 
             //Page Highlights
             /* var highlightData = document.querySelectorAll('[data-change-highlight]');
@@ -677,7 +677,7 @@ export function run_template(){
             }
 
 
-            var workingHours = document.querySelectorAll('.show-business-opened, .show-business-closed, .working-hours');
+            /* var workingHours = document.querySelectorAll('.show-business-opened, .show-business-closed, .working-hours');
             if(workingHours.length){
                 //Working Hours
                 var d = new Date();
@@ -720,7 +720,7 @@ export function run_template(){
                         }
                     }
                 });
-            }
+            } */
 
 
 
@@ -744,7 +744,7 @@ export function run_template(){
             }
 
             //Time Ads
-            var timedAd = document.querySelectorAll('[data-timed-ad]');
+            /* var timedAd = document.querySelectorAll('[data-timed-ad]');
             if(timedAd.length){
                 timedAd.forEach(el => el.addEventListener('click',e =>{
                     var timedAdTime = el.getAttribute('data-timed-ad');
@@ -762,10 +762,10 @@ export function run_template(){
                     document.getElementById(timedAdData).querySelectorAll('span')[0].innerHTML = timedAdTimer -= 1;
                     }, 1000);
                 }));
-            }
+            } */
 
             //Auto Show Ads
-            var autoAd = document.querySelectorAll('[data-auto-show-ad]');
+            /* var autoAd = document.querySelectorAll('[data-auto-show-ad]');
             if(autoAd.length){
                 var autoAdTime = autoAd[0].getAttribute('data-auto-show-ad');
                 var timerAdFunction = setInterval(function(){
@@ -787,21 +787,21 @@ export function run_template(){
                     }
                     autoAdTime -= 1;
                 }, 1000);
-            }
+            } */
 
             //Reading Time
 
-            var readingTextDiv = document.querySelectorAll('.reading-progress-text');
+            /* var readingTextDiv = document.querySelectorAll('.reading-progress-text');
             if(readingTextDiv.length){
                 var readingWords = readingTextDiv[0].innerHTML.split(' ').length;
                 var readingMinutes = Math.floor(readingWords / 250);
                 var readingSeconds = readingWords % 60
                 document.getElementsByClassName('reading-progress-words')[0].innerHTML = readingWords
                 document.getElementsByClassName('reading-progress-time')[0].innerHTML = readingMinutes + ':' + readingSeconds
-            }
+            } */
 
             //Text Resizer
-            var textSizeChanger = document.querySelectorAll('.text-size-changer');
+            /* var textSizeChanger = document.querySelectorAll('.text-size-changer');
             if(textSizeChanger.length){
                 var textSizeIncrease = document.querySelectorAll('.text-size-increase');
                 var textSizeDecrease = document.querySelectorAll('.text-size-decrease');
@@ -824,7 +824,7 @@ export function run_template(){
                         element.style.fontSize = "";
                     });
                 })
-            }
+            } */
 
             //QR Generator
             var qr_image = document.querySelectorAll('.qr-image');
@@ -853,7 +853,7 @@ export function run_template(){
             }
 
             //Search Page
-            var searchField = document.querySelectorAll('[data-search]');
+            /* var searchField = document.querySelectorAll('[data-search]');
             if(searchField.length){
                 var searchResults = document.querySelectorAll('.search-results')
                 var searchNoResults = document.querySelectorAll('.search-no-results');
@@ -912,16 +912,16 @@ export function run_template(){
                     searchField[0].value  = trendingResult;
                     searchField[0].click();
                 }));
-            }
+            } */
 
             //Search Header
-            var searchHeader = document.querySelectorAll('[data-toggle-search]');
+            /* var searchHeader = document.querySelectorAll('[data-toggle-search]');
             if(searchHeader){
                 searchHeader.forEach(el => el.addEventListener('click', event => {
                     window.scrollTo({ top: 0, behavior: `smooth` })
                     document.querySelectorAll('.header')[0].classList.toggle('header-search-active');
                 })
-            )};
+            )}; */
 
             //Sharing
             var shareTitle = document.title;
@@ -944,7 +944,7 @@ export function run_template(){
             }
 
             //Contact Form
-            var contactForm = document.querySelectorAll('.contact-form');
+            /* var contactForm = document.querySelectorAll('.contact-form');
             if(contactForm.length){
                 var form = document.getElementById('contactForm');
                 form.onsubmit = function (e) {
@@ -1024,7 +1024,7 @@ export function run_template(){
                         };
                     }
                 };
-            }
+            } */
 
             //Collapse Flip Icon
             var collapseBtn = document.querySelectorAll('[data-bs-toggle="collapse"]:not(.no-effect)');
@@ -1089,7 +1089,7 @@ export function run_template(){
             }
 
             //Check Age
-            var checkAge = document.querySelectorAll('.check-age');
+            /*var checkAge = document.querySelectorAll('.check-age');
             if(checkAge.length){
                 checkAge[0].addEventListener('click',function(){
                     var dateBirthday = document.querySelectorAll("#date-birth-day")[0].value;
@@ -1120,7 +1120,7 @@ export function run_template(){
                     }
                     return true;
                 });
-            }
+            } */
 
 
             //Creating Offline Alert Messages
@@ -1358,7 +1358,7 @@ export function run_template(){
             var plugIdent, plugClass, plugMain, plugCall;
             var plugLoc = "plugins/"
 
-            let plugins = [
+            /* let plugins = [
             {
                 id: 'uniqueID', // to detect if loaded and unload if needed
                 plug: 'pluginName/plugin.js', // the main plugin javascript file
@@ -1405,7 +1405,7 @@ export function run_template(){
             ];
 
 
-            for (let i = 0; i < plugins.length; i++) {
+              for (let i = 0; i < plugins.length; i++) {
                 //Remove Previous Calls
                 if(document.querySelectorAll('.'+plugins[i].id+'-c').length){document.querySelectorAll('.'+plugins[i].id+'-c')[0].remove();}
 
@@ -1455,7 +1455,7 @@ export function run_template(){
                         }
                     }
                 }
-            }
+            } */
 
         //Fix Scroll for AJAX pages.
         /* if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';

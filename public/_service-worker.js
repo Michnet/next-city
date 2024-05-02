@@ -23,18 +23,18 @@ var REQUIRED_FILES = [
 	//'scripts/custom.js',
 	//'scripts/bootstrap.min.js',
 	// Plugins
-	'/plugins/before-after/before-after.css',
-	'/plugins/before-after/before-after.js',
-	'/plugins/charts/charts.js',
-	'/plugins/charts/charts-call-graphs.js',
-	'/plugins/countdown/countdown.js',
-	'/plugins/filterizr/filterizr.js',
-	'/plugins/filterizr/filterizr.css',
-	'/plugins/filterizr/filterizr-call.js',
-	'/plugins/galleryViews/gallery-views.js',
-	'/plugins/glightbox/glightbox.js',
-	'/plugins/glightbox/glightbox.css',
-	'/plugins/glightbox/glightbox-call.js',
+	//'/plugins/before-after/before-after.css',
+	//'/plugins/charts/charts.js',
+	//'/plugins/charts/charts-call-graphs.js',
+	//'/plugins/countdown/countdown.js',
+	//'/plugins/filterizr/filterizr.js',
+	//'/plugins/filterizr/filterizr.css',
+	//'/plugins/before-after/before-after.js',
+	//'/plugins/filterizr/filterizr-call.js',
+	//'/plugins/galleryViews/gallery-views.js',
+	//'/plugins/glightbox/glightbox.js',
+	//'/plugins/glightbox/glightbox.css',
+	//'/plugins/glightbox/glightbox-call.js',
 	// Fonts
 	'/fonts/css/fontawesome-all.min.css',
 	'/fonts/webfonts/fa-brands-400.woff2',
@@ -151,7 +151,6 @@ addEventListener("message", async (event) => {
 		 let authResponse = await authenticate(loginData, signal);
 		 if(authResponse){
 			 //controller.abort();
-			 console.log('authResponse', authResponse)
 			 swResponse.authResponse = authResponse; 
 			 swResponse.loginData = loginData
 		 }

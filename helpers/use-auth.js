@@ -429,7 +429,7 @@ useEffect(() => {
      getAuthUser();
    }, 600000);
    return () => clearInterval(interval); */
-   setUpMessaging();
+   //setUpMessaging();
  }, []);
 
  let functionsObj = {userLogin,setUpMessaging, userSignOut, userLoginBySocial, getAuthUser, userSignup, userUpdate/* , getAuthUser, userUpdate,  , , getUserMeta */}

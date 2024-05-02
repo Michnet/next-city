@@ -3530,15 +3530,12 @@ ul.listing_menu li.active .icon i {
 
 .ant-col.results {z-index: 0;height: 100%;padding: 10px;}
 
-ul.listing_navigator li {margin: 10px 0;list-style: none;border-radius: 30px;padding: 0;box-shadow: none;/* color: var(--secTheme); */display: none;background: transparent;border: none;overflow: hidden;text-overflow: ellipsis;}
+ul.listing_navigator li {margin: 10px 0;list-style: none;border-radius: 30px;padding: 0;box-shadow: none;/* color: var(--secTheme); */display: none;background: transparent;/* border: none; */overflow: hidden;text-overflow: ellipsis;}
 
 ul.listing_navigator li.visible.prev {/* background: linear-gradient(45deg, black, #777777); */flex-direction: row-reverse;}
 
-ul.listing_navigator li.visible.next {
-    background: var(--listingTheme);
-}
 
-ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: center;border: none;background: var(--bgDarkTransparent2);box-shadow: #00000021 1px 1px 8px 1px;}
+ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: center;/* border: none; *//* background: var(--bgDarkTransparent2); *//* box-shadow: #00000021 1px 1px 8px 1px; */}
 
 ul.listing_navigator li {
     padding: 10px 22px;

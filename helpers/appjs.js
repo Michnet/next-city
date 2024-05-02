@@ -1,10 +1,10 @@
 //import { themeSignal } from "@/contexts/signals";
+var pwaName = "LyveCity"; 
 
 function appjsCode(){
-    var pwaName = "LyveState"; 
 
     //Tabs
-    var tabTrigger = document.querySelectorAll('.tab-controls a');
+    /* var tabTrigger = document.querySelectorAll('.tab-controls a');
         if(tabTrigger.length){
         tabTrigger.forEach(function(e){
             if(e.hasAttribute('data-active')){
@@ -23,7 +23,7 @@ function appjsCode(){
             el.classList.add(highlightColor);
             el.classList.add('no-click');
         }));
-    }
+    } */
 
   //Scroll Ads
   /* var scrollItems = document.querySelectorAll('.scroll-ad, .header-auto-show')
@@ -199,15 +199,11 @@ export function onAppLoad(){
   }
 }
 
-var pwaName = "LyveState"; 
-
 const toggleDark = typeof window !== 'undefined' ? document.querySelectorAll('[data-toggle-theme]') : [];
 
 function themeCssLink(fileName = null){
     if (typeof window !== 'undefined') {
-
         if(!fileName){
-
             if(localStorage.getItem(pwaName+'-Theme')){
                     if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){
                         fileName = '_dark'

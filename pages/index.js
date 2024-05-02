@@ -1,29 +1,30 @@
 //import Head from "next/head";
 //import Image from "next/image";
 //import styles from "@/styles/Home.module.css";
-import useSWR  from "swr";
+// import useSWR  from "swr";
 import { advancedFetchListings, getDirTerms } from "@/helpers/rest";
-import {shuffleArray } from "@/helpers/universal";
+// import {shuffleArray } from "@/helpers/universal";
 import { siteSettings } from "@/helpers/base";
 import { Client } from "react-hydration-provider";
 //import Slider from "react-slick"
 //import { fadingSlide, largeResp } from "@/helpers/sliders";
 import { useEffect, useMemo } from 'react';
-import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
+// import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
 import {SectionHeader } from "@/components/UI/Partials";
-import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
+// import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
 import { TermIcon } from "@/components/UI/partials/termLinks";
 import Splider from "@/components/UI/partials/Splider";
 import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
 //import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
-import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
-import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
+// import EventCard4 from "@/components/UI/Listings/cards/EventCard4";
+//import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
 import SearchField from "@/components/UI/search/SearchField";
-import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
+//import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 import { randomEither } from '@/helpers/universal';
 import TagsCloud from "@/components/listing/partials/TagsCloud";
 //import HeroSearch from "@/components/UI/search/HeroSearch";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
+import Link from "next/link";
 
 
 export async function getStaticProps() {
@@ -309,8 +310,8 @@ export default function Home(props) {
             <a href="#" data-menu="menu-share" className="icon icon-xs rounded-sm me-1 shadow-l bg-red-dark"><i className="fa fa-share-alt"></i></a>
             <a href="#" className="back-to-top icon icon-xs rounded-sm shadow-l bg-dark-light"><i className="fa fa-angle-up"></i></a>
         </div>
-        <p className="footer-copyright">Copyright &copy; Enabled <span id="copyright-year">2024</span>. All Rights Reserved.</p>
-        <p className="footer-links"><a href="#" className="color-highlight">Privacy Policy</a> | <a href="#" className="color-highlight">Terms and Conditions</a> | <a href="#" className="back-to-top color-highlight"> Back to Top</a></p>
+        <p className="footer-copyright">Copyright &copy; LyveCity <span id="copyright-year">2024</span>. All Rights Reserved.</p>
+        <p className="footer-links"><Link href="/support/privacy" className="color-highlight">Privacy Policy</Link> | <Link href="/support/tos" className="color-highlight">Terms and Conditions</Link> | <a href="#" className="back-to-top color-highlight"> Back to Top</a></p>
         <div className="clear"></div>
     </div>
     <div className="divider bg-transparent"/>

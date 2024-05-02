@@ -3460,3 +3460,11 @@ ul.listing_navigator {
 .card.card-style.event_card_3 .card-overlay {
     border-radius: 0;
 }
+
+.listing_navigator li {
+    border: 1px solid;
+}
+
+.listing_navigator li._link.close-menu.next {
+    color: var(--listingTheme);
+}
