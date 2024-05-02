@@ -38,8 +38,8 @@ function MyAppConst({ Component, pageProps, platform }) {
   console.log("loading layout");
 
   useEffect(() => {
-    //cachedOnAppLoad;
-    //cachedRunTemplate;
+    cachedOnAppLoad;
+    cachedRunTemplate;
   
   }, [])
 

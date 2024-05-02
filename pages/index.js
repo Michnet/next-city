@@ -25,6 +25,7 @@ import TagsCloud from "@/components/listing/partials/TagsCloud";
 //import HeroSearch from "@/components/UI/search/HeroSearch";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 
 export async function getStaticProps() {
@@ -106,9 +107,7 @@ export async function getStaticProps() {
     }
   }
 
-function tagClick(tag){
-  router.push(`/explore/events?region=${tag.slug}`);
-}
+
 
 export default function Home(props) {
     const {serverObj} = props;
@@ -118,7 +117,13 @@ export default function Home(props) {
     let {term_meta, id} = ct;
     let {image_url} = term_meta;
     return image_url;
-  })
+  });
+
+  const router = useRouter();
+
+  function tagClick(tag){
+    router.push(`/explore/events?region=${tag.slug}`);
+  }
 
   const cachedCategories = useMemo(() => eventCategories);
   //const cachedLocations = useMemo(() => eventCategories);

@@ -60,7 +60,7 @@ useEffect(() => {
                 {!noHeader && <>
                     {<Header headerTitle={headerTitle} headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
                 </>}
-                {loading ? <PageLoader/> : cachedChildren}
+                {cachedChildren}
             </div>
             {!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>

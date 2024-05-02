@@ -60,16 +60,41 @@ $theme-dark-transparent-background-2: rgba(15, 17, 23, 0.76);
 $theme-dark-background-light: #232426;
 $color_white: #FFF;
 
+$theme-light-text: #666666;
+$theme-light-structure:#FFFFFF;
+$theme-light-background:#f0f0f0;
+$theme-light-background-light:#c7c7c7;
+$theme-light-transparent-background: #ffffffe6;
+$theme-light-transparent-background-2: #f0f0f0d0;
+
 :root{
     --colorTheme:#{$color_white};
     --bgTheme:#{$theme-dark-background};
-    --bgThemeLight:#{$theme-dark-background-light};
-    --bgThemeTransparent:#{$theme-dark-transparent-background};
     --bgDarkTransparent:#{$theme-dark-transparent-background};
-    --bgThemeTransparent2:#{$theme-dark-transparent-background-2};
-    --bgDarkTransparent2:#{$theme-dark-transparent-background-2};
     --borderTheme:rgba(255,255,255,0.12);
 }
+
+
+.theme-dark .bg-theme-light{background-color: #{$theme-dark-background-light};}
+.theme-dark .bg-theme-transparent{
+    background-color: #{$theme-dark-transparent-background};
+}
+.theme-dark .bg-theme-transparent-2{
+    background-color: #{$theme-dark-transparent-background-2};
+}
+.theme-dark .bg-dark-transparent{background-color: #{$theme-dark-transparent-background};}
+.theme-dark .bg-dark-transparent2{background-color: #{$theme-dark-transparent-background-2}};
+
+/*Light*/
+.bg-theme-light{background-color: #{$theme-light-background-light};}
+.bg-theme-transparent{
+    background-color: #{$theme-light-transparent-background};
+}
+.bg-theme-transparent-2{
+    background-color: #{$theme-light-transparent-background-2};
+}
+.bg-dark-transparent{background-color: #{$theme-light-transparent-background};}
+.bg-dark-transparent2{background-color: #{$theme-light-transparent-background-2}};
 
 
 /*Basic Colors*/
@@ -80,10 +105,10 @@ $color_white: #FFF;
 
 /*Main Color Settings*/
 .theme-dark .bg-theme{background-color:$theme-dark-background;}
-.theme-light .bg-theme{background-color:$color_white;}
-.theme-light .color-theme{color:$theme-dark-background;}
+.bg-theme{background-color:$color_white;}
+.color-theme{color:$theme-dark-background;}
 .theme-dark .color-theme{color:$color_white;}
-.theme-light .border-theme{border-color:rgba(0,0,0,0.1)!important;}
+.border-theme{border-color:rgba(0,0,0,0.1)!important;}
 .theme-dark .border-theme{border-color:rgba(255,255,255,0.12)!important;}
 
 /*Hide Show Based on Color Scheme*/

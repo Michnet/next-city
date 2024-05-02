@@ -111,7 +111,7 @@ const ProfileChat = ({id, author, count, slug, thumbnail}) => {
                             <textarea 
                               required
                               rows="3"
-                              id="listing_chat_box" className="p-2 rounded mb-10 w-100 border-none"
+                              id="listing_chat_box" className="p-2 rounded mb-10 w-100 border-0 bg-transparent"
                               onKeyUp={(e) => _handleKeyPress(e)}
                               onChange={(e) => updateMessageValue(e)}
                               value={message}

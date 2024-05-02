@@ -17,7 +17,7 @@
     --handFont: 'Dr Sugiyama', cursive;
     --fontFamily: "Jost", sans-serif !important;;
     --font-size: 15px;
-    }
+}
 
 .row:not(.m-bs) {
     margin-left: 0;
@@ -294,14 +294,7 @@ div.truncate-5 > p {
 
 
 /*Classes*/
-.bg-theme-transparent{
-    background: var(--bgThemeTransparent);
-}
-.bg-theme-transparent-2{
-    background: var(--bgThemeTransparent2);
-}
-.bg-dark-transparent{background: var(--bgDarkTransparent)};
-.bg-dark-transparent2{background: var(--bgDarkTransparent2)};
+
 .handy{
     font-family: var(--handFont) !important;
 }
@@ -2208,7 +2201,6 @@ button.back_link {
 
 ._fab i {
     font-size: 30px;
-    color: #fff;
 }
 
 .show_in_transit {
@@ -2413,7 +2405,7 @@ button.back_link {
 }
 
 .query_hint {
-    border: 1px solid var(--secTheme);
+    border: 1px solid var(--borderTheme);
     background: transparent;
     border-radius: 5px;
 }
@@ -3495,16 +3487,13 @@ ul.listing_navigator li {margin: 10px 0;list-style: none;border-radius: 30px;box
 ul.listing_navigator li.visible.prev {/* background: linear-gradient(45deg, black, #777777); */flex-direction: row-reverse;}
 
 
-ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: center;/* border: none; *//* background: var(--bgDarkTransparent2); *//* box-shadow: #00000021 1px 1px 8px 1px; */}
+ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: center;}
 
 ul.listing_navigator li {
     padding: 5px 10px;
     gap: 4px;
     font-size: var(--xsFontSize);
     font-weight: 600;
-}
-
-ul.listing_navigator li i {
 }
 
 .listing_navigator li.prev .fa-angle-right, .listing_navigator li.next .fa-angle-left {
@@ -3521,7 +3510,7 @@ ul.listing_navigator li.visible.prev .menu_pointer._left {
 
 ul.listing_navigator li:hover {background: #6c6969;}
 
-ul.listing_navigator {display: flex;align-items: center;padding: 0 12px;margin-bottom: 15px;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;}
+ul.listing_navigator {display: flex;align-items: center;padding: 0 22px;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;margin-bottom: 0;}
 
 ul.listing_navigator li .l_menu._item svg {color: #b9b9b9;font-size: 16px;}
 
