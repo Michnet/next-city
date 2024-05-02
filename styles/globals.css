@@ -5405,6 +5405,9 @@ nav.toc > ul > li li {
   display: inline-block;
   transition: all 0.3s ease 0s;
 }
+.theme-dark .form-container .form-horizontal .form-control{
+  box-shadow: inset 6px 6px 6px #151515, inset -6px -6px 6px #101010;
+}
 .form-container .form-horizontal .form-control:focus{
   box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #fff;
   outline: none;

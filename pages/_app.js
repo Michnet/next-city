@@ -83,7 +83,33 @@ function MyAppConst({ Component, pageProps, platform }) {
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
         }
+
+        @scope (.theme-light) {
+          :scope {
+              --colorTheme: #0f1117;
+              --bgTheme: #FFFFFF;
+              --bgThemeLight: #c7c7c7;
+              --bgThemeTransparent: #ffffffe6;
+              --bgThemeTransparent2: #f0f0f0d0;
+              --borderTheme: rgba(0, 0, 0, 0.1);
+          }
+      }  
+      
+      @scope(.theme-dark) {
+          :scope {
+              --colorTheme: #FFF;
+              --bgTheme: #0f1117;
+              --bgThemeLight: #232426;
+              --bgThemeTransparent: rgba(0, 0, 0, 0.902);
+              --bgDarkTransparent: rgba(0, 0, 0, 0.902);
+              --bgThemeTransparent2: rgba(15, 17, 23, 0.76);
+              --bgDarkTransparent2: rgba(15, 17, 23, 0.76);
+              --borderTheme: rgba(255, 255, 255, 0.12);
+            }
+      }
+      
         `}
+        
     </style>
      
   </>

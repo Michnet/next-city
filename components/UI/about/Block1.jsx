@@ -18,9 +18,7 @@ const Block1 = () => {
         <p className="text-dark-1 mb-4 text-16 ">
           <span className="fw-bold">At LyveCity, our mission is to bridge the gap between you and the vibrant tapestry of events happening in your city and beyond. </span>
           <br/>
-          <span className="text-22 d-block fw-300 my-3">We aim to provide a user-friendly, immersive, and comprehensive platform where you can explore, engage with, and participate in events that resonate with your passions, interests, and curiosity. </span>
-          <br/>
-           Whether you're a lifelong learner, a culture enthusiast, a fitness fanatic, or simply looking for some entertainment, LyveCity has something special for you.
+          
         </p>
         </section>
         </div>
@@ -30,7 +28,7 @@ const Block1 = () => {
           <h2 className="text-22 mb-4 fw-300 text-end">For EveryOne</h2>
         <div className="row mb-5">
         <div className="bg-cover col-12 col-md-5" style={{minHeight: 200, background: `url(/img/events/music.jpg)`}}/>
-        <div className="col-12 col-md-7">
+        <div className="col-12 col-md-7 p-4">
         <DualColorHeader  title={'Event Lovers'}/>
         <p className="text-dark-1 mt-3 text-16 mb-3 boxed">
           For event-goers, LyveCity is a treasure trove of opportunities. Our user-friendly interface allows you to explore events effortlessly, filter by category, location, date, and more. Each event is presented with its own elegantly designed landing page, providing you with all the information you need to make an informed decision about your next adventure. From ticketing options to event details and reviews, we've got you covered.
@@ -47,12 +45,12 @@ const Block1 = () => {
         </div>
 
         <div className="row">
-        <div className="col-12 col-md-7">
-          <DualColorHeader exClass={'text-right'} title={'Event Organisers'}/>
+        <div className="col-12 col-md-7 p-4">
+          <DualColorHeader exClass={'text-right justify-content-end'} title={'Event Organisers'}/>
           <p className="text-dark-1 text-16 text-right mb-3 mt-3">
           For organizers, we offer a robust platform to promote their events to a wider audience, allowing them to connect with like-minded individuals who share their passion and enthusiasm. We empower organizers to craft beautifully detailed <strong>landing pages</strong> for their events, showcasing the essence of what they have to offer.
           </p>
-          <div className="my-3">
+          <div className="my-3 w-fit ms-auto me-0">
           <Link
             className=" btn  px-30 fw-400 text-14 btn-theme radius-30"
             href="/add-listing"

@@ -1,10 +1,11 @@
-:root {
-  --colorTheme: #FFF;
-  --bgTheme: #0f1117;
-  --bgThemeLight: #232426;
-  --bgThemeTransparent: rgba(0, 0, 0, 0.902);
-  --bgDarkTransparent: rgba(0, 0, 0, 0.902);
-  --bgThemeTransparent2: rgba(15, 17, 23, 0.76);
-  --bgDarkTransparent2: rgba(15, 17, 23, 0.76);
-  --borderTheme: rgba(255, 255, 255, 0.12);
-}
+/* 
+:root{
+    --colorTheme:#FFF;
+    --bgTheme:#0f1117;
+    --bgThemeLight:#232426;
+    --bgThemeTransparent:rgba(0, 0, 0, 0.902);
+    --bgDarkTransparent:rgba(0, 0, 0, 0.902);
+    --bgThemeTransparent2:rgba(15, 17, 23, 0.76);
+    --bgDarkTransparent2:rgba(15, 17, 23, 0.76);
+    --borderTheme:rgba(255,255,255,0.12);
+} */
