@@ -2798,7 +2798,7 @@ span.clear_tag {
 
 
 #listingMenuRight .sidebar-content {
-    background: var(--bgThemeTransparent);
+    background: var(--bgThemeTransparent2);
     backdrop-filter: grayscale(1);
     min-height: 100vh;
 }

@@ -7,21 +7,6 @@ import TableOfContents from '@/components/UI/partials/TableOfContents';
 import { openOffCanvas } from '@/helpers/appjs';
 import SiteHead from '@/components/UI/SiteHead';
 
-export async function getStaticProps(context) {
-    return {
-      props: {
-        headerTitle: 'Your Privacy',/* 
-        settings : {
-          mMenu: 'show',
-          mMenuContent:{
-            icon : 'las la-filter', 
-            data_bs_toggle : "offcanvas",
-            'data_bs_target' : "#mobileFilters"}
-        } */
-      } 
-    }
-  }
-
 const Privacy = ({content}) => {
     const {isTab} = useRecoilValue(UISizes);
 
@@ -81,6 +66,7 @@ export async function getStaticProps() {
 
     return {
       props: {
+        headerTitle: 'Your Privacy',
         head: {
             title : 'Terms of Use',
             robots : "noindex,nofollow"
