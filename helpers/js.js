@@ -353,7 +353,7 @@ export function run_template(){
             } */
 
             //Page Highlights
-            /* var highlightData = document.querySelectorAll('[data-change-highlight]');
+             var highlightData = document.querySelectorAll('[data-change-highlight]');
             highlightData.forEach(el => el.addEventListener('click', e =>{
                 var highlight = el.getAttribute('data-change-highlight');
                 var pageHighlight = document.querySelectorAll('.page-highlight');
@@ -394,7 +394,7 @@ export function run_template(){
                     localStorage.setItem(pwaName+'-Highlight', defaultHighlight[1])
                 }
             }
-
+            /*
             //Background Gradient Color
             var gradientData = document.querySelectorAll('[data-change-background]');
             gradientData.forEach(el => el.addEventListener('click',e =>{

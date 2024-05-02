@@ -45,7 +45,7 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
             case 'private-chat':
             return <ProfileContact listing={listing} count={chatCount}/>
             case 'faqs':
-            return <div className="card card-style shadow-0 border bg-transparent">
+            return <div className="card card-style m-0 shadow-0 border bg-transparent">
             <div className="content"><FAQs  faqs={faqs} postID={id}/> </div></div>
             case 'occurrences':
               return <EventDatesActive Id = {listing.id} dualColumn upcoming = {5} 

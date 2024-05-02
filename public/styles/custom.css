@@ -298,7 +298,7 @@ div.truncate-5 > p {
     background: var(--bgThemeTransparent);
 }
 .bg-theme-transparent-2{
-    background: #eaeaead0;
+    background: var(--bgThemeTransparent2);
 }
 .bg-dark-transparent{background: var(--bgDarkTransparent)};
 .bg-dark-transparent2{background: var(--bgDarkTransparent2)};
