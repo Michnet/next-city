@@ -23,17 +23,18 @@ function RouteLoader() {
 
   useEffect(() => {
       if (typeof window !== 'undefined') { 
+        document.body.classList.remove('in_transit');
+
           router?.events.on('routeChangeStart', handleStart)
           router?.events.on('routeChangeComplete', handleStop)
           router?.events.on('routeChangeError', handleStop)
-          document.body.classList.remove('in_transit');
           return () => {
             router?.events.off('routeChangeStart', handleStart)
             router?.events.off('routeChangeComplete', handleStop)
             router?.events.off('routeChangeError', handleStop)
           }
       }
-    }, [router]);
+    }, []);
 
 
   return (<></>

@@ -419,7 +419,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             {strengthsView }
             {faqsView}
             {sponsorsView}
-            <ProfileInfo exClass={'px-lg-0 px-2 py-15'} listing={cachedListing} setActiveKey={setActiveKey}/>
+            <ProfileInfo exClass={'px-lg-0 px-3 py-15'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </div>
     )
 }

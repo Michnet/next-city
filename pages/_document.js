@@ -22,7 +22,7 @@ export default function Document() {
         <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/icon-192x192.png"></link>
         <link rel="shortcut icon" href="/favicon.ico"/>
       </Head>
-      <body className="theme-light" data-highlight="highlight-red" data-gradient="body-default">
+      <body className="theme-light in_transit" data-highlight="highlight-red" data-gradient="body-default">
         
         <Main/>
         <NextScript />

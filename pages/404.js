@@ -4,7 +4,7 @@ import NotFound from "@/components/UI/site/NotFound";
 // import NotFound from "../components/common/NotFound";
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   return {
     props: {
       headerTitle: 'Not Found',/* 
