@@ -2,8 +2,11 @@ import MainMenu from "./MainMenu"
 import { Client } from "react-hydration-provider";
 import Activity from "../UI/lists/Activity";
 import Header from "./partials/Header";
-import {useMemo, memo } from "react";
+import {useMemo, memo, useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router"
+import PageLoader from "../skeletons/fullPage/PageLoader";
+
 
 function ScaffoldConst({children, uiSize, settings, headerTitle}) {
     const {isTab} = uiSize;
@@ -11,6 +14,35 @@ function ScaffoldConst({children, uiSize, settings, headerTitle}) {
 
     const cachedChildren = useMemo(() => children, [headerTitle])
     console.log('running scaffold')
+    const [loading, setLoading] = useState(true);
+
+    const router = useRouter();
+
+
+  const handleStarting = (url) => {
+    setLoading(true);
+    console.log('started')
+  }
+
+const handleStoping = () => {
+  setLoading(false)
+  console.log('started end')
+}
+
+useEffect(() => {
+//    if (typeof window !== 'undefined') { 
+      setLoading(false)
+
+        router?.events.on('routeChangeStart', handleStarting)
+        router?.events.on('routeChangeComplete', handleStoping)
+        router?.events.on('routeChangeError', handleStoping)
+        return () => {
+          router?.events.off('routeChangeStart', handleStarting)
+          router?.events.off('routeChangeComplete', handleStoping)
+          router?.events.off('routeChangeError', handleStoping)
+        }
+    //}
+  }, []);
     
   return (<>
     <div className="container-fluid p-0">
@@ -28,7 +60,7 @@ function ScaffoldConst({children, uiSize, settings, headerTitle}) {
                 {!noHeader && <>
                     {<Header headerTitle={headerTitle} headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
                 </>}
-                {cachedChildren}
+                {loading ? <PageLoader/> : cachedChildren}
             </div>
             {!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>

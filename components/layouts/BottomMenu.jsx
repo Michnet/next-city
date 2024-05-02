@@ -67,7 +67,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
               <span  className={`text-center big_act`}>
                 {<i className={`link_i ${icon ?? 'fa fa-plus'}`}/>}
               </span>
-              <div className="position-absolute show_in_transit"><LoaderDualRing/></div>
+              <div className="position-absolute show_in_transit"><LoaderDualRing size={75}/></div>
             </button>
             </div>
           </div>

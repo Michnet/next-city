@@ -5,6 +5,8 @@ import RatingView from '@/components/listing/reviews/RatingView';
 import { PriceView } from '../../PriceView';
 
 const HeaderInfo = ({product}) => {
+    console.log('buss', product)
+
 
     let infoView;
     if(product){

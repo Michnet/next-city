@@ -1,10 +1,13 @@
+import { introState } from "@/contexts/atoms";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide"
 import {useRouter} from 'next/router'
+import { useRecoilState } from "recoil";
 
 function Splash() {
     const router = useRouter();
+    const [intro, setIntro] = useRecoilState(introState)
 
-    let intro;
+   /*  let intro;
 
     if(typeof window !== "undefined"){
      intro = localStorage.getItem('lyveCity_intro');
@@ -14,7 +17,7 @@ function Splash() {
             localStorage.setItem('lyveCity_intro', true);
             router.reload();
         }
-    }
+    } */
 
     
     const screens = [
@@ -73,7 +76,7 @@ function Splash() {
                 </Splide>
         
                 <div className="cover-button-bottom">
-                    <button className="btn scale-box btn-m mt-5 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase" onClick={() => setIntro()}>Get Started</button>
+                    <button className="btn scale-box btn-m mt-5 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase" onClick={() => setIntro(true)}>Get Started</button>
                 </div>
                 
                 {/* <span className="cover-next slider-next splide__arrow--next color-gray-dark">Next<i className="fa fa-angle-right me-4 ms-3"></i></span>

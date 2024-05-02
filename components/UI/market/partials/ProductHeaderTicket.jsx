@@ -8,7 +8,6 @@ const ProductHeaderTicket = ({product}) => {
     const {listing} = product ?? {};
     const {id, title, phone, whatsapp, cover, logo, slug, type} = listing ?? {};
 
-
     useEffect(() => {
         if(product){
           setLoading(false);

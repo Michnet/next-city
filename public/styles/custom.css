@@ -27,7 +27,7 @@
 
 #preloader{
     transition: all 150ms ease !important;
-    /* display: none; */
+    display: none;
     /* visibility: hidden; */
     backdrop-filter: blur(6px);
     opacity: 0;
@@ -2198,11 +2198,12 @@ button.back_link {
 }
 
 ._fab button {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    margin-top: -36px;
+    margin-top: -33px;
     box-shadow: var(--shadow-1);
+    position: relative;
 }
 
 ._fab i {
@@ -2216,6 +2217,18 @@ button.back_link {
 
 .in_transit .show_in_transit {
     display: block;
+}
+
+._fab .show_in_transit {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.in_transit ._fab .show_in_transit {
+    display: flex;
 }
 
 .term_box i {width: inherit;height: inherit;border-radius: 50%;}

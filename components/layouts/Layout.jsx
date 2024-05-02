@@ -2,7 +2,7 @@ import Script from "next/script";
 import { run_template } from "./../../helpers/js";
 import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
-import {useMemo, memo, useEffect } from "react";
+import {useMemo, memo, useEffect, useState } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
 import { closeMenus, onAppLoad, openOffCanvas } from "@/helpers/appjs";
@@ -56,37 +56,30 @@ function LayoutConst({ children, headerTitle, settings}) {
   const router = useRouter();
   const {mMenuContent, noHeader, noFooter} = settings ?? {};
   const {btnProps, icon} = mMenuContent ?? {}
+  const [loading, setLoading] = useState(true);
 
-  //const Session = getSession();
 
   const cachedChildren = useMemo(() => children, [headerTitle])
   const cachedSettings = useMemo(() => settings, [headerTitle])
 
-  //const cachedRunTemplate = useMemo(() => run_template(), [Session])
-  //const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
-
   console.log("loading layout");
-/* 
-  useEffect(() => {
-    cachedOnAppLoad;
-    cachedRunTemplate;
-  
-  }, []) */
   
 
   return (
     <>
       <main /* className={`${inter.className}`} */ onLoad={() => {console.log('sizing in main'); sizing(width, setWidth);}}>
-        <div id="preloader">
+        {/* <div id="preloader">
           <div className="spinner-border color-highlight" role="status"></div>
-        </div>
+        </div> */}
         <div id="page" onLoad={() => pinHeader()}>
           {/* {!noHeader && <Header headerTitle={headerTitle}/>} */}
           {noFooter ? <></> : <BottomMenu btnProps={btnProps} icon={icon}/>}
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
-          <Scaffold headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>{cachedChildren}</Scaffold>
+          <Scaffold headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>
+            {cachedChildren}
+            </Scaffold>
           <Client>
 		  <div
             id="menu-settings"
