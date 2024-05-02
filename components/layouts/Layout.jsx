@@ -57,10 +57,10 @@ function LayoutConst({ children, headerTitle, settings}) {
   const {mMenuContent, noHeader, noFooter} = settings ?? {};
   const {btnProps, icon} = mMenuContent ?? {}
 
-  const Session = getSession();
+  //const Session = getSession();
 
-  const cachedChildren = useMemo(() => children, [router.asPath])
-  const cachedSettings = useMemo(() => settings, [router.asPath])
+  const cachedChildren = useMemo(() => children, [headerTitle])
+  const cachedSettings = useMemo(() => settings, [headerTitle])
 
   //const cachedRunTemplate = useMemo(() => run_template(), [Session])
   //const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
@@ -76,7 +76,7 @@ function LayoutConst({ children, headerTitle, settings}) {
 
   return (
     <>
-      <main /* className={`${inter.className}`} */ onLoad={() => sizing(width, setWidth)}>
+      <main /* className={`${inter.className}`} */ onLoad={() => {console.log('sizing in main'); sizing(width, setWidth);}}>
         <div id="preloader">
           <div className="spinner-border color-highlight" role="status"></div>
         </div>
@@ -86,7 +86,7 @@ function LayoutConst({ children, headerTitle, settings}) {
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
-          <Scaffold path={router.asPath} settings={cachedSettings} uiSize={uiSize}>{cachedChildren}</Scaffold>
+          <Scaffold headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>{cachedChildren}</Scaffold>
           <Client>
 		  <div
             id="menu-settings"

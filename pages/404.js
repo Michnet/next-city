@@ -3,6 +3,22 @@ import SiteHead from '@/components/UI/SiteHead';
 import NotFound from "@/components/UI/site/NotFound";
 // import NotFound from "../components/common/NotFound";
 
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      headerTitle: 'Not Found',/* 
+      settings : {
+        mMenu: 'show',
+        mMenuContent:{
+          icon : 'las la-filter', 
+          data_bs_toggle : "offcanvas",
+          'data_bs_target' : "#mobileFilters"}
+      } */
+    } 
+  }
+}
+
 const Index = () => {
   return (
     <>

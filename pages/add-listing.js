@@ -15,6 +15,20 @@ import { authState } from "@/contexts/atoms";
 import SiteHead from "@/components/UI/SiteHead";
 import { WPDomain } from "@/helpers/base";
 
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      headerTitle: 'Add Listing',/* 
+      settings : {
+        mMenu: 'show',
+        mMenuContent:{
+          icon : 'las la-filter', 
+          data_bs_toggle : "offcanvas",
+          'data_bs_target' : "#mobileFilters"}
+      } */
+    } 
+  }
+}
 const CreateListing = () => {
   const {user, token} = useRecoilValue(authState);
   

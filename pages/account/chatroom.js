@@ -10,6 +10,7 @@ import GuestPrompt from "@/components/UI/GuestPrompt";
 export async function getServerSideProps() {
   return {
     props: {
+      headerTitle: 'Chatroom',
       settings : {
         hideNews: true,
         transparentHeader: true,

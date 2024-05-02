@@ -18,17 +18,17 @@ import Layout from "@/components/layouts/Layout";
 import UIProvider from "@/contexts/UIContext";
 import SiteProvider from "@/contexts/siteContext";
 import MessagesStater from "@/contexts/contextStaters/MessagesStater";
-import { useRouter } from "next/router";
-import SWMessaging from "@/contexts/contextStaters/SWMessaging";
+//import { useRouter } from "next/router";
+//import SWMessaging from "@/contexts/contextStaters/SWMessaging";
 import { run_template } from "@/helpers/js";
 //import "@/public/scripts/bootstrap.min.js";
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings} = pageProps;
 
-  const router = useRouter();
+  //const router = useRouter();
 
-  const cachedSettings = useMemo(() => settings, [router.asPath, headerTitle, platform]);
+  const cachedSettings = useMemo(() => settings, [headerTitle]);
   
   const Session = getSession();
 

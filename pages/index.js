@@ -98,6 +98,7 @@ export async function getStaticProps() {
     return {
       props: {
         serverObj: serverObj,
+        headerTitle: 'LyveCity',
         settings:{
           autoShowHeader: true
         }

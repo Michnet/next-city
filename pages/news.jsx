@@ -6,6 +6,7 @@ import SiteActivity from "@/components/UI/lists/SiteActivity";
 export async function getStaticProps() {
   return {
     props: {
+      headerTitle: 'LyveCity News',
       settings : {
         //mMenu: 'hide',
         noFooter : true

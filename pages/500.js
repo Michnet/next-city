@@ -3,6 +3,21 @@ import SiteHead from '@/components/UI/SiteHead';
 import NotServed from "@/components/UI/site/NotServed";
 // import NotServed from "~/components/common/NotServed";
 
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      headerTitle: 'Not Served',/* 
+      settings : {
+        mMenu: 'show',
+        mMenuContent:{
+          icon : 'las la-filter', 
+          data_bs_toggle : "offcanvas",
+          'data_bs_target' : "#mobileFilters"}
+      } */
+    } 
+  }
+}
+
 const Index = () => {
   return (
     <>

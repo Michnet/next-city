@@ -13,7 +13,7 @@ const HeaderInfo = ({product}) => {
 
         infoView =  <div className="gx-product-body">
                             <h3 className="gx-product-title">{cleanHtml(name)}</h3>
-                            <p className='color-highlight'><PriceView priceHTml={price_html}/></p>
+                            <p><PriceView priceHTml={price_html}/></p>
                             <div className="ant-row-flex gx-mb-1">
                             {rating && rating > 0 && <RatingView
                                 name=""
@@ -28,7 +28,7 @@ const HeaderInfo = ({product}) => {
         infoView = <div>Loading Info</div>
     }
     return (
-        <div className='header_info card card-style p-4'>
+        <div className='header_info card card-style p-4 mx-auto'>
             {infoView}
         </div>
     )

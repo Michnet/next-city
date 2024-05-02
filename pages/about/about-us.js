@@ -3,6 +3,16 @@ import SiteHead from "@/components/UI/SiteHead";
 import Block1 from "@/components/UI/about/Block1";
 import WhyChooseUs from './../../components/UI/about/WhyChooseUs';
 
+export async function getStaticProps() {
+  return {
+    props: {
+      headerTitle: 'About LyveCity',
+      settings : {
+      }
+    }
+  }
+}
+
 const About = () => {
   return (
     <>

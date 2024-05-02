@@ -6,6 +6,21 @@ import { fetchPageUrl } from '@/helpers/rest';
 import { openOffCanvas } from '@/helpers/appjs';
 import SiteHead from '@/components/UI/SiteHead';
 
+export async function getStaticProps(context) {
+    return {
+      props: {
+        headerTitle: 'Terms of Use',/* 
+        settings : {
+          mMenu: 'show',
+          mMenuContent:{
+            icon : 'las la-filter', 
+            data_bs_toggle : "offcanvas",
+            'data_bs_target' : "#mobileFilters"}
+        } */
+      } 
+    }
+  }
+
 const TermsOfService = ({content}) => {
     const {isTab} = useRecoilValue(UISizes);
 

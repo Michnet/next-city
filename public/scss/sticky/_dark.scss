@@ -79,10 +79,10 @@ $color_white: #FFF;
 .bg-black{background-color:$color_black!important;}
 
 /*Main Color Settings*/
-.theme-dark .bg-theme{background-color:$theme-dark-background!important;}
-.theme-light .bg-theme{background-color:$color_white!important;}
-.theme-light .color-theme{color:$theme-dark-background!important;}
-.theme-dark .color-theme{color:$color_white!important;}
+.theme-dark .bg-theme{background-color:$theme-dark-background;}
+.theme-light .bg-theme{background-color:$color_white;}
+.theme-light .color-theme{color:$theme-dark-background;}
+.theme-dark .color-theme{color:$color_white;}
 .theme-light .border-theme{border-color:rgba(0,0,0,0.1)!important;}
 .theme-dark .border-theme{border-color:rgba(255,255,255,0.12)!important;}
 

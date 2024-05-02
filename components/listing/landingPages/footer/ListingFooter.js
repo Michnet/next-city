@@ -46,7 +46,7 @@ const ListingFooter = (props) => {
           </div>
         </div>
 
-        <div className={'footer-bottom-container border p-5'}>
+        <div className={'footer-bottom-container border p-5 sm:px-20 sm:py-20'}>
           <div className={'footer-left-side'}>
             {logoView}
             {short_desc && <span className={'truncate-5 opacity-70'}>

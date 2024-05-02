@@ -38,6 +38,7 @@ export async function getStaticProps() {
   return {
     props: {
        ...serverObj,
+       headerTitle: 'Explore LyveCity',
       settings : {
         mMenu: 'show',
         mMenuContent:{
@@ -53,6 +54,7 @@ export async function getStaticProps() {
 }
 }
 
+let topListKey = 'tops'
 
 const ExploreEvents = ({topList}) => {
  const router = useRouter();
@@ -66,7 +68,7 @@ const ExploreEvents = ({topList}) => {
  return string.replaceAll("-", " ");
  }
 
- const cachedTopList = useMemo(() => topList, [router.asPath])
+ const cachedTopList = useMemo(() => topList, [topListKey])
 
  function translateTags(string){
    let arr = string.split(',');
@@ -110,7 +112,7 @@ const ExploreEvents = ({topList}) => {
               </Slider>
               </div>
               <div className="inner_section mb-4">
-                 <Suspense fallback={'Loading'}><TermsCarousel /* items={categories} */ queryKey={'category'} queryLink={'/explore/events?category='} exClass={'pt-10'} slug={'events'}  type={'dir_cats'} infinity/></Suspense>
+                 <Suspense fallback={'Loading'}><TermsCarousel queryKey={'category'} queryLink={'/explore/events?category='} exClass={'pt-10'} slug={'events'}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="query_hint mx-2 rounded-s">

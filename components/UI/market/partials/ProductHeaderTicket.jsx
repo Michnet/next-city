@@ -1,13 +1,13 @@
-import { listingUrlBase } from '@/helpers/universal';
+//import { listingUrlBase } from '@/helpers/universal';
 import Link from 'next/link';
 import  {useState, useEffect} from 'react';
-// import { listingUrlBase } from '~/server/UniversalFunctions';
 //import ProductVendorCard from './header-partials/ProductVendorCard';
 
 const ProductHeaderTicket = ({product}) => {
     const [loading, setLoading] = useState(true);
     const {listing} = product ?? {};
     const {id, title, phone, whatsapp, cover, logo, slug, type} = listing ?? {};
+
 
     useEffect(() => {
         if(product){
@@ -60,7 +60,7 @@ const ProductHeaderTicket = ({product}) => {
                 </div>
         </div>
         <button className='btn btn-outline-secondary listing_link border mb-3'>
-                    <Link href={`/${listingUrlBase(type)}/${slug}`}>
+                    <Link href={`/events/${slug}`}>
                         Go to Business Page 
                     </Link>
                 </button>

@@ -1,3 +1,15 @@
+export async function getStaticProps() {
+    return {
+      props: {
+        headerTitle: 'Features History',
+        settings : {
+          //mMenu: 'hide',
+          noFooter : true
+        }
+      }
+    }
+  }
+
 const ChangeLog = () => {
 
 const changes = [
@@ -51,7 +63,7 @@ const changes = [
 
 
 
-import dynamic from "next/dynamic";
+//import dynamic from "next/dynamic";
 /* const PageLayout = dynamic(() => import('~/appComponents/core/Layout/PageLayout'));
 
 ChangeLog.getLayout = function getLayout({children}) {

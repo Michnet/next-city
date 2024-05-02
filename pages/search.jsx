@@ -17,6 +17,7 @@ const SearchPage = () => {
 export async function getStaticProps(context) {
   return {
     props: {
+      headerTitle: 'Search',
       settings : {
         mMenu: 'show',
         mMenuContent:{

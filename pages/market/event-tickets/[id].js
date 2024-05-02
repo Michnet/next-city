@@ -30,6 +30,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      headerTitle: pdt.name,
       pdt,
     },
     revalidate: 6000, // In seconds
@@ -37,8 +38,6 @@ export async function getStaticProps({ params }) {
 }
 
 const Product = ({ pdt }) => {
-
-  console.log('pdt', pdt);
 
   return (
     <>

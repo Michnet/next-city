@@ -17,6 +17,7 @@ import { closeMenus } from "@/helpers/appjs";
 export async function getServerSideProps() {
   return {
     props: {
+      headerTitle: 'My Dashboard',
       settings : {
         hideNews: true,
         transparentHeader: true,
