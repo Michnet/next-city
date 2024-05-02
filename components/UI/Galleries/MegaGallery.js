@@ -56,9 +56,11 @@ const MegaGallery = ({listing, color, upcoming}) => {
   const {greeting} = landing;
   const {punch_lines} = marketing;
   const [slideIndex, setSlideIndex] = useState(-1);
+  const [miniGrid, setMiniGrid] = useState(false);
   const [loading, setLoading] = useState(true);
   const [gallery, setGallery] = useState(listing?.galleryWithBlurs ?? l_gallery)
   const punchlines = Array.isArray(punch_lines) ? punch_lines.map((el) => el.text) : [];
+  
 
   function itemIndex(item){
      return gallery.indexOf(item);
@@ -190,10 +192,10 @@ if(typeof window !== 'undefined'){
 
 
 galleryView = <>
-        <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
+        <div id = 'wall_gallery_container' className={`position-relative overflow-hidden ${miniGrid ? 'mini_grid' : ''}`}>
           <div id='wall_gallery' className="mega_gallery _vertical" onLoad={() =>   setUpToggler()}>
-        {megaGall.length > 2 && <ResponsiveMasonry columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
-            <Masonry gutter="10px">
+        {megaGall.length > 2 && <ResponsiveMasonry columnsCountBreakPoints={miniGrid ? {0: 3, 768: 4, 1024: 5} : {0: 2, 768: 3, 1024: 4}}>
+            <Masonry gutter={miniGrid ? '5px' : "10px"}>
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
                 if(item.includes(siteSettings.wpDomain)){
@@ -239,7 +241,12 @@ return (
   <>{ loading ? <div style={{height: '300px'}}><LoaderDualRingBoxed/></div>
       :
       <>
-      
+        <div className='row_flex justify-end p-2 mb-3'>
+          <div className='row_flex gallery_grids gap-3' style={{width: 'fit-content'}}>
+            <i className={`fas fa-th-large text-25 ${!miniGrid && 'color-highlight'}`} onClick={() => setMiniGrid(false)}/>
+            <i className={`fas fa-th text-25 ${miniGrid && 'color-highlight'}`} onClick={() => setMiniGrid(true)}/>
+          </div>
+        </div>
         {galleryView}
         {/* gallery?.length > 0 && <BSModal  noPadding noOverlay modal_id={'photo_view'} content={<Lightbox
                 slides={slides()}
