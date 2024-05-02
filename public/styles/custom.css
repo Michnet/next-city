@@ -35,7 +35,6 @@
 body{
     font-size: var(--font-size);
     font-family: var(--fontFamily);
-    color: var(--colorTheme)
 }
 body {
     min-height: calc(100% + env(safe-area-inset-top));

@@ -74,6 +74,13 @@ $theme-light-transparent-background-2: #f0f0f0d0;
     --borderTheme:rgba(255,255,255,0.12);
 }
 
+.theme-dark body{
+    color:$color_white;
+}
+
+body{
+    color: $theme-dark-background
+}
 
 .theme-dark .bg-theme-light{background-color: #{$theme-dark-background-light};}
 .theme-dark .bg-theme-transparent{

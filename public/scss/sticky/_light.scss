@@ -11,10 +11,10 @@ $theme-dark-transparent-bg: rgba(15, 17, 23, 0.906);
 $theme-dark-lighter:rgba(255,255,255,0.05);
 
 :root{
-    --colorTheme:#{$theme-dark-background} !important;
-    --bgTheme:#{$theme-light-structure} !important;
-    --bgThemeLight:#{$theme-light-background-light} !important;
-    --bgThemeTransparent:#{$theme-light-transparent-background} !important;
-    --bgThemeTransparent2:#{$theme-light-transparent-background-2} !important;
-    --borderTheme:rgba(0,0,0,0.1) !important;
+    --colorTheme:#{$theme-dark-background};
+    --bgTheme:#{$theme-light-structure};
+    --bgThemeLight:#{$theme-light-background-light};
+    --bgThemeTransparent:#{$theme-light-transparent-background};
+    --bgThemeTransparent2:#{$theme-light-transparent-background-2};
+    --borderTheme:rgba(0,0,0,0.1);
 }
