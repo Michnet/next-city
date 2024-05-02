@@ -5,7 +5,7 @@ import Header from "./partials/Header";
 import {useMemo, memo, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router"
-import PageLoader from "../skeletons/fullPage/PageLoader";
+//import PageLoader from "../skeletons/fullPage/PageLoader";
 
 
 function ScaffoldConst({children, uiSize, settings, headerTitle}) {
@@ -13,11 +13,10 @@ function ScaffoldConst({children, uiSize, settings, headerTitle}) {
     const {noHeader, autoShowHeader, hideNews, uiBackground} = settings ?? {};
 
     const cachedChildren = useMemo(() => children, [headerTitle])
-    console.log('running scaffold')
-    const [loading, setLoading] = useState(true);
+    //const [loading, setLoading] = useState(true);
 
     const router = useRouter();
-
+/* 
 
   const handleStarting = (url) => {
     setLoading(true);
@@ -30,9 +29,7 @@ const handleStoping = () => {
 }
 
 useEffect(() => {
-//    if (typeof window !== 'undefined') { 
       setLoading(false)
-
         router?.events.on('routeChangeStart', handleStarting)
         router?.events.on('routeChangeComplete', handleStoping)
         router?.events.on('routeChangeError', handleStoping)
@@ -41,8 +38,7 @@ useEffect(() => {
           router?.events.off('routeChangeComplete', handleStoping)
           router?.events.off('routeChangeError', handleStoping)
         }
-    //}
-  }, []);
+  }, []); */
     
   return (<>
     <div className="container-fluid p-0">
@@ -57,10 +53,11 @@ useEffect(() => {
                 </div>
             </div>
             <div className="col px-0 main_content position-relative" style={{minWidth: '0', minHeight: '100vh'}}>
-                {!noHeader && <>
+                {noHeader ? <></> : <>
                     {<Header headerTitle={headerTitle} headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
                 </>}
                 {cachedChildren}
+                {/* {loading && <PageLoader/>} */}
             </div>
             {!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>

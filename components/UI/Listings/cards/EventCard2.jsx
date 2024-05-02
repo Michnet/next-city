@@ -16,7 +16,7 @@ const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='
                     {locations?.length > 0 ? <p className="color-white font-12 opacity-80 mb-2"><i className="color-highlight fa fa-map-marker-alt"></i> {locations[0].name}</p> : <></>}
                     </div>
                     <div className='_right'>
-                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney border-light mb-2'/> : <></>}
+                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney  mb-2'/> : <></>}
                     </div>
                 </div>
                 <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>

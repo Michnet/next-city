@@ -18,7 +18,7 @@ import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
   let serverObj = {};
 
@@ -40,6 +40,7 @@ export async function getStaticProps() {
        ...serverObj,
        headerTitle: 'Explore LyveCity',
       settings : {
+        noHeader: true,
         mMenu: 'show',
         mMenuContent:{
           icon : 'las la-filter', 

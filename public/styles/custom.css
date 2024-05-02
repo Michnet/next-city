@@ -1130,6 +1130,8 @@ h6.tax_pare {}
 #sidebar:not(.show) .row_flex {
     padding-left: 0 !important;
     padding-right: 0 !important;
+    gap: 0;
+    justify-content: center !important;
 }
 
 .horizontal_grid > * {
@@ -1350,6 +1352,10 @@ button.back_link {
 #sidebar:not(.show) .user_card {
     box-shadow: none !important;
     border: none !important;
+}
+
+#sidebar:not(.show) .user_card .d-flex {
+    justify-content: center;
 }
 
 #sidebar:not(.show) .card .content {
@@ -2131,7 +2137,7 @@ button.back_link {
 
 
 .event_date.outliney {
-    border: 2px solid;
+    border: 1px solid;
     background: transparent;
 }
 
@@ -2928,6 +2934,7 @@ span.term_icon_box {
     display: block;
     border-radius: 50%;
     margin-bottom: 5px;
+    background: var(--secTheme);
 }
 
 .search_form 
