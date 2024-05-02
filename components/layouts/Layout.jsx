@@ -62,16 +62,16 @@ function LayoutConst({ children, headerTitle, settings}) {
   const cachedChildren = useMemo(() => children, [router.asPath])
   const cachedSettings = useMemo(() => settings, [router.asPath])
 
-  const cachedRunTemplate = useMemo(() => run_template(), [Session])
-  const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
+  //const cachedRunTemplate = useMemo(() => run_template(), [Session])
+  //const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
 
   console.log("loading layout");
-
+/* 
   useEffect(() => {
     cachedOnAppLoad;
     cachedRunTemplate;
   
-  }, [])
+  }, []) */
   
 
   return (
@@ -327,8 +327,8 @@ function LayoutConst({ children, headerTitle, settings}) {
         </div>
         {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}
         {/* <Script defer='true'  strategy={"afterInteractive"} onReady={() => console.log('Custom loaded')} src="/scripts/custom.js"/> */}
-        {run_template()}
-        <Script>{onAppLoad()}</Script>
+        {/* {run_template()} */}
+        {/* <Script>{onAppLoad()}</Script> */}
         <RouteLoader />
       </main>
       <Splash/>

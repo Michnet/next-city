@@ -7,9 +7,9 @@ import "@/public/styles/custom.min.css";
 import { RecoilRoot } from "recoil";
 import { HydrationProvider } from "react-hydration-provider";
 import App from "next/app";
-import { SessionProvider } from "next-auth/react";
+import { getSession, SessionProvider } from "next-auth/react";
 import { AuthProvider } from "@/helpers/use-auth";
-import { closeMenus } from "@/helpers/appjs";
+import { closeMenus, onAppLoad } from "@/helpers/appjs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "yet-another-react-lightbox/styles.css";
@@ -20,6 +20,7 @@ import SiteProvider from "@/contexts/siteContext";
 import MessagesStater from "@/contexts/contextStaters/MessagesStater";
 import { useRouter } from "next/router";
 import SWMessaging from "@/contexts/contextStaters/SWMessaging";
+import { run_template } from "@/helpers/js";
 //import "@/public/scripts/bootstrap.min.js";
 
 function MyAppConst({ Component, pageProps, platform }) {
@@ -28,6 +29,19 @@ function MyAppConst({ Component, pageProps, platform }) {
   const router = useRouter();
 
   const cachedSettings = useMemo(() => settings, [router.asPath, headerTitle, platform]);
+  
+  const Session = getSession();
+
+  const cachedRunTemplate = useMemo(() => run_template(), [Session])
+  const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
+
+  console.log("loading layout");
+
+  useEffect(() => {
+    cachedOnAppLoad;
+    cachedRunTemplate;
+  
+  }, [])
 
   useEffect(() => {
     //require("@/helpers/boojs.js");
