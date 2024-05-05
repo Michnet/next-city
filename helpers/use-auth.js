@@ -33,6 +33,7 @@ function useProvideAuth () {
   const router = useRouter();
 
   function setTheAuth(authObj){
+    console.log('setting the auth', authObj);
     localStorage.setItem('u_cred', JSON.stringify(authObj));
     setRecoilAuth(authObj)
   }
@@ -65,12 +66,12 @@ function useProvideAuth () {
   const cookies = new Cookies();
 
   const fetchStart = () => {
-    setTheAuth({...theAuth, loading :true});
+    setTheAuth({...theAuth(), loading :true});
     setError('');
   }
 
   const fetchSuccess = () => {
-    setTheAuth({...theAuth, loading:false});
+    setTheAuth({...theAuth(), loading:false});
     setError('');
   }
 
@@ -164,14 +165,14 @@ async function getUserMeta(){
   };
 
   const sendReqTw = async(token, platform) => {
-    setTheAuth({...theAuth, loading :true});
+    //setTheAuth({...theAuth(), loading :true});
     const {oauth_token} = token;
     const res = await getSocialUser(JSON.stringify(token), platform);
     if(res){
       const {user, jwt} = res;
       userLoginBySocial(user, jwt, oauth_token, '');
     }
-    setTheAuth({...theAuth, loading:false});
+    //setTheAuth({...theAuth(), loading:false});
   }
 
   async function refreshUser(token, func){
@@ -211,7 +212,7 @@ async function getUserMeta(){
 const userLoginBySocial = async(userData, token, acc_token, soc_refresh_token, callbackFun) => {
              
     const {username} = userData;
-    fetchStart();
+    //fetchStart();
 
     let oldSocToken = cookies.get("soc_token");
     let oldToken = cookies.get("token");  
@@ -237,14 +238,14 @@ const userLoginBySocial = async(userData, token, acc_token, soc_refresh_token, c
         console.log('failed', res)
       }
     } catch (error) {
-      console.log('error social login', error)
-      setTheAuth({...theAuth, loading:false}) 
+      console.log('setting social login error', error)
+      setTheAuth({...theAuth(), loading:false}) 
     }
 
     if (callbackFun) callbackFun();  
 
     fetchSuccess(); 
-    setTheAuth({...theAuth, loading:false});
+    //setTheAuth({...theAuth, loading:false});
     return true;
   };
 
@@ -263,6 +264,7 @@ const userSignOut = async () => {
 
 async function loginFunc(jwt, username){
   if(status === "authenticated"){
+    console.log('loginFunc')
       const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
       if(provider && provider !== 'undefined'){
         let accessTokenObj = {};

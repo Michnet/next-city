@@ -33,12 +33,12 @@ function MyAppConst({ Component, pageProps, platform }) {
   const Session = getSession();
 
   const cachedRunTemplate = useMemo(() => run_template(), [Session])
-  const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
+  //const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
 
   console.log("loading layout");
 
   useEffect(() => {
-    cachedOnAppLoad;
+    //cachedOnAppLoad;
     cachedRunTemplate;
   
   }, [])

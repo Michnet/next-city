@@ -182,7 +182,7 @@ if(listing){
            longitude={longitude}
            slug={`/events/${slug}`}
            />
-           <HeaderWrapper headerClass="header-invert header-always-show" header_id={'listing_header'}>
+           <HeaderWrapper headerClass={`header-invert header-always-show`} header_id={'listing_header'}>
                 <ListingTopMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
 

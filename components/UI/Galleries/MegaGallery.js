@@ -95,7 +95,8 @@ const MegaGallery = ({listing, color, upcoming}) => {
 
   let textOptions = textArr.splice(0, 7), galleryView;
 
-  let megaGall = shuffleArray([...textOptions, ...gallery, ...teamLinks(team), ...teamLinks(performers)]);
+  //let megaGall = shuffleArray([...textOptions, ...gallery, ...teamLinks(team), ...teamLinks(performers)]);
+  let megaGall = shuffleArray([...gallery, ...teamLinks(team), ...teamLinks(performers)]);
 
   let highlightIndex = [4,7,11,17]
   let Grid1 = () => <HorizontalGrid>
