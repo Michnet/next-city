@@ -94,7 +94,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             <h5>Engage Now</h5>
             <h4>Booking Options</h4>
         </div>
-        <div className='bg-theme p-0 bg-cover card card-style mb-3 lefty' style={{backgroundImage: `url("${cover}")`}}>
+        <div className='bg-theme p-0 bg-cover card card-style mb-3' style={{backgroundImage: `url("${cover}")`}}>
                                 <div className='ps-data d-flex flex-column p-3 bg-gradient-fade backdropGray'>
                                         <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
                                             <div className='cover_content pt-50'>

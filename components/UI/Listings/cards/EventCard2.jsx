@@ -3,9 +3,12 @@ import Link from "next/link";
 import DateView from "../../partials/dateViews/DateView";
 import DateViewString from "../../partials/dateViews/DateViewString";
 import Image from 'next/image';
+import { ListingMetaMini, ListingMeta } from "../../Partials";
+import { PriceView } from "../../PriceView";
 
 const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false}) => {
-    let {id, title, address, short_desc, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
+    let {id, title, address, short_desc, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf} = listing;
+    const {likes} = acf?.community ?? {};
     return (<>
     <div className={`card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
             <div className="card shadow-l mb-0 card-img" style={{width: 'inherit', height:height, minHeight:minHeight}}>
@@ -20,14 +23,24 @@ const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='
                     </div>
                 </div>
                 <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>
-            </div>  
-            <div className="d-flex flex-row flex-nowrap m-2 ms-3 mb-1 align-items-center gap-2 justify-between">
+            </div>
+            <div className="flex-grow-1 pt-2">
+                    <Link href={`/events/${slug}`}><h3 className={`text-18 mb-1 ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
+                    
+                    {/* <p className="card_desc truncate-2 mb-1">{short_desc}</p> */}
+                    <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1`}>
+                      {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
+                      <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
+                    </div>
+                    <div className={`d-flex flex-row justify-between align-items-center`}>{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</div>
+                  </div>  
+            {/* <div className="d-flex flex-row flex-nowrap m-2 ms-3 mb-1 align-items-center gap-2 justify-between">
                 <div className="">
                 <Link href={`/events/${slug}`}><h3 className={`text-15 ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
                     <p className="truncate font-11 mb-2 pb-1"><i className="fa fa-map-marker-alt me-2"></i>{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</p>
                 </div>
                 {noButton ? <></> : <Link className='text-nowrap h-fit btn bg-highlight rounded-xl shadow-xl text-uppercase p-2 font-900 font-10' href={`/events/${slug}`}>Learn More</Link>}
-            </div>
+            </div> */}
         </div>
         </>
     )

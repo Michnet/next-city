@@ -6,7 +6,7 @@ import { TermIcon } from "../partials/termLinks"
 
 function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClass, filterArr, setFilterArr, inactiveLinks, infinity, imagey, variant, taxonomy}){
     const {query} = useRouter();
-    const [locItems, setlocItems] = useState(items)
+    const [locItems, setLocItems] = useState(items)
 
 
     function parentTerm(){
@@ -20,6 +20,7 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
     }
 
     function fetchCondition(){
+        console.log('running condition')
         if(locItems?.length > 0){
             if(query){
                 if(query[`${queryKey}`]){
@@ -36,11 +37,11 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
     }
 
     useEffect(() => {
-         if(fetchCondition()){
+         /* if(fetchCondition()){
             return;
-         }else{
-            getLocalTaxonomy({taxonomy: 'categories', parent_slug : parentTerm(), setter:setlocItems});
-         }
+         }else{ */
+            getLocalTaxonomy({taxonomy: 'categories', parent_slug : parentTerm(), setter:setLocItems});
+         //}
        }, [query]);
     
        useEffect(() => {

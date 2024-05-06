@@ -97,7 +97,7 @@ h6 {
     color: var(--listingTheme) !important;
 }
 .page-content.single_listing .card {
-    background-color: var(--bgThemeTransparent2);
+    background-color: var(--bgThemeTransparent3);
 }
 div.truncate-5 > p {
     --max-lines: inherit;

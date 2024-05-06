@@ -3,22 +3,23 @@ import SearchFilter3 from "@/components/UI/search/SearchFilter3";
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
-import { Suspense, useState, useMemo } from "react";
+import { Suspense, useState, useMemo, useEffect } from "react";
 import { Client } from "react-hydration-provider";
 import Search from "@/components/UI/search/Search";
 import { useRecoilValue } from "recoil";
 import { UISizes } from "@/contexts/atoms";
+import useSWR from 'swr';
 import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
 import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import Header from "@/components/layouts/partials/Header";
-import { advancedFetchListings } from "@/helpers/rest";
+import { advancedFetchListings, advancedFetchListingsUrl, fetcherWithSignal } from "@/helpers/rest";
 import Slider from "react-slick";
 import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 
   let serverObj = {};
 
@@ -64,6 +65,7 @@ const ExploreEvents = ({topList}) => {
  const eventDate = query['event-date'] ?? null;
  const [showHint, setShowHint] = useState(true);
  const {isTab} = useRecoilValue(UISizes);
+ const [fetchy, setFetchy] = useState(false);
 
  function translateDate(string){
  return string.replaceAll("-", " ");
@@ -78,6 +80,30 @@ const ExploreEvents = ({topList}) => {
    });
    return newArr;
  }
+
+ let controller = new AbortController();
+    let {signal} = controller;
+
+    useEffect(() => {
+      if(query){
+        console.log('Query found')
+         setFetchy(true)
+      }else{
+        console.log('Query not found')
+
+        setFetchy(false);
+      }
+      return () => {
+        controller.abort();
+      }
+    }, [query]);
+
+    const params = query ?? {};
+
+    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
+    listing_type:'event', per_page: 5, ...params};
+
+ const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
 
   return (
@@ -102,13 +128,21 @@ const ExploreEvents = ({topList}) => {
             <div className="explore_content col minw-0 p-md-2 p-0">
               <div className="inner_section mb-4">
                 <Slider  {...fadingSlide} responsive = {[...largeResp]} >
-                {cachedTopList?.length > 0 ? 
-                    cachedTopList.map((li) => {
+                {fetchy ? fetchedTopList?.length > 0 ? 
+                    fetchedTopList.map((li) => {
                       let {id} = li;
                       return <EventCard3 width={'inherit'} listing={li} key={id} exClass='m-0 radius-0'/>
                     })
                     :
                     <></>
+                    :
+                    cachedTopList?.length > 0 ? 
+                      cachedTopList.map((li) => {
+                        let {id} = li;
+                        return <EventCard3 width={'inherit'} listing={li} key={id} exClass='m-0 radius-0'/>
+                      })
+                      :
+                      <></>
                   }
               </Slider>
               </div>
@@ -170,6 +204,7 @@ const ExploreEvents = ({topList}) => {
 
 /* const PageLayout = dynamic(() => import('~/appComponents/core//PageLayout'));
 import HeaderWrapper from './../../components/layouts/partials/HeaderWrapper';
+import { useSWR } from 'swr';
 
 ExploreEvents.getLayout = function getLayout({children}) {
   return (
