@@ -1,11 +1,11 @@
 import { siteSettings } from "@/helpers/base"
 import Link from "next/link"
 
-const Logo = ({simple, light, dark}) => {
+const Logo = ({simple, light, dark, noVersion=false}) => {
   let styling = {objectFit: 'contain', maxHeight: 35}
   return (
     <div className="site-logo" data-aos="zoom-in">
-        <div className={`d-flex flex-row flex-nowrap justify_start align-items-center`}>
+        <div className={`d-flex flex-row flex-nowrap justify_start align-items-center h-100`}>
         <Link href="/" className="logo_main">
           <div className={`d-flex flex-row flex-nowrap justify_start align-items-center`}>
           {light ? <></> : <img className="_logo_img _dark" src={siteSettings.logo_link} alt="LyveCity" style={styling}/>}
@@ -13,11 +13,11 @@ const Logo = ({simple, light, dark}) => {
           <span className={`ml-10 _logo_text fw-bold text-20 color-theme ${simple ? 'd-none d-sm-block' : ''}`}>LyveCity</span>
           </div>
           </Link>
-          <Link className="logo_extras color-theme" href={'/about/whats-new'}>
+          {!noVersion && <Link className="logo_extras color-theme" href={'/about/whats-new'}>
             <span className="app_version ml-10">
               <span className="opacity-50">v</span>
               <span className="text-16 app_version color-highlight">1.3</span>
-          </span></Link>
+          </span></Link>}
         </div>
     </div>
   )

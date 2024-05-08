@@ -92,7 +92,7 @@ h6 {
 .slick-next{
     right: 0 !important;
 }
-.menu-active.menu{display: block}
+.menu-active.menu{display: block;background: var(--bgThemeTransparent);}
 .page-content.single_listing .color-highlight {
     color: var(--listingTheme) !important;
 }
@@ -776,14 +776,14 @@ div#mobile_sidebar {}
     position: sticky;
 }
 
-.header.header-auto-show.header-sticky {
+.header.header-auto-show.header-sticky:not(.header-active) {
     position: sticky;
-    height: 0 !important;
     border-bottom: none;
+    height: 0;
 }
 
 .header.header-auto-show.header-sticky.header-active {
-    height: fit-content !important;
+    /* height: fit-content !important; */
     /* position: fixed; */
 }
 .listing_services {
@@ -3266,6 +3266,9 @@ input[type=range]::-webkit-slider-thumb {
     }
 }
 @media (min-width: 769px) {
+    .header.header-auto-show.header-sticky:not(.header-active){
+        
+    }
     .page-content{
         padding-bottom:0;
     }
@@ -3295,10 +3298,15 @@ div#explore_nav .view_filter {
 }
 
 @media (max-width: 768px) {
+    .header.header-auto-show.header-sticky:not(.header-active){
+        position: fixed;
+    }
+    .header.header-sticky.header-always-show.header-invert:not(.header-active){}
     #listing_header{
     top: 0;
     width: 100%;
     border-radius: 0;
+    position: fixed;
 }
     .page-content {
     padding-bottom: 62px;
@@ -3320,6 +3328,8 @@ div#explore_nav .view_filter {
 
 #explore_nav .view_filter {
     width: inherit;
+    display: flex;
+    align-items: center;
 }
 #explore_nav{
     top: 0;
@@ -3331,7 +3341,7 @@ div#explore_nav .view_filter {
 }
 
 div#explore_nav .left_menu_btn {
-    padding: 0 10px;
+    padding: 0 16px;
 }
 
 #explore_nav .nav-item.active {
@@ -3542,4 +3552,25 @@ ul.listing_menu .ex_label {display: none;}
   opacity: 0.1;
   z-index: 0;
   left: 0;
+}
+
+
+.footer-bar-1 .active-nav i {
+    background: linear-gradient(45deg, var(--secTheme), var(--highlight));
+    color: #fff !important;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.footer-bar-1 .active-nav span {
+    display: none !important;
+}
+
+.search_filter select {
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 0 10px;
 }

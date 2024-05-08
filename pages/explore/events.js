@@ -46,7 +46,7 @@ export async function getStaticProps() {
         mMenuContent:{
           icon : 'las la-filter', 
           btnProps:{
-          'data-menu' : "listingSidebar"}
+          'data-menu' : "exploreOffCanvas"}
           
       },
       noHeader: true
@@ -88,10 +88,6 @@ const ExploreEvents = ({topList}) => {
       if(query){
         console.log('Query found')
          setFetchy(true)
-      }else{
-        console.log('Query not found')
-
-        setFetchy(false);
       }
       return () => {
         controller.abort();
@@ -186,7 +182,7 @@ const ExploreEvents = ({topList}) => {
           </div>
       </section>
       </div>
-      <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="listingSidebar" >
+      <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="exploreOffCanvas" >
                 <div className="menu-title"><h1>Filter Results</h1>
                     <p className="color-highlight">Filter your Search Results</p>
                       <i className="fas fa-times close-menu" onClick={() => closeMenus()}/>
@@ -201,21 +197,4 @@ const ExploreEvents = ({topList}) => {
   );
 };
 
-
-/* const PageLayout = dynamic(() => import('~/appComponents/core//PageLayout'));
-import HeaderWrapper from './../../components/layouts/partials/HeaderWrapper';
-import { useSWR } from 'swr';
-
-ExploreEvents.getLayout = function getLayout({children}) {
-  return (
-      <PageLayout pageSettings={{
-        mMenu: 'show',
-        mMenuContent:{
-          icon : 'las la-filter', 
-          data_bs_toggle : "offcanvas",
-          'data_bs_target' : "#listingSidebar"}
-      }}>{children}</PageLayout>
-  )
-}
- */
 export default ExploreEvents;

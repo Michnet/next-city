@@ -5,6 +5,7 @@ import { UserAvatar } from "@/components/UI/UserAvatar";
 import MainMenuBtn from "./MainMenuBtn";
 import { useRouter } from "next/router";
 import {memo } from "react";
+import Logo from "@/components/UI/Logo";
 
 const HeaderConst = ({headerTitle, headerClass}) => {
   const router = useRouter();
@@ -19,10 +20,9 @@ return <Client>
       >
         <i className="fas fa-chevron-left" />
       </button>
-      <div className="title_box">
-        <Link href="/" className="header-title truncate mh-100">
-        {headerTitle ?? "LyveCity"}
-        </Link>
+      <div className="title_box row_flex align-items-center">
+          <Logo noVersion simple = {headerTitle == 'LyveCity' ? false : true}/>
+        <h2 className="header-title truncate">{headerTitle ?? "LyveCity"}</h2>
       </div>
     </div>
       

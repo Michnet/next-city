@@ -5246,7 +5246,7 @@ opacity: 1;
   border-radius: 0px;
 }
 .listing_meta i, .listing_meta._mini i, .nav-link{
- color: var(--loudTheme);
+ color: var(--highlight);
 }
 
 .listing_meta._mini i {

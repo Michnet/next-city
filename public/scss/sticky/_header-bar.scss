@@ -22,8 +22,8 @@
 		position: absolute;
 		height: 60px;
 		line-height: 60px;
-        margin-top: calc((constant(safe-area-inset-top))*0.8) !important;
-        margin-top: calc((env(safe-area-inset-top))*0.8) !important;
+        //margin-top: calc((constant(safe-area-inset-top))*0.8) !important;
+        //margin-top: calc((env(safe-area-inset-top))*0.8) !important;
 		font-size: 14px;
 		color: $color-black;
 		font-weight: 600;
@@ -37,16 +37,16 @@
 		position: absolute;
 		z-index: 1;
 		left: 50%;
-          margin-top: calc((constant(safe-area-inset-top))*0.8) !important;
-          margin-top: calc((env(safe-area-inset-top))*0.8) !important;
+          //margin-top: calc((constant(safe-area-inset-top))*0.8) !important;
+          //margin-top: calc((env(safe-area-inset-top))*0.8) !important;
 	}
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	right: 0px;
 	height: 60px;
-    height: calc(60px + (constant(safe-area-inset-top))*0.8) !important;
-    height: calc(60px + (env(safe-area-inset-top))*0.8) !important;
+    height: calc(60px + (constant(safe-area-inset-top))*0.8);
+    height: calc(60px + (env(safe-area-inset-top))*0.8);
 	z-index: 99;
 	transition: $globalTransitions;
 	background-color: $color-white;

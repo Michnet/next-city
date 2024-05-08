@@ -93,6 +93,7 @@ function MyAppConst({ Component, pageProps, platform }) {
               --bgThemeTransparent2: #f0f0f0d0;
               --bgThemeTransparent3: #f0f0f05c;
               --borderTheme: rgba(0, 0, 0, 0.1);
+              --bgBrightness:2;
           }
       }  
       
@@ -107,6 +108,7 @@ function MyAppConst({ Component, pageProps, platform }) {
               --bgThemeTransparent3: #0f11178c;
               --bgDarkTransparent2: rgba(15, 17, 23, 0.76);
               --borderTheme: rgba(255, 255, 255, 0.12);
+              --bgBrightness:0.8;
             }
       }
       
