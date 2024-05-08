@@ -72,7 +72,7 @@ self.addEventListener('install', function(event) {
 const unCacheables = ['jwt-auth/v1']
 
 self.addEventListener('fetch', function(event) {
-	event.respondWith(
+	/* event.respondWith(
 		//Fetch Data from cache if offline
 		caches.match(event.request)
 			.then(function(response) {
@@ -82,7 +82,16 @@ self.addEventListener('fetch', function(event) {
 				return fetch(event.request);
 			}
 		)
-	);
+	); */
+
+	event.respondWith(
+		(async () => {
+		  const requestURL = new URL(event.request.url);
+		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
+		  console.log('sw request', event.request.url);
+		  return fetch(event.request);
+		})(),
+	  );
 /* 
 	event.respondWith(
 		(async () => {

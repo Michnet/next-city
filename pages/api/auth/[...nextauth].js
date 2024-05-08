@@ -40,6 +40,7 @@ export const authOptions = { providers: [
             const user = loginObj.user;
 
             if(user){
+              console.log('Nextauth auth user', user);
               return {
                 id: user.id,
                 name: user.name,

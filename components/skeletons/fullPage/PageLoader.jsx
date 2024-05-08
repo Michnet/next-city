@@ -1,7 +1,20 @@
-const { LoaderRingBoxed } = require("../Loaders")
+import dynamic from "next/dynamic";
+import { LoaderRingBoxed } from "../Loaders";
+
 
 const PageLoader = ({route}) => {
-  return <div style={{height: '100vh'}}><LoaderRingBoxed/></div>
+
+  console.log('loaderRoute', route);
+  let loaderView;
+  
+  if(route.includes('/events/')){
+    const ListingSkeleton = dynamic(() => import("./ListingSkeleton"));
+    loaderView = <ListingSkeleton/>
+  }else{
+    loaderView = <div style={{height: '100vh'}}><LoaderRingBoxed/></div>
+  }
+  
+  return <>{loaderView}</>
 }
 
 export default PageLoader;

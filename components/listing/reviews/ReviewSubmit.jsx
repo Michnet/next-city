@@ -162,8 +162,8 @@ function ReviewSubmit({source_id, reloadAll, author_id}) {
                     </div>
                 </>
             )}}else{
-                const {data} = response;
-                formView = <ReviewCard review={data.item} noTime/>
+                const {item} = response;
+                formView = <ReviewCard review={item} noTime/>
             }
         }
         

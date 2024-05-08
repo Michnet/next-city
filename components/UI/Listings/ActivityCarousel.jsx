@@ -87,8 +87,8 @@ function ActivityCarouselConst({optionsObj = {}, defListings = null, thumbsize =
       load['event-date'] = 'any-date'
     }
 
-    if(query.category){
-      load.category = query.category
+    if(query?.category){
+      load.category = query?.category
       linkQuery=`category=${catSlug}`;
     }else if(catSlug){
       load.category = catSlug

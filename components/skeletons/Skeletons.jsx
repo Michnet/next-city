@@ -97,8 +97,8 @@ export const ThumbnailWithSubtitle = ({size}) => {
             </div>
 }
 
-export const RowLoader = () => {
-    return <Skeleton className='full-width' paragraph={{rows : 0}} active />
+export const RowLoader = ({height=50}) => {
+    return <Skeleton className='full-width' height={height}/>
 }
 
 export const BigTitle = () => {

@@ -5,7 +5,7 @@ import Header from "./partials/Header";
 import {useMemo, memo, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router"
-//import PageLoader from "../skeletons/fullPage/PageLoader";
+import PageLoader from "../skeletons/fullPage/PageLoader";
 
 
 function ScaffoldConst({children, uiSize, settings, headerTitle}) {
@@ -13,14 +13,16 @@ function ScaffoldConst({children, uiSize, settings, headerTitle}) {
     const {noHeader, autoShowHeader, hideNews, uiBackground} = settings ?? {};
 
     const cachedChildren = useMemo(() => children, [headerTitle])
-    //const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [loaderRoute, setLoaderRoute] = useState('')
 
     const router = useRouter();
-/* 
+
 
   const handleStarting = (url) => {
     setLoading(true);
-    console.log('started')
+    setLoaderRoute(url)
+    console.log('started loading', url);
   }
 
 const handleStoping = () => {
@@ -38,7 +40,7 @@ useEffect(() => {
           router?.events.off('routeChangeComplete', handleStoping)
           router?.events.off('routeChangeError', handleStoping)
         }
-  }, []); */
+  }, []);
     
   return (<>
     <div className="container-fluid p-0">
@@ -56,8 +58,9 @@ useEffect(() => {
                 {noHeader ? <></> : <>
                     {<Header headerTitle={headerTitle} headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
                 </>}
-                {cachedChildren}
-                {/* {loading && <PageLoader/>} */}
+                {/* {cachedChildren} */}
+                {/* <PageLoader route={loaderRoute}/> */}
+                {loading ? <PageLoader route={loaderRoute}/> : cachedChildren}
             </div>
             {!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>

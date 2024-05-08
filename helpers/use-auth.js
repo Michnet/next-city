@@ -264,9 +264,8 @@ const userSignOut = async () => {
 
 async function loginFunc(jwt, username){
   if(status === "authenticated"){
-    console.log('loginFunc')
       const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
-      if(provider && provider !== 'undefined'){
+      if(provider && provider !== 'undefined' && provider !== 'lyve_city'){
         let accessTokenObj = {};
 
         const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
@@ -289,8 +288,8 @@ async function loginFunc(jwt, username){
       })
     }
    }else{
-    
-    try{ let data = await kyFetch.get(`${WPDomain}/wp-json/jwt-auth/v1/autologin?JWT=${jwt}&name=${username}`).json();
+    await userSignOut();
+    /* try{ let data = await kyFetch.get(`${WPDomain}/wp-json/jwt-auth/v1/autologin?JWT=${jwt}&name=${username}`).json();
     if(data){
       const {data: loginData} = data;
       if(loginData.success){
@@ -305,7 +304,7 @@ async function loginFunc(jwt, username){
     }
     }catch(error){
         
-    }
+    } */
    }
 }
 
@@ -318,30 +317,7 @@ async function loginFunc(jwt, username){
    try {
   //let data = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth`, {json: {...loginData}, signal:signal}).json();
     let data = messageServiceWorker({type:'auth', loginData});
-    if(data){
-      console.log('data', data)
-    }
-  /* if (data?.success) {
-      const jwtData = data.data;
-      if(jwtData.jwt){
-        const {username} = loginData;
-        cookies.set('token', jwtData.jwt);
-         signIn('lyve_city', {username: username, token: jwtData.jwt, redirect: false}).then(async(res) => {
-          if(res.ok){
-            const checkSession = await getSession();
-            if (checkSession?.user) {
-             // router.reload();
-              const checkedUser = checkSession.user;
-               await fetchUserFunc({email: checkedUser.email, jwt: jwtData.jwt, authType: 'native'});
-            }
-          }
-         })
-      }
-     return data;
-    }else{
-      console.log('failed', data)
-      return data;
-    } */
+    
   }catch (error) {
       console.log('got failed', error)
       setTheAuth({...theAuth, loading:false})  
@@ -392,26 +368,26 @@ async function loginFunc(jwt, username){
 function setUpMessaging(){
   if (navigator.serviceWorker) {    
     navigator.serviceWorker.addEventListener("message", (event) => {
+
+      let incoming = event.data; 
+      const {type, swResponse} = incoming;
+      if(type == 'auth'){
       const oldToken = cookies.get("token");
       if(oldToken){
         cookies.remove('token');
       }
-      let incoming = event.data; 
-      const {type, swResponse} = incoming;
-      if(type == 'auth'){
         const {authResponse:data, loginData} = swResponse;
         if (data?.success) {
-          const jwtData = data.data;
+          console.log('useAuth auth user data', data)
+          const {auth_user, data:jwtData} = data;
           if(jwtData.jwt){
             const {username} = loginData;
             cookies.set('token', jwtData.jwt);
              signIn('lyve_city', {username: username, token: jwtData.jwt, redirect: false}).then(async(res) => {
               if(res.ok){
-                const checkSession = await getSession();
-                if (checkSession?.user) {
-                 // router.reload();
-                  const checkedUser = checkSession.user;
-                   await fetchUserFunc({email: checkedUser.email, jwt: jwtData.jwt, authType: 'native'});
+                if(restUser){
+                  storeUser(auth_user);
+                  setTheAuth({...theAuth(), user: auth_user, token:jwtData.jwt, auth_type: 'native'})
                 }
               }
              })

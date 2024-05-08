@@ -36,6 +36,7 @@ const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExCla
     const [viewType, setViewType] = useState('Grid');
     const [page, setPage] = useState(1);
     //const width = useRecoilValue(UIWidthState);
+    const params = query ?? {};
 
 
     let {isTab, isMobile} = useRecoilValue(UISizes);
@@ -45,7 +46,7 @@ const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExCla
 
         let filterArr = {
             'event-date': 'any-day',
-            ...query,
+            ...params,
             _fields : fieldList,
             _embed: true, 
             listing_type: listingType ?? 'event'
