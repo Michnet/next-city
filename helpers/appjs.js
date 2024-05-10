@@ -18,10 +18,10 @@ export function onAppLoad(){
 
 const toggleDark = typeof window !== 'undefined' ? document.querySelectorAll('[data-toggle-theme]') : [];
 
-function lightCssLink(status){
+/* function lightCssLink(status){
     let newUrl = status ? '/scss/sticky/_light.css' : '/scss/sticky/_darky.css';
     document.getElementById("light-css-link").href = newUrl;
-}
+} */
 
 function activateDarkMode(){
     if (typeof window !== 'undefined') {
@@ -34,7 +34,6 @@ function activateDarkMode(){
         for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=true};
         localStorage.setItem(pwaName+'-Theme', 'dark-mode');
         //themeCssLink('_dark')
-        lightCssLink(false);
     }
 }
 
@@ -46,7 +45,6 @@ function activateLightMode(){
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked=false};
     localStorage.setItem(pwaName+'-Theme', 'light-mode');
     //themeCssLink('_light');
-    lightCssLink(true);
     }
 }
 

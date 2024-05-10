@@ -2,7 +2,7 @@ import { getLocalTaxonomy } from "@/helpers/rest";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Splider from "../partials/Splider";
-import { TermIcon } from "../partials/termLinks"
+import { TermIconBox } from "../partials/termLinks"
 
 function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClass, filterArr, setFilterArr, inactiveLinks, infinity, imagey, variant, taxonomy}){
     const {query} = useRouter();
@@ -57,7 +57,7 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
         if(locItems?.length > 0){
             if(type === 'dir_cats'){
         catsArray = locItems.map((cat, i) => {
-            return <><TermIcon item={cat} key={i}  shadowy/></>
+            return <><TermIconBox exClass='mx-1 rounded-4' item={cat} key={i}  shadowy/></>
         }) }/* if(type === 'shop_cats'){
             catsArray = locItems.map(cat => {
                 return <div onClick={() => setFilterArr({...filterArr, category:cat.id})}><TermCarouselItemImg key = {cat.id} term = {cat} inactive={inactiveLinks}/></div>

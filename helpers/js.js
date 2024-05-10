@@ -374,7 +374,7 @@ export function run_template(){
                 loadHighlight.rel = "stylesheet";
                 loadHighlight.className = "page-highlight";
                 loadHighlight.type = "text/css";
-                loadHighlight.href = '/styles/highlights/highlight_' + rememberHighlight +'.css';
+                loadHighlight.href = '/scss/highlights/highlight_' + rememberHighlight +'.css';
                 if(!document.querySelectorAll('.page-highlight').length){
                     document.getElementsByTagName("head")[0].appendChild(loadHighlight);
                     document.body.setAttribute('data-highlight', 'highlight-'+rememberHighlight)
@@ -387,7 +387,7 @@ export function run_template(){
                 loadHighlight.rel = "stylesheet";
                 loadHighlight.className = "page-highlight";
                 loadHighlight.type = "text/css";
-                loadHighlight.href = '/styles/highlights/highlight_' + defaultHighlight[1] +'.css';
+                loadHighlight.href = '/scss/highlights/highlight_' + defaultHighlight[1] +'.css';
                 if(!document.querySelectorAll('.page-highlight').length){
                     document.getElementsByTagName("head")[0].appendChild(loadHighlight);
                     document.body.setAttribute('data-highlight', 'highlight-'+defaultHighlight[1])

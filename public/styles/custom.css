@@ -3495,8 +3495,8 @@ div#explore_nav .left_menu_btn {
 .footer-contact-us {
     border: 1px solid var(--borderTheme);
 }
-
-.listing_footer .footer-banner {
+.tag-cloud-tag {
+    font-family: var(--headingFont);
 }
 
 #sidebar.collapse:not(.show) ._logo_text, #sidebar.collapse:not(.show) .logo_extras {
@@ -3535,6 +3535,8 @@ ul.listing_navigator li {
 #footer-bar ul.listing_navigator li {
     max-width: 27vw;
     border: 1px solid var(--borderTheme);
+    padding: 8px 10px;
+    box-shadow: var(--shadow-1);
 }
 
 .listing_navigator li.prev .fa-angle-right, .listing_navigator li.next .fa-angle-left {

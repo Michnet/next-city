@@ -18,7 +18,7 @@ export const TermIcon = ({item, flipped=false, shadowy=true}) => {
 export const TermIconBox = ({item, flipped=false, shadowy=true, exClass='', width=100, height=100}) => {
     let {name, slug, term_meta, id} = item;
     let {color, rl_awesome} = term_meta;
-    return <div key={id} className={`icon_bound box_icon text-center overflow-hidden position-relative ${exClass}`} style={{background: `${color}`}}>
+    return <div key={id} className={`icon_bound box_icon text-center overflow-hidden position-relative ${exClass}`} style={{background: `${color ?? 'var(--highlight)'}`}}>
                     <div className={`term_box icon mb-1`} >
                         <span className={`term_icon_box bg-transparent`}>
                             <i className={`text-center text-80 opacity-20 color-white op ${rl_awesome?.length > 0 ? rl_awesome : 'fas fa-feather'}`} style={{color: flipped ? color : '#fff'}}></i>
