@@ -22,7 +22,7 @@ $colorSec: #c0dc7a;
 .splide__pagination__page.is-active{background-color:$colorHighlightDark!important} 
 .footer-bar-1 .active-nav i,
 .footer-bar-1 .active-nav span,
-.footer-bar-3 .active-nav i{color:$colorHighlightDark!important} 
+.footer-bar-3 .active-nav i{color:$colorHighlightDark} 
 .form-floating-over > .form-control:focus ~ label{color:$colorHighlightDark;}
 .form-floating-over > .form-control:not(:placeholder-shown) ~ label{color:$colorHighlightDark;}
 .form-floating-over > .form-select ~ label{color:$colorHighlightDark;}

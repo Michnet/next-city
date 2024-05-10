@@ -353,7 +353,7 @@ export function run_template(){
             } */
 
             //Page Highlights
-             var highlightData = document.querySelectorAll('[data-change-highlight]');
+             /* var highlightData = document.querySelectorAll('[data-change-highlight]');
             highlightData.forEach(el => el.addEventListener('click', e =>{
                 var highlight = el.getAttribute('data-change-highlight');
                 var pageHighlight = document.querySelectorAll('.page-highlight');
@@ -366,7 +366,7 @@ export function run_template(){
                 document.getElementsByTagName("head")[0].appendChild(loadHighlight);
                 document.body.setAttribute('data-highlight', 'highlight-'+highlight)
                 localStorage.setItem(pwaName+'-Highlight', highlight)
-            }))
+            })) */
             var rememberHighlight = localStorage.getItem(pwaName+'-Highlight');
             if(rememberHighlight){
                 document.body.setAttribute('data-highlight', rememberHighlight);

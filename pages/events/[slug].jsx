@@ -202,12 +202,11 @@ if(listing){
         <Client>
           <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>
               <div className="pt-3">
-                <SectionHeader exClass='px-3 mb-2'  title={`More in Category`} subTitle={`${category.name}`}/>
-                <RelatedByTaxSplide nextUpdater random taxonomy={`category`} slug={category.slug} ids={dir_categories} exclude={id}/></div>
+                <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category.slug} ids={dir_categories} exclude={id}/></div>
               {locations?.length > 0 && 
                 <>
-                  <SectionHeader exClass='px-3 mb-2'  title={`In this neighborhood`} subTitle={`${locations[0].name}`}/>
-                  <div className="pt-3"><RelatedByTaxSplide taxonomy={`region`} slug={locations[0]?.slug} exclude={id}/></div>
+                  
+                  <div className="pt-3"><RelatedByTaxSplide taxonomy={`region`} slug={locations[0]?.slug} taxName={locations[0]?.name} exclude={id}/></div>
                 </>}
             </LazyLoad>
         </Client>

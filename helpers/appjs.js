@@ -211,3 +211,20 @@ export function closeMenus(){
         notificationToast.show();
     }
  }
+
+
+ export function changeHighlight(e){
+    let el = e.currentTarget;
+
+    var highlight = el.getAttribute('data-change-highlight');
+    var pageHighlight = document.querySelectorAll('.page-highlight');
+    if(pageHighlight.length){pageHighlight.forEach(function(e){e.remove();});}
+    var loadHighlight = document.createElement("link");
+    loadHighlight.rel = "stylesheet";
+    loadHighlight.className = "page-highlight";
+    loadHighlight.type = "text/css";
+    loadHighlight.href = '/scss/highlights/highlight_' + highlight +'.css';
+    document.getElementsByTagName("head")[0].appendChild(loadHighlight);
+    document.body.setAttribute('data-highlight', 'highlight-'+highlight)
+    localStorage.setItem(pwaName+'-Highlight', highlight)
+ }

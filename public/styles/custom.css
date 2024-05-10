@@ -3533,7 +3533,7 @@ ul.listing_navigator li {
 }
 
 #footer-bar ul.listing_navigator li {
-    max-width: 20vw;
+    max-width: 27vw;
     border: 1px solid var(--borderTheme);
 }
 

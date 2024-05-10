@@ -12,11 +12,8 @@
   --lightGray: #e4e4e4;
   --lighterGray: #f4f4f4;--centerBg: center / cover no-repeat;
   --theme: var(--highlight);
-  --secTheme: var(--highlight2);
   --secondary: var(--highlight2);
-  --darkTheme: #bc6303;--highlight: var(
-  --palette4);--highlight2: #7e3876;--secTheme: var(
-  --palette2);
+  --darkTheme: #bc6303;
   --loudTheme: var(--highlight);
   --contentBox : #00000012 0px 0px 8px 2px;
   --gradientBg: linear-gradient(45deg, var(

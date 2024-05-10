@@ -26,14 +26,10 @@
 .footer-bar-1 .active-nav i,
 .footer-bar-1 .active-nav span,
 .footer-bar-3 .active-nav i {
-  color: #DA4453 !important;
-}
-
-.form-floating-over > .form-control:focus ~ label {
   color: #DA4453;
 }
 
-.form-floating-over > .form-control:not(:-moz-placeholder-shown) ~ label {
+.form-floating-over > .form-control:focus ~ label {
   color: #DA4453;
 }
 
@@ -57,4 +53,4 @@
 .interest-check input:checked ~ label {
   color: #FFF !important;
   background-color: #DA4453 !important;
-}/*# sourceMappingURL=highlight_red.css.map */
+}

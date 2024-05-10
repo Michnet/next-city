@@ -5,7 +5,7 @@ import RouteLoader from "./RouteLoader";
 import {useMemo, memo, useEffect, useState } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
-import { closeMenus, onAppLoad, openOffCanvas } from "@/helpers/appjs";
+import { closeMenus, onAppLoad, changeHighlight, openOffCanvas } from "@/helpers/appjs";
 import Scaffold from "./Scaffold";
 import {UISizes, UIWidthState} from '@/contexts/atoms';
 //import Header from "./partials/Header";
@@ -64,6 +64,38 @@ function LayoutConst({ children, headerTitle, settings}) {
 
   console.log("loading layout");
   
+  let themeColorsArr = [
+    {highlight:"blue", icon: "fa fa-circle color-blue-dark",
+      colorClass: "color-blue-light", themeName : "Default"},
+    {highlight:"red", icon: "fa fa-circle color-red-dark",
+      colorClass: "color-red-light", themeName : "Red"},
+    {highlight:"orange", icon: "fa fa-circle color-orange-dark",
+      colorClass: "color-orange-light", themeName : "Orange"},
+    {highlight:"pink2", icon: "fa fa-circle color-pink2-dark",
+      colorClass: "color-pink-dark", themeName: "Pink"},
+    {highlight:"magenta", icon: "fa fa-circle color-magenta-dark",
+      colorClass: "color-magenta-light", themeName : "Purple"},
+    {highlight:"aqua", icon: "fa fa-circle color-aqua-dark",
+      colorClass: "color-aqua-light", themeName : "Aqua"},
+    {highlight:"teal", icon: "fa fa-circle color-teal-dark",
+      colorClass: "color-teal-light", themeName : "Teal"},
+    {highlight:"mint", icon: "fa fa-circle color-mint-dark",
+      colorClass: "color-mint-light", themeName : "Mint"},
+    {highlight:"green", icon: "fa fa-circle color-green-light",
+      colorClass: "color-green-light", themeName : "Lemon"},
+    {highlight:"grass", icon: "fa fa-circle color-green-dark",
+      colorClass: "color-green-dark", themeName: "Grass"},
+    {highlight:"sunny", icon: "fa fa-circle color-yellow-light",
+      colorClass: "color-yellow-light", themeName : "Sunny"},
+    {highlight:"yellow", icon: "fa fa-circle color-yellow-dark",
+      colorClass: "color-yellow-light", themeName : "Goldish"},
+    {highlight:"brown", icon: "fa fa-circle color-brown-dark",
+      colorClass: "color-brown-light", themeName : "Coffee"},
+    {highlight:"night", icon: "fa fa-circle color-dark-dark",
+      colorClass: "color-dark-light", themeName : "Night"},
+    {highlight:"dark", icon: "fa fa-circle color-dark-light",
+      colorClass: "color-dark-light", themeName : "Dark"},
+]
 
   return (
     <>
@@ -123,66 +155,13 @@ function LayoutConst({ children, headerTitle, settings}) {
             <div className="divider divider-margins mb-n2"></div>
             <div className="content">
               <div className="highlight-changer">
-                <a href="#" data-change-highlight="blue">
-                  <i className="fa fa-circle color-blue-dark"></i>
-                  <span className="color-blue-light">Default</span>
-                </a>
-                <a href="#" data-change-highlight="red">
-                  <i className="fa fa-circle color-red-dark"></i>
-                  <span className="color-red-light">Red</span>
-                </a>
-                <a href="#" data-change-highlight="orange">
-                  <i className="fa fa-circle color-orange-dark"></i>
-                  <span className="color-orange-light">Orange</span>
-                </a>
-                <a href="#" data-change-highlight="pink2">
-                  <i className="fa fa-circle color-pink2-dark"></i>
-                  <span className="color-pink-dark">Pink</span>
-                </a>
-                <a href="#" data-change-highlight="magenta">
-                  <i className="fa fa-circle color-magenta-dark"></i>
-                  <span className="color-magenta-light">Purple</span>
-                </a>
-                <a href="#" data-change-highlight="aqua">
-                  <i className="fa fa-circle color-aqua-dark"></i>
-                  <span className="color-aqua-light">Aqua</span>
-                </a>
-                <a href="#" data-change-highlight="teal">
-                  <i className="fa fa-circle color-teal-dark"></i>
-                  <span className="color-teal-light">Teal</span>
-                </a>
-                <a href="#" data-change-highlight="mint">
-                  <i className="fa fa-circle color-mint-dark"></i>
-                  <span className="color-mint-light">Mint</span>
-                </a>
-                <a href="#" data-change-highlight="green">
-                  <i className="fa fa-circle color-green-light"></i>
-                  <span className="color-green-light">Lemon</span>
-                </a>
-                <a href="#" data-change-highlight="grass">
-                  <i className="fa fa-circle color-green-dark"></i>
-                  <span className="color-green-dark">Grass</span>
-                </a>
-                <a href="#" data-change-highlight="sunny">
-                  <i className="fa fa-circle color-yellow-light"></i>
-                  <span className="color-yellow-light">Sunny</span>
-                </a>
-                <a href="#" data-change-highlight="yellow">
-                  <i className="fa fa-circle color-yellow-dark"></i>
-                  <span className="color-yellow-light">Goldish</span>
-                </a>
-                <a href="#" data-change-highlight="brown">
-                  <i className="fa fa-circle color-brown-dark"></i>
-                  <span className="color-brown-light">Coffee</span>
-                </a>
-                <a href="#" data-change-highlight="night">
-                  <i className="fa fa-circle color-dark-dark"></i>
-                  <span className="color-dark-light">Night</span>
-                </a>
-                <a href="#" data-change-highlight="dark">
-                  <i className="fa fa-circle color-dark-light"></i>
-                  <span className="color-dark-light">Dark</span>
-                </a>
+                {themeColorsArr.map((el, ind) => {
+                  const {highlight, icon, colorClass, themeName} = el;
+                  return <a onClick={(e) => changeHighlight(e)} key={ind} href="#" data-change-highlight={highlight}>
+                    <i className={icon}/>
+                    <span className={colorClass}>{themeName}</span>
+                  </a>
+                })}
                 <div className="clearfix"></div>
               </div>
               <button onClick={(e) => openOffCanvas(e)}

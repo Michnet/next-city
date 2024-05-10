@@ -149,7 +149,7 @@ export default function Home(props) {
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
-    <SectionHeader exClass='px-3 mb-2 justify-center'  title={'Your Categories'} subTitle={'Explore By Category'}/>
+    <SectionHeader exClass='px-3 mb-4 justify-center text-center'  title={'Your Categories'} subTitle={'Explore By Category'}/>
 
    {/*  <Splider exClass="mb-4" height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {

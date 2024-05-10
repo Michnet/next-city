@@ -18,6 +18,7 @@ import Slider from "react-slick";
 import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
+import { Skeleton } from "@/components/skeletons/Skeletons";
 
 export async function getStaticProps() {
 
@@ -66,6 +67,7 @@ const ExploreEvents = ({topList}) => {
  const [showHint, setShowHint] = useState(true);
  const {isTab} = useRecoilValue(UISizes);
  const [fetchy, setFetchy] = useState(false);
+ const [loading, setLoading] = useState(true)
 
  function translateDate(string){
  return string.replaceAll("-", " ");
@@ -89,7 +91,9 @@ const ExploreEvents = ({topList}) => {
         console.log('Query found')
          setFetchy(true)
       }
+      setLoading(false);
       return () => {
+        setLoading(true);
         controller.abort();
       }
     }, [query]);
@@ -123,7 +127,7 @@ const ExploreEvents = ({topList}) => {
             </div>}</Client>
             <div className="explore_content col minw-0 p-md-2 p-0">
               <div className="inner_section mb-4">
-                <Slider  {...fadingSlide} responsive = {[...largeResp]} >
+                {loading ? <Skeleton  height={300}/> : <Slider  {...fadingSlide} responsive = {[...largeResp]} >
                 {fetchy ? fetchedTopList?.length > 0 ? 
                     fetchedTopList.map((li) => {
                       let {id} = li;
@@ -140,7 +144,7 @@ const ExploreEvents = ({topList}) => {
                       :
                       <></>
                   }
-              </Slider>
+              </Slider>}
               </div>
               <div className="inner_section mb-4">
                  <Suspense fallback={'Loading'}><TermsCarousel queryKey={'category'} queryLink={'/explore/events?category='} exClass={'pt-10'} slug={'events'}  type={'dir_cats'} infinity/></Suspense>
@@ -161,15 +165,15 @@ const ExploreEvents = ({topList}) => {
               <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Hints</button> 
               }</div></> : <></>}</>
               <div className="inner_section mt-20">
-                    <ActivityCarousel thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={'Latest Events'} subtitle={'Fresh and New Events'} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
+                    <ActivityCarousel skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={'Latest Events'} subtitle={'Fresh and New Events'} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">
-                    <ActivityCarousel height={220} mini noFallback cardWidth={200} exCardClass={'_mini ms-0 me-2'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
+                    <ActivityCarousel skeletonHeight={200} skeletonWidth={200} height={220} mini noFallback cardWidth={200} exCardClass={'_mini ms-0 me-2'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
 
               {!query || eventDate !== 'this-week' && <div className="inner_section mt-20">
-                    <ActivityCarousel thumbsize={'thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
+                    <ActivityCarousel skeletonHeight={200} skeletonWidth={270} thumbsize={'thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
               </div>}
 
 

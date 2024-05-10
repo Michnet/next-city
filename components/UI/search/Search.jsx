@@ -22,7 +22,7 @@ import { DualColorHeader } from '../Partials';
 import { Skeleton } from '@/components/skeletons/Skeletons';
 const SearchFilter = dynamic(() => import('./SearchFilter'));
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 22;
 
 
 const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExClass}) => {
@@ -91,7 +91,7 @@ const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExCla
         const isRefreshing = isValidating && data && data.length === size;
 
     const {data:fbData, error:fbError} = useSWRInfinite(!isLoadingInitialData && isEmpty ? 
-        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, listing_type:'event', _embed : true })}&per_page=${PAGE_SIZE}&page=${
+        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, listing_type: listingType ?? 'event', _embed : true, 'event-day': 'any-day' })}&per_page=${PAGE_SIZE}&page=${
             index + 1
           }` : null,
         fetcher

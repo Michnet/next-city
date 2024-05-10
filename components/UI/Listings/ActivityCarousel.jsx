@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { spliderVariableWidth, variableWidth } from "@/helpers/sliders"
+import { spliderVariableWidth} from "@/helpers/sliders"
 import Slider from "react-slick"
 //import ListingCard from "./cards/ListingCard"
 import useSWR from 'swr';
@@ -9,8 +9,10 @@ import { useRouter } from "next/router";
 import { DualColorHeader } from "../Partials";
 import Splider from "@/components/UI/partials/Splider";
 import Link from "next/link";
+import { generateTempArray } from '@/helpers/universal';
+import { Skeleton } from "@/components/skeletons/Skeletons";
 
-function ActivityCarouselConst({optionsObj = {}, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
+function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
 
     let theView, fetchy = true, linkQuery = null;
 
@@ -101,29 +103,38 @@ function ActivityCarouselConst({optionsObj = {}, defListings = null, thumbsize =
 
     const isLoadingInitialData = !listings && !error;
     const isEmpty = listings?.length === 0;
-
-    if(listings?.length > 0){
-      controller.abort();
-        const itemArray =   listings.slice(0, 5).map((item, i) => (
-         <div key={i}><Card mini={mini} exClass={exCardClass}  width={cardWidth} key={i} listing = {item}/></div>
-       ));
-     
-        theView =  <>
-                    <div className="d-flex px-3 mb-3">
-                    <div className="align-self-center">
-                      <DualColorHeader title={title} subTitle={subtitle} iconClass={iconClass}/>
-                    </div>
-                    <div className="align-self-center ms-auto">
-                        <Link href={`explore/events${linkQuery ? '?'+linkQuery : ''}`} className="font-12">View All</Link>
-                    </div>
-                    </div>
-                    <Splider height={height}  options={{...spliderOptions}}>
-                        {
-                            itemArray
-                        }
-                    </Splider>
-                    </>
-       }
+    if(isLoadingInitialData){
+      theView =  <>
+            <Skeleton exClass='ms-3 mb-3' width='60%'/>
+            <Splider height={skeletonHeight + 25}  options={{...spliderOptions}}>
+                {generateTempArray(8).map((item, i) => ( <Skeleton exClass={exCardClass} roundy height={skeletonHeight} width = {skeletonWidth} key={i}/> ))}
+            </Splider>
+          </>
+    }else{
+      if(listings?.length > 0){
+        controller.abort();
+          const itemArray =   listings.slice(0, 5).map((item, i) => (
+           <div key={i}><Card mini={mini} exClass={exCardClass}  width={cardWidth} key={i} listing = {item}/></div>
+         ));
+       
+          theView =  <>
+                      <div className="d-flex px-3 mb-3">
+                      <div className="align-self-center">
+                        <DualColorHeader title={title} subTitle={subtitle} iconClass={iconClass}/>
+                      </div>
+                      <div className="align-self-center ms-auto">
+                          <Link href={`explore/events${linkQuery ? '?'+linkQuery : ''}`} className="font-12">View All</Link>
+                      </div>
+                      </div>
+                      <Splider height={height}  options={{...spliderOptions}}>
+                          {
+                              itemArray
+                          }
+                      </Splider>
+                      </>
+         }
+    }
+    
 
   return (
     <div> 

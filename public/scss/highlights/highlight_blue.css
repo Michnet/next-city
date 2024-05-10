@@ -1,7 +1,7 @@
 /* Generating Color Pack*/
 :root {
-  --secTheme:#dc9d4a;
-  --highlight:#4A89DC !important;
+  --secTheme: #dc9d4a;
+  --highlight: #4A89DC !important;
 }
 
 .color-highlight {
@@ -31,14 +31,10 @@
 .footer-bar-1 .active-nav i,
 .footer-bar-1 .active-nav span,
 .footer-bar-3 .active-nav i {
-  color: #4A89DC !important;
-}
-
-.form-floating-over > .form-control:focus ~ label {
   color: #4A89DC;
 }
 
-.form-floating-over > .form-control:not(:-moz-placeholder-shown) ~ label {
+.form-floating-over > .form-control:focus ~ label {
   color: #4A89DC;
 }
 
@@ -62,4 +58,4 @@
 .interest-check input:checked ~ label {
   color: #FFF !important;
   background-color: #4A89DC !important;
-}/*# sourceMappingURL=highlight_blue.css.map */
+}

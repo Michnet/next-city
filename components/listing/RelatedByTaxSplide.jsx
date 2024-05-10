@@ -1,5 +1,5 @@
 import { nextPostState } from "@/contexts/atoms";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSetRecoilState } from "recoil";
 import { advancedFetchListingsUrl, fetcher } from "@/helpers/rest";
 import useSWR from 'swr';
@@ -9,13 +9,26 @@ import { SectionHeader } from "@/components/UI/Partials";
 import { CardsRowLoader } from "../skeletons/Skeletons";
 
 
-function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
+function RelatedByTaxSplide({ids, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
 
     const [loading, setLoading] = useState(true);
     const [horizontal, setHorizontal] = useState(listy ?? false);
     const [page, setPage] = useState(1);
     const setNextPost = useSetRecoilState(nextPostState);
 
+    function titleFunc(){
+      let titleObj = {subTitle: taxName}
+
+      if(taxonomy == 'category'){
+        titleObj.title = 'More in Category';
+      }else{
+        titleObj.title = 'In this neighborhood';
+      }
+
+      return titleObj;
+    }
+
+    const cachedTitle = useMemo(() => titleFunc(), [taxonomy] );
     
     let listView, payload = {
         _fields : 'id,title,thumbnail,fields,ticket_min_price_html, event_date,slug,_links,page_views,featured_media,acf,rating,category,schedule,longitude,latitude,level,short_desc,type,dir_categories,large_thumb, gallery,locations,xtra_large_thumb', 
@@ -59,7 +72,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, slug, exclu
       setNextPost(listings[0]?.slug);
     }
     listView = <>
-         {/*  <SectionHeader inverted iconClass={'fas fa-th-large'}  exClass='px-3 mb-2' link={'See All'} title={'Related Pages'} subTitle={'Need More Options?'}/> */}
+         <SectionHeader exClass='px-3 mb-2'  title={`${cachedTitle.title}`} subTitle={`${cachedTitle.subTitle}`}/>
 
           <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>
             {listings?.length > 0 ? 
