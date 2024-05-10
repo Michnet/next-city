@@ -8,11 +8,13 @@ import { siteSettings } from "@/helpers/base";
 import { Client } from "react-hydration-provider";
 //import Slider from "react-slick"
 //import { fadingSlide, largeResp } from "@/helpers/sliders";
-import { useEffect, useMemo } from 'react';
+import {useMemo } from 'react';
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
+
 // import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
 import {SectionHeader } from "@/components/UI/Partials";
 // import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
-import { TermIcon } from "@/components/UI/partials/termLinks";
+import { TermIconBox } from "@/components/UI/partials/termLinks";
 import Splider from "@/components/UI/partials/Splider";
 import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
 //import EventCard3 from "@/components/UI/Listings/cards/EventCard3";
@@ -147,15 +149,24 @@ export default function Home(props) {
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
-    <Splider exClass="mb-4" height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
+    <SectionHeader exClass='px-3 mb-2 justify-center'  title={'Your Categories'} subTitle={'Explore By Category'}/>
+
+   {/*  <Splider exClass="mb-4" height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {
                 eventCategories?.map((cat) => {
-                    return <TermIcon flipped item={cat}/>
+                    return <TermIconBox exClass='mx-1 h-100 rounded-4' flipped item={cat}/>
                 })
             }
-    </Splider>
+    </Splider> */}
+    <div className='term_links_grid mb-3'>
+    {
+                eventCategories?.map((cat) => {
+                    return <TermIconBox exClass='mx-1 rounded-4' flipped item={cat}/>
+                })
+            }
+            </div>
 
-    <div className="divider mt-2 mb-4"></div>
+    <div className="divider mt-3 mb-4"></div>
 
    <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider height={275} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>

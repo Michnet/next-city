@@ -88,7 +88,6 @@ self.addEventListener('fetch', function(event) {
 		(async () => {
 		  const requestURL = new URL(event.request.url);
 		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
-		  console.log('sw request', event.request.url);
 		  return fetch(event.request);
 		})(),
 	  );

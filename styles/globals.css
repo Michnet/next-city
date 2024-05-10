@@ -2996,7 +2996,7 @@ span.score_denom {font-size: 12px;color: #ffffff87;margin-right: -14px;}
   opacity: 0.5;
 }
 
-._meta {color: var(--bs-gray-900);font-size: 15px;font-weight: 600;}
+._meta {color: var(--bs-gray-500);font-size: 15px;font-weight: 600;}
 
 .listing_meta p {
   color: var(--bs-gray-700);
@@ -3497,15 +3497,12 @@ ul.listing_menu li {list-style: none;margin-bottom: 15px;width: fit-content;}
 
 ul.listing_navigator li .l_menu._item {align-items: center;grid-column-gap: 5px;padding: 0 10px;line-height: 35px;}
 
-ul.listing_navigator li.visible.prev .l_menu._item {/* flex-direction: row-reverse; */}
-
 ul.listing_navigator li .l_menu._item .label {font-size: 13px;white-space: nowrap;color: var(--secondary);font-weight: 500;text-overflow: ellipsis;overflow: hidden;flex-shrink: 1;}
 
 ul.listing_navigator li.prev .label {color: #878787 !important;}
 
 a.l_menu._item.active .label {color: var(--theme);}
 
-.l_menu._item .label {font-size: 16px;margin-bottom: 0;}
 
 ul.listing_menu li.active .label {color: var(--theme);}
 
@@ -4633,11 +4630,6 @@ color: rgb(19,115,51);
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-}
-.footer-link.l_menu._item .label, .footer-link{
-font-weight: 400 !important;
-font-size: var(--fontSize);
-line-height: 32px;
 }
 
 .footer-link.l_menu._item .icon {

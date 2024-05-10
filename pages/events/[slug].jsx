@@ -36,6 +36,7 @@ import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
+import { SectionHeader } from "@/components/UI/Partials";
 const Navigator = dynamic(() => import("@/components/listing/Navigator"));
 
 const randColor = randomEither(siteColors);
@@ -118,7 +119,7 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing, themeColor, color=randColor}) => {
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, category, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified} = listing ?? {};
+    const {short_desc, meta, cover, category, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, locations} = listing ?? {};
     const {_links} = meta ?? {};
     const router = useRouter();
     const {query} = router;
@@ -186,7 +187,7 @@ if(listing){
                 <ListingTopMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
 
-    <ListingBottomMenu setActiveKey={setActiveKey} listing={listing} color={color}/>
+    <ListingBottomMenu lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} color={color} activeKey={activeKey}/>
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
@@ -200,7 +201,14 @@ if(listing){
         </LazyLoad>
         <Client>
           <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>
-              <div className="pt-3"><RelatedByTaxSplide nextUpdater random taxonomy={`category`} slug={category.slug} ids={dir_categories} exclude={id}/></div>
+              <div className="pt-3">
+                <SectionHeader exClass='px-3 mb-2'  title={`More in Category`} subTitle={`${category.name}`}/>
+                <RelatedByTaxSplide nextUpdater random taxonomy={`category`} slug={category.slug} ids={dir_categories} exclude={id}/></div>
+              {locations?.length > 0 && 
+                <>
+                  <SectionHeader exClass='px-3 mb-2'  title={`In this neighborhood`} subTitle={`${locations[0].name}`}/>
+                  <div className="pt-3"><RelatedByTaxSplide taxonomy={`region`} slug={locations[0]?.slug} exclude={id}/></div>
+                </>}
             </LazyLoad>
         </Client>
     </div>

@@ -385,10 +385,8 @@ function setUpMessaging(){
             cookies.set('token', jwtData.jwt);
              signIn('lyve_city', {username: username, token: jwtData.jwt, redirect: false}).then(async(res) => {
               if(res.ok){
-                if(restUser){
                   storeUser(auth_user);
                   setTheAuth({...theAuth(), user: auth_user, token:jwtData.jwt, auth_type: 'native'})
-                }
               }
              })
           }

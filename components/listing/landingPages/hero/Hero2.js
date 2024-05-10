@@ -90,7 +90,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
                   //placeholder="blur"
-                   changerKey={listing.id}
+                   //changerKey={listing.id}
                    //blurDataURL={coverBlur}
                    fill
                    priority

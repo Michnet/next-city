@@ -9,9 +9,23 @@ export const TermIcon = ({item, flipped=false, shadowy=true}) => {
                     <Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`term_box icon icon-xxl mb-1`} >
                     <span style={{width: 60, height: 60,  background: `${flipped ? 'var(--bgTheme)' : color}`}} className={`term_icon_box ${shadowy ? flipped ? 'shadow':'shadow-bg shadow-bg-sm' : ''}`}>
                         <i className={`text-center text-40 ${rl_awesome?.length > 0 ? rl_awesome : 'fas fa-feather'} ${flipped ? '_flipped bg-theme' : ''}`} style={{color: flipped ? color : '#fff'}}></i></span>
-                    <div className='_title'><span className="font-500 color-theme truncate-2 text-10 opacity-70">{cleanHtml(name)}</span></div>
+                    <div className='_title'><span className="font-500 color-theme truncate-2 text-10 opacity-70 ">{cleanHtml(name)}</span></div>
                 </Link>
                     
+                </div>
+}
+
+export const TermIconBox = ({item, flipped=false, shadowy=true, exClass='', width=100, height=100}) => {
+    let {name, slug, term_meta, id} = item;
+    let {color, rl_awesome} = term_meta;
+    return <div key={id} className={`icon_bound box_icon text-center overflow-hidden position-relative ${exClass}`} style={{background: `${color}`}}>
+                    <div className={`term_box icon mb-1`} >
+                        <span className={`term_icon_box bg-transparent`}>
+                            <i className={`text-center text-80 opacity-20 color-white op ${rl_awesome?.length > 0 ? rl_awesome : 'fas fa-feather'}`} style={{color: flipped ? color : '#fff'}}></i>
+                        </span>
+                    </div>
+                    <div className='icon_overlay bg-gradient-45 h-100 w-100 position-absolute top-0 left-0 opacity-50'/>
+                    <div className={`_title text-right p-2 d-flex align-items-end position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`fw-600 color-white truncate-3 heady opacity-70`}>{cleanHtml(name)}</Link></div>
                 </div>
 }
 

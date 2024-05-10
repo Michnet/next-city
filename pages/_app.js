@@ -82,6 +82,13 @@ function MyAppConst({ Component, pageProps, platform }) {
            --xsFontSize: 12px;
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
+           
+          --headingFont: "Jost", sans-serif !important;
+          --handFont: 'Dr Sugiyama', cursive;
+          --fontFamily: "Roboto", sans-serif !important;
+        }
+        h1, h2, h3, h4, h5, h6{
+          font-family: var(--headingFont);
         }
 
         @scope (.theme-light) {

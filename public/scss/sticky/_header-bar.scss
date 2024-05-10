@@ -1,14 +1,4 @@
 /*--Header---*/
-.header-title {
-	span {
-		font-family: $font-heading-family;
-	}
-}
-.footer-title {
-	span {
-		font-family: $font-heading-family;
-	}
-}
 .header-logo {
 	span {
 		display: none;
@@ -28,7 +18,6 @@
 		color: $color-black;
 		font-weight: 600;
 		z-index: 1;
-		font-family: $font-heading-family;
 	}
 	.header-logo {
 		background-repeat: no-repeat;
@@ -78,7 +67,6 @@
 		color: $color-black;
 		font-weight: 600;
 		z-index: 1;
-		font-family: $font-heading-family;
 	}
 	.header-logo {
 		background-repeat: no-repeat;

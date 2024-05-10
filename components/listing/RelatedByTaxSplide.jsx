@@ -59,7 +59,7 @@ function RelatedByTaxSplide({ids, listy, ids2, taxonomy_2, taxonomy, slug, exclu
       setNextPost(listings[0]?.slug);
     }
     listView = <>
-          <SectionHeader inverted iconClass={'fas fa-th-large'}  exClass='px-3 mb-2' link={'See All'} title={'Related Pages'} subTitle={'Need More Options?'}/>
+         {/*  <SectionHeader inverted iconClass={'fas fa-th-large'}  exClass='px-3 mb-2' link={'See All'} title={'Related Pages'} subTitle={'Need More Options?'}/> */}
 
           <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>
             {listings?.length > 0 ? 
