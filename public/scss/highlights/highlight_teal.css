@@ -1,4 +1,9 @@
 /* Generating Color Pack*/
+:root {
+  --secTheme: #b17d7d;
+  --highlight: #7DB1B1 !important;
+}
+
 .color-highlight {
   color: #7DB1B1 !important;
 }

@@ -69,31 +69,62 @@ self.addEventListener('install', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Installed');}
 });
 
-const unCacheables = ['jwt-auth/v1'];
+const unCacheables = ['jwt-auth/v1']
 
-self.addEventListener('fetch', (event) => {
-	  event.respondWith(
+self.addEventListener('fetch', function(event) {
+	/* event.respondWith(
 		(async () => {
-			const requestURL = new URL(event.request.url);
-			var unCachList = new RegExp(unCacheables.join("|"), 'gi');
-			if(unCachList.test(requestURL)){
-			  return fetch(event.request);
-			}else{
-				caches.open(CACHE_NAME).then(async (cache) => {
-					const cachedResponse = await cache.match(event.request);
+		  const requestURL = new URL(event.request.url);
+		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
+		  return fetch(event.request);
+		})(),
+	  ); */
+
+	  
+
+	event.respondWith(
+		(async () => {
+		  const requestURL = new URL(event.request.url);
+		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
+		  if(unCachList.test(requestURL)){
+			return fetch(event.request);
+		  }else{
+				// Try to get the response from a cache.
+				const cache = await caches.open(CACHE_NAME);
+				const cachedResponse = await cache.match(event.request);
+			
+				if (cachedResponse) {
+					// If we found a match in the cache, return it, but also
+					// update the entry in the cache in the background.
+					//event.waitUntil(cache.add(event.request));
+					//return cachedResponse;
 					const fetchedResponse = fetch(event.request).then((networkResponse) => {
 						cache.put(event.request, networkResponse.clone());
-
 						return networkResponse;
-					});
-					return cachedResponse || fetchedResponse;
-				  })
-			}
-		  })()
-		)
-  });
+					  });
+			  
+					  return cachedResponse || fetchedResponse;
+				}
+			
+				// If we didn't find a match in the cache, use the network.
+				return fetch(event.request)
+				.then((res) => {
+					// response may be used only once
+					// we need to save clone to put one copy in cache
+					// and serve second one
+					let responseClone = res.clone();
 
-  self.addEventListener('activate', function(event) {
+					cache.put(event.request, responseClone);
+					return res;
+				})
+		  }
+		  
+		})(),
+	  );
+	if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
+});
+
+self.addEventListener('activate', function(event) {
 	event.waitUntil(self.clients.claim());
 	event.waitUntil(
 		//Check cache number, clear all assets and re-add if cache number changed

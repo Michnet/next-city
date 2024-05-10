@@ -5239,7 +5239,7 @@ opacity: 1;
 }
 
 .listing_meta._mini i {
-  color: var(--bs-gray-500);
+  color: var(--highlight);
 }
 
 .nav-pills .nav-link {

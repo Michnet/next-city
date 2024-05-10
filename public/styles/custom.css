@@ -362,7 +362,7 @@ div.truncate-5 > p {
     min-width: 0;
 }
 .border-top-light{
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--borderTheme);
 }
 .menu-box-left{
     transform: translate3d(-102%, 0, 0);
@@ -2130,7 +2130,7 @@ button.back_link {
     font-weight: 300;
 }
 .woocommerce-Price-amount.amount {
-    color: var(--highlight);
+    color: var(--secTheme);
     font-weight: 700
 }
 
@@ -2957,10 +2957,14 @@ span.term_icon_box {
     padding: 0;
 }
 
-.gx-profile-banner._mini > img {
+.gx-profile-banner._mini > img, .top_list .event_card_3 .img_div {
     webkit-mask-image: linear-gradient(white 10%, transparent 100%);
     mask-image: linear-gradient(white 10%, transparent 100%);
     width: inherit;
+}
+
+.top_list .event_card_3 .img_div {
+    background-position: center;
 }
 
 ._mini .gx-profile-container {
@@ -3512,10 +3516,24 @@ div#explore_nav .left_menu_btn {
 .card.event_card_2.bgClear .card-img, .card.event_card_2.bgClear .card-img .card-overlay {
     border-radius: 15px !important;
     overflow: hidden;
+    max-height: 320px;
 }
 
 .card.card-style.event_card_3 .card-overlay {
     border-radius: 0;
+}
+
+.top_list .card.card-style.event_card_3 .card-overlay {
+    display: none;
+}
+
+.top_list .card.card-style {
+    box-shadow: none;
+    background: transparent;
+}
+
+.top_list .card.card-style.event_card_3 .color-white {
+    color: var(--bs-dark) !important;
 }
 
 ul.listing_navigator li {margin: 10px 0;list-style: none;border-radius: 30px;box-shadow: none;/* color: var(--secTheme); */display: none;background: transparent;/* border: none; */overflow: hidden;text-overflow: ellipsis;}
@@ -3616,4 +3634,9 @@ ul.listing_menu .ex_label {display: none;}
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+}
+
+.price_view._free._inline ._price {
+    color: var(--secTheme);
+    font-weight: 600;
 }

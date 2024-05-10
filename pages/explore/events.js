@@ -126,7 +126,7 @@ const ExploreEvents = ({topList}) => {
                </div>
             </div>}</Client>
             <div className="explore_content col minw-0 p-md-2 p-0">
-              <div className="inner_section mb-3">
+              <div className="inner_section mb-3 top_list">
                 {loading ? <Skeleton  height={300}/> : <Slider  {...fadingSlide} responsive = {[...largeResp]} >
                 {fetchy ? fetchedTopList?.length > 0 ? 
                     fetchedTopList.map((li) => {

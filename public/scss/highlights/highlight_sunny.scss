@@ -3,6 +3,14 @@
 $colorHighlightLight: #f0b31b;
 $colorHighlightDark: #d99914;
 
+
+$colorSec: #d99914;
+
+:root{
+    --secTheme:#{$colorSec};
+    --highlight:#{$colorHighlightDark} !important;
+}
+
 .color-highlight{color:$colorHighlightDark!important;}
 .bg-highlight{background-color:$colorHighlightDark!important; color:#FFF!important;}
 .border-highlight{border-color:$colorHighlightDark!important;}
