@@ -5,7 +5,6 @@ const ListingStater = dynamic(() => import("@/contexts/contextStaters/ListingSta
 import { fetchIdsUrl, fetchSingleListingUrl, getUserRest } from "@/helpers/rest";
 import { cleanHtml, shadeRGBColor } from "@/helpers/universal";
 import { memo, useEffect, useState, useMemo } from "react";
-import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
 const ListingSideMenu = dynamic(() => import("@/components/listing/ListingSideMenu"));
 import { Client } from "react-hydration-provider";
@@ -28,6 +27,8 @@ import PageScroller from "@/components/UI/partials/PageScroller";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 const ListingFooter = dynamic(() => import('@/components/listing/landingPages/footer/ListingFooter'), { ssr: false });
 const ListingBottomMenu = dynamic(() => import('@/components/listing/ListingBottomMenu'), { ssr: false });
+const SiteHead = dynamic(() => import("@/components/UI/SiteHead"));
+
 
 const ColorThief = require('colorthief');
 
@@ -186,9 +187,7 @@ if(listing){
 
  console.log(listing)
 
-    return <> 
-        <>
-        <SiteHead
+    return (<><SiteHead
            title={`${cleanHtml(listing?.title?.rendered)}`} 
            description={`${listing?.short_desc}`}
            image={listing?.large_thumb}
@@ -198,8 +197,7 @@ if(listing){
            street_address={address}
            latitude={latitude}
            longitude={longitude}
-           slug={`/events/${slug}`}
-           />
+           slug={`/events/${slug}`}/>
            <HeaderWrapper headerClass={`header-invert header-always-show`} header_id={'listing_header'}>
                 <ListingTopMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
@@ -208,7 +206,7 @@ if(listing){
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        <Hero2 /* palette={palette}  */ color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
+        <Hero2  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
         <Client>
             <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
@@ -222,7 +220,6 @@ if(listing){
                 <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category.slug} ids={dir_categories} exclude={id}/></div>
               {locations?.length > 0 && 
                 <>
-                  
                   <div className="pt-3"><RelatedByTaxSplide taxonomy={`region`} slug={locations[0]?.slug} taxName={locations[0]?.name} exclude={id}/></div>
                 </>}
             </LazyLoad>
@@ -238,7 +235,7 @@ if(listing){
       </style>
     </Client>
 
-    <ListingSideMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+    {/* <ListingSideMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/> */}
     <RightMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title">
@@ -271,9 +268,7 @@ if(listing){
         </div>
     </div>
     <VisitRecord Id={listing.id}/>
-    <ListingStater id={listing.id}/>
-    </>
-</>
+    <ListingStater id={listing.id}/></>)
 
   }
 

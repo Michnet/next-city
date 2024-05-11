@@ -62,9 +62,9 @@ useEffect(() => {
                 {/* <PageLoader route={loaderRoute}/> */}
                 {loading ? <PageLoader route={loaderRoute}/> : cachedChildren}
             </div>
-            {!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
+            <Client>{!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>
-            </div>}
+            </div>}</Client>
         </div>
     </div>
     <Client>

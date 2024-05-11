@@ -1,6 +1,7 @@
-import {useRecoilState, useRecoilValue, useSetRecoilValue } from "recoil";
-import { UIState, UIWidthState } from "@/contexts/atoms";
-import { useEffect, memo } from "react";
+import {useRecoilState } from "recoil";
+import { UIState } from "@/contexts/atoms";
+import { memo } from "react";
+import { Client } from 'react-hydration-provider';
 
 export const defaultUI = {
   colorTheme:{
@@ -23,23 +24,12 @@ const UIProviderConst = ({platform}) => {
     
     const [UI, setUI] = useRecoilState(UIState);
     //const {colorTheme} = UI;
-    //const {colors} = colorTheme; 
-    console.log('running themer')
-    
+    //const {colors} = colorTheme;     
 
     return (
-        <>
-        <div className="ui_provider"/>
-           {/*  <style jsx global>{`
-                              :root{
-                                --palette1: ${colors[0]};
-                                --palette2: ${colors[1]};
-                                --palette3: ${colors[2]};
-                                --palette4: ${colors[3]};
-                              }
-                              `}
-            </style> */}
-        </>
+        <Client>
+        <div className="ui_provider"></div>
+        </Client>
     )
 } 
 

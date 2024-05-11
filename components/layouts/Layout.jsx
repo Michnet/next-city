@@ -1,11 +1,11 @@
-import Script from "next/script";
-import { run_template } from "./../../helpers/js";
+//import Script from "next/script";
+//import { run_template } from "./../../helpers/js";
 import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
-import {useMemo, memo, useEffect, useState } from "react";
+import {useMemo, memo, useState } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
-import { closeMenus, onAppLoad, changeHighlight, openOffCanvas } from "@/helpers/appjs";
+import { closeMenus, changeHighlight, openOffCanvas } from "@/helpers/appjs";
 import Scaffold from "./Scaffold";
 import {UISizes, UIWidthState} from '@/contexts/atoms';
 //import Header from "./partials/Header";
@@ -13,11 +13,11 @@ import { useRouter } from "next/router"
 import BottomMenu from "./BottomMenu";
 import { BSReveal } from "../UI/partials/BSReveal";
 import SearchForm1 from "../UI/search/SearchForm1";
-import Splash from "../UI/Splash";
+//import Splash from "../UI/Splash";
 import SnackBar from "../UI/partials/SnackBar";
 import UserSideMenu from "../UI/user/UserSideMenu";
 import UISettings from "./UISettings";
-import { getSession } from "next-auth/react";
+//import { getSession } from "next-auth/react";
 
 function sizing(width, setWidth){
   console.log('running sizing')
@@ -296,6 +296,52 @@ function LayoutConst({ children, headerTitle, settings}) {
             </div>
           </div>
 		  </Client>
+
+      <Client><style>{`:root{
+           --miniFontSize: 13px;
+           --fontSize: var(--font-size);
+           --mdFontSise: 15px;--smFontSize: 14px;
+           --xsFontSize: 12px;
+           --bgFontSize: 19px;
+           --exBigFontSize: 22px;
+           
+          --headingFont: "Jost", sans-serif !important;
+          --handFont: 'Dr Sugiyama', cursive;
+          --fontFamily: "Roboto", sans-serif !important;
+        }
+        h1, h2, h3, h4, h5, h6{
+          font-family: var(--headingFont);
+        }
+
+        @scope (.theme-light) {
+          :scope {
+              --colorTheme: #0f1117;
+              --bgTheme: #FFFFFF;
+              --bgThemeLight: #c7c7c7;
+              --bgThemeTransparent: #ffffffe6;
+              --bgThemeTransparent2: #f0f0f0d0;
+              --bgThemeTransparent3: #f0f0f05c;
+              --borderTheme: rgba(0, 0, 0, 0.1);
+              --borderThemeAlt: rgba(255, 255, 255, 0.12);
+              --bgBrightness:2;
+          }
+      }  
+      
+      @scope(.theme-dark) {
+          :scope {
+              --colorTheme: #FFF;
+              --bgTheme: #0f1117;
+              --borderThemeAlt: rgba(0, 0, 0, 0.1);
+              --bgThemeLight: #232426;
+              --bgThemeTransparent: rgba(0, 0, 0, 0.902);
+              --bgDarkTransparent: rgba(0, 0, 0, 0.902);
+              --bgThemeTransparent2: rgba(15, 17, 23, 0.76);
+              --bgThemeTransparent3: #0f11178c;
+              --bgDarkTransparent2: rgba(15, 17, 23, 0.76);
+              --borderTheme: rgba(255, 255, 255, 0.12);
+              --bgBrightness:0.8;
+            }
+      }`}</style></Client>
         </div>
         {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}
         {/* <Script defer='true'  strategy={"afterInteractive"} onReady={() => console.log('Custom loaded')} src="/scripts/custom.js"/> */}
@@ -303,7 +349,7 @@ function LayoutConst({ children, headerTitle, settings}) {
         {/* <Script>{onAppLoad()}</Script> */}
         <RouteLoader />
       </main>
-      <Splash/>
+      {/* <Splash/> */}
     </>
   )
 }

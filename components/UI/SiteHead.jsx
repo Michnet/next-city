@@ -21,7 +21,7 @@ export default function SiteHead({pageColor, street_address, children, latitude,
 
   return (
     <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
       <meta charSet="utf-8" />
       <title>{`${title} | ${originalTitle}`}</title>
       <meta name="robots" content={`${robots ?? 'all'}`}/>
@@ -36,11 +36,6 @@ export default function SiteHead({pageColor, street_address, children, latitude,
 
       <meta name="apple-mobile-web-app-status-bar-style" content={`${color}`}/>
 
-      <meta
-        name="image"
-        content={`${image ? image : originalImage}`}
-        key="ogtitle"
-      />
       {type ? (
         <meta property="og:type" content={type} key="ogtype" />
       ) : (

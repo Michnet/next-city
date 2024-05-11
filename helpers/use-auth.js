@@ -8,6 +8,7 @@ import { useSession, signOut, getSession, signIn } from "next-auth/react";
 import { authKey, kyFetch, serializeQuery, WPDomain } from './base';
 import { useRouter } from "next/router";
 import { messageServiceWorker } from './universal';
+import { Client } from "react-hydration-provider";
 
 export const useAuthState = atom({
   key: 'useAuthState', 
@@ -417,7 +418,6 @@ useEffect(() => {
 export function AuthProvider() {
   const authFunctions = useProvideAuth();
   const {getAuthUser,setUpMessaging} = authFunctions;
-  console.log('running auth provider')
   useEffect(() => {
     setUpMessaging();
      getAuthUser();
@@ -428,6 +428,6 @@ export function AuthProvider() {
    }, []);
 
    
-  return <div className = 'auth_provider'/>;
+  return <Client><div className = 'auth_provider'></div></Client>;
 }
 

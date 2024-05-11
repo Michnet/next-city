@@ -48,10 +48,11 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
             return <div className="card card-style m-0 shadow-0 border bg-transparent">
             <div className="content"><FAQs  faqs={faqs} postID={id}/> </div></div>
             case 'occurrences':
-              return <EventDatesActive Id = {listing.id} dualColumn upcoming = {5} 
+              return <><DualColorHeader exClass={'mb-20 text-center justify-center'} title={'Event Ocurrences'} subTitle={'Dates and time'}/>
+              <EventDatesActive Id = {listing.id} dualColumn upcoming = {5} 
               fallBack={
                 <ListingContact light listing={listing} title={'No future occurrences'} descript={'The listing owner has not added any future occurences for it. This may mean that the event has ended. Contact them to inquire further'}/>
-              }/>;
+              }/></>;
             case 'tickets':
               return tickets?.length > 0 ? <div>
               <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>

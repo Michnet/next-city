@@ -3,6 +3,7 @@ import {  useEffect } from "react";
 import { Dir_categories, Dir_locations, Dir_tags, Shop_categories } from "@/public/data/localCache";
 import { atom } from 'recoil';
 import { useSetRecoilState } from 'recoil';
+import { Client } from "react-hydration-provider";
 
 //export const SiteContext = ({children}) => <>{children}</>;
 
@@ -61,5 +62,5 @@ useEffect(() => {
 
 }, [ Dir_categories, Dir_locations, Dir_tags, Shop_categories]);
    
-    return (<div id="siteState"/>);
+    return (<Client><div id="siteState"/></Client>);
 } 

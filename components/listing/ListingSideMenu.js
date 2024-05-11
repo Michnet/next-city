@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Client } from 'react-hydration-provider';
-import listingMenu from './ListingMenu';
 import { authState } from '@/contexts/atoms';
 import { srcWithFallback } from '@/helpers/universal';
 

@@ -1,9 +1,13 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
-export default function Document() {
-  return (
-    <Html lang="en">
+
+
+export default class MyDocument extends Document {
+
+  render() {
+    return (
+      <Html lang="en">
       <Head>
         <meta name="mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -21,6 +25,17 @@ export default function Document() {
         <link rel="manifest" href="/_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js"/>
         <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/icon-192x192.png"></link>
         <link rel="shortcut icon" href="/favicon.ico"/>
+
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-8TK57T8M95" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'G-8TK57T8M95');
+          `}
+        </Script>
       </Head>
       <body className="theme-light" data-highlight="highlight-red" data-gradient="body-default">
         
@@ -33,5 +48,7 @@ export default function Document() {
       
       </body>
     </Html>
-  );
+    );
+  }
 }
+
