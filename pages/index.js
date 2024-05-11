@@ -26,6 +26,7 @@ import TagsCloud from "@/components/listing/partials/TagsCloud";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Mirrored from "@/components/UI/partials/Mirrored";
 
 
 export async function getStaticProps() {
@@ -134,13 +135,16 @@ export default function Home(props) {
 
 <div className="page-content">
 
-<div className="card card-style mx-0 mb-0 rounded-0" style={{height: '230px', backgroundImage: `url("${randomEither(imgArr)}")`}}>
-			<div className="card-bottom mb-4">
-				<h1 className="color-white text-center mb-n1 font-24">Great events all around you?</h1>
-				<p className="color-white text-center mb-3 ">What experiences are you looking for today?</p>
-			</div>
-			<div className="card-overlay bg-gradient rounded-0"></div>
-		</div>
+      <div className="card card-style overflow-visible mx-0 mb-0 rounded-0 w-100">
+        <Mirrored coverTop topPadding={0} skewDegrees={0}  skewDir={'-'} YDistance={250}>
+          <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '280px', backgroundImage: `url("${randomEither(imgArr)}")`}}/>
+        </Mirrored>
+        <div className="card-bottom mb-5 px-3">
+          <h1 className="color-white text-center mb-n1 font-24">Great events all around you?</h1>
+          <p className="color-white text-center mb-3 ">What experiences are you looking for today?</p>
+        </div>
+        <div className="card-overlay bg-gradient rounded-0"></div>
+      </div>
 
 
     <SearchField/>
@@ -156,7 +160,8 @@ export default function Home(props) {
                 })
             }
     </Splider> */}
-    <div className='term_links_grid mb-3'>
+    
+    <div className='term_links_grid mb-3 px-3'>
     {
                 eventCategories?.map((cat) => {
                     return <TermIconBox exClass='mx-1 rounded-4' flipped item={cat}/>
@@ -166,7 +171,7 @@ export default function Home(props) {
 
     <div className="divider mt-3 mb-4"></div>
 
-   <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
+   <SectionHeader inverted iconClass={'far fa-clock'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {

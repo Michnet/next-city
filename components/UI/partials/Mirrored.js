@@ -1,4 +1,4 @@
-const Mirrored = ({children, side, coverTop=false, YDistance, XDistance, gap, skewDir=null, skewDegrees=null, topPadding, shade='#fff'})=> {
+const Mirrored = ({children, side, coverTop=false, YDistance='100%', XDistance = '100%', gap, skewDir=null, skewDegrees=null, topPadding, shade='#fff'})=> {
     function processLayout(){
       switch (side) {
         case 'below':
@@ -19,7 +19,7 @@ const Mirrored = ({children, side, coverTop=false, YDistance, XDistance, gap, sk
       <div className={'obj'} style={{margin: gap ?? 0, transform: `skewY(${dir}${skewDeg}deg)`}}>
         {children}
       </div>
-      <div className="mirror" style={{maxHeight:YDistance ?? '100%', maxWidth: XDistance ?? '100%', transform: `scale${processLayout()}(-1) skewY(${oppDir}${skewDeg}deg)`}}>{children}</div>
+      <div className="mirror" style={{width:XDistance, maxHeight:YDistance, maxWidth: XDistance, transform: `scale${processLayout()}(-1) skewY(${oppDir}${skewDeg}deg)`}}>{children}</div>
       </div>
   }
 

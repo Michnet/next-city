@@ -46,7 +46,7 @@ function SearchField() {
   return (
    <>
    <div className="content mt-n4 pos-relative">
-            <div className="search-box bg-theme color-theme rounded-m shadow-l">
+            <div className="search-box bg-theme color-theme rounded-5 shadow-l">
                 <i className="fa fa-search"></i>
                 <input type="text" className="border-0" placeholder="Search for events... " data-search onChange={(e) => runSearch(e)}/>
 				<a href="#" className="clear-search disabled no-click mt-0"></a>
