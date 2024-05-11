@@ -2379,6 +2379,9 @@ button.back_link {
     margin-bottom: 5px;
 }
 
+.footer-container2 .footer-link {
+}
+
 .quick_links a:active, .quick_links a:hover {
     color: var(--highlight);
 }
@@ -3662,4 +3665,19 @@ ul.listing_menu .ex_label {display: none;}
 
 .border_box.listing_greeting:before {
     border: 5px solid var(--listingTheme);
+}
+
+.greeting_msg ._title.text-outlined {
+    /* color: var(--highlight); */
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.greeting_msg {
+    margin-bottom: 20px;
+}
+
+.footer-contact-us, .footer-register-now {
+    font-weight: 800;
+    font-size: var(--smFontSize);
 }

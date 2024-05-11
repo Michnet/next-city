@@ -69,7 +69,7 @@ self.addEventListener('install', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Installed');}
 });
 
-const unCacheables = ['jwt-auth/v1', 'api/auth/']
+const unCacheables = ['jwt-auth/v1', 'api/auth/','m-api/v1/event-dates','m-api/v1/visit', 'jet-reviews-api/v1','user-actions/v1']
 
 self.addEventListener('fetch', function(event) {
 	/* event.respondWith(

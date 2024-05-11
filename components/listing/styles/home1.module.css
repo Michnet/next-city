@@ -154,7 +154,6 @@
     font-weight: 600;
     line-height: 1;
     border-color: transparent;
-    margin-right: var(--dl-space-space-oneandhalfunits);
     text-transform: uppercase;
     background-color: var(--bs-dark);
 
