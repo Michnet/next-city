@@ -15,11 +15,15 @@ import { UISizes } from '@/contexts/atoms';
 import { HorizontalGrid } from '@/components/UI/Galleries/MegaGallery';
 import CountDownUI from '@/components/UI/CountDownUI';
 import styles from '@/components/listing/styles/home1.module.css';
+import { ListingMetaMini } from '@/components/UI/Partials';
+import { fadingSlide, largeResp } from '@/helpers/sliders';
+import Slider from 'react-slick';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
-  const {cover, coverBlur, title, category, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html} = listing ?? {};
+  const {cover, page_views, title, rating, acf, category, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html} = listing ?? {};
   const {greeting} = listing.landing;
+  const {likes} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category;
   const {isMobile, isLargeTab} = useRecoilValue(UISizes);
 
@@ -86,7 +90,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               } 
                 />
             </div> */}
-              <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
+              {/* <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
                   //placeholder="blur"
@@ -101,8 +105,35 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                    onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
                    //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
+                  <div className='card-bottom'>
+                  
+                  </div>
                 </div>
-                </Mirrored>
+                </Mirrored> */}
+                <Slider  {...fadingSlide} responsive = {[...largeResp]} >
+                    {[cover, ...galArr].map((item, index) =>
+                      <>
+                    <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={200}>
+                    <div className='hero_cover position-relative w-100'>
+                    <Image                   
+                          //placeholder="blur"
+                          //changerKey={listing.id}
+                          //blurDataURL={coverBlur}
+                          fill
+                          priority
+                          alt="image"
+                          src={item}
+                          className={`object-cover ${styles['image6']}`}
+                          //onError={(e) => {e.target.src = '/images/bg/fallback.jpg'}}
+                          onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
+                          //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                          </div>
+                    </Mirrored>
+                      </>
+                        )
+                      }
+                  </Slider>
             </div>
           <div className='hero_images d-md-grid d-none mt-2'>
             <div className='hero_cover position-relative'>
@@ -153,10 +184,12 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div> : <></>}
             </>}
           </div>
+          
 
 
             <div className='hero_title p-5 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
              <div className='profile_name'>
+             <ListingMetaMini exClass={'pos-relative z-2 justify-end'} filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
                 <div className='title_meta d-flex justify-end'>
                   <Client>
@@ -173,10 +206,10 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               <p className = 'mb-10'>
                     {greetingView}
               </p>
-              <p className = 'mb-20 text-15 opacity-80'>
+              <p className = 'mb-20 text-15 opacity-60'>
                   <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
               </p></Client>
-              {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10'}/> : <></>}
+              {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}
                 <div className={`gap-2 flex-nowrap d-flex`}>
                   { <BookingView setActiveKey={setActiveKey}children={
                   <button

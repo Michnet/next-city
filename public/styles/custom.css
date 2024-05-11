@@ -2400,6 +2400,10 @@ button.back_link {
     justify-content: center;
 }
 
+#listing_header:not(.header-active) .menu_icon.px-2 {
+    padding: 0 !important;
+}
+
 .listing_menu_toggler .menu_icon span {/* margin-bottom: -8px; */}
 
 .left_menu_btn {
@@ -3650,6 +3654,7 @@ ul.listing_menu .ex_label {display: none;}
 
 .footer-social-media {
     margin-top: 20px;
+    gap: 10px;
 }
 .author_card .header-content {
     height: 50px;
@@ -3669,17 +3674,33 @@ ul.listing_menu .ex_label {display: none;}
     border: 5px solid var(--listingTheme);
 }
 
-.greeting_msg ._title.text-outlined {
-    /* color: var(--highlight); */
-    font-weight: 700;
-    opacity: 0.7;
-}
-
 .greeting_msg {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    font-weight: bold;
 }
 
 .footer-contact-us, .footer-register-now {
     font-weight: 800;
     font-size: var(--smFontSize);
+}
+
+.listing_hero .slick-list {
+    overflow: visible;
+}
+
+.listing_meta ._meta {
+    justify-content: inherit;
+}
+
+.listing_hero .listing_meta._mini li {
+    font-size: 18px;
+}
+
+.listing_hero .listing_meta._mini {
+    margin-bottom: 15px;
+}
+
+.serv_number span {
+    font-family: var(--headingFont);
 }

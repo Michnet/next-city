@@ -102,7 +102,7 @@ export default function SiteHead({pageColor, street_address, children, latitude,
         content={`${image ? image : originalImage}`}
         key="twimage"
       />
-      <meta property="og:url" content={`${currentURL}${pathname}`} key="ogurl" />
+      <meta property="og:url" content={`${homeurl}${pathname}`} key="ogurl" />
       <meta
         property="og:image"
         content={`${image ? image : originalImage}`}

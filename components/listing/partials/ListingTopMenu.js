@@ -67,7 +67,7 @@ const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?
                 </div> 
            </div>
            <div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2">
-              {/* isMobile ? <></> : */ /* headerMenuView */}
+              {headerMenuView}
               {/* isMobile ? <></> :  */<>
               <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
               <div className={`menu_icon d-flex flex-column px-2`}>

@@ -88,7 +88,7 @@ const ExploreEvents = ({topList}) => {
 
     useEffect(() => {
       if(query){
-        console.log('Query found')
+        console.log('Query found', query);
          setFetchy(true)
       }
       setLoading(false);
@@ -106,9 +106,11 @@ const ExploreEvents = ({topList}) => {
  const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
 
+ let seoDescript = `Explore ${category ? translateDate(category) : ''} events all around you${eventDate ? 'scheduled for ' + translateDate(eventDate) : ''}${region ? 'in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`
+
   return (
     <>
-      <SiteHead title={'Explore Events'}/>
+      <SiteHead title={'Explore Events'} description={seoDescript}/>
      <div className="page-content" style={{overflow: 'initial'}}>
      {isTab ? <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
         <MainMenuBtn/>
