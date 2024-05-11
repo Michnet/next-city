@@ -20,7 +20,7 @@ function SearchField() {
         _embed: true,
         listing_type: 'event', 
         search_keywords: keyWord.value,
-        'event-day': 'any-day'
+        'event-date': 'any-day'
         };
 
     const controller = new AbortController();

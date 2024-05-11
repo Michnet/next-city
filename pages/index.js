@@ -161,10 +161,10 @@ export default function Home(props) {
             }
     </Splider> */}
     
-    <div className='term_links_grid mb-3 px-3'>
+    <div className='term_links_grid mb-3 px-sm-3 px-2'>
     {
                 eventCategories?.map((cat) => {
-                    return <TermIconBox exClass='mx-1 rounded-4' flipped item={cat}/>
+                    return <TermIconBox exClass='rounded-4' flipped item={cat}/>
                 })
             }
             </div>

@@ -139,7 +139,7 @@ const Chat = () => {
     if(subjects?.length > 0){
     let thumbsize = 'xtra_large_thumb';
     let load={_fields : `id,title,slug,event_date, ${thumbsize}`, 
-    listing_type:'event', 'event-day':'any-day', include_ids: subjects};
+    listing_type:'event', 'event-date':'any-day', include_ids: subjects};
 
     const list = await advancedFetchListings(load);
     if(list){
