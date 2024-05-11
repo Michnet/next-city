@@ -98,7 +98,7 @@ h6 {
 }
 .page-content.single_listing .card {
     background-color: var(--bgThemeTransparent3);
-    border: 1px solid var(--borderThemeAlt);
+    /* border: 1px solid var(--borderThemeAlt); */
 }
 div.truncate-5 > p {
     --max-lines: inherit;
@@ -3658,4 +3658,8 @@ ul.listing_menu .ex_label {display: none;}
 
 .mini_head_content .title_name {
     margin-bottom: 0;
+}
+
+.border_box.listing_greeting:before {
+    border: 5px solid var(--listingTheme);
 }
