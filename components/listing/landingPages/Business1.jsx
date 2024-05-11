@@ -167,16 +167,15 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             {/* <TextBox text={short_desc} bgUrl= {`${processImg(gallery)}`} imgUrl= {`${listing.xtra_large_thumb}`}/> */}
 
             <div className={`_text_box_block listing_intro padded_container pos-relative pb-5`} >
-            {<Image fill style={{objectFit:"cover"}} src= {srcWithFallback(processImg(gallery))}/>}
-            <div className="section_overlay gray-fil">
-            </div>
+            {/* {<Image fill style={{objectFit:"cover"}} src= {srcWithFallback(processImg(gallery))}/>} */}
+            {/* <div className="section_overlay gray-fil"/> */}
             <div className="section_overlay_content flex_container">
                 {<div className='border_box listing_greeting'> 
                     <div className="featuredImg_box" style={{backgroundImage: `url('${srcWithFallback(xtra_large_thumb)}')`}}>
                     </div>
                 </div>}
                 <div className={'excerptView'}>
-                <div className="meta flex-grow-1 col-12 col-md-6 md:px-0 opacity-70">
+                <div className="meta flex-grow-1 col-12 col-md-6 md:px-0">
                     {catView}
                     <div className="_location icon_box align-items-start d-inline-flex">
                     {venue && <> <span className="icon_icon"><i>@</i></span> 

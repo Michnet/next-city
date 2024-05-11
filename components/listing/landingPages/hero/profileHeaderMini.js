@@ -71,7 +71,7 @@ const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {
                 {/* <div className="_contact">
                     {activeKey != 'private-chat' && <>{callView}</>}
                 </div> */}
-                <VisitorActions mini setActiveKey={setActiveKey} exClass={'justify-start'} listing={listing}/>
+                {!isTab && <VisitorActions mini setActiveKey={setActiveKey} exClass={'justify-start'} listing={listing}/>}
               </div>
           </div>
         </div>

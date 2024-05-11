@@ -9,10 +9,10 @@ function AuthorCard({author, setActiveKey, cover, exClass}) {
     const {avatar_urls, name, registered_date} = author; 
    authorView = <div className={`author_card ${exClass ?? ''}`}>
 
-   <div className="card text-center shadow-sm">
+   <div className="card card-style text-center shadow-sm m-0">
    <div style={{height: '100px', background: `url(${srcWithFallback(cover)})`}} className="bg-cover card-img-top position-relative">
       <div className="header-content position-absolute w-100 flex-center d-flex">
-       <img src={avatar_urls['96']} alt="" width="70" className="img-fluid rounded-circle img-thumbnail border-0"/>
+       <img src={avatar_urls['96']} alt="" width="70" height='70' className="img-fluid rounded-circle img-thumbnail border-0"/>
        </div>
    </div>
    <div className="card-body">

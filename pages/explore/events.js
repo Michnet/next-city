@@ -27,7 +27,7 @@ export async function getStaticProps() {
   async function topListings(){
     let thumbsize = 'xtra_large_thumb'
     let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
-    listing_type:'event', per_page: 5, 'event-day':'any-day'};
+    listing_type:'event', per_page: 5, 'event-date':'any-day'};
 
     const list = await advancedFetchListings(load);
     if(list){
@@ -101,7 +101,7 @@ const ExploreEvents = ({topList}) => {
     const params = query ?? {};
 
     let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
-    listing_type:'event', per_page: 5, ...params};
+    listing_type:'event', per_page: 5, ...params, 'event-date':'any-day'};
 
  const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 

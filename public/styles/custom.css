@@ -23,6 +23,8 @@
     margin-bottom: 0;
 }
 
+.mini_head_content.row.flex-nowrap.md\:flex-column.overflow-hidden {}
+
 #preloader{
     transition: all 150ms ease !important;
     display: none;
@@ -96,6 +98,7 @@ h6 {
 }
 .page-content.single_listing .card {
     background-color: var(--bgThemeTransparent3);
+    border: 1px solid var(--borderThemeAlt);
 }
 div.truncate-5 > p {
     --max-lines: inherit;
@@ -1876,12 +1879,11 @@ button.back_link {
 }
 
 ._mini .activityCard.-type-2 .listing_meta p {
-    /* color: var(--bs-gray-500); */
     font-weight: 400;
 }
 
 
-._meta {/* color: var(--bs-gray-500); */font-size: 13px;list-style: none;font-weight: 400;}
+._meta {font-size: 13px;list-style: none;font-weight: 400;}
 
 .listing_meta._mini ._meta {
     list-style: none;
@@ -1889,9 +1891,7 @@ button.back_link {
 }
 
 .listing_meta p {
-    opacity: 0.6;
     font-size: 13px;
-    font-weight: 600;
 }
 
 
@@ -2127,7 +2127,8 @@ button.back_link {
 
 .woocommerce-Price-currencySymbol {
     opacity:0.6;
-    font-weight: 300;
+    color: var(--colorTheme);
+    margin-right: 5px;
 }
 .woocommerce-Price-amount.amount {
     color: var(--secTheme);
@@ -2933,7 +2934,7 @@ span.clear_tag {
     cursor: pointer;
     font-weight: 500;
     font-size: 14px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 
 .sc_heading_3.righty {
@@ -2974,7 +2975,7 @@ span.term_icon_box {
 
 ._mini .gx-profile-container {
   padding-bottom: 15px;
-  padding-top: 80px;
+  padding-top: 100px;
   position: relative;
 }
 .about_item i {
@@ -3576,6 +3577,7 @@ ul.listing_navigator {display: flex;align-items: center;padding: 0 22px;grid-col
 #footer-bar ul.listing_navigator {
     padding: 0;
     width: auto;
+    gap: 5px;
 }
 
 #footer-bar ul.listing_navigator .link_icon {
@@ -3639,4 +3641,21 @@ ul.listing_menu .ex_label {display: none;}
 .price_view._free._inline ._price {
     color: var(--secTheme);
     font-weight: 600;
+}
+
+.footer-social-media {
+    margin-top: 20px;
+}
+.author_card .header-content {
+    height: 50px;
+}
+
+.author_card .header-content img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90px !important;
+}
+
+.mini_head_content .title_name {
+    margin-bottom: 0;
 }

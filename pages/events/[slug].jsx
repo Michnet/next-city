@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 const RelatedByTaxSplide = dynamic(() => import("@/components/listing/RelatedByTaxSplide"));
 //import VisitRecord from "@/components/UI/VisitRecord";
 const ListingStater = dynamic(() => import("@/contexts/contextStaters/ListingStater"));
-import { fetchIdsUrl, fetchSingleListingUrl } from "@/helpers/rest";
+import { fetchIdsUrl, fetchSingleListingUrl, getUserRest } from "@/helpers/rest";
 import { cleanHtml, shadeRGBColor } from "@/helpers/universal";
 import { memo, useEffect, useState, useMemo } from "react";
 import SiteHead from "@/components/UI/SiteHead";
@@ -82,8 +82,25 @@ export async function getStaticPaths() {
         }
     }
 
+    async function extendListing(listing){
+      //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
+      //const fbBlur = await getBase64Static('./public/images/bg/fallback.jpg');
+      //const blurryGal = await galleryWithBlurs(listing.gallery);
+      const author = await getUserRest({key:'ID', val: listing.author_id});
+  
+      serverObj = {...serverObj, listing : {...listing, author: author ? author.user : null }}
+      /* serverQuery = {...serverQuery, 
+        serverObj : {...serverObj, 
+          listing : {...listing, 
+          coverBlur : blurUrl && blurUrl != 'undefined' ? blurUrl : fallbackImgBlur,
+          galleryWithBlurs : blurryGal,
+          author: author ? author.user : null
+        }}} */
+    }
+
     if(listing){
         await getThemeColor();
+        await extendListing(listing);
     }
     
     

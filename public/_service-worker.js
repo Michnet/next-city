@@ -69,7 +69,7 @@ self.addEventListener('install', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Installed');}
 });
 
-const unCacheables = ['jwt-auth/v1']
+const unCacheables = ['jwt-auth/v1', 'api/auth/']
 
 self.addEventListener('fetch', function(event) {
 	/* event.respondWith(
@@ -85,8 +85,10 @@ self.addEventListener('fetch', function(event) {
 	event.respondWith(
 		(async () => {
 		  const requestURL = new URL(event.request.url);
+		  console.log('sw. rest', event.request.url);
 		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
-		  if(unCachList.test(requestURL)){
+		  if(unCachList.test(event.request.url)){
+			console.log('sw. uncacheable found', event.request.url);
 			return fetch(event.request);
 		  }else{
 				// Try to get the response from a cache.

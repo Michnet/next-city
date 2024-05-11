@@ -25,7 +25,6 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
   const {members_count} = community ?? {}
   const [loading, setLoading] = useState(true)
 
-
   const cachedListing = useMemo(() => listing, [listing.id] );
 
 
@@ -181,7 +180,6 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                   {performersView}
                   {statsView}
                   {tagsView}
-                  {guestsView}
                   {visionView}
                   {missionView}
                   {historyView}

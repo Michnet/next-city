@@ -19,7 +19,7 @@ const PostTerms = ({post, termKey, title,taxonomy, linkTax}) => {
   }, [post]);
    
     if(terms?.length > 0){
-      termsView = <Widget 
+      termsView = <Widget freeHeader
                     title= {title}
                     headless = {title ? false : true}
                     >

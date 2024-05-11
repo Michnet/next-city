@@ -878,10 +878,10 @@ h3.section_head {
   margin-bottom: 60px;
   position: relative;
   font-weight: 400;
-  color: var(--bs-gray-600);
+  opacity: 0.8;
 }
 .gray_text {
-  color: var(--grayText);
+  opacity: 0.8;
 }
 
 .light_gray {
@@ -1034,12 +1034,11 @@ z-index: 0;}
   font-size: 22px;
   font-weight: bold;
   color: var(--bs-dark);
-  font-family: var(--headingFontFamily);
+  font-family: var(--headingFont);
 }
 
 .serv_descript {
   font-size: 16px;
-  color: var(--bs-gray-700);
 }
 
 .strength_item .strength_content {
@@ -2993,12 +2992,10 @@ span.score_denom {font-size: 12px;color: #ffffff87;margin-right: -14px;}
   opacity: 0.5;
 }
 
-._meta {color: var(--bs-gray-500);font-size: 15px;font-weight: 600;}
+._meta {font-size: 15px;font-weight: 600;}
 
 .listing_meta p {
-  color: var(--bs-gray-700);
   font-size: 13px;
-  font-weight: 600;
 }
 
 .activityCard.-type-2 .listing_meta p {

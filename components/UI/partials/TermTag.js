@@ -10,7 +10,7 @@ const TermTag = ({term, type, collection, colorText, exClass, exTagClass, linkTa
 
   if(term){
   
-  let  rl_awesome, color, term_id;
+  let  rl_awesome, color = null, term_id;
 
   const {name, taxonomy, slug } = term;
 
@@ -37,15 +37,17 @@ const TermTag = ({term, type, collection, colorText, exClass, exTagClass, linkTa
     return color ?? 'var(--secTheme)';
   }
 
+  console.log('tag color', term.name+color)
+
   switch (type) {
     case 'tag':
       termView =  <Link
         href={`/explore/events?${linkTax}=${slug}`}
         style={{width: 'fit-content'}}
         className={`d-block lh-1 ${taxonomy} ${exClass ?? ''} term-link _tag`}>
-        <div className={`gx-rounded-lg ${exTagClass ?? ''}`} color={color ?? '#2f2e2e'}>
-          <Client><p className="gx-mb-0 gx-text-truncate text-white text-12" dangerouslySetInnerHTML={{__html:  name}}/></Client>
-        </div>
+        <span className={`gx-rounded-lg ${exTagClass ?? ''}`} style={{background: color?.length > 0 ? color : 'var(--highlight)'}}>
+          <Client><span className="gx-mb-0 gx-text-truncate text-white text-12" dangerouslySetInnerHTML={{__html:  name}}/></Client>
+        </span>
 
       </Link>;
       break;

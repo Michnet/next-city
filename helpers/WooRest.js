@@ -102,9 +102,10 @@ export async function getProductCategories(payload) {
             ...oathInfo,
         })}`;
     }
-    const reponse = await WPRepository.get(`${WPDomain}/${endpoint}`)
-        .then((response) => {
-            if (response.data && response.data.length > 0) {
+    const reponse = await kyFetch.get(`${WPDomain}/${endpoint}`)
+        .then(async(res) => {
+           let response = await res.json();
+            if (response?.data && response?.data?.length > 0) {
                 const data = {
                     items: response.data,
                     totalItems: response.headers['x-wp-total'],
@@ -229,9 +230,10 @@ export async function getBookings(payload){
 }
 
 export async function getVendorInfo(payload){
-    const reponse = await WPRepository.get(getVendorInfoUrl(payload))
-        .then((response) => {
-            if (response.status === 200) {
+    const reponse = await kyFetch.get(getVendorInfoUrl(payload))
+        .then((res) => {
+            let response = res.json();
+            if (response?.status === 200) {
                 return response.data;
             } else return null;
         })
@@ -319,35 +321,6 @@ class WPProductRepository {
             });
     }
     
-
-
-
-    async getProductCategories(payload) {
-        let endpoint;
-        if (payload) {
-            endpoint = `wp-json/wc/v3/products/categories?${serializeQuery({
-                ...payload,
-                ...oathInfo,
-            })}`;
-        } else {
-            endpoint = `wp-json/wc/v3/products/categories?${serializeQuery({
-                ...oathInfo,
-            })}`;
-        }
-        const reponse = await WPRepository.get(`${WPDomain}/${endpoint}`)
-            .then((response) => {
-                if (response.data && response.data.length > 0) {
-                    const data = {
-                        items: response.data,
-                        totalItems: response.headers['x-wp-total'],
-                        totalPages: response.headers['x-wp-totalpages'],
-                    };
-                    return data;
-                } else return null;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
 
     async getProductByID(payload) {
         const endpoint = `wp-json/wc/v3/products/${payload}?${serializeQuery({

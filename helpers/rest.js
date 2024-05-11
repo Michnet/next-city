@@ -1,4 +1,5 @@
 import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain, userActions } from "./base";
+import { getProductCategories } from "./WooRest";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const fetcherWithSignal = (signal, ...args) => fetch(...args, {signal:signal}).then((res) => res.json());
@@ -718,3 +719,59 @@ export const fetchSingleListingUrl = (id, payload) => {
   }
   return`${WPDomain}/${endpoint}`;
 }
+
+
+
+export const listingServerQuery = async(params) => {
+
+  let serverObj = {}
+  
+    async function productsQuery(payload) {
+      const pdts = await getProducts(payload);
+      if (pdts) {
+          serverObj.products = pdts.items;
+      } 
+    }
+  
+  async function catsQuery(shopCatsLoad) {
+      const shopCatsResult = await getProductCategories(shopCatsLoad);
+      if (shopCatsResult) {
+          serverObj.storeCategories = shopCatsResult.items ?? null;
+      }
+  }
+  
+    async function vendorQuery(id){
+      const seller = await getVendorInfo({id:id});
+      if(seller){
+        const {store_categories} = seller;
+        if(store_categories?.length > 0){
+          let queryLoad = {
+            include : store_categories.join(',')
+          }
+          await catsQuery(queryLoad);
+        }
+      }
+  }
+  
+    const singleRes = await fetch(fetchSingleListingUrl(params.slug));
+    const postArr = await singleRes.json();
+    const post = postArr[0];
+    serverObj.listing = post && post != 'undefined' ? post :  null;
+  
+    const shopItemIds = post?.acf?.general_merchandise;
+    const authorId = post?.author_id;
+  
+    await vendorQuery(authorId);
+  
+    if(shopItemIds?.length > 0){
+      let fields = "id,name,featured,short_description,price,regular_price,average_rating,categories,images,attributes";
+      let payload = { 
+        include: shopItemIds.join(','), 
+        _fields : fields
+      }
+      await productsQuery(payload);
+    }  
+    return {
+      serverObj : serverObj
+    }
+  }
