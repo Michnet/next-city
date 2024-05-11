@@ -167,7 +167,7 @@ export default function Home(props) {
     <div className="divider mt-3 mb-4"></div>
 
    <SectionHeader inverted iconClass={'far fa-clock'} color={'mint-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
-   <Splider height={275} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+   <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
            return <EventCard2 height={180} width={270} key={li.id} listing = {li}/>
