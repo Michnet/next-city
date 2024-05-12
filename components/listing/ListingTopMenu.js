@@ -13,7 +13,7 @@ import MainMenuBtn from '@/components/layouts/partials/MainMenuBtn';
 import { useRouter } from 'next/router';
 
 const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
-  const {logo, thumbnail, title} = listing ?? {};
+  const {logo, thumbnail, title, xtra_large_thumb} = listing ?? {};
   const {user} = useRecoilValue(authState);
   const router = useRouter()
 
@@ -56,19 +56,23 @@ if(lMenu){
   </>
 }
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
+  {/* <button  style={{backgroundImage: `url("${xtra_large_thumb}")`}} className="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s color-white btn-icon text-start">
+                <i class="fas fa-chevron-down font-15 text-center"></i>
+                <span dangerouslySetInnerHTML={{__html: title.rendered}}/>
+              </button> */}
         <div className="menu_content">
             <div className="d-flex flex-row flex-nowrap gap-3 align-items-center">
                 <i className="fas fa-chevron-left" onClick={() => router.back()}/>
                 <MainMenuBtn/> 
                 <div className="menu_logo show_in_pinned" onClick={() => setActiveKey('home')}> 
                   {logoView} 
-                  {/* isMobile ? <></> : */ <div className='' style={{width: 'calc(100% - 40px)'}}><h4 className="smLine _title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
+                  {<div className='' style={{width: 'calc(100% - 40px)'}}><h4 className="smLine _title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
                     }
                 </div> 
            </div>
            <div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2">
               {headerMenuView}
-              {/* isMobile ? <></> :  */<>
+              {<>
               <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
               <div className={`menu_icon d-flex flex-column px-2`}>
                     <span className='position-relative'>

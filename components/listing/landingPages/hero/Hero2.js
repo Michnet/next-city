@@ -21,7 +21,7 @@ import Slider from 'react-slick';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
-  const {cover, page_views, title, rating, acf, category, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html} = listing ?? {};
+  const {cover, page_views, title, rating, acf, category, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb} = listing ?? {};
   const {greeting} = listing.landing;
   const {likes} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category;
@@ -109,7 +109,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   </div>
                 </div>
                 </Mirrored> */}
-                <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} >
+                <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
                     {[cover ?? '', ...galArr].map((item, index) =>
                       <>
                     <Mirrored coverTop topPadding={'50px'} skewDegrees={5} key={index}  skewDir={'-'} YDistance={200}>
