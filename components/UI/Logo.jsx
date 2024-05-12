@@ -10,11 +10,11 @@ const Logo = ({simple, light, dark, noVersion=false}) => {
           <div className={`d-flex flex-row flex-nowrap justify_start align-items-center`}>
           {light ? <></> : <img className="_logo_img _dark" src={siteSettings.logo_link} alt="LyveCity" style={styling}/>}
           {dark ? <></> : <img className="_logo_img _light" src={siteSettings.light_logo_link} alt="LyveCity" style={styling}/>}
-          <span className={`ml-10 _logo_text fw-bold text-20 color-theme ${simple ? 'd-none d-sm-block' : ''}`}>LyveCity</span>
+          <span className={`ml-5 _logo_text fw-bold text-20 color-theme ${simple ? 'd-none' : ''}`}>LyveCity</span>
           </div>
           </Link>
           {!noVersion && <Link className="logo_extras color-theme" href={'/about/whats-new'}>
-            <span className="app_version ml-10">
+            <span className="app_version ml-5">
               <span className="opacity-50">v</span>
               <span className="text-16 app_version color-highlight">1.3</span>
           </span></Link>}

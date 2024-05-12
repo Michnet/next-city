@@ -102,7 +102,7 @@ const UserDashboard = (props) => {
   }else if(user){
     const {user_meta} = user;
     const {likes} = user_meta;
-    accountView = <div className="dashboard bg-theme">
+    accountView = <div className="dashboard">
                   <div className="dashboard__main p-0">
                     
                     <div className="row position-relative flex-nowrap" style={{rowGap : 15}}>

@@ -20,9 +20,9 @@ return <Client>
       >
         <i className="fas fa-chevron-left" />
       </button>
-      <div className="title_box row_flex align-items-center">
-          <Logo noVersion simple = {headerTitle == 'LyveCity' ? false : true}/>
-        <h2 className="header-title truncate">{headerTitle ?? "LyveCity"}</h2>
+      <div className="title_box row_flex align-items-center gap-1">
+          <Logo noVersion simple = {true}/>
+        <h2 className="smLine header-title truncate-2">{headerTitle ?? "LyveCity"}</h2>
       </div>
     </div>
       

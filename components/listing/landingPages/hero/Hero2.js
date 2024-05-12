@@ -109,7 +109,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   </div>
                 </div>
                 </Mirrored> */}
-                <Slider  {...fadingSlide} responsive = {[...largeResp]} >
+                <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} >
                     {[cover ?? '', ...galArr].map((item, index) =>
                       <>
                     <Mirrored coverTop topPadding={'50px'} skewDegrees={5} key={index}  skewDir={'-'} YDistance={200}>

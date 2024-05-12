@@ -346,10 +346,6 @@ z-index: 0;
   font-weight: 500;
 }
 
-.border-wrap {
-  background: var(--gradientBg);
-}
-
 .single_listing .border-wrap {
   background: linear-gradient(to right, #151515, var(--listingTheme));
 }
@@ -5173,10 +5169,6 @@ opacity: 1;
   box-shadow: none !important;
 }
 
-.booking_view.btn.ui-2 {
-  font-size: 12px;
-  padding: 3px 14px;
-}
 .btn.ui-2:before{
    content: "";
    background: rgb(0 0 0);
