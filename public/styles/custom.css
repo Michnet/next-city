@@ -533,44 +533,44 @@ div#mobile_sidebar {}
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    line-height: 1.4;
+    line-height: var(--lh);
 }
 
 .truncate {
     --max-lines: 1;
-    max-height: 1.5em;
+    max-height: calc(1 * var(--lh));
     -webkit-line-clamp: 1;
     display: block;
 }
 
 .truncate-2 {
     --max-lines: 2;
-    max-height: 2.8em;
+    max-height: calc(2 * var(--lh));
     -webkit-line-clamp: 2
 }
 
 .truncate-3 {
     --max-lines: 3;
-    max-height: 4.2em;
+    max-height: calc(3 * var(--lh));
     -webkit-line-clamp: 3;
 }
 
 .truncate-4 {
     --max-lines: 4;
-    max-height: 5.6em;
+    max-height: calc(4 * var(--lh));
     -webkit-line-clamp: 4
 }
 
 .truncate-5 {
     --max-lines: 5;
-    max-height: 7em;
+    max-height: calc(5 * var(--lh));
     -webkit-line-clamp: 5
 }
 
 .truncate-7 {
     --max-lines: 7;
     -webkit-line-clamp: 7;
-    max-height: 9.8em;
+    max-height: calc(7 * var(--lh));
 }
 .bb-thin {
     border-bottom: solid 1px rgba(0,0,0,.05);
@@ -3678,6 +3678,7 @@ ul.listing_menu .ex_label {display: none;}
     margin-bottom: 25px;
     margin-top: 15px;
     font-weight: bold;
+    font-family: var(--headingFont);
 }
 
 .footer-contact-us, .footer-register-now {
@@ -3703,4 +3704,43 @@ ul.listing_menu .ex_label {display: none;}
 
 .serv_number span {
     font-family: var(--headingFont);
+}
+
+._logo {
+    max-width: 50px;
+}
+
+._logo img {
+    object-fit: contain;
+    max-width: 100%;
+}
+
+/*ui-2*/
+ .btn.ui-2{
+   color: #fff;
+   background-image: linear-gradient(90deg,#3e56a7,#04acff,#eaaaaa,#e11adc,#a0a00f,#3e56a7,#14accc);
+   background-size: 400%;
+   font-size: 15px;
+   /* font-weight: 600; */
+   letter-spacing: 1px;
+   text-transform: capitalize;
+   padding: 5px 20px;
+   border-radius: 50px;
+   border: none;
+   position: relative;
+   z-index: 1;
+   transition: all 0.4s ease 0s;
+   background-image: linear-gradient(90deg, var(--secTheme), #0a0a0a, var(--highlight), #605d5d);
+}
+
+.excerptView .card-body {
+    padding: 0;
+}
+
+.excerptView.gx-profile-info .card-style {
+    margin: 0;
+}
+
+._text_box_block .flex_container {
+    column-gap: 25px;
 }

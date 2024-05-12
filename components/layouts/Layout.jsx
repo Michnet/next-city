@@ -304,13 +304,10 @@ function LayoutConst({ children, headerTitle, settings}) {
            --xsFontSize: 12px;
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
-           
+           --lh: 24px;
           --headingFont: "Jost", sans-serif !important;
           --handFont: 'Dr Sugiyama', cursive;
           --fontFamily: "Roboto", sans-serif !important;
-        }
-        h1, h2, h3, h4, h5, h6{
-          font-family: var(--headingFont);
         }
 
         @scope (.theme-light) {
@@ -341,6 +338,18 @@ function LayoutConst({ children, headerTitle, settings}) {
               --borderTheme: rgba(255, 255, 255, 0.12);
               --bgBrightness:0.8;
             }
+      }
+      @scope(.smLine) {
+        :scope {
+            --lh:18px;
+          }
+      }
+      
+      h1, h2, h3, h4, h5, h6{
+        font-family: var(--headingFont);
+      }
+      body {
+        line-height: var(--lh);
       }`}</style></Client>
         </div>
         {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}

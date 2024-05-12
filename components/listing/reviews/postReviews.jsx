@@ -104,7 +104,7 @@ function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, 
    
   return (
    <>
-   <div className='mb-40 mx-4 mt-10 sc_heading_3 pos-relative'>
+   <div className='mb-20 mx-4 mt-10 sc_heading_3 pos-relative'>
             <h5>What others are saying</h5>
             <h4>User Reviews</h4>
         </div>

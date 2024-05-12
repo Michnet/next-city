@@ -1,5 +1,6 @@
 //import { nextPostState } from "@/contexts/atoms"
 import { openOffCanvas } from "@/helpers/appjs"
+import { BookingView } from "@/pages/events/[slug]"
 import { memo } from "react"
 //import { useRecoilValue } from "recoil"
 import BottomMenu from "../layouts/BottomMenu"
@@ -16,7 +17,8 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}
                         <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
                         Booking
                     </button>} */}
-                    <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
+                    <BookingView simple={false} setActiveKey={setActiveKey} text='Booking' exClass='text-12 py-1 fw-600'/>
+                    {/* <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/> */}
                     {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                         <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
                     </a>}

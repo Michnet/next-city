@@ -5159,22 +5159,6 @@ opacity: 1;
 }
 
  /*ui-2*/
- .btn.ui-2{
-   color: #fff;
-   background-image: linear-gradient(90deg,#3e56a7,#04acff,#eaaaaa,#e11adc,#a0a00f,#3e56a7,#14accc);
-   background-size: 400%;
-   font-size: 15px;
-   /* font-weight: 600; */
-   letter-spacing: 1px;
-   text-transform: capitalize;
-   padding: 5px 20px;
-   border-radius: 50px;
-   border: none;
-   position: relative;
-   z-index: 1;
-   transition: all 0.4s ease 0s;
-   background-image: linear-gradient(90deg,var(--palette1),var(--palette3),var(--palette2),var(--palette4),var(--palette1));
-}
 
 .single_listing .btn.ui-2 {
   background-image: linear-gradient(90deg,#000,var(--listingTheme),#000,var(--listingTheme),#000);
@@ -5821,6 +5805,7 @@ footer .container.overlay {
   display: inline-block;
   border: 1px solid  #6d6d6d4f;
   border-radius: 0;
+  text-align: center;
 }
 
 .cardImage__leftBadge {
@@ -6836,19 +6821,11 @@ section.ant-layout.single_listing .top_bar_toggle {right: 14px;}
       .footer-register-now {
         margin-right: 0px;
       }
-      .footer-links {
-        flex-wrap: wrap;
-      }
       .footer-container1 {
-        width: 100%;
         margin-bottom: 2em;
       }
       .footer-text08 {
         margin-bottom: 1em;
-      }
-      .footer-container2 {
-        width: 100%;
-        margin-bottom: 2em;
       }
       .footer-text15 {
         margin-bottom: 1em;

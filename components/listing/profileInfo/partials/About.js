@@ -1,5 +1,4 @@
 
-import dynamic from "next/dynamic";
 import dayjs from "dayjs";
 import Widget from "@/components/UI/partials/Widget";
 import CommunityStats from "./CommunityStats";
@@ -25,7 +24,7 @@ const AboutItem = ({data}) => {
   );
 };
 
-const About = ({listing, communitySize}) => {
+const About = ({listing, communitySize, exClass='m-0', bodyClass='m-3'}) => {
 
   
   let startYearView, locationView, addressView, phoneView;
@@ -80,10 +79,10 @@ const About = ({listing, communitySize}) => {
 
 
     return (
-      <Widget noPadding headless styleName="gx-card-tabs gx-card-profile _about">
+      <Widget exClass={exClass} noPadding headless styleName="gx-card-tabs gx-card-profile _about">
         <CommunityStats listing={listing} likes comments views communitySize={communitySize ?? null}/>
         
-        <div className="m-3 about_body">   
+        <div className={`about_body ${bodyClass}`}>   
                 {startYearView}
                 {locationView}
                 {addressView}

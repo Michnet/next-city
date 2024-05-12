@@ -22,6 +22,7 @@ import { PriceView } from '@/components/UI/PriceView';
 import ListingDetail from '../profileInfo/ListingDetail';
 import ListingStats from '../profileInfo/partials/ListingStats';
 import Widget from "@/components/UI/partials/Widget";
+import About from '../profileInfo/partials/About';
 
 
 function processImg(images, cover){
@@ -174,8 +175,9 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                     <div className="featuredImg_box" style={{backgroundImage: `url('${srcWithFallback(xtra_large_thumb)}')`}}>
                     </div>
                 </div>}
-                <div className={'excerptView'}>
-                <div className="meta flex-grow-1 col-12 col-md-6 md:px-0">
+                <div className={'excerptView gx-profile-info'}>
+                    <About exClass='shadow-0 bg-transparent' bodyClass='m-3 ms-0'/* communitySize={members_count ?? null} */ listing={cachedListing} />
+                {/* <div className="meta flex-grow-1 col-12 col-md-6 md:px-0">
                     {catView}
                     <div className="_location icon_box align-items-start d-inline-flex">
                     {venue && <> <span className="icon_icon"><i>@</i></span> 
@@ -189,7 +191,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                         {locations?.length > 0 ? <><span className="list_location loc_name">{locations[0]?.name}</span></> : <></>}
                         </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
             </div>
         </div>

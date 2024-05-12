@@ -17,7 +17,7 @@ import VisitorActions from "@/components/listing/partials/VisitorActions";
 const CallToActions = dynamic(() => import("@/components/UI/CallToActions"));
 const Link = dynamic(() => import("next/link"));
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
-import ListingTopMenu from "@/components/listing/partials/ListingTopMenu";
+import ListingTopMenu from "@/components/listing/ListingTopMenu";
 import { closeMenus, openOffCanvas } from "@/helpers/appjs";
 //import BottomMenu from "@/components/layouts/BottomMenu";
 import Hero2 from "@/components/listing/landingPages/hero/Hero2";

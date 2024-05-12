@@ -58,7 +58,6 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
     return <ProfileHeaderMini activeKey={activeKey}   color={color} setActiveKey={setActiveKey} listing={listing}/>
   }
 
-
   return (<>
     <Suspense>
         <div className={`hero2 listing_hero ${styles['location']} d-block`}>
@@ -111,9 +110,9 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                 </div>
                 </Mirrored> */}
                 <Slider  {...fadingSlide} responsive = {[...largeResp]} >
-                    {[cover, ...galArr].map((item, index) =>
+                    {[cover ?? '', ...galArr].map((item, index) =>
                       <>
-                    <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={200}>
+                    <Mirrored coverTop topPadding={'50px'} skewDegrees={5} key={index}  skewDir={'-'} YDistance={200}>
                     <div className='hero_cover position-relative w-100'>
                     <Image                   
                           //placeholder="blur"
@@ -189,7 +188,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
             <div className='hero_title p-5 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
              <div className='profile_name'>
-             <ListingMetaMini exClass={'pos-relative z-2 justify-end'} filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
+             <ListingMetaMini exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
                 <div className='title_meta d-flex justify-end'>
                   <Client>
@@ -227,7 +226,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </div>
 
-          <div className={`card card-style shadow shadow-bg shadow-bg-l bg-${color}-dark`}>
+          <div className={`card card-style`}>
           <div
             className={`z-1 p-5 position-relative bg-black theme-dark ${styles['section-container']} card card-style w-auto m-0`}
           >
@@ -251,7 +250,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </Client>
             </div>
-          </div>
+            </div>
           </div>
     </div></Suspense>
     <style jsx global>{`

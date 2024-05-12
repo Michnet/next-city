@@ -26,11 +26,11 @@ let mobileHideList = ['home', 'articles', 'private-chat','faqs', 'gallery', 'mer
 
 if(logo){
   logoView = <div className='_logo'>
-    <img src={logo}/>
+    <img src={logo} onError={(e) => {e.target.style.display = "none"}}/>
     </div>
 }else if(thumbnail){
   logoView = <div className='_logo'>
-    <Avatar rounded width={30}  alt="..." src={thumbnail ? `${thumbnail}` : "https://via.placeholder.com/150"}/>
+    <Avatar hideOnError rounded width={30}  alt="..." src={thumbnail ? `${thumbnail}` : "https://via.placeholder.com/150"}/>
     </div>
 }
 
@@ -62,7 +62,7 @@ const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?
                 <MainMenuBtn/> 
                 <div className="menu_logo show_in_pinned" onClick={() => setActiveKey('home')}> 
                   {logoView} 
-                  {/* isMobile ? <></> : */ <div className='' style={{width: 'calc(100% - 40px)'}}><h4 className="_title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
+                  {/* isMobile ? <></> : */ <div className='' style={{width: 'calc(100% - 40px)'}}><h4 className="smLine _title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
                     }
                 </div> 
            </div>
