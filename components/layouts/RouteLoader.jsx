@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import { useRouter } from "next/router";
+import { closeMenus } from "@/helpers/appjs";
 //import { UICleanup } from "~/server/UniversalFunctions";
 
 function RouteLoader() {
@@ -18,6 +19,7 @@ function RouteLoader() {
   const handleStop = () => {
     if (typeof window !== 'undefined') {
       document.body.classList.remove('in_transit');
+      closeMenus();
     }
   }
 
