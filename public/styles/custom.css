@@ -1091,6 +1091,18 @@ h6.tax_pare {}
     font-size: 14px;
 }
 
+.event_card_2 .img_content {
+    max-width: 100%;
+    width: 100%;
+}
+.event_card_2 .img_content > *{
+    width: auto;
+}
+
+.white-currency 
+ .woocommerce-Price-currencySymbol {
+    color: #fff;
+}
 .mega_item.text_box {
     flex-grow: 1;
     display: flex;
