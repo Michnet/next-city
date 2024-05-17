@@ -19,8 +19,17 @@ import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import { Skeleton } from "@/components/skeletons/Skeletons";
+import SeoHead from "@/components/UI/SeoHead";
 
-export async function getStaticProps() {
+function translateDate(string){
+  return string.replaceAll("-", " ");
+}
+
+export async function getServerSideProps({ req, res, query }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=60, stale-while-revalidate=120'
+  )
 
   let serverObj = {};
 
@@ -36,12 +45,20 @@ export async function getStaticProps() {
   }
 
   await topListings();
+  const {sort, category, tags, region} = query;
+  const eventDate = query['event-date'] ?? null;
 
+  let seoDescript = `Explore ${category ? translateDate(category) : ''} events all around you${eventDate ? 'scheduled for ' + translateDate(eventDate) : ''}${region ? 'in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`
+  
   return {
     props: {
        ...serverObj,
        headerTitle: 'Explore LyveCity',
-      settings : {
+       seoMeta:{
+          title: 'Explore Events',
+          description: seoDescript
+       },
+        settings : {
         noHeader: true,
         mMenu: 'show',
         mMenuContent:{
@@ -68,10 +85,6 @@ const ExploreEvents = ({topList}) => {
  const {isTab} = useRecoilValue(UISizes);
  const [fetchy, setFetchy] = useState(false);
  const [loading, setLoading] = useState(true)
-
- function translateDate(string){
- return string.replaceAll("-", " ");
- }
 
  const cachedTopList = useMemo(() => topList, [topListKey])
 
@@ -105,12 +118,9 @@ const ExploreEvents = ({topList}) => {
 
  const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
-
- let seoDescript = `Explore ${category ? translateDate(category) : ''} events all around you${eventDate ? 'scheduled for ' + translateDate(eventDate) : ''}${region ? 'in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`
-
   return (
     <>
-      <SiteHead title={'Explore Events'} description={seoDescript}/>
+     {/*  <SeoHead seoMeta={{description:seoDescript}}/> */}
      <div className="page-content" style={{overflow: 'initial'}}>
      {isTab ? <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
         <MainMenuBtn/>

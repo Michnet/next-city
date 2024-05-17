@@ -18,7 +18,8 @@ import { WPDomain } from "@/helpers/base";
 export async function getServerSideProps(context) {
   return {
     props: {
-      headerTitle: 'Add Listing',/* 
+      headerTitle: 'Add Listing',
+      seoMeta:{title: 'Add Listing'}/* 
       settings : {
         mMenu: 'show',
         mMenuContent:{

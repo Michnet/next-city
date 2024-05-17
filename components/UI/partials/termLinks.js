@@ -25,7 +25,7 @@ export const TermIconBox = ({item, flipped=false, shadowy=true, exClass='', widt
                         </span>
                     </div>
                     <div className='icon_overlay bg-gradient-45 h-100 w-100 position-absolute top-0 left-0 opacity-50'/>
-                    <div className={`_title text-right p-2 d-flex align-items-end position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`fw-600 color-white truncate-3 heady opacity-70`}>{cleanHtml(name)}</Link></div>
+                    <div className={`_title text-right p-2 d-flex align-items-end position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`smLine fw-600 color-white truncate-3 heady opacity-70`}>{cleanHtml(name)}</Link></div>
                 </div>
 }
 

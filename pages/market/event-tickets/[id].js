@@ -31,6 +31,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       headerTitle: pdt.name,
+      seoMeta:{title: pdt.name},
       pdt,
     },
     revalidate: 6000, // In seconds

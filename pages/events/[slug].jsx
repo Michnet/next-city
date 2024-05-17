@@ -152,7 +152,7 @@ export async function getStaticPaths() {
   const ListingConst = ({listing, themeColor, seoMeta, color=randColor}) => {
     //const {listing} = serverObj;
     console.log('seoMeta in listing', seoMeta)
-    const {short_desc, meta, cover, category, about_us, logo,rating, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue} = listing ?? {};
+    const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
     const {_links} = meta ?? {};
     const router = useRouter();
     const {query} = router;
@@ -216,8 +216,8 @@ if(listing){
 
 <EventJsonLd
       name={`${cleanHtml(listing?.title?.rendered)}`}
-      startDate="2020-01-23T00:00:00.000Z"
-      endDate="2020-01-24T00:00:00.000Z"
+      startDate={event_date[0]?.start}
+      endDate={event_date[0]?.end}
       location={{
         name: venue,
         //sameAs: 'https://example.com/my-place',
@@ -232,6 +232,10 @@ if(listing){
       geo={{
         latitude: latitude,
         longitude: longitude,
+      }}
+      rating={{
+        ratingValue: (rating/10) * 5,
+        ratingCount: '18',
       }}
       images={[xtra_large_thumb, ...gallery]}
       description={`${listing?.short_desc}`}

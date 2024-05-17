@@ -2952,8 +2952,8 @@ span.clear_tag {
 }
 
 #mini_wall_gallery {
-    -webkit-mask-image: linear-gradient(transparent 40%, white 99%);
-    mask-image: linear-gradient(white 60%, transparent 99%);
+    -webkit-mask-image: linear-gradient(white calc(100% - 110px),transparent 99%);
+    mask-image: linear-gradient(white calc(100% - 110px),transparent 99%);
 }
 
 span.term_icon_box {

@@ -14,7 +14,7 @@ import { Skeleton } from "@/components/skeletons/Skeletons";
 
 function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
 
-    let theView, fetchy = true, linkQuery = null;
+    let theView, fetchy = true, linkQuery = '';
 
 
     let spliderOptions = {...spliderVariableWidth, padding: { left: 8, right: 20}, ...optionsObj}
@@ -63,6 +63,7 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
     useEffect(() => {
       return () => {
         fetchy = false;
+        linkQuery = ''
       }
     }, []);
 
@@ -71,33 +72,33 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
         load.order_by=orderby;
         load.order=order;
         load.meta_key=orderMeta;
-        linkQuery=`order=${order}&order_by=${orderby}&meta_key=${orderMeta}`;
+        linkQuery.concat(`order=${order}&order_by=${orderby}&meta_key=${orderMeta}`);
     }else if(orderby){
         load.order_by=orderby;
         load.order=order;
-        linkQuery=`order=${order}&order_by=${orderby}`;
+        linkQuery.concat(`order=${order}&order_by=${orderby}`);
     }
     if(sort){
       load.sort = sort;
-      linkQuery=`sort=${sort}`;
+      linkQuery.concat(`sort=${sort}`);
     }
 
     if(eventDate){
       load['event-date'] = eventDate
-      linkQuery=`event-date=${eventDate}`;
+      linkQuery.concat(`event-date=${eventDate}`);
     }else{
       load['event-date'] = 'any-date'
     }
 
     if(query?.category){
       load.category = query?.category
-      linkQuery=`category=${catSlug}`;
+      linkQuery.concat(`category=${query?.category}`);
     }else if(catSlug){
       load.category = catSlug
-      linkQuery=`category=${catSlug}`;
+      linkQuery.concat(`category=${catSlug}`);
     }
 
-    
+    console.log('linkQuery', linkQuery)
 
     const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
@@ -123,7 +124,10 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
                         <DualColorHeader title={title} subTitle={subtitle} iconClass={iconClass}/>
                       </div>
                       <div className="align-self-center ms-auto">
-                          <Link href={`explore/events${linkQuery ? '?'+linkQuery : ''}`} className="font-12">View All</Link>
+                          <Link href={{
+              pathname: '/explore/events',
+              query: {...load},
+            }}  className="font-12">View All</Link>
                       </div>
                       </div>
                       <Splider height={height}  options={{...spliderOptions}}>

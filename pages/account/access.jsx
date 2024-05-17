@@ -4,6 +4,7 @@ export async function getServerSideProps() {
   return {
     props: {
       headerTitle: 'My Account',
+      seoMeta:{title: 'My Account', nofollow:true},
       settings : {
         //mMenu: 'hide',
         //noFooter : true

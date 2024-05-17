@@ -24,7 +24,7 @@ export default function SeoHead({seoMeta }) {
 
   let pageTitle = title ?? originalTitle,
   pageDescription = description ?? originalDescription,
-  pageUrl = `${homeurl}${slug}`,
+  pageUrl = `${homeurl}${pathname}`,
   pageType = type ?? 'website';
 
   return (

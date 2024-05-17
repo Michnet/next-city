@@ -97,7 +97,7 @@ if(faqs?.length > 0){
   tabList.push({
     id : 'faqs',
     icon: "far fa-question-circle", 
-    title: 'FAQs',
+    title: 'Questions',
     subTitle : "Frequent Questions",
     widgetClass: 'widgey pad_tab',
   });

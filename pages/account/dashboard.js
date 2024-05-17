@@ -18,6 +18,7 @@ export async function getServerSideProps() {
   return {
     props: {
       headerTitle: 'My Dashboard',
+      seoMeta:{title: 'Dashboard', nofollow:true},
       settings : {
         hideNews: true,
         transparentHeader: true,

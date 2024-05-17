@@ -84,7 +84,7 @@ galleryView = <>
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
           <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 px-10">
         {megaGall.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1024: 4}}>
-            <Masonry gutter="5px">
+            <Masonry gutter="10px">
             {megaGall.map((item, index) => {
               if (typeof item == 'string') {
                 if(item?.length > 0){

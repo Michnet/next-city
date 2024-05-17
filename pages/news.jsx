@@ -7,6 +7,7 @@ export async function getStaticProps() {
   return {
     props: {
       headerTitle: 'LyveCity News',
+      seoMeta:{title: 'Latest LyveCity News'},
       settings : {
         //mMenu: 'hide',
         noFooter : true

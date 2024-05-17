@@ -1,11 +1,16 @@
 // import FAQs from "@/components/UI/FAQs"
-import SiteFAQs from "@/components/UI/site/SiteFAQs";
-import SiteHead from "@/components/UI/SiteHead";
+import SiteFAQs, { siteFaqsContent } from "@/components/UI/site/SiteFAQs";
+//import SiteHead from "@/components/UI/SiteHead";
+import { FAQPageJsonLd } from 'next-seo';
 
 export async function getStaticProps(context) {
   return {
     props: {
-      headerTitle: 'FAQs',/* 
+      headerTitle: 'FAQs',
+      seoMeta: {
+        title: 'FAQs'
+      }
+      /* 
       settings : {
         mMenu: 'show',
         mMenuContent:{
@@ -20,7 +25,8 @@ export async function getStaticProps(context) {
 const HelpCenter = () => {
   return (
     <>
-      <SiteHead title="Help Center" />
+     <FAQPageJsonLd mainEntity={[...siteFaqsContent]} />
+      {/* <SiteHead title="Help Center" /> */}
       <div className="page-content">
       <section className="layout-pt-lg layout-pb-lg bg-theme">
         <div className="container">

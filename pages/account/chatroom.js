@@ -11,6 +11,7 @@ export async function getServerSideProps() {
   return {
     props: {
       headerTitle: 'Chatroom',
+      seoMeta:{title: 'Chatroom', nofollow:true},
       settings : {
         hideNews: true,
         transparentHeader: true,
