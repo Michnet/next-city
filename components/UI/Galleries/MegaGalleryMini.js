@@ -4,12 +4,12 @@ import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import {useEffect, useState } from "react";
 import { GalleryPlate } from "./MegaGallery";
 
-import { cleanHtml, randomBetween, shuffleArray, textSizeClass } from "@/helpers/universal";
+import { cleanHtml, randomBetween, randomEither, shuffleArray, textSizeClass } from "@/helpers/universal";
 import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
-import { siteSettings } from "@/helpers/base";
+import { siteColors, siteSettings } from "@/helpers/base";
 
 export const HorizontalGrid = ({children, height}) => {
-  return <div style={{height : height ?? 180}} className="horizontal_grid">
+  return <div style={{height : height ?? 180}} className="horizontal_grid gap-2 mb-10">
           {children}
   </div>
 }
@@ -31,43 +31,15 @@ const MegaGalleryMini = ({listing, color, setActiveKey}) => {
 
   const textArr = shuffleArray([greeting, ...punchlines]);
 
-  let textOptions = textArr.splice(0, 2), galleryView;
+  let textOptions = textArr.splice(0, 1), galleryView;
   let miniGall = gallery?.length > 0  ? gallery.splice(0, 5) : [];
   let megaGall = shuffleArray([...textOptions, ...miniGall]);
+  let grid1Arr = megaGall.slice(0,2);
+  let gallArr = megaGall.slice(2);
+  
 
   let highlightIndex = [4,7,11,17]
 
-
-let chunkHeight = 500;
-
-function hideBtn(el, condition){
-  if(condition){
-    el.classList.add('d-block');
-    el.classList.remove('d-none');
-  }else{
-    el.classList.add('d-none')
-    el.classList.remove('d-block');
-  }
-}
-
-function setUpToggler(){
-
-  if (typeof window !== 'undefined') {
-  let container_el = document.getElementById("wall_gallery_container");
-  let inner_el = document.getElementById("wall_gallery");
-  let extBtn = document.getElementById('gallery_extender');
-
-  if(container_el){
-    container_el.style.maxHeight = `${chunkHeight}px`
-    if(extBtn){
-      if(inner_el){
-        let innerHeight = inner_el.offsetHeight;
-        hideBtn(extBtn, innerHeight > chunkHeight);
-      }
-    }
-  }
-}
-}
 
 useEffect(() => {
   setLoading(true)
@@ -79,23 +51,49 @@ useEffect(() => {
   return () => setGallery([])
 }, [listing.id]);
 
+let Grid1 = () => <HorizontalGrid>
+  {shuffleArray([...grid1Arr]).map((item, index) => {
+    if (typeof item == 'string') {
+      if(item?.length > 0){
+        if(item?.includes(siteSettings.wpDomain)){
+          return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+        }else{
+            //let backGs = ['100', '200', '300', '400'];
+          return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-${randomEither(siteColors)}-dark`}>
+            <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
+          </div>
+        }
+      }
+    }else{
+      if(item?.url?.includes(siteSettings.wpDomain)){
+          return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+        }else{
+          return <>{item}</>
+        }
+    }
+  }
+  )}
+  
+  </HorizontalGrid>;
+
 galleryView = <> 
-        {/* <Grid1/> */}
+        
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
           <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 px-10">
-        {megaGall.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1024: 4}}>
+          <Grid1/>
+        {gallArr.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1024: 4}}>
             <Masonry gutter="10px">
-            {megaGall.map((item, index) => {
+            {gallArr.map((item, index) => {
               if (typeof item == 'string') {
                 if(item?.length > 0){
                   if(item?.includes(siteSettings.wpDomain)){
                     return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
-                  }/* else{
-                      let backGs = ['100', '200', '300', '400'];
-                    return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
+                  }else{
+                      //let backGs = ['100', '200', '300', '400'];
+                    return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-${randomEither(siteColors)}-dark`}>
                       <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
                     </div>
-                  } */
+                  }
                 }
               }else{
                 if(item?.url?.includes(siteSettings.wpDomain)){

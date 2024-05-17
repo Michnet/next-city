@@ -6,7 +6,7 @@ import { fetchIdsUrl, fetchSingleListingUrl, getUserRest } from "@/helpers/rest"
 import { cleanHtml, shadeRGBColor } from "@/helpers/universal";
 import { memo, useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
-const ListingSideMenu = dynamic(() => import("@/components/listing/ListingSideMenu"));
+//const ListingSideMenu = dynamic(() => import("@/components/listing/ListingSideMenu"));
 import { Client } from "react-hydration-provider";
 const RightMenu = dynamic(() => import("@/components/listing/RightMenu"));
 import Content from "@/components/listing/Content";
@@ -18,7 +18,7 @@ const CallToActions = dynamic(() => import("@/components/UI/CallToActions"));
 const Link = dynamic(() => import("next/link"));
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import ListingTopMenu from "@/components/listing/ListingTopMenu";
-import { closeMenus, openOffCanvas } from "@/helpers/appjs";
+import { closeMenus } from "@/helpers/appjs";
 //import BottomMenu from "@/components/layouts/BottomMenu";
 import Hero2 from "@/components/listing/landingPages/hero/Hero2";
 import listingMenu from "@/components/listing/ListingMenu";
@@ -38,8 +38,6 @@ import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
-import { SectionHeader } from "@/components/UI/Partials";
-import SiteHead from "@/components/UI/SiteHead";
 const Navigator = dynamic(() => import("@/components/listing/Navigator"));
 
 const randColor = randomEither(siteColors);

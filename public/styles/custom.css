@@ -1095,6 +1095,7 @@ h6.tax_pare {}
     flex-grow: 1;
     display: flex;
     align-items: center;
+    flex-direction: row;
 }
 
 .mega_gallery .mega_item.overlaid::after {
@@ -3605,7 +3606,7 @@ ul.listing_navigator li .l_menu._item svg {color: #b9b9b9;font-size: 16px;}
 ul.listing_menu .ex_label {display: none;}
 
 .listing_navigator li {
-    border: 1px solid;
+    border: 1px solid var(--borderTheme);
 }
 
 .listing_navigator li._link.close-menu.next {

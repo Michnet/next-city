@@ -48,7 +48,7 @@ export async function getServerSideProps({ req, res, query }) {
   const {sort, category, tags, region} = query;
   const eventDate = query['event-date'] ?? null;
 
-  let seoDescript = `Explore ${category ? translateDate(category) : ''} events all around you${eventDate ? 'scheduled for ' + translateDate(eventDate) : ''}${region ? 'in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`
+  let seoDescript = `Explore ${category ? translateDate(category) : ''} events${region ? '' : 'all around you'} ${eventDate ? ', scheduled for ' + translateDate(eventDate) : ''}${region ? ' in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`
   
   return {
     props: {
