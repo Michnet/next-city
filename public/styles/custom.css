@@ -1053,17 +1053,17 @@ h6.tax_pare {}
     overflow: hidden;
     max-height: 10.5em;
     line-height: 1.5;
-    font-family: var(--headingFontFamily);
+    font-family: var(--headingFont);
 }
 
 .mega_gallery .text_box ._text._biggy {
-    font-weight: 300;
+    font-weight: bold;
     font-size: 24px;
 }
 
 .mega_gallery .text_box ._text._medium {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: bold;
 }
 
 .mega_gallery .gallery_plate {
@@ -1096,6 +1096,7 @@ h6.tax_pare {}
     display: flex;
     align-items: center;
     flex-direction: row;
+    min-height: 180px;
 }
 
 .mega_gallery .mega_item.overlaid::after {
@@ -1114,6 +1115,8 @@ h6.tax_pare {}
 .mega_gallery .mega_item > img {
     min-height: 100%;
     object-fit: cover;
+    object-position: center;
+    max-height: 50vh;
 }
 
 .gallery_plate .mega_item {

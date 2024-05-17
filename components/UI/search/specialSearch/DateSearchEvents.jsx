@@ -3,14 +3,14 @@ import DatePicker from "react-multi-date-picker";
 import { ActiveQueryOption } from "@/components/UI/Partials";
 
 const DateSearchEvents = ({dates, setDates, params, setParams, query}) => {
-  const [selectType, setSelectType] = useState('range');
+  const [selectType, setSelectType] = useState('block');
 
   function reset(){
     setDates([])
     const tempObj = {...params}
     delete tempObj['event-date'];
     setParams({...tempObj});
-    setSelectType('range');
+    setSelectType('block');
   }
 
   function processDate(Arr){
@@ -46,13 +46,13 @@ const DateSearchEvents = ({dates, setDates, params, setParams, query}) => {
     {query && query['event-date'] && <ActiveQueryOption query={query} queryKey="event-date"/>}
     <div className="d-flex flex-row flex-nowrap gap-3">
       <div className="form-check">
-      <input onChange={(e) => setSelectType(e.target.id)} className="form-check-input" type="radio" name="select_type" id="range" checked={selectType === 'range'}/>
+      <input onChange={(e) => setSelectType(e.target.id)} className="form-check-input" type="radio" name="select_type" id="range" checked={selectType == 'range'}/>
       <label className="form-check-label gray_text text-12" for="date_range">
         Date Range
       </label>
       </div>
       <div className="form-check">
-        <input onChange={(e) => setSelectType(e.target.id)} className="form-check-input" type="radio" name="select_type" id="block"/>
+        <input onChange={(e) => setSelectType(e.target.id)} className="form-check-input" type="radio" name="select_type" id="block" checked={selectType == 'block'}/>
         <label className="form-check-label gray_text text-12" for="date_block">
           Date Block
         </label>

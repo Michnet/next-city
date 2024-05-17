@@ -1,7 +1,7 @@
 import ExplorerFilter from "@/components/UI/search/ExplorerFilter";
 import SearchFilter3 from "@/components/UI/search/SearchFilter3";
 import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
-import SiteHead from "@/components/UI/SiteHead";
+//import SiteHead from "@/components/UI/SiteHead";
 import { useRouter } from "next/router";
 import { Suspense, useState, useMemo, useEffect } from "react";
 import { Client } from "react-hydration-provider";
@@ -19,7 +19,7 @@ import { fadingSlide, largeResp } from "@/helpers/sliders";
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import { Skeleton } from "@/components/skeletons/Skeletons";
-import SeoHead from "@/components/UI/SeoHead";
+//import SeoHead from "@/components/UI/SeoHead";
 
 function translateDate(string){
   return string.replaceAll("-", " ");
@@ -101,7 +101,6 @@ const ExploreEvents = ({topList}) => {
 
     useEffect(() => {
       if(query){
-        console.log('Query found', query);
          setFetchy(true)
       }
       setLoading(false);
@@ -163,7 +162,7 @@ const ExploreEvents = ({topList}) => {
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="query_hint mx-2 p-2">
-              {showHint ? <div className="query_content text-white">
+              {showHint ? <div className="query_content">
                   <p className="mb-2"><span>Exploring {category ? <span><span className="text-info pointer">{translateDate(category)} </span></span> : ''}
                     listings </span>
                     {eventDate ? <span>scheduled for <span className="text-warning pointer">{translateDate(eventDate)}</span></span> : ''}

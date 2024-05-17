@@ -18,7 +18,7 @@ export const ActiveQueryOption = ({query, queryKey, label}) => {
   return <>
   <div className="active_slection mb-2">
       <span className="text-12 text-light-1 d-block">{label ?? 'Current Selection'}</span> 
-      <span className="text-success">{query[`${queryKey}`]}</span>
+      <span className="text-success text-capitalize">{query[`${queryKey}`].replaceAll("-", " ")}</span>
       </div>
   </>
 }
