@@ -23,12 +23,13 @@ import MessagesStater from "@/contexts/contextStaters/MessagesStater";
 import { run_template } from "@/helpers/js";
 import SiteHead from "@/components/UI/SiteHead";
 //import "@/public/scripts/bootstrap.min.js";
+import { DefaultSeo } from 'next-seo';
+import SeoHead from "@/components/UI/SeoHead";
 
 function MyAppConst({ Component, pageProps, platform }) {
-  const {headerTitle, settings} = pageProps;
-
-//console.log('seoMeta', seoMeta);
+  const {headerTitle, settings, seoMeta} = pageProps;
   const cachedSettings = useMemo(() => settings, [headerTitle]);
+  const cachedSeoMeta = useMemo(() => seoMeta, [headerTitle]);
   
   const Session = getSession();
 
@@ -57,9 +58,12 @@ function MyAppConst({ Component, pageProps, platform }) {
         <title>LyveCity</title>
       </Head> */}
       <RecoilRoot>
+      {/* <SiteHead title={'Home'} description='home desc' seoMeta={cachedSeoMeta}/> */}
+      <SeoHead title={'Home'} description='home desc' seoMeta={cachedSeoMeta}/>
+      
         <SessionProvider>
             <HydrationProvider>
-              <SiteHead title={'Home'}/>
+              
               <div className="menu-hider" onClick={() => closeMenus()}></div>
               <Layout platform={platform} settings={cachedSettings} headerTitle={headerTitle}>
                 <Component {...pageProps}/>

@@ -2,6 +2,7 @@ export async function getStaticProps() {
     return {
       props: {
         headerTitle: 'Features History',
+        seoMeta:{title: 'Features History', description: 'The evolution of LyveCity aimed at giving the platform users the best experience there is'},
         settings : {
           //mMenu: 'hide',
           noFooter : true

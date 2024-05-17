@@ -1,19 +1,18 @@
 import { homeurl, siteSettings } from "@/helpers/base";
-//import { Head } from "next/document";
-import Head from "next/head";
-//import { usePathname} from "next/navigation";
+import { NextSeo } from "next-seo";
+//import { NextSeo } from "next/document";
+//import NextSeo from "next/head";
+import { usePathname} from "next/navigation";
 //import { useRecoilValue } from "recoil";
 //import { UIState } from "/contexts/contexts";
 //import { homeurl, siteSettings } from "~/server/Base";
 
-export default function SiteHead({seoMeta, pageColor, street_address, children, latitude, longitude, updated_time, image, slug, type, phone_number, robots }) {
-  console.log('seoMeta in head', seoMeta)
-  const {title, description} = seoMeta ?? {};
-  //const pathname = usePathname()
+export default function SeoHead({seoMeta }) {
+ // console.log('seoMeta in head', seoMeta)
+  const {title, description, pageColor, street_address, children, latitude, longitude, updated_time, image, slug, type, phone_number, robots} = seoMeta ?? {};
+  const pathname = usePathname()
   //const {colorTheme} = useRecoilValue(UIState);
   //const {colors} = colorTheme;
-  console.log('site head from', description)
-
   //const  color = colors[0] ?? '#0F2844';
   const  color = pageColor ?? '#fefefe';
   const originalTitle = "LyveCity";
@@ -23,8 +22,40 @@ export default function SiteHead({seoMeta, pageColor, street_address, children, 
   const originalImage =  `${homeurl}${siteSettings.logo_link}`;
   const currentURL = "lyvecity.com";
 
+  let pageTitle = title ?? originalTitle,
+  pageDescription = description ?? originalDescription,
+  pageUrl = `${homeurl}${slug}`,
+  pageType = type ?? 'website';
+
   return (
-    <Head>
+    <NextSeo
+      type={pageType}
+      title={pageTitle}
+      titleTemplate = '%s | LyveCity'
+      description={pageDescription}
+      canonical= {pageUrl}
+      openGraph={{
+        url: `${pageUrl}`,
+        title: `${pageTitle}`,
+        description: `${pageDescription}`,
+        images: [
+          /* {
+            url: `${image ?? originalImage}`,
+            width: 800,
+            height: 600,
+            alt: 'Og Image Alt',
+            type: 'image/jpeg',
+          }, */
+          { url: `${image ?? originalImage}` },
+        ],
+        siteName: 'LyveCity',
+      }}
+      /* twitter={{
+        handle: '@handle',
+        site: '@site',
+        cardType: 'summary_large_image',
+      }} */
+    >
       <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
       <meta charSet="utf-8" />
       <title>{`${title} | ${originalTitle}`}</title>
@@ -82,7 +113,7 @@ export default function SiteHead({seoMeta, pageColor, street_address, children, 
         content={`${image ? image : originalImage}`}
         key="twimage"
       />
-      <meta property="og:url" content={`${homeurl}${slug}`} key="ogurl" />
+      {/* <meta property="og:url" content={`${homeurl}${slug}`} key="ogurl" /> */}
       <meta
         property="og:image"
         content={`${image ? image : originalImage}`}
@@ -90,6 +121,6 @@ export default function SiteHead({seoMeta, pageColor, street_address, children, 
       />
       <meta property="og:site_name" content={siteName} key="ogsitename" />
       {children}
-    </Head>
+    </NextSeo>
   );
 }

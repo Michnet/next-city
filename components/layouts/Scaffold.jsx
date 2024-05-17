@@ -12,7 +12,8 @@ function ScaffoldConst({children, uiSize, settings, headerTitle}) {
     const {isTab} = uiSize;
     const {noHeader, autoShowHeader, hideNews, uiBackground} = settings ?? {};
 
-    const cachedChildren = useMemo(() => children, [headerTitle])
+    //const cachedChildren = useMemo(() => children, [headerTitle])
+    //const cachedChildren = () => children;
     const [loading, setLoading] = useState(true);
     const [loaderRoute, setLoaderRoute] = useState('')
 
@@ -60,7 +61,7 @@ useEffect(() => {
                 </>}
                 {/* {cachedChildren} */}
                 {/* <PageLoader route={loaderRoute}/> */}
-                {loading ? <PageLoader route={loaderRoute}/> : cachedChildren}
+                {loading ? <PageLoader route={loaderRoute}/> : children}
             </div>
             <Client>{!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>

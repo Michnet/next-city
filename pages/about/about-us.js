@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SiteHead from "@/components/UI/SiteHead";
+//import SiteHead from "@/components/UI/SiteHead";
 import Block1 from "@/components/UI/about/Block1";
 import WhyChooseUs from './../../components/UI/about/WhyChooseUs';
 
@@ -7,6 +7,7 @@ export async function getStaticProps() {
   return {
     props: {
       headerTitle: 'About LyveCity',
+      seoMeta:{title: 'About'},
       settings : {
       }
     }
@@ -16,7 +17,11 @@ export async function getStaticProps() {
 const About = () => {
   return (
     <>
-      <SiteHead title={'About LyveCity'}/>
+      {/* <SiteHead title={'About that LyveCity'} description='This is all about LC' image='https://test.img'/> */}
+      {/* <NextSeo
+      title="Simple Usage Example"
+      description="A short description goes here."
+    /> */}
       <div className="page-content">
       <section className="section-bg layout-pt-lg layout-pb-lg pos-relative">
         <div className="section-bg__item col-12">

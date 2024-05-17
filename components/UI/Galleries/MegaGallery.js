@@ -52,13 +52,14 @@ export const HorizontalGrid = ({children, height}) => {
 }
 
 const MegaGallery = ({listing, color, upcoming}) => {
-  const {landing, marketing, team, performers, gallery:l_gallery, id, galleryWithBlurs} = listing;
+  const {landing, marketing, team, performers, id, galleryWithBlurs, meta} = listing;
+  const {_job_gallery:l_gallery} = meta ?? {};
   const {greeting} = landing;
   const {punch_lines} = marketing;
   const [slideIndex, setSlideIndex] = useState(-1);
   const [miniGrid, setMiniGrid] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [gallery, setGallery] = useState(listing?.galleryWithBlurs ?? l_gallery)
+  const [gallery, setGallery] = useState([])
   const punchlines = Array.isArray(punch_lines) ? punch_lines.map((el) => el.text) : [];
   
 
@@ -160,7 +161,7 @@ function setUpToggler(){
 useEffect(() => {
   setLoading(true)
   if(listing){
-    setGallery(listing?.galleryWithBlurs?.length > 0 ? listing?.galleryWithBlurs : listing?.gallery)
+    setGallery(l_gallery?.length > 0 ? l_gallery : listing?.gallery);    
     setLoading(false);
     setSlideIndex(-1);
   }

@@ -110,7 +110,7 @@ function LayoutConst({ children, headerTitle, settings}) {
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
           <Scaffold headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>
-            {cachedChildren}
+            {children}
             </Scaffold>
           <Client>
 		  <div

@@ -21,7 +21,7 @@ const MegaGalleryMini = ({listing, color, setActiveKey}) => {
   const {punch_lines} = marketing;
   const [slideIndex, setSlideIndex] = useState(-1);
   const [loading, setLoading] = useState(true);
-  const [gallery, setGallery] = useState(l_gallery ?? [])
+  const [gallery, setGallery] = useState([])
 
   const punchlines = Array.isArray(punch_lines) ? punch_lines.map((el) => el.text) : [];
 
@@ -72,18 +72,19 @@ function setUpToggler(){
 useEffect(() => {
   setLoading(true)
   if(listing){
-    setGallery(/* listing.galleryWithBlurs */listing?.meta?._job_gallery)
+    setGallery(l_gallery?.length > 0 ? l_gallery : listing?.gallery)
     setLoading(false);
     setSlideIndex(-1);
   }
+  return () => setGallery([])
 }, [listing.id]);
 
 galleryView = <> 
         {/* <Grid1/> */}
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
-          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1">
-        {megaGall.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
-            <Masonry>
+          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 px-10">
+        {megaGall.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1024: 4}}>
+            <Masonry gutter="5px">
             {megaGall.map((item, index) => {
               if (typeof item == 'string') {
                 if(item?.length > 0){
@@ -109,7 +110,7 @@ galleryView = <>
             </Masonry>
         </ResponsiveMasonry>}
         </div>
-        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-center w-100 h-100 justify-center"><span className="show_more btn">See Gallery</span></div>
+        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-center w-100 h-100 justify-center"><span className="show_more btn btn-light">See Gallery</span></div>
         </div>
       </div>
 </>

@@ -2315,10 +2315,6 @@ section.custom_section .row_content .head_content {display: block;width: fit-con
   margin-bottom: 10px;
 }
 
-.price_view._hero span._pre, p.short_desc {
-  color: var(--bs-gray-400);
-}
-
 .schedule_signal span.marker:before, .schedule_signal.hide_label:hover  .marker::before {content: '';display: inline-block;border: 2px solid;width: 10px;height: 10px;margin-right: 10px;border-radius: 50%;}
 
 .schedule_signal._right span.marker:before {margin-right: 0;}
@@ -6812,9 +6808,6 @@ section.ant-layout.single_listing .top_bar_toggle {right: 14px;}
       }
       .footer-register-now {
         margin-right: 0px;
-      }
-      .footer-container1 {
-        margin-bottom: 2em;
       }
       .footer-text08 {
         margin-bottom: 1em;

@@ -2413,7 +2413,7 @@ button.back_link {
 }
 
 .landing_row .mega_gallery .mega_item, .landing_row  .mega_gallery .gallery_plate {
-    border-radius: 0;
+    /* border-radius: 0; */
 }
 
 .excerptView .icon_box {
@@ -3338,6 +3338,10 @@ div#explore_nav .view_filter {
     width: 100%;
     border-radius: 0;
     position: fixed;
+}
+
+#listing_header:not(.header-active) {
+    display: none;
 }
     .page-content {
     padding-bottom: 62px;
