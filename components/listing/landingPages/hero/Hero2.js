@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import { cleanHtml, srcWithFallback, randomEither } from '@/helpers/universal';
 import { useRecoilValue } from 'recoil';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-const Image = dynamic(() => import('next/image'));
 import { Client } from 'react-hydration-provider';
 import {fallbackImgSrcSet } from "@/helpers/base";
 import { BookingView } from '@/pages/events/[slug]';
@@ -18,6 +17,7 @@ import styles from '@/components/listing/styles/home1.module.css';
 import { ListingMetaMini } from '@/components/UI/Partials';
 import { fadingSlide, largeResp } from '@/helpers/sliders';
 import Slider from 'react-slick';
+import Image from 'next/image';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {

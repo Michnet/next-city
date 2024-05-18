@@ -58,8 +58,11 @@ function ListingStaterConst({id, author}) {
         if(reviews){
           const {success, data} = reviews
           if(success){
-            setActiveReviews({act_reviews: eventDates, act_id:id})
+            console.log('stater worked again', reviews)
+            setActiveReviews({act_reviews: data, act_id:id})
           }
+        }else{
+          console.log('stater failed')
         }
       });
     }

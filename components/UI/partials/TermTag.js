@@ -45,9 +45,7 @@ const TermTag = ({term, type, collection, colorText, exClass, exTagClass, linkTa
         href={`/explore/events?${linkTax}=${slug}`}
         //style={{width: 'fit-content'}}
         className={`d-block lh-1 ${taxonomy} ${exClass ?? ''} term-link _tag`}>
-        <span className={`gx-rounded-lg d-block ${exTagClass ?? ''}`} style={{background: color?.length > 0 ? color : 'var(--highlight)'}}>
-          <Client><span className="text-truncate d-block text-white text-12" dangerouslySetInnerHTML={{__html:  name}}/></Client>
-        </span>
+        <span className={`gx-rounded-lg d-block text-truncate text-white text-12 ${exTagClass ?? ''}`} style={{background: color?.length > 0 ? color : 'var(--highlight)'}} dangerouslySetInnerHTML={{__html:  name}}/>
 
       </Link>;
       break;

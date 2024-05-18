@@ -2984,9 +2984,14 @@ span.term_icon_box {
     padding: 0;
 }
 
-.gx-profile-banner._mini > img, .top_list .event_card_3 .img_div {
+.gx-profile-banner._mini > img {
     webkit-mask-image: linear-gradient(white 10%, transparent 100%);
     mask-image: linear-gradient(white 10%, transparent 100%);
+    width: inherit;
+}
+.top_list .event_card_3 .img_div {
+    webkit-mask-image: linear-gradient(white 10%, transparent 100%);
+    mask-image: linear-gradient(white calc(100% - 141px), transparent 100%);
     width: inherit;
 }
 

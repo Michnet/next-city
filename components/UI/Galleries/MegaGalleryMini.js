@@ -32,7 +32,7 @@ const MegaGalleryMini = ({listing, color, setActiveKey}) => {
   const textArr = shuffleArray([greeting, ...punchlines]);
 
   let textOptions = textArr.splice(0, 1), galleryView;
-  let miniGall = gallery?.length > 0  ? gallery.splice(0, 5) : [];
+  let miniGall = gallery?.length > 0  ? [...gallery].splice(0, 5) : [];
   let megaGall = shuffleArray([...textOptions, ...miniGall]);
   let grid1Arr = megaGall.slice(0,2);
   let gallArr = megaGall.slice(2);
