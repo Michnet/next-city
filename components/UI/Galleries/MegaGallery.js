@@ -61,6 +61,7 @@ const MegaGallery = ({listing, color, upcoming}) => {
   const [loading, setLoading] = useState(true);
   const [gallery, setGallery] = useState([])
   const punchlines = Array.isArray(punch_lines) ? punch_lines.map((el) => el.text) : [];
+  const [gridFactor, setGridFactor] = useState(1)
   
 
   function itemIndex(item){
@@ -191,12 +192,12 @@ if(typeof window !== 'undefined'){
 }
 }
 
-
+let gridObj = {0: 1 + gridFactor, 575: 2 + gridFactor, 768: 3 + gridFactor, 1024: 4 + gridFactor}
 
 galleryView = <>
         <div id = 'wall_gallery_container' className={`position-relative overflow-hidden ${miniGrid ? 'mini_grid' : ''}`}>
           <div id='wall_gallery' className="mega_gallery _vertical" onLoad={() =>   setUpToggler()}>
-        {megaGall.length > 2 && <ResponsiveMasonry columnsCountBreakPoints={miniGrid ? {0: 3, 768: 4, 1024: 5} : {0: 2, 768: 3, 1024: 4}}>
+        {megaGall.length > 2 && <ResponsiveMasonry columnsCountBreakPoints={{...gridObj}}>
             <Masonry gutter={miniGrid ? '5px' : "10px"}>
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
@@ -245,8 +246,9 @@ return (
       <>
         <div className='row_flex justify-end p-2 mb-3'>
           <div className='row_flex gallery_grids gap-3' style={{width: 'fit-content'}}>
-            <i className={`fas fa-th-large text-25 ${!miniGrid && 'color-highlight'}`} onClick={() => setMiniGrid(false)}/>
-            <i className={`fas fa-th text-25 ${miniGrid && 'color-highlight'}`} onClick={() => setMiniGrid(true)}/>
+            <i className={`far fa-window-maximize text-25 ${gridFactor == 0 && 'color-highlight'}`} onClick={() => setGridFactor(0)}/>
+            <i className={`fas fa-th-large text-25 ${gridFactor == 1 && 'color-highlight'}`} onClick={() => setGridFactor(1)}/>
+            <i className={`fas fa-th text-25 ${gridFactor == 2 && 'color-highlight'}`} onClick={() => setGridFactor(2)}/>
           </div>
         </div>
         {galleryView}
