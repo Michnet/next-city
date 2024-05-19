@@ -14,7 +14,6 @@ function SWMessagingConst({id}) {
         const {type, swResponse} = incoming;
         if(type == 'auth'){
           const {authResponse} = swResponse;
-          console.log('auth response', incoming);
         }
       });
     }
@@ -32,7 +31,6 @@ function SWMessagingConst({id}) {
      setUpMessaging();
     return () => {
       navigator.serviceWorker.removeEventListener("message", (event) => {
-          //console.log(`The service event is removed :`, event);
       });
     }
   }, [])

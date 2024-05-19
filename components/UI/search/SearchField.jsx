@@ -28,7 +28,6 @@ function SearchField() {
 
   useSignalEffect(async() => {
     if(keyWord.value?.length > 2){
-        console.log('keyyy pa', payload)
         const res = await advancedFetchListings({...payload}, signal);
         if(res){
             listings.value = res;
@@ -40,8 +39,6 @@ function SearchField() {
     //controller.abort();
     keyWord.value = e.target.value;
   }
-
-  console.log('keyyy', keyWord.value)
  
   return (
    <>

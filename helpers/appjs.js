@@ -2,14 +2,11 @@
 var pwaName = "LyveCity"; 
 
 export function onAppLoad(){
-    console.log('loading app js')
     if (typeof window !== "undefined") {
          if (document.readyState !== 'loading') {
-            console.log('Even the document is ready');
             appjsCode();
          }else{
             document.addEventListener("DOMContentLoaded", (event) => {
-              console.log('Running after DOm loading');
               appjsCode();
             });
          }

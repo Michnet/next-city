@@ -98,8 +98,6 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
       linkQuery.concat(`category=${catSlug}`);
     }
 
-    console.log('linkQuery', linkQuery)
-
     const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
     const isLoadingInitialData = !listings && !error;

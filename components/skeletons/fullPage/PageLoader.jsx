@@ -4,7 +4,6 @@ import { LoaderRingBoxed } from "../Loaders";
 
 const PageLoader = ({route}) => {
 
-  console.log('loaderRoute', route);
   let loaderView;
   
   if(route.includes('/events/')){

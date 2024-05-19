@@ -21,7 +21,6 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
     }
 
     function fetchCondition(){
-        console.log('running condition')
         if(locItems?.length > 0){
             if(query){
                 if(query[`${queryKey}`]){

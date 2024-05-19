@@ -22,7 +22,6 @@ export const sendBPMessage = async (payload, jwt) =>{
     ...payload,
    JWT : jwt
 })}`;
- console.log('msg payload', payload);
    const data = await kyFetch.post(`${WPDomain}/${endPoint}`)
    .then(async(response) => {
        if (response) {
@@ -124,7 +123,6 @@ export const fetchListings = async (payload) => {
       return data;
   } else return null;
  }catch (error) {
-   console.log('got failed', error)
    /* if (error.name === 'HTTPError') {
      const errorJson = await error.response.json();
    } */
@@ -193,10 +191,8 @@ export const getUserRest = async(reqObj) => {
 
 export async function advancedFetchListings(payload, signal){
     try {
-      console.log('abort signal', signal)
         const res = await kyFetch.get(advancedFetchListingsUrl(payload), {signal:signal}).json();
         if(res){
-            console.log('signal again', signal);
             return res;
           }else{
           console.log('failed', res)

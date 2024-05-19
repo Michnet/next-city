@@ -16,7 +16,6 @@ const serializeQuery = (query) => {
 };
 
 const authenticate = async (payload, signal) => {
-  console.log('running authenticate');
 
   const endPoint = `/wp-json/jwt-auth/v1/auth?${serializeQuery({
       ...payload
@@ -30,7 +29,6 @@ const authenticate = async (payload, signal) => {
     }else{
     }
   } catch (error) {
-    console.log('got failed', error)
   }
 }
 const getEventDates = async (payload, signal) => {

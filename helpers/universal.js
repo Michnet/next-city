@@ -26,7 +26,6 @@ export function UICleanup(){
   closeMenus()
 }
 export function messageServiceWorker(message){
-  console.log('run message')
   if (navigator.serviceWorker) {
     navigator.serviceWorker.ready.then((registration) => {
       registration.active.postMessage(message);
@@ -103,13 +102,11 @@ export const getBPActivityComments = async (activityId, token, payload={}) =>{
   try{
   const data = await kyFetch.get(bPSingleActivityCommentUrl(activityId, token, payload)).json();
   if(data){
-    console.log('getBPActivityComments try', data)
     if(data){
       return {activities: data}
     }
   }
 }catch(e){
-    console.log('getBPActivityComments try', e)
     return null;
   }
 }

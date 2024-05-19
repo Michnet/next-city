@@ -37,7 +37,6 @@ const TermTag = ({term, type, collection, colorText, exClass, exTagClass, linkTa
     return color ?? 'var(--secTheme)';
   }
 
-  console.log('tag color', term.name+color)
 
   switch (type) {
     case 'tag':

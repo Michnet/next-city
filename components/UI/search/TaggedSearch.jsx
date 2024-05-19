@@ -119,13 +119,10 @@ const TaggedSearchConst = ({accordion, category, location, queryTags, setSearchC
 
   useEffect(() => {
     if(Dir_categories){
-     
       const childsArr = Dir_categories.filter(child => child.parent == parentCat.id);
-      console.log('found', childsArr)
       setCatOptions(childsArr);
-    }else{
-      console.log('Not found', Dir_categories)
     }
+    return () => setCatOptions(null);
   }, [Dir_categories, parentCat]);
 
   useEffect(() => {

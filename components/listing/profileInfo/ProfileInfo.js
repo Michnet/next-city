@@ -21,7 +21,6 @@ import PayMeans from "./partials/PayMeans";
 
 const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
   //const [tags, setTags] = useState(null);
-  const [fullContent, setFullContent] = useState(false);
   const {members_count} = community ?? {}
   const [loading, setLoading] = useState(true)
 
@@ -31,7 +30,6 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
   useEffect(() => {
     setLoading(true);
     setLoading(false);
-    setFullContent(false);
     
   }, [listing?.id]);
 
@@ -184,7 +182,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                   {missionView}
                   {historyView}
 
-                  <AuthorCard exClass='mb-15' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
+                  <AuthorCard listingId={listing?.id} exClass='mb-15' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
                   {contactsView}
                   {groupView}
                   {paymentsView}

@@ -34,7 +34,6 @@ function useProvideAuth () {
   const router = useRouter();
 
   function setTheAuth(authObj){
-    console.log('setting the auth', authObj);
     localStorage.setItem('u_cred', JSON.stringify(authObj));
     setRecoilAuth(authObj)
   }

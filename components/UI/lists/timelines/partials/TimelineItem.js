@@ -10,7 +10,6 @@ const TimeLineItem = ({slotObj, setSlotObj, styleName, productId, timeLine, chil
   const {start, gcal_link, end, is_over, time_zone, url, title, location, desc} = timeLine;
   const {isMobile} = useRecoilValue(UISizes);
   
-  console.log('user in timeline', slotObj);
   return (
     <>
     <div

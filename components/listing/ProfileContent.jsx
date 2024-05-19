@@ -51,7 +51,6 @@ const ProfileContentConst = ({listing, activeView,  activeKey, color, setActiveK
   const tabRef = useRef(null);
 
   function itContent(id){
-    console.log('running show')
     switch (id) {
         case 'gallery':
         return <MegaGallery listing={listing} /* color={color} *//>;

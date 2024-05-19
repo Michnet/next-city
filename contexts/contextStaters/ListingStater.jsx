@@ -79,7 +79,6 @@ function ListingStaterConst({id, author}) {
   
     return () => {
       navigator.serviceWorker.removeEventListener("message", (event) => {
-          //console.log(`The service event is removed :`, event);
       });
     }
   }, [])

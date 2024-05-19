@@ -60,12 +60,10 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
         }
 
 
-     console.log('restUrl(filterArr)', restUrl(filterArr))
     const { data, error, mutate, size, setSize, isValidating, isLoading} = useSWRInfinite((index) => `${restUrl(filterArr)}&per_page=${PAGE_SIZE}&page=${ index + 1 }`, fetcher,
         {revalidateIfStale: true, revalidateOnFocus: false, revalidateOnReconnect: false }
       );
 
-      console.log('data', data);
       
         const items = data ? [].concat(...data) : [];
         const isLoadingInitialData = !data && !error;
@@ -89,45 +87,43 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
                                   }
                                   </div>
       
-        if(isLoading){
-          console.log('loading now')
+        if(isLoadingInitialData){
             itemsView = <>{loaderSkeleton}</>
         }else{
-          console.log('Nooooot loading now', items)
+          if(items?.length > 0){
+            itemsView = <>
+            {horizontal ?  
+            <ResponsiveMasonry columnsCountBreakPoints={{300 : 1, 575: 1}} className='masonry_grid  _products'>
+                  <Masonry gutter="10px">
+                      {items.map((product) => (
+                          <Ticket user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                      ))}
 
+                  </Masonry>
+              </ResponsiveMasonry> 
+            :
+            <div gutter={10} className='masonry_grid _products'>
+                      {items.map((product) => (
+                        <div className="col-xxs-12" xs={8} sm={6} md={4} lg={4}>
+                          <Ticket user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                          </div>
+                      ))}
+
+              </div>
+
+            }
+            </>
+  } 
+
+  if(error){
+      itemsView = <div>No products</div>
+  }
+
+  if(isEmpty){
+    itemsView = <p>Yay, no items found.</p>
+  }
         } 
-       if(items?.length > 0){
-                  itemsView = <>
-                  {horizontal ?  
-                  <ResponsiveMasonry columnsCountBreakPoints={{300 : 1, 575: 1}} className='masonry_grid  _products'>
-                        <Masonry gutter="10px">
-                            {items.map((product) => (
-                                <Ticket user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
-                            ))}
-
-                        </Masonry>
-                    </ResponsiveMasonry> 
-                  :
-                  <div gutter={10} className='masonry_grid _products'>
-                            {items.map((product) => (
-                              <div className="col-xxs-12" xs={8} sm={6} md={4} lg={4}>
-                                <Ticket user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
-                                </div>
-                            ))}
-
-                    </div>
-
-                  }
-                  </>
-        } 
-
-        if(error){
-            itemsView = <div>No products</div>
-        }
-      
-        if(isEmpty){
-          itemsView = <p>Yay, no items found.</p>
-        }
+       
 
     return (
      

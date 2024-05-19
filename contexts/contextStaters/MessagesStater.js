@@ -15,7 +15,6 @@ const MessagesStater = () => {
   }
   
   useEffect(() => {
-      console.log('token in ref', token);
   }, [token])
   
   

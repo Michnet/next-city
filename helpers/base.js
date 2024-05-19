@@ -60,7 +60,6 @@ export const kyFetch = ky.create({
               }
               
             }
-            console.log('error in ky', error);
             return error;
           }
         ],

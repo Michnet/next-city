@@ -20,11 +20,9 @@ import UISettings from "./UISettings";
 //import { getSession } from "next-auth/react";
 
 function sizing(width, setWidth){
-  console.log('running sizing')
   if (typeof window !== 'undefined') {
     if(window.innerWidth != width){
       setWidth(window.innerWidth);
-      console.log('running actual sizing')
     }
     window.addEventListener('resize', () => {
       let newWid = window.innerWidth;
@@ -61,8 +59,6 @@ function LayoutConst({ children, headerTitle, settings}) {
 
   const cachedChildren = useMemo(() => children, [headerTitle])
   const cachedSettings = useMemo(() => settings, [headerTitle])
-
-  console.log("loading layout");
   
   let themeColorsArr = [
     {highlight:"blue", icon: "fa fa-circle color-blue-dark",
