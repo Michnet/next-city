@@ -16,7 +16,7 @@ const Logo = ({simple, light, dark, noVersion=false}) => {
           {!noVersion && <Link className="logo_extras color-theme" href={'/about/whats-new'}>
             <span className="app_version ml-5">
               <span className="opacity-50">v</span>
-              <span className="text-16 app_version color-highlight">1.3</span>
+              <span className="text-16 app_version color-highlight">{siteSettings.app_version}</span>
           </span></Link>}
         </div>
     </div>

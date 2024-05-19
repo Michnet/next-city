@@ -6,7 +6,7 @@ importScripts("/sw-rest.js");
 
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
 var APP_NAME = 'LyveCity';
-var APP_VER = '1.3.1';
+var APP_VER = '1.3.2';
 var CACHE_NAME = APP_NAME + '-' + APP_VER;
 
 // Files required to make this app work offline.
@@ -85,10 +85,8 @@ self.addEventListener('fetch', function(event) {
 	event.respondWith(
 		(async () => {
 		  const requestURL = new URL(event.request.url);
-		  console.log('sw. rest', event.request.url);
 		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
 		  if(unCachList.test(event.request.url)){
-			console.log('sw. uncacheable found', event.request.url);
 			return fetch(event.request);
 		  }else{
 				// Try to get the response from a cache.
@@ -123,7 +121,7 @@ self.addEventListener('fetch', function(event) {
 		  
 		})(),
 	  );
-	if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
+	//if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
 });
 
 self.addEventListener('activate', function(event) {

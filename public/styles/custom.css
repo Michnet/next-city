@@ -124,7 +124,7 @@ div.truncate-5 > p {
     display: table-row;
     width: 100%;
     background-color: #fff;
-    color: #989898;
+    /* color: #989898; */
     margin-bottom: 10px;
     border-radius: 4px;
     position: relative
@@ -161,7 +161,9 @@ div.truncate-5 > p {
     top: -15px;
     right: -15px;
     z-index: 1;
-    border-radius: 50%
+    border-radius: 50%;
+    webkit-mask-image: linear-gradient(white 10%, transparent 100%);
+    mask-image: linear-gradient(white 0, white 100%);
 }
 
 .ticket_card
@@ -1097,6 +1099,11 @@ h6.tax_pare {}
 }
 .event_card_2 .img_content > *{
     width: auto;
+}
+
+.event_card_2 .img_content ._left {
+    /* flex-basis: calc(100% - 60px); */
+    max-width: calc(100% - 60px);
 }
 
 .white-currency 
@@ -2993,6 +3000,7 @@ span.term_icon_box {
     webkit-mask-image: linear-gradient(white 10%, transparent 100%);
     mask-image: linear-gradient(white calc(100% - 141px), transparent 100%);
     width: inherit;
+    height: 78% !important;
 }
 
 .top_list .event_card_3 .img_div {

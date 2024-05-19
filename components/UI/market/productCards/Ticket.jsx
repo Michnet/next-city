@@ -13,15 +13,15 @@ const Ticket = ({product, user}) => {
   
     return <div className="card card-style ticket_card m-0">
     <section className="date bg-cover" style={{backgroundImage: `url("${imgUrl}")`}}>
-      <time datetime="23th feb">
+      {/* <time datetime="23th feb">
       <span>23</span><span>feb</span>
-      </time>
+      </time> */}
     </section>
     <section className="card-cont sm:pl-20">
-      <small className="text-uppercase">{cleanHtml(title)}</small>
+      <small className="text-uppercase smLine truncate-2 mb-2 opacity-70">{cleanHtml(title)}</small>
       <h3 className="text-uppercase lh-1 mb-15">{cleanHtml(name)}</h3>
 
-      <Client><p className="p-desc font-13" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
+      <Client><p className="p-desc font-13 opacity-80" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
       {/* <div className="even-date lh-15">
       <i className="fa fa-calendar"></i>
       <time>
@@ -36,7 +36,8 @@ const Ticket = ({product, user}) => {
             nexen square for people australia, sydney
         </p>
       </div> */}
-      <div className="card_footer flex_row justify-between mt-15">
+      <div className='divider d-block mt-10 mb-2'/>
+      <div className="card_footer flex_row justify-between">
         <ProductActions smallIcons whatsApp={whatsapp} phone={phone} user={user}/>
         <Link href={`/market/event-tickets/${id}`}>Details</Link>
       </div>

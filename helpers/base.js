@@ -9,6 +9,7 @@ export const userActions = 'user-actions/v1';
 export const googleDirectionsUrl = 'https://www.google.com/maps/dir/';
 
 export const siteSettings = {
+  app_version: '1.3.2',
   logo_link : '/app/logos/Lyvecity.png',
   light_logo_link: '/app/logos/Lyvecity_light.png',
   wpDomain : 'https://lyvecityclub.com',

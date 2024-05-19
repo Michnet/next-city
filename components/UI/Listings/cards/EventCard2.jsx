@@ -15,7 +15,7 @@ const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='
     <div className={`card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
             <div className="card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', height:height, minHeight:minHeight}}>
                 <Image src={xtra_large_thumb ?? large_thumb} fill={true} className={'pos-relative object-cover'} style={{minHeight:minHeight}}/>
-                <div className="card-bottom px-3 d-grid justify-between align-items-end gap-2 img_content" style={{gridTemplateColumns: 'auto auto'}}>
+                <div className="card-bottom px-3 d-flex justify-between align-items-end gap-2 img_content" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left pb-10'>
                     {/* {event_date[0]?.start ? <p className="color-white font-12 opacity-80 truncate mb-2"><i className="color-highlight far fa-calendar"></i> <DateViewString date={event_date[0].start} format={'MMMM D'}/> <i className="color-highlight ms-3 far fa-clock"></i> <DateViewString date={event_date[0].start} format={'hh:mm A'}/> </p> : <></>} */}
                     {/* {locations?.length > 0 ? <p className="color-white font-12 opacity-80 mb-2"><i className="color-highlight fa fa-map-marker-alt"></i> {locations[0].name}</p> : <></>} */}
