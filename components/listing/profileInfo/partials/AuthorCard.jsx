@@ -9,12 +9,12 @@ function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
       const {avatar_urls, name, registered_date} = author; 
       authorView = <div className={`author_card ${exClass ?? ''}`}>
    
-      <div className="card card-style text-center shadow-sm m-0" style={{minHeight: '250px'}}>
+      <div className="card card-style text-center shadow-sm m-0" style={{minHeight: '300px'}}>
       <div style={{background: `url(${srcWithFallback(cover)})`}} className="position-absolute z-1 h-100 bg-cover card-img-top position-relative">
       </div>
       <div className="card-body z-2 position-relative bg-gradient-fade justify-end d-flex flex-column">
           <h5 className="card-title mb-0">Created By LyveCity</h5>
-          <span className="small smLine">If you are the owner or organiser of this event, you can claim it and start take over it's management on LyveCity</span>
+          <span className="small smLine">If you are the owner or organiser of this event, you can claim it and take over it's management on LyveCity</span>
           {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
           <div className='card_actions mt-20'><a href={`https://lyvecityclub.com/claim-listing/?listing_id=${listingId}`} target={'_blank'} className="btn btn-primary mx-auto">Claim</a></div>
       </div>
