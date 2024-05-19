@@ -31,7 +31,6 @@ useEffect(() => {
     if(fromActive){
       const {act_id, act_dates} = activeDate;
       if(act_dates && act_id == eventId){
-        console.log('act_dates', act_dates)
         setTheDate(act_dates[0]?.start);
         setTheEndDate(act_dates[0]?.end);
       }

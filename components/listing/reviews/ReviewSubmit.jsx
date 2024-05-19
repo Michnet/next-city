@@ -99,23 +99,19 @@ function ReviewSubmit({source_id, reloadAll, author_id}) {
         rating_data : JSON.stringify(dataArr)
        
        }
-       console.log('review payload', payload)
        setLoading(true);
        const score = await submitReview(payload);
        if(score){
-        console.log('score', score)
         const {user_meta} = score.data;
             if(user_meta){
                 let oldUser = theAuth.user;
                 let oldUserMeta = oldUser.user_meta;
-                console.log('setTheAuth', theAuth)
                 setTheAuth({...theAuth, user: {...oldUser, user_meta:{...oldUserMeta, reviewed : user_meta}}});
             }
            setResponse(score.data);
            setLoading(false);
            reloadAll();
        }else{
-        console.log('score', score)
          setLoading(false);
        }
     }

@@ -15,7 +15,6 @@ function EventDates({Id, dualColumn, upcoming, customDates=null, user, productId
   const getDates = async(payload) => {
         const fetchdDates = await getEventDates(payload);
         if(fetchdDates){
-          console.log('dates', fetchdDates);
             setDates(fetchdDates);
             setLoading(false)
         }

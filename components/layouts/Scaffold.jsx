@@ -23,12 +23,10 @@ function ScaffoldConst({children, uiSize, settings, headerTitle}) {
   const handleStarting = (url) => {
     setLoading(true);
     setLoaderRoute(url)
-    console.log('started loading', url);
   }
 
 const handleStoping = () => {
   setLoading(false)
-  console.log('started end')
 }
 
 useEffect(() => {

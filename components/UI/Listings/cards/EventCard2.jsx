@@ -10,7 +10,6 @@ import TermTag from "../../partials/TermTag";
 const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf} = listing;
     const {likes} = acf?.community ?? {};
-    console.log('card2', listing);
     return (<>
     <div className={`card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
             <div className="card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', height:height, minHeight:minHeight}}>

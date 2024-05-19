@@ -15,7 +15,6 @@ const {userSignup} = val;
 
 
 const onFinish = async(e) => {
-    console.log('daaa', data)
     e.preventDefault();
     setLoading(true);
     const connect = await userSignup(data);

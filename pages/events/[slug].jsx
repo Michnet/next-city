@@ -149,7 +149,6 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing, themeColor, seoMeta, color=randColor}) => {
     //const {listing} = serverObj;
-    console.log('seoMeta in listing', seoMeta)
     const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
     const {_links} = meta ?? {};
     const router = useRouter();

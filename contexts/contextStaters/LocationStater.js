@@ -26,7 +26,6 @@ function LocationStater() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(location_success, location_error, {enableHighAccuracy: true});
         } else {
-          console.log("Geolocation not supported");
           alternateLocater();
         }
       }
@@ -51,7 +50,6 @@ function LocationStater() {
       }
     
       async function location_error() {
-        console.log("Unable to retrieve your location");
         alternateLocater();
       }
     

@@ -7,12 +7,10 @@ import Head from "next/head";
 //import { homeurl, siteSettings } from "~/server/Base";
 
 export default function SiteHead({seoMeta, pageColor, street_address, children, latitude, longitude, updated_time, image, slug, type, phone_number, robots }) {
-  console.log('seoMeta in head', seoMeta)
   const {title, description} = seoMeta ?? {};
   //const pathname = usePathname()
   //const {colorTheme} = useRecoilValue(UIState);
   //const {colors} = colorTheme;
-  console.log('site head from', description)
 
   //const  color = colors[0] ?? '#0F2844';
   const  color = pageColor ?? '#fefefe';

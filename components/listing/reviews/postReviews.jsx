@@ -22,7 +22,6 @@ function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, 
     let userOwned = user?.id == author_id;
  
     async function getReviews(payload, signal){
-        console.log('running from component')
         const reviewsData = await fetchListingReviews(payload, signal);
            if(reviewsData){
             setReviews(reviewsData.data); 
@@ -44,7 +43,6 @@ function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, 
         }
         setLoading(true)
         if(fromActive){
-            console.log('activeReviews', activeReviews)
             const {act_id, act_reviews} = activeReviews;
             if(act_id == id){
                 setReviews(act_reviews); 
