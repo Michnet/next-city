@@ -154,7 +154,7 @@ if(listing_articles){
     content: 'empty'
   })
 }
-
+/* 
 if(general_merchandise?.length > 0){
     tabList.push({
       id : 'merchandise',
@@ -169,9 +169,9 @@ if(general_merchandise?.length > 0){
     id: 'merchandise',
     content: 'empty'
   })
-}
+} */
 
-
+/* 
 if(type === 'event'){
 
   tabList.push({
@@ -184,7 +184,7 @@ if(type === 'event'){
     badgeClass: 'bg-info',
     buttony: true
   });
-}
+} */
 
 return tabList;
 }
