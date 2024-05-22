@@ -12,7 +12,7 @@ import Link from "next/link";
 import { generateTempArray } from '@/helpers/universal';
 import { Skeleton } from "@/components/skeletons/Skeletons";
 
-function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
+function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort='latest', ignorePriority = false, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
 
     let theView, fetchy = true, linkQuery = '';
 
@@ -67,7 +67,6 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
       }
     }, []);
 
-    
     if(orderMeta){
         load.order_by=orderby;
         load.order=order;
@@ -96,6 +95,10 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
     }else if(catSlug){
       load.category = catSlug
       linkQuery.concat(`category=${catSlug}`);
+    }
+
+    if(ignorePriority){
+      load.ignore_priority = ignorePriority;
     }
 
     const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });

@@ -47,6 +47,7 @@ const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExCla
         let filterArr = {
             'event-date': 'any-day',
             ...params,
+            sort:'latest',
             _fields : fieldList,
             _embed: true, 
             listing_type: listingType ?? 'event'

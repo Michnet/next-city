@@ -176,7 +176,7 @@ const ExploreEvents = ({topList}) => {
               <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Hints</button> 
               }</div></> : <></>}</>
               <div className="inner_section mt-20">
-                    <ActivityCarousel skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={'Latest Events'} subtitle={'Fresh and New Events'} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
+                    <ActivityCarousel ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={'Latest Events'} subtitle={'Fresh and New Events'} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">
