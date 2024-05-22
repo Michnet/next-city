@@ -24,9 +24,9 @@ function MainMenu() {
     {id: 2,
         icon: "fa fa-calendar-check",
         color: 'gradient-red',
-        name: "Explore",
+        name: "Explore Events",
         routePath: "/explore/events",
-        isNew: true
+        isNew: false
     },
  ]
   return (

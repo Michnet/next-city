@@ -141,9 +141,9 @@ export async function getStaticPaths() {
 
   export const BookingView = ({text = null, exClass, children, simple=true, setActiveKey}) => {
     if(children){
-       return <div onClick={() => setActiveKey('tickets')}> {children} </div>
+       return <div onClick={() => setActiveKey('private-chat')}> {children} </div>
      }else{
-       return <button onClick={() => setActiveKey('tickets')} className={`booking_view btn shadow-bg shadow-bg-sm  mr-0 ${!simple ? 'ui-2' : 'bg-theme hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
+       return <button onClick={() => setActiveKey('private-chat')} className={`booking_view btn shadow-bg shadow-bg-sm  mr-0 ${!simple ? 'ui-2' : 'bg-theme hover-bg-theme border-light hover-color-white'} animated ${exClass ?? ''}`}>{text?.length > 0 ? text : 'Booking Options'}</button>;
      }
   }
 
@@ -263,6 +263,22 @@ if(listing){
                 </>}
             </LazyLoad>
         </Client>
+        <CallToActions title='Get listed' centered thin light bgClass={'bg-transparent'} actionComponent={
+            <div className="d-flex  gap-3 flex-center">
+                <Link href={'/add-listing'}><button
+            className="btn btn-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
+            >
+            Create event page
+            </button></Link>
+            <Link href={'/about/about-us'}><button
+            className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
+            >
+            Learn More
+            </button></Link>
+            </div>
+            }
+            descript = {"List your event on LyveCity today. It's FREE"}
+            />
     </div>
 
     <Client>

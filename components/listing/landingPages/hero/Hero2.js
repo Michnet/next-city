@@ -21,7 +21,7 @@ import Image from 'next/image';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
-  const {cover, page_views, title, rating, acf, category, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb} = listing ?? {};
+  const {cover, page_views, title, rating, acf, category, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp} = listing ?? {};
   const {greeting} = listing.landing;
   const {likes} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category;
@@ -188,7 +188,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
             <div className='hero_title p-5 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
              <div className='profile_name'>
-             <ListingMetaMini exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
+             <ListingMetaMini colors exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
                 <div className='title_meta d-flex justify-end'>
                   <Client>
@@ -210,13 +210,17 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}
                 <div className={`gap-2 flex-nowrap d-flex`}>
-                  { <BookingView setActiveKey={setActiveKey}children={
+                  {whatsapp && <a href={`https://wa.me/${whatsapp}`} className="btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
+                    <i className="fab fa-whatsapp font-15 text-center color-white"></i>
+                    WhatsApp
+                  </a>}
+                  {/* { <BookingView setActiveKey={setActiveKey}children={
                   <button
                     className={`rounded mr-0  ${styles['button-secondary']} ${styles['button']} ${styles['button-md']} `}
                   >
                     Booking
                   </button>} />
-                  }
+                  } */}
                   <button onClick={() => setActiveKey('private-chat')} /* data-bs-toggle={isMobile ? 'offcanvas' : 'modal'} data-bs-target='#listing_contact' */
                     className={`btn text-truncate color-theme rounded ${styles['learn-more']} ${styles['button']} ${styles['button-outline']} ${styles['button-md-border']} `}
                   >

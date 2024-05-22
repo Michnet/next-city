@@ -84,7 +84,7 @@ const CreateListing = () => {
         </div>
       </section> */}
 
-      <section className="section-bg layout-pt-lg layout-pb-lg md:pt-0 md:pb-60 sm:pb-40 bg-light z-auto">
+      <section className="section-bg layout-pt-lg layout-pb-lg md:pt-0 md:pb-60 sm:pb-40 z-auto">
 <section class="call-action-area call-action-one">
    <div class="container pt-4">
       <div class="row align-items-center call-action-content">

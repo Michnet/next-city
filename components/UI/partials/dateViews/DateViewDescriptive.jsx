@@ -6,7 +6,7 @@ import { useRecoilValue } from "recoil";
 import SkeletonCube from "@/components/skeletons/SkeletonCube";
 
 const DateViewDescriptive = ({eventId, fromActive, iClass, customDate=null, customEndDate, exClass, icon}) => {
-    var isBetween = require('dayjs/plugin/isBetween')
+    var isBetween = require('dayjs/plugin/isBetween');
     dayjs.extend(isBetween);
     var relativeTime = require('dayjs/plugin/relativeTime')
     dayjs.extend(relativeTime);

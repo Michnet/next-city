@@ -17,7 +17,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}
                         <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
                         Booking
                     </button>} */}
-                    <BookingView simple={false} setActiveKey={setActiveKey} text='Booking' exClass='fw-600'/>
+                    <BookingView  simple={false} setActiveKey={setActiveKey} text='Contact Us' exClass='fw-600'/>
                     {/* <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/> */}
                     {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                         <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>

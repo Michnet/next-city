@@ -22,7 +22,7 @@ export function UserCard({size, exClass=''}){
                      <div className="align-self-center">
                      <span type="button" className="d-flex" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}>
                            <Client> {loading ? <LoaderDualRing exClass={'_mini'}/> : <>{user ? <div>{<Avatar width={size ?? 30} rounded src={avatarUrl}  className="gx-size-40 gx-pointer" alt=""/>
-                        } </div> : <>{sessionUser ? <Avatar width={size ?? 30} rounded src={sessionUser.image}  className="gx-size-40 gx-pointer" alt=""/> : <i className="bi bi-person user_i" data-menu='login_modal' onClick={(e) => openOffCanvas(e)}/>}</>}</>}</Client>
+                        } </div> : <>{sessionUser ? <Avatar width={size ?? 30} rounded src={sessionUser.image}  className="gx-size-40 gx-pointer" alt=""/> : <div className='row_flex align-items-center gap-2'  data-menu='login_modal' onClick={(e) => openOffCanvas(e)}><i className="bi bi-person user_i" /><h5 className='my-0 hide_in_collapsed'>My Account</h5></div>}</>}</>}</Client>
                            </span>
                      </div>
                      <div className="ps-2 align-self-center user_info">
