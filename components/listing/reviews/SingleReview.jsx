@@ -21,7 +21,7 @@ function SingleReview({ review, user, listingId, noTime, reload, width='auto', e
           </div>
           <div className="divider mb-10"/>
           <div className="rev_content">
-            <h5>{title}</h5>
+            <h5 className="'font-17 mb-2">{title}</h5>
             <div id={`score_stars_${id}`} className='score_stars'
                 style={{
                     width: '100px',

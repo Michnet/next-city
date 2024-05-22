@@ -3282,7 +3282,7 @@ aside.news_room .activity_body .body_main {grid-template-columns: 50px auto;}
 
 .listing_reviews._slider .review_card .footer_sec {background: transparent;}
 
-.listing_reviews._slider .rev_content {font-size: 18px;margin-bottom: 0;}
+.listing_reviews._slider .rev_content {margin-bottom: 0;}
 
 .listing_reviews._slider i.icon-quote-backward {font-size: 98px;position: absolute;right: 35px;opacity: 0.3;top: 0;}
 

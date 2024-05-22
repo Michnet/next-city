@@ -263,7 +263,7 @@ if(listing){
                 </>}
             </LazyLoad>
         </Client>
-        <CallToActions title='Get listed' centered thin light bgClass={'bg-transparent'} actionComponent={
+        <CallToActions exClass={''} title='Get listed' centered thin light  actionComponent={
             <div className="d-flex  gap-3 flex-center">
                 <Link href={'/add-listing'}><button
             className="btn btn-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
