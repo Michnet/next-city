@@ -1,5 +1,6 @@
 import { siteColors } from "@/helpers/base"
 import { randomEither } from "@/helpers/universal"
+import { Client } from "react-hydration-provider";
 import { useRouter } from "next/router"
 
 export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, exClass}) {
@@ -104,11 +105,12 @@ export  const CustomRow = ({exClass, headContent, bodyContent, sideContent}) => 
 
 export const ListingMetaMini = ({page_views, ratings, exClass, page_likes, filled, colors}) => {
   return <div className={`listing_meta _mini ${exClass ?? ''}`}>
-            <ul className={`mb-0 gx-text-truncate _meta w-auto d-flex align-items-center`}>
+            <Client><ul className={`mb-0 gx-text-truncate _meta w-auto d-flex align-items-center`}>
                 {page_likes ? <li><i className={`bi bi-suit-heart${filled ? '-fill' : ''} mr-4`} style={{color: colors ? `color-${randomEither(siteColors)}-dark` : 'initial'}}></i>{page_likes}</li> : null}
                 {ratings ? <li><i className={`bi bi-star${filled ? '-fill' : ''}  mr-4`} style={{color: colors ? `color-${randomEither(siteColors)}-dark` : 'initial'}}/> {ratings} </li> : null}
                 {page_views ? <li><i className={`bi bi-eye${filled ? '-fill' : ''} mr-4`} style={{color: colors ? `color-${randomEither(siteColors)}-dark` : 'initial'}}></i>{page_views}</li> : null}
             </ul>
+            </Client>
           </div>
 }
 
