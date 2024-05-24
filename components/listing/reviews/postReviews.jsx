@@ -74,7 +74,7 @@ function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, 
         if(list?.length > 0){
     
          if(carousel){
-             reviewsView = <Splider height={200} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop'}}>  
+             reviewsView = <Splider height={200} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>  
              {list.map((item) => {
                  return <SingleReview transparent={transparentCards} exClass={`mx-0 ${transparentCards ? 'border' : ''}`} width={300} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
              })} 
