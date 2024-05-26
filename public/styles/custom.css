@@ -101,6 +101,16 @@ h6 {
     background-color: var(--bgThemeTransparent3);
     /* border: 1px solid var(--borderThemeAlt); */
 }
+
+.card.bg-theme.pdt-card {
+    background-color: var(--bgTheme);
+}
+
+.card.pdt-card img {
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+}
 div.truncate-5 > p {
     --max-lines: inherit;
     max-height: inherit;
@@ -2152,10 +2162,22 @@ button.back_link {
 }
 
 .woocommerce-Price-currencySymbol {
-    opacity:0.6;
+    opacity: 0.5;
     color: var(--colorTheme);
     margin-right: 5px;
+    vertical-align: middle;
+    -webkit-writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
 }
+
+._price bdi .woocommerce-Price-currencySymbol {
+    font-size: 10px;
+    font-weight: 600;
+    margin-right: 0;
+    line-height: 1;
+}
+
+._price del bdi .woocommerce-Price-currencySymbol {}
 .woocommerce-Price-amount.amount {
     color: var(--secTheme);
     font-weight: 700
@@ -3042,7 +3064,7 @@ span.list_title._first {
 }
 
 .header.header-sticky.header-always-show.header-invert:not(.header-active) ._title {
-    color: #fff;
+    /* color: #fff; */
 }
 
 #listingMenuRight .list-custom-small ._link {
@@ -3594,6 +3616,7 @@ ul.listing_navigator li {
     gap: 4px;
     font-size: var(--xsFontSize);
     font-weight: 600;
+    cursor: pointer;
 }
 
 #footer-bar ul.listing_navigator li {
@@ -3617,7 +3640,7 @@ ul.listing_navigator li.visible.prev .menu_pointer._left {
 
 ul.listing_navigator li:hover {background: #6c6969;}
 
-ul.listing_navigator {display: flex;align-items: center;padding: 0 22px;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;margin-bottom: 0;}
+ul.listing_navigator {display: flex;align-items: center;padding: 0 22px;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;margin-bottom: 6px;}
 
 #footer-bar ul.listing_navigator {
     padding: 0;
@@ -3786,4 +3809,54 @@ ul.listing_menu .ex_label {display: none;}
 .booking_view.btn.ui-2 {
   font-size: 12px;
   padding: 10px 16px;
+}
+
+._price {
+    display: flex;
+    flex-direction: column-reverse;
+    font-family: var(--headingFont);
+}
+
+._price ins bdi, ._price bdi {
+    font-weight: 800;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+._price ins {
+    text-decoration: none;
+    margin-bottom: 0;
+}
+
+._price del bdi, ._price del bdi .woocommerce-Price-currencySymbol {
+    font-weight: 400;
+    color: var(--colorTheme);
+    opacity: 0.6;
+    font-size: 11px;
+}
+
+._price del bdi .woocommerce-Price-currencySymbol {
+    display: none;
+}
+
+._price del {
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
+    line-height: 1;
+}
+
+.pdt_actions.buttony button {
+    padding: 0 0;
+    background-color: var(--bgTheme);
+    margin: 0 10px;
+    box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08) !important;
+    border-radius: 30px;
+}
+
+.pdt_actions.buttony button i {
+    width: 40px;
+    line-height: 40px;
+    font-size: 18px;
 }

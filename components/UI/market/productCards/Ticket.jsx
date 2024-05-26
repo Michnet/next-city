@@ -38,7 +38,7 @@ const Ticket = ({product, user}) => {
       </div> */}
       <div className='divider d-block mt-10 mb-2'/>
       <div className="card_footer flex_row justify-between">
-        <ProductActions smallIcons whatsApp={whatsapp} phone={phone} user={user}/>
+        <ProductActions id={id} smallIcons whatsApp={whatsapp} phone={phone} user={user}/>
         <Link href={`/market/event-tickets/${id}`}>Details</Link>
       </div>
     </section>

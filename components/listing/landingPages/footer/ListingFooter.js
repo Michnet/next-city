@@ -1,14 +1,16 @@
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
-import { UISizes } from '@/contexts/atoms';
+//import { useRecoilValue } from 'recoil';
+//import { UISizes } from '@/contexts/atoms';
 import { cleanHtml } from '@/helpers/universal';
 import { BookingView } from '@/pages/events/[slug]';
 import { Avatar, SocialLinks } from '@/components/UI/Partials';
 import { quickLinks } from '@/helpers/data';
+import { Client } from 'react-hydration-provider';
+import Navigator from '../../Navigator';
 
 const ListingFooter = (props) => {
-  const{thumbnail, tabList, activeKey, setActiveKey, links, short_desc, title, tagline} = props;
-  const {isMobile} = useRecoilValue(UISizes);
+  const{thumbnail, tabList, activeKey, setActiveKey, links, short_desc, title, tagline, listing} = props;
+  //const {isMobile} = useRecoilValue(UISizes);
   let logoView = <></>;
 
 
@@ -24,8 +26,11 @@ const ListingFooter = (props) => {
       <div
         className={`footer-max-width max-content-container gap-4`}
       >
-        <div className={'footer-banner overflow-hidden rounded-4 mb-0'}>
-          <div className='footer_banner_content'>
+        <div className={'footer-banner overflow-hidden mb-0'}>
+          <Client>
+              <Navigator lMenu={tabList} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
+          </Client>
+          <div className='footer_banner_content rounded-4'>
              <h1 className={`footer-text heading2`}>
             <span>BOOK YOUR SLOT</span>
           </h1>

@@ -1,4 +1,3 @@
-//import ProductCardTicket from '../../../../routes/market/products/cards/ProductCardTicket';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import {useRef} from "react";
 import useSWRInfinite from "swr/infinite";
@@ -7,25 +6,41 @@ import { DualColorHeader } from "@/components/UI/Partials";
 import { fetcher, getBookableProductsUrl, getProductsUrl } from "@/helpers/rest";
 import { generateTempArray, productsSortList, scrollToSpot } from "@/helpers/universal";
 import { useSignal } from "@preact/signals-react";
-import Ticket from "@/components/UI/market/productCards/Ticket";
-import {useRecoilValue} from "recoil";
-import {authState} from '@/contexts/atoms'
+import {useRecoilState, useRecoilValue} from "recoil";
+import {authState, storeOrderState} from '@/contexts/atoms'
 import { Skeleton } from "@/components/skeletons/Skeletons";
+import dynamic from "next/dynamic";
 
 function ListingProductsSimple({ids, isSample, exClass, title, listy, productType, listingId, relatedIds}) {
   const {user} = useRecoilValue(authState);
+  const [sorting, setSorting] = useRecoilState(storeOrderState);
 
     const horizontal = useSignal(listy ?? false);
-    const sorting = useSignal('newest');
-    function setSorting(val){
-      sorting.value = val;
+    function runSetSorting(val){
+      setSorting(val);
     }
 
     const simplePdtHeadRef = useRef(null);
-    const PAGE_SIZE = 6
+    const PAGE_SIZE = 6; let Card;
 
 
     const scroller = () => scrollToSpot(simplePdtHeadRef, 0);
+
+    switch (productType) {
+      case 'simple':
+        Card = dynamic(() => import("@/components/UI/market/productCards/ProductCard"));
+        break;
+
+      case 'booking':
+        Card = dynamic(() => import("@/components/UI/market/productCards/Ticket"));
+        break;
+    
+      default:
+        Card = dynamic(() => import("@/components/UI/market/productCards/ProductCard"));
+        break;
+    }
+    
+
 
 
     let filterArr = {
@@ -93,10 +108,10 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
           if(items?.length > 0){
             itemsView = <>
             {horizontal ?  
-            <ResponsiveMasonry columnsCountBreakPoints={{300 : 1, 575: 1}} className='masonry_grid  _products'>
+            <ResponsiveMasonry columnsCountBreakPoints={productType == 'simple' ? {300:1,480:2,768:3} : {300:1,600:2}} className='masonry_grid  _products'>
                   <Masonry gutter="10px">
                       {items.map((product) => (
-                          <Ticket user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                          <Card user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
                       ))}
 
                   </Masonry>
@@ -105,7 +120,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
             <div gutter={10} className='masonry_grid _products'>
                       {items.map((product) => (
                         <div className="col-xxs-12" xs={8} sm={6} md={4} lg={4}>
-                          <Ticket user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                          <Card user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
                           </div>
                       ))}
 
@@ -139,7 +154,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
                       <div className="_right">
                       <div className="inner_left">{<>
                         <span>Start With </span>  
-                        <select value={sorting ?? 'newest'}  onChange={(e) => setSorting(e.target.value)} className="list-sort">
+                        <select value={sorting}  onChange={(e) => runSetSorting(e.target.value)} className="list-sort">
                           {productsSortList.map((el) => {
                             const {name, id, label} = el;
                             return <option key={id} value={name}>{label}</option>

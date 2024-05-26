@@ -19,7 +19,7 @@ const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
 function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKey}) {
     const {id,about_us, listing_store, community_id, type, author_id} = listing;
-    const {tickets} = listing_store;
+    const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us;
     let isSample = true;
     let chatCount = useSignal(0)
@@ -53,6 +53,10 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
               fallBack={
                 <ListingContact light listing={listing} title={'No future occurrences'} descript={'The listing owner has not added any future occurences for it. This may mean that the event has ended. Contact them to inquire further'}/>
               }/></>;
+            case 'merchandise':
+              return <div className='px-3'>
+              <DualColorHeader exClass={'mb-20 mt-20'} title={'Event Store'} desc={"Items available for this event. You can pre-order or contact the listing's manager"}/>
+              <ListingProductsSimple isSample ={isSample} listy ids={general_merchandise} productType="simple" listingId = {id} relatedIds={general_merchandise}/></div>;
             case 'tickets':
               return tickets?.length > 0 ? <div>
               <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>

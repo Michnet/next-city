@@ -247,11 +247,11 @@ if(listing){
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         <Hero2  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
-        <Client>
+        {/* <Client>
             <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
-        </Client>
+        </Client> */}
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
-          <ListingFooter thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
+          <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
         </LazyLoad>
         <Client>
           <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>

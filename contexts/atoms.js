@@ -64,6 +64,11 @@ export const messagesState = atom({
   default: [], 
   //effects_UNSTABLE: [persistAtom],
 });
+export const storeOrderState = atom({
+  key: 'storeOrderState', 
+  default: 'newest', 
+  //effects_UNSTABLE: [persistAtom],
+});
 
 
 export const activeDateState = atom({

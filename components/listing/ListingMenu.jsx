@@ -154,7 +154,7 @@ if(listing_articles){
     content: 'empty'
   })
 }
-/* 
+ 
 if(general_merchandise?.length > 0){
     tabList.push({
       id : 'merchandise',
@@ -164,7 +164,7 @@ if(general_merchandise?.length > 0){
       badgeNumber: general_merchandise?.length ?? 0,
       badgeClass: 'bg-warning',
     });
-}else{
+}/*else{
   tabList.push({
     id: 'merchandise',
     content: 'empty'
