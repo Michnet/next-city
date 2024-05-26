@@ -107,7 +107,7 @@ h6 {
 }
 
 .card.pdt-card img {
-    height: 200px;
+    height: 120px;
     object-fit: contain;
     object-position: center;
 }
@@ -3846,13 +3846,15 @@ ul.listing_menu .ex_label {display: none;}
     height: fit-content;
     line-height: 1;
 }
-
 .pdt_actions.buttony button {
     padding: 0 0;
     background-color: var(--bgTheme);
-    margin: 0 10px;
     box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08) !important;
     border-radius: 30px;
+}
+
+.pdt_actions.buttony button:not(:last-child) {
+    margin: 0 5px 0 0 !important;
 }
 
 .pdt_actions.buttony button i {

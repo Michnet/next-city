@@ -5,11 +5,12 @@ import { memo } from "react"
 //import { useRecoilValue } from "recoil"
 import BottomMenu from "../layouts/BottomMenu"
 import { LoaderDualRing, LoaderRingBoxed } from "../skeletons/Loaders"
-import Navigator from "./Navigator"
+//import Navigator from "./Navigator"
 import { NextPostLink, PreviousPostLink } from "./partials/ListingLinks"
 
 const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}) =>{
-    const {phone, whatsapp} = listing ?? {}
+    const {phone, whatsapp, acf} = listing ?? {}
+    const {general_merchandise} = acf ?? {}
 
     let bottomContent = <div id="footer-bar" className="footer-bar-1 d-md-none">
                 <div className='gap-2 footer_content ps-2 py-2'>
@@ -17,7 +18,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}
                         <i class="far fa-calendar-check font-15 text-center bg-transparent"></i>
                         Booking
                     </button>} */}
-                    <BookingView  simple={false} setActiveKey={setActiveKey} text='Contact Us' exClass='fw-600'/>
+                <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600'/>
                     {/* <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/> */}
                     {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                         <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>

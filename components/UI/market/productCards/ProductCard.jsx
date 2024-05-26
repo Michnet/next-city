@@ -9,8 +9,6 @@ const ProductCard = ({product, user}) => {
     const {id, listing, name, price, rating, short_description,price_html, occurrence_slots, images} = product ?? {};
     const {phone, whatsapp, cover, logo, title, id:listing_id, type, slug} = listing ?? {};
 
-    console.log('product card', product)
-
     let imgUrl = images?.length > 0 ? images[0].medium : cover;
   
     return <>{/* <div className="card card-style ticket_card m-0">
@@ -34,10 +32,10 @@ const ProductCard = ({product, user}) => {
   </div> */}
 
 
-  <div className="card card-style mx-0 bg-theme pdt-card">
-							<img src={imgUrl} className="img-fluid"/>
+  <div className="card card-style m-0 bg-theme pdt-card">
+							<img src={imgUrl} className="pdt-img"/>
 							<div className="content">
-                <h3 className="mb-0 truncate-2">{cleanHtml(name)}</h3>
+              <Link href={`/market/event-tickets/${id}`}><h3 className="mb-0 truncate-2 smLine font-16">{cleanHtml(name)}</h3></Link>
 								{/* <a href="#">
 									<i className="fa fa-star color-yellow-dark font-10"></i>
 									<i className="fa fa-star color-yellow-dark font-10"></i>
@@ -47,13 +45,13 @@ const ProductCard = ({product, user}) => {
 									<span className="font-11 ps-2 color-theme opacity-30">Based on 331 Reviews</span>
 								</a> */}{/* 
 								<h5 className="font-13 font-600 opacity-50 pt-1 pb-2">256GB DDR, 15TB SSD, 10 Expansion Ports, free Apple Music Subscription included.</h5> */}
-                <Client><h5 className="p-desc font-13 font-600 opacity-50 pt-1 pb-2 truncate-3" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
+                <Client><h5 className="p-desc font-13 font-600 opacity-50 pt-1 pb-2 truncate-3 smLine" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
 								<div className="divider mb-2 mt-10"></div>
-								<div className="d-flex">
+								<div className="d-flex flex-wrap gap-2 justify-between">
 									<div className="align-self-center">
                     {price_html && <PriceView preText={''}  exClass={''} priceHTml={price_html}/> }
 									</div>
-									<div className="align-self-center ms-auto">
+									<div className="align-self-center">
                   <ProductActions id={id} exClass={'buttony'} whatsApp={whatsapp} phone={phone} user={user}/>
 										{/* <a href="#" data-toast="snackbar-favorites" className="icon icon-s bg-theme rounded-l shadow-xl rounded-m ms-2 color-theme"><i className="fa fa-heart color-red-dark font-14"></i></a>
 										<a href="#" data-toast="snackbar-cart" className="icon icon-s bg-theme rounded-l shadow-xl rounded-m ms-2 color-theme"><i className="fa fa-shopping-bag font-14"></i></a> */}

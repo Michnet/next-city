@@ -108,7 +108,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
           if(items?.length > 0){
             itemsView = <>
             {horizontal ?  
-            <ResponsiveMasonry columnsCountBreakPoints={productType == 'simple' ? {300:1,480:2,768:3} : {300:1,600:2}} className='masonry_grid  _products'>
+            <ResponsiveMasonry columnsCountBreakPoints={productType == 'simple' ? {300:2,575:3,768:4} : {300:1,600:2}} className='masonry_grid  _products'>
                   <Masonry gutter="10px">
                       {items.map((product) => (
                           <Card user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>

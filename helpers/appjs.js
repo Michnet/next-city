@@ -199,7 +199,8 @@ export function closeMenus(){
  //Toasts
  export function showToast(e){
     if(typeof window !== 'undefined'){
-        let el = e.currentTarget;
+        let el = e.target;
+        console.log('e', e)
         var toastData = el.getAttribute('data-toast')
         var notificationElement = document.getElementById(toastData);
         var notificationToast = new bootstrap.Toast(notificationElement);
