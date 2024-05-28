@@ -106,6 +106,19 @@ h6 {
     background-color: var(--bgTheme);
 }
 
+.card.pdt-card._mini .pdt_actions i {
+    font-size: 16px;
+    border: 1px solid var(--borderTheme);
+    width: 30px;
+    line-height: 30px;
+}
+
+.card.pdt-card._mini 
+ .pdt_actions .button_group button {
+    padding: 0;
+    margin-left: 10px;
+}
+
 .card.pdt-card img {
     height: 120px;
     object-fit: contain;
@@ -2177,6 +2190,10 @@ button.back_link {
     line-height: 1;
 }
 
+.pdt-card._mini ._price bdi .woocommerce-Price-currencySymbol {
+    font-size: 8px;
+}
+
 ._price del bdi .woocommerce-Price-currencySymbol {}
 .woocommerce-Price-amount.amount {
     color: var(--secTheme);
@@ -2527,12 +2544,13 @@ nav.toc > ul > li {
 .menu-title .close-menu {
     font-size: 20px;
     color: #dc3545;
-    position: absolute;
+    position: relative;
     text-align: center;
     width: 55px;
-    line-height: 85px;
+    line-height: 65px;
     right: 0;
     top: 0;
+    justify-self: flex-end;
 }
 .form-group._features select option {
     min-height: 26px;
@@ -3824,6 +3842,14 @@ ul.listing_menu .ex_label {display: none;}
     align-items: center;
 }
 
+.card.pdt-card._mini ._price ins bdi, .card.pdt-card._mini ._price bdi {
+    font-size: 16px;
+}
+
+.card.pdt-card._mini ._price del bdi {
+    display: none;
+}
+
 ._price ins {
     text-decoration: none;
     margin-bottom: 0;
@@ -3861,4 +3887,11 @@ ul.listing_menu .ex_label {display: none;}
     width: 40px;
     line-height: 40px;
     font-size: 18px;
+}
+
+.menu .menu-title {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    border-bottom: 1px solid var(--borderTheme);
 }

@@ -42,12 +42,13 @@ function shortened(arr, value) {
 }
 
   async function likeItem(e, payload){
+    console.log('e func', e);
     setLiked(true);
     const postLike = await likePost(payload);
     if (postLike) {
         let newMeta = {...user_meta, likes:[...likes, listing]}
        setAuthObj({...authObj, user:{...user, user_meta: newMeta}})
-       showToast(e)
+       //showToast(e)
     }
   }
 
@@ -57,15 +58,15 @@ function shortened(arr, value) {
     if (postdislike) {
       let newMeta = {...user_meta, likes:shortened([...likes], listing)}
        setAuthObj({...authObj, user:{...user, user_meta: newMeta}})
-      showToast(e)
+      //showToast(e)
     }
   }
 
   let likeView;
   if(user){
       likeView = <div className="likes_box _likes"> 
-              {liked ? <span>{likedEl ?? <i className="fa fa-heart" data-toast="snackbar-unliked" onClick={(e) => unlikeItem(e, {JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}/>}</span>
-                     : <span>{unlikedEl ?? <i className="far fa-heart" data-toast="snackbar-liked" onClick={(e) => likeItem(e, {JWT: token, liked_id: listing, user_id : parseInt(user.id)})}/>}</span>
+              {liked ? <span>{likedEl ?? <i className="fa fa-heart" data-toast="snackbar-unliked" onClick={(e) => {console.log('e', e); unlikeItem(e, {JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}}/>}</span>
+                     : <span>{unlikedEl ?? <i className="far fa-heart" data-toast="snackbar-liked" onClick={(e) => {console.log('e', e); likeItem(e, {JWT: token, liked_id: listing, user_id : parseInt(user.id)})}}/>}</span>
                  }
                 </div>
   }else{

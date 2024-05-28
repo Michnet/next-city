@@ -130,12 +130,12 @@ if(gallery?.length > 0){
      // content: <MegaGallery gallery={listing.gallery}/>
     }
    )
-}/* else{
+}else{
   tabList.push({
     id: 'gallery',
     content: 'empty'
   })
-}  */
+} 
 
 if(listing_articles){
  tabList.push(
@@ -148,12 +148,12 @@ if(listing_articles){
     innerClass : 'bg_tab',
   }
  )
-}else{
+}/* else{
   tabList.push({
     id: 'articles',
     content: 'empty'
   })
-}
+} */
  
 if(general_merchandise?.length > 0){
     tabList.push({
@@ -164,12 +164,12 @@ if(general_merchandise?.length > 0){
       badgeNumber: general_merchandise?.length ?? 0,
       badgeClass: 'bg-warning',
     });
-}/*else{
+}else{
   tabList.push({
     id: 'merchandise',
     content: 'empty'
   })
-} */
+}
 
 /* 
 if(type === 'event'){

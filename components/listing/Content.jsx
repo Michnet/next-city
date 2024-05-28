@@ -1,7 +1,9 @@
 import { authState } from "@/contexts/atoms";
+import { openOffCanvas } from "@/helpers/appjs";
 import { useSignal } from "@preact/signals-react";
 import dynamic from "next/dynamic";
 import {memo, useMemo} from 'react';
+import { TagCloud } from "react-tagcloud";
 import { useRecoilValue } from "recoil";
 import { DualColorHeader } from "../UI/Partials";
 const ComponentActivity = dynamic(() => import("../UI/partials/ComponentActivity"));
@@ -26,8 +28,8 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
 
     const {user} = useRecoilValue(authState);
 
-    function itContent(id){
-        switch (id) {
+    function itContent(tabId){
+        switch (tabId) {
             case 'gallery':
             return <MegaGallery listing={listing} /* color={color} *//>;
             case 'reviews':
@@ -54,9 +56,9 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
                 <ListingContact light listing={listing} title={'No future occurrences'} descript={'The listing owner has not added any future occurences for it. This may mean that the event has ended. Contact them to inquire further'}/>
               }/></>;
             case 'merchandise':
-              return <div className='px-3'>
+              return general_merchandise?.length > 0 ? <div className='px-3'>
               <DualColorHeader exClass={'mb-20 mt-20'} title={'Event Store'} desc={"Items available for this event. You can pre-order or contact the listing's manager"}/>
-              <ListingProductsSimple isSample ={isSample} listy ids={general_merchandise} productType="simple" listingId = {id} relatedIds={general_merchandise}/></div>;
+              <ListingProductsSimple isSample ={isSample} listy ids={general_merchandise} productType="simple" listingId = {listing?.id} relatedIds={general_merchandise}/></div> : 'empty';
             case 'tickets':
               return tickets?.length > 0 ? <div>
               <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>
@@ -74,7 +76,52 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
           const {id, icon, title, subTitle, innerClass, widgetClass, badge} = tagGroup;
           let content = itContent(id);
           
-          if(content !== 'empty'){
+          if(content == 'empty'){
+            
+            
+            const customRenderer = (tag, size, color) => {
+              return (
+                <span  key={tag.id} style={{ color }} className={`fb_tag pointer tag-${size}`}>
+                  {tag.value}
+                </span>
+              )
+            }
+
+            const color_options = {
+              luminosity: 'dark',
+              //hue: color,
+            }
+
+            function availableViews(){
+              let tagsArr = [];
+              lMenu.map((el) => {
+              const {id, icon, content, title, subTitle} = el;
+              if(content != 'empty'){
+                tagsArr.push({value: title, id : id, count: 30})
+              }
+              });
+              return tagsArr;                                
+            }
+          return <div  id={`${listing.id}_${id}`} key={id} title={title} className={`empty_tab tabpane`}>
+                  {activeKey === 'cover' ? <></> : <div className={`tab_inner`}>
+                      <div className="l_view_fallback py-5">
+                      <div className="mb-20 _heading">
+                        <p className="h_1">Empty View</p>
+                      <p className="h_2">This view is empty for this listing, under the current view mode. <span data-menu='activeViewModal' onClick={(e) => openOffCanvas(e)} className="text-blue-1 pointer _link">Change the view mode</span>. Alternatively, choose from the available views below</p></div>
+                      <TagCloud
+                          minSize={12}
+                          maxSize={35}
+                          tags={availableViews()}
+                          colorOptions={color_options}
+                          onClick={(tag) => setActiveKey(tag.id)}
+                          renderer={customRenderer}
+                        />
+                    </div>
+                  </div>}
+                </div>
+
+          }else{
+
             if(id === 'occurrences'){
               if(type !== 'event'){
                   return;
@@ -88,7 +135,6 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
                           {content}
                         </div>}
                     </div>
-
           }
         }
     }

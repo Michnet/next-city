@@ -5224,7 +5224,7 @@ opacity: 1;
 }
 
 .fb_tag {
-  border: 1px solid #d4d4d4;
+  border: 1px solid var(--borderTheme);
   border-radius: 30px;
   padding: 5px 13px;
 }

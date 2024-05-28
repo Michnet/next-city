@@ -18,7 +18,7 @@ const CallToActions = dynamic(() => import("@/components/UI/CallToActions"));
 const Link = dynamic(() => import("next/link"));
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import ListingTopMenu from "@/components/listing/ListingTopMenu";
-import { closeMenus } from "@/helpers/appjs";
+import { closeMenus, openOffCanvas } from "@/helpers/appjs";
 //import BottomMenu from "@/components/layouts/BottomMenu";
 import Hero2 from "@/components/listing/landingPages/hero/Hero2";
 import listingMenu from "@/components/listing/ListingMenu";
@@ -38,7 +38,7 @@ import { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
-const Navigator = dynamic(() => import("@/components/listing/Navigator"));
+//const Navigator = dynamic(() => import("@/components/listing/Navigator"));
 
 const randColor = randomEither(siteColors);
 
@@ -163,7 +163,7 @@ let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0)
 
 useEffect(() => {
   setActiveKey(query?.page ?? view);
-}, [listing.id])
+}, [listing.id, view])
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
 let VisitorActionsView;
@@ -175,7 +175,7 @@ const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id
 
 if(listing){
     VisitorActionsView = <div>
-        <VisitorActions setActiveKey={setActiveKey} listing={cachedListing} extraItem = {<div className="action_box" data-menu='activeViewModal'> <i className="las la-bullseye"/> <label>View Mode</label> </div>}/>
+        <VisitorActions setActiveKey={setActiveKey} listing={cachedListing} extraItem = {<div className="action_box" data-menu='activeViewModal' onClick={(e) => openOffCanvas(e)}> <i className="las la-bullseye"/> <label>View Mode</label> </div>}/>
         <hr/>
         <CallToActions centered thin light bgClass={'bg-transparent'} actionComponent={
             <div className="d-flex  gap-3 flex-center">
@@ -294,12 +294,14 @@ if(listing){
     <RightMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title">
-            <a href="#" className="close-menu" onClick={() => closeMenus()}>
-            <i className="fa fa-times"></i>
-            </a>
+            <div className="p-3"><h5 className="font-18">Listing Home page</h5></div>
+            <span className="close-menu" onClick={() => closeMenus()}>
+              <i className="fa fa-times"></i>
+            </span>
         </div>
         <div className="content">
-            <div class="btns view_modes">
+            <p>Choose the first thing you want to see when you open a listing's page</p>
+            <div class="btns view_modes py-3">
                 {viewModes.map((el) => {
                 const {id, mode, title} = el;
                 return <button disabled={view == mode} key={id} type="button" class={`btn mr-10  ${view == mode ? 'active radius-30' : 'ui-2 animated'}`} onClick={() => setView(mode)}>{title}</button>

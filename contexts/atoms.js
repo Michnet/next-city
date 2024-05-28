@@ -82,6 +82,12 @@ export const activeReviewsState = atom({
   //effects_UNSTABLE: [persistAtom],
 });
 
+export const pdtListyState = atom({
+  key: 'pdtListy', 
+  default: false,
+  effects_UNSTABLE: [persistTheme], 
+});
+
 export const UIWidthState = atom({
   key: 'uiWidthState', 
   default: 575, 
@@ -109,8 +115,6 @@ export const locationState = atom({
   default: {},
   effects_UNSTABLE: [persistLoc]
 });
-
-
 
 export const noticeState = atom({
   key: 'noticeState',

@@ -1,5 +1,5 @@
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
-import {useRef} from "react";
+import {useRef, useState, useEffect} from "react";
 import useSWRInfinite from "swr/infinite";
 // import { fetcher } from "server/WpBase";
 import { DualColorHeader } from "@/components/UI/Partials";
@@ -7,15 +7,15 @@ import { fetcher, getBookableProductsUrl, getProductsUrl } from "@/helpers/rest"
 import { generateTempArray, productsSortList, scrollToSpot } from "@/helpers/universal";
 import { useSignal } from "@preact/signals-react";
 import {useRecoilState, useRecoilValue} from "recoil";
-import {authState, storeOrderState} from '@/contexts/atoms'
+import {authState, storeOrderState, pdtListyState} from '@/contexts/atoms'
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import dynamic from "next/dynamic";
 
 function ListingProductsSimple({ids, isSample, exClass, title, listy, productType, listingId, relatedIds}) {
   const {user} = useRecoilValue(authState);
-  const [sorting, setSorting] = useRecoilState(storeOrderState);
-
-    const horizontal = useSignal(listy ?? false);
+  const [sorting, setSorting] = useState('newest');
+    const [horizontal, setHorizontal] = useRecoilState(pdtListyState);
+    
     function runSetSorting(val){
       setSorting(val);
     }
@@ -54,30 +54,55 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
           filterArr.include = ids.join(',')
         }
 
-        if(sorting ===  'price-lowest'){
-          filterArr.orderby = 'price';
-          filterArr.order = 'asc'
-        }
+        
+  const { data, error, mutate, size, setSize, isValidating, isLoading} = useSWRInfinite((index) => `${restUrl(filterArr)}&per_page=${PAGE_SIZE}&page=${ index + 1 }`, fetcher,
+    {revalidateIfStale: true, revalidateOnFocus: false, revalidateOnReconnect: true }
+  );
 
-        if(sorting ===  'price-highest'){
-          filterArr.orderby = 'price';
-          filterArr.order = 'desc'
-        }
+    useEffect(() => {
+      switch (sorting) {
+      case 'price-lowest':
+        filterArr.orderby = 'price';
+        filterArr.order = 'asc'
+        break;
 
-        if(sorting ===  'rating'){
-          filterArr.orderby = 'rating';
-          filterArr.order = 'desc'
-        }
+      case 'newest':
+        filterArr.orderby = 'date';
+        filterArr.order = 'desc'
+        break;
 
-        if(sorting ===  'name'){
-          filterArr.orderby = 'title';
-          filterArr.order = 'asc'
-        }
+      case 'oldest':
+        filterArr.orderby = 'date';
+        filterArr.order = 'asc'
+        break;
 
+      case 'price-highest':
+        filterArr.orderby = 'price';
+        filterArr.order = 'desc'
+        break;
 
-    const { data, error, mutate, size, setSize, isValidating, isLoading} = useSWRInfinite((index) => `${restUrl(filterArr)}&per_page=${PAGE_SIZE}&page=${ index + 1 }`, fetcher,
-        {revalidateIfStale: true, revalidateOnFocus: false, revalidateOnReconnect: false }
-      );
+      case 'top-rated':
+        filterArr.orderby = 'rating';
+        filterArr.order = 'desc'
+        break;
+
+      case 'name':
+        filterArr.orderby = 'title';
+        filterArr.order = 'asc'
+        break;
+
+      default:
+        filterArr.orderby = 'date';
+        filterArr.order = 'desc'
+          break;
+      }
+      setSize(1);
+    
+      /*  return () => {
+        setSorting('newest')
+      } */
+    }, [sorting]);
+        
 
       
         const items = data ? [].concat(...data) : [];
@@ -106,27 +131,15 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
             itemsView = <>{loaderSkeleton}</>
         }else{
           if(items?.length > 0){
-            itemsView = <>
-            {horizontal ?  
-            <ResponsiveMasonry columnsCountBreakPoints={productType == 'simple' ? {300:2,575:3,768:4} : {300:1,600:2}} className='masonry_grid  _products'>
+            itemsView = <> 
+            <ResponsiveMasonry columnsCountBreakPoints={horizontal ? {300:1,600:2} : productType == 'simple' ? {300:2,575:3,768:4} : {300:1,600:2}} className='masonry_grid  _products'>
                   <Masonry gutter="10px">
                       {items.map((product) => (
-                          <Card user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                          <Card user={user} horizontal={horizontal} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
                       ))}
 
                   </Masonry>
               </ResponsiveMasonry> 
-            :
-            <div gutter={10} className='masonry_grid _products'>
-                      {items.map((product) => (
-                        <div className="col-xxs-12" xs={8} sm={6} md={4} lg={4}>
-                          <Card user={user} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
-                          </div>
-                      ))}
-
-              </div>
-
-            }
             </>
   } 
 
@@ -135,7 +148,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
   }
 
   if(isEmpty){
-    itemsView = <p>Yay, no items found.</p>
+    itemsView = <p>Nay, no items found.</p>
   }
         } 
        
@@ -154,7 +167,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
                       <div className="_right">
                       <div className="inner_left">{<>
                         <span>Start With </span>  
-                        <select value={sorting}  onChange={(e) => runSetSorting(e.target.value)} className="list-sort">
+                        <select value={sorting}  onChange={(e) => setSorting(e.target.value)} className="list-sort">
                           {productsSortList.map((el) => {
                             const {name, id, label} = el;
                             return <option key={id} value={name}>{label}</option>
@@ -162,21 +175,21 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
                         </select>
                         </>}</div>
                         <div className='view_type'>
-                          <button disabled={!horizontal} onClick={() => {horizontal.value = false; scroller()}}><i className="bi bi-grid"/></button>
-                          <button disabled={horizontal}  onClick={() => {horizontal.value = true; scroller();}}><i className="bi bi-hdd-stack"/></button>
+                          <button disabled={!horizontal} onClick={() => {setHorizontal(false); scroller()}}><i className="bi bi-grid"/></button>
+                          <button disabled={horizontal}  onClick={() => {setHorizontal(true); scroller();}}><i className="bi bi-hdd-stack"/></button>
                         </div>
                       </div>
                   </div>
        </div>
 
        <div className="market_content ">
-                    <div className="items">
+                    <div className="items mb-3">
                       {itemsView}
                     </div>
-                    {isValidating && loaderSkeleton}
+                    {isValidating || isLoadingMore ? loaderSkeleton : <></>}
                     {isReachingEnd && <div></div>}
                     {!isReachingEnd && <button
-                    className="gx-mb-3"
+                    className="mb-2 btn btn-theme"
                       disabled={isLoadingMore || isReachingEnd}
                       onClick={() => setSize(size + 1)}
                     >

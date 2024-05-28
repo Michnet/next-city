@@ -480,8 +480,8 @@ export function clearInputField(id){
 export const productsSortList = [
   {id: 1, label: 'Newest', name: 'newest', orderby: 'date', order : 'desc'},
   {id: 2, label: 'Oldest', name: 'oldest', orderby: 'date', order : 'asc'},
-  {id: 3, label: 'Cheapest', name: 'cheapest', orderby: 'price', order : 'asc'},
-  {id: 4, label: 'Most expensive', name: 'most-expensive', orderby: 'price', order : 'desc'},
+  {id: 3, label: 'Cheapest', name: 'price-lowest', orderby: 'price', order : 'asc'},
+  {id: 4, label: 'Most expensive', name: 'price-highest', orderby: 'price', order : 'desc'},
   {id: 5, label : 'Most discounted', name : 'most-discounted', orderby: 'discount', order : 'desc'},
   {id: 6, label: 'Most popular',name: 'most-popular',  orderby: 'popularity', order : 'desc'},
   {id: 7, label: 'Top Rated', name: 'top-rated', orderby : 'rating', order: 'desc'}
