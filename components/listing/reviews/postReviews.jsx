@@ -89,7 +89,7 @@ function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, 
             reviewsView = <>{fallBackView}</>
          }
          if(rating){
-             const computed = rating/10;
+             const computed = Math.round(rating/10);
              totalView = <>
                  <span className=' rating_score'>
                      {computed}

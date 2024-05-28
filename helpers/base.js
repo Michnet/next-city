@@ -26,7 +26,24 @@ export const siteSettings = {
 }
  export const WPRepository = () => {
 
- }
+}
+
+import Link from "next/link";
+
+const SiteMapContent = ({links}) => {
+  return (
+    <div className="d-none">
+      {links.map((menu, i) => (
+              <Link target={'_blank'} href={`${menu.routerPath}`} as={menu.routerPath} key={i}>
+                {menu.name}
+              </Link>
+            ))
+      }
+    </div>
+    );
+};
+
+export default SiteMapContent;
 
 export const oathInfo =  {
   consumer_key: siteSettings.siteKeys.wc_username,

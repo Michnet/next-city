@@ -35,7 +35,7 @@ const ProductCard = ({product, user, horizontal=false, mini=true}) => {
   <div className={`card card-style m-0 bg-theme pdt-card d-flex ${mini ? '_mini' : ''} ${horizontal ? 'flex-row' : 'flex-col'}`}>
 							<img src={imgUrl} className="pdt-img"/>
 							<div className={`content m-0 p-${mini ? '2' : '3'}`}>
-              <Link href={`/market/event-tickets/${id}`}><h3 className={`mb-0 truncate-2 smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h3></Link>
+              <Link href={`/market/event-tickets/${id}`}><h3 className={`mb-2 truncate-2 smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h3></Link>
 								{/* <a href="#">
 									<i className="fa fa-star color-yellow-dark font-10"></i>
 									<i className="fa fa-star color-yellow-dark font-10"></i>
@@ -46,7 +46,7 @@ const ProductCard = ({product, user, horizontal=false, mini=true}) => {
 								</a> */}{/* 
 								<h5 className="font-13 font-600 opacity-50 pt-1 pb-2">256GB DDR, 15TB SSD, 10 Expansion Ports, free Apple Music Subscription included.</h5> */}
                 {horizontal && <Client><h5 className="p-desc font-13 font-600 opacity-50 pt-1 pb-2 truncate-3 smLine" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>}
-								{!mini && <div className="divider mb-2 mt-2"/>}
+								{!mini && <div className="divider mb-2"/>}
 								<div className="d-flex flex-wrap gap-2 justify-between">
 									<div className="align-self-center">
                     {price_html && <PriceView preText={''}  exClass={''} priceHTml={price_html}/> }

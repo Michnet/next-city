@@ -1,5 +1,16 @@
 //import { serializeQuery, oathInfo, WPDomain, WPRepository, userActions, userReviews} from './WpBase';
-import { kyFetch, serializeQuery, WPDomain, oathInfo } from './base';
+import { kyFetch, serializeQuery, WPDomain, oathInfo, siteSettings } from './base';
+
+
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
+//import { WPDomain } from '@/helpers/base';
+
+const WooRest = new WooCommerceRestApi({
+  url: WPDomain,
+  consumerKey: siteSettings.siteKeys.wc_username,
+  consumerSecret: siteSettings.siteKeys.wc_password,
+  version: "wc/v3"
+});
 
 
 export const fetchProductUrl = (id, payload) => {

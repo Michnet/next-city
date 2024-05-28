@@ -79,7 +79,7 @@ export async function getStaticProps() {
     async function topListings(){
       let thumbsize = 'xtra_large_thumb'
       let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
-      listing_type:'event', per_page: 5, 'event-date':'any-day'};
+      listing_type:'event', per_page: 5, 'event-date':'any-day',sort:'latest', ignorePriority:true};
   
       const list = await advancedFetchListings(load);
       if(list){

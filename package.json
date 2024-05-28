@@ -6,12 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@preact/signals-react": "^2.0.1",
     "@splidejs/react-splide": "^0.7.12",
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "add-to-calendar-button-react": "^2.6.9",
     "bootstrap": "^5.3.3",
     "colorthief": "^2.4.0",

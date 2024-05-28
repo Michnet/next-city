@@ -20,7 +20,7 @@ const ListingProductsSimple = dynamic(() => import("./shop/ListingProductsSimple
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
 function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKey}) {
-    const {id,about_us, listing_store, community_id, type, author_id} = listing;
+    const {id,about_us, listing_store, community_id, type, author_id, gallery} = listing;
     const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us;
     let isSample = true;
@@ -31,7 +31,7 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
     function itContent(tabId){
         switch (tabId) {
             case 'gallery':
-            return <MegaGallery listing={listing} /* color={color} *//>;
+            return gallery?.length > 0 ? <MegaGallery listing={listing} /* color={color} *//> : 'empty';
             case 'reviews':
             return <ListingReviews postID={listing.id} user={user} setActiveKey={setActiveKey} author_id={author_id}/>
             case 'home':

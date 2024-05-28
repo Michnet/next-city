@@ -3658,7 +3658,7 @@ ul.listing_navigator li.visible.prev .menu_pointer._left {
 
 ul.listing_navigator li:hover {background: #6c6969;}
 
-ul.listing_navigator {display: flex;align-items: center;padding: 0 22px;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;margin-bottom: 6px;}
+ul.listing_navigator {display: flex;align-items: center;grid-column-gap: 10px;grid-row-gap: 15px;flex-wrap: nowrap;width: 100%;margin-bottom: 6px;}
 
 #footer-bar ul.listing_navigator {
     padding: 0;
@@ -3878,7 +3878,9 @@ ul.listing_menu .ex_label {display: none;}
     box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08) !important;
     border-radius: 30px;
 }
-
+.action_box label, .theme-dark .action_box label {
+    background: transparent !important;
+}
 .pdt_actions.buttony button:not(:last-child) {
     margin: 0 5px 0 0 !important;
 }

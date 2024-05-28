@@ -34,7 +34,7 @@ import { EventJsonLd } from 'next-seo';
 const ColorThief = require('colorthief');
 
 
-import { siteColorObjs, siteColors } from "@/helpers/base";
+import SiteMapContent, { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
@@ -156,13 +156,13 @@ export async function getStaticPaths() {
     const [view, setView] = useRecoilState(listingViewState);
     const {user} = useRecoilValue(authState);
     //const activeView = useRecoilValue(listingViewState);
-    const [activeKey, setActiveKey] = useState(query?.page ?? view);
+    const [activeKey, setActiveKey] = useState(query?.view ?? view);
 
 //console.log('liss', listing);  
 let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0) : '#000';
 
 useEffect(() => {
-  setActiveKey(query?.page ?? view);
+  setActiveKey(query?.view ?? view);
 }, [listing.id, view])
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
@@ -198,6 +198,17 @@ if(listing){
       
 
  console.log(listing)
+
+ function siteMapper(){
+  let linkzz = [];
+  lMenu.map((el) => {
+  if(el?.content !== 'empty'){
+  const {id, icon, buttony, title, subTitle} = el;
+  linkzz.push({ name: title, routerPath: `/events/${slug}?view=${id}` })
+  }
+});
+return linkzz;
+}
 
     return (<>{/* <SiteHead
            title={`${cleanHtml(listing?.title?.rendered)}`} 
@@ -240,6 +251,7 @@ if(listing){
            <HeaderWrapper headerClass={`header-invert header-always-show`} header_id={'listing_header'}>
                 <ListingTopMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
             </HeaderWrapper>
+            <SiteMapContent links={siteMapper()}/>
 
     <ListingBottomMenu lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} color={color} activeKey={activeKey}/>
     <div className="page-content single_listing">
@@ -313,11 +325,11 @@ if(listing){
 
     <div id="listingActions" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title mt-0 pt-0">
-              <h1>{cleanHtml(listing?.title.rendered)}</h1>
-              <p className="color-highlight">Options ...</p>
-              <a href="#" className="close-menu" onClick={() => closeMenus()}>
+              <div><h1>{cleanHtml(listing?.title.rendered)}</h1>
+              <p className="color-highlight">Options ...</p></div>
+              <span className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
-              </a>
+              </span>
             </div>
             <div className="divider divider-margins mb-n2"></div>
         <div className="content">

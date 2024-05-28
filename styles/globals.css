@@ -5069,7 +5069,6 @@ max-width: calc(100% - 100px);
  .l_view_fallback{
    padding: 20px;
    text-align: center;
-   background: var(--bgTheme);
  }
 
 .l_view_fallback .h_1 {
@@ -5078,7 +5077,7 @@ max-width: calc(100% - 100px);
 }
 
 .l_view_fallback .h_2 {
-  color: var(--grayText);
+  opacity: 0.6;
 }
 
 .l_view_fallback .listing_views {

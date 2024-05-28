@@ -12,7 +12,7 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, e
         <div>
             {<h6 className="mb-n1 opacity-80 color-highlight">{subTitle}</h6>}
             <h3>{title}</h3>
-            {desc && <p>{desc}</p>}
+            {desc && <p className="opacity-70">{desc}</p>}
         </div>
     </div>
   )
