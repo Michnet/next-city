@@ -106,7 +106,7 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
                   {activeKey === 'cover' ? <></> : <div className={`tab_inner`}>
                       <div className="l_view_fallback py-5">
                       <div className="mb-20 _heading">
-                        <p className="h_1">Empty View</p>
+                        <p className="h_1">{title}</p>
                       <p className="h_2">This view is empty for this listing, under the current view mode. <span data-menu='activeViewModal' onClick={(e) => openOffCanvas(e)} className="text-blue-1 pointer _link">Change the view mode</span>. Alternatively, choose from the available views below</p></div>
                       <TagCloud
                           minSize={12}
