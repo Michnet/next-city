@@ -60,17 +60,19 @@ const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?
                 <i class="fas fa-chevron-down font-15 text-center"></i>
                 <span dangerouslySetInnerHTML={{__html: title.rendered}}/>
               </button> */}
-        <div className="menu_content">
-            <div className="d-flex flex-row flex-nowrap gap-3 align-items-center">
+              <div style={{backgroundImage: `url("${xtra_large_thumb}")`}} className="d-block mx-auto btn p-0 shadow-bg shadow-bg-m mb-0 rounded-s font-900 shadow-s color-white btn-icon text-start">
+          <i className="fas fa-bars left_menu_btn text-20 d-block d-md-none text-center" onClick={(e) => openOffCanvas(e)}  data-menu='mobile_sidebar'></i>
+                <div className="menu_content">
+            <div className="d-flex flex-row flex-nowrap gap-3 align-items-center flex-shrink-1">
                 <i className="fas fa-chevron-left" onClick={() => router.back()}/>
-                <MainMenuBtn/> 
-                <div className="menu_logo show_in_pinned" onClick={() => setActiveKey('home')}> 
+                {/* <MainMenuBtn/>  */}
+                <div className="menu_logo  flex-shrink-1" onClick={() => setActiveKey('home')}> 
                   {logoView} 
-                  {<div className='' style={{width: 'calc(100% - 40px)'}}><h4 className="smLine _title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div>
+                  {<div className='flex-shrink-1' style={{width: 'calc(100% - 40px)'}}><h4 className="smLine _title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div> 
                     }
                 </div> 
            </div>
-           <div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2">
+           <div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2 flex-shrink-0 pe-2">
               {headerMenuView}
               {<>
               <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
@@ -82,12 +84,16 @@ const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?
               </div>
                   </div></>
               }
+              
+              <div className='tab_link px-2'><UserAvatar size={30}/></div>
               {isMobile ? <></> : <div className="d-inline-block">
                 { <BookingView simple={false} setActiveKey={setActiveKey}text='Booking' exClass='text-12 py-1 fw-600'/>}
                 </div>}
-              <div className='tab_link px-2'><UserAvatar size={30}/></div>
             </div>
         </div>
+              </div>
+              
+        
         </div>
  
   return (

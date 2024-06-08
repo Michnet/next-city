@@ -124,6 +124,7 @@ export async function getStaticPaths() {
         settings : {
            uiBackground:listing?.cover,
             noFooter: true,
+            pageClass: '_listing _event',
             mMenu: 'show',
             mMenuContent:{
               icon : 'fas fa-ellipsis-h', 
@@ -137,7 +138,6 @@ export async function getStaticPaths() {
       revalidate: 6000, // In seconds
     }
   }
-
 
   export const BookingView = ({text = null, exClass, children, simple=true, setActiveKey, activeKey='private-chat'}) => {
     if(children){

@@ -6886,9 +6886,7 @@ section.ant-layout.single_listing .top_bar_toggle {right: 14px;}
 }
 
 .mirror_box.side_Y .obj {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  transform: skewY(-10deg);
+  transform: skewY(-5deg);
 }
 
 .mirror_box .mirror {

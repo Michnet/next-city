@@ -28,7 +28,7 @@
 .under-btn{z-index:50; position:relative; margin-top:-20px!important;}
 .btn-icon:hover{color:#FFF;}
 .btn-icon{padding-left:50px!important; overflow:hidden; position:relative;}
-.btn-icon i{
+.btn-icon > i{
     position:absolute; 
     left:0px; 
     top:0px;

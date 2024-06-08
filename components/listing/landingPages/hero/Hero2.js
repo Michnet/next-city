@@ -112,7 +112,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                 <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
                     {[cover ?? '', ...galArr].map((item, index) =>
                       <>
-                    <Mirrored coverTop topPadding={'50px'} skewDegrees={5} key={index}  skewDir={'-'} YDistance={200}>
+                    <Mirrored gap={30} objClass='card card-style' topPadding={'0px'} skewDegrees={0} key={index}  skewDir={'-'} YDistance={200}>
                     <div className='hero_cover position-relative w-100'>
                     <Image                   
                           //placeholder="blur"
