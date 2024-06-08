@@ -312,8 +312,8 @@ function LayoutConst({ children, headerTitle, settings}) {
               --bgTheme: #FFFFFF;
               --bgThemeLight: #c7c7c7;
               --bgThemeTransparent: #ffffffe6;
-              --bgThemeTransparent2: #f0f0f0d0;
-              --bgThemeTransparent3: #f0f0f05c;
+              --bgThemeTransparent2: #ffffffd0;
+              --bgThemeTransparent3: #ffffff94;
               --borderTheme: rgba(0, 0, 0, 0.1);
               --borderThemeAlt: rgba(255, 255, 255, 0.12);
               --bgBrightness:2;
@@ -339,6 +339,9 @@ function LayoutConst({ children, headerTitle, settings}) {
         :scope {
             --lh:18px;
           }
+      }
+      .bg-theme-transparent-2{
+        background-color: var(--bgThemeTransparent2);
       }
       
       h1, h2, h3, h4, h5, h6{

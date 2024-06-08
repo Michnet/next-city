@@ -6119,16 +6119,12 @@ header.main_header, header.header {/* width: calc(100% - 79px); */}
 
 @media (max-width: 991px) {
   .hero2.listing_hero .hero_images{
-    height: 580px;
     grid-template-columns: 100%;
     /* grid-template-rows: 70% 30%; */
 }
 
-.hero_images .mobile_grid {}
-
 .hero2.listing_hero .hero_images .hero_cover {
   min-height: 380px;
-  margin-bottom: 1px;
 }
     .footer-bottom-container {
         flex-direction: column-reverse;

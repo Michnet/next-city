@@ -40,8 +40,9 @@ const EventCard5 = ({listing, width=300, height=200, exClass=''}) => {
                 </div>
                 <Link href={`/events/${slug}`} className="h-fit border-dark-light color-gray-dark text-nowrap  btn btn-s rounded-xl font-900 mt-2 text-uppercase font-11">Learn More</Link>
             </div>
-            <div className={`card-overlay opacity-90 ${color ? '' : `bg-${randColor}-dark`}`} style={{background: color}}/>
-            <div className="card-overlay bg-gradient"/>
+            <div className={`card-overlay _grayScale`} style={{background: `url(${xtra_large_thumb})`}}/>
+            <div className={`card-overlay opacity-60 ${color ? '' : `bg-${randColor}-dark`}`} style={{background: color}}/>
+            <div className="card-overlay bg-gradient opacity-80"/>
         </div>
 
 

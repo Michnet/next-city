@@ -28,10 +28,10 @@ const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='
                 <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>
             </div>
             <div className="flex-grow-1 py-2 px-3">
-                    <Link href={`/events/${slug}`}><h3 className={`text-18 mb-1 ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
+                    <Link href={`/events/${slug}`}><h3 className={`text-16 mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
                     
                     {/* <p className="card_desc truncate-2 mb-1">{short_desc}</p> */}
-                    <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1`}>
+                    <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
                       {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
                       <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
                     </div>

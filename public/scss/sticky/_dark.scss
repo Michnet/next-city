@@ -92,9 +92,6 @@ body.theme-dark{
 .bg-theme-transparent{
     background-color: #{$theme-light-transparent-background};
 }
-.bg-theme-transparent-2{
-    background-color: #{$theme-light-transparent-background-2};
-}
 .bg-dark-transparent{background-color: #{$theme-light-transparent-background};}
 .bg-dark-transparent2{background-color: #{$theme-light-transparent-background-2}};
 
@@ -103,9 +100,6 @@ body.theme-dark{
 .theme-dark .bg-theme-light{background-color: #{$theme-dark-background-light};}
 .theme-dark .bg-theme-transparent{
     background-color: #{$theme-dark-transparent-background};
-}
-.theme-dark .bg-theme-transparent-2{
-    background-color: #{$theme-dark-transparent-background-2};
 }
 .theme-dark .bg-dark-transparent{background-color: #{$theme-dark-transparent-background};}
 .theme-dark .bg-dark-transparent2{background-color: #{$theme-dark-transparent-background-2}};

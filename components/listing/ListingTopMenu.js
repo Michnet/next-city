@@ -13,7 +13,7 @@ import MainMenuBtn from '@/components/layouts/partials/MainMenuBtn';
 import { useRouter } from 'next/router';
 
 const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
-  const {logo, thumbnail, title, xtra_large_thumb} = listing ?? {};
+  const {logo, thumbnail, title, xtra_large_thumb, cover} = listing ?? {};
   const {user} = useRecoilValue(authState);
   const router = useRouter()
 
@@ -55,45 +55,46 @@ if(lMenu){
   })}
   </>
 }
+
+let menuContent = <div className="menu_content">
+<div className="d-flex flex-row flex-nowrap gap-3 align-items-center flex-shrink-1">
+    <i className="fas fa-chevron-left d-none d-md-block" onClick={() => router.back()}/>
+    {/* <MainMenuBtn/>  */}
+    <div className="menu_logo  flex-shrink-1" onClick={() => setActiveKey('home')}> 
+      {logoView} 
+      {<div className='flex-shrink-1' style={{width: 'calc(100% - 40px)'}}><h4 className="smLine _title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div> 
+        }
+    </div> 
+</div>
+<div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2 flex-shrink-0 pe-2">
+  {headerMenuView}
+  {<>
+  <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
+  <div className={`menu_icon d-flex flex-column px-2`}>
+        <span className='position-relative'>
+          <i className={`fas fa-ellipsis-h`}/> 
+      </span>
+      <h5 className="profile_title">More</h5>
+  </div>
+      </div></>
+  }
+  
+  <div className='tab_link px-2'><UserAvatar size={30}/></div>
+  {isMobile ? <></> : <div className="d-inline-block">
+    { <BookingView simple={false} setActiveKey={setActiveKey}text='Booking' exClass='text-12 py-1 fw-600'/>}
+    </div>}
+</div>
+</div>;
+
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
-  {/* <button  style={{backgroundImage: `url("${xtra_large_thumb}")`}} className="btn btn-m shadow-bg shadow-bg-m mb-0 rounded-s text-uppercase text-nowrap font-900 shadow-s color-white btn-icon text-start">
-                <i class="fas fa-chevron-down font-15 text-center"></i>
-                <span dangerouslySetInnerHTML={{__html: title.rendered}}/>
-              </button> */}
-              <div style={{backgroundImage: `url("${xtra_large_thumb}")`}} className="d-block mx-auto btn p-0 shadow-bg shadow-bg-m mb-0 rounded-s font-900 shadow-s color-white btn-icon text-start">
+              <div style={{backgroundImage: `url("${cover}")`}} className="border-0 d-block d-md-none mx-auto btn p-0 shadow-bg shadow-bg-m mb-0 rounded-s font-900 shadow-s color-white btn-icon text-start">
           <i className="fas fa-bars left_menu_btn text-20 d-block d-md-none text-center" onClick={(e) => openOffCanvas(e)}  data-menu='mobile_sidebar'></i>
-                <div className="menu_content">
-            <div className="d-flex flex-row flex-nowrap gap-3 align-items-center flex-shrink-1">
-                <i className="fas fa-chevron-left" onClick={() => router.back()}/>
-                {/* <MainMenuBtn/>  */}
-                <div className="menu_logo  flex-shrink-1" onClick={() => setActiveKey('home')}> 
-                  {logoView} 
-                  {<div className='flex-shrink-1' style={{width: 'calc(100% - 40px)'}}><h4 className="smLine _title truncate-2 text-14">{cleanHtml(title?.rendered)}</h4></div> 
-                    }
-                </div> 
-           </div>
-           <div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2 flex-shrink-0 pe-2">
-              {headerMenuView}
-              {<>
-              <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
-              <div className={`menu_icon d-flex flex-column px-2`}>
-                    <span className='position-relative'>
-                      <i className={`fas fa-ellipsis-h`}/> 
-                  </span>
-                  <h5 className="profile_title">More</h5>
+                {menuContent}
               </div>
-                  </div></>
-              }
-              
-              <div className='tab_link px-2'><UserAvatar size={30}/></div>
-              {isMobile ? <></> : <div className="d-inline-block">
-                { <BookingView simple={false} setActiveKey={setActiveKey}text='Booking' exClass='text-12 py-1 fw-600'/>}
-                </div>}
-            </div>
-        </div>
+
+              <div className='d-none d-md-block'>
+                {menuContent}
               </div>
-              
-        
         </div>
  
   return (
