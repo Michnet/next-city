@@ -44,8 +44,6 @@ const EventCard5 = ({listing, width=300, height=200, exClass=''}) => {
             <div className={`card-overlay opacity-70 ${color ? '' : `bg-${randColor}-dark`}`} style={{background: color, backdropFilter: 'blur(2px)'}}/>
             <div className="card-overlay bg-gradient opacity-80"/>
         </div>
-
-
         </>
     )
 }
