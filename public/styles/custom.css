@@ -357,6 +357,9 @@ div.truncate-5 > p {
 .overflow-initial{
     overflow: initial;
 }
+
+.shadow-bg-xl::after{transform: scale(0.95) translateY(20px) translateZ(0px); filter: blur(12px);}
+.shadow-bg-xxl::after{transform: scale(0.95) translateY(30px) translateZ(0px); filter: blur(12px);}
 .bg-opaque{
     background: #7979791f;
 }
@@ -475,6 +478,30 @@ div#mobile_sidebar {}
     font-size: 12px;
     padding: 8px 15px;
     box-shadow: 0 5px 14px 0 rgba(0,0,0,.1)
+}
+
+.bg-header:before {
+    content: '';
+    display: block;
+    /* background: red; */
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    z-index: 0;
+    /* background: #0f111700; */
+    backdrop-filter: contrast(1.5) blur(1px) brightness(0.5);
+}
+
+.bg-header {
+    position: relative;
+}
+
+.bg-header > * {
+    z-index: 1;
+    position: relative;
 }
 
 .btn-3d {
@@ -3490,7 +3517,7 @@ div#explore_nav .view_filter {
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     width: calc(100% - 20px);
     overflow: visible;
     max-width: 100vw;
@@ -3505,6 +3532,10 @@ div#explore_nav .view_filter {
 
 #listing_header:not(.header-active) {
     /* display: none; */
+}
+
+.hero2.listing_hero .hero_images {
+    padding-top: 10px;
 }
     .page-content {
     padding-bottom: 62px;

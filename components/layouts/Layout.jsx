@@ -304,6 +304,9 @@ function LayoutConst({ children, headerTitle, settings}) {
           --headingFont: "Jost", sans-serif !important;
           --handFont: 'Dr Sugiyama', cursive;
           --fontFamily: "Roboto", sans-serif !important;
+          --bgDarkTransparent: rgba(0, 0, 0, 0.902);
+          --bgDarkTransparent2: rgba(15, 17, 23, 0.76);
+          --bgDarkTransparent3: #0f11178c;
         }
 
         @scope (.theme-light) {
@@ -326,11 +329,9 @@ function LayoutConst({ children, headerTitle, settings}) {
               --bgTheme: #0f1117;
               --borderThemeAlt: rgba(0, 0, 0, 0.1);
               --bgThemeLight: #232426;
-              --bgThemeTransparent: rgba(0, 0, 0, 0.902);
-              --bgDarkTransparent: rgba(0, 0, 0, 0.902);
-              --bgThemeTransparent2: rgba(15, 17, 23, 0.76);
-              --bgThemeTransparent3: #0f11178c;
-              --bgDarkTransparent2: rgba(15, 17, 23, 0.76);
+              --bgThemeTransparent: var(--bgDarkTransparent);
+              --bgThemeTransparent2: var(--bgDarkTransparent2);
+              --bgThemeTransparent3: var(--bgDarkTransparent3);
               --borderTheme: rgba(255, 255, 255, 0.12);
               --bgBrightness:0.8;
             }

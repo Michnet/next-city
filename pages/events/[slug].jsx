@@ -105,6 +105,8 @@ export async function getStaticPaths() {
     }
     
     const { latitude, longitude, phone, address, slug, modified} = listing ?? {};
+    console.log('server listing xxxxxxxxxxxxxxxxxxxxx', listing);
+
     return {
       props: {
         seoMeta:{

@@ -3486,7 +3486,7 @@ ul.listing_menu li.active .label {color: var(--theme);}
 ul.listing_menu li.active .icon i {
   color: var(--theme);
 }
-.listing_menu_toggler {flex-basis: 35px;}
+.listing_menu_toggler {flex-basis: auto; overflow: hidden; overflow-x: auto;}
 
 .listing_menu_toggler .menu_icon {flex-direction: column;}
 
@@ -6662,9 +6662,6 @@ section.landing_page .intro_content{
    .gx-featured-item:last-child .gx-featured-thumb{margin-bottom : 0}
    .profile-top-menu .menu_content{
     height: 50px;
-    left: 10px;
-    right: 10px;
-    top: 5px;
     column-gap: 10px;
 }
    .single_listing .gx-profile-banner{padding: 0;}

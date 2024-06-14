@@ -66,7 +66,7 @@ let menuContent = <div className="menu_content">
         }
     </div> 
 </div>
-<div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2 flex-shrink-0 pe-2">
+<div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2 pe-2">
   {headerMenuView}
   {<>
   <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
@@ -87,7 +87,7 @@ let menuContent = <div className="menu_content">
 </div>;
 
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
-              <div style={{backgroundImage: `url("${cover}")`}} className="border-0 d-block d-md-none mx-auto btn p-0 shadow-bg shadow-bg-m mb-0 rounded-s font-900 shadow-s color-white btn-icon text-start">
+              <div style={{backgroundImage: `url("${cover}")`}} className="bg-header border-0 d-block d-md-none mx-auto btn p-0 shadow-bg shadow-bg-l mb-0 rounded-s font-900 shadow-s color-white btn-icon text-start">
           <i className="fas fa-bars left_menu_btn text-20 d-block d-md-none text-center" onClick={(e) => openOffCanvas(e)}  data-menu='mobile_sidebar'></i>
                 {menuContent}
               </div>
