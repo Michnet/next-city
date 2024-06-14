@@ -497,6 +497,7 @@ div#mobile_sidebar {}
 
 .bg-header {
     position: relative;
+    border-radius: 10px;
 }
 
 .bg-header > * {
@@ -3530,8 +3531,14 @@ div#explore_nav .view_filter {
     background: transparent;
 }
 
-#listing_header:not(.header-active) {
-    /* display: none; */
+#listing_header.header-active {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+}
+
+#listing_header.header-active .bg-header {
+    border-radius: 0 !important;
 }
 
 .hero2.listing_hero .hero_images {
@@ -3938,6 +3945,10 @@ ul.listing_menu .ex_label {display: none;}
    transition: all 0.4s ease 0s;
    background-image: linear-gradient(90deg, var(--secTheme), #0a0a0a, var(--highlight), #605d5d);
    height: fit-content;
+}
+
+._listing .btn.ui-2 {
+    background-image: linear-gradient(90deg, var(--listingTheme), #0a0a0a, var(--listingTheme), #605d5d);
 }
 
 .excerptView .card-body {
