@@ -120,6 +120,7 @@ export const fetchListings = async (payload) => {
           totalItems: res.headers.get('x-wp-total'),
           totalPages: res.headers.get('x-wp-totalpages')
       };
+      console.log('feti', data);
       return data;
   } else return null;
  }catch (error) {

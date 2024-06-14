@@ -63,6 +63,7 @@ export const kyFetch = ky.create({
      headers: {
        Accept: "application/json",
        "Content-Type": "application/json",
+       'Origin': '*'
      },
      // use a hook to add the authorization header before each request
      hooks: { 

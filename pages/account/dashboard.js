@@ -49,11 +49,14 @@ const UserDashboard = (props) => {
     }
 
   async function usersListings(payload) {
+   
        
     const fetchedListings = await fetchListings(payload);
     if (fetchedListings) {
+      
         setAuthored(fetchedListings.items);
     } else {
+      console.log('feting', fetchedListings)
         setAuthored(null);
     }
     setLoading(false);
