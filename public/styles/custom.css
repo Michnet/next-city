@@ -4078,6 +4078,7 @@ ul.listing_menu .ex_label {display: none;}
 .menu .menu-title {
     display: grid;
     grid-template-columns: auto auto;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--borderTheme);
 }

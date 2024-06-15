@@ -5276,15 +5276,15 @@ margin: 0 auto 20px;
 }
 
 .gx-profile-info .community_stats .view_stat .gx-follower-title {
-  color: var(--bs-green);
+  color: gray;
 }
 
 .gx-profile-info .community_stats .comments_stat .gx-follower-title {
-  color: violet;
+  color: gray;
 }
 
 .gx-profile-info .community_stats .likes_stat .gx-follower-title {
-  color: blue;
+  color:gray;
 }
 
 nav.toc > ul > li {

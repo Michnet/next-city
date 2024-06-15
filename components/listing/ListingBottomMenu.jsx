@@ -1,16 +1,27 @@
 //import { nextPostState } from "@/contexts/atoms"
 import { openOffCanvas } from "@/helpers/appjs"
 import { BookingView } from "@/pages/events/[slug]"
-import { memo } from "react"
+import { memo, useState, useEffect} from "react"
 //import { useRecoilValue } from "recoil"
 import BottomMenu from "../layouts/BottomMenu"
-import { LoaderDualRing, LoaderRingBoxed } from "../skeletons/Loaders"
+import { LoaderRingBoxed } from "../skeletons/Loaders"
 //import Navigator from "./Navigator"
 import { NextPostLink, PreviousPostLink } from "./partials/ListingLinks"
 
 const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}) =>{
     const {phone, whatsapp, acf} = listing ?? {}
     const {general_merchandise} = acf ?? {}
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      setLoading(false);
+    
+      return () => {
+        setLoading(true)
+      }
+    }, [listing])
+    
 
     let bottomContent = <div id="footer-bar" className="footer-bar-1 d-md-none">
                 <div className='gap-2 footer_content ps-2 py-2'>

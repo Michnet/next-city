@@ -140,8 +140,8 @@ export default function Home(props) {
         <Mirrored coverTop topPadding={0} skewDegrees={0}  skewDir={'-'} YDistance={250}>
           <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '280px', backgroundImage: `url("${randomEither(imgArr)}")`}}/>
         </Mirrored>
-        <div className="card-bottom mb-5 px-3">
-          <h1 className="color-white text-center mb-n1 font-24">Great events all around you?</h1>
+        <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center">
+          <h1 className="color-white text-center mb-n1 font-24 w-75">Great events all around you?</h1>
           <p className="color-white text-center mb-3 ">What experiences are you looking for today?</p>
         </div>
         <div className="card-overlay bg-gradient rounded-0"></div>

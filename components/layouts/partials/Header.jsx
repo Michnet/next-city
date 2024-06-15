@@ -28,7 +28,7 @@ return <Client>
       
       <div className="_right">
         <span data-toggle-theme onClick={() => toggleTheme()}  className="header-menu-icon header-icon-4" >
-          <i className="far fa-lightbulb color-theme"></i>
+          <i className="far fa-adjust color-theme"></i>
         </span>
         <span onClick={(e) => openOffCanvas(e)}  data-menu='mobile_news' className="header-menu-icon header-icon-4" >
           <i className="far fa-bell color-theme"></i>
