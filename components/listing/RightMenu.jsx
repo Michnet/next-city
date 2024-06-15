@@ -24,7 +24,7 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
 					</button>
 					  }
                       return <span onClick={() => {closeMenus(); setActiveKey(id)}} className={`_link close-menu ${activeKey === id ? 'active' : ''}`}  key={id}>
-							<i className={`${icon ?? 'far fa-square'} font-18 bg-transparent rounded opacity-50`}></i>
+							<i className={`${icon ?? 'far fa-square'} font-20 bg-transparent rounded opacity-70`}></i>
 							<span className="position-relative">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}

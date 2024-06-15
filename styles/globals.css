@@ -6266,9 +6266,6 @@ body:not(._fixed_top) .single_listing .ant-layout-header .gx-header-notification
   max-height: 200px;
 }
 
-.hero_images .mobile_grid > *{
-}
-
 .hero_images .mobile_grid > *:first-child {
   grid-column: 1/3;
 }
@@ -6518,6 +6515,10 @@ section.landing_page .intro_content{
 
 
  @media (max-width: 575px){
+  
+  .hero2.listing_hero .hero_images .hero_cover{
+    height: 70vh;
+  }
      .footer-bottom-container{
   padding: 0 10px;
 }
