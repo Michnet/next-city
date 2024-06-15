@@ -188,7 +188,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
             <div className='hero_title p-3 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
              <div className='profile_name'>
-             <ListingMetaMini filled colors={true} exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
+             <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
                 <div className='title_meta d-flex justify-end'>
                   <Client>

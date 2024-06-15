@@ -2345,6 +2345,7 @@ button.back_link {
     display: flex;
     justify-content: center;
     /* flex-grow: 1; */
+    background-clip: unset;
 }
 
 .theme-dark ._fab {
@@ -2386,11 +2387,22 @@ button.back_link {
 
 .term_box i {width: inherit;height: inherit;border-radius: 50%;}
 
+.box_icon._def .term_box i, .box_icon._def .term_box i:before {
+    opacity: 1 !important;
+}
+
 .box_icon .term_box {
     position: absolute;
     left: -20px;
     right: auto;
     top: -15px;
+}
+
+.box_icon._def 
+ .term_box {
+    position: relative;
+    left: inherit;
+    top: initial;
 }
 
 .splider .splide__track, .splider .splide {
@@ -3128,6 +3140,11 @@ span.term_icon_box {
     border-radius: 50%;
     margin-bottom: 5px;
     background: var(--secTheme);
+}
+
+.box_icon._def span.term_icon_box {
+    margin-bottom: 0;
+    padding: 7px 0 0;
 }
 
 .search_form 
@@ -4067,4 +4084,9 @@ ul.listing_menu .ex_label {display: none;}
 .social_auth button img {
     object-fit: contain;
     height: 40px;
+}
+
+.box_icon._def ._title {
+    height: fit-content !important;
+    text-align: center;
 }

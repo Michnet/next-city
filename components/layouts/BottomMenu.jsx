@@ -12,28 +12,28 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
 
   const defBottomLinks = [
     {id: 1,
-        icon: "fas fa-home",
+        icon: "fad fa-home-lg-alt",
         color: 'gradient-green',
         name: "Home",
         routePath: "/",
         link: true
     },
     {id: 2,
-        icon: "fad fa-magnifying-glass",
+        icon: "fad fa-search",
         color: 'gradient-red',
         name: "Explore",
         routePath: "/explore/events",
         link: true
     },
     {id: 3,
-        icon: "far fa-user",
+        icon: "fad fa-user",
         color: 'gradient-red',
         name: "Account",
         routePath: "/account/dashboard",
         link: true
     },
     {id: 4,
-        icon: "fa fa-cog",
+        icon: "fad fa-cog",
         color: 'gradient-red',
         name: "Settings",
         routePath: "/explore/events",
