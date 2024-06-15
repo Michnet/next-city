@@ -7,7 +7,7 @@ import { ListingMetaMini, ListingMeta } from "../../Partials";
 import { PriceView } from "../../PriceView";
 import TermTag from "../../partials/TermTag";
 
-const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false}) => {
+const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf} = listing;
     const {likes} = acf?.community ?? {};
     return (<>
@@ -27,7 +27,7 @@ const EventCard2 = ({listing, width=220, minHeight=180, height='auto', exClass='
                 </div>
                 <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>
             </div>
-            <div className="flex-grow-1 py-2 px-3">
+            <div className={`flex-grow-1 py-2 ${contentClass}`}>
                     <Link href={`/events/${slug}`}><h3 className={`text-16 mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
                     
                     {/* <p className="card_desc truncate-2 mb-1">{short_desc}</p> */}

@@ -6,8 +6,8 @@ import { useRecoilValue } from 'recoil';
 import { authState, UISizes } from "@/contexts/atoms";
 import { useRouter } from "next/router";
 import { isListingAuthor } from "@/helpers/universal";
+import Link from "next/link";
 
-const Link = dynamic(() => import("next/link"));
 const PostLike = dynamic(() => import('@/components/UI/partials/social/PostLike'), { ssr: false });
 
 const VisitorActions = ({listing, mini, setActiveKey, extraItem, exClass}) => {

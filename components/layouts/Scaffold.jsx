@@ -40,6 +40,12 @@ useEffect(() => {
           router?.events.off('routeChangeError', handleStoping)
         }
   }, []);
+
+useEffect(() => {
+      setLoading(false)
+        return () => {setLoading(true)
+        }
+  }, [headerTitle]);
     
   return (<>
     <div className={`container-fluid p-0 ${pageClass ?? ""}`}>

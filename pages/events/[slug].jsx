@@ -40,7 +40,6 @@ import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 //const Navigator = dynamic(() => import("@/components/listing/Navigator"));
 
-const randColor = randomEither(siteColors);
 
 export async function getStaticPaths() {
     const res = await fetch(fetchIdsUrl({type: 'job_listing', listing_type:'event', slugs: true}));
@@ -149,7 +148,9 @@ export async function getStaticPaths() {
      }
   }
 
-  const ListingConst = ({listing, themeColor, seoMeta, color=randColor}) => {
+  const ListingConst = ({listing, themeColor, seoMeta}) => {
+    
+   const color = randomEither(siteColors);
     //const {listing} = serverObj;
     const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
     const {_links} = meta ?? {};

@@ -507,7 +507,7 @@ div#mobile_sidebar {}
     border-radius: inherit;
     z-index: 0;
     /* background: #0f111700; */
-    backdrop-filter: contrast(1.5) blur(1px) brightness(0.5);
+    backdrop-filter: contrast(1.5) blur(2px) brightness(0.5) grayscale(1);
 }
 
 .bg-header {
@@ -3567,6 +3567,10 @@ div#explore_nav .view_filter {
 .hero2.listing_hero .hero_images {
     padding-top: 10px;
 }
+
+.hero2.listing_hero .hero_images .mirror_box .mirror {
+    opacity: 0.2;
+}
     .page-content {
     padding-bottom: 62px;
 }
@@ -3852,7 +3856,7 @@ ul.listing_menu .ex_label {display: none;}
 
 
 .footer-bar-1 .active-nav i {
-    background: linear-gradient(45deg, var(--secTheme), var(--highlight));
+    background: linear-gradient(45deg, #272727, var(--highlight));
     color: #fff !important;
     width: 40px;
     height: 40px;

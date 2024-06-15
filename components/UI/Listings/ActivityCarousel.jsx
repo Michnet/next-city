@@ -17,7 +17,7 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
     let theView, fetchy = true, linkQuery = '';
 
 
-    let spliderOptions = {...spliderVariableWidth, type:'loop', padding: { left: 8, right: 20}, ...optionsObj}
+    let spliderOptions = {...spliderVariableWidth, padding: { left: 8, right: 20}, ...optionsObj}
     if(gap){
       spliderOptions.gap = gap;
     }

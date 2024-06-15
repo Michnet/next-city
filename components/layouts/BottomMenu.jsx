@@ -19,7 +19,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
         link: true
     },
     {id: 2,
-        icon: "fas fa-search",
+        icon: "fad fa-magnifying-glass",
         color: 'gradient-red',
         name: "Explore",
         routePath: "/explore/events",
@@ -63,7 +63,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
                     </>
             })}</div>
             <div className="_fab">
-              <button  onClick={(e) => {btnProps ? openOffCanvas(e) : router.push('/add-listing')}} {...btnProps}  className="circle d-flex align-items-center justify-center bg-theme  gradient-menu shadow shadow-bg-m" style={{}}>
+              <button  onClick={(e) => {btnProps ? openOffCanvas(e) : router.push('/add-listing')}} {...btnProps}  className="circle d-flex align-items-center justify-center color-white  gradient-highlight shadow shadow-bg-m" style={{}}>
               <span  className={`text-center big_act`}>
                 {<i className={`link_i ${icon ?? 'fa fa-plus'}`}/>}
               </span>

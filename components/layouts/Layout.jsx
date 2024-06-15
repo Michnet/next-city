@@ -52,7 +52,7 @@ function LayoutConst({ children, headerTitle, settings}) {
   //const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
   const [width, setWidth] = useRecoilState(UIWidthState);
   const router = useRouter();
-  const {mMenuContent, noHeader, noFooter} = settings ?? {};
+  const {mMenuContent, noFooter} = settings ?? {};
   const {btnProps, icon} = mMenuContent ?? {}
   const [loading, setLoading] = useState(true);
 

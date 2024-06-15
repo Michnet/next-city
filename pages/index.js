@@ -165,7 +165,7 @@ export default function Home(props) {
     <div className='term_links_grid mb-3 px-sm-3 px-2'>
     {
                 eventCategories?.map((cat) => {
-                    return <TermIconBox exClass='rounded-4' flipped item={cat}/>
+                    return <TermIconBox exClass='rounded-4' item={cat}/>
                 })
             }
             </div>
@@ -176,7 +176,7 @@ export default function Home(props) {
    <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
-           return <EventCard2 height={180} width={270} key={li.id} listing = {li}/>
+           return <EventCard2 contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>
           })
           :
           <></>

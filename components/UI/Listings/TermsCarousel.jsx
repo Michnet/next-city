@@ -57,7 +57,7 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
         if(locItems?.length > 0){
             if(type === 'dir_cats'){
         catsArray = locItems.map((cat, i) => {
-            return <Mirrored YDistance={50} gap='3px' skewDegrees={0}><TermIconBox exClass='mx-1 rounded-4' item={cat} key={i}  shadowy/></Mirrored>
+            return <Mirrored YDistance={50} gap='3px' skewDegrees={0}><TermIconBox flipped exClass='mx-1 rounded-4' item={cat} key={i}  shadowy/></Mirrored>
         }) }/* if(type === 'shop_cats'){
             catsArray = locItems.map(cat => {
                 return <div onClick={() => setFilterArr({...filterArr, category:cat.id})}><TermCarouselItemImg key = {cat.id} term = {cat} inactive={inactiveLinks}/></div>

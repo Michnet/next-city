@@ -9,7 +9,7 @@ import { Client, HydrationProvider } from "react-hydration-provider";
 import App from "next/app";
 import { getSession, SessionProvider } from "next-auth/react";
 import { AuthProvider } from "@/helpers/use-auth";
-import { closeMenus } from "@/helpers/appjs";
+import { closeMenus, onAppLoad } from "@/helpers/appjs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "yet-another-react-lightbox/styles.css";
@@ -34,10 +34,10 @@ function MyAppConst({ Component, pageProps, platform }) {
   const Session = getSession();
 
   const cachedRunTemplate = useMemo(() => run_template(), [Session])
-  //const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
+  const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
 
   useEffect(() => {
-    //cachedOnAppLoad;
+    cachedOnAppLoad;
     cachedRunTemplate;
   
   }, [])

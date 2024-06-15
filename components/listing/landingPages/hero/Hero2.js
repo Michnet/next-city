@@ -186,7 +186,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
           
 
 
-            <div className='hero_title p-5 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
+            <div className='hero_title p-3 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
              <div className='profile_name'>
              <ListingMetaMini filled colors={true} exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
@@ -232,7 +232,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
           <div className={`card card-style`}>
           <div
-            className={`z-1 p-5 position-relative bg-black theme-dark ${styles['section-container']} card card-style w-auto m-0`}
+            className={`z-1 p-5 pb-3 position-relative bg-black theme-dark ${styles['section-container']} card card-style w-auto m-0`}
           >
             {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
             <div className={`row gap-5 md:flex-row flex-md-nowrap flex-col position-relative`}>
@@ -246,7 +246,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   {venue}
                 </span>}
               </div>
-              <Client><div className="flex-grow-1 gap-2 mb-24 d-flex md:items-end items-start flex-column col-12 col-md-6 px-0">
+              <Client><div className="flex-grow-1 gap-2 d-flex md:items-end items-start flex-column col-12 col-md-6 px-0">
                 {id ? <><CountDownUI light fromActive eventId={id} />
               {<DateViewDescriptive fromActive eventId={id} exClass={'_hero mb-10'} light/>}</> : <></>}
                
