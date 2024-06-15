@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { Client } from 'react-hydration-provider';
 import {fallbackImgSrcSet } from "@/helpers/base";
-import { BookingView } from '@/pages/events/[slug]';
+//import { BookingView } from '@/pages/events/[slug]';
 import { Suspense } from 'react';
 import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
 import DateViewString from '@/components/UI/partials/dateViews/DateViewString';

@@ -15,7 +15,6 @@ import { authState, listingViewState } from "@/contexts/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import VisitorActions from "@/components/listing/partials/VisitorActions";
 const CallToActions = dynamic(() => import("@/components/UI/CallToActions"));
-const Link = dynamic(() => import("next/link"));
 import HeaderWrapper from "@/components/layouts/partials/HeaderWrapper";
 import ListingTopMenu from "@/components/listing/ListingTopMenu";
 import { closeMenus, openOffCanvas } from "@/helpers/appjs";
@@ -38,6 +37,7 @@ import SiteMapContent, { siteColorObjs, siteColors } from "@/helpers/base";
 import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
+import Link from "next/link";
 //const Navigator = dynamic(() => import("@/components/listing/Navigator"));
 
 
@@ -104,7 +104,6 @@ export async function getStaticPaths() {
     }
     
     const { latitude, longitude, phone, address, slug, modified} = listing ?? {};
-    console.log('server listing xxxxxxxxxxxxxxxxxxxxx', listing);
 
     return {
       props: {

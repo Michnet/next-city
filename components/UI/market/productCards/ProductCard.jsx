@@ -31,11 +31,10 @@ const ProductCard = ({product, user, horizontal=false, mini=true}) => {
     </section>
   </div> */}
 
-
   <div className={`card card-style m-0 bg-theme pdt-card d-flex ${mini ? '_mini' : ''} ${horizontal ? 'flex-row' : 'flex-col'}`}>
 							<img src={imgUrl} className="pdt-img"/>
 							<div className={`content m-0 p-${mini ? '2' : '3'}`}>
-              <Link href={`/market/event-tickets/${id}`}><h3 className={`mb-2 truncate-2 smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h3></Link>
+              <Link href={`/market/product/${id}`}><h3 className={`mb-2 truncate-2 smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h3></Link>
 								{/* <a href="#">
 									<i className="fa fa-star color-yellow-dark font-10"></i>
 									<i className="fa fa-star color-yellow-dark font-10"></i>

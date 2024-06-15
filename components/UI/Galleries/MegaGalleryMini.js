@@ -59,8 +59,8 @@ let Grid1 = () => <HorizontalGrid>
           return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
             //let backGs = ['100', '200', '300', '400'];
-          return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-${randomEither(siteColors)}-dark`}>
-            <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
+          return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-listing`}>
+            <p className={`_text truncate-7 color-white ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
           </div>
         }
       }
@@ -90,8 +90,8 @@ galleryView = <>
                     return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
                   }else{
                       //let backGs = ['100', '200', '300', '400'];
-                    return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-${randomEither(siteColors)}-dark`}>
-                      <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
+                    return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-listing`}>
+                      <p className={`_text truncate-7 color-white ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
                     </div>
                   }
                 }

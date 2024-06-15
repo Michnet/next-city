@@ -351,6 +351,7 @@ div.truncate-5 > p {
 ._grayScale{
     filter: grayscale(1)
 }
+.bg-listing{background: var(--listingTheme) !important;}
 .handy{
     font-family: var(--handFont) !important;
 }
@@ -3187,7 +3188,7 @@ span.term_icon_box {
 }
 
 span.list_title._first {
-    color: var(--highlight);
+    color: var(--listingTheme);
 }
 
 .btn-icon i {
