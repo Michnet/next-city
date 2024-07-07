@@ -300,7 +300,7 @@ function LayoutConst({ children, headerTitle, settings}) {
            --xsFontSize: 12px;
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
-           --lh: 24px;
+           --lh: 1.6em;
           --headingFont: "Jost", sans-serif !important;
           --handFont: 'Dr Sugiyama', cursive;
           --fontFamily: "Roboto", sans-serif !important;
@@ -338,7 +338,7 @@ function LayoutConst({ children, headerTitle, settings}) {
       }
       @scope(.smLine) {
         :scope {
-            --lh:18px;
+            --lh:1.2em;
           }
       }
       .bg-theme-transparent-2{

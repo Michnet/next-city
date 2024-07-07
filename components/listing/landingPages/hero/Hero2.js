@@ -61,7 +61,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
   return (<>
     <Suspense>
         <div className={`hero2 listing_hero ${styles['location']} d-block`}>
-            <div className='hero_images d-block d-md-none md-hero'>
+            <div className='hero_images d-block d-md-none md-hero pos-relative'>
               {/* <div className={`${styles['slider_col']}`} >
 
              <AliceCarousel autoPlay={false} animationDuration={1000} disableButtonsControls slidesToShow={1} animationType='fadeout' autoPlayInterval={5000}  {...settings}
@@ -89,7 +89,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               } 
                 />
             </div> */}
-              {/* <Mirrored coverTop topPadding={'50px'} skewDegrees={5}  skewDir={'-'} YDistance={150}>
+              <Mirrored gap={15} objClass='card card-style bg-cover shadow-bg shadow-bg-xl' objBg={srcWithFallback(cover)} topPadding={'0px'} skewDegrees={0} skewDir={'-'} YDistance={200}>
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
                   //placeholder="blur"
@@ -108,8 +108,23 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   
                   </div>
                 </div>
-                </Mirrored> */}
-                <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
+                </Mirrored>
+                <div className='hero_title position-absolute bottom-0 w-75 text-right right-0 pe-4 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
+                  <div className='profile_name'>
+                    <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
+                        <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>
+                        <div className='title_meta d-flex justify-end'>
+                          <Client>
+                        <p style={{lineHeight: '1.3em'}}>
+                          <span className={`target mr-4 mb-4`}> {cleanHtml(catName)} </span>
+                          {/* <span className="target mr-4 mb-4 gray_text"> {type} </span> */}
+                          {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
+                        </p>
+                        </Client>
+                        </div>
+                  </div>
+                  </div>
+                {/* <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
                     {[cover ?? '', ...galArr].map((item, index) =>
                       <>
                     <Mirrored gap={15} objClass='card card-style bg-cover shadow-bg shadow-bg-xl' objBg={item} topPadding={'0px'} skewDegrees={0} key={index}  skewDir={'-'} YDistance={200}>
@@ -132,7 +147,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                       </>
                         )
                       }
-                  </Slider>
+                  </Slider> */}
             </div>
           <div className='hero_images d-md-grid d-none mt-2'>
             <div className='hero_cover position-relative'>
@@ -187,7 +202,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
 
             <div className='hero_title p-3 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
-             <div className='profile_name'>
+             <div className='profile_name d-none d-md-block'>
              <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
                 <div className='title_meta d-flex justify-end'>
@@ -205,7 +220,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               <p className = 'mb-10'>
                     {greetingView}
               </p>
-              <p className = 'mb-20 text-15 opacity-60'>
+              <p className = 'mb-20 text-15 opacity-60 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}

@@ -66,12 +66,12 @@ const ListingFooter = (props) => {
           </div>
           <div className={'footer-links'}>
             <div className={'footer-container1'}>
-              <span className={'footer-text15'}>Explore Page</span>
+              <span className={'footer-text15 opacity-80'}>Explore Page</span>
               {tabList?.map((el) => {
                   if(el?.content !== 'empty'){
                   const {id, icon, buttony, title, subTitle} = el;
                   return <li className={`${activeKey === id ? 'active' : ''}`} key={id}>
-                            <a className={`l_menu _item footer-link`} data-bs-dismiss="offcanvas" data-bs-target="#l_menu" onClick={() => setActiveKey(id)}>
+                            <a className={`l_menu _item footer-link opacity-60`} /* data-bs-dismiss="offcanvas" data-bs-target="#l_menu" */ onClick={() => setActiveKey(id)}>
                                 <i className="menu_pointer _left las la-caret-left"/>
                                 <span className="icon"><i className={`${icon}`}></i></span>
                                 <h6 className="label">{buttony ? subTitle : title}</h6>
@@ -87,14 +87,14 @@ const ListingFooter = (props) => {
                 <br></br>
                 <span></span>
               </span>
-              <div className="quick_links">
+              <div className="quick_links opacity-80">
                 {quickLinks?.map((item) => {
                   if(item.id == 3){
                     return(
                     <div key={item.id}>
                       <div className="d-flex flex-column">
                         {item.menuList.map((menu, i) => (
-                          <Link className='footer-link py-1'  href={menu.routerPath} as={menu.routerPath} key={i}>
+                          <Link className='footer-link py-1 opacity-60'  href={menu.routerPath} as={menu.routerPath} key={i}>
                             {menu.name}
                           </Link>
                         ))}

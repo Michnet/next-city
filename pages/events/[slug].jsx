@@ -149,7 +149,6 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing, themeColor, seoMeta}) => {
     
-   const color = randomEither(siteColors);
     //const {listing} = serverObj;
     const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
     const {_links} = meta ?? {};
@@ -172,6 +171,7 @@ let VisitorActionsView;
 //let lMenu = listingMenu({listing:listing, userId: user?.id});
 
 const cachedListing = useMemo( () => listing, [listing.id] );
+const color = useMemo( () => randomEither(siteColors), [listing.id] );
 const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing.id, user?.id] );
 
 
