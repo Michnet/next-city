@@ -23,6 +23,7 @@ import ListingDetail from '../profileInfo/ListingDetail';
 import ListingStats from '../profileInfo/partials/ListingStats';
 import Widget from "@/components/UI/partials/Widget";
 import About from '../profileInfo/partials/About';
+import { homeurl } from './../../../helpers/base';
 
 
 function processImg(images, cover){
@@ -167,16 +168,20 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             descriptView = <>
             {/* <TextBox text={short_desc} bgUrl= {`${processImg(gallery)}`} imgUrl= {`${listing.xtra_large_thumb}`}/> */}
 
-            <div className={`_text_box_block listing_intro padded_container pos-relative pb-5`} >
+            <div className={`_text_box_block listing_intro pos-relative pb-5`} >
             {/* {<Image fill style={{objectFit:"cover"}} src= {srcWithFallback(processImg(gallery))}/>} */}
             {/* <div className="section_overlay gray-fil"/> */}
-            <div className="section_overlay_content flex_container">
-                {<div className='border_box listing_greeting'> 
-                    <div className="featuredImg_box" style={{backgroundImage: `url('${srcWithFallback(xtra_large_thumb)}')`}}>
-                    </div>
-                </div>}
-                <div className={'excerptView gx-profile-info'}>
-                    <About exClass='shadow-0 bg-transparent' bodyClass='m-3 ms-0'/* communitySize={members_count ?? null} */ listing={cachedListing} />
+            <div className="section_overlay_content flex_container justify-between flex-nowrap flex-row align-items-stretch img_box">
+            <div className={'excerptView gx-profile-info'}>
+                    <About exClass='shadow-0 p-3 bg-transparent' bodyClass='m-3 ms-0'/* communitySize={members_count ?? null} */ listing={cachedListing} />
+                    <div className='px-4'>
+                    <div className="bg-border w-fit mb-24 btn btn-m shadow-bg shadow-bg-m border-0  rounded-s text-uppercase text-nowrap font-900 shadow-s btn-icon text-start" onClick = {async () => {if (navigator?.share) { try { await navigator.share({ 
+              url: `${homeurl}${router.asPath}` 
+          }); } catch (err) { onError?.(err); } } }}>
+                          <i className="las la-share-alt border-0 color-white"/>
+                          <label>Share</label>
+                          </div>
+                          </div>
                 {/* <div className="meta flex-grow-1 col-12 col-md-6 md:px-0">
                     {catView}
                     <div className="_location icon_box align-items-start d-inline-flex">
@@ -193,6 +198,10 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                     </div>
                   </div> */}
                 </div>
+                {<div className='bgView right-0 top-0 bottom-0 w-75' style={{maxWidth: '50%'}}> 
+                    <Image style={{objectFit: 'cover'}} src={srcWithFallback(xtra_large_thumb)} fill/>
+                </div>}
+                
             </div>
         </div>
 

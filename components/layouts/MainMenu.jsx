@@ -9,6 +9,7 @@ import { quickLinks } from "@/helpers/data";
 import Logo from "../UI/Logo";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
 import UISettings from "./UISettings";
+import MainMenuBtn from "./partials/MainMenuBtn";
 
 
 function MainMenu() {
@@ -38,10 +39,13 @@ function MainMenu() {
                                     <div className='row_flex justify-between p-2' onClick={() => closeMenus()}>
                                         <Logo simple={false}/>
                                         <span className="icon icon-xxs gradient-red rounded-sm close-menu d-block d-md-none" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div className="sidebar-content">
+                               <div className="d-flex justify-center show_in_collapsed"><MainMenuBtn/>
+                               </div>
                                <UserCard exClass={'border'}/>
                                 <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
