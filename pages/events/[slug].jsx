@@ -159,25 +159,38 @@ export async function getStaticPaths() {
     //const activeView = useRecoilValue(listingViewState);
     const [activeKey, setActiveKey] = useState(query?.view ?? view);
 
+    function setActiveView(view){
+      const url = {
+        pathname: router.pathname,
+        query: { ...router.query, view: view }
+      }
+      router.push(url, undefined, { shallow: true })
+    }
+
 //console.log('liss', listing);  
 let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0) : '#000';
 
 useEffect(() => {
+  setActiveKey(view);
+  return () => setActiveKey(view);
+}, [listing.id, view]);
+
+useEffect(() => {
   setActiveKey(query?.view ?? view);
-}, [listing.id, view])
+}, [query?.view]);
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
 let VisitorActionsView;
 //let lMenu = listingMenu({listing:listing, userId: user?.id});
 
 const cachedListing = useMemo( () => listing, [listing.id] );
-const color = useMemo( () => randomEither(siteColors), [listing.id] );
+const color = useMemo( () => randomEither(siteColors), [cachedListing.id] );
 const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing.id, user?.id] );
 
 
 if(listing){
     VisitorActionsView = <div>
-        <VisitorActions setActiveKey={setActiveKey} listing={cachedListing} extraItem = {<div className="action_box" data-menu='activeViewModal' onClick={(e) => openOffCanvas(e)}> <i className="las la-bullseye"/> <label>View Mode</label> </div>}/>
+        <VisitorActions setActiveKey={setActiveView} listing={cachedListing} extraItem = {<div className="action_box" data-menu='activeViewModal' onClick={(e) => openOffCanvas(e)}> <i className="las la-bullseye"/> <label>View Mode</label> </div>}/>
         <hr/>
         <CallToActions centered thin light bgClass={'bg-transparent'} actionComponent={
             <div className="d-flex  gap-3 flex-center">
@@ -251,21 +264,21 @@ return linkzz;
       description={`${listing?.short_desc}`}
     />
            <HeaderWrapper headerClass={`header-invert header-always-show`} header_id={'listing_header'}>
-                <ListingTopMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+                <ListingTopMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>
             </HeaderWrapper>
             <SiteMapContent links={siteMapper()}/>
 
-    <ListingBottomMenu lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} color={color} activeKey={activeKey}/>
+    <ListingBottomMenu lMenu={lMenu} setActiveKey={setActiveView} listing={listing} color={color} activeKey={activeKey}/>
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        <Hero2  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}  />
-        <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveKey} listing={cachedListing} color={color}/>
+        <Hero2  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />
+        <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
         {/* <Client>
-            <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
+            <Navigator lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
         </Client> */}
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
-          <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveKey} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
+          <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
         </LazyLoad>
         <Client>
           <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>
@@ -298,14 +311,14 @@ return linkzz;
     <Client>
       <style>
           {`:root{
-            --listingTheme : ${siteColorObjs?.filter((col) => col.name === color)[0]?.hex}
+            --listingTheme : ${siteColorObjs?.filter((col) => col.name === color)[0]?.hex ?? '#000'}
           }
           `}
       </style>
     </Client>
 
-    {/* <ListingSideMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/> */}
-    <RightMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveKey}/>
+    {/* <ListingSideMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> */}
+    <RightMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title">
             <div className="p-3"><h5 className="font-18">Listing Home page</h5></div>

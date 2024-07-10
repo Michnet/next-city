@@ -198,7 +198,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                     </div>
                   </div> */}
                 </div>
-                {<div className='bgView right-0 top-0 bottom-0 w-75' style={{maxWidth: '50%'}}> 
+                {<div className='bgView right-0 top-0 bottom-0 w-75' style={{maxWidth: '70%'}}> 
                     <Image style={{objectFit: 'cover'}} src={srcWithFallback(xtra_large_thumb)} fill/>
                 </div>}
                 
