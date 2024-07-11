@@ -13,7 +13,7 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
 
-    const ActivityItemConst = ({activity, user, token, avatarSize='35', noLink, exClass="", mainClass='bg-theme p-3', interactive=false}) => {
+    const ActivityItemConst = ({activity, user, token, avatarSize='35', noLink, exClass="", mainClass='bg-theme p-2', interactive=false}) => {
       
 
       const [compActivity, setCompActivity] = useState(activity ?? null);
@@ -158,7 +158,7 @@ dayjs.extend(relativeTime)
                     <div key={id} className={`${type} activity_card card card-style mx-0 mb-2 shadow-0 rounded-0 bg-transparent  ${exClass}`}>
                         <div className="content m-0">
                                 <div className={`activity_main ${mainClass}`}>
-                                    <div className="d-flex align-items-center gap-2 activity_header mb-2">
+                                    <div className="d-flex gap-2 activity_header mb-2">
                                       <div>
                                           <img src={user_avatar?.thumb} width={avatarSize} className="rounded-xl mt-1"/>
                                       </div>
@@ -177,7 +177,7 @@ dayjs.extend(relativeTime)
                                     {head_extras}
                                     <div className="overflow-hidden mb-3 activity_body">
                                         {/* <img src={type == 'new_job_listing' ? listing?.thumb_url : '/images/bg/fallback.jpg'} className="img-fluid"/> */}
-                                        {type === 'new_job_listing' && <Suspense offset={150} once><img className="img-fluid feat_img mb-10 w-100 object-cover" src={listing?.thumb_url}/></Suspense>}
+                                        {type === 'new_job_listing' && <Suspense offset={150} once><img className="rounded-4 img-fluid feat_img mb-10 w-100 object-cover" src={listing?.thumb_url}/></Suspense>}
                                         <div className="content mt-0 mb-1">
                                             <span className="opacity-50 d-block pt-1 font-11">LyveCity.com</span>
                                             
