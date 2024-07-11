@@ -26,7 +26,7 @@ export function UserCard({size, exClass=''}){
                            </span>
                      </div>
                      <div className="ps-2 align-self-center user_info">
-                        {user || sessionUser ? <h5 className="ps-1 mb-1 pt-1 line-height-xs font-17 text-capitalize">Hello {name}</h5> : <></>}
+                        {user ? <h5 className="ps-1 mb-1 pt-1 line-height-xs font-17 text-capitalize">Hello {name}</h5> : <></>}
                         {/* <h6 className="ps-1 mb-0 font-400 opacity-40 font-12 lh-1">Freelance Photographer</h6> */}
                      </div>
                      {<div className="ms-auto hide_in_collapsed">
