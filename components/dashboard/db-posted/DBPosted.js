@@ -7,7 +7,7 @@ const DBPosted = ({userId}) => {
   let postedView;
 
     if(userId){
-      postedView = <ListingsBlock forAuthor layout={'horizontal'} mini exClass={'px-2 pt-20'} noCats title = {'Posted Items'}  author = {userId}/>
+      postedView = <ListingsBlock forAuthor layout={'horizontal'} mini exClass={'px-2 pt-20'} noCats title = {'Active Listings'}  author = {userId}/>
     }
   return (
     <>

@@ -53,7 +53,7 @@ const UserDashboard = (props) => {
        
     const fetchedListings = await advancedFetchListings(payload);
     if (fetchedListings) {
-        setAuthored(fetchedListings.items);
+        setAuthored(fetchedListings);
     } else {
         setAuthored(null);
     }
