@@ -1,5 +1,5 @@
 import  {useState, useEffect, memo} from "react";
-//import { getDirTerms, fetchListings } from "../../../../server/WpRest";
+//import { getDirTerms, advancedFetchListings } from "../../../../server/WpRest";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 //import SectionHeading from "appComponents/components/partials/SectionHeading";
 //import { LoaderBlueBars } from "appComponents/components/loaders/loaders";
@@ -10,7 +10,7 @@ import { authState } from "@/contexts/atoms";
 import dynamic from "next/dynamic";
 //import CallToActions from "~/components/common/CallToActions";
 import Link from "next/link";
-import { fetchListings, getDirTerms } from "@/helpers/rest";
+import { advancedFetchListings, getDirTerms } from "@/helpers/rest";
 import { CircularProgress } from "@/components/skeletons/Loaders";
 import { DualColorHeader } from "../Partials";
 import CallToActions from "../CallToActions";
@@ -38,7 +38,7 @@ async function getTaxonomies(taxonomy, catFilter) {
 }
 
 async function listingsQuery(payload) {
-  const fetchedListings = await fetchListings(payload);
+  const fetchedListings = await advancedFetchListings(payload);
   if (fetchedListings) {
       setListings(fetchedListings.items);
       setLoading(false);
@@ -52,7 +52,7 @@ async function listingsQuery(payload) {
 }
 
 async function listingsQueryMore(payload) {
-  const fetchedListings = await fetchListings(payload);
+  const fetchedListings = await advancedFetchListings(payload);
   if (fetchedListings) {
      
       setListings(listings.concat(fetchedListings.items));

@@ -1,7 +1,7 @@
 //import SkeletonProductDetail from 'appComponents/components/skeletons/SkeletonProductDetail';
 //import MobileMenu from '~/appComponents/core/Layout/BottomMobileMenu';
 //import { useRouter } from 'next/router';
-import  {useEffect} from 'react';
+import  {useEffect, useMemo} from 'react';
 import { ProductPrice } from '@/helpers/universal';
 //import { ActionsContext } from '../../../appComponents/contexts/ActionsContext';
 //import { ProductContext } from '../../../appComponents/contexts/productContext';
@@ -17,14 +17,19 @@ import ProductSide from '../partials/ProductSide';
 import { DualColorHeader } from '../../Partials';
 import ProductHeader from '../partials/ProductHeader';
 import HeaderInfo from '../partials/HeaderInfo';
+import ProductBody from '../partials/ProductBody';
+import ListingProductsSimple from '@/components/listing/shop/ListingProductsSimple';
 
 const SimpleProduct = ({product}) => {
     //const {dispatchActions} = useContext(ActionsContext);
-    const {id, occurrence_slots, price, listing} = product;
+    const {id, occurrence_slots, price, listing, related_ids} = product;
     let listingId = listing.id;    
     const {user} = useRecoilValue(authState);
 
     const priceView = ProductPrice(product);
+    const cachedProduct = useMemo( () => product, [product?.id] );
+
+    console.log('pdt', product);
    
 
     useEffect(() => {
@@ -47,20 +52,22 @@ const SimpleProduct = ({product}) => {
     }
 
    if(product){
-        productView = <div className='ps-box _ticket p-3'>
+        productView = <div className='ps-box _ticket p-2'>
                             <div className='ps-main row'>
                                 <div className='col-12 col-sm-4 col-lg-3 pl-0 sm:pr-0 position-sm-sticky' style={{top: 0}}>
-                                    <ProductHeader product={product} user={user}/>
+                                    <ProductHeader product={cachedProduct} user={user}/>
                                 </div>
                                 <div className='product_body col-12 col-sm-8 col-lg-9 p-0'>
                                     {/* <ProductBody product={product}/> */}
                                     {/* <HeaderImages product={product}/> */}
-                                    <HeaderInfo product={product}/>
-                                    <DualColorHeader desc={'Occurences you can book tickets for'} exClass={'mb-20'} title={'Event Occurences'}/>
+                                    <HeaderInfo product={cachedProduct}/>
+                                    <ProductBody product={cachedProduct}/>
+                                    <DualColorHeader desc={'You may also like these'} exClass={'mb-20'} title={'Related Items'}/>
+                                    <ListingProductsSimple ids={related_ids} carousel/>
                                 </div>
                             </div>
                             <div className='ps-side scroll_sticky'>
-                                <ProductSide product={product} listingId={listingId ??  null}/>
+                                <ProductSide product={cachedProduct} listingId={listingId ??  null}/>
                             </div> 
                             {/* <MobileMenu extra={extraView} children={menuView}/>   */}        
                         </div>

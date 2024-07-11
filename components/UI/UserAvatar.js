@@ -13,6 +13,8 @@ export function UserAvatar({size=32}){
     //const {isMobile} = useRecoilValue(UISizes);
     const { data: session } = useSession();
     const {user:sessionUser} = session ?? {};
+
+    console.log('ses', session);
   
     let avatarUrl = user?.avatar_urls ? user?.avatar_urls[96] : '';
     return <span type="button" className="d-flex align-items-center" data-menu={user ? 'user_side_menu':'login_modal'}  onClick={(e) => openOffCanvas(e)}/* data-bs-target="#user_menu_drawer" */ /* data-bs-toggle={'modal'} */>

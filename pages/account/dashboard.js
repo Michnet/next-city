@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useRecoilValue } from "recoil";
-import { fetchListings } from "@/helpers/rest";
+import { advancedFetchListings } from "@/helpers/rest";
 //import { UserAvatar } from "@/components/UI/UserAvatar";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import Sidebar from "@/components/dashboard/Sidebar";
@@ -51,12 +51,10 @@ const UserDashboard = (props) => {
   async function usersListings(payload) {
    
        
-    const fetchedListings = await fetchListings(payload);
+    const fetchedListings = await advancedFetchListings(payload);
     if (fetchedListings) {
-      
         setAuthored(fetchedListings.items);
     } else {
-      console.log('feting', fetchedListings)
         setAuthored(null);
     }
     setLoading(false);

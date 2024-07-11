@@ -69,7 +69,7 @@ self.addEventListener('install', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Installed');}
 });
 
-const unCacheables = ['jwt-auth/v1', 'api/auth/','m-api/v1/event-dates','m-api/v1/visit', '/buddyboss/v1', 'jet-reviews-api/v1','user-actions/v1']
+const unCacheables = ['jwt-auth/v1', 'api/auth/', 'api/auth/session','m-api/v1/event-dates','m-api/v1/visit', '/buddyboss/v1', 'jet-reviews-api/v1','user-actions/v1']
 
 self.addEventListener('fetch', function(event) {
 	/* event.respondWith(
@@ -79,16 +79,16 @@ self.addEventListener('fetch', function(event) {
 		  return fetch(event.request);
 		})(),
 	  ); */
-
-	  
+	var unCachList = new RegExp(unCacheables.join("|"), 'gi');
 
 	event.respondWith(
 		(async () => {
 		  const requestURL = new URL(event.request.url);
-		  var unCachList = new RegExp(unCacheables.join("|"), 'gi');
 		  if(unCachList.test(event.request.url)){
+			console.log('unCachList', event.request.url);
 			return fetch(event.request);
 		  }else{
+			console.log('cachList', event.request.url);
 				// Try to get the response from a cache.
 				const cache = await caches.open(CACHE_NAME);
 				const cachedResponse = await cache.match(event.request);
@@ -121,7 +121,7 @@ self.addEventListener('fetch', function(event) {
 		  
 		})(),
 	  );
-	//if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
+	if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
 });
 
 self.addEventListener('activate', function(event) {

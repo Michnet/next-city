@@ -10,8 +10,9 @@ import {useRecoilState, useRecoilValue} from "recoil";
 import {authState, storeOrderState, pdtListyState} from '@/contexts/atoms'
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import dynamic from "next/dynamic";
+import Splider from "@/components/UI/partials/Splider";
 
-function ListingProductsSimple({ids, isSample, exClass, title, listy, productType, listingId, relatedIds}) {
+function ListingProductsSimple({ids, isSample, exClass, title, listy, productType, listingId, relatedIds, carousel}) {
   const {user} = useRecoilValue(authState);
   const [sorting, setSorting] = useState('newest');
     const [horizontal, setHorizontal] = useRecoilState(pdtListyState);
@@ -131,17 +132,28 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
             itemsView = <>{loaderSkeleton}</>
         }else{
           if(items?.length > 0){
-            itemsView = <> 
-            <ResponsiveMasonry columnsCountBreakPoints={horizontal ? {300:1,600:2} : productType == 'simple' ? {300:2,575:3,768:4} : {300:1,600:2}} className='masonry_grid  _products'>
-                  <Masonry gutter="10px">
-                      {items.map((product) => (
-                          <Card user={user} horizontal={horizontal} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
-                      ))}
-
-                  </Masonry>
-              </ResponsiveMasonry> 
-            </>
-  } 
+            if(carousel){
+              itemsView = <> 
+              <Splider options={{gap: '10px', type: 'loop'}}>
+                        {items.map((product) => (
+                            <Card sized user={user} horizontal={horizontal} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                        ))}
+  
+                    </Splider> 
+              </>
+            }else{
+              itemsView = <> 
+              <ResponsiveMasonry columnsCountBreakPoints={horizontal ? {300:1,600:2} : productType == 'simple' ? {300:2,575:3,768:4} : {300:1,600:2}} className='masonry_grid  _products'>
+                    <Masonry gutter="10px">
+                        {items.map((product) => (
+                            <Card user={user} horizontal={horizontal} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                        ))}
+  
+                    </Masonry>
+                </ResponsiveMasonry> 
+              </>
+            }
+          } 
 
   if(error){
       itemsView = <div>No products</div>

@@ -3056,6 +3056,7 @@ span.clear_tag {
 
 .activity_body {
     border-left: 2px solid var(--borderTheme);
+    padding-left: 10px;
 }
 
 .activity_footer, .activity_body {
@@ -4130,6 +4131,9 @@ ul.listing_menu .ex_label {display: none;}
     object-fit: contain;
     height: 40px;
 }
+input:hover, input:focus, input:active, select:hover, select:focus, select:active, select option, textarea:hover, textarea:focus, textarea:active, .btn:hover, .btn:focus, .btn:active, button:hover, button:focus, button:active{
+    -webkit-appearance: auto !important;
+}
 
 .box_icon._def ._title {
     height: fit-content !important;
@@ -4138,4 +4142,12 @@ ul.listing_menu .ex_label {display: none;}
 
 .theme-light .bg-header:before {
     backdrop-filter: contrast(0.2) blur(4px) brightness(2) grayscale(1);
+}
+
+.recent_activity .section_header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--bgTheme);
+    box-shadow: var(--btnShadow);
 }

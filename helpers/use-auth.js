@@ -60,6 +60,8 @@ function useProvideAuth () {
   const [error, setError] = useState('');
   const { data: session, status } = useSession();
 
+  console.log('auth status', status);
+
   const {user, oauth_token, oauth_token_secret, provider, access_token} = useSession().session ?? {};
 
 
@@ -205,7 +207,8 @@ async function getUserMeta(){
       }
       setLoadingUser(false);
    }else{
-    console.log('not authenticated')
+    console.log('not authenticated');
+    userSignOut();
    }
   }
   
@@ -246,6 +249,7 @@ const userLoginBySocial = async(userData, token, acc_token, soc_refresh_token, c
 
     fetchSuccess(); 
     //setTheAuth({...theAuth, loading:false});
+    router.reload();
     return true;
   };
 
@@ -254,11 +258,13 @@ const userSignOut = async () => {
     if(localJwt){
       cookies.remove('token');
     }
-    setTheAuth({auth_type: 'none'})
+    setTheAuth({auth_type: 'none'});
+
     deleteStoreUser();
-    if(session){
+    if(status == 'authenticated'){
       signOut()
     }
+    router.reload();
 };
 
 
@@ -319,7 +325,6 @@ async function loginFunc(jwt, username){
     let data = messageServiceWorker({type:'auth', loginData});
     
   }catch (error) {
-      console.log('got failed', error)
       setTheAuth({...theAuth, loading:false})  
     }
  };
@@ -390,6 +395,8 @@ function setUpMessaging(){
               }
              })
           }
+         // router.reload();
+
          return data;
         }else{
           console.log('failed', data)

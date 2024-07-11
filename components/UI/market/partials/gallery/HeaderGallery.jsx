@@ -58,21 +58,13 @@ function HeaderGallery({product, variant, currency, stickyHeader, cartAction}) {
 
 
         const imgList = productImages.map((item, index) => {
-        return <div style={{minHeight: imageHt()}} key={index}>
-                    <Image quality={100} placeholder={<Skeleton height={400}/>} onClick={(e) => handleOpenLightbox(e, index)} priority={index=== 0 ? true : false} style={{objectFit: 'cover', minHeight: imageHt() }} fill  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" src={item.woocommerce_single ?? item.src} onContextMenu={(e)=> {e.preventDefault(); return false; }} alt={product.name} 
+        return <div style={{minHeight: 300}} key={index}>
+                    <Image quality={100} placeholder={<Skeleton height={400}/>} onClick={(e) => handleOpenLightbox(e, index)} priority={index=== 0 ? true : false} style={{objectFit: 'cover', minHeight: 300 }} fill  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" src={item.woocommerce_single ?? item.src} onContextMenu={(e)=> {e.preventDefault(); return false; }} alt={product.name} 
                     className={`${process.env.NEXT_PUBLIC_IMAGE_FIT === 'cover' ? 'obj-cover' : 'obj-contain'}`}/>
             </div>
         } 
         );
-        gallerySlideItems = <Splider
-                                style={{
-                                "--swiper-navigation-color": "#fff",
-                                "--swiper-pagination-color": "#fff",
-                                }}
-                                spaceBetween={10}
-                                pagination={true}
-                                thumbs={{ swiper: thumbsSwiper }}
-                                modules={[FreeMode, Pagination, Thumbs]}
+        gallerySlideItems = <Splider options={{type:'fade'}}
                                 className="mySwiper2"
                             >
                             {imgList}
@@ -88,14 +80,7 @@ function HeaderGallery({product, variant, currency, stickyHeader, cartAction}) {
                     <div className="ps-wrapper in_view">
                         {gallerySlideItems}
                     </div>
-                <Splider
-                    onSwiper={setThumbsSwiper}
-                    //direction={"vertical"}
-                    spaceBetween={10}
-                    slidesPerView={4}
-                    freeMode={true}
-                    watchSlidesProgress={true}
-                    modules={[FreeMode, Pagination, Thumbs]}
+                <Splider options={{isNavigation: true}}
                     className="gallery-thumbs"
                     >
                     {slideItems}

@@ -84,14 +84,14 @@ const ExploreEvents = ({topList}) => {
  const [showHint, setShowHint] = useState(true);
  const {isTab} = useRecoilValue(UISizes);
  const [fetchy, setFetchy] = useState(false);
- const [loading, setLoading] = useState(true)
+ const [loading, setLoading] = useState(true);
 
  const cachedTopList = useMemo(() => topList, [topListKey])
 
  function translateTags(string){
    let arr = string.split(',');
    let newArr = arr.map((it) => {
-      return <span className="pointer">{it.replace("-", " ")}</span>
+      return <span className="pointer me-1">#{it.replace("-", " ")}</span>
    });
    return newArr;
  }
@@ -168,7 +168,7 @@ const ExploreEvents = ({topList}) => {
                     {eventDate ? <span>scheduled for <span className="text-warning pointer">{translateDate(eventDate)}</span></span> : ''}
                     {region ? <span> in <span className="text-info pointer capitalize">{region}</span></span> : ''}
                     {sort ? <span>, starting with the <span className="text-info pointer">{sort}</span></span> : ''}
-                    {tags ? <span>, and tagged in <span className="text-success">{translateTags(tags)}</span></span> : ''}
+                    {tags ? <span>, and tagged in <span className="text-success _tags">{translateTags(tags)}</span></span> : ''}
                   </p> 
                   <div><button className="btn btn-xs mb-0 btn-outline-secondary px-3" onClick={() => setShowHint(false)}>Hide</button></div>
               </div> 

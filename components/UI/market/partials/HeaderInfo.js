@@ -12,7 +12,8 @@ const HeaderInfo = ({product}) => {
         const {id, thumb, name, price_html, price, average_rating, rating, short_description, regular_price} = product;
         const priceView = ProductPrice(product);
 
-        infoView =  <div className="gx-product-body">
+        infoView =  <>
+                    <div className="header-info">
                             <h3 className="gx-product-title">{cleanHtml(name)}</h3>
                             <p><PriceView priceHTml={price_html}/></p>
                             <div className="ant-row-flex gx-mb-1">
@@ -25,6 +26,7 @@ const HeaderInfo = ({product}) => {
                             </div>
                             <Client><p dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
                     </div>
+                    </>
     }else{
         infoView = <div>Loading Info</div>
     }

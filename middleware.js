@@ -5,7 +5,7 @@ export function middleware(request) {
   // Getting cookies from the request using the `RequestCookies` API
   //let cookie = request.cookies.get('nextjs')
   const { device } = userAgent(request)
-  console.log('req xxxxxxxxxxxxxxxxx', device); 
+ // console.log('req xxxxxxxxxxxxxxxxx', device); 
   const response = NextResponse.next()
  
   return response
