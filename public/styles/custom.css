@@ -4040,6 +4040,7 @@ ul.listing_menu .ex_label {display: none;}
 }
 
 .img_box .excerptView{
+    backdrop-filter: grayscale(1);
    width: 100%;
    background: linear-gradient(90deg, var(--bgTheme), var(--bgThemeTransparent3));
    z-index: 1;
@@ -4150,4 +4151,8 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     z-index: 2;
     background: var(--bgTheme);
     box-shadow: var(--btnShadow);
+}
+
+.sidebar__button._active {
+    color: var(--highlight);
 }

@@ -72,15 +72,19 @@ export async function getStaticPaths() {
     const title = listing?.title?.rendered;
 
     async function getThemeColor(){
-        if(listing?.cover?.length > 0 && listing?.cover?.startsWith('http')){
+        /* if(listing?.cover?.length > 0 && listing?.cover?.startsWith('http')){
           let gota = await ColorThief.getColor(listing?.cover)
           .then(color => {return color})
           .catch(err => { console.log(err) });
           if(gota){
             serverObj.themeColor = gota;
           }
-        }
+        } */
+
+        const color = randomEither(siteColors);
+        serverObj.themeColor = color;
     }
+
 
     async function extendListing(listing){
       //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
@@ -148,6 +152,7 @@ export async function getStaticPaths() {
   }
 
   const ListingConst = ({listing, themeColor, seoMeta}) => {
+    console.log('themeColor', themeColor)
     
     //const {listing} = serverObj;
     const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
@@ -168,7 +173,7 @@ export async function getStaticPaths() {
     }
 
 //console.log('liss', listing);  
-let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0) : '#000';
+//let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0) : '#000';
 
 useEffect(() => {
   setActiveKey(view);
@@ -184,7 +189,8 @@ let VisitorActionsView;
 //let lMenu = listingMenu({listing:listing, userId: user?.id});
 
 const cachedListing = useMemo( () => listing, [listing.id] );
-const color = useMemo( () => randomEither(siteColors), [cachedListing.id] );
+//const color = useMemo( () => randomEither(siteColors), [cachedListing.id] );
+const color = themeColor;
 const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing.id, user?.id] );
 
 

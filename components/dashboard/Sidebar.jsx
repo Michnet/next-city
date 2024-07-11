@@ -84,14 +84,14 @@ const Sidebar = ({page, setPage, user, exClass=''}) => {
 
         </div>
       {sidebarContent.map((item) => {
-        const {func, link, routePath} = item;
+        const {func, link, routePath, page:linkPage} = item;
       return  <div className="sidebar__item dash_menu_item mb-2" key={item.id}>
           <div onClick={() => closeMenus()}
             className={`${
               isActiveLink(item.routePath, router.asPath) ? "-is-active" : ""
-            } sidebar__button`}
+            } sidebar__button ${linkPage == page ? '_active' : ''}`}
           >
-            <>{link ? <Link href={`${routePath}`} className='d-flex items-center text-15 lh-1 fw-500'><i className={`bi ${item.icon}`}/>
+            <>{link ? <Link href={`${routePath}`} className='d-flex items-center text-15 lh-1 fw-500 color-theme'><i className={`bi ${item.icon}`}/>
               {item.name}</Link>
             :
             <span

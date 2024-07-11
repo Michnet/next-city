@@ -85,10 +85,10 @@ self.addEventListener('fetch', function(event) {
 		(async () => {
 		  const requestURL = new URL(event.request.url);
 		  if(unCachList.test(event.request.url)){
-			console.log('unCachList', event.request.url);
+			//console.log('unCachList', event.request.url);
 			return fetch(event.request);
 		  }else{
-			console.log('cachList', event.request.url);
+			//console.log('cachList', event.request.url);
 				// Try to get the response from a cache.
 				const cache = await caches.open(CACHE_NAME);
 				const cachedResponse = await cache.match(event.request);
@@ -121,7 +121,7 @@ self.addEventListener('fetch', function(event) {
 		  
 		})(),
 	  );
-	if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
+	//if(APP_DIAG){console.log('Service Worker: Fetching '+APP_NAME+'-'+APP_VER+' files from Cache');}
 });
 
 self.addEventListener('activate', function(event) {
