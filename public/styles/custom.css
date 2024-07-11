@@ -3577,6 +3577,12 @@ div#explore_nav .view_filter {
 }
     .hero2.listing_hero .hero_images .hero_cover, .hero2.listing_hero .hero_images .hero_cover img{
     border-radius: inherit;
+    overflow: hidden;
+}
+
+.hero2.listing_hero .hero_images .hero_cover .card-bottom {
+    height: 100%;
+    background: #0000001c;
 }
     .header.header-sticky.header-always-show.header-invert:not(.header-active){}
     #listing_header{
@@ -3794,6 +3800,11 @@ div#explore_nav .left_menu_btn {
     .gx-timeline-center .gx-timeline-time-item .gx-timeline-panel:after,.gx-timeline-center .gx-timeline-time-item .gx-timeline-panel:before {
         top: 20px
     }
+}
+@media (max-width: 420px){
+.listing_menu_toggler .tab_link:not(._all){
+    display: none;
+}   
 }
 
 /*media qs end*/

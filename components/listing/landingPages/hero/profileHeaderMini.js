@@ -1,13 +1,13 @@
 import  { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { PriceView } from '@/components/UI/PriceView';
-const Image = dynamic(() => import("next/image"));
+//const Image = dynamic(() => import("next/image"));
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import { authState, UISizes } from "@/contexts/atoms";
 import {fallbackImgSrcSet } from "@/helpers/base";
 import { srcWithFallback } from "@/helpers/universal";
 import VisitorActions from "../../partials/VisitorActions";
+import Image from "next/image";
 
 
 const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {

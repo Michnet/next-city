@@ -72,7 +72,7 @@ let menuContent = <div className="menu_content">
 <div className="listing_menu_toggler d-flex flex-row flex-nowrap align-items-center gap-2 pe-2">
   {headerMenuView}
   {<>
-  <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link`}>
+  <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link _all`}>
   <div className={`menu_icon d-flex flex-column px-2`}>
         <span className='position-relative'>
           <i className={`fas fa-ellipsis-h`}/> 
@@ -82,7 +82,7 @@ let menuContent = <div className="menu_content">
       </div></>
   }
   
-  <div className='tab_link px-2'><UserAvatar size={30}/></div>
+  <div className='tab_link _all px-2'><UserAvatar size={30}/></div>
   {isMobile ? <></> : <div className="d-inline-block">
     { <BookingView simple={false} setActiveKey={setActiveKey}text='Booking' exClass='text-12 py-1 fw-600'/>}
     </div>}
@@ -90,7 +90,7 @@ let menuContent = <div className="menu_content">
 </div>;
 
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
-              <div style={{backgroundImage: `url("${cover}")`}} className="bg-header border-0 d-block d-md-none mx-auto btn p-0 shadow-bg shadow-bg-m mb-0 font-900 shadow-s color-white btn-icon text-start">
+              <div  className="bg-header border-0 d-block d-md-none mx-auto btn p-0 s mb-0 font-900 shadow-xl  btn-icon text-start">
           <i className="fas fa-bars left_menu_btn text-20 d-block d-md-none text-center" onClick={(e) => openOffCanvas(e)}  data-menu='mobile_sidebar'></i>
                 {menuContent}
               </div>
