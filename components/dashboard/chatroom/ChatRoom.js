@@ -366,10 +366,12 @@ const Chat = () => {
                           {userState === 1 ? ChatUsers() : AppUsersInfo()}
                         </div>
                       </div> */}
-                      <div className='row_flex gap-3 h-100'>
-                        <div className="gx-chat-sidenav d-none d-flex d-lg-block" style={{width: '300px'}}>
+                      <div className='gap-3 h-100 module_row'>
+
+                        <div className="gx-chat-sidenav d-none d-flex d-md-block">
                           {userState === 1 ? ChatUsers() : AppUsersInfo()}
                         </div>
+
                         <div className={'bg-theme justify-between d-flex flex-column w-100'} style={{flex: 'auto'}}>
                         <ChatHeader setSubject={setSubject} listings={listings} setConversation={setConversation} conversation={conversation} exClass='header-sticky header-always-show'/>
                         <div className='px-3 flex-grow-1 flex-shrink-1 w-100' style={{minHeight: '100px'}}>

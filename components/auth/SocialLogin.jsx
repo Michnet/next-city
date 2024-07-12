@@ -87,7 +87,7 @@ const tw_x = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill
 
   return (
       <div className='social_auth'>
-        {!session && <>
+        {!user && <>
           {providers &&
               Object.values(providers).map(provider => {
                 const {id} = provider;
@@ -105,7 +105,7 @@ const tw_x = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill
             })}
          {/*  <button className="btn btn-secondary" onClick={() => signIn()}>Sign in</button> */}
         </>}
-        {session && <>
+        {user && <>
           <p className="text-center">Signed in as {session.user.name}</p> <br/>
           <button className="btn btn-dark w-100" onClick={() => {setLoading(true); userSignOut()}}>{loading ? <LoaderDualRing size={30}/> : 'Sign Out'}</button>
         </>}

@@ -30,15 +30,21 @@ const ProductHeader = ({product}) => {
             
         </div>
         <div className='content_box'>
-            <div className='row_flex gap-2'>{whatsapp && <a href={`https://wa.me/${whatsapp}`} class="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
+            <div className='row_flex gap-2'>
+            <button className='btn btn-outline-secondary listing_link border mb-3'>
+                    <Link href={`/events/${slug}`}>
+                        Go to Business Page 
+                    </Link>
+                </button>
+                {/* {whatsapp && <a href={`https://wa.me/${whatsapp}`} class="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
 					<i class="fab fa-whatsapp font-15 text-center"></i>
 					WhatsApp
-				</a>}
+				</a>} */}
             
-            {phone && <a href={`tel:${phone}`} class="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-s text-uppercase text-nowrap color font-900 shadow-s bg-dark-dark btn-icon text-start">
+            {/* {phone && <a href={`tel:${phone}`} class="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-s text-uppercase text-nowrap color font-900 shadow-s bg-dark-dark btn-icon text-start">
 					<i class="fas fa-phone font-15 text-center"></i>
 					Call Now
-				</a>}</div>
+				</a>} */}</div>
 
 
             <div className='card_footer'>            
@@ -51,18 +57,14 @@ const ProductHeader = ({product}) => {
     
     if(product){
         headerView = <>
-        <div className='product_header _ticket bg-theme p-0 bg-cover card card-style mb-3 m-0' style={{backgroundImage: `url("${cover}")`}}>
-                <div className='ps-data d-flex flex-column p-3 bg-gradient-fade backdropGray'>
+        <div className='product_header _ticket bg-theme p-0 bg-cover card card-style mb-3 m-0 shadow-bg shadow-bg-m' style={{backgroundImage: `url("${cover}")`}}>
+                <div className='ps-data d-flex flex-column p-3 bg-gradient-fade backdropGray' style={{borderRadius: 'inherit'}}>
                     {/* <ProductVendorCard product={product} noBg/>   */}
                     {vendorView}
                     
                 </div>
         </div>
-        <button className='btn btn-outline-secondary listing_link border mb-3'>
-                    <Link href={`/events/${slug}`}>
-                        Go to Business Page 
-                    </Link>
-                </button>
+        
         </>
     } else{
         headerView = <div>Loading Header ..</div>

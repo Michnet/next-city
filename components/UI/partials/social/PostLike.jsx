@@ -5,7 +5,7 @@ import { authState } from "@/contexts/atoms";
 import { likePost } from "@/helpers/rest";
 
 
-const PostLike = ({listing, likedEl=null, unlikedEl=null}) => {
+const PostLike = ({listing, likedEl=null, unlikedEl=null, exClass='', style={}}) => {
   const [authObj, setAuthObj] = useRecoilState(authState);
   const {user, token} = authObj ?? {};
   const {user_meta} = user ?? {}
@@ -64,20 +64,16 @@ function shortened(arr, value) {
 
   let likeView;
   if(user){
-      likeView = <div className="likes_box _likes"> 
-              {liked ? <span>{likedEl ?? <i className="fa fa-heart" data-toast="snackbar-unliked" onClick={(e) => {console.log('e', e); unlikeItem(e, {JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}}/>}</span>
-                     : <span>{unlikedEl ?? <i className="far fa-heart" data-toast="snackbar-liked" onClick={(e) => {console.log('e', e); likeItem(e, {JWT: token, liked_id: listing, user_id : parseInt(user.id)})}}/>}</span>
-                 }
-                </div>
+      likeView = <> {liked ? <span data-toast="snackbar-unliked" onClick={(e) => {console.log('e', e); unlikeItem(e, {JWT: token, unliked_id: listing, user_id : parseInt(user.id)})}}>{likedEl ?? <i className="fa fa-heart" />}</span>
+                     : <span data-toast="snackbar-liked" onClick={(e) => {console.log('e', e); likeItem(e, {JWT: token, liked_id: listing, user_id : parseInt(user.id)})}}>{unlikedEl ?? <i className="far fa-heart"/>}</span>
+                 }</>
   }else{
-      likeView = <div className="likes_box _likes">  
-                   <span data-menu='login_modal' onClick={(e) => openOffCanvas(e)}>{unlikedEl ?? <i className="far fa-heart"/>}</span>
-                </div>
+      likeView =  <span data-menu='login_modal' onClick={(e) => openOffCanvas(e)}>{unlikedEl ?? <i className="far fa-heart"/>}</span>
   }
   
-  return (<>
+  return (<div className={`likes_box _likes ${exClass}`} style={{...style}}>
     {likeView}
-  </>);
+  </div>);
 }
 
 export default PostLike;

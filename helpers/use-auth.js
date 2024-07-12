@@ -264,7 +264,7 @@ const userSignOut = async () => {
     if(status == 'authenticated'){
       signOut()
     }
-    router.reload();
+    //router.reload();
 };
 
 

@@ -23,9 +23,9 @@ export const authOptions = { providers: [
       name: "LyveCity Account",
      
      credentials : {
-        username: { type: "hidden"},
+        username: { type: "text"},
         token: { type: "hidden"},
-        //password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" }
       },
 
        async authorize(credentials, req) {
@@ -40,7 +40,6 @@ export const authOptions = { providers: [
             const user = loginObj.user;
 
             if(user){
-              console.log('Nextauth auth user', user);
               return {
                 id: user.id,
                 name: user.name,
@@ -152,7 +151,7 @@ export const authOptions = { providers: [
   theme: {
     colorScheme: "auto", // "auto" | "dark" | "light"
     //brandColor: "", // Hex color code
-    logo: "/images/Lyvecity.png", // Absolute URL to image
+    logo: "/app/logos/Lyvecity.png", // Absolute URL to image
     //buttonText: "" // Hex color code
   },
   /* pages: {

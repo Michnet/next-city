@@ -136,7 +136,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
               itemsView = <> 
               <Splider options={{gap: '10px', type: 'loop'}}>
                         {items.map((product) => (
-                            <Card sized user={user} horizontal={horizontal} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
+                            <Card exClass='py-2 justify-between h-100' sized user={user} horizontal={horizontal} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
                         ))}
   
                     </Splider> 

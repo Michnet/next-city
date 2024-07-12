@@ -108,7 +108,7 @@ galleryView = <>
             </Masonry>
         </ResponsiveMasonry>}
         </div>
-        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-center w-100 h-100 justify-center"><span className="show_more btn btn-light">See Gallery</span></div>
+        <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-center w-100 h-100 justify-center"><button className="show_more btn btn-l bg-theme color-theme">See Gallery</button></div>
         </div>
       </div>
 </>

@@ -5,9 +5,11 @@ function ChatHeader({exClass='', conversation, setConversation, listings, setSub
 
   return (
     <div><div className={`header ${exClass}`}>
-    <div className="d-flex notch-clear">
+    <div className="d-flex notch-clear h-100">
         {conversation ? <div className="align-self-center">
-            <span className="icon icon-l color-theme" onClick={() => setConversation(null)}><i className="fa fa-arrow-left font-13"></i></span>
+            <span className="icon icon-l color-theme" onClick={() => {setSubject(null); setConversation(null);}}>
+                <i className="fa fa-arrow-left font-13"></i>
+            </span>
         </div> : <></>}
         <div className="align-self-center">
             {thumb ? <a href="#" data-menu="menu-user"><img src={thumb} width="31" className="rounded-l"/></a> : <></>}
