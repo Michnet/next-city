@@ -53,6 +53,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
     if(listing){
         if(_stats?.length > 0){
             statsView = <Widget
+            dataAos="zoom-in"
             freeHeader 
             title= 'Event stats'
             subtitle={'Key stats about event'}
@@ -68,7 +69,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
         if(faqs?.length > 0){
             let trimFaqs = faqs?.slice(0,3);
-        faqsView = <div className="card card-style shadow mt-4">
+        faqsView = <div className="card card-style shadow mt-4" data-aos="zoom-in">
                 <div className="content">
                     <div className="d-flex pb-2 border-bottom mb-3 ">
                         <div>
@@ -96,7 +97,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             <h5>Engage Now</h5>
             <h4>Booking Options</h4>
         </div>
-        <div className='bg-theme p-0 bg-cover card card-style mb-3' style={{backgroundImage: `url("${cover}")`}}>
+        <div data-aos="zoom-in" className='bg-theme p-0 bg-cover card card-style mb-3' style={{backgroundImage: `url("${cover}")`}}>
                                 <div className='ps-data d-flex flex-column p-3 bg-gradient-fade backdropGray'>
                                         <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
                                             <div className='cover_content pt-50'>
@@ -216,7 +217,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                     query: { tags: tag.slug },
                   })
             }
-            tagsView = <div>
+            tagsView = <div data-aos="zoom-in">
                 <div className='mb-20 sc_heading_3 px-4 mt-4'>
                     <h5>Listing Features</h5>
                     <h4>Page Tags</h4>
@@ -242,7 +243,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
         if(wcu?.list?.length > 0){
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
-                return <div className="strength_item"  style={{height: '250px', width: '400px', maxWidth: '95vw'}}>
+                return <div className="strength_item"   style={{height: '250px', width: '400px', maxWidth: '95vw'}}>
                             <div className="content m-0">
                                 <div className="image_bg">
                                   <Image fill style={{objectFit:"cover"}} src= {`${reason?.mylisting_accordion_photo}`}/>
@@ -261,7 +262,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             });
             strengthsView = <>
                     <Suspense offset={150} once height={200}>
-                    <div className="listing_strengths">
+                    <div className="listing_strengths" data-aos="zoom-in">
                    {/*  <div className="vertical_label dark_bg _bold"><h3 className="vertical_text">Why You Can't Miss</h3></div> */}
                         <div className="row_content row">
                             {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
@@ -297,7 +298,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
         if(special_guests?.length > 0){
             guestsView = <Suspense offset={150} once height={200}>
-                            <div className="wide_container listing_team _square ">
+                            <div className="wide_container listing_team _square" data-aos="fade-left">
                                 <div className="team_intro px-3 ms-auto" >
                                     {/* <h3 className="section_head dark_text">{team_intro.team_intro_title}</h3> */}
                                     {/* <DualColorHeader title={team_intro.team_intro_title}/>

@@ -25,6 +25,7 @@ import { run_template } from "@/helpers/js";
 //import "@/public/scripts/bootstrap.min.js";
 //import { DefaultSeo } from 'next-seo';
 import SeoHead from "@/components/UI/SeoHead";
+import Aos from "aos";
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;
@@ -46,10 +47,10 @@ function MyAppConst({ Component, pageProps, platform }) {
     //require("@/helpers/boojs.js");
    // onAppLoad();
    // require("bootstrap/dist/js/bootstrap.bundle.min.js");
-   /*  Aos.init({
+    Aos.init({
       duration: 1200,
       once: true,
-    }); */
+    });
 }, []);
 
   return <>

@@ -1,9 +1,9 @@
-const Widget = ({title, freeHeader=false, styleObj={}, bodyClass='', subtitle, children, exClass='m-0', cover, coverClass='', extra, actions, icon, headless, width}) => {
+const Widget = ({title, freeHeader=false, styleObj={}, bodyClass='', dataAos = null, subtitle, children, exClass='m-0', cover, coverClass='', extra, actions, icon, headless, width}) => {
     let widgetView;
     if(cover){
       styleObj.backgroundImage = `url('${cover}')`
     }
-      widgetView = <div>{freeHeader && <>
+      widgetView = <div data-aos={dataAos}>{freeHeader && <>
                   {title || subtitle  ? <div className="py-2 px-3">
                       <div className="d-flex pb-2">
                           <div>
