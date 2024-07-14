@@ -4,7 +4,7 @@ import { Client } from "react-hydration-provider";
 
 
 
-const TermTag = ({term, type, collection, colorText, exClass, exTagClass, linkTax}) => {
+const TermTag = ({term, type, collection, colorText, exClass='lh-12', exTagClass, linkTax}) => {
 
   let termView;
 
@@ -41,9 +41,9 @@ const TermTag = ({term, type, collection, colorText, exClass, exTagClass, linkTa
   switch (type) {
     case 'tag':
       termView =  <Link
-        href={`/explore/events?${linkTax}=${slug}`} className={`d-block lh-1 bg-white ${taxonomy} ${exClass ?? ''} term-link _tag rounded-4 pos-relative`}>
+        href={`/explore/events?${linkTax}=${slug}`} className={`d-block bg-white ${taxonomy} ${exClass ?? ''} term-link _tag rounded-4 pos-relative`}>
         <span className="d-block position-absolute h-100 w-100 opacity-20" style={{borderRadius:'inherit', background: color?.length > 0 ? color : 'var(--highlight)'}}/>
-        <span className={`gx-rounded-lg d-block  truncate text-11 fw-600 ${exTagClass ?? ''}`} style={{color: color?.length > 0 ? color : 'var(--highlight)'}} dangerouslySetInnerHTML={{__html:  name}}/>
+        <span className={`gx-rounded-lg d-block  truncate  fw-600 ${exTagClass ?? ''}`} style={{color: color?.length > 0 ? color : 'var(--highlight)'}} dangerouslySetInnerHTML={{__html:  name}}/>
 
       </Link>;
       break;

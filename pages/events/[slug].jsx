@@ -3,7 +3,7 @@ const RelatedByTaxSplide = dynamic(() => import("@/components/listing/RelatedByT
 //import VisitRecord from "@/components/UI/VisitRecord";
 const ListingStater = dynamic(() => import("@/contexts/contextStaters/ListingStater"));
 import { fetchIdsUrl, fetchSingleListingUrl, getUserRest } from "@/helpers/rest";
-import { cleanHtml, shadeRGBColor } from "@/helpers/universal";
+import { cleanHtml, scrollTop, shadeRGBColor } from "@/helpers/universal";
 import { memo, useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
 //const ListingSideMenu = dynamic(() => import("@/components/listing/ListingSideMenu"));
@@ -181,6 +181,7 @@ useEffect(() => {
 }, [listing.id, view]);
 
 useEffect(() => {
+  scrollTop();
   setActiveKey(query?.view ?? view);
 }, [query?.view]);
 
@@ -217,8 +218,6 @@ if(listing){
         </div>
 }
       
-
- console.log(listing)
 
  function siteMapper(){
   let linkzz = [];

@@ -26,6 +26,7 @@ import { run_template } from "@/helpers/js";
 //import { DefaultSeo } from 'next-seo';
 import SeoHead from "@/components/UI/SeoHead";
 import Aos from "aos";
+import "aos/dist/aos.css";
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;

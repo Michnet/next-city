@@ -71,7 +71,7 @@ const SearchFilter3Const = () => {
         <div className="single-field relative d-flex items-center py-10">
           <input
             onChange={(e) => {setParams({...params, search_keywords : e.target.value})}}
-            className="border-light text-dark-1 h-50 rounded-8 w-100"
+            className="border-light text-dark-1 rounded-4 px-2 w-100"
             type={'text'}
             placeholder="e.g. Mchomo Party"
           />{/* 
@@ -88,7 +88,7 @@ const SearchFilter3Const = () => {
           Popular Tags
         </h5>
         <div className="sidebar-checkbox">
-          <TagsFilter tags={tags} setTags={setTags}/>
+          <TagsFilter query={query} tags={tags} setTags={setTags}/>
         </div>
       </div>
 

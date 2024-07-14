@@ -106,7 +106,7 @@ const tw_x = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill
          {/*  <button className="btn btn-secondary" onClick={() => signIn()}>Sign in</button> */}
         </>}
         {user && <>
-          <p className="text-center">Signed in as {session.user.name}</p> <br/>
+          <p className="text-center">Signed in as {user?.name}</p> <br/>
           <button className="btn btn-dark w-100" onClick={() => {setLoading(true); userSignOut()}}>{loading ? <LoaderDualRing size={30}/> : 'Sign Out'}</button>
         </>}
 

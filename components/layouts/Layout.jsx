@@ -341,6 +341,11 @@ function LayoutConst({ children, headerTitle, settings}) {
             --lh:1.2em;
           }
       }
+      @scope(.lgLine) {
+        :scope {
+            --lh:2.2em;
+          }
+      }
       .bg-theme-transparent-2{
         background-color: var(--bgThemeTransparent2);
       }

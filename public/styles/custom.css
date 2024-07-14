@@ -64,6 +64,10 @@ body{
     font-size: var(--font-size);
     font-family: var(--fontFamily);
 }
+
+.theme-dark .card-style {
+    box-shadow: 0 2px 13px 1px rgb(255 255 255 / 8%);
+}
 body {
     min-height: calc(100% + env(safe-area-inset-top));
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
@@ -111,7 +115,6 @@ h6 {
 .pass_view_toggle{line-height: 45px;}
 
 .price_view._inline span {
-    display: inline;
 }
 
 .slick-prev{
@@ -1221,13 +1224,20 @@ h6.tax_pare {}
     max-width: 100%;
     width: 100%;
 }
+
+.event_card_2 .img_content > * {
+    min-width: 0;
+    flex-shrink: 1;
+    flex-grow: 0;
+    max-width: 70%;
+}
 .event_card_2 .img_content > *{
-    width: auto;
+    /* width: auto; */
 }
 
 .event_card_2 .img_content ._left {
     /* flex-basis: calc(100% - 60px); */
-    max-width: calc(100% - 60px);
+    /* max-width: calc(100% - 60px); */
 }
 
 .white-currency 
@@ -3573,8 +3583,8 @@ ul.listing_menu .ex_label {display: none;}
 
 .search_filter select {
     margin-bottom: 5px;
-    border-radius: 5px;
-    padding: 0 10px;
+    border-radius: 0;
+    padding: 0 10px 0 0;
 }
 
 .centered_cols div div {
@@ -3585,7 +3595,8 @@ ul.listing_menu .ex_label {display: none;}
 .term_links_grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
+    column-gap: 10px;
     justify-content: center;
 }
 
@@ -4210,4 +4221,45 @@ div#explore_nav .left_menu_btn {
 }
 .lazyload-wrapper div:empty {
     display: none;
+}
+
+.event_card_2 .listing_meta {
+    color: var(--bs-gray-600);
+}
+
+.event_card_2 .listing_meta i {
+    opacity: 1;
+}
+
+.form-checkbox .badge {
+    position: absolute;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.form-checkbox ._active {
+    opacity: 0.4;
+}
+
+.collapse.show .show_in_collapsed {
+    display: none !important;
+}
+
+.list-group > * .badge {
+    border-radius: 10px;
+    opacity: 0.8;
+}
+
+.padded_items > div > div {
+    padding: 0 5px;
+}
+
+.hide_empty > div > div > div:empty {
+    display: none;
+}
+
+.masonry_grid.sticky_items > div > div {
+    height: fit-content;
+    position: sticky;
+    top: 80px;
 }

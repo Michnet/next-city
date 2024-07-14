@@ -15,17 +15,19 @@ export const TermIcon = ({item, flipped=false, shadowy=true}) => {
                 </div>
 }
 
-export const TermIconBox = ({item, flipped=false, shadowy=true, exClass='', width=100, height=100}) => {
+export const TermIconBox = ({item, flipped=false, externalTitle=false, shadowy=true, exClass='', width='100px', height='100px'}) => {
     let {name, slug, term_meta, id} = item;
     let {color, rl_awesome} = term_meta;
-    return <div key={id} className={`icon_bound box_icon  text-center overflow-hidden position-relative ${flipped ? '_flipped' : '_def'} ${exClass} ${shadowy ? 'shadow' : ''}`} style={{background: `${flipped ? color?.length > 0 ? color : 'var(--highlight)' : 'var(--bgTheme)'}`}}>
-                    <div className={`term_box icon`} >
+    return <div><div key={id} className={`icon_bound box_icon  text-center overflow-hidden position-relative ${flipped ? '_flipped' : '_def'} ${exClass} ${shadowy ? 'shadow' : ''}`} style={{background: `${flipped ? color?.length > 0 ? color : 'var(--highlight)' : 'var(--bgTheme)'}`}}>
+                    <Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`} className={`term_box icon`} style={{ height: externalTitle ? height : 'auto', lineHeight: externalTitle ? height : 'auto'}}>
                         <span className={`term_icon_box bg-transparent`}>
                             <i className={`text-center text-${flipped ? '80' : '40'} opacity-30 ${rl_awesome?.length > 0 ? rl_awesome : 'fas fa-feather'}`} style={{color: flipped ? '#fff' : color}}></i>
                         </span>
-                    </div>
+                    </Link>
                     {flipped ? <div className={`icon_overlay ${flipped ? 'bg-gradient-45' : ''} h-100 w-100 position-absolute top-0 left-0 opacity-50`}/> : <></>}
-                    <div className={`_title text-right ${flipped ? 'p-3' : 'px-3 pb-2'} d-flex align-items-end position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`${flipped ? 'color-white text-13 opacity-50' : 'color-theme text-10 opacity-80'} smLine fw-600 truncate-3  lh-12 heady`}>{cleanHtml(name)}</Link></div>
+                    {!externalTitle && <div className={`_title text-right ${flipped ? 'p-3' : 'px-3 pb-2'} d-flex align-items-end position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`${flipped ? 'color-white text-13 opacity-50' : 'color-theme text-10 opacity-80'} smLine fw-600 truncate-3  lh-12 heady`}>{cleanHtml(name)}</Link></div>}
+                </div>
+                {externalTitle && <div className={`_title text-center py-2 d-flex align-items-end position-relative opacity-60`} style={{ width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`${flipped ? 'color-white text-13 opacity-50' : 'color-theme text-10 opacity-80'} smLine fw-600 truncate-2  lh-1 heady`}>{cleanHtml(name)}</Link></div>}
                 </div>
 }
 

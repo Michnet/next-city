@@ -17,6 +17,29 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, e
     </div>
   )
 }
+export function SlickArrow(props) {
+  let className =
+    props.type === "next"
+      ? "slick_arrow-between slick_arrow -next arrow-md flex-center button -blue-1 bg-white shadow-1 size-30 rounded-full sm:d-none js-next"
+      : "slick_arrow-between slick_arrow -prev arrow-md flex-center button -blue-1 bg-white shadow-1 size-30 rounded-full sm:d-none js-prev";
+  className += " arrow";
+  const char =
+    props.type === "next" ? (
+      <>
+        <i className="icon icon-chevron-right text-12"></i>
+      </>
+    ) : (
+      <>
+        <span className="icon icon-chevron-left text-12"></span>
+      </>
+    );
+  return (
+    <button className={className} onClick={props.onClick}>
+      {char}
+    </button>
+  );
+}
+
 export const ActiveQueryOption = ({query, queryKey, label}) => {
   return <>
   <div className="active_slection mb-2">

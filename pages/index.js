@@ -152,7 +152,7 @@ export default function Home(props) {
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
-    <SectionHeader exClass='px-3 mb-4 justify-center text-center'  title={'Your Categories'} subTitle={'Explore By Category'}/>
+    <SectionHeader exClass='px-3 mb-4 justify-center text-center'  title={'Event Categories'} subTitle={'Explore By Category'}/>
 
    {/*  <Splider exClass="mb-4" height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {
@@ -162,10 +162,10 @@ export default function Home(props) {
             }
     </Splider> */}
     
-    <div className='term_links_grid mb-3 px-sm-3 px-2'>
+    <div className='term_links_grid mb-3 sm:px-10 px-2'>
     {
                 eventCategories?.map((cat) => {
-                    return <TermIconBox exClass='rounded-4' item={cat}/>
+                    return <TermIconBox width='60px' height='60px' externalTitle exClass='rounded-4' item={cat}/>
                 })
             }
             </div>
@@ -183,7 +183,7 @@ export default function Home(props) {
         }
     </Splider>
 
-    <section  className="layout-pt-md layout-pb-md bg-gradient-fade-reverse px-30 mb-5">
+    <section  className="layout-pt-md layout-pb-md  px-30 mb-5 border mx-3">
     <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
       <div className='tags_row bg-transparent'>
                 <div className='row_content' style={{minHeight : '130px'}}>                  

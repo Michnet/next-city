@@ -518,6 +518,6 @@ export const scrollToSpot = (ref, offset) => {
   });
 };
 
-export const scrollTop = (ref, offset) => {
-  window.scrollTo(0, offset);
+export const scrollTop = () => {
+  window.scrollTo({top : 0, behavior: 'smooth'});
 };

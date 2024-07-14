@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Avatar } from "../../Partials";
 import DateViewString from "../../partials/dateViews/DateViewString";
 
-const EventCard5 = ({listing, width=300, height=200, exClass=''}) => {
+const EventCard5 = ({listing, width=300, height=170, exClass=''}) => {
     let {id, title, address, short_desc, event_date, page_views, thumbnail, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, category, slug} = listing;
     const {color, name:catName} = category ?? {}
     const randColor = color ? null : randomEither(siteColors);
@@ -13,7 +13,7 @@ const EventCard5 = ({listing, width=300, height=200, exClass=''}) => {
             
             <div className="card-top mt-3 mx-3">
                 <div className='row_flex gap-2 mb-2 justify-between'>
-                    <h2 className="color-white pt-0 pb-3 truncate-2">{cleanHtml(title.rendered)}</h2>
+                    <h2 className="color-white pt-0 pb-3 truncate-2 smLine">{cleanHtml(title.rendered)}</h2>
                     <Avatar exClass='mt-1' rounded width={35} src={thumbnail}/>
                 </div>
                 {event_date[0]?.start ? <p className="color-white font-11 opacity-80 mb-n1">
@@ -22,9 +22,7 @@ const EventCard5 = ({listing, width=300, height=200, exClass=''}) => {
                 </p> : <></>}
                 <p className="color-white font-12 opacity-80"><i className="fa fa-map-marker-alt"></i> {address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</p>
             </div>
-            <div className="card-bottom mb-3 me-3">
-                
-            </div>
+            
             {/* <div className="card-bottom pb-3 pe-4">
                 <div className="float-end">
                     <h4 className="font-12 color-white font-400 opacity-50">John, and 143 more are attending</h4>

@@ -1,7 +1,9 @@
 import {  Dir_tags } from "@/public/data/localCache";
 import { sortArray } from "@/helpers/universal";
 
-const TagsFilter = ({tags, setTags}) => {
+const TagsFilter = ({tags, setTags, query}) => {
+
+  let queryTags = query?.tags ?? null;
 
     function procesTag(e, slug){
        let selected = e.target.checked;
@@ -14,7 +16,6 @@ const TagsFilter = ({tags, setTags}) => {
         setTags(tempArr);
        }
     }
-
     return (
       <>
       <div className="group_header" >
@@ -24,15 +25,19 @@ const TagsFilter = ({tags, setTags}) => {
 
         {sortArray(Dir_tags, 'count', false).slice(0, 10).map((filter) => {
             const {name, count, id, slug} = filter;
+            let active = queryTags && queryTags.includes(slug);
             return (
                 <div key={id} className="row y-gap-10 items-center justify-left flex-nowrap">
                     <div className="col-auto">
-                    <div className="form-checkbox d-flex items-start">
-                        <input type="checkbox" onChange={(e) => procesTag(e, slug)}/>
+                    <div className="form-checkbox d-flex text-14">
+                        <input disabled={active} checked={active} type="checkbox" onChange={(e) => procesTag(e, slug)}/>
                         <div className="form-checkbox__mark">
                         <div className="form-checkbox__icon icon-check" />
                         </div>
-                        <div className="ml-10">{name}<span className={`badge bg-highlight`}>{count}</span></div>
+                        <div className={`ml-10 ${active ? '_active opacity-50' : 'opacity-80'}`}>
+                          {name}
+                          <span className={`badge bg-highlight`}>{count}</span>
+                        </div>
                     </div>
                     </div>
                 </div>

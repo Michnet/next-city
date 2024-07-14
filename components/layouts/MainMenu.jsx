@@ -10,6 +10,7 @@ import Logo from "../UI/Logo";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
 import UISettings from "./UISettings";
 import MainMenuBtn from "./partials/MainMenuBtn";
+import { Client } from "react-hydration-provider";
 
 
 function MainMenu() {
@@ -29,6 +30,13 @@ function MainMenu() {
         routePath: "/explore/events",
         isNew: false
     },
+    {id: 3,
+        icon: "fas fa-bullhorn",
+        color: 'gradient-orange',
+        name: "LyveCity Updates",
+        routePath: "/news",
+        isNew: true
+    },
  ]
   return (
   <div id="sidebar_menu" className="list-group border-0 rounded-0 text-sm-start h-100">
@@ -44,8 +52,7 @@ function MainMenu() {
                                 </div>
                             </div>
                             <div className="sidebar-content">
-                               <div className="d-flex justify-center show_in_collapsed"><MainMenuBtn/>
-                               </div>
+                               <Client><div className="d-flex justify-center show_in_collapsed"><MainMenuBtn/></div></Client>
                                <UserCard exClass={'border'}/>
                                 <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">

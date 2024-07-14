@@ -171,7 +171,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                 </div>
               </div> */}
 
-              <ResponsiveMasonry className="hide_empty padded_items" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1199 : 1}}>
+              <ResponsiveMasonry className="masonry_grid sticky_items hide_empty padded_items" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1199 : 1}}>
                 <Masonry>
                   {contentView}
                   {/* <About communitySize={members_count ?? null} listing={cachedListing} /> */} 
