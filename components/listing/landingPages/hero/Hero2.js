@@ -96,7 +96,6 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   //placeholder="blur"
                    //changerKey={listing.id}
                    //blurDataURL={coverBlur}
-                   placeholder={<LoaderDualRingBoxed/>}
                    fill
                    priority
                    alt="image"
