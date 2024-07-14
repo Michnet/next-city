@@ -18,6 +18,7 @@ import { ListingMetaMini } from '@/components/UI/Partials';
 import { fadingSlide, largeResp } from '@/helpers/sliders';
 import Slider from 'react-slick';
 import Image from 'next/image';
+import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
@@ -95,6 +96,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   //placeholder="blur"
                    //changerKey={listing.id}
                    //blurDataURL={coverBlur}
+                   placeholder={<LoaderDualRingBoxed/>}
                    fill
                    priority
                    alt="image"

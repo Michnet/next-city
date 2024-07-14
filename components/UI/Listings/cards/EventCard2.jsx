@@ -8,6 +8,7 @@ import { PriceView } from "../../PriceView";
 import TermTag from "../../partials/TermTag";
 //import Slider from "react-slick";
 //import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
+import { fallbackImgSrcSet } from '@/helpers/base';
 
 const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf} = listing;
@@ -29,7 +30,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, hei
     <div data-aos='zoom-in' className={`card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
             <div className="card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', height:height, minHeight:minHeight}}>
 
-                <Image onError={(e) => {e.target.src = '/images/bg/fallback-sm.jpg'}} src={srcWithFallback(imgArr2[0])} fill={true} className={'pos-relative object-cover'} style={{minHeight:minHeight}}/>
+                <Image onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={srcWithFallback(imgArr2[0])} fill={true} className={'pos-relative object-cover'} style={{minHeight:minHeight}}/>
                 {/* <Slider
                   focusOnSelect
                   autoplay

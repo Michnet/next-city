@@ -162,10 +162,10 @@ export default function Home(props) {
             }
     </Splider> */}
     
-    <div className='term_links_grid mb-3 sm:px-10 px-2'>
+    <div className='term_links_grid mb-3 sm:px-28 px-2'>
     {
                 eventCategories?.map((cat) => {
-                    return <TermIconBox width='60px' height='60px' externalTitle exClass='rounded-4' item={cat}/>
+                    return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>
                 })
             }
             </div>
