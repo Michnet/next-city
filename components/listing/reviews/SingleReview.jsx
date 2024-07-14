@@ -1,4 +1,4 @@
-function SingleReview({ review, user, listingId, noTime, reload, width='auto', exClass='', transparent }) {
+function SingleReview({ review, user, preview, listingId, noTime, reload, width='auto', exClass='', transparent }) {
     const {author, date, content, title, rating_data} = review;
     
     const {rating, id} = review ?? {}
@@ -34,7 +34,7 @@ function SingleReview({ review, user, listingId, noTime, reload, width='auto', e
                     maskRepeat: 'no-repeat'
                   }}
                 />
-            <p className="line-height-m pt-2">
+            <p className={`line-height-m py-1 ${preview ? 'truncate-2' : ''}`}>
             {content}
           </p>
           </div>

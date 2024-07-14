@@ -11,7 +11,7 @@ import SingleReview from './SingleReview';
 import Splider from '@/components/UI/partials/Splider';
 
 
-function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false}) {
+function PostReviews({id, author_id, fromActive=false, preview = false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false}) {
     const [auth, setAuth] = useRecoilState(authState);
     const {user} = auth ?? {};
     const [page, setPage] = useState(0);
@@ -74,9 +74,9 @@ function PostReviews({id, author_id, fromActive=false, carousel, limit, reload, 
         if(list?.length > 0){
     
          if(carousel){
-             reviewsView = <Splider height={200} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>  
+             reviewsView = <Splider height={preview ? 210 : 300} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>  
              {list.map((item) => {
-                 return <SingleReview transparent={transparentCards} exClass={`mx-0 ${transparentCards ? 'border' : ''}`} width={300} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
+                 return <SingleReview preview={preview} transparent={transparentCards} exClass={`mx-0 ${transparentCards ? 'border' : ''}`} width={300} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
              })} 
              </Splider> 
          }else{

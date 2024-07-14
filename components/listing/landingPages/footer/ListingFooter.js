@@ -40,10 +40,10 @@ const ListingFooter = (props) => {
           </span>
           <div className={'footer-btns-container gap-2 align-items-center justify-center'}>
              <BookingView children={<button
-              className={`footer-register-now w-100 button-primary button-lg button`}
+              className={`footer-register-now w-100 button-primary button-lg button color-white truncate lh-15`}
             >See Options</button>} setActiveKey={setActiveKey} text='See Options'/>
             <button onClick={() => setActiveKey('private-chat')}
-              className={`footer-contact-us button button-outline button-lg-border`}
+              className={`footer-contact-us button button-outline button-lg-border color-white truncate lh-15`}
             >
               Contact Listing
             </button>

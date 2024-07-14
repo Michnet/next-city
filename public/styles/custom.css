@@ -4208,3 +4208,6 @@ div#explore_nav .left_menu_btn {
 .pdt-card.flex-row .content{
     max-width: 65%;
 }
+.lazyload-wrapper div:empty {
+    display: none;
+}

@@ -130,7 +130,7 @@ border-color: var(--highlight);
 }
 
 .single_listing .border-loud {
-  border-color: var(--highlight);
+  border-color: var(--listingTheme);
 }
 
 .services_body .service_item:nth-child(even) .serv_content hr {
@@ -4663,7 +4663,7 @@ margin-right : 20px;
 }
 
 .footer-btns-container button {
-  padding: 10px 10px;
+  padding: 0 10px;
 }
 
 .footer-btns-container button:empty {

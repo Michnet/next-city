@@ -108,7 +108,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                             
                                         </div>
                                         <div className='content_box'>
-                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`gradient-${color}`}`}>
+                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m  mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`gradient-${color}`}`}>
                                                     <i className="fas fa-qrcode font-15 text-center bg-transparent"/>
                                                       See Options
                                                 </button>}
@@ -232,9 +232,9 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
        
         //if(rating > 0){
                 reviewsView = <Suspense offset={150} once height={200}>
-                <div className="wide_container px-3" 
+                <div className="wide_container px-2" 
                     >
-                    <Client><PostReviews fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
+                    <Client><PostReviews preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
                     </Suspense>
         //}
@@ -379,7 +379,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                         </div>
                                         )}
                                     </div>
-                                    <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='px-4 py-2'/>}</>
+                                    <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='px-4 py-2 rounded-5'/>}</>
                                 </div>
                                 </Suspense>
         }
@@ -418,7 +418,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
             <Client>{galleryView}</Client>
             {detailView}
-            <Client>{descriptView}</Client> 
+            {/* <Client>{descriptView}</Client>  */}
                 
             {/* {shopView} */}
             {reviewsView}
@@ -431,7 +431,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             {strengthsView }
             {faqsView}
             {sponsorsView}
-            <ProfileInfo exClass={'px-lg-0 px-3 py-15'} listing={cachedListing} setActiveKey={setActiveKey}/>
+            <ProfileInfo exClass={'px-lg-0 px-3 py-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </div>
     )
 }

@@ -171,8 +171,8 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                 </div>
               </div> */}
 
-              <ResponsiveMasonry className="hide_empty" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1199 : 1}}>
-                <Masonry gutter={'15px'}>
+              <ResponsiveMasonry className="hide_empty padded_items" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1199 : 1}}>
+                <Masonry>
                   {contentView}
                   {/* <About communitySize={members_count ?? null} listing={cachedListing} /> */} 
                   {performersView}
@@ -182,7 +182,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                   {missionView}
                   {historyView}
 
-                  <AuthorCard listingId={listing?.id} exClass='mb-15' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
+                  <AuthorCard listingId={listing?.id} exClass='mb-0' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
                   {contactsView}
                   {groupView}
                   {paymentsView}

@@ -9,7 +9,7 @@ import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
 import { siteColors, siteSettings } from "@/helpers/base";
 
 export const HorizontalGrid = ({children, height}) => {
-  return <div style={{height : height ?? 180}} className="horizontal_grid gap-2 mb-10">
+  return <div style={{height : height ?? 180}} className="horizontal_grid  mb-0">
           {children}
   </div>
 }
@@ -81,8 +81,8 @@ galleryView = <>
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
           <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 px-10">
           <Grid1/>
-        {gallArr.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1024: 4}}>
-            <Masonry gutter="10px">
+        {gallArr.length > 0 && <ResponsiveMasonry columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
+            <Masonry>
             {gallArr.map((item, index) => {
               if (typeof item == 'string') {
                 if(item?.length > 0){
