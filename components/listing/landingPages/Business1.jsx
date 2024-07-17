@@ -39,9 +39,9 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
     const {address, venue, about_us, locations, author_id, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
     const {tickets} = listing_store;
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery} = meta ?? {};
-    const {list:wcu_list} = _wcu ? _wcu[0] : {};
+    const wcu = _wcu ? _wcu[0] : {};
     const { general_merchandise} = listing?.acf ?? {};
-    const {wcu, what_we_do} = marketing ??  {};
+    const {what_we_do} = marketing ??  {};
     const {faqs} = about_us ?? {};
     const router = useRouter();
 
@@ -261,9 +261,9 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                
                                 <div className="strength_content">
                                     <div className="content_box d-flex flex-column align-items-end align">
-                                        <h5 className="strength_heading">{reason.ft_title}</h5>
+                                        <h5 className="strength_heading">{reason.item_title}</h5>
                                         <hr className='border-loud opacity-100 w-48' style={{borderTopWidth: '3px'}}/>
-                                        <p className="strength_descript">{reason.ft_description}</p>
+                                        <p className="strength_descript">{reason.item_description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -278,7 +278,12 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                             {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
                                 <h4 className="section_subHead gray_text mb-3">{wcu.wcu_intro_detail}</h4>
-                            </div> : <></>}
+                            </div> 
+                            : 
+                            <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
+                                <h3 className="section_head dark_text">Why Attend</h3>
+                                <h4 className="section_subHead gray_text mb-3">Some reasons you may like this event</h4>
+                            </div>}
                             <div className="strengths_body col-12 col-md-8 p-0">
                                 <Splider exClass={'in_color card card-style'} options={{perMove:1, perPage:1, padding:{right: '20%'}}} height={'250px'} showDots>{reasonArr}</Splider>
                             </div>

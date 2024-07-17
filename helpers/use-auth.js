@@ -270,7 +270,7 @@ const userSignOut = async () => {
 
 async function loginFunc(jwt, username){
   if(status === "authenticated"){
-      const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
+      const {provider} = session ?? {};
       if(provider && provider !== 'undefined'){
         if(provider !== 'lyve_city'){
           let accessTokenObj = {};

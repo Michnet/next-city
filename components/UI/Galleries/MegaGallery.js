@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import {useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
@@ -101,30 +99,6 @@ const MegaGallery = ({listing, color, upcoming}) => {
   let megaGall = shuffleArray([...gallery, ...teamLinks(team), ...teamLinks(performers)]);
 
   let highlightIndex = [4,7,11,17]
-  let Grid1 = () => <HorizontalGrid>
-  {shuffleArray([gallery[0], gallery[1], gallery[3]]).map((item, index) => {
-    if (typeof item?.url === 'string') {
-      if(item?.url.includes(siteSettings.wpDomain)){
-        return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))}  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == 3}/>;
-        }/* else{
-          if(item?.url.length > 0){
-            let backGs = ['300', '400', '500', '600'];
-          return <div className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
-            <p className={`_text truncate-7 ${item?.length < 15 ? 'biggy' : ''} ${item?.length < 90 && item?.length > 15? 'medium' : ''}`}>{item}</p>
-          </div>
-          }
-        } */
-    }else{
-      if(item?.includes(siteSettings.wpDomain)){
-        return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))}  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == 3}/>;
-      }else{
-        return <>{item}</>
-      }
-    }
-  }
-  )}
-  
-  </HorizontalGrid>;
 
 let datePlate = randomBetween(0, gallery?.length);
 
@@ -201,7 +175,7 @@ galleryView = <>
             <Masonry gutter={miniGrid ? '5px' : "10px"}>
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
-                if(item.includes(siteSettings.wpDomain)){
+                if(item.includes(siteSettings.wpDomain) || item.includes(siteSettings.cdnDomain)){
                   return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
                 }else{
                   if(item?.length > 0){
@@ -211,7 +185,7 @@ galleryView = <>
                   }
                 }
               }else{
-                if(item?.url?.includes(siteSettings.wpDomain)){
+                if(item?.url?.includes(siteSettings.wpDomain) || item?.url?.includes(siteSettings.cdnDomain)){
                   /* if(item == gallery.filter((el, index) => index == datePlate)[0]){
                     return  <GalleryPlate exClass={'_date_plate'} styleObj={{minHeight: '250px'}}  onclickFunc = {() => setSlideIndex(itemIndex(item))}  item={item} key={index}  
                     content = {<div  className="_date_box position-absolute h-100 top-0 w-100 d-flex gap-3 flex-column justify-center align-items-center"><div>
