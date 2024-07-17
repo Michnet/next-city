@@ -249,7 +249,7 @@ const userLoginBySocial = async(userData, token, acc_token, soc_refresh_token, c
 
     fetchSuccess(); 
     //setTheAuth({...theAuth, loading:false});
-    router.reload();
+    //router.reload();
     return true;
   };
 
@@ -271,27 +271,29 @@ const userSignOut = async () => {
 async function loginFunc(jwt, username){
   if(status === "authenticated"){
       const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
-      if(provider && provider !== 'undefined' && provider !== 'lyve_city'){
-        let accessTokenObj = {};
+      if(provider && provider !== 'undefined'){
+        if(provider !== 'lyve_city'){
+          let accessTokenObj = {};
 
-        const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
-        if(provider == 'twitter'){
-          accessTokenObj = {oauth_token: oauth_token, oauth_token_secret: oauth_token_secret, user_id: `${user.id}`}
+          const {user, oauth_token, oauth_token_secret, provider, access_token} = session ?? {};
+          if(provider == 'twitter'){
+            accessTokenObj = {oauth_token: oauth_token, oauth_token_secret: oauth_token_secret, user_id: `${user.id}`}
+          }else{
+            accessTokenObj = {access_token: access_token, id_token: `${user.sub}`}
+          }
+        sendReqTw(accessTokenObj, provider);
         }else{
-          accessTokenObj = {access_token: access_token, id_token: `${user.sub}`}
+          cookies.set('token', jwt);
+          signIn('lyve_city', {username: username, token: jwt, redirect: false}).then(async(res) => {
+          if(res.ok){
+            const checkSession = await getSession();
+            if (checkSession?.user) {
+              const checkedUser = checkSession.user;
+                await fetchUserFunc({email: checkedUser.email, jwt: jwt, authType: 'native'});
+            }
+          }
+          })
         }
-      sendReqTw(accessTokenObj, provider);
-    }else{
-      cookies.set('token', jwt);
-      signIn('lyve_city', {username: username, token: jwt, redirect: false}).then(async(res) => {
-       if(res.ok){
-         const checkSession = await getSession();
-         if (checkSession?.user) {
-           const checkedUser = checkSession.user;
-            await fetchUserFunc({email: checkedUser.email, jwt: jwt, authType: 'native'});
-         }
-       }
-      })
     }
    }else{
     await userSignOut();
@@ -422,15 +424,16 @@ useEffect(() => {
 
 
 export function AuthProvider() {
+  console.log('running auth');
   const authFunctions = useProvideAuth();
   const {getAuthUser,setUpMessaging} = authFunctions;
   useEffect(() => {
     setUpMessaging();
      getAuthUser();
-     /* const interval = setInterval(() => {
+     const interval = setInterval(() => {
        getAuthUser();
-     }, 600000);
-     return () => clearInterval(interval); */
+     }, 100000);
+     return () => clearInterval(interval);
    }, []);
 
    

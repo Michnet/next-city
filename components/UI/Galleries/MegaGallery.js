@@ -9,7 +9,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Image from "next/image";
-import { cleanHtml, randomBetween, shuffleArray, textSizeClass } from "@/helpers/universal";
+import { cleanHtml, randomBetween, resizedImage, shuffleArray, textSizeClass } from "@/helpers/universal";
 import { LoaderDualRingBoxed, LoaderEllipsis } from "@/components/skeletons/Loaders";
 import { siteSettings, fallbackImgBlur, fallbackImgSrcSet } from "@/helpers/base";
 
@@ -31,10 +31,10 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc, content, ex
         {typeof item === 'string' ? 
         <Image unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
         /* onErrorCapture={() => {return <img src='/images/Lyvecity.png'/>;}} */ quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
-                    alt="LyveCity" src={item}/>
+                    alt="LyveCity" src={resizedImage(item, 'medium')}/>
                     :
         <Image placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}} quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
-                  alt="LyveCity" src={item.url}/>}
+                  alt="LyveCity" src={resizedImage(item.url, 'medium')}/>}
                   {content}
                    </div>
     {overlay && <div className="plate_overlay" style={{background: `rgba(${theme.toString()})`}}></div>}

@@ -521,3 +521,23 @@ export const scrollToSpot = (ref, offset) => {
 export const scrollTop = () => {
   window.scrollTo({top : 0, behavior: 'smooth'});
 };
+
+export function resizedImage(imgUrl, desiredSize){
+  switch (true) {
+    case imgUrl.includes('.jpeg'):
+      return imgUrl.replace(".jpeg", `-${desiredSize}.jpeg`);
+      break;
+    case imgUrl.includes('.webp'):
+      return imgUrl.replace(".webp", `-${desiredSize}.webp`);
+      break;
+    case imgUrl.includes('.jpg'):
+      return imgUrl.replace(".jpg", `-${desiredSize}.jpg`);
+      break;
+    case imgUrl.includes('.png'):
+      return imgUrl.replace(".png", `-${desiredSize}.png`);
+      break;
+    case imgUrl.includes('.gif'):
+      return imgUrl.replace(".gif", `-${desiredSize}.gif`);
+      break;
+  }  
+}

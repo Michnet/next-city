@@ -4,15 +4,15 @@ import { Client } from "react-hydration-provider";
 
 
 
-const TermTag = ({term, type, collection, colorText, exClass='lh-12', exTagClass, linkTax}) => {
+const TermTag = ({term, exploreLink, type, collection, colorText, exClass='lh-12', exTagClass, linkTax}) => {
 
   let termView;
+  const {name, taxonomy, slug } = term ?? {};
+
 
   if(term){
   
   let  rl_awesome, color = null, term_id;
-
-  const {name, taxonomy, slug } = term;
 
   if(collection){
     const {term_meta} = term;
@@ -97,6 +97,15 @@ const TermTag = ({term, type, collection, colorText, exClass='lh-12', exTagClass
   return (
             <>
              {termView}
+             {exploreLink ? 
+             <Link
+             href={`/explore/events?${linkTax}=${slug}`}
+             className={`explore_link d-block shadow-0 border w-fit btn btn-link`}>
+              {`Explore ${linkTax}`}   
+              </Link>
+              :
+              <></>
+             }
             </>
 
   );

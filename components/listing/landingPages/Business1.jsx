@@ -136,16 +136,27 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
         if(sponsors?.length > 0){
             sponsorsView = <div className={'d-block w-100 image_links py-28'}>
                    <div className='mb-20 mt-10 sc_heading_3 text-center'><h5>Proudly Sponsored By</h5></div>
-                    <Splider height={110} options={{...spliderVariableWidth}}>
-                        {sponsors?.map((el, index) => {
-                                    const {img_name, img_link, mylisting_accordion_photo} = el;
-                                    return <a className='w-auto' href={img_link} target="_blank"><img
-                                    alt="image" style={{objectFit: 'contain', height:'80px'}}
-                                    src={mylisting_accordion_photo}
-                                    className={`logo_image pr-20`}
-                                    /></a>}
-                                    )} 
-                    </Splider>
+                   <Widget
+                        dataAos="zoom-in"
+                        freeHeader 
+                        //title= 'Event stats'
+                        //subtitle={'Key stats about event'}
+                        //coverClass={'backdropGray'}
+                        exClass='shadow-0'
+                        //cover= {srcWithFallback(processImg(gallery, cover))}
+                        icon = {'fas fa-stopwatch-20'}
+                        >
+                            <Splider height={110} options={{...spliderVariableWidth}}>
+                                {sponsors?.map((el, index) => {
+                                            const {img_name, img_link, mylisting_accordion_photo} = el;
+                                            return <a className='w-auto' href={img_link} target="_blank"><img
+                                            alt="image" style={{objectFit: 'contain', height:'80px'}}
+                                            src={mylisting_accordion_photo}
+                                            className={`logo_image pr-20`}
+                                            /></a>}
+                                            )} 
+                            </Splider>
+                    </Widget>
                 </div>
         }
 
@@ -379,7 +390,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                         </div>
                                         )}
                                     </div>
-                                    <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='px-4 py-2 rounded-5'/>}</>
+                                    <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='color-theme px-4 py-2 rounded-5 '/>}</>
                                 </div>
                                 </Suspense>
         }

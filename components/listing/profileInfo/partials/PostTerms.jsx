@@ -19,13 +19,13 @@ const PostTerms = ({post, termKey, title,taxonomy, linkTax}) => {
   }, [post]);
    
     if(terms?.length > 0){
-      termsView = <Widget freeHeader
+      termsView = <Widget 
                     title= {title}
                     headless = {title ? false : true}
                     >
                       <div className="listing_tags">
                         {terms.map((item) => {
-                          return <TermTag linkTax={linkTax} key={item.id} term={item} type={'icon-box'} collection/>
+                          return <TermTag exploreLink linkTax={linkTax} key={item.id} term={item} type={'icon-box'} collection/>
                         })}
                       </div>
                     </Widget>

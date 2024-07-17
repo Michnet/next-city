@@ -4,7 +4,7 @@ import { Client } from "react-hydration-provider";
 import { PriceView } from "../../PriceView";
 import ProductActions from "../partials/ProductActions";
 
-const ProductCard = ({product, user, horizontal=false, mini=true, sized, exClass=''}) => {
+const ProductCard = ({product, user, horizontal=false, mini=true, sized, exClass='', boxClass=''}) => {
 
     const {id, listing, name, price, rating, short_description,price_html, occurrence_slots, images} = product ?? {};
     const {phone, whatsapp, cover, logo, title, id:listing_id, type, slug} = listing ?? {};
@@ -31,7 +31,7 @@ const ProductCard = ({product, user, horizontal=false, mini=true, sized, exClass
     </section>
   </div> */}
 
-  <div className={`card card-style m-0 bg-theme pdt-card d-flex ${mini ? '_mini' : ''} ${sized ? '_sized' : ''} ${horizontal ? 'flex-row' : 'flex-col'} ${exClass}`}>
+  <div className={`pdt_box d-flex ${boxClass}`}><div className={`card card-style m-0 bg-theme pdt-card d-flex ${mini ? '_mini' : ''} ${sized ? '_sized' : ''} ${horizontal ? 'flex-row' : 'flex-col'} ${exClass}`}>
 							<img src={imgUrl} className="pdt-img"/>
 							<div className={`content m-0 p-${mini ? '2' : '3'}`}>
               <Link href={`/market/product/${id}`}><h3 className={`mb-2 truncate${mini ? '' : '-2'} smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h3></Link>
@@ -58,6 +58,7 @@ const ProductCard = ({product, user, horizontal=false, mini=true, sized, exClass
 								</div>
 							</div>
 						</div>
+            </div>
   </>
   }
 

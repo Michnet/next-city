@@ -129,7 +129,7 @@ h6 {
     color: var(--listingTheme) !important;
 }
 .page-content.single_listing .card {
-    background-color: var(--bgThemeTransparent3);
+    background-color: var(--bgThemeTransparent2);
     /* border: 1px solid var(--borderThemeAlt); */
 }
 
@@ -1103,7 +1103,7 @@ h6.tax_pare {}
 .sc_heading_3 h4 {
   font-size: 25px;
   line-height: 1.1em;
-  font-family: var(--headingFontFamily);
+  font-family: var(--headingFont);
   font-weight: 700;
 }
 
@@ -1175,10 +1175,11 @@ h6.tax_pare {}
     font-size: 16px;
     text-align: right;
     text-transform: capitalize;
-    overflow: hidden;
+    overflow: visible;
     max-height: 10.5em;
     line-height: 1.5;
     font-family: var(--headingFont);
+    overflow-wrap: normal;
 }
 
 .mega_gallery .text_box ._text._biggy {
@@ -1250,6 +1251,8 @@ h6.tax_pare {}
     align-items: center;
     flex-direction: row;
     min-height: 180px;
+    overflow: visible;
+    display: block;
 }
 
 .mega_gallery .mega_item.overlaid::after {
@@ -4258,8 +4261,21 @@ div#explore_nav .left_menu_btn {
     display: none;
 }
 
+.padded_items > div > div > div:not(:last-child) {
+    margin-bottom: 15px !important;
+}
+
 .masonry_grid.sticky_items > div > div {
     height: fit-content;
     position: sticky;
     top: 80px;
+}
+
+#mini_wall_gallery .vertical_grid > div > div:first-child  .text_box ._text {
+    text-align: left;
+}
+
+
+.badge.bg-highlight {
+    background: var(--secTheme) !important;
 }
