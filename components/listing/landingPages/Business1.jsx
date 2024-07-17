@@ -36,7 +36,6 @@ function processImg(images, cover){
 }
 
 const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcoming, styles}) => {
-    console.log('color', color)
     const {address, venue, about_us, locations, author_id, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
     const {tickets} = listing_store;
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery} = meta ?? {};

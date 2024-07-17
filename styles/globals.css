@@ -6055,10 +6055,6 @@ grid-template-columns: 55% 20% auto;
          width: 250px;
          max-width: none;
          }
-    .single_product .ps-box{
-    display: grid;
-    padding-left: 0;
-    }
 
 .single_product .ps-box .ps-side {
     grid-column: 2/3;
@@ -6066,10 +6062,7 @@ grid-template-columns: 55% 20% auto;
 }
 
 .single_product .ps-box .ps-side, .single_product .ps-box .ps-main {
-  min-width: 0;
-  height: fit-content;
-  position: sticky;
-  top: 60px;}
+  min-width: 0;}
 
 .single_product .ps-box .ps-main {
     grid-column: 1/2;

@@ -19,6 +19,8 @@ import ProductHeader from '../partials/ProductHeader';
 import HeaderInfo from '../partials/HeaderInfo';
 import ProductBody from '../partials/ProductBody';
 import ListingProductsSimple from '@/components/listing/shop/ListingProductsSimple';
+import HeaderGallery from '../partials/gallery/HeaderGallery';
+import { HeaderImgs } from '../partials/gallery/HeaderImgs';
 
 const SimpleProduct = ({product}) => {
     //const {dispatchActions} = useContext(ActionsContext);
@@ -57,18 +59,20 @@ const SimpleProduct = ({product}) => {
                                 {/* <div className='col-12 col-sm-4 col-lg-3 pl-0 sm:pr-0 position-sm-sticky' style={{top: 0}}>
                                     <ProductHeader product={cachedProduct} user={user}/>
                                 </div> */}
-                                <div className='product_body col-12 col-sm-8 col-lg-9 p-0'>
+                                <div className='product_body col-12 col-sm-8 col-lg-9 p-0 pe-lg-1'>
                                     {/* <ProductBody product={product}/> */}
-                                    {/* <HeaderImages product={product}/> */}
+                                    <HeaderImgs product={product}/>
+                                    {/* <HeaderGallery product={product}/> */}
                                     <HeaderInfo product={cachedProduct}/>
                                     <ProductBody product={cachedProduct}/>
-                                    <DualColorHeader desc={'You may also like these'} exClass={'mb-20'} title={'Related Items'}/>
+                                    
                                     
                                 </div>
-                                <div className='col-12 col-sm-4 col-lg-3 position-sm-sticky' style={{top: 0}}>
+                                <div className='col-12 col-sm-4 col-lg-3 position-sm-sticky p-0' style={{top: 0}}>
                                 <ProductHeader product={cachedProduct} user={user}/>
                                 </div>
                             </div>
+                            <DualColorHeader desc={'You may also like these'} exClass={'mb-0'} title={'Related Items'}/>
                             <ListingProductsSimple ids={related_ids} carousel/>
                             {/* <div className='ps-side scroll_sticky'>
                                 <ProductSide product={cachedProduct} listingId={listingId ??  null}/>

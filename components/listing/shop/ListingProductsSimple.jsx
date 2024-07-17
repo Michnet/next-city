@@ -134,7 +134,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
           if(items?.length > 0){
             if(carousel){
               itemsView = <> 
-              <Splider options={{gap: '10px', type: 'loop', padding: '10px'}}>
+              <Splider options={{gap: '10px', type: 'loop'}}>
                         {items.map((product) => (
                             <Card exClass='my-2 justify-between' boxClass='h-100 py' sized user={user} horizontal={horizontal} isSample={isSample} key={product.id} product={product} listingId={listingId} relatedIds={relatedIds}/>
                         ))}

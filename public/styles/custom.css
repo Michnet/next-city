@@ -3262,7 +3262,7 @@ span.list_title._first {
     display: flex;
     text-align: center;
     flex-grow: 1;
-    align-items: center;
+    align-items: baseline;
 }
 
 .theme-dark .footer_content {
@@ -4283,4 +4283,14 @@ div#explore_nav .left_menu_btn {
 
 .badge.bg-highlight {
     background: var(--secTheme) !important;
+}
+
+.pdt_hero .splide.main_frame img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.pdt_hero .splide__track, .pdt_hero .splide__list {
+    height: 100%;
 }

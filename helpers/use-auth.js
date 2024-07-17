@@ -425,7 +425,6 @@ useEffect(() => {
 
 
 export function AuthProvider() {
-  console.log('running auth');
   const authFunctions = useProvideAuth();
   const {getAuthUser,setUpMessaging} = authFunctions;
   useEffect(() => {

@@ -27,6 +27,7 @@ import { run_template } from "@/helpers/js";
 import SeoHead from "@/components/UI/SeoHead";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import '@splidejs/react-splide/css';
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;
