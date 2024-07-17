@@ -332,7 +332,7 @@ async function loginFunc(jwt, username){
  };
 
  async function getAuthUser(){
-
+ if(navigator.onLine){
   if (typeof window !== 'undefined') {
     const token = cookies.get("token");
 
@@ -343,7 +343,7 @@ async function loginFunc(jwt, username){
         return;
       }
     }else{
-      const userData = JSON.parse(window.localStorage.getItem('User'));
+      //const userData = JSON.parse(window.localStorage.getItem('User'));
 
       if(token){
          try{
@@ -356,7 +356,7 @@ async function loginFunc(jwt, username){
                 loginFunc(token, validatedUsername);
               }
             }else{
-              console.log('option 2');
+              console.log('option 2', kyValid);
               refreshUser(token);
             }
          }catch(e){
@@ -370,6 +370,7 @@ async function loginFunc(jwt, username){
         userSignOut();
       }
     }
+  }
   }
 }
 function setUpMessaging(){
@@ -432,7 +433,7 @@ export function AuthProvider() {
      getAuthUser();
      const interval = setInterval(() => {
        getAuthUser();
-     }, 100000);
+     }, 10000);
      return () => clearInterval(interval);
    }, []);
 

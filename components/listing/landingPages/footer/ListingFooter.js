@@ -22,9 +22,9 @@ const ListingFooter = (props) => {
   }
 
   return (
-    <footer className={`listing_footer px-0 footer-footer section-container bg-transparent shadow-0 card card-style mb-2 mx-2 md:px-10 md:py-10 ${props.rootClassName}`}>
+    <footer className={`listing_footer rounded-0 px-0 footer-footer section-container bg-transparent shadow-0 card card-style mb-2 mx-2  md:py-0 ${props.rootClassName}`}>
       <div
-        className={`footer-max-width max-content-container gap-4`}
+        className={`footer-max-width max-content-container gap-3`}
       >
         <div className={'footer-banner overflow-hidden mb-0'}>
           <Client>
@@ -51,7 +51,7 @@ const ListingFooter = (props) => {
           </div>
         </div>
 
-        <div className={'footer-bottom-container border p-5 sm:px-20 sm:py-20'}>
+        <div className={'footer-bottom-container border p-5 sm:px-20 sm:py-20 bg-theme'}>
           <div className={'footer-left-side'}>
             {logoView}
             {short_desc && <span className={'truncate-5 opacity-70'}>

@@ -55,7 +55,7 @@ let Grid1 = () => <HorizontalGrid>
   {shuffleArray([...grid1Arr]).map((item, index) => {
     if (typeof item == 'string') {
       if(item?.length > 0){
-        if(item?.includes(siteSettings.wpDomain)){
+        if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
           return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
             //let backGs = ['100', '200', '300', '400'];
@@ -86,7 +86,7 @@ galleryView = <>
             {gallArr.map((item, index) => {
               if (typeof item == 'string') {
                 if(item?.length > 0){
-                  if(item?.includes(siteSettings.wpDomain)){
+                  if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
                     return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
                   }else{
                       //let backGs = ['100', '200', '300', '400'];

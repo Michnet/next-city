@@ -681,7 +681,7 @@ export const getDirTerms = async (taxonomy, payload) => {
   try {
     const res = await kyFetch.get(query).json();
     if(res){
-      //console.log('queryyyyyyyyyyyyyyyyyyyy', res);
+      console.log('queryyyyyyyyyyyyyyyyyyyy', res);
 
         return res;
       }else{

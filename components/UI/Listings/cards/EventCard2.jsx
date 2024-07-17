@@ -1,7 +1,6 @@
 import { cleanHtml, shuffleArray, srcWithFallback } from "@/helpers/universal";
 import Link from "next/link";
 import DateView from "../../partials/dateViews/DateView";
-import DateViewString from "../../partials/dateViews/DateViewString";
 import Image from 'next/image';
 import { ListingMetaMini, ListingMeta, SlickArrow } from "../../Partials";
 import { PriceView } from "../../PriceView";
@@ -9,22 +8,23 @@ import TermTag from "../../partials/TermTag";
 //import Slider from "react-slick";
 //import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
 import { fallbackImgSrcSet } from '@/helpers/base';
+import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
 
-const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false}) => {
+const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf} = listing;
     const {likes} = acf?.community ?? {};
 
     const slicedGal = shuffleArray(gallery).slice(0, 5);
-    const imgArr = [xtra_large_thumb ?? large_thumb, ...slicedGal];
+    //const imgArr = [xtra_large_thumb ?? large_thumb, ...slicedGal];
     const imgArr2 = shuffleArray([xtra_large_thumb ?? large_thumb, ...gallery]);
 
-    var itemSettings = {
+    /* var itemSettings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-      };
+      }; */
 
     return (<>
     <div data-aos='zoom-in' className={`card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
@@ -81,8 +81,8 @@ const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, hei
                     </div>
                     <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
                         <Link href={`/events/${slug}`}><h3 className={`text-16 mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
-                        
-                        {/* <p className="card_desc truncate-2 mb-1">{short_desc}</p> */}
+                        {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>}
+                        {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-13">{short_desc}</p>}
                         <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
                         {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
                         <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>

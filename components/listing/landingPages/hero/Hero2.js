@@ -221,7 +221,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               <p className = 'mb-10'>
                     {greetingView}
               </p>
-              <p className = 'mb-20 text-15 opacity-60 smLine'>
+              <p className = 'mb-20 text-15 opacity-80 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}

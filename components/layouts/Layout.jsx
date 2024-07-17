@@ -304,6 +304,7 @@ function LayoutConst({ children, headerTitle, settings}) {
           --headingFont: "Jost", sans-serif !important;
           --handFont: 'Dr Sugiyama', cursive;
           --fontFamily: "Roboto", sans-serif !important;
+          --bgDarkTransparent0: #000000f2;
           --bgDarkTransparent: rgba(0, 0, 0, 0.902);
           --bgDarkTransparent2: rgba(15, 17, 23, 0.76);
           --bgDarkTransparent3: #0f11178c;
@@ -314,6 +315,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               --colorTheme: #0f1117;
               --bgTheme: #FFFFFF;
               --bgThemeLight: #c7c7c7;
+              --bgThemeTransparent0: #e5e5e5e6;
               --bgThemeTransparent: #ffffffe6;
               --bgThemeTransparent2: #ffffffd0;
               --bgThemeTransparent3: #ffffff94;
@@ -329,6 +331,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               --bgTheme: #0f1117;
               --borderThemeAlt: rgba(0, 0, 0, 0.1);
               --bgThemeLight: #232426;
+              --bgThemeTransparent0: var(--bgDarkTransparent0);
               --bgThemeTransparent: var(--bgDarkTransparent);
               --bgThemeTransparent2: var(--bgDarkTransparent2);
               --bgThemeTransparent3: var(--bgDarkTransparent3);
@@ -348,6 +351,9 @@ function LayoutConst({ children, headerTitle, settings}) {
       }
       .bg-theme-transparent-2{
         background-color: var(--bgThemeTransparent2);
+      }
+      .bg-theme-transparent-0{
+        background-color: var(--bgThemeTransparent0);
       }
       
       h1, h2, h3, h4, h5, h6{

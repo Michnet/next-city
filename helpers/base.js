@@ -13,6 +13,7 @@ export const siteSettings = {
   logo_link : '/app/logos/Lyvecity.png',
   light_logo_link: '/app/logos/Lyvecity_light.png',
   wpDomain : 'https://lyvecityclub.com',
+  cdnDomain : 'https://cdn.lyvecityclub.com',
   description: "Your portal to the places you love and events you can't miss",
   siteKeys: {g_auth_client_id:"815997455637-qs8kvv9h34ppnrlg73p3o40bntgdbu61.apps.googleusercontent.com",
   g_auth_client_secret :"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",

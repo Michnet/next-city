@@ -2346,12 +2346,12 @@ button.back_link {
   border-color: rgb(19,115,51);
 }
 .event_date._ongoing.outliney{
-  color: #61aeeb;
-  border-color: blue;
+  border-color: #61aeeb;
+  color: blue;
 }
 .event_date._future_dist.outliney.darky{
   border-color: rgb(230,244,234);
-  color: rgb(19,115,51);
+  color: #137333;
 }
 
 .listing_card.bg-transparent._mini.card-style {
@@ -3156,7 +3156,7 @@ span.clear_tag {
     font-family: var(--fontFamily) !important;
     cursor: pointer;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 5px;
 }
 
@@ -4231,7 +4231,12 @@ div#explore_nav .left_menu_btn {
 }
 
 .event_card_2 .listing_meta i {
-    opacity: 1;
+    /* opacity: 1; */
+}
+
+.listing_meta i, .listing_meta._mini i, .nav-link{
+ color: var(--colorTheme);
+ opacity: 0.5;
 }
 
 .form-checkbox .badge {

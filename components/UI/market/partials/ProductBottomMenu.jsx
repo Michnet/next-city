@@ -45,7 +45,7 @@ const ProductBottomMenuConst = ({product, router}) =>{
                         unlikedEl={<i class="fal fa-heart text-center text-24" />}
                     />
 
-                    <NextPostLink current={listing.slug} styleObj={{maxWidth: '50px'}}/>
+                    {/* <NextPostLink current={listing.slug} styleObj={{maxWidth: '50px'}}/> */}
                     </div>
                     {/* <div className='_fab'>
                     <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 bg-theme'}>

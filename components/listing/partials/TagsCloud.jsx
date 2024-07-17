@@ -1,3 +1,4 @@
+import { pwaName } from '@/helpers/appjs';
 import { getDirTermsUrl } from '@/helpers/rest';
 import { getLocalTaxonomy } from "@/helpers/rest";
 import {useEffect, useState, memo } from 'react';
@@ -37,6 +38,7 @@ useEffect(() => {
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
   //hue: hue ?? 'monochrome',
+  hue: hue ?? typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-Highlight') : null
 }
 
   function createTags(ids){

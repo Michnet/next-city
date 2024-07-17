@@ -1,5 +1,5 @@
 //import { themeSignal } from "@/contexts/signals";
-var pwaName = "LyveCity"; 
+export const pwaName = "LyveCity"; 
 
 export function onAppLoad(){
     if (typeof window !== "undefined") {

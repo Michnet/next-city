@@ -52,23 +52,27 @@ const SimpleProduct = ({product}) => {
     }
 
    if(product){
-        productView = <div className='ps-box _ticket p-2'>
+        productView = <div className='ps-box _simple p-2'>
                             <div className='ps-main row'>
-                                <div className='col-12 col-sm-4 col-lg-3 pl-0 sm:pr-0 position-sm-sticky' style={{top: 0}}>
+                                {/* <div className='col-12 col-sm-4 col-lg-3 pl-0 sm:pr-0 position-sm-sticky' style={{top: 0}}>
                                     <ProductHeader product={cachedProduct} user={user}/>
-                                </div>
+                                </div> */}
                                 <div className='product_body col-12 col-sm-8 col-lg-9 p-0'>
                                     {/* <ProductBody product={product}/> */}
                                     {/* <HeaderImages product={product}/> */}
                                     <HeaderInfo product={cachedProduct}/>
                                     <ProductBody product={cachedProduct}/>
                                     <DualColorHeader desc={'You may also like these'} exClass={'mb-20'} title={'Related Items'}/>
-                                    <ListingProductsSimple ids={related_ids} carousel/>
+                                    
+                                </div>
+                                <div className='col-12 col-sm-4 col-lg-3 position-sm-sticky' style={{top: 0}}>
+                                <ProductHeader product={cachedProduct} user={user}/>
                                 </div>
                             </div>
-                            <div className='ps-side scroll_sticky'>
+                            <ListingProductsSimple ids={related_ids} carousel/>
+                            {/* <div className='ps-side scroll_sticky'>
                                 <ProductSide product={cachedProduct} listingId={listingId ??  null}/>
-                            </div> 
+                            </div> */} 
                             {/* <MobileMenu extra={extraView} children={menuView}/>   */}        
                         </div>
     } else {

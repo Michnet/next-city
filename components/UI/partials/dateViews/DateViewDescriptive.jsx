@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { activeDateState } from "@/contexts/atoms";
 import { useRecoilValue } from "recoil";
 import SkeletonCube from "@/components/skeletons/SkeletonCube";
+import { createOccurenceClass } from "@/helpers/universal";
 
-const DateViewDescriptive = ({eventId, fromActive, iClass, customDate=null, customEndDate, exClass, icon}) => {
+const DateViewDescriptive = ({eventId, fromActive, customDate=null, customEndDate, exClass, icon}) => {
     var isBetween = require('dayjs/plugin/isBetween');
     dayjs.extend(isBetween);
     var relativeTime = require('dayjs/plugin/relativeTime')
@@ -61,7 +62,8 @@ const DateViewDescriptive = ({eventId, fromActive, iClass, customDate=null, cust
     const targetDate = new Date(date);
     const targetEndDate = new Date(endDate);
   
-    let unit = 'month', final, label, color = '#3554d1', prefix = '';
+    let unit = 'month', final, label, color = '#3554d1', prefix = '', iClass ="las la-stopwatch";
+    let localClass = createOccurenceClass(targetDate, targetEndDate);
   
     if(loading){
       return <div className="loader_skeleton"><SkeletonCube width={200} exClass={'mb-10'} height={25}/></div> 
@@ -77,7 +79,7 @@ const DateViewDescriptive = ({eventId, fromActive, iClass, customDate=null, cust
       }else{
         if(dayjs(targetDate).isAfter(now, 'minute')){
           if(dayjs(targetDate).diff(dayjs(now), 'month') <= 0){
-    
+            color = '#137333';
             if(dayjs(targetDate).diff(dayjs(now), 'week') <= 0){
                prefix = 'this';
                label = dayjs(date).format('DD');
@@ -116,20 +118,26 @@ const DateViewDescriptive = ({eventId, fromActive, iClass, customDate=null, cust
             label = final > 1 ? 'months' : 'month'
           }
         }else{
-          return <div className="event_date">
+            color = '#a50e0e';
+            prefix = 'Ended';
+            final = dayjs(targetEndDate).fromNow();
+            label = null
+         /*  return <div className="event_date">
                     {dates?.length > 0 && <p className="text-truncate">
                       <span className="mr-5 lh-1"><i className="las la-stopwatch"></i></span>
                         Ended {dayjs(targetEndDate).fromNow()}
                     </p>}
-                  </div>;
+                  </div>; */
         }
       }
     
       return <div className={`event_date descript ${exClass ?? ''}`}>
-               {dates?.length > 0 && <p className="text-truncate">
-                  {iClass ? <i className={iClass}/> : <></>}
-                  {prefix} {final} {label}
-                </p>}
+                <div className="event_date">
+                    <p className="text-13 lh-14  text-truncate" style={{color: color}}>
+                      <span className="mr-5 lh-1"><i className={iClass}/></span>
+                       {prefix} {final} {label}
+                    </p>
+                  </div>
              </div>
     }else{
       return <></>
