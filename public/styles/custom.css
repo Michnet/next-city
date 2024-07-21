@@ -1252,7 +1252,7 @@ h6.tax_pare {}
     flex-direction: row;
     min-height: 180px;
     overflow: visible;
-    display: block;
+    /* display: block; */
 }
 
 .mega_gallery .mega_item.overlaid::after {
@@ -3165,8 +3165,8 @@ span.clear_tag {
 }
 
 #mini_wall_gallery {
-    -webkit-mask-image: linear-gradient(white calc(100% - 110px),transparent 99%);
-    mask-image: linear-gradient(white calc(100% - 110px),transparent 99%);
+    /* -webkit-mask-image: linear-gradient(white calc(100% - 110px),transparent 99%); */
+    /* mask-image: linear-gradient(white calc(100% - 110px),transparent 99%); */
 }
 
 #mini_wall_gallery .mega_item {
@@ -4093,6 +4093,9 @@ div#explore_nav .left_menu_btn {
     .tabpane.pad_tab{
         padding: 10px
     }
+    .service_item .serv_image .image_bg{
+    border-radius: 10px 40px 10px 10px;
+}
 .profile-top-menu .menu_icon i {
     font-size: 23px;
     opacity: 0.8;

@@ -11,7 +11,7 @@ import { cleanHtml, randomBetween, resizedImage, shuffleArray, textSizeClass } f
 import { LoaderDualRingBoxed, LoaderEllipsis } from "@/components/skeletons/Loaders";
 import { siteSettings, fallbackImgBlur, fallbackImgSrcSet } from "@/helpers/base";
 
-export const GalleryPlate = ({item, overlay, highlight, onclickFunc, content, exClass, styleObj}) => {
+export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, content, exClass, styleObj}) => {
   const [theme, setTheme] = useState('#000');
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,7 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc, content, ex
     setLoading(false);
   }, [item])
   
-  return <div style={{ backgroundImage: `url("${typeof item === 'string' ? item : item.url}")`}} className={`shadow-bg shadow-bg-m gallery_plate pointer ${exClass ?? ''}`} onClick={() => onclickFunc()} >
+  return <div style={{ backgroundImage: `url("${typeof item === 'string' ? item : item.url}")`}} className={`shadow-bg shadow-bg-m gallery_plate pointer ${exClass ?? ''}`} onClick={onclickFunc ? () => onclickFunc() : null} >
     {loading ? <div className="d-flex justify-center align-center h-100 align-items-center"><LoaderEllipsis/></div> : 
       <>
       <div className={`mega_item`}>

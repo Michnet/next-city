@@ -6,7 +6,7 @@ import { memo, Suspense, useMemo, useEffect } from 'react';
 import { Client } from 'react-hydration-provider';
 // import { BookingView } from '~/pages/events/[slug]';
 import Splider from '@/components/UI/partials/Splider';
-import { PostThumbnailSrc, srcWithFallback } from '@/helpers/universal';
+import { PostThumbnailSrc, resizedImage, srcWithFallback } from '@/helpers/universal';
 import { CustomRow, DualColorHeader } from '@/components/UI/Partials';
 import TagsCloud from '../partials/TagsCloud';
 import MegaGalleryMini from '@/components/UI/Galleries/MegaGalleryMini';
@@ -250,7 +250,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
         //}
 
         if(Array.isArray(wcu?.list)){
-        if(wcu?.list?.length > 0){
+        /* if(wcu?.list?.length > 0){
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
                 return <div className="strength_item"   style={{height: '250px', width: '400px', maxWidth: '95vw'}}>
@@ -273,7 +273,6 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             strengthsView = <>
                     <Suspense offset={150} once height={200}>
                     <div className="listing_strengths" data-aos="zoom-in">
-                   {/*  <div className="vertical_label dark_bg _bold"><h3 className="vertical_text">Why You Can't Miss</h3></div> */}
                         <div className="row_content row">
                             {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
@@ -291,7 +290,41 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                     </div>
                    </Suspense>
             </>
+        } */
+        if(wcu?.list?.length > 0){ 
+            const {descript, sub_title,title} = wcu;
+
+            strengthsView =   <Suspense offset={150} once height={200}>
+                            <div className="listing_services padded_container">                                           
+                                <div className="services_intro padded_container">
+                                    <h2 className="section_head dark_text">{title}</h2>
+                                    <h3 className="section_subHead gray_text">{descript}</h3>
+                                </div>
+                                <div className="services_body">
+                                    {wcu?.list.map((item, index) => {
+                                        let {item_description, item_title, mylisting_accordion_photo} = item; 
+                                    return <div className="service_item" key={index} data-aos="zoom-in">
+                                        <div className="serv_number"><span>{`0${index + 1}`}</span></div>
+                                        {mylisting_accordion_photo &&  
+                                            <div className="serv_image" >
+                                                <div className="image_bg shadow-card shadow-card-l" style={{  backgroundImage: `url("${resizedImage(mylisting_accordion_photo, 'medium')}")`  }}></div>
+                                            </div>
+                                        }
+                                        <div className="serv_content">
+                                            <h4 className="serv_heading"   dangerouslySetInnerHTML={{   __html: item_title}} />
+                                            <hr className='border-loud opacity-100 w-48 my-2' style={{borderTopWidth: '3px'}}/>
+                                            <p className="serv_descript opacity-70"   dangerouslySetInnerHTML={{   __html: item_description}} />
+                                        </div>
+                                    </div>
+                                    }
+                                    )
+                                    }
+                                </div>
+                                <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='color-theme px-4 py-2 rounded-5 '/>}</>
+                            </div>
+                            </Suspense>
         }
+        
         }
         if(team?.length > 0){
                     teamView = <Suspense offset={150} once height={200}>

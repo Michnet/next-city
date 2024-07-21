@@ -4604,7 +4604,7 @@ color: rgb(19,115,51);
 }
 .footer-max-width {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -4620,7 +4620,6 @@ color: rgb(19,115,51);
 font-size: 17px;
 color: var(--bs-black);
 }
-
 .footer-banner{
   width: 100%;
   margin-bottom: 40px;
@@ -4634,7 +4633,7 @@ color: var(--bs-black);
   padding: 35px;
   flex-direction: column;
   background-size: cover;
-  background: #00000026;
+  background: var(--themeGray);
 }
 .links_box i{
 font-size: 25px;
@@ -4659,7 +4658,7 @@ margin-right : 20px;
   flex: 0 0 auto;
   display: flex;
   align-items: flex-start;
-  max-width: 265px;
+  max-width: 100%;
 }
 
 .footer-btns-container button {

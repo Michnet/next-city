@@ -429,11 +429,11 @@ export function AuthProvider() {
   const {getAuthUser,setUpMessaging} = authFunctions;
   useEffect(() => {
     setUpMessaging();
-     getAuthUser();
-     const interval = setInterval(() => {
+     //getAuthUser();
+     /* const interval = setInterval(() => {
        getAuthUser();
      }, 10000);
-     return () => clearInterval(interval);
+     return () => clearInterval(interval); */
    }, []);
 
    

@@ -17,20 +17,21 @@ const ListingFooter = (props) => {
   if(thumbnail){
     logoView = <div className="l_logo d-flex flex-row flex-nowrap gap-2 align-items-center mb-20">
       <Avatar rounded width={40} height={40} src={thumbnail}/>
-      <h4 className="_title truncate-2 handy show_in_pinned lh-1" dangerouslySetInnerHTML={{__html: title}}/>
+      <h4 className="_title truncate-2 handy show_in_pinned text-20 lh-13" dangerouslySetInnerHTML={{__html: title}}/>
       </div>
   }
 
   return (
     <footer className={`listing_footer rounded-0 px-0 footer-footer section-container bg-transparent shadow-0 card card-style mb-2 mx-2  md:py-0 ${props.rootClassName}`}>
-      <div
-        className={`footer-max-width max-content-container gap-3`}
-      >
-        <div className={'footer-banner overflow-hidden mb-0'}>
-          <Client>
+      <Client>
               <Navigator lMenu={tabList} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
           </Client>
-          <div className='footer_banner_content rounded-4'>
+      <div
+        className={`footer-max-width max-content-container`}
+      >
+        <div className={'footer-banner overflow-hidden mb-0'}>
+          
+          <div className='footer_banner_content h-100'>
              <h1 className={`footer-text heading2`}>
             <span>BOOK YOUR SLOT</span>
           </h1>
@@ -38,7 +39,7 @@ const ListingFooter = (props) => {
             <span></span>
             <span>For your opportunity with {cleanHtml(title)}, ...</span>
           </span>
-          <div className={'footer-btns-container gap-2 align-items-center justify-center lgLine'}>
+          <div className={'footer-btns-container gap-2 align-items-center justify-center lgLine flex-wrap'}>
              <BookingView children={<button
               className={`footer-register-now w-100 button-primary button-lg button color-white truncate`}
             >See Options</button>} setActiveKey={setActiveKey} text='See Options'/>
