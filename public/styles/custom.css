@@ -1512,7 +1512,7 @@ button.back_link {
 }
 
 .sidebar-content a span.term_icon_box {
-    background: var(--bgDarkTransparent3) !important;
+    background: var(--bgDarkTransparent) !important;
 }
 
 #sidebar:not(.show) .card.border {
@@ -3791,7 +3791,7 @@ ul.listing_menu .ex_label {display: none;}
 .menu .menu-title {
     display: grid;
     grid-template-columns: auto auto;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     border-bottom: 1px solid var(--borderTheme);
 }

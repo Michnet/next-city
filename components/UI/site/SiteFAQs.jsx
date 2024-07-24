@@ -3,19 +3,19 @@ export const siteFaqsContent = [
     id: 1,
     collapseTarget: "One",
     questionName: "Who can post a listing on LyveCity?",
-    acceptedAnswerText: `LyveCity is the peoples' directory. This means anyone abd everyone can post add their business place or event to get it infront of hundreds of thousands in the market`,
+    acceptedAnswerText: `LyveCity is the peoples' directory. This means anyone and everyone can post their business place or event to get it in front of hundreds of thousands of fans out there`,
   },
   {
     id: 2,
     collapseTarget: "Two",
     questionName: "How much does it cost get listed on Lyvecity?",
-    acceptedAnswerText: `The good news is that it doesn't cost anything to post a business place or event on LyveCity. Your listing will be added and made available for public viewing free of charge`,
+    acceptedAnswerText: `The good news is that it doesn't cost anything to post a business place or event on LyveCity. Your listing will be added and made available free of charge`,
   },
   {
     id: 3,
     collapseTarget: "Three",
     questionName: "Do I need certain expertise to manage my listing on LyveCity?",
-    acceptedAnswerText: `If you can fill a form online, you have all the expertise needed to add and update your listing on LyveCity. We've made so easy, so you can continue focussing on your actual business as we continue telling the world about you`,
+    acceptedAnswerText: `If you can fill a form online, you have all the expertise needed to add and manage your listing on LyveCity. We've made it so easy, so you can continue focussing on your actual business as we continue telling the world about you`,
   }
 ];
 

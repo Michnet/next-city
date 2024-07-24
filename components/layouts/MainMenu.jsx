@@ -52,7 +52,7 @@ function MainMenu() {
                                 </div>
                             </div>
                             <div className="sidebar-content">
-                               <Client><div className="d-flex justify-center show_in_collapsed"><MainMenuBtn/></div></Client>
+                               <Client><div className="justify-center show_in_collapsed d-none d-md-flex"><MainMenuBtn/></div></Client>
                                <UserCard exClass={'border'}/>
                                 <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">

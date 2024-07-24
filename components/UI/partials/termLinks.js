@@ -27,7 +27,7 @@ export const TermIconBox = ({item, flipped=false, externalTitle=false, shadowy=t
                     {flipped ? <div className={`icon_overlay ${flipped ? 'bg-gradient-45' : ''} h-100 w-100 position-absolute top-0 left-0 opacity-50`}/> : <></>}
                     {!externalTitle && <div className={`_title text-right ${flipped ? 'p-3' : 'px-3 pb-2'} d-flex align-items-end position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`${flipped ? 'color-white text-13 opacity-50' : 'color-theme text-10 opacity-80'} smLine fw-600 truncate-3  lh-12 heady`}>{cleanHtml(name).replace(' and ', ' & ')}</Link></div>}
                 </div>
-                {externalTitle && <div className={`_title text-center py-2 d-flex align-items-end position-relative opacity-60`} style={{ width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`${flipped ? 'color-white text-13 opacity-50' : 'color-theme text-11'} smLine fw-600 truncate-2  lh-1 heady`}>{cleanHtml(name).replace(' and ', ' & ')}</Link></div>}
+                {externalTitle && <div className={`_title text-center py-2 d-flex align-items-end position-relative`} style={{ width: width}}><Link onClick={() => closeMenus()} href={`/explore/events?category=${slug}`}  className={`${flipped ? 'color-white text-13 opacity-50' : 'color-theme text-12'} smLine fw-600 truncate-2  lh-1 heady`}>{cleanHtml(name).replace(' and ', ' & ')}</Link></div>}
                 </div>
 }
 
