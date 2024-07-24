@@ -1,22 +1,22 @@
 import { pwaName } from '@/helpers/appjs';
-import { getDirTermsUrl } from '@/helpers/rest';
+import { getDirTermsUrl, getDirTerms} from '@/helpers/rest';
 import { getLocalTaxonomy } from "@/helpers/rest";
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 
-const TagsCloudConst = ({ids, dark, hue, itemsList, onClickFunc}) => {
+const TagsCloudConst = ({ids, dark, hue, itemsList, onClickFunc, live=false}) => {
 
   const [items, setItems] = useState([]);
   //const {colorTheme} = useRecoilValue(UIState);
  // const {colors} = colorTheme;
+ const filterArr = {
+  _fields : "id,count,extra_meta,term_meta,description,parent,name,slug",
+  include: ids?.join(',')
+}
 
   async function getTags(signal){
-    const filterArr = {
-       _fields : "id,count,extra_meta,term_meta,description,parent,name,slug",
-       include: ids.join(',')
-   }
-     //let data = await fetch(getDirTermsUrl('tags', filterArr, signal));
-     let data = await getLocalTaxonomy({taxonomy: 'tags', include_ids: ids, setter:setItems});
+     let data = live ? await fetch(getDirTermsUrl('tags', filterArr, signal)) : 
+     await getLocalTaxonomy({taxonomy: 'tags', include_ids: ids, setter:setItems});
  
    }
 
@@ -28,7 +28,12 @@ useEffect(() => {
     setItems(itemsList)
   }else{
     if(ids){
-      getLocalTaxonomy({taxonomy: 'tags', include_ids: ids, setter:setItems, signal:signal})
+      if(live){
+        let data = getDirTerms('tags', filterArr, signal, setItems);
+        
+      }else{
+        getLocalTaxonomy({taxonomy: 'tags', include_ids: ids, setter:setItems, signal:signal})
+      }
       }
   }
   return () => controller.abort();

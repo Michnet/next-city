@@ -29,7 +29,7 @@ const MegaGalleryMini = ({listing, color, setActiveKey}) => {
      return gallery.indexOf(item);
   }
 
-  const textArr = shuffleArray([greeting, ...punchlines]);
+  const textArr = shuffleArray([...punchlines]);
 
   let textOptions = textArr.splice(0, 1), galleryView;
   let miniGall = gallery?.length > 0  ? [...gallery].splice(0, 5) : [];

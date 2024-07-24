@@ -4599,13 +4599,11 @@ color: rgb(19,115,51);
 }
 .footer-footer {
   background-color: #161616;
-  padding-bottom : 20px;
-  padding-top: 20px;
 }
 .footer-max-width {
   display: flex;
   align-items: stretch;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: space-between;
 }
 

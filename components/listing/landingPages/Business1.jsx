@@ -234,7 +234,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                 </div>
                 <div className='tags_row py-5 card card-style'>
                 <div className='row_content'>
-                    <TagsCloud hue={color} dark ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
+                    <TagsCloud live hue={color} dark ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>

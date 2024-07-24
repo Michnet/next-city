@@ -129,7 +129,7 @@ h6 {
     color: var(--listingTheme) !important;
 }
 .page-content.single_listing .card {
-    background-color: var(--bgThemeTransparent2);
+    background-color: var(--bgThemeTransparent3);
     /* border: 1px solid var(--borderThemeAlt); */
 }
 
@@ -3507,6 +3507,10 @@ ul.listing_navigator li.visible.prev {/* background: linear-gradient(45deg, blac
 
 ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: center;}
 
+ul.listing_navigator i {
+    display: none;
+}
+
 ul.listing_navigator li {
     padding: 5px 10px;
     gap: 4px;
@@ -4297,4 +4301,9 @@ div#explore_nav .left_menu_btn {
 
 .pdt_hero .splide__track, .pdt_hero .splide__list {
     height: 100%;
+}
+
+.hero2.listing_hero .listing_meta i, .hero2.listing_hero.listing_meta._mini i {
+    color: white;
+    opacity: 0.7;
 }

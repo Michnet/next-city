@@ -676,13 +676,12 @@ export const getBookableProducts = async (payload) => {
       };
 }
 
-export const getDirTerms = async (taxonomy, payload) => {
+export async function getDirTerms(taxonomy, payload, signal, setter){
   const query = getDirTermsUrl(taxonomy, payload);
   try {
     const res = await kyFetch.get(query).json();
     if(res){
-      console.log('queryyyyyyyyyyyyyyyyyyyy', res);
-
+      if(setter){setter(res)}
         return res;
       }else{
         return null

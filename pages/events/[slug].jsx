@@ -295,7 +295,7 @@ return linkzz;
                 </>}
             </LazyLoad>
         </Client>
-        <CallToActions exClass={'rounded-0 mx-2'} title='Get listed' centered thin light  actionComponent={
+        <CallToActions exClass={'rounded-0 mx-2 text-white bg-dark-dark'} title='Get listed' centered thin   actionComponent={
             <div className="d-flex  gap-3 flex-center">
                 <Link href={'/add-listing'}><button
             className="btn btn-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
