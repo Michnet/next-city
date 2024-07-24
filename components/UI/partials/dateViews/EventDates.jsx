@@ -68,10 +68,9 @@ useEffect(() => {
     const {act_id, act_dates} = activeDate;
     if(act_id == Id && act_dates?.length > 0){
       setDates(act_dates);
+      setLoading(false);
     }
   }
-
-setLoading(false);
 return () => {
   setDates(null);
   setLoading(true);
