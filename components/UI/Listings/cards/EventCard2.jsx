@@ -28,7 +28,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, hei
 
     return (<>
     <div data-aos='zoom-in' className={`card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
-            <div className="card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', height:height, minHeight:minHeight}}>
+            <div className="card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
 
                 <Image onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={srcWithFallback(imgArr2[0])} fill={true} className={'pos-relative object-cover'} style={{minHeight:minHeight}}/>
                 {/* <Slider
