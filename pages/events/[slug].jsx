@@ -298,12 +298,12 @@ return linkzz;
         <CallToActions exClass={'rounded-0 mx-2 text-white bg-dark-dark'} title='Get listed' centered thin   actionComponent={
             <div className="d-flex  gap-3 flex-center">
                 <Link href={'/add-listing'}><button
-            className="btn btn-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
+            className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500 border-dark-light"
             >
             Create event page
             </button></Link>
             <Link href={'/about/about-us'}><button
-            className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
+            className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500 border-dark-light"
             >
             Learn More
             </button></Link>

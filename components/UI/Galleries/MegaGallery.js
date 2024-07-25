@@ -11,7 +11,7 @@ import { cleanHtml, randomBetween, resizedImage, shuffleArray, textSizeClass } f
 import { LoaderDualRingBoxed, LoaderEllipsis } from "@/components/skeletons/Loaders";
 import { siteSettings, fallbackImgBlur, fallbackImgSrcSet } from "@/helpers/base";
 
-export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, content, exClass, styleObj}) => {
+export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, content, exClass, styleObj, imgSize='medium'}) => {
   const [theme, setTheme] = useState('#000');
   const [loading, setLoading] = useState(true);
 
@@ -29,10 +29,10 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, cont
         {typeof item === 'string' ? 
         <Image unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
         /* onErrorCapture={() => {return <img src='/images/Lyvecity.png'/>;}} */ quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
-                    alt="LyveCity" src={resizedImage(item, 'medium')}/>
+                    alt="LyveCity" src={resizedImage(item, imgSize)}/>
                     :
         <Image placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}} quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
-                  alt="LyveCity" src={resizedImage(item.url, 'medium')}/>}
+                  alt="LyveCity" src={resizedImage(item.url, imgSize)}/>}
                   {content}
                    </div>
     {overlay && <div className="plate_overlay" style={{background: `rgba(${theme.toString()})`}}></div>}
@@ -176,7 +176,7 @@ galleryView = <>
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
                 if(item.includes(siteSettings.wpDomain) || item.includes(siteSettings.cdnDomain)){
-                  return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+                  return  <GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
                 }else{
                   if(item?.length > 0){
                   return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
@@ -197,7 +197,7 @@ galleryView = <>
                       </button></Link> : <></>}
                     </div>}/>;
                   }else{ */
-                    return  <GalleryPlate onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+                    return  <GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
                   //}
                   }else{
                     return <>{item}</>

@@ -75,22 +75,23 @@ let menuContent = <div className="menu_content">
   <div onClick={(e) => openOffCanvas(e)} data-menu="listingMenuRight" className={`tab_link _all`}>
   <div className={`menu_icon d-flex flex-column px-2`}>
         <span className='position-relative'>
-          <i className={`fas fa-ellipsis-h`}/> 
+          <i className={`fas fa-ellipsis-v`}/> 
       </span>
       <h5 className="profile_title">More</h5>
   </div>
       </div></>
   }
   
-  <div className='tab_link _all px-2'><UserAvatar size={30}/></div>
+  <div className='tab_link _all px-1'><UserAvatar size={30}/></div>
   {isMobile ? <></> : <div className="d-inline-block">
     { <BookingView simple={false} setActiveKey={setActiveKey}text='Booking' exClass='text-12 py-1 fw-600'/>}
     </div>}
 </div>
 </div>;
 
+
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
-              <div  className="bg-header border-0 d-block d-md-none mx-auto p-0 s mb-0 font-900 shadow-xl  btn-icon text-start">
+              <div style={{backgroundImage: `url(${cover})`}}  className="bg-header bg-center bg-cover border-0 d-block d-md-none mx-auto p-0 s mb-0 font-900 shadow-bg shadow-bg-l btn-icon text-start">
           <i className="fas fa-bars left_menu_btn text-20 d-block d-md-none text-center" onClick={(e) => openOffCanvas(e)}  data-menu='mobile_sidebar'></i>
                 {menuContent}
               </div>

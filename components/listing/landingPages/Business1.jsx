@@ -38,7 +38,7 @@ function processImg(images, cover){
 const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcoming, styles}) => {
     const {address, venue, about_us, locations, author_id, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
     const {tickets} = listing_store;
-    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery} = meta ?? {};
+    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery, _performers} = meta ?? {};
     const wcu = _wcu ? _wcu[0] : {};
     const { general_merchandise} = listing?.acf ?? {};
     const {what_we_do} = marketing ??  {};
@@ -47,7 +47,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
     const cachedListing = useMemo( () => listing, [listing.id] );
     
-    let statsView, greetingView, faqsView, strengthsView, galleryView, detailView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView, ticketsHint;
+    let statsView, greetingView, faqsView, strengthsView, galleryView, detailView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView, ticketsHint, performersView;
 
     if(listing){
         if(_stats?.length > 0){
@@ -343,6 +343,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                 </Suspense>
 
         }
+        
 
         if(special_guests?.length > 0){
             guestsView = <Suspense offset={150} once height={200}>
@@ -359,6 +360,27 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
                                 <Splider height={270} exClass='card card-style righty py-3' options={{...spliderVariableWidth, pagination: true, gap:20, type:'slide', padding: { left: 20, right: 40 }}} className="p-0">
                                     {special_guests.map((tmMember, index) => <TeamMember2 avatarSize={110} styles={styles} mirrored height={120} width={120} member={tmMember} key={index}/>
+                                                    )} 
+                                </Splider>
+                            </div>
+                        </Suspense>
+
+        }
+        if(_performers?.length > 0){
+            performersView = <Suspense offset={150} once height={200}>
+                            <div className="wide_container listing_team _square" data-aos="fade-right">
+                                <div className="team_intro px-3 me-auto" >
+                                    {/* <h3 className="section_head dark_text">{team_intro.team_intro_title}</h3> */}
+                                    {/* <DualColorHeader title={team_intro.team_intro_title}/>
+                                    <h4 className="section_subHead">{team_intro.team_intro_description}</h4> */}
+                                    <div className='mb-20 mt-10 sc_heading_3 lefty'>
+                                        <h5>Who Else Is Coming</h5>
+                                        <h4>In the Spotlight</h4>
+                                    </div>
+                                </div>
+
+                                <Splider height={200} exClass='card card-style lefty py-3' options={{...spliderVariableWidth, pagination: true, gap:20, type:'slide', padding: { left: 20, right: 40 }}} className="p-0">
+                                    {_performers.map((tmMember, index) => <TeamMember2 avatarSize={110} styles={styles} mirrored height={120} width={120} member={tmMember} key={index}/>
                                                     )} 
                                 </Splider>
                             </div>
@@ -469,15 +491,18 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             {/* <Client>{descriptView}</Client>  */}
                 
             {/* {shopView} */}
-            {reviewsView}
             {ticketsHint}
-            {teamView}
+            {performersView}
             {guestsView}
+            {reviewsView}
             <Client>{tagsView}</Client>    
             {servicesView}
             {statsView}
             {strengthsView }
             {faqsView}
+            
+            {teamView}
+            
             {sponsorsView}
             <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </div>

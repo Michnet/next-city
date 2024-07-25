@@ -56,7 +56,7 @@ let Grid1 = () => <HorizontalGrid>
     if (typeof item == 'string') {
       if(item?.length > 0){
         if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-          return  <GalleryPlate  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+          return  <GalleryPlate imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
             //let backGs = ['100', '200', '300', '400'];
           return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-listing`}>
@@ -66,7 +66,7 @@ let Grid1 = () => <HorizontalGrid>
       }
     }else{
       if(item?.url?.includes(siteSettings.wpDomain)){
-          return  <GalleryPlate  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+          return  <GalleryPlate imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
           return <>{item}</>
         }

@@ -36,8 +36,8 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
     let historyView, teamView, performersView, statsView, guestsView, contactsView, contentView, groupView, tagsView, visionView, missionView, galleryView, paymentsView;
     
     if(listing){
-      const {acf, content, cover, dir_tags, about_us, team, gallery, performers, meta} = listing;
-      const {"_special-guests": special_guests, _stats} = meta ?? {}
+      const {acf, content, cover, dir_tags, about_us, team, gallery, meta} = listing;
+      const {"_special-guests": special_guests, _performers:performers} = meta ?? {}
 
       if(acf){
         const {contactDetails} = acf;
@@ -175,7 +175,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                 <Masonry>
                   {contentView}
                   {/* <About communitySize={members_count ?? null} listing={cachedListing} /> */} 
-                  {performersView}
+                  {/* {performersView} */}
                   {statsView}
                   {tagsView}
                   {visionView}

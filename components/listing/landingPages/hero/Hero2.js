@@ -15,10 +15,11 @@ import { HorizontalGrid } from '@/components/UI/Galleries/MegaGallery';
 import CountDownUI from '@/components/UI/CountDownUI';
 import styles from '@/components/listing/styles/home1.module.css';
 import { ListingMetaMini } from '@/components/UI/Partials';
-import { fadingSlide, largeResp } from '@/helpers/sliders';
-import Slider from 'react-slick';
+//import { fadingSlide, largeResp } from '@/helpers/sliders';
+//import Slider from 'react-slick';
 import Image from 'next/image';
-import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
+import VisitorActions from '../../partials/VisitorActions';
+//import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
@@ -30,8 +31,17 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";
 
-  let galArr = [], greetingView;
-  const settings = { arrows: true, dots: true, infinite: true, speed: 1000, marginLeft: 10, marginRight: 10, slidesToShow: 1, cssEase: 'ease-out', slidesToScroll: 1, };
+  let galArr = [], greetingView, firstWord='', lastWords='';
+  /* const settings = { arrows: true, dots: true, infinite: true, speed: 1000, marginLeft: 10, marginRight: 10, slidesToShow: 1, cssEase: 'ease-out', slidesToScroll: 1, }; */
+
+  if(title){
+  const wordArr = title?.rendered.split(' ');
+    if(wordArr){
+      firstWord = wordArr[0];
+      wordArr.shift();
+      lastWords = wordArr.join(' ');
+    }
+  }
 
   if(gallery?.length > 0){
     galArr = gallery.slice(0,4);
@@ -42,7 +52,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
       greetingView = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
   }
 
-  let randomColor = () => {
+  /* let randomColor = () => {
     if(palette?.length > 0){
       let colArr = randomEither(palette);
       if(colArr){
@@ -51,8 +61,8 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
     }else{
       return '#000';
      }
-  }
-  let nowColor = randomColor();
+  } */
+  //let nowColor = randomColor();
 
   if(activeKey !== 'home' && activeKey !=='cover'){
     const ProfileHeaderMini = dynamic(() => import('./profileHeaderMini'));
@@ -90,7 +100,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               } 
                 />
             </div> */}
-              <Mirrored gap={15} objClass='card card-style bg-cover shadow-bg shadow-bg-xl' objBg={srcWithFallback(cover)} topPadding={'0px'} skewDegrees={0} skewDir={'-'} YDistance={200}>
+              <Mirrored coverTop gap={2} objClass='' objBg={srcWithFallback(cover)} topPadding={'50px'} skewDegrees={4} skewDir={'-'} YDistance={200}>
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
                   //placeholder="blur"
@@ -110,20 +120,25 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   </div>
                 </div>
                 </Mirrored>
-                <div className='hero_title position-absolute bottom-0 w-75 text-right right-0 pe-4 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
-                  <div className='profile_name'>
+                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-4 pb-5 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
+                  <div className='profile_name h-fit mb-20'>
                     <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                         <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>
+                        {/* <h1 className="styled_title mb-20 truncate-3 d-block">
+                          <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
+                            <span className="list_title _last color-white" dangerouslySetInnerHTML={{__html: lastWords}}/> 
+                        </h1> */}
                         <div className='title_meta d-flex justify-end'>
                           <Client>
                         <p style={{lineHeight: '1.3em'}}>
-                          <span className={`target mr-4 mb-4`}> {cleanHtml(catName)} </span>
-                          {/* <span className="target mr-4 mb-4 gray_text"> {type} </span> */}
+                          <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
+                          <span className="target mr-4 mb-4 gray_text"> {type} </span>
                           {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
                         </p>
                         </Client>
                         </div>
                   </div>
+                  {/* {<VisitorActions  mini setActiveKey={setActiveKey} exClass={'justify-end'} listing={listing}/>} */}
                   </div>
                 {/* <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
                     {[cover ?? '', ...galArr].map((item, index) =>
@@ -226,10 +241,10 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}
                 <div className={`gap-2 flex-nowrap d-flex`}>
-                  {whatsapp && <a href={`https://wa.me/${whatsapp}`} className="btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
+                  {/* {whatsapp && <a href={`https://wa.me/${whatsapp}`} className="btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
                     <i className="fab fa-whatsapp font-15 text-center color-white"></i>
                     WhatsApp
-                  </a>}
+                  </a>} */}
                   {/* { <BookingView setActiveKey={setActiveKey}children={
                   <button
                     className={`rounded mr-0  ${styles['button-secondary']} ${styles['button']} ${styles['button-md']} `}
@@ -240,7 +255,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   <button onClick={() => setActiveKey('private-chat')} /* data-bs-toggle={isMobile ? 'offcanvas' : 'modal'} data-bs-target='#listing_contact' */
                     className={`btn text-truncate color-theme rounded ${styles['learn-more']} ${styles['button']} ${styles['button-outline']} ${styles['button-md-border']} `}
                   >
-                    learn more
+                    Connect
                   </button>
                 </div>
               </div>

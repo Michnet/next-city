@@ -16,7 +16,7 @@ export default function listingMenu({listing, userId}){
  let tabList = [
   {
     id : 'home',
-    icon : "fad fa-home-lg-alt",
+    icon : "far fa-home-lg-alt",
     title : 'Home', 
     subTitle : "This is home", 
     widgetClass: 'pt-0 no-pad',
@@ -45,7 +45,7 @@ export default function listingMenu({listing, userId}){
   
   {
     id: 'reviews',
-    icon:  "fad fa-star", 
+    icon:  "far fa-star", 
     title : 'Reviews',
     subTitle :"User Rating",
     widgetClass: 'pad_tab',
@@ -70,7 +70,7 @@ if(!userId || userId != author_id){
   tabList.push(
     {
       id: 'private-chat',
-      icon: "fad fa-comment-dots", 
+      icon: "far fa-comment-dots", 
       title: 'Contact Us',
       subTitle : "Private Chat", 
       widgetClass : "widgey pad_tab",
@@ -83,7 +83,7 @@ if(type === 'event'){
   tabList.push(
     {
       id: 'occurrences',
-      icon: 'fad fa-calendar-check',
+      icon: 'far fa-calendar-check',
       title: 'Dates',
       subTitle : 'Occurences', 
       widgetClass:  'profile widgey pad_tab',
@@ -96,7 +96,7 @@ if(type === 'event'){
 if(faqs?.length > 0){
   tabList.push({
     id : 'faqs',
-    icon: "fad fa-question-circle", 
+    icon: "far fa-question-circle", 
     title: 'Questions',
     subTitle : "Frequent Questions",
     widgetClass: 'widgey pad_tab',
@@ -122,7 +122,7 @@ if(gallery?.length > 0){
    tabList.push(
     {
       id: 'gallery',
-      icon: 'fad fa-photo-video',
+      icon: 'far fa-photo-video',
       title: 'Gallery',
       subTitle : 'Photo Album',
       widgetClass : "_gallery  glass no-pad",
@@ -141,7 +141,7 @@ if(listing_articles){
  tabList.push(
   {
     id : 'articles',
-    icon : "fad fa-book", 
+    icon : "far fa-book", 
     title: 'Blog',
     subTitle : "Our Articles", 
     widgetClass: "pad_tab",  
@@ -158,7 +158,7 @@ if(listing_articles){
 if(general_merchandise?.length > 0){
     tabList.push({
       id : 'merchandise',
-      icon: "fad fa-store-alt", title: 'Shop',
+      icon: "far fa-store-alt", title: 'Shop',
       subTitle : "Our Products",
       widgetClass: 'shop widgey gx-px-lg-0 bg-transparent',
       badgeNumber: general_merchandise?.length ?? 0,

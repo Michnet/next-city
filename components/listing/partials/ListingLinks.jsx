@@ -23,8 +23,8 @@ export function PreviousPostLink() {
     const router = useRouter()
    
     return (
-      <button className="nav_switch" type="button" onClick={() => router.back()}>
-        <i className="bi bi-chevron-left"/>
+      <button className="nav_switch link" type="button" onClick={() => router.back()}>
+        <i className="far fa-chevron-circle-left"/>
       </button>
     )
   }

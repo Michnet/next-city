@@ -30,12 +30,13 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}
                         Booking
                     </button>} */}
                 <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600'/>
+
                     {/* <Navigator lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/> */}
                     {whatsapp && <a style={{maxWidth: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                         <i class="fab fa-whatsapp color-whatsapp text-center text-24"></i>
                     </a>}
                     {phone && <a style={{maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i class="fas fa-phone text-center text-24"></i></a>}
-                    {/* <PreviousPostLink/> */}
+                    <PreviousPostLink/>
                     <NextPostLink current={listing.slug} styleObj={{maxWidth: '50px'}}/>
                     </div>
                     <div className='_fab'>
