@@ -100,7 +100,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               } 
                 />
             </div> */}
-              <Mirrored coverTop gap={2} objClass='' objBg={srcWithFallback(cover)} topPadding={'50px'} skewDegrees={4} skewDir={'-'} YDistance={200}>
+              <Mirrored coverTop gap={2} objClass='' objBg={srcWithFallback(cover)} topPadding={'50px'} skewDegrees={3} skewDir={'-'} YDistance={200}>
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
                   //placeholder="blur"
@@ -120,7 +120,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   </div>
                 </div>
                 </Mirrored>
-                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-4 pb-5 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
+                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-3 pb-5 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
                   <div className='profile_name h-fit mb-20'>
                     <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                         <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>

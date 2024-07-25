@@ -45,7 +45,7 @@ export async function getStaticProps() {
       orderby: 'count',
       order: 'desc',
       hide_empty : true,
-      per_page: 15
+      per_page: 10
     }
     const topLocsQuery = {
       _fields : taxfields,

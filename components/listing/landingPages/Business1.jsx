@@ -241,7 +241,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
         }
        
         //if(rating > 0){
-                reviewsView = <Suspense offset={150} once height={200}>
+                reviewsView = <Suspense offset={150} once height={200} data-aos="zoom-in">
                 <div className="wide_container px-2" 
                     >
                     <Client><PostReviews preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
