@@ -26,13 +26,14 @@ function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
       const {avatar_urls, name, registered_date} = author; 
       authorView = <div className={`author_card ${exClass ?? ''}`}>
    
-      <div className="card card-style text-center shadow-sm m-0">
-      <div style={{height: '100px', background: `url(${srcWithFallback(cover)})`}} className="bg-cover card-img-top position-relative">
-         <div className="header-content position-absolute w-100 flex-center d-flex">
-          <img src={avatar_urls['96']} alt="" width="70" height='70' className="img-fluid rounded-circle img-thumbnail border-0"/>
-          </div>
+      <div className="card card-style text-center shadow-sm m-0" style={{minHeight: '300px'}}>
+      <div style={{background: `url(${srcWithFallback(cover)})`}} className="h-100 bg-cover card-img-top position-absolute">
+         
       </div>
-      <div className="card-body">
+      <div className="card-body bg-gradient-fade">
+      <div className="header-content h-fit w-100 flex-center d-flex" style={{height: 'fit-content'}}>
+          <img style={{marginBottom: '10px'}} src={avatar_urls['96']} alt="" width="70" height='70' className="img-fluid rounded-circle img-thumbnail border-0"/>
+          </div>
           <h5 className="card-title mb-0">{name}</h5>
           <span className="small text-uppercase text-muted">Author</span>
           {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}

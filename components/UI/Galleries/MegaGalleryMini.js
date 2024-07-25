@@ -79,7 +79,7 @@ let Grid1 = () => <HorizontalGrid>
 galleryView = <> 
         
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
-          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 px-10">
+          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-2 overflow-hidden rounded-4">
           <Grid1/>
         {gallArr.length > 0 && <ResponsiveMasonry className="masonry vertical_grid" columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
             <Masonry gutter ='3px'>
@@ -87,7 +87,7 @@ galleryView = <>
               if (typeof item == 'string') {
                 if(item?.length > 0){
                   if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                    return  <GalleryPlate item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+                    return  <GalleryPlate item={item} key={index} highlight={highlightIndex.includes(index)} /* overlay={index == randomBetween(0, gallery?.length)} *//>;
                   }else{
                       //let backGs = ['100', '200', '300', '400'];
                     return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-listing`}>
@@ -97,7 +97,7 @@ galleryView = <>
                 }
               }else{
                 if(item?.url?.includes(siteSettings.wpDomain)){
-                    return  <GalleryPlate item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+                    return  <GalleryPlate item={item} key={index} highlight={highlightIndex.includes(index)} /* overlay={index == randomBetween(0, gallery?.length)} *//>;
                   }else{
                     return <>{item}</>
                   }

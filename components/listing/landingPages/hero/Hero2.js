@@ -120,9 +120,9 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   </div>
                 </div>
                 </Mirrored>
-                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-3 pb-5 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
-                  <div className='profile_name h-fit mb-20'>
-                    <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
+                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-3 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
+                  <div className='profile_name h-fit mb-10'>
+                    
                         <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>
                         {/* <h1 className="styled_title mb-20 truncate-3 d-block">
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
@@ -138,6 +138,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                         </Client>
                         </div>
                   </div>
+                  <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                   {/* {<VisitorActions  mini setActiveKey={setActiveKey} exClass={'justify-end'} listing={listing}/>} */}
                   </div>
                 {/* <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
@@ -236,7 +237,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               <p className = 'mb-10'>
                     {greetingView}
               </p>
-              <p className = 'mb-20 text-15 opacity-80 smLine'>
+              <p className = 'mb-20 text-15 opacity-60 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}
@@ -255,7 +256,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   <button onClick={() => setActiveKey('private-chat')} /* data-bs-toggle={isMobile ? 'offcanvas' : 'modal'} data-bs-target='#listing_contact' */
                     className={`btn text-truncate color-theme rounded ${styles['learn-more']} ${styles['button']} ${styles['button-outline']} ${styles['button-md-border']} `}
                   >
-                    Connect
+                    Learn More
                   </button>
                 </div>
               </div>
@@ -269,10 +270,10 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
             <div className={`row gap-5 md:flex-row flex-md-nowrap flex-col position-relative`}>
               <div className={`col-12 col-md-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']}><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
-              {tagline && <span className={`${styles['text26']}`}>
+              {tagline && <span className={`${styles['text26']} `} style={{fontWeight: '200'}}>
                   {tagline}
                 </span>}
-                {venue && <span className={styles['text20']}>
+                {venue && <span className={`${styles['text20']} opacity-70 truncate-4 smLine`}>
                   <span className='fw-300'>@</span>
                   {venue}
                 </span>}

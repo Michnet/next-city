@@ -44,7 +44,7 @@ const ProductCard = ({product, user, horizontal=false, mini=true, sized, exClass
 									<span className="font-11 ps-2 color-theme opacity-30">Based on 331 Reviews</span>
 								</a> */}{/* 
 								<h5 className="font-13 font-600 opacity-50 pt-1 pb-2">256GB DDR, 15TB SSD, 10 Expansion Ports, free Apple Music Subscription included.</h5> */}
-                {horizontal && <Client><h5 className="mb-2 p-desc font-13 font-600 opacity-50 pt-1 pb-2 truncate-3 smLine" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>}
+                {horizontal && <Client><p className="mb-2 p-desc font-13 opacity-50 pt-1 truncate-3 smLine" dangerouslySetInnerHTML={{  __html: short_description}} /></Client>}
 								{!mini && <div className="divider mb-2"/>}
 								<div className="d-flex flex-wrap gap-2 justify-between">
 									<div className="align-self-center">

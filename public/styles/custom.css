@@ -3658,7 +3658,7 @@ ul.listing_menu .ex_label {display: none;}
 .greeting_msg {
     margin-bottom: 25px;
     margin-top: 15px;
-    font-weight: bold;
+    font-weight: 300;
     font-family: var(--headingFont);
 }
 
@@ -4005,6 +4005,8 @@ div#explore_nav .view_filter {
     }
     .header.header-sticky.header-always-show.header-invert ._title, .header.header-sticky.header-always-show.header-invert:not(.header-active) ._title{
     color: var(--color-white);
+    font-weight: 500;
+    opacity: 1 !important;
 }
     .hero2.listing_hero .hero_images .hero_cover, .hero2.listing_hero .hero_images .hero_cover img{
     border-radius: inherit;
@@ -4064,10 +4066,16 @@ div#explore_nav .view_filter {
     padding-top: 10px;
 }
 
+.hero_images .listing_meta._mini ._meta li:not(:last-child) {
+    border-right: 1px solid #ffffff52;
+    padding-right: 15px;
+}
+
 .hero_images .hero_title .profile_name {
     /* flex-shrink: 1; */
-    /* min-width: 0; */
-    /* margin-right: 20px; */
+    /* border-bottom: 3px dashed rgb(226 226 226 / 10%); */
+    border-right: none;
+    padding-right: 0;
 }
 
 .hero_images .hero_title .profile-actions {
@@ -4076,7 +4084,7 @@ div#explore_nav .view_filter {
 }
 
 .hero2.listing_hero .hero_images .mirror_box .mirror {
-    opacity: 0.7;
+    opacity: 0.5;
 }
     .page-content {
     padding-bottom: 62px;
@@ -4367,4 +4375,14 @@ div#explore_nav .left_menu_btn {
 .hero2.listing_hero .listing_meta i, .hero2.listing_hero.listing_meta._mini i {
     color: white;
     opacity: 0.7;
+}
+
+#footer-bar  i {
+    opacity: 0.6;
+}
+
+ul {}
+
+.p-desc ul {
+    padding-left: 18px;
 }

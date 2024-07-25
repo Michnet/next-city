@@ -38,13 +38,14 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}
                     {phone && <a style={{maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i class="far fa-phone text-center text-24"></i></a>}
                     <PreviousPostLink/>
                     <NextPostLink current={listing.slug} styleObj={{maxWidth: '50px'}}/>
+                    <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{maxWidth: '50px'}} className={'link'}><i class="fas fa-ellipsis-h text-center text-24"></i></button>
                     </div>
-                    <div className='_fab'>
-                    <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} /* style={{width: '50px', height: '50px', right: '10px'}}  */className={'d-flex align-items-center justify-center  px-2 bg-theme'}>
+                    {/* <div className='_fab'>
+                    <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 bg-theme'}>
                     <i class="fas fa-ellipsis-h text-center text-24 color-theme"/>
                     <div className="position-absolute show_in_transit"><LoaderRingBoxed size={75}/></div>
                     </button>
-                    </div>
+                    </div> */}
                 </div>    
     return <BottomMenu content={bottomContent}/>
 }

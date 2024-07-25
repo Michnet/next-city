@@ -22,7 +22,7 @@ const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
 
 
 let logoView, headerMenuView;
-let mobileHideList = ['home', 'articles', 'faqs', 'gallery','reviews'];
+let mobileHideList = ['home', 'articles', 'private-chat', 'faqs', 'gallery','reviews'];
 
 if(logo){
   logoView = <div className='_logo'>
