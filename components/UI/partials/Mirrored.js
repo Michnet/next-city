@@ -12,7 +12,7 @@ const Mirrored = ({children, objClass='', objBg=null, side, coverTop=false, YDis
       }
     }
   
-    let skewDeg = skewDegrees ?? randomBetween(6, 10), dir = skewDir ?? randomEither(['-', '+']), oppDir = dir == '-' ? '+' : '-';
+    let skewDeg = skewDegrees ?? randomBetween(3, 7), dir = skewDir ?? randomEither(['-', '+']), oppDir = dir == '-' ? '+' : '-';
     let objStyle = {marginBottom: gap, transform: `skewY(${dir}${skewDeg}deg)`}
     if(objBg){
         objStyle.background = `url(${objBg})`;

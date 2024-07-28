@@ -1,5 +1,5 @@
 import { openOffCanvas, toggleTheme } from "@/helpers/appjs";
-import Link from "next/link";
+//import Link from "next/link";
 import { Client } from "react-hydration-provider";
 import { UserAvatar } from "@/components/UI/UserAvatar";
 import MainMenuBtn from "./MainMenuBtn";
@@ -14,7 +14,7 @@ return <Client>
     <div id='header_bar' className={`header header-bar header-sticky header-logo-center ${headerClass ?? 'header-auto-show'} header-search`}>
     <div className="_left">
       <Client>
-        <MainMenuBtn exClass='d-block d-md-none'/>
+        <MainMenuBtn/>
       </Client>
       <button className='back_link d-none' onClick={() => router.back()}
       >

@@ -100,7 +100,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               } 
                 />
             </div> */}
-              <Mirrored coverTop gap={2} objClass='' objBg={srcWithFallback(cover)} topPadding={'50px'} skewDegrees={3} skewDir={'-'} YDistance={200}>
+              <Mirrored coverTop gap={2} objClass=''  topPadding={'50px'} skewDegrees={4} skewDir={'-'} YDistance={200}>
                 <div className='hero_cover position-relative w-100'>
                   <Image                   
                   //placeholder="blur"

@@ -63,13 +63,13 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
   }
   
   return (
-          <div style={{width: width ?? 300}} className={`card card-style listing_card ${exClass ?? ''} ${mini ? '_mini' : ''}`}
+          <div style={{width: width ?? 300}} className={`listing_card ${exClass ?? ''} ${mini ? '_mini' : ''}`}
             key={id} data-aos="fade" data-aos-once="true" data-aos-delay={60}
           >
             <div
               className="activityCard -type-2  hover-inside-slider"
             >
-              <div className="activityCard__image position-relative ratio ratio-4x3">
+              <div className="activityCard__image position-relative ratio ratio-4x3 card card-style m-0">
                 <div className="inside-slider topped_dots roundy">
                   {/* <Slider
                   focusOnSelect

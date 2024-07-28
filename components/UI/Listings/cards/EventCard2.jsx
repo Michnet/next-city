@@ -82,7 +82,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, hei
                     <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
                         <Link href={`/events/${slug}`}><h3 className={`text-16 mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
                         {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>}
-                        {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-13">{short_desc}</p>}
+                        {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-14 opacity-60">{short_desc}</p>}
                         <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
                         {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
                         <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>

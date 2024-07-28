@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { spliderVariableWidth} from "@/helpers/sliders"
-import Slider from "react-slick"
+//import Slider from "react-slick"
 //import ListingCard from "./cards/ListingCard"
 import useSWR from 'swr';
 import { advancedFetchListingsUrl, fetcherWithSignal } from "@/helpers/rest";
@@ -17,7 +17,7 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
     let theView, fetchy = true, linkQuery = '';
 
 
-    let spliderOptions = {...spliderVariableWidth, padding: { left: 8, right: 20}, perMove: 1, type:'loop', ...optionsObj}
+    let spliderOptions = {...spliderVariableWidth, padding: { left: 8, right: 20}, perMove: 1, type:'loop', autoplay: false, ...optionsObj}
     if(gap){
       spliderOptions.gap = gap;
     }
@@ -101,7 +101,7 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
       load.ignore_priority = ignorePriority;
     }
 
-    const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
+    const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false });
 
     const isLoadingInitialData = !listings && !error;
     const isEmpty = listings?.length === 0;

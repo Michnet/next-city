@@ -62,7 +62,7 @@ export const responsiveCarousel = {
     ]
   };
 
-  export const spliderVariableWidth = {pagination: false, arrows: false, height: 100, autoWidth: true, wheel: false, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}
+  export const spliderVariableWidth = {pagination: false, arrows: false, height: 100, autoWidth: true, wheel: false, padding: { left: 0, right: 15}, perPage:1, perMove: 1, interval:4000, type:'loop'}
 
   export  const fadingSlide = {
     pauseOnHover: true,

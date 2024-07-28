@@ -1096,14 +1096,14 @@ h6.tax_pare {}
 }
 
 .sc_heading_3 h5 {
-  /* color: var(--bs-gray-500); */
-  font-size: 15px;
-  letter-spacing: 0.1em;
+  /* color: var(--listingTheme); */
+  font-size: 14px;
   opacity: 0.5;
+  font-weight: 500;
 }
 
 .sc_heading_3 h4 {
-  font-size: 25px;
+  font-size: 18px;
   line-height: 1.1em;
   font-family: var(--headingFont);
   font-weight: 700;
@@ -1260,6 +1260,14 @@ h6.tax_pare {}
 
 .horizontal_grid > div:first-child {
     justify-items: start;
+    justify-content: flex-start !important;
+}
+.horizontal_grid .mega_item{
+    z-index: 1;
+    position: relative;
+}
+.horizontal_grid .mega_item.text_box {
+    z-index: 2;
 }
 
 .mega_gallery .mega_item.overlaid::after {
@@ -2290,7 +2298,7 @@ button.back_link {
 }
 
 ._mini .activityCard.-type-2 .activityCard__image {
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px;
 }
 
 .activityCard.-type-2 ._meta {
@@ -3878,8 +3886,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     .header.header-sticky.header-always-show.header-invert:not(.header-active) ._title {
     color: #fff;
 }
-    .hero2.listing_hero .hero_images .hero_cover{
-}
+    .hero2.listing_hero .hero_images .hero_cover img{transform: skewY(4deg);min-height: 105%;}
 .header.header-sticky.header-always-show.header-invert:not(.header-active){
     backdrop-filter: none;
     position: absolute;
@@ -4012,6 +4019,8 @@ div#explore_nav .view_filter {
     border-radius: inherit;
     overflow: hidden;
 }
+
+.hero2.listing_hero .hero_images .hero_cover {}
 
 .hero2.listing_hero .hero_images .hero_cover .card-bottom {
     height: 100%;
@@ -4296,7 +4305,7 @@ div#explore_nav .left_menu_btn {
 
 .listing_meta i, .listing_meta._mini i, .nav-link{
  color: var(--colorTheme);
- opacity: 0.5;
+ opacity: 0.6;
 }
 
 .form-checkbox .badge {
@@ -4374,15 +4383,26 @@ div#explore_nav .left_menu_btn {
 
 .hero2.listing_hero .listing_meta i, .hero2.listing_hero.listing_meta._mini i {
     color: white;
-    opacity: 0.7;
+    opacity: 0.7; 
 }
 
 #footer-bar  i {
     opacity: 0.6;
 }
 
-ul {}
-
 .p-desc ul {
     padding-left: 18px;
+}
+
+.listing_card._mini .activityCard.-type-2 .woocommerce-Price-currencySymbol {
+    color: inherit;
+}
+
+.active .nav-link {
+    opacity: 1;
+}
+
+.sc_heading_3 {
+    display: flex;
+    flex-direction: column-reverse;
 }
