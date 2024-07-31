@@ -382,7 +382,8 @@ z-index: 0;
     backdrop-filter: blur(3px);
 }
 
-.pad_tab .tab_inner, .gx-profile-content .tabpane.widgey .gx-card-widget {box-shadow: #0000000d 0px 0px 5px 1px;box-shadow: none;margin-bottom: 12px;/* overflow: hidden; */overflow-y: visible;}
+.pad_tab .tab_inner, .gx-profile-content .tabpane.widgey .gx-card-widget {box-shadow: #0000000d 0px 0px 5px 1px;box-shadow: none;/* overflow: hidden; */overflow-y: visible;}
+.gx-profile-content .tabpane.widgey .gx-card-widget {margin-bottom: 12px;}
 
 ._info.card .card-body * {
   z-index: 1;

@@ -46,7 +46,7 @@ function MainMenu() {
                                 <div className="card card-style mt-2 mb-0 mx-2">
                                     <div className='row_flex justify-between p-2' onClick={() => closeMenus()}>
                                         <Logo simple={false}/>
-                                        <span className="icon icon-xxs gradient-red rounded-sm close-menu d-block d-md-none" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
+                                        <span data-bs-target='#sidebar' data-bs-toggle='collapse' className="icon icon-xxs gradient-red rounded-sm close-menu hide_in_collapsed" onClick={() => closeMenus()}><i className="fa fa-chevron-left color-white"></i></span>
                                         
                                     </div>
                                 </div>

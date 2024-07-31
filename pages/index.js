@@ -136,19 +136,20 @@ export default function Home(props) {
 
 <div className="page-content">
 
-      <div className="card card-style overflow-visible mx-0 mb-0 rounded-0 w-100">
-        <Mirrored coverTop topPadding={0} skewDegrees={0}  skewDir={'-'} YDistance={250}>
-          <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '280px', backgroundImage: `url("${randomEither(imgArr)}")`}}/>
+      <div className="card card-style overflow-visible mx-0 mb-0 rounded-0 w-100 shadow-0 bg-transparent" >
+        <Mirrored objectStyle={{height: '380px', overflow:'hidden'}} coverTop gap={2} topPadding={'0px'} skewDegrees={0}  skewDir={'-'} YDistance={250}>
+          <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '110%', backgroundImage: `url("${randomEither(imgArr)}")`}}>
+          <div className="card-overlay bg-gradient rounded-0"></div>
+          </div>
         </Mirrored>
-        <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center">
+        <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center" style={{bottom: '50px'}}>
           <h1 className="color-white text-center mb-n1 font-24 w-75">Great events all around you?</h1>
           <p className="color-white text-center mb-3 ">What experiences are you looking for today?</p>
         </div>
-        <div className="card-overlay bg-gradient rounded-0"></div>
+        {/* <div className="card-overlay bg-gradient rounded-0"></div> */}
       </div>
 
-
-    <SearchField/>
+    <SearchField exClass={'mx-auto'} styleObj={{maxWidth: '500px', marginTop: '-100px', width: '80%', marginBottom: '80px'}}/>
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
@@ -162,7 +163,7 @@ export default function Home(props) {
             }
     </Splider> */}
     
-    <div className='term_links_grid mb-3 sm:px-28 px-2'>
+    <div className='term_links_grid mb-3 sm:px-28 px-2 mx-auto' style={{maxWidth: '600px'}}>
     {
                 eventCategories?.map((cat) => {
                     return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>

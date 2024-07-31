@@ -14,7 +14,7 @@ return <Client>
     <div id='header_bar' className={`header header-bar header-sticky header-logo-center ${headerClass ?? 'header-auto-show'} header-search`}>
     <div className="_left">
       <Client>
-        <MainMenuBtn/>
+        <MainMenuBtn exClass='d-md-none'/>
       </Client>
       <button className='back_link d-none' onClick={() => router.back()}
       >

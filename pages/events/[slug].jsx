@@ -172,9 +172,6 @@ export async function getStaticPaths() {
       router.push(url, undefined, { shallow: true })
     }
 
-//console.log('liss', listing);  
-//let colorTheme = themeColor ? shadeRGBColor(`rgb(${themeColor.join(',')})`, 0.0) : '#000';
-
 useEffect(() => {
   setActiveKey(view);
   return () => setActiveKey(view);

@@ -1,6 +1,6 @@
 import { randomBetween, randomEither } from "@/helpers/universal";
 
-const Mirrored = ({children, objClass='', objBg=null, side, coverTop=false, YDistance='100%', XDistance = '100%', gap = 0, skewDir=null, skewDegrees=null, topPadding, shade='#fff'})=> {
+const Mirrored = ({objectStyle={},children, objClass='', objBg=null, side, coverTop=false, YDistance='100%', XDistance = '100%', gap = 0, skewDir=null, skewDegrees=null, topPadding, shade='#fff'})=> {
     function processLayout(){
       switch (side) {
         case 'below':
@@ -13,7 +13,7 @@ const Mirrored = ({children, objClass='', objBg=null, side, coverTop=false, YDis
     }
   
     let skewDeg = skewDegrees ?? randomBetween(3, 7), dir = skewDir ?? randomEither(['-', '+']), oppDir = dir == '-' ? '+' : '-';
-    let objStyle = {marginBottom: gap, transform: `skewY(${dir}${skewDeg}deg)`}
+    let objStyle = {marginBottom: gap, transform: `skewY(${dir}${skewDeg}deg)`, ...objectStyle}
     if(objBg){
         objStyle.background = `url(${objBg})`;
     }
@@ -24,7 +24,7 @@ const Mirrored = ({children, objClass='', objBg=null, side, coverTop=false, YDis
       <div className={`obj ${objClass}`} style={{...objStyle}}>
         {children}
       </div>
-      <div className="mirror" style={{width:XDistance, maxHeight:YDistance, maxWidth: XDistance, transform: `scale${processLayout()}(-1) skewY(${oppDir}${skewDeg}deg)`}}>{children}</div>
+      <div className="mirror" style={{width:XDistance, height:YDistance, maxWidth: XDistance, transform: `scale${processLayout()}(-1) skewY(${oppDir}${skewDeg}deg)`}}>{children}</div>
       </div>
   }
 

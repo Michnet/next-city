@@ -6,7 +6,7 @@ import { useSignals } from "@preact/signals-react/runtime";
 import Link from "next/link";
 import EventCard4 from "../Listings/cards/EventCard4";
 
-function SearchField() {
+function SearchField({exClass, styleObj={}}) {
   let keyWord = useSignal('');
   let listings = useSignal([]);
 
@@ -42,8 +42,8 @@ function SearchField() {
  
   return (
    <>
-   <div className="content mt-n4 pos-relative">
-            <div className="search-box bg-theme color-theme rounded-5 shadow-l">
+   <div className={`content pos-relative ${exClass}`} style={{...styleObj}}>
+            <div className="search-box bg-theme-transparent-2 color-theme rounded-5 shadow-l">
                 <i className="fa fa-search"></i>
                 <input type="text" className="border-0" placeholder="Search for events... " data-search onChange={(e) => runSearch(e)}/>
 				<a href="#" className="clear-search disabled no-click mt-0"></a>

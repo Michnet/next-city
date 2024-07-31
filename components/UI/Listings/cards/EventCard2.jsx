@@ -65,24 +65,27 @@ const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, hei
                     <div className='_left'>
                     {/* {event_date[0]?.start ? <p className="color-white font-12 opacity-80 truncate mb-2"><i className="color-highlight far fa-calendar"></i> <DateViewString date={event_date[0].start} format={'MMMM D'}/> <i className="color-highlight ms-3 far fa-clock"></i> <DateViewString date={event_date[0].start} format={'hh:mm A'}/> </p> : <></>} */}
                     {/* {locations?.length > 0 ? <p className="color-white font-12 opacity-80 mb-2"><i className="color-highlight fa fa-map-marker-alt"></i> {locations[0].name}</p> : <></>} */}
-                    <div className={`d-flex flex-row justify-between align-items-center`}></div>
+                    <div className={`d-flex flex-row justify-between align-items-center`}>
+
+                    </div>
+                    {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> }
                     {<TermTag exTagClass={'rounded-3 px-2 text-12'} exClass={'lgLine'} term={category} type={'tag'} linkTax={'category'}/>}
                     </div>
                     <div className='_right'>
-                    {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> }
-                    
+                    {/* {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> } */}
+                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney  mb-2 me-2'/> : <></>}
                     </div>
                 </div>
                 <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>
             </div>
             <div className={`py-2 row_flex ${contentClass}`}>
-                    <div>
+                    {/* <div>
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
-                    </div>
+                    </div> */}
                     <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
                         <Link href={`/events/${slug}`}><h3 className={`text-16 mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
                         {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>}
-                        {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-14 opacity-60">{short_desc}</p>}
+                        {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-14 opacity-80">{short_desc}</p>}
                         <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
                         {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
                         <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
