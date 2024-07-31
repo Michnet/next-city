@@ -6,7 +6,7 @@ importScripts("/sw-rest.js");
 
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
 var APP_NAME = 'LyveCity';
-var APP_VER = '1.3.7';
+var APP_VER = '1.3.8';
 var CACHE_NAME = APP_NAME + '-' + APP_VER;
 
 // Files required to make this app work offline.
@@ -86,10 +86,17 @@ self.addEventListener('fetch', function(event) {
 		  
 		  if(unCachList.test(event.request.url)){
 			//console.log('unCachList', event.request.url);
-			return fetch(event.request);
+			let reqRes =  await fetch(event.request);
+			if(reqRes){
+				let refined = await reqRes.json();
+				const {success, message} = refined;
+				if(message == 'Expired token'){
+					console.log('Token Expired')
+				}
+				return reqRes;
+			}
 		  }else{
 			if(event.request.url.includes('gravatar')){
-				console.log('seen there');
 				const requestURL = new URL(event.request.url);
 				var req = new Request(requestURL.searchParams.get('d'), {
                     method: event.request.method,
@@ -97,7 +104,6 @@ self.addEventListener('fetch', function(event) {
                 });
 				return fetch(req);
 			}else{
-				console.log('not there');
 				const cache = await caches.open(CACHE_NAME);
 				const cachedResponse = await cache.match(event.request);
 			

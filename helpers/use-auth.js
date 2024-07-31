@@ -256,15 +256,29 @@ const userLoginBySocial = async(userData, token, acc_token, soc_refresh_token, c
 const userSignOut = async () => {
     let localJwt = cookies.get('token');
     if(localJwt){
-      cookies.remove('token');
+      try{
+        const revAuth = await kyFetch.post(`${WPDomain}/wp-json/jwt-auth/v1/auth/revoke?JWT=${localJwt}`).json();
+           if (revAuth.success) {
+             console.log('option 1 auth', revAuth);
+             cookies.remove('token');
+             deleteStoreUser();
+             setTheAuth({auth_type: 'none'});
+              if(status == 'authenticated'){
+                 signOut()
+              }
+           }else{
+             console.log('logout failed');
+           }
+        }catch(e){
+         console.log('logout failed', e);
+        }
+    }else{
+      if(status == 'authenticated'){
+        deleteStoreUser();
+        setTheAuth({auth_type: 'none'});
+        signOut()
+     }
     }
-    setTheAuth({auth_type: 'none'});
-
-    deleteStoreUser();
-    if(status == 'authenticated'){
-      signOut()
-    }
-    //router.reload();
 };
 
 
