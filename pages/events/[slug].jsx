@@ -38,7 +38,7 @@ import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import Link from "next/link";
-//const Navigator = dynamic(() => import("@/components/listing/Navigator"));
+const Navigator = dynamic(() => import("@/components/listing/Navigator"));
 
 
 export async function getStaticPaths() {
@@ -279,12 +279,10 @@ return linkzz;
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         <Hero2  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
-        {/* <Client>
-            <Navigator lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
-        </Client> */}
-        <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
-          <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
-        </LazyLoad>
+        <Client>
+            <Navigator exClass='px-3' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
+        </Client>
+        
         <Client>
           <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>
               <div className="pt-3">
@@ -295,6 +293,9 @@ return linkzz;
                 </>}
             </LazyLoad>
         </Client>
+        <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
+          <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
+        </LazyLoad>
         <CallToActions exClass={'rounded-0 mx-2 text-white bg-dark-dark'} title='Get listed' centered thin   actionComponent={
             <div className="d-flex  gap-3 flex-center">
                 <Link href={'/add-listing'}><button

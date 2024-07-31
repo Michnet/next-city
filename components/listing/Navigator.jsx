@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import listingMenu from "./ListingMenu";
 import { memo, useEffect } from "react";
 
-function Navigator({listing, activeKey, setActiveKey, lMenu}) {
+function Navigator({listing, activeKey, setActiveKey, lMenu, exClass=''}) {
     const {user} = useRecoilValue(authState);
     let listView;
 
@@ -49,7 +49,7 @@ function Navigator({listing, activeKey, setActiveKey, lMenu}) {
       }
   return (
     <Client>
-		<ul className="listing_navigator">
+		<ul className={`listing_navigator ${exClass}`}>
 			{listView}
 		</ul>
     </Client>

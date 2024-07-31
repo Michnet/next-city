@@ -181,7 +181,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                   {visionView}
                   {missionView}
                   {historyView}
-                  <AuthorCard data-aos='zoom-in' listingId={listing?.id} exClass='mb-0' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
+                  <AuthorCard listingId={listing?.id} exClass='mb-0' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
                   {contactsView}
                   {groupView}
                   {paymentsView}

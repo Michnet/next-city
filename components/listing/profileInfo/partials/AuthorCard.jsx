@@ -7,7 +7,7 @@ function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
   if(author?.id){
     if(author.id == 1){
       const {avatar_urls, name, registered_date} = author; 
-      authorView = <div className={`author_card ${exClass ?? ''}`}>
+      authorView = <div data-aos='zoom-in' className={`author_card ${exClass ?? ''}`}>
    
       <div className="card card-style text-center shadow-sm m-0" style={{minHeight: '300px'}}>
       <div style={{background: `url(${srcWithFallback(cover)})`}} className="position-absolute z-1 h-100 bg-cover card-img-top position-relative">
@@ -24,7 +24,7 @@ function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
    </div>
     }else{
       const {avatar_urls, name, registered_date} = author; 
-      authorView = <div className={`author_card ${exClass ?? ''}`}>
+      authorView = <div data-aos='zoom-in' className={`author_card ${exClass ?? ''}`}>
    
       <div className="card card-style text-center shadow-sm m-0" style={{minHeight: '300px'}}>
       <div style={{background: `url(${srcWithFallback(cover)})`}} className="h-100 bg-cover card-img-top position-absolute">

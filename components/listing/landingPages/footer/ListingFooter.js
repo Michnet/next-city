@@ -22,10 +22,8 @@ const ListingFooter = (props) => {
   }
 
   return (
-    <footer className={`listing_footer rounded-0 px-0 footer-footer section-container bg-transparent shadow-0 card card-style mb-2 mx-2  md:py-0 ${props.rootClassName}`}>
-      <Client>
-              <Navigator lMenu={tabList} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
-          </Client>
+    <footer className={`listing_footer rounded-0 px-0 footer-footer section-container bg-transparent shadow-0 card card-style mb-2 mx-2 lg:mb-0  md:py-0 ${props.rootClassName}`}>
+      
       <div
         className={`footer-max-width max-content-container`}
       >

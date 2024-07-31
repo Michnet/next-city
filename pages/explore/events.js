@@ -99,16 +99,7 @@ const ExploreEvents = ({topList}) => {
  let controller = new AbortController();
     let {signal} = controller;
 
-    useEffect(() => {
-      if(query){
-         setFetchy(true)
-      }
-      setLoading(false);
-      return () => {
-        setLoading(true);
-        controller.abort();
-      }
-    }, [query]);
+    
 
     const params = query ?? {};
 
@@ -116,6 +107,21 @@ const ExploreEvents = ({topList}) => {
     listing_type:'event', per_page: 5, ...params, 'event-date':'any-day'};
 
  const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
+
+ let activeTopList = fetchy ? fetchedTopList : cachedTopList;
+
+ useEffect(() => {
+  if(query){
+     setFetchy(true)
+  }
+  if(activeTopList?.length > 0){
+    setLoading(false);
+  }
+  return () => {
+    setLoading(true);
+    controller.abort();
+  }
+}, [query, activeTopList]);
 
   return (
     <>

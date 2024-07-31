@@ -37,13 +37,13 @@ const {user} = useRecoilValue(authState)
 
 
                     {/* <>{loginForm ? <SignIn/> : <SignUp/> }</> */} 
-                    <SignIn/> 
+                    {/* <SignIn/>  */}
                     {/* <div className="d-flex mt-4 mb-4">
                         <div className="w-50 font-13 pb-2 text-start"><span className='text-decoration-underline' style={{cursor: 'pointer'}} onClick={() => setLoginForm(!loginForm)} href="page-signup-2.html">{loginForm ? "I'm new here " : 'Already a member'}</span></div>
                         
                         <div className="w-50 font-13 pb-2 text-end"><a target={'_blank'} href={`${WPDomain}/my-account/lost-password`}>Forgot Credentials</a></div>
                     </div> */}
-                    <p className="mb-3 fw-bold text-center mt-3">Other Options</p>
+                   {/*  <p className="mb-3 fw-bold text-center mt-3">Other Options</p> */}
 
                     </>}
                     <SocialLogin/>

@@ -134,18 +134,19 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
         if(sponsors?.length > 0){
             sponsorsView = <div className={'d-block w-100 image_links'}>
-                   <div className='mb-20 mt-10 sc_heading_3 text-center'><h5>Proudly Sponsored By</h5></div>
+                   <div className='mb-20 mt-10 sc_heading_3 text-center'><h5>Proudly Sponsored By</h5><h4>Event Sponsors</h4></div>
                    <Widget
                         dataAos="zoom-in"
                         freeHeader 
                         //title= 'Event stats'
                         //subtitle={'Key stats about event'}
                         //coverClass={'backdropGray'}
-                        exClass='shadow-0'
+                        bodyClass='px-0'
+                        exClass='shadow-0 bg-transparent'
                         //cover= {srcWithFallback(processImg(gallery, cover))}
                         icon = {'fas fa-stopwatch-20'}
                         >
-                            <Splider height={110} options={{...spliderVariableWidth}}>
+                            <Splider height={90} options={{...spliderVariableWidth}}>
                                 {sponsors?.map((el, index) => {
                                             const {img_name, img_link, mylisting_accordion_photo} = el;
                                             return <a className='w-auto' href={img_link} target="_blank"><img
