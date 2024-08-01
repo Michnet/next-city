@@ -43,7 +43,7 @@ function SearchField({exClass, styleObj={}}) {
   return (
    <>
    <div className={`content pos-relative ${exClass}`} style={{...styleObj}}>
-            <div className="search-box bg-theme-transparent-2 color-theme rounded-5 shadow-l">
+            <div className="search-box bg-theme color-theme rounded-5 shadow-l">
                 <i className="fa fa-search"></i>
                 <input type="text" className="border-0" placeholder="Search for events... " data-search onChange={(e) => runSearch(e)}/>
 				<a href="#" className="clear-search disabled no-click mt-0"></a>

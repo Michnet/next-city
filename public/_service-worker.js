@@ -86,15 +86,16 @@ self.addEventListener('fetch', function(event) {
 		  
 		  if(unCachList.test(event.request.url)){
 			//console.log('unCachList', event.request.url);
-			let reqRes =  await fetch(event.request);
-			if(reqRes){
+			//let reqRes = fetch(event.request);
+			return fetch(event.request);
+			/* if(reqRes){
 				let refined = await reqRes.json();
 				const {success, message} = refined;
 				if(message == 'Expired token'){
 					console.log('Token Expired')
 				}
 				return reqRes;
-			}
+			} */
 		  }else{
 			if(event.request.url.includes('gravatar')){
 				const requestURL = new URL(event.request.url);

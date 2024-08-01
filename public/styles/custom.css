@@ -1316,6 +1316,14 @@ h6.tax_pare {}
     width: 100%;
 }
 
+.h_annex > * {
+    padding: 0 7px;
+}
+
+.h_annex {
+    padding: 8px 10px;
+}
+
 #sidebar:not(.show) .row_flex {
     padding-left: 0 !important;
     padding-right: 0 !important;

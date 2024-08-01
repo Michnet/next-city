@@ -3,6 +3,7 @@ import { closeMenus, toggleTheme } from "@/helpers/appjs";
 import { cleanHtml, srcWithFallback } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
+import HeaderAnnex from "../layouts/partials/HeaderAnnex";
 
 function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
@@ -40,6 +41,7 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
     <div id="listingMenuRight" className="menu menu-box-right menu-sidebar bg-cover bg-center" style={{width: '310px', backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage: `url(${srcWithFallback(cover)})`}}
 	>
 		<div className="sidebar-content h-auto">
+			<HeaderAnnex exClass="bg-theme-light"/>
 			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
 				<div className="card-bottom m-3">
 					<h1 className="mb-n1 color-white truncate">{cleanHtml(title?.rendered)}</h1>
