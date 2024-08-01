@@ -19,6 +19,7 @@ import { ListingMetaMini } from '@/components/UI/Partials';
 //import Slider from 'react-slick';
 import Image from 'next/image';
 import VisitorActions from '../../partials/VisitorActions';
+import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
@@ -106,6 +107,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   //placeholder="blur"
                    //changerKey={listing.id}
                    //blurDataURL={coverBlur}
+                   quality={100}
                    fill
                    priority
                    alt="image"
@@ -121,6 +123,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                 </div>
                 </Mirrored>
                 <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-3 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
+                   <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div>
                   <div className='profile_name h-fit mb-10'>
                     
                         <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>
@@ -234,6 +237,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
              </div>
             <div> 
               <Client>
+             
               <p className = 'mb-10'>
                     {greetingView}
               </p>

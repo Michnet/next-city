@@ -227,7 +227,7 @@ if(listing){
 return linkzz;
 }
 
-    return (<>{/* <SiteHead
+    return (<div className={`listing_page ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>{/* <SiteHead
            title={`${cleanHtml(listing?.title?.rendered)}`} 
            description={`${listing?.short_desc}`}
            image={listing?.large_thumb}
@@ -355,7 +355,7 @@ return linkzz;
         </div>
     </div>
     <VisitRecord Id={listing.id}/>
-    <ListingStater id={listing.id}/></>)
+    <ListingStater id={listing.id}/></div>)
 
   }
 
