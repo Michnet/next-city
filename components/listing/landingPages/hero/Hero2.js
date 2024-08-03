@@ -123,7 +123,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                 </div>
                 </Mirrored>
                 <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-3 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
-                   <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div>
+                   {/* <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div> */}
                   <div className='profile_name h-fit mb-10'>
                     
                         <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>
@@ -237,10 +237,14 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
              </div>
             <div> 
               <Client>
-             
-              <p className = 'mb-10'>
-                    {greetingView}
-              </p>
+             <div>
+                <div className='status_greeting'>
+                  <DateViewState fromActive exClass={'dotty ripple'} eventId={id}/>
+                  <p className = 'mb-10'>
+                        {greetingView}
+                  </p>
+                </div>
+              </div>
               <p className = 'mb-20 text-15 opacity-60 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
               </p></Client>
@@ -266,7 +270,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </div>
 
-          <div className={`card card-style`}>
+          <div className={`card card-style mx-2`}>
           <div
             className={`z-1 p-5 pb-3 position-relative bg-black theme-dark ${styles['section-container']} card card-style w-auto m-0`}
           >

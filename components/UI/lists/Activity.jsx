@@ -9,7 +9,7 @@ function Activity() {
 
   return (
     <div className="recent_activity">
-		{user ? <ProfileHeader user={user}/> : <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Around LyveCity'} subTitle={'City Updates'}/>}
+		{user ? <ProfileHeader user={user}/> : <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2 py-10'  title={'Around LyveCity'} subTitle={'City Updates'}/>}
 		<div className="mb-4"></div>
 
         <SiteActivity user={user} token={token}/>

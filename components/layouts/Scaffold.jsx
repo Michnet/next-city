@@ -9,7 +9,7 @@ import PageLoader from "../skeletons/fullPage/PageLoader";
 
 
 function ScaffoldConst({children, uiSize, settings, headerTitle}) {
-    const {isTab} = uiSize;
+    const {isTab, isLargeTab} = uiSize;
     const {noHeader, autoShowHeader, hideNews, uiBackground, pageClass} = settings ?? {};
 
     //const cachedChildren = useMemo(() => children, [headerTitle])

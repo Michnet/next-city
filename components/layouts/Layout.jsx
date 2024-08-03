@@ -320,6 +320,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               --bgThemeTransparent2: #ffffffd0;
               --bgThemeTransparent3: #ffffff94;
               --borderTheme: rgba(0, 0, 0, 0.1);
+              --borderThemeDark: rgb(0 0 0 / 30%);
               --borderThemeAlt: rgba(255, 255, 255, 0.12);
               --themeGray: #c1c1c1;
               --bgBrightness:2;
@@ -337,6 +338,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               --bgThemeTransparent2: var(--bgDarkTransparent2);
               --bgThemeTransparent3: var(--bgDarkTransparent3);
               --borderTheme: rgba(255, 255, 255, 0.12);
+              --borderThemeDark: rgba(255, 255, 255, 0.22);
               --themeGray: #1a1c22;
               --bgBrightness:0.8;
             }

@@ -148,7 +148,7 @@ export default function Home(props) {
       </div>
 
 
-    <SearchField exClass='mt-n4 mx-auto' styleObj={{maxWidth: '500px'}}/>
+    <SearchField exClass='mt-n4 mx-auto' styleObj={{maxWidth: '85%', width: '600px'}}/>
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 

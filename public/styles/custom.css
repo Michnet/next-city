@@ -899,6 +899,8 @@ div#mobile_sidebar {}
 
 .header.header-sticky.header-always-show {
     position: sticky;
+    margin-bottom: 10px;
+    top: 5px;
 }
 
 .header.header-auto-show.header-sticky:not(.header-active) {
@@ -4447,6 +4449,12 @@ div#explore_nav .left_menu_btn {
     border-radius: 50%;
 }
 
+.status_greeting .event_state {
+    position: absolute;
+    left: -9px;
+    top: -15px;
+}
+
 .vibrate {
   width: 16px;
   height: 16px;
@@ -4488,7 +4496,7 @@ div#explore_nav .left_menu_btn {
     position: absolute;
     border-radius: 50%;
     position: absolute;
-    top: -3px;
+    top: -4px;
     left: -4px;
     border: 2px solid;
     border-color: inherit;
@@ -4506,3 +4514,16 @@ div#explore_nav .left_menu_btn {
       transform: scale3d(1.25, 1.25, 1);
     }
   }
+
+
+.status_greeting:has(.event_state) {
+    padding-left: 26px;
+    border-left: 2px solid var(--borderThemeDark);
+    position: relative;
+    padding-top: 96px;
+    margin-top: -96px;
+}
+
+.recent_activity > div:empty {
+    display: none;
+}
