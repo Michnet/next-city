@@ -28,6 +28,7 @@ import SeoHead from "@/components/UI/SeoHead";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import '@splidejs/react-splide/css';
+import { Analytics} from '@vercel/analytics/react';
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;
@@ -66,20 +67,20 @@ function MyAppConst({ Component, pageProps, platform }) {
       
         <SessionProvider>
             <HydrationProvider>
-              
               <div className="menu-hider" onClick={() => closeMenus()}></div>
               <Layout platform={platform} settings={settings} headerTitle={headerTitle}>
                 <Component {...pageProps}/>
               </Layout>
               <Client>
-                  <AuthProvider/>
-                  <UIProvider platform={platform}/>
-                  {/* <SWMessaging/> */}
-                  <SiteProvider/>
-                  <MessagesStater/>
-                  <ActivityProvider/>
-                </Client>
-                </HydrationProvider>
+                <AuthProvider/>
+                <UIProvider platform={platform}/>
+                {/* <SWMessaging/> */}
+                <SiteProvider/>
+                <MessagesStater/>
+                <ActivityProvider/>
+              </Client>
+              </HydrationProvider>
+              <Analytics/>
         </SessionProvider>
       </RecoilRoot>
       
