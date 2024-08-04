@@ -4,7 +4,7 @@ import { Client } from "react-hydration-provider";
 
 
 
-const TermTag = ({term, exploreLink, type, collection, colorText, exClass='lh-12', exTagClass, linkTax}) => {
+const TermTag = ({term, targetStyleObj={}, preText = null, exploreLink, type, collection, colorText, exClass='lh-12', exTagClass, linkTax}) => {
 
   let termView;
   const {name, taxonomy, slug } = term ?? {};
@@ -52,7 +52,7 @@ const TermTag = ({term, exploreLink, type, collection, colorText, exClass='lh-12
       termView =  <Link
         href={`/explore/events?${linkTax}=${slug}`}
         className={`d-block lh-1 ${taxonomy} ${exTagClass ?? ''} term-link _hash`}>
-          <Client><span className="truncate" style={{color : color ?? '#2f2e2e'}}>#<span className="gx-mb-0" dangerouslySetInnerHTML={{__html:  name}}/></span></Client>
+          <Client><span className="truncate" style={{color : color ?? '#2f2e2e'}}>{preText ? <span>{preText}</span> :  <></>}<span className="gx-mb-0" dangerouslySetInnerHTML={{__html:  name}}/></span></Client>
 
       </Link>;
       break;
@@ -62,7 +62,7 @@ const TermTag = ({term, exploreLink, type, collection, colorText, exClass='lh-12
         href={`/explore/events?${linkTax}=${slug}`}
         className={`${taxonomy} ${exClass ?? ''} term-link _icon`}>
         <div  className="icon_box">
-          <span className="icon_icon"> <i style={{backgroundColor : color}} className={rl_awesome}/> </span> 
+          <span className="icon_icon"> <i style={{backgroundColor : color, ...targetStyleObj}} className={rl_awesome}/> </span> 
         </div>
   
         </Link>

@@ -79,7 +79,7 @@ let Grid1 = () => <HorizontalGrid>
 galleryView = <> 
         
         <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
-          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-2 overflow-hidden rounded-4">
+          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-3 overflow-hidden rounded-4">
           <Grid1/>
         {gallArr.length > 0 && <ResponsiveMasonry className="masonry vertical_grid" columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
             <Masonry gutter ='3px'>

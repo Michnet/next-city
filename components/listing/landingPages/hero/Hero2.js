@@ -270,18 +270,18 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </div>
 
-          <div className={`card card-style mx-2`}>
+          <div className={`card card-style mx-3`}>
           <div
-            className={`z-1 p-5 pb-3 position-relative bg-black theme-dark ${styles['section-container']} card card-style w-auto m-0`}
+            className={`z-1 p-5 pb-3 position-relative bg-theme ${styles['section-container']} card card-style w-auto m-0`}
           >
             {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
             <div className={`row gap-5 md:flex-row flex-md-nowrap flex-col position-relative`}>
               <div className={`col-12 col-md-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']}><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
-              {tagline && <span className={`${styles['text26']} `} style={{fontWeight: '200'}}>
+              {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '200'}}>
                   {tagline}
                 </span>}
-                {venue && <span className={`${styles['text20']} opacity-70 truncate-4 smLine`}>
+                {venue && <span className={`text-30 fw-600 opacity-40 truncate-4 smLine`}>
                   <span className='fw-300'>@</span>
                   {venue}
                 </span>}

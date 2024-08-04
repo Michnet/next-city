@@ -159,10 +159,11 @@ if(general_merchandise?.length > 0){
     tabList.push({
       id : 'merchandise',
       icon: "far fa-store-alt", title: 'Shop',
-      subTitle : "Our Products",
+      subTitle : "Our Store",
       widgetClass: 'shop widgey gx-px-lg-0 bg-transparent',
       badgeNumber: general_merchandise?.length ?? 0,
       badgeClass: 'bg-warning',
+      buttony: true
     });
 }else{
   tabList.push({

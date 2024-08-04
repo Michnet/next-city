@@ -12,7 +12,7 @@ import { authState, UISizes} from '@/contexts/atoms';
 // import ListingTimeline from '~/components/activity/partials/ListingTimeline';
 // const DualColorHeader = dynamic(() => import('~/appComponents/components/partials/DualColorHeader'));
 import { useRouter } from 'next/router';
-import EventCard2 from '../Listings/cards/EventCard2';
+import EventCard6 from '../Listings/cards/EventCard6';
 import { advancedFetchListingsUrl, fetcher } from '@/helpers/rest';
 import { generateTempArray } from '@/helpers/universal';
 import SkeletonProduct from '@/components/skeletons/SkeletonProduct';
@@ -40,7 +40,7 @@ const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExCla
 
 
     let {isTab, isMobile} = useRecoilValue(UISizes);
-    let fieldList = "id,title,slug,event_date,featured_media,ticket_min_price_html,featured,rating,acf,short_desc,page_views,level,category,_links,type,xtra_large_thumb, gallery,locations,large_thumb,thumbnail,longitude,latitude,level,";
+    let fieldList = "id,title,slug,event_date,featured_media,ticket_min_price_html,featured,rating,acf,short_desc,page_views,level,category,_links,type,xtra_large_thumb, gallery,locations,large_thumb,thumbnail,longitude,latitude,level,tagline,modified";
 
     function setUpFilters(){
 
@@ -149,7 +149,7 @@ let gridDisplay = (listings) => {
                             <Masonry gutter={isMobile ? "10px" : "15px"}> 
                             {listings.map(listing => {
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
-                               return <EventCard2 transparent key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'m-0'} listing={listing}/>
+                               return <EventCard6 transparent key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'m-0'} listing={listing}/>
                             })
                             }
                             </Masonry>

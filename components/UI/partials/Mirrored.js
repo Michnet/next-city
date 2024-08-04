@@ -19,7 +19,7 @@ const Mirrored = ({objectStyle={},children, objClass='', objBg=null, side, cover
     }
   
     return <div  className={`mirror_box side_${processLayout()}`} style={{marginTop:coverTop ? `-${topPadding}` : 0, paddingTop: topPadding && !coverTop ? topPadding : '0'}}>
-            {coverTop && <div className="obj_cover position-absolute top-0 z-1 w-100" style={{background: shade, height : topPadding ?? 0}}/>}
+            {coverTop && <div className="obj_cover position-absolute top-0 z-1 w-100" style={{/* background: shade, */ height : topPadding ?? 0}}/>}
   
       <div className={`obj ${objClass}`} style={{...objStyle}}>
         {children}

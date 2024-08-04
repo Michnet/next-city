@@ -57,7 +57,7 @@ if(lMenu){
 }
 
 let menuContent = <div className="menu_content">
-<div className="d-flex flex-row flex-nowrap gap-3 align-items-center flex-shrink-1">
+<div className="d-flex flex-row flex-nowrap gap-3 align-items-center flex-shrink-1 minw-0">
     <i className="fas fa-chevron-left d-none d-md-block" onClick={() => router.back()}/>
     {/* <MainMenuBtn/>  */}
     <div className="menu_logo  flex-shrink-1" onClick={() => setActiveKey('home')}> 
