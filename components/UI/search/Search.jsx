@@ -149,7 +149,7 @@ let gridDisplay = (listings) => {
                             <Masonry gutter={isMobile ? "10px" : "15px"}> 
                             {listings.map(listing => {
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
-                               return <EventCard6 transparent key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'m-0'} listing={listing}/>
+                               return <EventCard6 exImgClass='rounded-4' key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'m-0 rounded-0 py-2 px-3'} listing={listing}/>
                             })
                             }
                             </Masonry>
