@@ -194,7 +194,7 @@ const ExploreEvents = ({topList}) => {
               </div>}
 
 
-              <div className="inner_section bg-theme">
+              <div className="inner_section">
                   <Search cardExClass={'mx-0'}/>
               </div>
 

@@ -74,7 +74,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
                                               </div>
                                             </div>
                                             {ticket_min_price_html && <PriceView /* currencyClass='color-white' */ preText={'From'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
-                                            <div className="mb-2 line-height-sm color-theme text-">
+                                            <div className="mb-2 line-height-sm color-theme opacity-60">
                                             <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
                                               </div>
                                               <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
