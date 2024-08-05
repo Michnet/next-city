@@ -514,7 +514,7 @@ div#mobile_sidebar {}
 
 .bg-header:before {
     content: '';
-    display: none;
+    display: block;
     position: absolute;
     left: 0;
     top: 0;
@@ -4089,7 +4089,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 
 
 .status_greeting:has(.event_state) {
-    padding-left: 26px;
+    padding-left: 18px;
     border-left: 2px dashed var(--borderTheme);
     position: relative;
     padding-top: 96px;
@@ -4104,7 +4104,10 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 
 /*media qs*/
 @media (min-width: 992px) {
- 
+.status_greeting:has(.event_state){
+    padding-top: 185px;
+    margin-top: -185px;
+}
     .hero2.listing_hero .hero_images img{
     width: 100%;
 }
@@ -4193,10 +4196,11 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     .hero_title{
     padding: 5em !important;
 }
-    .header.header-sticky.header-always-show.header-invert:not(.header-active) i:not(.left_menu_btn) {
+    .header.header-sticky.header-always-show.header-invert i:not(.left_menu_btn) {
     width: 32px;
     height: 32px;
     line-height: 32px;
+    text-align: center;
 }
     .header.header-auto-show.header-sticky:not(.header-active){
         
@@ -4308,7 +4312,7 @@ div#explore_nav .view_filter {
 }
 
 .listing_page:not(._section) #listing_header:not(.header-active) .bg-header {
-    background: none !important;
+    /* background: none !important; */
 }
 
 #listing_header .bg-header {

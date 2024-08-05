@@ -245,7 +245,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   </p>
                 </div>
               </div>
-              <p className = 'mb-20 text-15 opacity-60 smLine'>
+              <p className = 'mb-20 text-15 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}
@@ -270,7 +270,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
               </div>
             </div>
 
-          <div className={`card card-style mx-3`}>
+          <div className={`card card-style mx-3 theme-dark`}>
           <div
             className={`z-1 p-5 pb-3 position-relative bg-theme ${styles['section-container']} card card-style w-auto m-0`}
           >
