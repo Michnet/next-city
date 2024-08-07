@@ -68,8 +68,8 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
         if(faqs?.length > 0){
             let trimFaqs = faqs?.slice(0,3);
-        faqsView = <div className="card card-style shadow mt-4" data-aos="zoom-in">
-                <div className="content">
+        faqsView = <div className="card card-style partial_border across_border  shadow mt-4" data-aos="zoom-in">
+                <div className="content p-3">
                     <div className="d-flex pb-2 border-bottom mb-3 ">
                         <div>
                             <h6 className="mb-n1 opacity-80 color-highlight">FAQs</h6>

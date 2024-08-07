@@ -130,6 +130,51 @@ h6 {
     /* border: 1px solid var(--borderThemeAlt); */
 }
 
+.card.card-style.top_border {
+    border-top: 3px solid var(--borderTheme);
+}
+
+.card.card-style.top_border.partial_border:before, .card.card-style.top_border.partial_border:after {
+    width: 3px;
+    background: linear-gradient(180deg, var(--borderTheme), transparent);
+    height: 50%;
+}
+
+.card.card-style.partial_border:before, .card.card-style.partial_border:after {
+    display: block;
+    content: "";
+    position: absolute;
+}
+
+.card.card-style.partial_border {
+    border-radius: 0;
+    box-shadow: none !important;
+    background: transparent;
+}
+
+.card.card-style.partial_border.across_border {
+}
+
+.card.card-style.partial_border.across_border:before, .card.card-style.partial_border.across_border:after {
+    width: 32%;
+    height: 20%;
+    border: 3px solid var(--borderThemeDark);
+}
+
+.card.card-style.partial_border.across_border:before {
+    border-width: 3px 0 0px 3px;
+}
+
+.card.card-style.partial_border.across_border:after {
+    border-width: 0px 3px 3px 0;
+    bottom: 0;
+    right: 0;
+}
+
+.card.card-style.top_border:after {
+    right: 0;
+}
+
 .card.bg-theme.pdt-card {
     background-color: var(--bgTheme);
 }
