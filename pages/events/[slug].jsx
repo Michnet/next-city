@@ -281,14 +281,12 @@ return linkzz;
         </Client>
         
         <Client>
-          <LazyLoad placeholder={<Skeleton height={200}/>} offset={200} once>
               <div className="pt-3">
                 <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category.slug} ids={dir_categories} exclude={id}/></div>
               {locations?.length > 0 && 
                 <>
                   <div className="pt-3"><RelatedByTaxSplide taxonomy={`region`} slug={locations[0]?.slug} taxName={locations[0]?.name} exclude={id}/></div>
                 </>}
-            </LazyLoad>
         </Client>
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
           <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
