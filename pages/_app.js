@@ -29,6 +29,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import '@splidejs/react-splide/css';
 import { Analytics} from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;
@@ -51,7 +52,8 @@ function MyAppConst({ Component, pageProps, platform }) {
    // onAppLoad();
    // require("bootstrap/dist/js/bootstrap.bundle.min.js");
     Aos.init({
-      duration: 1200,
+      duration: 600,
+      offset: 200,
       once: true,
     });
 }, []);
@@ -81,6 +83,7 @@ function MyAppConst({ Component, pageProps, platform }) {
               </Client>
               </HydrationProvider>
               <Analytics/>
+              <SpeedInsights/>
         </SessionProvider>
       </RecoilRoot>
       
