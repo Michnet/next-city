@@ -15,8 +15,8 @@ export const HorizontalGrid = ({children, height}) => {
 }
 
 const MegaGalleryMini = ({listing, color, setActiveKey}) => {
-  const {landing, marketing,id, galleryWithBlurs, meta} = listing;
-  const {_job_gallery:l_gallery} = meta ?? {};
+  const {landing, marketing,id, gallery:l_gallery, meta} = listing;
+  //const {_job_gallery:l_gallery} = meta ?? {};
   const {greeting} = landing;
   const {punch_lines} = marketing;
   const [slideIndex, setSlideIndex] = useState(-1);

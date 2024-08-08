@@ -2,11 +2,13 @@ import { cleanHtml } from "@/helpers/universal"
 import RatingView from "../../reviews/RatingView"
 import CountDownUI from "@/components/UI/CountDownUI";
 import { Client } from "react-hydration-provider";
-import DateViewString from "../UI/partials/dateViews/DateViewString";
-import { PriceView } from "../UI/PriceView";
+//import DateViewString from "../UI/partials/dateViews/DateViewString";
+//import { PriceView } from "../UI/PriceView";
+import DateViewString from "@/components/UI/partials/dateViews/DateViewString";
+import { PriceView } from "@/components/UI/PriceView";
 
 function Hero({listing, setActiveKey, activeKey}) {
-    const {title, rating, address, categories} = listing ?? {}
+    const {title, rating, address, categories, cover, id, short_desc, ticket_min_price_html } = listing ?? {}
   return (
     <>
     <div className={`card preload-img listing_hero`} style={{backgroundImage: `url(${cover})`, height: activeKey == 'home' ? '65vh' : '40vh'}}>
@@ -47,7 +49,7 @@ function Hero({listing, setActiveKey, activeKey}) {
                     </p>}</Client>
                     <CountDownUI fromActive eventId={listing?.id} /* eventId={id} */ />
                     <div className="row mb-3 mt-4 meta_card">
-                        {act_dates && act_id == listing?.id ? <div className="col-6 p-0">
+                        {<div className="col-6 p-0">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="far fa-calendar-check color-teal-dark font-23 me-3 text-center"></i>
@@ -57,8 +59,8 @@ function Hero({listing, setActiveKey, activeKey}) {
                                     <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive /* date={event_date[0].start} */ format={'ddd, DD MMMM'}/></strong>
                                 </div>
                             </div>
-                        </div> : <></>}
-                        {act_dates && act_id == listing?.id ? <div className="col-6 p-0">
+                        </div>}
+                        {<div className="col-6 p-0">
                             <div className="d-flex">
                                 <div className="align-self-center">
                                     <i style={{width:"20px"}} className="bi bi-clock color-red-dark font-23 me-3 text-center"></i>
@@ -68,7 +70,7 @@ function Hero({listing, setActiveKey, activeKey}) {
                                     <strong className="d-block truncate-2 meta_info font-13 pb-1 color-theme"><DateViewString eventId={listing?.id} fromActive format={'hh:mm A'}/></strong>
                                 </div>
                             </div>
-                        </div> : <></>}
+                        </div>}
                         <div className="col-12 mb-2"></div>
                         {address?.length > 0 || locations?.length > 0 ? <div className="col-6 p-0">
                             <div className="d-flex">

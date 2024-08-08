@@ -6540,10 +6540,6 @@ section.landing_page .intro_content{
   font-size: 28px;
 }
 
-.profile-top-menu .menu_icon {
-  padding: 0 4px !important;
-}
-
 .profile_nav_menu .tab.tab-active .menu_icon .profile_title {
     /* color: var(--bs-gray); */
 }

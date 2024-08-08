@@ -1333,6 +1333,10 @@ h6.tax_pare {}
     max-height: 50vh;
 }
 
+#mini_wall_gallery.mega_gallery .mega_item > img {
+    max-height: 20vh;
+}
+
 .gallery_plate .mega_item {
     height: 100%;
 }

@@ -50,8 +50,8 @@ export const HorizontalGrid = ({children, height}) => {
 }
 
 const MegaGallery = ({listing, color, upcoming}) => {
-  const {landing, marketing, team, performers, id, galleryWithBlurs, meta} = listing;
-  const {_job_gallery:l_gallery} = meta ?? {};
+  const {landing, marketing, team, performers, id, gallery:l_gallery, meta} = listing;
+  //const {_job_gallery:l_gallery} = meta ?? {};
   const {greeting} = landing;
   const {punch_lines} = marketing;
   const [slideIndex, setSlideIndex] = useState(-1);
