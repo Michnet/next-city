@@ -38,7 +38,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, color, activeKey}
                     </a>}
                     {phone && <a style={{width: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
                     <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}></i><span>Chat</span></button>
-                    <button onClick={(e) => setActiveKey('reviews')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'reviews' ? '_active fas' : 'fal'} fa-star text-center text-24`}></i><span>Reviews</span></button>
+                    {/* <button onClick={(e) => setActiveKey('reviews')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'reviews' ? '_active fas' : 'fal'} fa-star text-center text-24`}></i><span>Reviews</span></button> */}
                     </div>
                     {/* <PreviousPostLink/> */}
                     <div className="row_flex flex-shrink-1 justify-end">

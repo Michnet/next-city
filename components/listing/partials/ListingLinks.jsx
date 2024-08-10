@@ -10,7 +10,7 @@ export const NextPostLink = ({current, styleObj}) => {
        <>{nextP ? <>{
         nextP == current ? <></> :
         <Link href={`/events/${nextP}`} style={{...styleObj}}><button className="nav_switch">
-              <i className="fal fa-chevron-circle-right text-24"/>
+              <i className="fal fa-chevron-double-right text-24"/>
             </button></Link>}</>
             :
             <></>
