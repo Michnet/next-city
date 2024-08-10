@@ -22,7 +22,7 @@ const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
 
 
 let logoView, headerMenuView;
-let mobileHideList = ['home', 'articles', 'private-chat', 'faqs', 'gallery','reviews'];
+let mobileHideList = ['home', 'articles', 'private-chat','reviews'];
 
 if(logo){
   logoView = <div className='_logo'>
@@ -82,7 +82,7 @@ let menuContent = <div className="menu_content">
       </div></>
   }
   
-  <div className='tab_link _all px-1'><UserAvatar size={30}/></div>
+  <div className='tab_link _all px-1 d-sm-block d-none'><UserAvatar size={30}/></div>
   {isMobile ? <></> : <div className="d-inline-block">
     { <BookingView simple={false} setActiveKey={setActiveKey}text='Booking' exClass='text-12 py-1 fw-600'/>}
     </div>}

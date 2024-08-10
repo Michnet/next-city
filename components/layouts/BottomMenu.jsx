@@ -46,7 +46,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
  ]
   return (
     <>{ content ??
-          <div id="footer-bar" className="footer-bar-1 d-md-none">
+          <div id="footer-bar" className="footer-bar-1 d-md-none default_menu">
             <div className="footer_content">{defBottomLinks.map((el, ind) => {
                 let {id, icon, link, name, func, routePath, isNew, props} = el;
                 return <>{link ? <Link key={ind} href={routePath} className={`${isActiveLink(routePath, router.asPath)? 'active-nav' : ''}`}>

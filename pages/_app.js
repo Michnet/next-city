@@ -53,7 +53,7 @@ function MyAppConst({ Component, pageProps, platform }) {
    // require("bootstrap/dist/js/bootstrap.bundle.min.js");
     Aos.init({
       duration: 600,
-      offset: 300,
+      offset: 0,
       once: true,
     });
 }, []);

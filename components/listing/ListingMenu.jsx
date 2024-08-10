@@ -83,7 +83,7 @@ if(type === 'event'){
   tabList.push(
     {
       id: 'occurrences',
-      icon: 'far fa-calendar-check',
+      icon: 'far fa-calendar-alt',
       title: 'Dates',
       subTitle : 'Occurences', 
       widgetClass:  'profile widgey pad_tab',

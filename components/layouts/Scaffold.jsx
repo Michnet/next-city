@@ -45,7 +45,7 @@ useEffect(() => {
       setLoading(false)
         return () => {setLoading(true)
         }
-  }, [headerTitle, settings]);
+  }, [headerTitle, settings, router.asPath]);
     
   return (<>
     <div className={`container-fluid p-0 ${pageClass ?? ""}`}>

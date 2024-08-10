@@ -10,7 +10,7 @@ export const NextPostLink = ({current, styleObj}) => {
        <>{nextP ? <>{
         nextP == current ? <></> :
         <Link href={`/events/${nextP}`} style={{...styleObj}}><button className="nav_switch">
-              <i className="fas fa-chevron-circle-right text-24"/>
+              <i className="fal fa-chevron-circle-right text-24"/>
             </button></Link>}</>
             :
             <></>
@@ -24,7 +24,7 @@ export function PreviousPostLink() {
    
     return (
       <button className="nav_switch link" type="button" onClick={() => router.back()}>
-        <i className="far fa-chevron-circle-left text-24"/>
+        <i className="fal fa-chevron-circle-left text-24"/>
       </button>
     )
   }

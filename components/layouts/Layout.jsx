@@ -9,7 +9,7 @@ import { closeMenus, changeHighlight, openOffCanvas } from "@/helpers/appjs";
 import Scaffold from "./Scaffold";
 import {UISizes, UIWidthState} from '@/contexts/atoms';
 //import Header from "./partials/Header";
-import { useRouter } from "next/router"
+//import { useRouter } from "next/router"
 import BottomMenu from "./BottomMenu";
 import { BSReveal } from "../UI/partials/BSReveal";
 import SearchForm1 from "../UI/search/SearchForm1";
@@ -51,7 +51,7 @@ function LayoutConst({ children, headerTitle, settings}) {
   const uiSize = useRecoilValue(UISizes);
   //const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
   const [width, setWidth] = useRecoilState(UIWidthState);
-  const router = useRouter();
+  //const router = useRouter();
   const {mMenuContent, noFooter} = settings ?? {};
   const {btnProps, icon} = mMenuContent ?? {}
   const [loading, setLoading] = useState(true);
@@ -105,7 +105,7 @@ function LayoutConst({ children, headerTitle, settings}) {
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
-          <Scaffold headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>
+          <Scaffold  headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>
             {children}
             </Scaffold>
           <Client>
