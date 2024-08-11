@@ -270,7 +270,7 @@ return linkzz;
             </HeaderWrapper>
             <SiteMapContent links={siteMapper()}/>
 
-    <ListingBottomMenu lMenu={lMenu} setActiveKey={setActiveView} listing={listing} color={color} activeKey={activeKey}/>
+    <ListingBottomMenu user={user} lMenu={lMenu} setActiveKey={setActiveView} listing={listing} color={color} activeKey={activeKey}/>
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>

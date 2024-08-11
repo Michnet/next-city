@@ -122,7 +122,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                   </div>
                 </div>
                 </Mirrored>
-                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-3 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
+                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-5 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
                    {/* <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div> */}
                   <div className='profile_name h-fit mb-10'>
                     

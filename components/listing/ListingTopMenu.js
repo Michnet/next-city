@@ -9,7 +9,7 @@ import { cleanHtml } from '@/helpers/universal';
 import { Avatar } from '@/components/UI/Partials';
 import { UserAvatar } from '@/components/UI/UserAvatar';
 import { openOffCanvas } from '@/helpers/appjs';
-import MainMenuBtn from '@/components/layouts/partials/MainMenuBtn';
+//import MainMenuBtn from '@/components/layouts/partials/MainMenuBtn';
 import { useRouter } from 'next/router';
 
 const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
@@ -22,7 +22,7 @@ const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {
 
 
 let logoView, headerMenuView;
-let mobileHideList = ['home', 'articles', 'private-chat','reviews'];
+let mobileHideList = ['home', 'articles', 'private-chat', 'faqs','reviews'];
 
 if(logo){
   logoView = <div className='_logo'>

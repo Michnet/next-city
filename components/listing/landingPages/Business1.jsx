@@ -495,11 +495,11 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             {ticketsHint}
             {performersView}
             {guestsView}
+            <Client>{tagsView}</Client> 
+            {strengthsView }   
             {reviewsView}
-            <Client>{tagsView}</Client>    
             {servicesView}
             {statsView}
-            {strengthsView }
             {faqsView}
             
             {teamView}
