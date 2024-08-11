@@ -274,7 +274,7 @@ return linkzz;
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        <Hero2  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />
+        <Hero2 user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
         <Client>
             <Navigator exClass='px-3' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>

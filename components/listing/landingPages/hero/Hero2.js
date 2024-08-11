@@ -3,7 +3,7 @@ import { cleanHtml, srcWithFallback, randomEither } from '@/helpers/universal';
 import { useRecoilValue } from 'recoil';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { Client } from 'react-hydration-provider';
-import {fallbackImgSrcSet } from "@/helpers/base";
+import {fallbackImgSrcSet, homeurl, WPDomain } from "@/helpers/base";
 //import { BookingView } from '@/pages/events/[slug]';
 import { Suspense } from 'react';
 import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
@@ -20,11 +20,12 @@ import { ListingMetaMini } from '@/components/UI/Partials';
 import Image from 'next/image';
 import VisitorActions from '../../partials/VisitorActions';
 import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
+import Link from 'next/link';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
-const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
-  const {cover, page_views, title, rating, acf, category, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp} = listing ?? {};
+const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
+  const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp} = listing ?? {};
   const {greeting} = listing.landing;
   const {likes} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category;
@@ -32,7 +33,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
 
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";
 
-  let galArr = [], greetingView, firstWord='', lastWords='';
+  let galArr = [], greetingView, firstWord='', lastWords='', rebuildLink, editLink;
   /* const settings = { arrows: true, dots: true, infinite: true, speed: 1000, marginLeft: 10, marginRight: 10, slidesToShow: 1, cssEase: 'ease-out', slidesToScroll: 1, }; */
 
   if(title){
@@ -52,6 +53,21 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
   }else{
       greetingView = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
   }
+
+  if(user){
+    if(author_id == user.id){
+      editLink = <Link
+        href={`${WPDomain}/my-account/my-listings/?action=edit&job_id=${listing.id}`}
+        className="listing_edit btn btn-sm m-0 btn-outline-secondary"
+        target='_blank'>Edit Listing</Link>
+    }
+    if(user?.id === 1){
+     rebuildLink = <Link
+       href={`${homeurl}/api/revalidate?path=/events/${listing.slug}`}
+       className="btn btn-sm m-0 btn-outline-secondary listing_edit"
+       target='_blank'>Rebuild Listing</Link>
+   }
+ }
 
   /* let randomColor = () => {
     if(palette?.length > 0){
@@ -142,6 +158,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey}) => {
                         </div>
                   </div>
                   <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
+                  <div className='row_flex justify-end gap-3'>{rebuildLink}{editLink}</div>
                   {/* {<VisitorActions  mini setActiveKey={setActiveKey} exClass={'justify-end'} listing={listing}/>} */}
                   </div>
                 {/* <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>

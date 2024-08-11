@@ -15,7 +15,7 @@ const ProfileContact = ({listing, count}) => {
     contactView = <>
     <div className="gx-profile-info">
               <div className="row">
-                {author_id == user?.id ? 
+                {author_id === user?.id ? 
                 <CallToActions exClass="border m-0" bgClass='bg-transparent' light title={'Authored Page'} descript='Contact options are not available in a listing you own. Only other users can see contact options'/>
                 :
                 <>
