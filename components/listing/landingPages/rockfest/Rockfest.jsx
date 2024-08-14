@@ -10,6 +10,7 @@ import { DualColorHeader } from "@/components/UI/Partials";
 import { Suspense } from "react";
 import { BookingView } from "@/pages/events/[slug]";
 import FAQs from "@/components/UI/FAQs";
+import { useRouter } from "next/router";
 
 function Rockfest({listing, setActiveKey}) {
     const {title, cover, gallery:l_gal, item_min_price_html, short_desc, meta, venue, id, dir_tags} = listing ?? {};
@@ -17,6 +18,7 @@ function Rockfest({listing, setActiveKey}) {
     let sponsors = meta['_event-sponsors'], wcu = _wcu[0] ?? null;
     const gallery = l_gal?.length > 0 ? [...l_gal] : [...listing_gallery]
     let sponsorsView, tagsView, strengthsView, faqsView;
+    const router = useRouter();
 
     if(listing){
         if(dir_tags?.length > 0){
@@ -577,7 +579,7 @@ function Rockfest({listing, setActiveKey}) {
                     </div>
                 </div>
             </section> */}
-            <section id="section-tickets">
+            {faqs?.length > 0 && <section id="section-tickets">
                 <div className="container px-0">
                     <div className="row">
                         <div className="col-md-12 text-center">
@@ -591,7 +593,7 @@ function Rockfest({listing, setActiveKey}) {
                         {faqsView}
                     </div>
                 </div>
-            </section>
+            </section>}
             {/* <section id="section-tickets">
                 <div className="container">
                     <div className="row">
