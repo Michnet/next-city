@@ -493,12 +493,14 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                 
             {/* {shopView} */}
             {ticketsHint}
+            {servicesView}   
+
             {performersView}
             {guestsView}
             <Client>{tagsView}</Client> 
-            {strengthsView }   
+            
             {reviewsView}
-            {servicesView}
+            {strengthsView }
             {statsView}
             {faqsView}
             

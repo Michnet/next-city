@@ -25,9 +25,10 @@ const SearchFilter = dynamic(() => import('./SearchFilter'));
 const PAGE_SIZE = 22;
 
 
-const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExClass}) => {
+const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=false, listingType, xlRow=6, cardExClass}) => {
 
-    const {query} = useRouter();
+    const router = useRouter();
+    const query = propQuery ?? router.query;
     const {user} = useRecoilValue(authState);
     const [showThumb, setShowThumb] = useState(true);
     const [timelineView, setTimelineView] = useState(false);
@@ -92,7 +93,7 @@ const SearchConst = ({withSideFilter, columnObj, listingType, xlRow=6, cardExCla
         const isRefreshing = isValidating && data && data.length === size;
 
     const {data:fbData, error:fbError} = useSWRInfinite(!isLoadingInitialData && isEmpty ? 
-        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, listing_type: listingType ?? 'event', _embed : true, 'event-date': 'any-day' })}&per_page=${PAGE_SIZE}&page=${
+        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, listing_type: listingType ?? 'event', _embed : true, 'event-date': 'any-day', exclude: query?.exclude ?? 0})}&per_page=${PAGE_SIZE}&page=${
             index + 1
           }` : null,
         fetcher
@@ -201,7 +202,7 @@ if(isLoadingInitialData){
 
 if(isEmpty){
     if(fbListings?.length > 0){
-        itemsView = <><DualColorHeader exClass={'my-4'} title={'No Listings matching your search'} desc={'Here are the latest listings on LyveCity'}/>{gridDisplay(fbListings)}</>
+        itemsView = <>{!hideHeading && <DualColorHeader exClass={'my-4'} title={'No Listings matching your search'} desc={'Here are the latest listings on LyveCity'}/>}{gridDisplay(fbListings)}</>
     }else{
         itemsView = (
             <div>No Listings matching your options. Try a new search</div>

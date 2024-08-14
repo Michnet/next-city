@@ -4,7 +4,7 @@ import { getLocalTaxonomy } from "@/helpers/rest";
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 
-const TagsCloudConst = ({ids, dark, hue, itemsList, onClickFunc, live=false}) => {
+const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue, itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
 
   const [items, setItems] = useState([]);
   //const {colorTheme} = useRecoilValue(UIState);
@@ -64,14 +64,39 @@ const color_options = {
     return tagData;
   }
 
+  const baseRenderer = (tag, size, color) => {
+    const styles = {
+      margin: '0px 3px',
+      verticalAlign: 'middle',
+      display: 'inline-block',
+    }
+
+    const { className, style, ...props } = tag.props || {}
+    const fontSize = size + 'px'
+    const key = tag.key || tag.value
+    const tagStyle = { ...styles, color, fontSize, ...style }
+  
+    let tagClassName = 'tag-cloud-tag'
+    if (className) {
+      tagClassName += ' ' + className
+    }
+  
+    return (
+      <span className={tagClassName} style={tagStyle} key={key} {...props}>
+        {hashed ? '#' : <></>}{tag.value}
+      </span>
+    )
+  }
+
 
 
   return (
     <><TagCloud
-    minSize={16}
-    maxSize={38}
+    minSize={minSize}
+    maxSize={maxSize}
     tags={createTags()}
     colorOptions={color_options}
+    renderer={renderer ??  baseRenderer}
     onClick = {onClickFunc ? (tag) => onClickFunc(tag) : null}
   />
   </>

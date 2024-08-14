@@ -7,7 +7,7 @@ import { getEventDates } from "@/helpers/rest";
 import SkeletonCube from "../skeletons/SkeletonCube";
 import dayjs from "dayjs"
 
-const CountDownUI = ({fromActive, date = null, eventId, light}) => {
+const CountDownUI = ({fromActive, date = null, eventId, light, exClass=''}) => {
     const [loading, setLoading] = useState(true);
     const [theDate, setTheDate] = useState(null);
     const [theEndDate, setTheEndDate] = useState(null);
@@ -51,18 +51,18 @@ let now = new Date();
 
   if(theDate){
     if(dayjs(theEndDate).isBefore(now, 'minute')){
-     /*  return <div className="event_date">
+      return <div className={`event_date ${exClass}`}>
       <p className="text-13">
         <span className="mr-5 lh-1"><i className="las la-stopwatch"></i></span>
           Ended {dayjs(theEndDate).fromNow()}
       </p>
-    </div>; */
+    </div>;
     }else{
-      return <div><Countdown renderer={countdown_renderer} autoStart date={theDate}/></div>
+      return <div className={`${exClass}`}><Countdown renderer={countdown_renderer} autoStart date={theDate}/></div>
     }
   }else{
     if(loading){
-      return <div className="flex_horizontal loader_skeleton gap-2 w-fit">{generateTempArray(4).map((item, i) => (
+      return <div className={`flex_horizontal loader_skeleton gap-2 w-fit ${exClass}`}>{generateTempArray(4).map((item, i) => (
         <SkeletonCube width={50} height={50} key={i}/>
     ))}</div>
     }else{

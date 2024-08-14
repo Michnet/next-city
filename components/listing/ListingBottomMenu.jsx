@@ -37,7 +37,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
                     {/* {whatsapp && <a style={{width: '50px'}} className={''} href={`https://wa.me/${whatsapp}`} >
                         <i className="fab fa-whatsapp color-whatsapp text-center text-24"></i><span>WhatsApp</span>
                     </a>} */}
-                    {phone && <a style={{width: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
+                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
                     <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
                     <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`fas fa-heart text-center text-24`}/><span>Save</span></div>} 
                         unlikedEl={<div style={{width: '50px'}} className="link"><i className={`fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>

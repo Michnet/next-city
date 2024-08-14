@@ -1,19 +1,6 @@
 import SiteHead from "@/components/UI/SiteHead";
 import Search from "@/components/UI/search/Search";
 
-const SearchPage = () => {
-  return (
-    <>
-        <SiteHead title={`Search`}>
-           {/*  <Script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDquFA71wYW2IHiZOADRsHKG2NFs1X6ZG0" /> */}
-        </SiteHead>
-        <div className="page-content">
-          <Search withSideFilter columnObj={{0: 1, 420: 2, 600: 3, 768:2, 992:3,  1200: 4}}/>
-        </div>
-    </>
-  );
-}
-
 export async function getStaticProps(context) {
   return {
     props: {
@@ -29,6 +16,21 @@ export async function getStaticProps(context) {
     } 
   }
 }
+
+
+const SearchPage = () => {
+  return (
+    <>
+        <SiteHead title={`Search`}>
+           {/*  <Script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDquFA71wYW2IHiZOADRsHKG2NFs1X6ZG0" /> */}
+        </SiteHead>
+        <div className="page-content">
+          <Search withSideFilter columnObj={{0: 1, 420: 2, 600: 3, 768:2, 992:3,  1200: 4}}/>
+        </div>
+    </>
+  );
+}
+
 
 /* const PageLayout = dynamic(() => import('~/appComponents/core/Layout/PageLayout'));
 

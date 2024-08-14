@@ -1,5 +1,6 @@
 import { memo } from "react";
 import BusinessOne from "./landingPages/Business1";
+import Rockfest from "./landingPages/rockfest/Rockfest";
 import styles from './styles/home1.module.css';
 //import { useRecoilValue } from "recoil";
 //import { activeDateState } from "@/contexts/atoms";
@@ -11,8 +12,8 @@ import styles from './styles/home1.module.css';
     //const {act_id, act_dates} = activeDate ?? {};
 
     return  <div className="landing_page">
-           
-            <BusinessOne styles={styles} /* upcoming={upcoming} */ color={color} listing ={listing} cover={cover} setActiveKey={setActiveKey}/>
+              <Rockfest listing={listing} setActiveKey={setActiveKey}/>
+            {/* <BusinessOne styles={styles}  color={color} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
         </div>
         }
 

@@ -45,16 +45,6 @@ const DateViewState = ({eventId, exClass, fromActive, customDate=null, customEnd
         setDates([{start: customDate, end: customEndDate}])
       }
     }
-
-
-    /* if(!customDate){
-      getDates({event_id:eventId, f_key : 'event-date', upcoming_instances : 1}, signal);
-    }else{
-      setDates([{start:customDate, end:customEndDate}])
-    } */
-   /*  const interval = setInterval(() => {
-      setUpdate(update + 1);
-    }, 60000);*/
     return () => controller.abort();
   }, [customDate, eventId, activeDate]);
   

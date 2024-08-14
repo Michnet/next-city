@@ -4201,7 +4201,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 .header.header-sticky.header-always-show.header-invert.header-active {
 }
 
-#listing_header {border: none;top: 10px;margin: 0 auto 15px;border-radius: 10px;}
+#listing_header {border: none;top: 0;margin: 0 auto 15px;border-radius: 0px;}
 
 #listing_header:not(.header-active) {
     /* box-shadow: none; */
@@ -4249,8 +4249,8 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 }
 @media (min-width: 769px) {
     .header.header-sticky.header-always-show {
-    margin-bottom: 10px;
-    top: 5px;
+    margin-bottom: 5px;
+    top: 0px;
 }
     .hero_title{
     padding: 5em !important;
@@ -4600,3 +4600,5 @@ div#explore_nav .left_menu_btn {
 }
 
 /*media qs end*/
+
+.text-outline {-webkit-text-stroke-width: 1px;-webkit-text-stroke-color: rgb(255 255 255 / 42%);color: transparent !important;}

@@ -28,9 +28,9 @@ const ListingFooter = dynamic(() => import('@/components/listing/landingPages/fo
 const ListingBottomMenu = dynamic(() => import('@/components/listing/ListingBottomMenu'), { ssr: false });
 //const SiteHead = dynamic(() => import("@/components/UI/SiteHead"));
 import { EventJsonLd } from 'next-seo';
+import Search from "@/components/UI/search/Search";
 
-
-const ColorThief = require('colorthief');
+//const ColorThief = require('colorthief');
 
 
 import SiteMapContent, { siteColorObjs, siteColors } from "@/helpers/base";
@@ -274,7 +274,7 @@ return linkzz;
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        <Hero2 user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />
+        {activeKey != 'home' && <Hero2  user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
         <Client>
             <Navigator exClass='px-3' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
@@ -282,16 +282,18 @@ return linkzz;
         
         <Client>
               <div className="pt-3">
-                <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category.slug} ids={dir_categories} exclude={id}/></div>
+                <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category.slug} ids={dir_categories} exclude={id}/>
+                <Search propQuery={{category: category?.slug, exclude:listing?.id}} hideHeading={true}/>
+                </div>
               {locations?.length > 0 && 
                 <>
                   <div className="pt-3"><RelatedByTaxSplide taxonomy={`region`} slug={locations[0]?.slug} taxName={locations[0]?.name} exclude={id}/></div>
                 </>}
         </Client>
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
-          <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/>
+          {/* <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/> */}
         </LazyLoad>
-        <CallToActions exClass={'rounded-0 mx-2 text-white bg-dark-dark'} title='Get listed' centered thin   actionComponent={
+        {/* <CallToActions exClass={'rounded-0 mx-2 text-white bg-dark-dark'} title='Get listed' centered thin   actionComponent={
             <div className="d-flex  gap-3 flex-center">
                 <Link href={'/add-listing'}><button
             className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500 border-dark-light shadow-0"
@@ -306,7 +308,7 @@ return linkzz;
             </div>
             }
             descript = {"List your event on LyveCity today. It's FREE"}
-            />
+            /> */}
     </div>
 
     <Client>
