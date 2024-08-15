@@ -2,8 +2,10 @@ import { authState } from "@/contexts/atoms";
 import { closeMenus } from "@/helpers/appjs";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
-import listingMenu from "./ListingMenu";
+import listingMenu from "../ListingMenu";
 import { memo, useEffect } from "react";
+import NavItem from "./partials/NavItem";
+import NavItemCard from "./partials/NavItemCard";
 
 function Navigator({listing, activeKey, setActiveKey, lMenu, exClass=''}) {
     const {user} = useRecoilValue(authState);
@@ -35,13 +37,7 @@ function Navigator({listing, activeKey, setActiveKey, lMenu, exClass=''}) {
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
 					
                       return <li onClick={() => {closeMenus(); setActiveKey(id)}} className={`close-menu overflow-visible position-relative ${activeKey === id ? 'active' : ''}`}  key={id}>
-							<i className={`${icon ?? 'far fa-square'} bg-transparent rounded opacity-50 link_icon`}></i>
-							<span className="truncate">{buttony ? subTitle : title}
-                                      {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 end-0 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
-                                         {badgeNumber}
-                                      </span> : <></>}</span>
-							<i className="fa fa-angle-right "/>
-							<i className="fa fa-angle-left "/>
+							<NavItemCard icon={icon} buttony={buttony} title={title} subTitle={subTitle} badgeNumber={badgeNumber} badgeClass={badgeClass}/>
 						</li>
                       }
                     })}

@@ -6,7 +6,7 @@ import { BookingView } from '@/pages/events/[slug]';
 import { Avatar, SocialLinks } from '@/components/UI/Partials';
 import { quickLinks } from '@/helpers/data';
 import { Client } from 'react-hydration-provider';
-import Navigator from '../../Navigator';
+import Navigator from '../../navigation/Navigator';
 
 const ListingFooter = (props) => {
   const{thumbnail, tabList, activeKey, setActiveKey, links, short_desc, title, tagline, listing} = props;

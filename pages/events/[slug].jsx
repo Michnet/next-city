@@ -38,7 +38,7 @@ import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import Link from "next/link";
-const Navigator = dynamic(() => import("@/components/listing/Navigator"));
+const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
 
 export async function getStaticPaths() {
@@ -274,10 +274,10 @@ return linkzz;
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        {activeKey != 'home' && <Hero2  user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
+        {/* activeKey != 'home' &&  */<Hero2  user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
         <Client>
-            <Navigator exClass='px-3' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
+            <Navigator exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
         </Client>
         
         <Client>

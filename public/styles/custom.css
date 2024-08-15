@@ -1154,6 +1154,10 @@ h6.tax_pare {}
   font-weight: 700;
 }
 
+.single_listing .sc_heading_3 h4 {
+    color: var(--listingTheme);
+}
+
 .accordion-button .group_icon {
     /* height: 30px; */
     /* width: 30px; */
@@ -1247,7 +1251,7 @@ h6.tax_pare {}
 }
 
 #mini_wall_gallery.mega_gallery .gallery_plate {
-    border-radius: 0;
+    border-radius: 15px;
 }
 
 ._date_plate ._date_box {
@@ -1335,8 +1339,8 @@ h6.tax_pare {}
     max-height: 50vh;
 }
 
-#mini_wall_gallery.mega_gallery .mega_item > img {
-    max-height: 20vh;
+#mini_wall_gallery img {
+    max-height: 17vh;
 }
 
 .gallery_plate .mega_item {
@@ -3266,7 +3270,6 @@ span.clear_tag {
 }
 
 #mini_wall_gallery .mega_item {
-    border-radius: 0;
     z-index: 1;
     position: relative;
 }
@@ -3612,6 +3615,18 @@ input[type=range]::-webkit-slider-thumb {
 
 ul.listing_navigator li {margin: 10px 0;list-style: none;border-radius: 30px;box-shadow: none;/* color: var(--secTheme); */display: none;background: transparent;/* border: none; */overflow: hidden;text-overflow: ellipsis;}
 
+ul.listing_navigator.view_all {
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+ul.listing_navigator.view_all li {
+    display: block;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+}
+
 ul.listing_navigator li.visible.prev {/* background: linear-gradient(45deg, black, #777777); */flex-direction: row-reverse;}
 
 
@@ -3619,6 +3634,13 @@ ul.listing_navigator li.visible {display: flex;flex-wrap: nowrap;align-items: ce
 
 ul.listing_navigator i:not(.fa) {
     display: none;
+}
+
+ul.listing_navigator.view_all li .link_icon {
+    display: block;
+    font-size: 25px;
+    line-height: 50px;
+    text-align: center;
 }
 
 ul.listing_navigator li {
@@ -4602,3 +4624,19 @@ div#explore_nav .left_menu_btn {
 /*media qs end*/
 
 .text-outline {-webkit-text-stroke-width: 1px;-webkit-text-stroke-color: rgb(255 255 255 / 42%);color: transparent !important;}
+
+ul.listing_navigator.view_all li.active  .nav_i_title {
+    /* color: var(--listingTheme); */
+}
+
+ul.listing_navigator.view_all li.active .card {
+    background: var(--listingTheme);
+}
+
+ul.listing_navigator.view_all li.active .nav_i_title {
+    color: #fff;
+}
+
+ul.listing_navigator.view_all li .card {
+    background: var(--bgTheme);
+}

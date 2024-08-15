@@ -12,8 +12,8 @@ import styles from './styles/home1.module.css';
     //const {act_id, act_dates} = activeDate ?? {};
 
     return  <div className="landing_page">
-              <Rockfest listing={listing} setActiveKey={setActiveKey}/>
-            {/* <BusinessOne styles={styles}  color={color} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
+              {/* <Rockfest listing={listing} setActiveKey={setActiveKey}/> */}
+            <BusinessOne styles={styles}  color={color} listing ={listing} cover={cover} setActiveKey={setActiveKey}/>
         </div>
         }
 
