@@ -185,8 +185,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                   {historyView}
                   <div><Heading1 exClass='mb-2 mx-3' title={'Author'} subtitle={'Listing Owner'}/>
                   <AuthorCard listingId={listing?.id} exClass='mb-20' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
-                  <Heading1 small exClass='mb-2 mx-3' title={'Related By Author'} subtitle={'Other listings by this Author'}/>
-                  <RelatedByTaxSplide splideObj={{padding:0}} author={listing?.author} exclude={listing?.id}/>
+                  <RelatedByTaxSplide titleComp={<Heading1 small exClass='mb-2 mx-3' title={'Related By Author'} subtitle={'Other listings by this Author'}/>} splideObj={{padding:0}} author={listing?.author_id} exclude={listing?.id}/>
                   </div>
                   {contactsView}
                   {groupView}

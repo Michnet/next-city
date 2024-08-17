@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/UI/Partials";
 import { CardsRowLoader } from "../skeletons/Skeletons";
 
 
-function RelatedByTaxSplide({ids, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
+function RelatedByTaxSplide({ids, titleComp, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
 
     const [loading, setLoading] = useState(true);
     const [horizontal, setHorizontal] = useState(listy ?? false);
@@ -77,7 +77,7 @@ function RelatedByTaxSplide({ids, splideObj={}, author, listy, taxName, ids2, ta
     }
     listView = <>
          {cachedTitle?.title && <SectionHeader exClass='px-3 mb-2'  title={`${cachedTitle.title}`} subTitle={`${cachedTitle.subTitle}`}/>}
-
+          {titleComp ?? <></>}
           <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...splideObj}}>
             {listings?.length > 0 ? 
                 listings.map((li) => {
