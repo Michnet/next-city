@@ -10,7 +10,7 @@ function NavItemCard({buttony=false, subTitle, title, badgeClass, badgeNumber, i
             <div className="d-flex align-items-center">
                 <div>
                     {/* <img src={thumbnail} className="object-cover rounded-sm me-3" width="70" height="70"/> */}
-                    <i className={`${icon ?? 'far fa-square'} bg-transparent rounded opacity-50 link_icon me-3`}/>
+                    <i className={`fal ${icon ?? 'far fa-square'} bg-transparent rounded opacity-50 link_icon me-3`}/>
                 </div>
                 <div className="it_text">
                 {<span className="d-block pt-0 text-uppercase font-12 text-nowrap nav_i_title">

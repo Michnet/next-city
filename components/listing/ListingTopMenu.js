@@ -43,7 +43,7 @@ if(lMenu){
     return <div onClick={() => setActiveKey(id)} className={`tab_link`}>{badge ? <span className="badge"> {badgeNumber}</span> : null}
     <div className={`menu_icon d-flex flex-column px-2 ${activeKey == id ? 'active' : ''}`} key={id}>
           <span className='position-relative'>
-            <i className={`${icon}`}/> 
+            <i className={`far ${icon}`}/> 
             {badgeNumber > 0 && <span className={`position-absolute top-0 start-100 translate-middle-x badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
               {badgeNumber}
             </span>}

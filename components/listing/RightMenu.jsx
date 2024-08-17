@@ -4,6 +4,7 @@ import { cleanHtml, srcWithFallback } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import HeaderAnnex from "../layouts/partials/HeaderAnnex";
+import Mirrored from "../UI/partials/Mirrored";
 
 function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
@@ -17,7 +18,7 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
 					  if(buttony){
 						return <button onClick={() => {closeMenus(); setActiveKey(id)}} className="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-highlight btn-icon text-start" key={id}>
-						<i className={`${icon}  font-15 text-center`}></i>
+						<i className={`fal ${icon}  font-15 text-center`}></i>
 						<span className="position-relative">{subTitle}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
@@ -25,7 +26,7 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
 					</button>
 					  }
                       return <span onClick={() => {closeMenus(); setActiveKey(id)}} className={`_link close-menu ${activeKey === id ? 'active' : ''}`}  key={id}>
-							<i className={`${icon ?? 'far fa-square'} font-20 bg-transparent rounded opacity-70`}></i>
+							<i className={`fal ${icon ?? 'far fa-square'} font-20 bg-transparent rounded opacity-70`}></i>
 							<span className="position-relative">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
@@ -41,20 +42,32 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
     <div id="listingMenuRight" className="menu menu-box-right menu-sidebar bg-cover bg-center" style={{width: '310px', backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage: `url(${srcWithFallback(cover)})`}}
 	>
 		<div className="sidebar-content h-auto">
-			<HeaderAnnex exClass="bg-theme-light py-3"/>
-			<div className="card card-style my-3" style={{backgroundImage: `url(${large_thumb})`, height: '130px'}} /* data-card-height="130" */>
-				<div className="card-bottom m-3">
-					<h1 className="mb-n1 color-white truncate">{cleanHtml(title?.rendered)}</h1>
-					{locations?.length > 0 && <p className="color-white mb-0 opacity-50">{locations[0]?.name}</p>}
+			<Mirrored coverTop gap={1} objClass=''  topPadding={'50px'} skewDegrees={4} skewDir={'-'} YDistance={200}>
+				<div className='hero_cover  position-relative w-100'>
+					<img    
+					quality={100}
+					fill
+					priority
+					alt="image"
+					src={srcWithFallback(large_thumb)}
+					className={`object-cover`}
+					onError={(e) => {e.target.src = '/images/bg/fallback.jpg'; e.target.srcset= {fallbackImgSrcSet}}}
+					//onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
+					/>
+					{/* <div className='bg-overlay' style={{height: '200px'}}/> */}
 				</div>
-				<div className="card-top m-2">
-					<span className="icon icon-xxs gradient-red rounded-sm float-end close-menu" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
+			</Mirrored>
+			<div className="card-top m-2">
+				<div className="d-flex flex-column p-3 pt-0 align-items-end">
+					<div className="row_flex justify-between">
+						<HeaderAnnex exClass="bg-transparent color-white py-3 w-fit pe-5"/>
+						<span className="w-fit icon icon-xxs gradient-red rounded-sm float-end close-menu position-absolute right-0" onClick={() => closeMenus()}><i className="fa fa-times color-white"></i></span>
+					</div>
+				<h1 className="color-white truncate-2 text-right">{cleanHtml(title?.rendered)}</h1>
 				</div>
-				<div className="card-overlay bg-gradient"></div>
-				<div className="card-overlay bg-black opacity-10"></div>
 			</div>
-            <div className="card card-style bg-transparent shadow-0 border">
-				<div className="content my-0">
+            <div className="card card-style bg-transparent shadow-0">
+				<div className="content my-0 pt-5">
 					<h5 className="font-700 text-uppercase opacity-40 font-12 pt-2 mb-0">Navigation</h5>
 					<div className="list-group list-custom-small list-icon-0">
 						{listView}

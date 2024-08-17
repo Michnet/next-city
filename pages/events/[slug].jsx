@@ -286,6 +286,7 @@ return linkzz;
         <Client>
               <div className="pt-3">
                 <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category.slug} ids={dir_categories} exclude={id}/>
+                <Heading1 exClass="mx-3 mb-0" title={'More Options'} subtitle={'Other Pages you may like'}/>
                 <Search propQuery={{category: category?.slug, exclude:listing?.id}} hideHeading={true}/>
                 </div>
               {locations?.length > 0 && 

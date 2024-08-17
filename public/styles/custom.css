@@ -122,6 +122,10 @@ h6 {
     right: 5px !important;
 }
 .menu-active.menu{display: block;background: var(--bgThemeTransparent);}
+
+#listingMenuRight .h_annex i {
+    color: var(--color-white);
+}
 .page-content.single_listing .color-highlight {
     color: var(--listingTheme) !important;
 }
@@ -784,8 +788,9 @@ div.truncate-5 > p {
     border: none !important;
 }
 
-._listing #footer-bar {
-    background: var(--bgThemeTransparent);
+._listing #footer-bar, .theme-dark  ._listing #footer-bar {
+    background: var(--bgTheme);
+    box-shadow: #00000061 0px 0px 23px 1px;
 }
 
 .theme-dark #footer-bar {
@@ -1143,7 +1148,7 @@ h6.tax_pare {}
 .sc_heading_3 h5 {
   /* color: var(--listingTheme); */
   font-size: 14px;
-  opacity: 0.7;
+  opacity: 0.8;
   font-weight: 500;
 }
 
@@ -4035,8 +4040,8 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 }
 
 .listing_meta i, .listing_meta._mini i, .nav-link{
- color: var(--highlight);
- opacity: 0.6;
+ color: var(--colorTheme);
+ opacity: 0.4;
 }
 
 .form-checkbox .badge {
@@ -4745,10 +4750,29 @@ ul.listing_navigator.view_all.grid li .card {
 }
 
 .hero_actions i {
-    font-size: 17px !important;
+    font-size: 20px !important;
     border: 1px solid #ffffff3d;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
     border-radius: 5px;
+}
+
+.overlay_after {
+    position: relative;
+    z-index: 0;
+}
+
+.overlay_after:after {
+    content: '';
+    background: red;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#listingMenuRight .obj .hero_cover  img {
+    filter: brightness(0.5);
 }

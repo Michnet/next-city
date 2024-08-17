@@ -25,7 +25,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
     }, [listing])
     
 
-    let bottomContent = <div id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-2 px-2">
+    let bottomContent = <div id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-3 px-2">
                 <div className='footer_content py-0 bg-transparent minw-0 flex-shrink-1 shadow-0 justify-between'>
                     {/* <div className="row_flex align-items-center">
                 <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600 text-truncate me-2'/>

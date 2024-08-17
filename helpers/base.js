@@ -148,25 +148,37 @@ export const serializeQuery = (query) => {
 export const siteColors = [
   "highlight", 
   "green", 
-  "grass", 
+  //"grass", 
   "red", 
   "orange", 
   //"yellow", 
-  "sunny", 
+  //"sunny", 
   "blue", 
-  "teal", 
-  "mint", 
+  //"teal", 
+  //"mint", 
   "pink" , 
   "pink2" , 
   "magenta" , 
   "brown" ,
   //"gray" ,
-  "aqua",
+  //"aqua",
   //"night",
   //"dark"
-]
+];
 
 export const siteColorObjs = [
+  {name: "green", hex: "#8CC152"}, 
+  {name: "red", hex: "#DA4453"}, 
+  {name: "orange", hex: "#E9573F"}, 
+  {name: "blue", hex: "#4A89DC"}, 
+  {name: "pink", hex: "#D770AD"} , 
+  {name: "pink2", hex: "#fb3365"} , 
+  {name: "magenta", hex: "#967ADC"}, 
+  {name: "brown", hex: "#AA8E69"},
+]
+
+
+export const siteColorObjsBackup = [
     {name: "green", hex: "#8CC152"}, 
     {name: "grass", hex: "#2ABA66"}, 
     {name: "red", hex: "#DA4453"}, 
