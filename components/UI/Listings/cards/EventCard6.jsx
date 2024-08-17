@@ -38,7 +38,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>} */}
-                        <div className="pe-2"><span className="font-14 opacity-50 accordionfont-11 text-truncate d-block">{tagline}</span></div>
+                        <div className="pe-2"><span className="font-13 opacity-40 fw-400 accordionfont-11 text-truncate d-block">{tagline}</span></div>
                         
                     </div>
                 </div>
@@ -50,7 +50,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
             <div className="card position-relative shadow-0 mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
                 <img onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={resizedImage(srcWithFallback(imgArr2[0]), 'medium_large')} fill={true} className={`pos-relative object-cover ${exImgClass}`} style={{minHeight:minHeight}}/>
                 
-                <div className="card-bottom px-3 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
+                <div className="card-bottom px-2 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>
                     {/* <div className={`d-flex flex-row justify-between align-items-center`}>
                     <TermTag exTagClass={'rounded-3 px-2 text-13 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'tag'} linkTax={'category'}/>
@@ -79,7 +79,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
                                             </div> */}
                                             {ticket_min_price_html && <PriceView /* currencyClass='color-white' */ preText={'From'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
                                             <div className="mb-2 line-height-sm color-theme opacity-80">
-                                            <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
+                                            <p className="gx-text-grey _excerpt truncate-2 lh-13 text-13" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
                                               </div>
                                               <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
                         {<ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}

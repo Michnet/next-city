@@ -124,7 +124,7 @@ if(gallery?.length > 0){
       id: 'gallery',
       icon: 'fa-photo-video',
       title: 'Gallery',
-      subTitle : 'Photo Album',
+      subTitle : 'Page Media',
       widgetClass : "_gallery  glass no-pad",
       innerClass: 'inner__class px-10',
      // content: <MegaGallery gallery={listing.gallery}/>

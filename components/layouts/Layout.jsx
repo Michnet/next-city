@@ -86,11 +86,7 @@ function LayoutConst({ children, headerTitle, settings}) {
     {highlight:"yellow", icon: "fa fa-circle color-yellow-dark",
       colorClass: "color-yellow-light", themeName : "Goldish"},
     {highlight:"brown", icon: "fa fa-circle color-brown-dark",
-      colorClass: "color-brown-light", themeName : "Coffee"},
-    {highlight:"night", icon: "fa fa-circle color-dark-dark",
-      colorClass: "color-dark-light", themeName : "Night"},
-    {highlight:"dark", icon: "fa fa-circle color-dark-light",
-      colorClass: "color-dark-light", themeName : "Dark"},
+      colorClass: "color-brown-light", themeName : "Coffee"}
 ]
 
   return (
@@ -141,12 +137,8 @@ function LayoutConst({ children, headerTitle, settings}) {
 
 
             <BSReveal id={'menu-highlights'}>
-            <div className="menu-title">
+            <div className="menu-title px-3">
               <h1>Theme Colors</h1>
-              
-              <span className="close-menu" onClick={() => closeMenus()}>
-                <i className="fa fa-times"></i>
-              </span>
             </div>
             <div className="divider divider-margins mb-n2"></div>
             <div className="content">

@@ -789,8 +789,9 @@ div.truncate-5 > p {
 }
 
 ._listing #footer-bar, .theme-dark  ._listing #footer-bar {
-    background: var(--bgTheme);
+    background: var(--bgThemeTransparent);
     box-shadow: #00000061 0px 0px 23px 1px;
+    backdrop-filter: blur(4px);
 }
 
 .theme-dark #footer-bar {
