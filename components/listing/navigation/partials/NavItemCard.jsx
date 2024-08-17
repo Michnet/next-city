@@ -6,13 +6,13 @@ function NavItemCard({buttony=false, subTitle, title, badgeClass, badgeNumber, i
 
 
 
-        <div className={`card card-style event_card_4 px-3 py-1 m-0 w-fit ${exClass}`}>
+        <div className={`card card-style text-left px-3 py-1 pb-2 m-0 w-fit overflow-visible ${exClass}`}>
             <div className="d-flex align-items-center">
                 <div>
                     {/* <img src={thumbnail} className="object-cover rounded-sm me-3" width="70" height="70"/> */}
                     <i className={`${icon ?? 'far fa-square'} bg-transparent rounded opacity-50 link_icon me-3`}/>
                 </div>
-                <div>
+                <div className="it_text">
                 {<span className="d-block pt-0 text-uppercase font-12 text-nowrap nav_i_title">
                   {title}{badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 end-0 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                         {badgeNumber}

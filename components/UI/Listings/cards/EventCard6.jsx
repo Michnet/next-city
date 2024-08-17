@@ -24,7 +24,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
     const imgArr2 = shuffleArray([_embedded['wp:featuredmedia'][0].source_url, ...gallery]);
 
     return (<>
-    <div data-aos='zoom-in' className={`card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
+    <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
 
     <div className="d-flex gap-2 activity_header mb-1">
               <div>
@@ -37,7 +37,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
                     <div className="title_meta d-flex  flex-column lh-11">
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
-                        {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>}
+                        {/* {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>} */}
                         <div className="pe-2"><span className="font-12 opacity-60 accordionfont-11 text-truncate d-block">{tagline}</span></div>
                         
                     </div>
@@ -50,36 +50,40 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
             <div className="card position-relative shadow-0 mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
                 <img onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={resizedImage(srcWithFallback(imgArr2[0]), 'medium_large')} fill={true} className={`pos-relative object-cover ${exImgClass}`} style={{minHeight:minHeight}}/>
                 
-                {/* <div className="card-bottom px-3 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
+                <div className="card-bottom px-3 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>
-                    <div className={`d-flex flex-row justify-between align-items-center`}>
-
-                    </div>
+                    {/* <div className={`d-flex flex-row justify-between align-items-center`}>
+                    <TermTag exTagClass={'rounded-3 px-2 text-13 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'tag'} linkTax={'category'}/>
+                    </div> */}
                     </div>
                     <div className='_right'>
+                    <div className="row_flex justify-end" style={{flex: '1 1'}}>
+                            <TermTag targetStyleObj={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}} exTagClass={'rounded-3 px-2 text-20 fw-600'} exClass={'lgLine w-fit'} term={category} type={'icon'} linkTax={'category'}/>
+                            {type == 'event' ?  <i className="far fa-calendar-alt text-center bg-theme-light" style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/> : null}
+                        </div>
                     </div>
                 </div>
-                <div className="card-overlay bg-gradient opacity-90 rounded-0"></div> */}
+                {/* <div className="card-overlay bg-gradient opacity-90 rounded-0"/> */}
             </div>
             <div className={`pt-2 ${contentClass}`}>
             <div className="content mt-0 mb-1 mx-0">
             {/* {locations?.length > 0 ?  <span className="opacity-50 d-block pt-1 font-11">{locations[0].name}</span> : null} */}
                                             
                                             <div className="_content gx-mb-0">
-                                            <div className="row_flex justify-between mb-2 gap-3">
+                                            {/* <div className="row_flex justify-between mb-2 gap-3">
                                               <TermTag exTagClass={'rounded-3 px-2 text-13 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'tag'} linkTax={'category'}/>
                                               <div className="row_flex justify-end" style={{flex: '1 1'}}>
                                                   <TermTag targetStyleObj={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}} exTagClass={'rounded-3 px-2 text-20 fw-600'} exClass={'lgLine w-fit'} term={category} type={'icon'} linkTax={'category'}/>
                                                   {type == 'event' ?  <i className="far fa-calendar-alt text-center bg-theme-light" style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/> : null}
                                               </div>
-                                            </div>
+                                            </div> */}
                                             {ticket_min_price_html && <PriceView /* currencyClass='color-white' */ preText={'From'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
-                                            <div className="mb-2 line-height-sm color-theme opacity-60">
+                                            <div className="mb-2 line-height-sm color-theme opacity-80">
                                             <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
                                               </div>
                                               <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
-                        {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
-                        <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
+                        {<ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
+                        <ListingMeta location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
                         </div>
                                         </div>
                                         </div>

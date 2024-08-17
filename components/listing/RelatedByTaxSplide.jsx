@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/UI/Partials";
 import { CardsRowLoader } from "../skeletons/Skeletons";
 
 
-function RelatedByTaxSplide({ids, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
+function RelatedByTaxSplide({ids, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
 
     const [loading, setLoading] = useState(true);
     const [horizontal, setHorizontal] = useState(listy ?? false);
@@ -17,13 +17,15 @@ function RelatedByTaxSplide({ids, listy, taxName, ids2, taxonomy_2, taxonomy, sl
     const setNextPost = useSetRecoilState(nextPostState);
 
     function titleFunc(){
-      let titleObj = {subTitle: taxName}
-
-      if(taxonomy == 'category'){
-        titleObj.title = 'More in Category';
-      }else{
-        titleObj.title = 'In this neighborhood';
-      }
+      let titleObj = {subTitle: taxName ?? null}
+       if(taxonomy){
+        if(taxonomy == 'category'){
+          titleObj.title = 'More in Category';
+        }else{
+          titleObj.title = 'In this neighborhood';
+        }
+       }
+    
 
       return titleObj;
     }
@@ -40,7 +42,9 @@ function RelatedByTaxSplide({ids, listy, taxName, ids2, taxonomy_2, taxonomy, sl
     if(random){
         payload['random'] = true;
     }
-    
+    if(author){
+      payload['author'] = author;
+    }
     if(slug){
       payload[`${taxonomy}`] = slug;
     }
@@ -72,9 +76,9 @@ function RelatedByTaxSplide({ids, listy, taxName, ids2, taxonomy_2, taxonomy, sl
       setNextPost(listings[0]?.slug);
     }
     listView = <>
-         <SectionHeader exClass='px-3 mb-2'  title={`${cachedTitle.title}`} subTitle={`${cachedTitle.subTitle}`}/>
+         {cachedTitle?.title && <SectionHeader exClass='px-3 mb-2'  title={`${cachedTitle.title}`} subTitle={`${cachedTitle.subTitle}`}/>}
 
-          <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>
+          <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...splideObj}}>
             {listings?.length > 0 ? 
                 listings.map((li) => {
                 return <ActivityCard2 exClass={'ms-0 me-2 mb-0'} mini width={200} key={li.id} listing = {li}/>

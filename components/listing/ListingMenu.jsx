@@ -18,7 +18,7 @@ export default function listingMenu({listing, userId}){
     id : 'home',
     icon : "far fa-home-lg-alt",
     title : 'Home', 
-    subTitle : "This is home", 
+    subTitle : "Home Page", 
     widgetClass: 'pt-0 no-pad',
   },
   /* {
@@ -71,7 +71,7 @@ if(!userId || userId != author_id){
     {
       id: 'private-chat',
       icon: "far fa-comment-dots", 
-      title: 'Contact Us',
+      title: 'Contact',
       subTitle : "Private Chat", 
       widgetClass : "widgey pad_tab",
       innerClass: 'bg_tab private_chat',

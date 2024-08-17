@@ -314,8 +314,9 @@ function LayoutConst({ children, headerTitle, settings}) {
           :scope {
               --colorTheme: #0f1117;
               --bgTheme: #FFFFFF;
+              --bgThemeDark: #FFFFFF;
               --bgThemeLight: #c7c7c7;
-              --bgThemeTransparent0: #e5e5e5e6;
+              --bgThemeTransparent0: #f9f9f9e6;
               --bgThemeTransparent: #ffffffe6;
               --bgThemeTransparent2: #ffffffd0;
               --bgThemeTransparent3: #ffffff94;
@@ -331,6 +332,7 @@ function LayoutConst({ children, headerTitle, settings}) {
           :scope {
               --colorTheme: #FFF;
               --bgTheme: #0f1117;
+              --bgThemeDark: #000;
               --borderThemeAlt: rgba(0, 0, 0, 0.1);
               --bgThemeLight: #232426;
               --bgThemeTransparent0: var(--bgDarkTransparent0);

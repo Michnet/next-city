@@ -9,6 +9,7 @@ import { fetchListingReviews } from '@/helpers/rest';
 //import ReviewCard from './ReviewCard';
 import SingleReview from './SingleReview';
 import Splider from '@/components/UI/partials/Splider';
+import { Heading1 } from '@/components/UI/partials/headings/Heading1';
 
 
 function PostReviews({id, author_id, fromActive=false, preview = false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false}) {
@@ -104,10 +105,7 @@ function PostReviews({id, author_id, fromActive=false, preview = false, carousel
    
   return (
    <>
-   <div className='mb-20 mx-4 mt-10 sc_heading_3 pos-relative'>
-            <h5>What others are saying</h5>
-            <h4>User Reviews</h4>
-        </div>
+       <Heading1 title={'User Reviews'} subtitle={'What Others Are Saying'}/>
         {reviews?.list?.length > 0 ? 
     <div className={`listing_reviews pos-relative _wall ${carousel ? '_slider' : ''}`}>
         

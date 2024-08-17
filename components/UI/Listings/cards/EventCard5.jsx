@@ -9,7 +9,7 @@ const EventCard5 = ({listing, width=300, height=170, exClass=''}) => {
     const {color, name:catName} = category ?? {}
     const randColor = color ? null : randomEither(siteColors);
     return (<>
-    <div className={`card card-style round-medium shadow-huge top-30 m-0 event_card_5 ${exClass}`} style={{width: width, height: height}}>
+    <div className={`listing_card card card-style round-medium shadow-huge top-30 m-0 event_card_5 ${exClass}`} style={{width: width, height: height}}>
             
             <div className="card-top mt-3 mx-3">
                 <div className='row_flex gap-2 mb-2 justify-between'>

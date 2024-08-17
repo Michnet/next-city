@@ -7,7 +7,7 @@ import { memo, useEffect } from "react";
 import NavItem from "./partials/NavItem";
 import NavItemCard from "./partials/NavItemCard";
 
-function Navigator({listing, activeKey, setActiveKey, lMenu, exClass=''}) {
+function Navigator({listing, activeKey, setActiveKey, lMenu, exClass='', itemClass=''}) {
     const {user} = useRecoilValue(authState);
     let listView;
 
@@ -36,7 +36,7 @@ function Navigator({listing, activeKey, setActiveKey, lMenu, exClass=''}) {
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
 					
-                      return <li onClick={() => {closeMenus(); setActiveKey(id)}} className={`close-menu overflow-visible position-relative ${activeKey === id ? 'active' : ''}`}  key={id}>
+                      return <li onClick={() => {closeMenus(); setActiveKey(id)}} className={`close-menu overflow-visible position-relative ${activeKey === id ? 'active' : ''} ${itemClass}`}  key={id}>
 							<NavItemCard icon={icon} buttony={buttony} title={title} subTitle={subTitle} badgeNumber={badgeNumber} badgeClass={badgeClass}/>
 						</li>
                       }

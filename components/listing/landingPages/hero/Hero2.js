@@ -21,11 +21,15 @@ import Image from 'next/image';
 import VisitorActions from '../../partials/VisitorActions';
 import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
 import Link from 'next/link';
+import { BookingView } from '@/pages/events/[slug]';
+import PostLike from '@/components/UI/partials/social/PostLike';
+import NextPostLink from '@/components/UI/NextPostLink';
+import { openOffCanvas } from '@/helpers/appjs';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
-  const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp} = listing ?? {};
+  const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
   const {greeting} = listing.landing;
   const {likes} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category;
@@ -138,7 +142,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
                   </div>
                 </div>
                 </Mirrored>
-                <div className='hero_title position-absolute bottom-0 align-items-end text-right right-0 pe-5 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
+                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 align-items-center text-right right-0 pe-3 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
                    {/* <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div> */}
                   <div className='profile_name h-fit mb-10'>
                     
@@ -147,7 +151,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
                             <span className="list_title _last color-white" dangerouslySetInnerHTML={{__html: lastWords}}/> 
                         </h1> */}
-                        <div className='title_meta d-flex justify-end'>
+                        <div className='title_meta d-flex justify-end mb-20'>
                           <Client>
                         <p style={{lineHeight: '1.3em'}}>
                           <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
@@ -156,9 +160,23 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
                         </p>
                         </Client>
                         </div>
+                        <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
                   </div>
-                  <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
-                  <div className='row_flex justify-end gap-3'>{rebuildLink}{editLink}</div>
+                  <div className="d-flex flex-column align-items-center text-center gap-2 hero_actions">
+                {/* <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600 text-truncate me-2'/> */}
+                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
+                    <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
+                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`fas fa-heart text-center text-24`}/><span>Save</span></div>} 
+                        unlikedEl={<div style={{width: '50px'}} className="link"><i className={`fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
+                        {/* <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className="fas fa-ellipsis-h text-center text-24"></i></button> */}
+                    
+                    </div>
+                    {/* <div className="row_flex flex-shrink-1 justify-end">
+                    <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className="fas fa-ellipsis-h text-center text-24"></i></button>
+                    <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
+                    </div> */} 
+                 {/*  <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/> */}
+                  {/* <div className='row_flex justify-end gap-3'>{rebuildLink}{editLink}</div> */}
                   {/* {<VisitorActions  mini setActiveKey={setActiveKey} exClass={'justify-end'} listing={listing}/>} */}
                   </div>
                 {/* <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>

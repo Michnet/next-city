@@ -24,7 +24,7 @@ import listingMenu from "@/components/listing/ListingMenu";
 import PageScroller from "@/components/UI/partials/PageScroller";
 //import Hero from "@/components/listing/landingPages/hero/Hero";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
-const ListingFooter = dynamic(() => import('@/components/listing/landingPages/footer/ListingFooter'), { ssr: false });
+//const ListingFooter = dynamic(() => import('@/components/listing/landingPages/footer/ListingFooter'), { ssr: false });
 const ListingBottomMenu = dynamic(() => import('@/components/listing/ListingBottomMenu'), { ssr: false });
 //const SiteHead = dynamic(() => import("@/components/UI/SiteHead"));
 import { EventJsonLd } from 'next-seo';
@@ -38,6 +38,7 @@ import { randomEither } from "@/helpers/universal";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import Link from "next/link";
+import { Heading1 } from "@/components/UI/partials/headings/Heading1";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
 
@@ -70,7 +71,8 @@ export async function getStaticPaths() {
     const listing = postArr[0];
     serverObj.listing = listing && listing != 'undefined' ? listing :  null;
     const title = listing?.title?.rendered;
-
+    const color = randomEither(siteColors);
+    serverObj.themeColor = color
     async function getThemeColor(){
         /* if(listing?.cover?.length > 0 && listing?.cover?.startsWith('http')){
           let gota = await ColorThief.getColor(listing?.cover)
@@ -81,8 +83,8 @@ export async function getStaticPaths() {
           }
         } */
 
-        const color = randomEither(siteColors);
-        serverObj.themeColor = color;
+        
+        ;
     }
 
 
@@ -103,7 +105,7 @@ export async function getStaticPaths() {
     }
 
     if(listing){
-        await getThemeColor();
+        //await getThemeColor();
         await extendListing(listing);
     }
     
@@ -122,6 +124,7 @@ export async function getStaticPaths() {
            latitude:latitude,
            longitude:longitude,
            slug:`/events/${slug}`,
+           pageColor: color,
         },
         ...serverObj,
         headerTitle: title,
@@ -152,7 +155,6 @@ export async function getStaticPaths() {
   }
 
   const ListingConst = ({listing, themeColor, seoMeta}) => {
-    console.log('themeColor', themeColor)
     
     //const {listing} = serverObj;
     const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
@@ -277,7 +279,8 @@ return linkzz;
         {/* activeKey != 'home' &&  */<Hero2  user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
         <Client>
-            <Navigator exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
+          <Heading1 title={'Explore'} subtitle={`All in ${listing?.title?.rendered}`}/>
+            <Navigator itemClass='col-sm-4 col-md-3 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
         </Client>
         
         <Client>

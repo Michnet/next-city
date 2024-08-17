@@ -54,7 +54,7 @@ function AuthorListingCardConst({data, user, mini, token}) {
     }
   }, [token, user])
   
- cardView = <div className={`horizontal_card row_flex gx-media gx-featured-item align-items-start ${mini ? 'mini' : ''}`}>
+ cardView = <div className={`listing_card horizontal_card row_flex gx-media gx-featured-item align-items-start ${mini ? 'mini' : ''}`}>
           {isFeatured === true ? <span className="badge" color="orange"><span className="gx-text-uppercase">featured</span></span> : null}
           <div className="gx-featured-thumb">
           <div className="pos-relative"  style={{ height :'110px', width : '110px'}} >

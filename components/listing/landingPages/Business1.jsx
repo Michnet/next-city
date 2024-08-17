@@ -24,6 +24,7 @@ import ListingStats from '../profileInfo/partials/ListingStats';
 import Widget from "@/components/UI/partials/Widget";
 import About from '../profileInfo/partials/About';
 import { homeurl } from './../../../helpers/base';
+import { Heading1 } from '@/components/UI/partials/headings/Heading1';
 
 
 function processImg(images, cover){
@@ -68,23 +69,18 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
 
         if(faqs?.length > 0){
             let trimFaqs = faqs?.slice(0,3);
-        faqsView = <div className="card card-style partial_border across_border shadow mt-4 mb-4" data-aos="zoom-in">
+        faqsView = <>
+                <Heading1 title={'FAQs'} subtitle={'Frequently asked'}/>
+        <div className="card card-style partial_border across_border shadow mt-4 mb-4" data-aos="zoom-in">
                 <div className="content px-3 py-2">
-                    <div className="d-flex pb-2 border-bottom mb-3 ">
-                        <div>
-                            <h6 className="mb-n1 opacity-80 color-highlight">FAQs</h6>
-                            <h3>Common Questions</h3>
-                        </div>
-                        <div className="align-self-center ms-auto">
-                        <i className="bi bi-question-circle-fill font-24 color-red-dark"></i>
-                        </div>
-                    </div>
+                    
                     {trimFaqs?.length > 0 && <FAQs faqs={trimFaqs} postID={id}/>}
                     <button onClick={() => setActiveKey('faqs')} className="shadow-lg-m rounded-l color-white bg-secondary mb-0 btn btn-xxs mb-3 font-900 shadow-lg">
                         Get More Answers
                     </button>
                 </div>
             </div>
+            </>
         }
 
         if(content){
@@ -296,7 +292,8 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             const {descript, sub_title,title} = wcu;
 
             strengthsView =   <Suspense offset={150} once height={200}>
-                            <div className="listing_services padded_container">                                           
+                            <div className="listing_services padded_container"> 
+                                <Heading1 exClass='mb-20 text-center mt-30' large title={'Top Reasons'} subtitle={'Why you may like this event'}/>                                          
                                 <div className="services_intro padded_container">
                                     <h2 className="section_head dark_text">{title}</h2>
                                     <h3 className="section_subHead gray_text">{descript}</h3>

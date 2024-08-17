@@ -7,7 +7,7 @@ import { PriceView } from "../../PriceView";
 function ListingCard2({listing, exClass}) {
     let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
 
-    return <div className={`card card-style ${exClass ?? ''}`}>
+    return <div className={`listing_card card card-style ${exClass ?? ''}`}>
                 {/* <img src="/images/grocery/isolated/3.png" className="img-fluid my-3"/> */}
                 <div className="content">
                     <Link href={`/events/${slug}`}><h3 className="mb-0">{cleanHtml(title.rendered)}</h3></Link>

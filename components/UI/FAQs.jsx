@@ -20,6 +20,7 @@ const FAQs = ({postID, faqs}) => {
       <><div className="border-0 accordion-s">
         {loading ? <LoaderDualRingBoxed/> : <>
         {faqs?.length > 0 ? 
+        <>
         <div className="accordion border-0 accordion-s" id={`accord_${postID}`}>{
           faqs.map((item, index) => (
                 <div key={index} className="accordion-item">
@@ -33,7 +34,7 @@ const FAQs = ({postID, faqs}) => {
                     </p>
                     </div>
                 </div>
-        ))}</div> : <div>No questions answered yet</div>
+        ))}</div></> : <div>No questions answered yet</div>
         }</>
         }
         </div>

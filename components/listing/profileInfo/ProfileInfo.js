@@ -15,6 +15,8 @@ import PostTerms from "./partials/PostTerms";
 import AuthorCard from "./partials/AuthorCard";
 import ListingSkeleton from "@/components/skeletons/fullPage/ListingSkeleton";
 import PayMeans from "./partials/PayMeans";
+import { Heading1 } from "@/components/UI/partials/headings/Heading1";
+import RelatedByTaxSplide from "../RelatedByTaxSplide";
 //import {srcWithFallback } from '@/helpers/universal';
 
 
@@ -181,7 +183,11 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                   {visionView}
                   {missionView}
                   {historyView}
-                  <AuthorCard listingId={listing?.id} exClass='mb-0' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
+                  <div><Heading1 exClass='mb-2 mx-3' title={'Author'} subtitle={'Listing Owner'}/>
+                  <AuthorCard listingId={listing?.id} exClass='mb-20' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
+                  <Heading1 small exClass='mb-2 mx-3' title={'Related By Author'} subtitle={'Other listings by this Author'}/>
+                  <RelatedByTaxSplide splideObj={{padding:0}} author={listing?.author} exclude={listing?.id}/>
+                  </div>
                   {contactsView}
                   {groupView}
                   {paymentsView}
