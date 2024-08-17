@@ -279,7 +279,7 @@ return linkzz;
         {/* activeKey != 'home' &&  */<Hero2  user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
         <Client>
-          <Heading1 title={'Explore'} subtitle={`All in ${listing?.title?.rendered}`}/>
+          <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
             <Navigator itemClass='col-sm-4 col-md-3 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
         </Client>
         

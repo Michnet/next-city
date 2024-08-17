@@ -40,7 +40,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
                     </div> */}
                     <Navigator exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
                     </div>
-                    <button style={{height: '45px', borderRadius: '10px'}} data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 bg-theme'}>
+                    <button style={{height: '45px', borderRadius: '10px'}} data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 border'}>
                     <i className="fas fa-ellipsis-h text-center text-24 color-theme"/>
                     <div className="position-absolute show_in_transit"><LoaderRingBoxed size={75}/></div>
                     </button>
