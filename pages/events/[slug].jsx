@@ -111,7 +111,7 @@ export async function getStaticPaths() {
            latitude:latitude,
            longitude:longitude,
            slug:`/events/${slug}`,
-           pageColor: colorHex
+           pageColor: colorHex ?? null
         },
         ...serverObj,
         headerTitle: title,

@@ -713,7 +713,6 @@ export const fetchSingleListingUrl = (id, payload) => {
   }else{
       endpoint = `wp-json/wp/v2/listings?slug=${id}&_embed`;
   }
-  console.log('uri rrrrrrrrrrr', `${WPDomain}/${endpoint}`);
   return `${WPDomain}/${endpoint}`;
 }
 
