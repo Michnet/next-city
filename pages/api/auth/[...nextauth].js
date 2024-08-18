@@ -84,7 +84,7 @@ export const authOptions = { providers: [
   /* pages: {
     signIn: '/auth/signin'
   }, */
-  secret: 'nCU4vhNuNrXZfxlr8snYOOT-cjjItR2L3fzuR'
+  secret: process.env.NEXTAUTH_SECRET
 }
 
 export default NextAuth(authOptions);

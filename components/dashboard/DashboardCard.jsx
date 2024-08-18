@@ -36,7 +36,7 @@ const DashboardCard = ({user, ownPosts, setPage, loading}) => {
                 actionComponent={ <div className="flex_horizontal gap-3"> 
                 <Link href={'/add-listing'}><button className="btn btn-theme  w-auto px-20 text-15 fw-500" > Create First Listing </button></Link> 
                 <Link href={'/about/about-us'}><button className="btn btn-outline-theme  w-auto px-20  text-15 fw-500" > Learn More </button></Link> </div> } 
-                thin light bgClass={'bg-transparent'} title={''} descript={"You have not created your first listing. You can start now. It's completely free"}/>}
+                thin light bgClass={'bg-transparent shadow-0'} title={''} descript={"You have not created your first listing. You can start now. It's completely free"}/>}
                 </div>}
               </div>
               {ownPosts && ownPosts > 0 && <div className="col-auto">
