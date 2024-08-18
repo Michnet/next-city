@@ -74,7 +74,7 @@ export async function getStaticPaths() {
     const color = randomEither(siteColors);
     serverObj.themeColor = color
     const colorHex = siteColorObjs?.filter((col) => col.name === color)[0]?.hex;
-    serverObj.themeColorHex = colorHex;
+    serverObj.themeColorHex = colorHex ?? null;
 
     async function extendListing(listing){
       //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
