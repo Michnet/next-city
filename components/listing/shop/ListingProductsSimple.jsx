@@ -12,7 +12,7 @@ import { Skeleton } from "@/components/skeletons/Skeletons";
 import dynamic from "next/dynamic";
 import Splider from "@/components/UI/partials/Splider";
 
-function ListingProductsSimple({ids, isSample, exClass, title, listy, productType, listingId, relatedIds, carousel}) {
+function ListingProductsSimple({ids, isSample, exClass, noHeader=false, title, productType, listingId, relatedIds, carousel}) {
   const {user} = useRecoilValue(authState);
   const [sorting, setSorting] = useState('newest');
     const [horizontal, setHorizontal] = useRecoilState(pdtListyState);
@@ -20,6 +20,8 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
     function runSetSorting(val){
       setSorting(val);
     }
+
+
 
     const simplePdtHeadRef = useRef(null);
     const PAGE_SIZE = 6; let Card;
@@ -169,7 +171,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
      
         <div className={`listing_box ${exClass ?? ''}`}>
 
-        <div className='block_header'>
+        {!noHeader && <div className='block_header'>
             <div className="market_head" id='simple_pdts_head' ref={simplePdtHeadRef}>
                      <DualColorHeader title={title ?? null}/>
 
@@ -192,7 +194,7 @@ function ListingProductsSimple({ids, isSample, exClass, title, listy, productTyp
                         </div>
                       </div>
                   </div>
-       </div>
+       </div>}
 
        <div className="market_content ">
                     <div className="items mb-3">

@@ -73,20 +73,8 @@ export async function getStaticPaths() {
     const title = listing?.title?.rendered;
     const color = randomEither(siteColors);
     serverObj.themeColor = color
-    async function getThemeColor(){
-        /* if(listing?.cover?.length > 0 && listing?.cover?.startsWith('http')){
-          let gota = await ColorThief.getColor(listing?.cover)
-          .then(color => {return color})
-          .catch(err => { console.log(err) });
-          if(gota){
-            serverObj.themeColor = gota;
-          }
-        } */
-
-        
-        ;
-    }
-
+    const colorHex = siteColorObjs?.filter((col) => col.name === color)[0]?.hex;
+    serverObj.themeColorHex = colorHex;
 
     async function extendListing(listing){
       //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
@@ -105,7 +93,6 @@ export async function getStaticPaths() {
     }
 
     if(listing){
-        //await getThemeColor();
         await extendListing(listing);
     }
     
@@ -124,7 +111,7 @@ export async function getStaticPaths() {
            latitude:latitude,
            longitude:longitude,
            slug:`/events/${slug}`,
-           pageColor: color,
+           pageColor: colorHex
         },
         ...serverObj,
         headerTitle: title,
@@ -154,7 +141,7 @@ export async function getStaticPaths() {
      }
   }
 
-  const ListingConst = ({listing, themeColor, seoMeta}) => {
+  const ListingConst = ({listing, themeColor, themeColorHex}) => {
     
     //const {listing} = serverObj;
     const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
@@ -167,11 +154,12 @@ export async function getStaticPaths() {
     const [activeKey, setActiveKey] = useState(query?.view ?? view);
 
     function setActiveView(view){
-      const url = {
+     /*  const url = {
         pathname: router.pathname,
         query: { ...router.query, view: view }
       }
-      router.push(url, undefined, { shallow: true })
+      router.push(url, undefined, { shallow: true }) */
+      setActiveKey(view)
     }
 
 useEffect(() => {
@@ -182,7 +170,7 @@ useEffect(() => {
 useEffect(() => {
   scrollTop();
   setActiveKey(query?.view ?? view);
-}, [query?.view]);
+}, [query?.view, view]);
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
 let VisitorActionsView;
@@ -277,10 +265,12 @@ return linkzz;
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         {/* activeKey != 'home' &&  */<Hero2  user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
-        <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color}/>
+        <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
+          <div className='border mx-3 pb-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
             <Navigator itemClass='col-sm-4 col-md-3 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
+            </div>
         </Client>
         
         <Client>

@@ -19,7 +19,7 @@ const ListingProductsSimple = dynamic(() => import("./shop/ListingProductsSimple
 //const ListingStore = dynamic(() => import("./shop/ListingStore"));
 const ListingReviews = dynamic(() => import("./reviews/Reviews"));
 
-function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKey}) {
+function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, setActiveKey}) {
     const {id,about_us, listing_store, community_id, type, author_id, gallery} = listing;
     const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us;
@@ -35,7 +35,7 @@ function ContentConst({listing, activeView, lMenu, activeKey, color, setActiveKe
             case 'reviews':
             return <ListingReviews postID={listing.id} user={user} setActiveKey={setActiveKey} author_id={author_id}/>
             case 'home':
-            return <LandingPage activeKey={activeKey} listing={listing} setActiveKey={setActiveKey} color={color}/>
+            return <LandingPage colorHex={colorHex} activeKey={activeKey} listing={listing} setActiveKey={setActiveKey} color={color}/>
             case 'community':
             return <ComponentActivity
             setActiveKey={setActiveKey}

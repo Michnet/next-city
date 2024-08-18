@@ -1,7 +1,9 @@
+import ProductBottomMenu from "@/components/UI/market/partials/ProductBottomMenu";
 import TicketProduct from "@/components/UI/market/singleProducts/TicketProduct";
 import SiteHead from "@/components/UI/SiteHead";
 import { fetchIdsUrl } from "@/helpers/rest";
 import { fetchProductUrl } from "@/helpers/WooRest";
+import { useRouter } from "next/router";
 //import SiteHead from "appComponents/components/profile/webTweaks/SiteHead";
 // import TicketProduct from "~/routes/market/products/TicketProduct";
 
@@ -30,15 +32,27 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      headerTitle: pdt.name,
-      seoMeta:{title: pdt.name},
+      headerTitle: pdt.name.replace(/&amp;/g, "&"),
+      seoMeta:{
+        title: pdt.name.replace(/&amp;/g, "&"),
+        description : pdt.short_description
+          .replace(/(<([^>]+)>)/gi, "")
+          .replace(/&amp;/g, "&"),
+        image: pdt?.images[0]?.src
+      },
       pdt,
+      settings : {
+         noFooter: true,
+         pageClass: '_product _bookable',
+       //noHeader: true
+     },
     },
     revalidate: 6000, // In seconds
   };
 }
 
 const Product = ({ pdt }) => {
+  const router = useRouter();
 
   return (
     <>
@@ -52,6 +66,7 @@ const Product = ({ pdt }) => {
       <div className={`page-content single_product`}>
         <TicketProduct product={pdt} />
       </div>
+      <ProductBottomMenu product={pdt} router={router}/>
     </>
   );
 };

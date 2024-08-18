@@ -42,16 +42,6 @@ export default function listingMenu({listing, userId}){
           //user = {userObj}
         />
   }, */
-  
-  {
-    id: 'reviews',
-    icon:  "fa-star", 
-    title : 'Reviews',
-    subTitle :"User Rating",
-    widgetClass: 'pad_tab',
-    innerClass: 'bg_tab border-0',
-    //content : <div className='inner_container'> <ListingReviews postID={id} user={user}/> </div>
-  }
 ];
 /* 
  if(community_id){
@@ -66,19 +56,6 @@ export default function listingMenu({listing, userId}){
   )
 } */
 
-if(!userId || userId != author_id){
-  tabList.push(
-    {
-      id: 'private-chat',
-      icon: "fa-comment-dots", 
-      title: 'Contact',
-      subTitle : "Private Chat", 
-      widgetClass : "widgey pad_tab",
-      innerClass: 'bg_tab private_chat',
-    }
-  )
-}
-
 if(type === 'event'){
   tabList.push(
     {
@@ -92,6 +69,44 @@ if(type === 'event'){
     }
   );
 }
+
+
+if(type === 'event'){
+
+  tabList.push({
+    id : 'tickets',
+    icon: "fas fa-qrcode", title: 'Tickets',
+    subTitle : "Booking Options",
+    widgetClass: 'shop widgey pad_tab',
+    innerClass: 'px-3 sm:px-10',
+    badgeNumber: tickets?.length ?? 0,
+    badgeClass: 'bg-info',
+    buttony: true
+  });
+}
+
+if(!userId || userId != author_id){
+  tabList.push(
+    {
+      id: 'private-chat',
+      icon: "fa-comment-dots", 
+      title: 'Contact',
+      subTitle : "Private Chat", 
+      widgetClass : "widgey pad_tab",
+      innerClass: 'bg_tab private_chat',
+    }
+  )
+}
+
+tabList.push( {
+  id: 'reviews',
+  icon:  "fa-star", 
+  title : 'Reviews',
+  subTitle :"User Rating",
+  widgetClass: 'pad_tab',
+  innerClass: 'bg_tab border-0',
+  //content : <div className='inner_container'> <ListingReviews postID={id} user={user}/> </div>
+})
 
 if(faqs?.length > 0){
   tabList.push({
@@ -172,20 +187,6 @@ if(general_merchandise?.length > 0){
   })
 }
 
-/* 
-if(type === 'event'){
-
-  tabList.push({
-    id : 'tickets',
-    icon: "fas fa-qrcode", title: 'Tickets',
-    subTitle : "Booking Options",
-    widgetClass: 'shop widgey pad_tab',
-    innerClass: 'px-3 sm:px-10',
-    badgeNumber: tickets?.length ?? 0,
-    badgeClass: 'bg-info',
-    buttony: true
-  });
-} */
 
 return tabList;
 }

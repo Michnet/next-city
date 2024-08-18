@@ -2,6 +2,7 @@ import  {useState, useEffect} from 'react';
 import { getProducts } from '@/helpers/rest';
 import SliderWidgetRowItem from '@/components/UI/widgets/SliderWidgetRowItem';
 import Splider from '@/components/UI/partials/Splider';
+import ProductCard from '@/components/UI/market/productCards/ProductCard';
 
 function ListingProductsMini({ids}) {
 
@@ -83,7 +84,7 @@ function ListingProductsMini({ids}) {
                {<div  className= "pdt_slider_big">
                           <Splider>
                             {products.map((data, index) =>
-                              <SliderWidgetRowItem key={index} data={data}/>)
+                              <ProductCard key={index} product={data}/>)
                             }
                           </Splider>
                </div>}

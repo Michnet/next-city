@@ -44,13 +44,6 @@ export async function getStaticProps({ params }) {
       settings : {
          noFooter: true,
          pageClass: '_product _simple',
-         mMenu: 'show',
-         mMenuContent:{
-           icon : 'fas fa-ellipsis-h', 
-           btnProps:{
-           'data-menu' : "listingActions"}
-           
-       },
        //noHeader: true
      },
     },

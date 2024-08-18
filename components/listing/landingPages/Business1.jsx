@@ -25,6 +25,7 @@ import Widget from "@/components/UI/partials/Widget";
 import About from '../profileInfo/partials/About';
 import { homeurl } from './../../../helpers/base';
 import { Heading1 } from '@/components/UI/partials/headings/Heading1';
+import ListingProductsSimple from '../shop/ListingProductsSimple';
 
 
 function processImg(images, cover){
@@ -36,12 +37,11 @@ function processImg(images, cover){
     }
 }
 
-const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcoming, styles}) => {
+const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveKey, upcoming, styles}) => {
     const {address, venue, about_us, locations, author_id, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
-    const {tickets} = listing_store;
+    const {tickets, general_merchandise} = listing_store;
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery, _performers} = meta ?? {};
     const wcu = _wcu ? _wcu[0] : {};
-    const { general_merchandise} = listing?.acf ?? {};
     const {what_we_do} = marketing ??  {};
     const {faqs} = about_us ?? {};
     const router = useRouter();
@@ -115,6 +115,16 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                 </div>
                         </div>
                         </>
+        }
+
+        if(general_merchandise?.length > 0){
+            shopView = <div className='my-5'>
+                <Heading1 title={'Our Store'} subtitle='Latest items on this event'/>
+                <div className='card card-style partial_border top_left only_top pt-4 ps-3'>
+                <ListingProductsSimple noHeader={true} ids={general_merchandise.slice(0,4)} productType="simple" listingId = {listing?.id}/>
+                <button className=' btn-theme btn w-fit' onClick={() => {setActiveKey("merchandise")}}>Go to Page Store</button>
+                </div>
+                </div>
         }
 
         if(category){
@@ -231,7 +241,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                 </div>
                 <div className='tags_row py-5 card card-style'>
                 <div className='row_content'>
-                    <TagsCloud live hue={color} dark ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
+                    <TagsCloud live hue={colorHex} dark ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>
@@ -425,7 +435,8 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
             const {wwd_intro_title, wwd_intro_detail, wwd_services} = what_we_do;
 
             servicesView =   <Suspense offset={150} once height={200}>
-                                <div className="listing_services padded_container">                                           
+                                <div className="listing_services padded_container">  
+                                    <Heading1 exClass='text-right mb-20' large title="What's Happening" subtitle={'What to look forward to'}/>                                         
                                     <div className="services_intro padded_container">
                                         <h2 className="section_head dark_text">{wwd_intro_title}</h2>
                                         <h3 className="section_subHead gray_text">{wwd_intro_detail}</h3>
@@ -451,9 +462,9 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                                 </div>
                                 </Suspense>
         }
-        if(general_merchandise){
+        /* if(general_merchandise){
             const headContent = <DualColorHeader title={'Our Shop'} exClass={'version_1'}/>
-            const bodyContent = <><ListingProductsMini  ids={general_merchandise} exClass={'_landing'}/>
+            const bodyContent = <><ListingProductsSimple ids={general_merchandise} productType="simple" listingId = {listing?.id}/>
             </>
             let sideContent = <div className="side_content" >
                 <Client><Image fill style={{objectFit:"cover"}} src= {`${srcWithFallback(processImg(gallery))}`}/></Client>
@@ -468,7 +479,7 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                     sideContent={sideContent}
                 />
                 </Suspense>
-        }
+        } */
     }
     
     return (
@@ -490,19 +501,16 @@ const BusinessOneConst = ({listing, cover, color, scroller, setActiveKey, upcomi
                 
             {/* {shopView} */}
             {ticketsHint}
+            {shopView}
             {servicesView}   
-
             {performersView}
             {guestsView}
-            <Client>{tagsView}</Client> 
-            
-            {reviewsView}
             {strengthsView }
+            {reviewsView}
+            <Client>{tagsView}</Client> 
             {statsView}
             {faqsView}
-            
             {teamView}
-            
             {sponsorsView}
             <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </div>

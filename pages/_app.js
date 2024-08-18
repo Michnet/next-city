@@ -65,7 +65,7 @@ function MyAppConst({ Component, pageProps, platform }) {
       </Head> */}
       <RecoilRoot>
       {/* <SiteHead title={'Home'} description='home desc' seoMeta={cachedSeoMeta}/> */}
-      <SeoHead title={'Home'} description='home desc' seoMeta={seoMeta}/>
+      <SeoHead seoMeta={seoMeta}/>
       
         <SessionProvider>
             <HydrationProvider>

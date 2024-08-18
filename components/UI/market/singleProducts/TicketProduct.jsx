@@ -19,6 +19,7 @@ import { DualColorHeader } from '../../Partials';
 import ProductHeaderTicket from '../partials/ProductHeaderTicket';
 import HeaderInfo from '../partials/HeaderInfo';
 import EventDates from '../../partials/dateViews/EventDates';
+import ProductBody from '../partials/ProductBody';
 
 const TicketProduct = ({product}) => {
     //const {dispatchActions} = useContext(ActionsContext);
@@ -55,11 +56,12 @@ const TicketProduct = ({product}) => {
                                     <ProductHeaderTicket product={product} user={user}/>
                                 </div>
                                 <div className='product_body col-12 col-sm-8 col-lg-9 p-0'>
-                                    {/* <ProductBody product={product}/> */}
+                                    
                                     {/* <HeaderImages product={product}/> */}
                                     <HeaderInfo product={product}/>
-                                    <DualColorHeader desc={'Occurences you can book tickets for'} exClass={'mb-20'} title={'Event Occurences'}/>
-                                    <EventDates exClass={'one_col'} cost={price} Id={listingId} productId = {id} slots={occurrence_slots} user={user}/>
+                                    <ProductBody product={product}/>
+                                    {/* <DualColorHeader desc={'Occurences you can book tickets for'} exClass={'mb-20'} title={'Event Occurences'}/>
+                                    <EventDates exClass={'one_col'} cost={price} Id={listingId} productId = {id} slots={occurrence_slots} user={user}/> */}
                                 </div>
                             </div>
                             <div className='ps-side scroll_sticky'>

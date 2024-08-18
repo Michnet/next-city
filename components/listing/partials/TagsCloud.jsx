@@ -42,8 +42,9 @@ useEffect(() => {
 
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
+  hue: hue
   //hue: hue ?? 'monochrome',
-  hue: hue ?? typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-Highlight') : null
+  //hue: hue ?? typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-Highlight') : null
 }
 
   function createTags(ids){
