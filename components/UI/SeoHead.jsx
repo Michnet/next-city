@@ -34,6 +34,7 @@ export default function SeoHead({seoMeta }) {
       titleTemplate = '%s | LyveCity'
       description={pageDescription}
       canonical= {pageUrl}
+      themeColor = {color}
       openGraph={{
         url: `${pageUrl}`,
         title: `${pageTitle}`,
