@@ -5,7 +5,7 @@ import useSWRInfinite from "swr/infinite";
 import { DualColorHeader } from "@/components/UI/Partials";
 import { fetcher, getBookableProductsUrl, getProductsUrl } from "@/helpers/rest";
 import { generateTempArray, productsSortList, scrollToSpot } from "@/helpers/universal";
-import { useSignal } from "@preact/signals-react";
+//import { useSignal } from "@preact/signals-react";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {authState, storeOrderState, pdtListyState} from '@/contexts/atoms'
 import { Skeleton } from "@/components/skeletons/Skeletons";

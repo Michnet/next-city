@@ -1,10 +1,10 @@
-import { pwaName } from '@/helpers/appjs';
+//import { pwaName } from '@/helpers/appjs';
 import { getDirTermsUrl, getDirTerms} from '@/helpers/rest';
 import { getLocalTaxonomy } from "@/helpers/rest";
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 
-const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue, itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
+const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue = 'monochrome', itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
 
   const [items, setItems] = useState([]);
   //const {colorTheme} = useRecoilValue(UIState);
