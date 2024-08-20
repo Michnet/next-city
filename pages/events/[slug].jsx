@@ -160,7 +160,7 @@ export async function getStaticPaths() {
     const router = useRouter();
     const {query} = router;
     const [view, setView] = useRecoilState(listingViewState);
-    const {user} = useRecoilValue(authState);
+    const {user, token} = useRecoilValue(authState);
     //const activeView = useRecoilValue(listingViewState);
     const [activeKey, setActiveKey] = useState(query?.view ?? view);
 
@@ -266,7 +266,7 @@ return linkzz;
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        {/* activeKey != 'home' &&  */<Hero2  user={user}  color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
+        {/* activeKey != 'home' &&  */<Hero2  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 my-4'>

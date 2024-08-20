@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { authState, UISizes } from '@/contexts/atoms';
 import { Client } from 'react-hydration-provider';
 import { BookingView } from '@/pages/events/[slug]';
-import { cleanHtml } from '@/helpers/universal';
+import { cleanHtml, srcWithFallback } from '@/helpers/universal';
 import { Avatar } from '@/components/UI/Partials';
 import { UserAvatar } from '@/components/UI/UserAvatar';
 import { openOffCanvas } from '@/helpers/appjs';
@@ -91,7 +91,7 @@ let menuContent = <div className="menu_content">
 
 
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
-              <div style={{backgroundImage: `url(${cover})`}}  className="bg-header bg-center bg-cover border-0 d-block d-md-none mx-auto p-0 s mb-0 font-900 shadow-bg shadow-bg-l btn-icon text-start">
+              <div style={{backgroundImage: `url(${srcWithFallback(cover)})`}}  className="bg-header bg-center bg-cover border-0 d-block d-md-none mx-auto p-0 s mb-0 font-900 shadow-bg shadow-bg-l btn-icon text-start">
           <i className="fas fa-bars left_menu_btn text-20 d-block d-md-none text-center" onClick={(e) => openOffCanvas(e)}  data-menu='mobile_sidebar'></i>
                 {menuContent}
               </div>

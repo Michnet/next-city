@@ -18,7 +18,7 @@ import { ListingMetaMini } from '@/components/UI/Partials';
 //import { fadingSlide, largeResp } from '@/helpers/sliders';
 //import Slider from 'react-slick';
 import Image from 'next/image';
-import VisitorActions from '../../partials/VisitorActions';
+//import VisitorActions from '../../partials/VisitorActions';
 import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
 import Link from 'next/link';
 import { BookingView } from '@/pages/events/[slug]';
@@ -28,16 +28,17 @@ import { openOffCanvas } from '@/helpers/appjs';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
-const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
+const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) => {
   const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
   const {greeting} = listing.landing;
-  const {likes} = acf?.community ?? {};
+  const {general_merchandise} = acf ?? {}
+  const {likes, gen} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category;
   const {isMobile, isLargeTab} = useRecoilValue(UISizes);
 
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";
 
-  let galArr = [], greetingView, firstWord='', lastWords='', rebuildLink, editLink;
+  let galArr = [], greetingView, firstWord='', lastWords='', actionTwoLink, actionLink;
   /* const settings = { arrows: true, dots: true, infinite: true, speed: 1000, marginLeft: 10, marginRight: 10, slidesToShow: 1, cssEase: 'ease-out', slidesToScroll: 1, }; */
 
   if(title){
@@ -60,18 +61,23 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
 
   if(user){
     if(author_id == user.id){
-      editLink = <Link
-        href={`${WPDomain}/my-account/my-listings/?action=edit&job_id=${listing.id}`}
-        className="listing_edit btn btn-sm m-0 btn-outline-secondary"
+      actionLink = <Link
+        href={`${WPDomain}/my-account/my-listings/?action=edit&job_id=${listing.id}&lc_tok=${token}`}
+        className="listing_edit rounded-5 btn btn-sm m-0 btn-outline-secondary"
         target='_blank'>Edit Listing</Link>
+    }else{
+      actionLink = <button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}} className='btn ui-2 animated'>{general_merchandise?.length > 0 ?'Event Store':'Contact Us'}</button>
     }
+
     if(user?.id === 1){
-     rebuildLink = <Link
+     actionTwoLink = <Link
        href={`${homeurl}/api/revalidate?path=/events/${listing.slug}`}
-       className="btn btn-sm m-0 btn-outline-secondary listing_edit"
+       className="btn btn-sm m-0 btn-outline-secondary listing_edit rounded-5"
        target='_blank'>Rebuild Listing</Link>
    }
- }
+ }else{
+  actionLink = <button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}} className='btn ui-2 animated'>{general_merchandise?.length > 0 ?'Event Store':'Contact Us'}</button>
+}
 
   /* let randomColor = () => {
     if(palette?.length > 0){
@@ -176,7 +182,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
                     <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
                     </div> */} 
                  {/*  <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/> */}
-                  {/* <div className='row_flex justify-end gap-3'>{rebuildLink}{editLink}</div> */}
+                  {/* <div className='row_flex justify-end gap-3'>{actionTwoLink}{actionLink}</div> */}
                   {/* {<VisitorActions  mini setActiveKey={setActiveKey} exClass={'justify-end'} listing={listing}/>} */}
                   </div>
                 {/* <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
@@ -204,7 +210,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
                       }
                   </Slider> */}
             </div>
-          <div className='hero_images d-md-grid d-none mt-2'>
+          <div className='hero_images d-md-grid d-none'>
             <div className='hero_cover position-relative'>
               <Image              
              // placeholder="blur"
@@ -256,7 +262,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
           
 
 
-            <div className='hero_title p-3 md:px-35 md:py-45 d-grid gap-4 align-items-center'>
+            <div className='hero_title p-3 md:px-35 md:py-45 d-grid gap-4 align-items-center z-2 position-relative'>
              <div className='profile_name d-none d-md-block'>
              <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
@@ -275,7 +281,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
              <div>
                 <div className='status_greeting'>
                   {/* <DateViewState fromActive exClass={'dotty ripple'} eventId={id}/> */}
-                  <div className='row_flex gap-2'>{rebuildLink}{editLink}</div>
+                  <div className='row_flex gap-2'>{actionTwoLink}{actionLink}</div>
                   <p className = 'mb-10'>
                         {greetingView}
                   </p>
