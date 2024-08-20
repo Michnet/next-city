@@ -51,7 +51,7 @@ useEffect(() => {
   return () => setGallery([])
 }, [listing.id]);
 
-let Grid1 = () => <HorizontalGrid>
+let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid>
   {shuffleArray([...grid1Arr]).map((item, index) => {
     if (typeof item == 'string') {
       if(item?.length > 0){
@@ -74,11 +74,11 @@ let Grid1 = () => <HorizontalGrid>
   }
   )}
   
-  </HorizontalGrid>;
+  </HorizontalGrid>}</>;
 
 galleryView = <> 
         
-        <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
+        {gallArr?.length > 0 && <div id = 'wall_gallery_container' className="position-relative overflow-hidden">
           <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-3 overflow-hidden rounded-4">
           <Grid1/>
         {gallArr.length > 0 && <ResponsiveMasonry className="masonry vertical_grid" columnsCountBreakPoints={{0: 2, 768: 3, 1024: 4}}>
@@ -110,7 +110,7 @@ galleryView = <>
         </div>
         <div id='gallery_extender' className="w-100 position-absolute bottom-0 z-2"><div onClick={() => setActiveKey('gallery')}  className="d-flex align-items-center w-100 h-100 justify-center"><button className="show_more btn btn-l bg-theme color-theme">See Gallery</button></div>
         </div>
-      </div>
+      </div>}
 </>
 
 return (

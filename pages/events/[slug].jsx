@@ -39,6 +39,8 @@ import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import Link from "next/link";
 import { Heading1 } from "@/components/UI/partials/headings/Heading1";
+import NotFound from "@/components/UI/site/NotFound";
+import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
 
@@ -64,17 +66,14 @@ export async function getStaticPaths() {
     let {serverObj} = serverQuery ?? {};
     let {listing} =serverObj ?? {}; */
 
-    let serverObj = {};
+    let serverObj = {}, colorHex, seoMetaObj;
 
     const singleRes = await fetch(fetchSingleListingUrl(params.slug));
     const postArr = await singleRes.json();
     const listing = postArr[0];
     serverObj.listing = listing && listing != 'undefined' ? listing :  null;
     const title = listing?.title?.rendered;
-    const color = randomEither(siteColors);
-    serverObj.themeColor = color
-    const colorHex = siteColorObjs?.filter((col) => col.name === color)[0]?.hex;
-    serverObj.themeColorHex = colorHex ?? null;
+   
 
     async function extendListing(listing){
       //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
@@ -92,31 +91,43 @@ export async function getStaticPaths() {
         }}} */
     }
 
+    async function getThemeColor(){
+      const color = randomEither(siteColors);
+      serverObj.themeColor = color
+      colorHex = siteColorObjs?.filter((col) => col.name === color)[0]?.hex;
+      serverObj.themeColorHex = colorHex ?? null;
+    }
+
     if(listing){
         await extendListing(listing);
+        await getThemeColor();
     }
     
     const { latitude, longitude, phone, address, slug, modified} = listing ?? {};
+    if(listing && listing != 'undefined'){
+      seoMetaObj= {
+        title:`${cleanHtml(listing?.title?.rendered)}`, 
+         description:`${listing?.short_desc}`,
+         image:listing?.large_thumb,
+         type:'event',
+         updated_time:modified,
+         phone_number:phone,
+         street_address:address,
+         latitude:latitude,
+         longitude:longitude,
+         slug:`/events/${slug}`,
+         pageColor: colorHex ?? null
+      }
+    }
 
     return {
       props: {
-        seoMeta:{
-          title:`${cleanHtml(listing?.title?.rendered)}`, 
-           description:`${listing?.short_desc}`,
-           image:listing?.large_thumb,
-           type:'event',
-           updated_time:modified,
-           phone_number:phone,
-           street_address:address,
-           latitude:latitude,
-           longitude:longitude,
-           slug:`/events/${slug}`,
-           pageColor: colorHex ?? null
+        seoMeta:{...seoMetaObj
         },
         ...serverObj,
-        headerTitle: title,
+        headerTitle: title ?? 'Listing',
         settings : {
-           uiBackground:listing?.cover,
+            uiBackground:listing && listing != 'undefined' ? listing?.cover : null,
             noFooter: true,
             pageClass: '_listing _event',
             mMenu: 'show',
@@ -126,7 +137,7 @@ export async function getStaticPaths() {
               'data-menu' : "listingActions"}
               
           },
-          noHeader: true
+          noHeader: listing && listing != 'undefined' ? true : false
         },
       },
       revalidate: 6000, // In seconds
@@ -165,7 +176,7 @@ export async function getStaticPaths() {
 useEffect(() => {
   setActiveKey(view);
   return () => setActiveKey(view);
-}, [listing.id, view]);
+}, [listing?.id, view]);
 
 useEffect(() => {
   scrollTop();
@@ -174,12 +185,13 @@ useEffect(() => {
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
 let VisitorActionsView;
-//let lMenu = listingMenu({listing:listing, userId: user?.id});
 
-const cachedListing = useMemo( () => listing, [listing.id] );
+let pageView;
+
+const cachedListing = useMemo( () => listing, [listing?.id] );
 //const color = useMemo( () => randomEither(siteColors), [cachedListing.id] );
 const color = themeColor;
-const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing.id, user?.id] );
+const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing?.id, user?.id] );
 
 
 if(listing){
@@ -217,17 +229,7 @@ if(listing){
 return linkzz;
 }
 
-    return (<div className={`listing_page ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>{/* <SiteHead
-           title={`${cleanHtml(listing?.title?.rendered)}`} 
-           description={`${listing?.short_desc}`}
-           image={listing?.large_thumb}
-           type='event'
-           updated_time={modified}
-           phone_number={phone}
-           street_address={address}
-           latitude={latitude}
-           longitude={longitude}
-           slug={`/events/${slug}`}/> */}
+    return <>{listing && listing != 'undefined' ? <><div className={`listing_page ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
 
 <EventJsonLd
       name={`${cleanHtml(listing?.title?.rendered)}`}
@@ -348,8 +350,13 @@ return linkzz;
             {VisitorActionsView}
         </div>
     </div>
-    <VisitRecord Id={listing.id}/>
-    <ListingStater id={listing.id}/></div>)
+    <VisitRecord Id={listing?.id}/>
+    <ListingStater id={listing?.id}/></div>
+              </> :
+    <div>
+      <NotFound title='Page not available' description='The Page you are trying to view is not available at the moment. This can be caused by an error in the page address you entered. It could also mean that the page is under review and not yet published'/>
+      <ActivityCarousel optionsObj={{arrows: true}} skeletonHeight={200} skeletonWidth={270} thumbsize={'xtra_large_thumb,thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} title={'Check out the latest'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
+      </div>}</>
 
   }
 

@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-const NotFound = () => {
+const NotFound = ({description=null, title}) => {
   const data = {
     imageSrc: "/img/general/404.svg",
-    title: "Oops! It looks like you're lost.",
-    description:
+    title: title ?? "Oops! It looks like you're lost.",
+    description: description ??
       "The page you're looking for isn't available. Try to search again or use the go to.",
     buttonLabel: "Go back to homepage",
     buttonUrl: "/",

@@ -26,7 +26,7 @@ export default function ActivityProvider(){
 
 
     const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-        (index) =>`${user ? bPActivitiesUrl(payload) : bpPublicActivitiesUrl(payload)}&page=${
+        (index) =>`${/* user ? bPActivitiesUrl(payload) :  */bpPublicActivitiesUrl(payload)}&page=${
             index + 1
           }`,
         fetcher,

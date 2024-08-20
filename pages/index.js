@@ -105,7 +105,8 @@ export async function getStaticProps() {
         settings:{
           autoShowHeader: true
         }
-      }
+      },
+      revalidate: 180, // In seconds
     }
   }
 

@@ -7,10 +7,10 @@ import { Client } from 'react-hydration-provider';
 // import { BookingView } from '~/pages/events/[slug]';
 import Splider from '@/components/UI/partials/Splider';
 import { PostThumbnailSrc, resizedImage, srcWithFallback } from '@/helpers/universal';
-import { CustomRow, DualColorHeader } from '@/components/UI/Partials';
+import { CustomRow, DualColorHeader, SocialLinks } from '@/components/UI/Partials';
 import TagsCloud from '../partials/TagsCloud';
 import MegaGalleryMini from '@/components/UI/Galleries/MegaGalleryMini';
-import ListingProductsMini from '../partials/ListingProductsMini';
+//import ListingProductsMini from '../partials/ListingProductsMini';
 import TeamMember2 from '../team/TeamMember2';
 import { BookingView } from '@/pages/events/[slug]';
 import {spliderVariableWidth} from '@/helpers/sliders'
@@ -48,7 +48,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
 
     const cachedListing = useMemo( () => listing, [listing.id] );
     
-    let statsView, greetingView, faqsView, strengthsView, galleryView, detailView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView, ticketsHint, performersView;
+    let statsView, greetingView, socialsView, faqsView, strengthsView, galleryView, detailView, teamView, sponsorsView, featuredImgSrc,  largeFeaturedImgSrc, shopView, servicesView, reviewsView, tagsView, descriptView, guestsView, catView, ticketsHint, performersView;
 
     if(listing){
         if(_stats?.length > 0){
@@ -85,6 +85,11 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
 
         if(content){
             detailView = <ListingDetail detail={content} id={listing.id}/>
+          }
+          if(_links?.length > 0){
+            socialsView = <div className='card card-style partial_border double_left bottom_left my-5 p-5'>
+                <Heading1 exClass='mb-5' title={'Connect & Engage'} subtitle="Our Social Media Community"/>
+                <SocialLinks iconsOnly={false} exClass='_large' links={_links}/></div>
           }
 
         if(tickets?.length > 0){
@@ -507,6 +512,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             {guestsView}
             {strengthsView }
             {reviewsView}
+            {socialsView}
             <Client>{tagsView}</Client> 
             {statsView}
             {faqsView}

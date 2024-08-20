@@ -142,8 +142,8 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
                   </div>
                 </div>
                 </Mirrored>
-                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 align-items-center text-right right-0 pe-3 pb-4 color-white text-shadow-l' style={{zIndex: '10', maxWidth: '80%'}}>
-                  <div className='profile_name h-fit mb-10'>
+                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 align-items-center text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
+                  <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
                   <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div>
 
                         <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>
@@ -275,6 +275,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user}) => {
              <div>
                 <div className='status_greeting'>
                   {/* <DateViewState fromActive exClass={'dotty ripple'} eventId={id}/> */}
+                  <div className='row_flex gap-2'>{rebuildLink}{editLink}</div>
                   <p className = 'mb-10'>
                         {greetingView}
                   </p>

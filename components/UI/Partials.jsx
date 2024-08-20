@@ -56,14 +56,15 @@ export const Floater = ({primText, secText, exClass}) =>{
     </div>
   )
 }
-export const SocialLinks = ({links, iconsOnly=true}) => {
+export const SocialLinks = ({links, iconsOnly=true, exClass=''}) => {
   
-  return <div className="links_container">
-      <div className="links_box">
+  return <div className={`links_container ${exClass}`}>
+      <div className="links_box gap-3 d-flex">
         {links.map((el) => {
           const {network, url} = el;
           return <a target={'_blank'} href={url} className="link_link">
             <i className={`fab fa-${network.toLowerCase()} color-${network.toLowerCase()}`}/>
+            {!iconsOnly && <span className={`ms-1 color-${network.toLowerCase()}`}>{network}</span>}
           </a>
         })}
       </div>
