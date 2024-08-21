@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { Client } from 'react-hydration-provider';
 import {fallbackImgSrcSet, homeurl, WPDomain } from "@/helpers/base";
-//import { BookingView } from '@/pages/events/[slug]';
+//import { BookingView } from '@/components/listing/partials/ActionButtons';
 import { Suspense, useEffect } from 'react';
 import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
 import DateViewString from '@/components/UI/partials/dateViews/DateViewString';
@@ -21,7 +21,7 @@ import Image from 'next/image';
 //import VisitorActions from '../../partials/VisitorActions';
 import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
 import Link from 'next/link';
-import { BookingView } from '@/pages/events/[slug]';
+import { BookingView } from '@/components/listing/partials/ActionButtons';
 import PostLike from '@/components/UI/partials/social/PostLike';
 import NextPostLink from '@/components/UI/NextPostLink';
 import { openOffCanvas } from '@/helpers/appjs';
@@ -149,7 +149,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) 
                   </div>
                 </div>
                 </Mirrored>
-                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 align-items-center text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
+                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 align-items-end justify-end text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
                   <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div>
 

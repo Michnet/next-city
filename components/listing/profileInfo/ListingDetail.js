@@ -2,6 +2,7 @@ import  {useState, useEffect, memo} from "react";
 import { Client } from "react-hydration-provider";
 import Widget from "@/components/UI/partials/Widget";
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
+import { cleanHtml, hashtag } from "@/helpers/universal";
 
 const ListingDetailConst = ({id, detail, exClass=''}) => {
   //const [tags, setTags] = useState(null);
@@ -20,7 +21,7 @@ const ListingDetailConst = ({id, detail, exClass=''}) => {
 
      if(detail){
        contentView = <Widget bodyClass={'p-3'} exClass={'bg-transparent mx-0 shadow-0 top_border partial_border'} styleObj={{backgroundColor : 'transparent !important'}} freeHeader subtitle={'More About Listing'} title= 'Event Detail' > <div className="position-relative">
-                          <Client><div className={`listing_content ${fullContent ? '' : 'truncate-5'}`} dangerouslySetInnerHTML={{ __html: detail }}/>
+                          <Client><div className={`listing_content ${fullContent ? '' : 'truncate-5'}`} dangerouslySetInnerHTML={{ __html: hashtag(cleanHtml(detail))}}/>
                           </Client>
                           {/* {fullContent ? <></> : <div className="_hidden_hint"></div>} */}
                         </div>

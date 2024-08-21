@@ -33,7 +33,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
               </div>
                 <div className="minw-0 flex-shrink-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
-                    <Link href={`/events/${slug}`}><h3 className={`text-16 smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
+                    <Link href={`/${type}s/${slug}`}><h3 className={`text-16 smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
                     <div className="title_meta d-flex  flex-column lh-11">
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
@@ -59,7 +59,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
                     <div className='_right'>
                     <div className="row_flex justify-end" style={{flex: '1 1'}}>
                             <TermTag targetStyleObj={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}} exTagClass={'rounded-3 px-2 text-20 fw-600'} exClass={'lgLine w-fit'} term={category} type={'icon'} linkTax={'category'}/>
-                            {type == 'event' ?  <i className="far fa-calendar-alt text-center bg-theme-light" style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/> : null}
+                            {<i className={`far fa-${type == 'event' ? 'calendar-alt' : 'map-marked-alt'} text-center bg-theme-light`} style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/>}
                         </div>
                     </div>
                 </div>

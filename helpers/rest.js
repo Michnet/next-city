@@ -1,4 +1,5 @@
-import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain, userActions } from "./base";
+import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain, userActions, siteColorObjs, siteColors } from "./base";
+import { fetchRephrase, randomEither } from "./universal";
 import { getProductCategories } from "./WooRest";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -15,6 +16,8 @@ export const advancedFetchListingsUrl = (payload) => {
     }
     return `${WPDomain}/${endpoint}`
 }
+
+
 
 
 export const sendBPMessage = async (payload, jwt) =>{
@@ -721,8 +724,7 @@ export const fetchSingleListingUrl = (id, payload) => {
 
 export const listingServerQuery = async(params) => {
 
-  let serverObj = {}
-  
+  /* 
     async function productsQuery(payload) {
       const pdts = await getProducts(payload);
       if (pdts) {
@@ -767,7 +769,54 @@ export const listingServerQuery = async(params) => {
         _fields : fields
       }
       await productsQuery(payload);
-    }  
+    } */ 
+    
+    
+    let serverObj = {}, colorHex, freshDesc;
+
+    const singleRes = await fetch(fetchSingleListingUrl(params.slug));
+    const postArr = await singleRes.json();
+    const listing = postArr[0];
+    serverObj.listing = listing && listing != 'undefined' ? listing :  null;
+   
+    async function getFreshDesc(){ 
+      const newDesc = await fetchRephrase(listing?.short_desc, 'Paraphrase in English with humor and a marketing tone');
+      if(newDesc){
+        freshDesc = newDesc;
+        return newDesc;
+      }
+      }
+
+    async function extendListing(listing){
+      //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
+      //const fbBlur = await getBase64Static('./public/images/bg/fallback.jpg');
+      //const blurryGal = await galleryWithBlurs(listing.gallery);
+      const author = await getUserRest({key:'ID', val: listing.author_id});
+  
+      serverObj = {...serverObj, listing : {...listing, freshDesc:freshDesc, author: author ? author.user : null }}
+      /* serverQuery = {...serverQuery, 
+        serverObj : {...serverObj, 
+          listing : {...listing, 
+          coverBlur : blurUrl && blurUrl != 'undefined' ? blurUrl : fallbackImgBlur,
+          galleryWithBlurs : blurryGal,
+          author: author ? author.user : null
+        }}} */
+    }
+
+    async function getThemeColor(){
+      const color = randomEither(siteColors);
+      serverObj.themeColor = color
+      colorHex = siteColorObjs?.filter((col) => col.name === color)[0]?.hex;
+      serverObj.themeColorHex = colorHex ?? null;
+    }
+
+    if(listing){
+        await getFreshDesc();
+        await extendListing(listing);
+        await getThemeColor();
+    }
+    
+
     return {
       serverObj : serverObj
     }

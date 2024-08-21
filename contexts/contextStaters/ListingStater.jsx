@@ -6,7 +6,7 @@ import { activeDateState, authState, activeReviewsState } from "../atoms";
 
 
 
-function ListingStaterConst({id, author}) {
+function ListingStaterConst({id, author, type}) {
 
   const setActiveDates = useSetRecoilState(activeDateState);
   const setActiveReviews = useSetRecoilState(activeReviewsState);
@@ -69,7 +69,11 @@ function ListingStaterConst({id, author}) {
   function toServiceWorker(){
     if (navigator.serviceWorker) {
       navigator.serviceWorker.ready.then((registration) => {
-        registration.active.postMessage({type:'listingState', listingId:id, subTypes:['dates','reviews']});
+        let subTypesArr = ['reviews'];
+        if(type == 'event'){
+          subTypesArr.push('dates');
+        }
+        registration.active.postMessage({type:'listingState', listingId:id, subTypes:[...subTypesArr]});
       });
     }
   }

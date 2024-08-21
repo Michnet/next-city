@@ -27,6 +27,7 @@ import AddListingCard from "@/components/UI/partials/AddListingCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Mirrored from "@/components/UI/partials/Mirrored";
+import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 
 
 export async function getStaticProps() {
@@ -86,6 +87,16 @@ export async function getStaticProps() {
         serverObj.latestList = list;
       }
     }
+    async function topPlaces(){
+      let thumbsize = 'xtra_large_thumb'
+      let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+      listing_type:'place', per_page: 5, sort:'latest', ignorePriority:true};
+  
+      const list = await advancedFetchListings(load);
+      if(list){
+        serverObj.latestPlaces = list;
+      }
+    }
   
   
     async function serverQuery(){
@@ -93,6 +104,7 @@ export async function getStaticProps() {
       await getEvCats();
       await  getBusyLocs();
       await getTopLocs();
+      await topPlaces();
     }
   
     await serverQuery();
@@ -114,7 +126,7 @@ export async function getStaticProps() {
 
 export default function Home(props) {
     const {serverObj} = props;
-   const {eventCategories, topLocations, busyLocations, latestList} = serverObj ?? {};
+   const {eventCategories, topLocations, busyLocations, latestList, latestPlaces} = serverObj ?? {};
    
   let imgArr = eventCategories.map((ct) => {
     let {term_meta, id} = ct;
@@ -173,11 +185,22 @@ export default function Home(props) {
 
     <div className="divider mt-3 mb-4"></div>
 
-   <SectionHeader inverted iconClass={'far fa-clock'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
+   <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Places'} subTitle={'Be the first to know'}/>
+   <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+      {latestPlaces?.length > 0 ? 
+          latestPlaces.map((li) => {
+           return <EventCard2 mini contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }
+    </Splider>
+
+   <SectionHeader inverted iconClass={'far fa-calendar-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
-           return <EventCard2 mini contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>
+           return <EventCard5 mini contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>
           })
           :
           <></>
@@ -188,7 +211,7 @@ export default function Home(props) {
     <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
       <div className='tags_row bg-transparent'>
                 <div className='row_content' style={{minHeight : '130px'}}>                  
-        <TagsCloud dark itemsList={busyLocations} onClickFunc={tagClick}/>
+        <TagsCloud  dark itemsList={busyLocations} onClickFunc={tagClick}/>
                   </div>
                   </div>
       </section>

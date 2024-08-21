@@ -1,10 +1,12 @@
 //import { pwaName } from '@/helpers/appjs';
+import { pwaName } from '@/helpers/appjs';
+import { siteColorObjs } from '@/helpers/base';
 import { getDirTermsUrl, getDirTerms} from '@/helpers/rest';
 import { getLocalTaxonomy } from "@/helpers/rest";
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 
-const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue = 'monochrome', itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
+const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue = null, itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
 
   const [items, setItems] = useState([]);
   //const {colorTheme} = useRecoilValue(UIState);
@@ -39,10 +41,13 @@ useEffect(() => {
   return () => controller.abort();
 }, [ids,hue, itemsList]) 
 
+let highlight = typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-Highlight') : null;
+
+
 
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
-  hue: hue
+  hue: hue ?? siteColorObjs?.filter((col) => col.name === highlight)[0]?.hex
   //hue: hue ?? 'monochrome',
   //hue: hue ?? typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-Highlight') : null
 }

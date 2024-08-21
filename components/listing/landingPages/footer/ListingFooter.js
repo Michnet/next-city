@@ -2,7 +2,7 @@ import Link from 'next/link';
 //import { useRecoilValue } from 'recoil';
 //import { UISizes } from '@/contexts/atoms';
 import { cleanHtml } from '@/helpers/universal';
-import { BookingView } from '@/pages/events/[slug]';
+import { BookingView } from '@/components/listing/partials/ActionButtons';
 import { Avatar, SocialLinks } from '@/components/UI/Partials';
 import { quickLinks } from '@/helpers/data';
 import { Client } from 'react-hydration-provider';

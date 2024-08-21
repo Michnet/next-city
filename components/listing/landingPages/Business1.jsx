@@ -12,7 +12,7 @@ import TagsCloud from '../partials/TagsCloud';
 import MegaGalleryMini from '@/components/UI/Galleries/MegaGalleryMini';
 //import ListingProductsMini from '../partials/ListingProductsMini';
 import TeamMember2 from '../team/TeamMember2';
-import { BookingView } from '@/pages/events/[slug]';
+import { BookingView } from '@/components/listing/partials/ActionButtons';
 import {spliderVariableWidth} from '@/helpers/sliders'
 import PostReviews from '../reviews/postReviews';
 import FAQs from "@/components/UI/FAQs";

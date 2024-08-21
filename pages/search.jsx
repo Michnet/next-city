@@ -5,7 +5,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       headerTitle: 'Search',
-      seoMeta:{title: 'Search for events around you'},
+      seoMeta:{title: 'Search', description: 'Find and connect with events and great places near you'},
       settings : {
         mMenu: 'show',
         mMenuContent:{

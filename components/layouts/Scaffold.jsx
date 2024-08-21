@@ -51,7 +51,7 @@ useEffect(() => {
   return (<>
     <div className={`container-fluid p-0 ${pageClass ?? ""}`}>
         {<div style={{height: '120vh', position:'fixed', top:'0', left:'0', width: '100vw'}} className='position-fixed top-0'>
-          <Image  src={srcWithFallback(uiBackground)} fill className='object-cover top-0'/>
+          <Image  src={srcWithFallback(uiBackground, '/images/bg/pageBg.jpg')} fill className='object-cover top-0'/>
           <div  className="bg-overlay h-100 bg-theme-transparent-0 position-relative" style={{backdropFilter:'saturate(180%) blur(20px) brightness(var(--bgBrightness))'}}/>
         </div>}
         <div className={`row flex-nowrap _scaffold`} /* style={{zIndex: 0, position: 'relative'}} */>

@@ -1,6 +1,5 @@
 //import { nextPostState } from "@/contexts/atoms"
 import { openOffCanvas } from "@/helpers/appjs"
-import { BookingView } from "@/pages/events/[slug]"
 import { memo, useState, useEffect} from "react"
 //import { useRecoilValue } from "recoil"
 import BottomMenu from "../layouts/BottomMenu"

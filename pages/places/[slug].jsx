@@ -16,7 +16,7 @@ import RelatedListings from "@/components/listing/partials/RelatedListings";
 
 
 export async function getStaticPaths() {
-    const res = await fetch(fetchIdsUrl({type: 'job_listing', listing_type:'event', slugs: true}));
+    const res = await fetch(fetchIdsUrl({type: 'job_listing', listing_type:'place', slugs: true}));
     const data = await res.json();
     const paths = data?.map(item => {
         return {
@@ -45,13 +45,13 @@ export async function getStaticPaths() {
         title:`${cleanHtml(listing?.title?.rendered)}`, 
          description:`${listing?.short_desc}`,
          image:listing?.large_thumb,
-         type:'event',
+         type:'business',
          updated_time:modified,
          phone_number:phone,
          street_address:address,
          latitude:latitude,
          longitude:longitude,
-         slug:`/events/${slug}`,
+         slug:`/places/${slug}`,
          pageColor: serverObj?.themeColorHex ?? null
       }
     }
@@ -90,7 +90,7 @@ export async function getStaticPaths() {
    const cachedListing = useMemo( () => listing, [listing?.id] );   
 
     return <>{listing && listing != 'undefined' ? <><div className={`listing_page ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
-
+{/* 
 <EventJsonLd
       name={`${cleanHtml(listing?.title?.rendered)}`}
       startDate={event_date[0]?.start}
@@ -116,11 +116,12 @@ export async function getStaticPaths() {
       }}
       images={[xtra_large_thumb, ...gallery]}
       description={`${listing?.short_desc}`}
-    />
+    /> */}
     <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
+
     <RelatedListings category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
     <VisitRecord Id={listing?.id}/>
-    <ListingStater type={listing?.type} id={listing?.id}/></div>
+    <ListingStater id={listing?.id}/></div>
               </> :
     <div>
       <NotFound title='Page not available' description='The Page you are trying to view is not available at the moment. This can be caused by an error in the page address you entered. It could also mean that the page is under review and not yet published'/>

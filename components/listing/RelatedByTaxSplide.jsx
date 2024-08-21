@@ -6,7 +6,6 @@ import useSWR from 'swr';
 import Splider from "../UI/partials/Splider";
 import ActivityCard2 from "../UI/Listings/cards/ActivityCard2";
 import { SectionHeader } from "@/components/UI/Partials";
-import { CardsRowLoader } from "../skeletons/Skeletons";
 
 
 function RelatedByTaxSplide({ids, titleComp, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {

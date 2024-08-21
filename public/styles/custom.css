@@ -827,7 +827,7 @@ div.truncate-5 > p {
 
 ._listing #footer-bar, .theme-dark  ._listing #footer-bar {
     background: var(--bgThemeTransparent);
-    box-shadow: #00000061 0px 0px 23px 1px;
+    box-shadow: #00000042 0px 0px 23px 1px;
     backdrop-filter: blur(4px);
 }
 
@@ -4404,6 +4404,7 @@ div#explore_nav .view_filter {
 }
 
 @media (max-width: 768px) {
+    .listing_page{padding-bottom: 65px;}
     .hero2.listing_hero .listing_meta i, .hero2.listing_hero.listing_meta._mini i {
     color: white;}
     .gx-chat-module-box .module_row{
@@ -4850,4 +4851,10 @@ ul.listing_navigator.view_all.grid li .card {
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.listing_page {}
+
+.hide_if_empty:empty {
+    display: none;
 }

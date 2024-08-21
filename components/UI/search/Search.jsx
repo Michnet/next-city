@@ -78,7 +78,7 @@ const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=f
         (index) =>`${advancedFetchListingsUrl(setUpFilters())}&per_page=${PAGE_SIZE}&page=${
             index + 1
           }`,
-        fetcher
+        fetcher, {revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
       );
         
         const listings = data ? [].concat(...data) : [];
@@ -93,10 +93,10 @@ const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=f
         const isRefreshing = isValidating && data && data.length === size;
 
     const {data:fbData, error:fbError} = useSWRInfinite(!isLoadingInitialData && isEmpty ? 
-        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, listing_type: listingType ?? 'event', _embed : true, 'event-date': 'any-day', exclude: query?.exclude ?? 0})}&per_page=${PAGE_SIZE}&page=${
+        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, /* listing_type: listingType ?? 'event', */ _embed : true, 'event-date': 'any-day', exclude: query?.exclude ?? 0})}&per_page=${PAGE_SIZE}&page=${
             index + 1
           }` : null,
-        fetcher
+        fetcher, {revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
       );
 
       const fbListings = fbData ? [].concat(...fbData) : [];

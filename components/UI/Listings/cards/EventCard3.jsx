@@ -10,7 +10,7 @@ const EventCard3 = ({listing, width=320, height=260, exClass='', truncate=4, con
                     <div className={`listing_card card card-style event_card_3 position-relative ${exClass}`} style={{height: height, width: width}}>
                     <div className={`img_div bg-cover position-absolute top-0 left-0 w-100 h-100`} style={{backgroundImage:`url("${xtra_large_thumb}")`}}/>
                             <div className="card-top p-3">
-                                <Link href={`/events/${slug}`} className="btn btn-s bg-theme color-theme rounded-s scale-box font-700 text-uppercase float-end">Get Offer</Link>
+                                <Link href={`/events/${slug}`} className="btn btn-s bg-theme color-theme rounded-s scale-box font-700 text-uppercase float-end">Learn More</Link>
                             </div>
                             <div className="card-bottom m-2">
                                 <div className="d-block px-2 py-2 rounded-m">
