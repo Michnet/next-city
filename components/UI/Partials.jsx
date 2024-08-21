@@ -58,8 +58,7 @@ export const Floater = ({primText, secText, exClass}) =>{
 }
 export const SocialLinks = ({links, iconsOnly=true, exClass=''}) => {
   
-  return <div className={`links_container ${exClass}`}>
-      <div className="links_box gap-3 d-flex">
+  return <div className={`links_container links_box gap-3 d-flex ${exClass}`}>
         {links.map((el) => {
           const {network, url} = el;
           return <a target={'_blank'} href={url} className="link_link">
@@ -68,7 +67,6 @@ export const SocialLinks = ({links, iconsOnly=true, exClass=''}) => {
           </a>
         })}
       </div>
-  </div>
 }
 
 export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = true, title, subTitle, link, linkUrl='#', iconClass, color, desc, exClass=''}){

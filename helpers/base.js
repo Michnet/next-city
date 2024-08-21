@@ -198,4 +198,8 @@ export const siteColorObjsBackup = [
     {name: "dark", hex: "#434A54"} 
 ]
 
- 
+export const open_ai_rapid_headers = {
+  'content-type': 'application/json',
+  'X-RapidAPI-Key': siteSettings.siteKeys['X-RapidAPI-Key'],
+  'X-RapidAPI-Host': siteSettings.siteKeys.openAIRapidHost
+  }

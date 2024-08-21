@@ -54,7 +54,7 @@ const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {
          <Image className="object-cover" fill quality={95} /* placeholder={<LoaderDualRingBoxed/>} fill style={{objectFit:"cover"}} */ src= {srcWithFallback(coverPhoto)} priority  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
 /> 
         <div className="gx-profile-container">
-          <div className="mini_head_content  row flex-nowrap md:flex-column overflow-hidden">
+          <div className="mini_head_content gap-3 row flex-nowrap md:flex-column overflow-hidden">
               <div className="desc _left col-12 col-md-8 px-0">
               <div className="_title">
                 <Client><div className="title_name">
@@ -67,11 +67,11 @@ const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {
                 </div>
               </div>
               <div className="desc _right col-12 col-md-4 px-0 d-flex flex-column align-items-end md:items-start">
-              {!isTab && ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10'}/> : <></>}
+              {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10'}/> : <></>}
                 {/* <div className="_contact">
                     {activeKey != 'private-chat' && <>{callView}</>}
                 </div> */}
-                {!isTab && <VisitorActions mini setActiveKey={setActiveKey} exClass={'justify-start'} listing={listing}/>}
+                {<VisitorActions mini setActiveKey={setActiveKey} exClass={'justify-start'} listing={listing}/>}
               </div>
           </div>
         </div>

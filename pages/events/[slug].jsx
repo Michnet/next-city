@@ -3,7 +3,7 @@ const RelatedByTaxSplide = dynamic(() => import("@/components/listing/RelatedByT
 //import VisitRecord from "@/components/UI/VisitRecord";
 const ListingStater = dynamic(() => import("@/contexts/contextStaters/ListingStater"));
 import { fetchIdsUrl, fetchSingleListingUrl, getUserRest } from "@/helpers/rest";
-import { cleanHtml, scrollTop, shadeRGBColor } from "@/helpers/universal";
+import { cleanHtml, fetchRephrase, scrollTop, shadeRGBColor } from "@/helpers/universal";
 import { memo, useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
 //const ListingSideMenu = dynamic(() => import("@/components/listing/ListingSideMenu"));
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
     let {serverObj} = serverQuery ?? {};
     let {listing} =serverObj ?? {}; */
 
-    let serverObj = {}, colorHex, seoMetaObj;
+    let serverObj = {}, colorHex, seoMetaObj, freshDesc;
 
     const singleRes = await fetch(fetchSingleListingUrl(params.slug));
     const postArr = await singleRes.json();
@@ -74,6 +74,13 @@ export async function getStaticPaths() {
     serverObj.listing = listing && listing != 'undefined' ? listing :  null;
     const title = listing?.title?.rendered;
    
+    async function getFreshDesc(){ 
+      const newDesc = await fetchRephrase(listing?.short_desc, 'Paraphrase in English with humor and a marketing tone');
+      if(newDesc){
+        freshDesc = newDesc;
+        return newDesc;
+      }
+      }
 
     async function extendListing(listing){
       //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
@@ -81,7 +88,7 @@ export async function getStaticPaths() {
       //const blurryGal = await galleryWithBlurs(listing.gallery);
       const author = await getUserRest({key:'ID', val: listing.author_id});
   
-      serverObj = {...serverObj, listing : {...listing, author: author ? author.user : null }}
+      serverObj = {...serverObj, listing : {...listing, freshDesc:freshDesc, author: author ? author.user : null }}
       /* serverQuery = {...serverQuery, 
         serverObj : {...serverObj, 
           listing : {...listing, 
@@ -99,6 +106,7 @@ export async function getStaticPaths() {
     }
 
     if(listing){
+        await getFreshDesc();
         await extendListing(listing);
         await getThemeColor();
     }

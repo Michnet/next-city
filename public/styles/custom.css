@@ -4736,6 +4736,7 @@ ul.listing_navigator.view_all li.active .nav_i_title {
 #footer-bar ul.listing_navigator.view_all li.active .nav_i_subtitle {
     color: var(--colorTheme);
     opacity: 1 !important;
+    font-weight: 600;
 }
 
 ul.listing_navigator.view_all li .card {

@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { closeMenus } from "./appjs";
-import { kyFetch, serializeQuery, WPDomain } from "./base";
+import { kyFetch, open_ai_rapid_headers, serializeQuery, WPDomain } from "./base";
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
 
@@ -146,6 +146,37 @@ export const likeBPActivity = async (act_ID, token) =>{
         return null;
       }
 
+}
+export const fetchRephrase = async (text, instruction = null) => {
+  //return text;
+    const options = {
+        method: 'POST',
+        //url: 'https://open-ai21.p.rapidapi.com/conversationgpt',
+        headers: open_ai_rapid_headers,
+        data: {
+          messages: [
+            {
+              role: 'user',
+              content: `${instruction ?? 'Paraphrase: '} ${text}`
+            }
+          ],
+          web_access: false
+        }
+      };
+      
+      try {
+          const response = await fetch('https://open-ai21.p.rapidapi.com/conversationgpt', {...options});
+          console.log('rapid fet', response.data);
+          const {data} = response;
+          const {result} = data;
+          if(result?.length > 0){
+            return result
+          }else{
+            return text
+          }
+      } catch (error) {
+        return text;
+      }     
 }
 
 export function localiseDate(date, format = null, localize = true) {

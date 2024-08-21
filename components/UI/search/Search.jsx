@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import EventCard6 from '../Listings/cards/EventCard6';
 import { advancedFetchListingsUrl, fetcher } from '@/helpers/rest';
 import { generateTempArray } from '@/helpers/universal';
-import SkeletonProduct from '@/components/skeletons/SkeletonProduct';
+//import SkeletonProduct from '@/components/skeletons/SkeletonProduct';
 import ListingTimeline from '../lists/timelines/ListingTimeline';
 import ActivityCard1 from '../Listings/cards/ActivityCard1';
 import { DualColorHeader } from '../Partials';
@@ -266,9 +266,9 @@ if(isEmpty){
         </>
     )
 }
-SearchConst.getServerSideProps = async (props) => {
+/* SearchConst.getServerSideProps = async (props) => {
     return props;
-};
+}; */
  
 const Search = memo(SearchConst);
 export default Search;

@@ -89,7 +89,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
           if(_links?.length > 0){
             socialsView = <div className='card card-style partial_border double_left bottom_left my-5 p-5'>
                 <Heading1 exClass='mb-5' title={'Connect & Engage'} subtitle="Our Social Media Community"/>
-                <SocialLinks iconsOnly={false} exClass='_large' links={_links}/></div>
+                <SocialLinks iconsOnly={false} exClass='_large flex-wrap' links={_links}/></div>
           }
 
         if(tickets?.length > 0){

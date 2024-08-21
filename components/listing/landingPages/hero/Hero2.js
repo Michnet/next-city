@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic';
-import { cleanHtml, srcWithFallback, randomEither } from '@/helpers/universal';
+import { cleanHtml, srcWithFallback, randomEither, fetchRephrase } from '@/helpers/universal';
 import { useRecoilValue } from 'recoil';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { Client } from 'react-hydration-provider';
 import {fallbackImgSrcSet, homeurl, WPDomain } from "@/helpers/base";
 //import { BookingView } from '@/pages/events/[slug]';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
 import DateViewString from '@/components/UI/partials/dateViews/DateViewString';
 import Mirrored from '@/components/UI/partials/Mirrored';
@@ -38,8 +38,9 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) 
 
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";
 
-  let galArr = [], greetingView, firstWord='', lastWords='', actionTwoLink, actionLink;
+  let galArr = [], greetingView, firstWord='', lastWords='', actionTwoLink, actionLink, freshDesc;
   /* const settings = { arrows: true, dots: true, infinite: true, speed: 1000, marginLeft: 10, marginRight: 10, slidesToShow: 1, cssEase: 'ease-out', slidesToScroll: 1, }; */
+  
 
   if(title){
   const wordArr = title?.rendered.split(' ');
