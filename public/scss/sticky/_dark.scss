@@ -80,7 +80,7 @@ body{
     color: #000;
 }
 
-body.theme-dark{
+body.theme-dark, body .theme-dark{
     color:$color_white;
 }
 
@@ -159,7 +159,6 @@ body.theme-dark{
 .theme-dark .contact-form i,
 .theme-dark .demo-icon-font article,
 .theme-dark [data-tab],
-.theme-dark span:not(.badge),
 .theme-dark .profile-2 .profile-stats a,
 .theme-dark .vcard-field *,
 .theme-dark .search-header input,

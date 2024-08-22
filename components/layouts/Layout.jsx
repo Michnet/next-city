@@ -303,8 +303,8 @@ function LayoutConst({ children, headerTitle, settings}) {
         }
 
         @scope (.theme-light) {
-          :scope {
-              --colorTheme: #0f1117;
+         :scope {
+              --colorTheme: #000;
               --bgTheme: #FFFFFF;
               --bgThemeDark: #FFFFFF;
               --bgThemeLight: #c7c7c7;
@@ -313,6 +313,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               --bgThemeTransparent2: #ffffffd0;
               --bgThemeTransparent3: #ffffff94;
               --borderTheme: rgba(0, 0, 0, 0.1);
+              --borderThemeAlt: rgba(255, 255, 255, 0.12);
               --borderThemeDark: rgb(0 0 0 / 30%);
               --borderThemeAlt: rgba(255, 255, 255, 0.12);
               --themeGray: #c1c1c1;
@@ -332,6 +333,7 @@ function LayoutConst({ children, headerTitle, settings}) {
               --bgThemeTransparent2: var(--bgDarkTransparent2);
               --bgThemeTransparent3: var(--bgDarkTransparent3);
               --borderTheme: rgba(255, 255, 255, 0.12);
+              --borderThemeAlt: rgba(0, 0, 0, 0.1);
               --borderThemeDark: rgba(255, 255, 255, 0.22);
               --themeGray: #1a1c22;
               --bgBrightness:0.8;

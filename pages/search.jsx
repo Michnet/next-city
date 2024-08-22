@@ -17,7 +17,6 @@ export async function getStaticProps(context) {
   }
 }
 
-
 const SearchPage = () => {
   return (
     <>

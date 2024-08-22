@@ -15,7 +15,7 @@ import dayjs from "dayjs";
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
-const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
+const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, _embedded,modified,tagline, type} = listing;
     const {likes} = acf?.community ?? {};
 
@@ -24,17 +24,19 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
     const imgArr2 = shuffleArray([_embedded['wp:featuredmedia'][0].source_url, ...gallery]);
 
     return (<>
-    <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
+    <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_2 m-0 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
 
-    <div className="d-flex gap-2 activity_header mb-1">
+    <div className="d-flex gap-2 activity_header mb-1 pt-2 px-2">
               <div>
                   {/* <img src={user_avatar?.thumb} width={avatarSize} className="rounded-xl mt-1"/> */}
                   {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
               </div>
                 <div className="minw-0 flex-shrink-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
+                    <TermTag exTagClass={'rounded-3 text-11 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                     <Link href={`/${type}s/${slug}`}><h3 className={`text-16 smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
                     <div className="title_meta d-flex  flex-column lh-11">
+                    
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>} */}
@@ -59,7 +61,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-1', min
                     <div className='_right'>
                     <div className="row_flex justify-end" style={{flex: '1 1'}}>
                             <TermTag targetStyleObj={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}} exTagClass={'rounded-3 px-2 text-20 fw-600'} exClass={'lgLine w-fit'} term={category} type={'icon'} linkTax={'category'}/>
-                            {<i className={`far fa-${type == 'event' ? 'calendar-alt' : 'map-marked-alt'} text-center bg-theme-light`} style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/>}
+                            <i className={`far fa-${type == 'event' ? 'calendar-alt' : 'map-marked-alt'} text-center bg-theme-light`} style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/>
                         </div>
                     </div>
                 </div>

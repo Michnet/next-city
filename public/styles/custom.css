@@ -450,6 +450,9 @@ div.truncate-5 > p {
 
 
 /*Classes*/
+.border-alt{
+    border-color: var(--borderThemeAlt) !important;
+}
 ._grayScale{
     filter: grayscale(1)
 }
@@ -1514,9 +1517,12 @@ button.back_link {
 }
 
 .price_view._inline span {
-    display: inline-block;
+    display: inline-flex;
+    white-space: nowrap;
 }
-
+.listing_card .title_content {
+    max-width: 400px;
+}
 .price_view ._title {
     font-weight: 600;
 }
@@ -2496,7 +2502,7 @@ border-color: #FF9800;
   color: blue;
 }
 .event_date._future_dist.outliney.darky{
-  border-color: rgb(230,244,234);
+  border-color: rgb(230, 244, 234);
   color: #137333;
 }
 
@@ -2859,7 +2865,7 @@ nav.toc > ul > li {
 }
 
 .border-type-1 {border: 1px dashed var(--borderTheme)}
-.border{border: 1px solid var(--borderTheme);}
+.border{border: 1px solid var(--borderTheme);border-color: var(--borderTheme) !important;}
 
 .form-container .form-horizontal .form-group label {
     font-weight: 500;
@@ -3659,6 +3665,10 @@ input[type=range]::-webkit-slider-thumb {
     background: transparent;
 }
 
+.listing_card._hero ._meta_row {
+    display: none !important;
+}
+
 .theme-light .top_list .card.card-style.event_card_3 .color-white {
     color: var(--bs-dark) !important;
 }
@@ -4082,7 +4092,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 }
 
 .listing_meta i, .listing_meta._mini i, .nav-link{
- color: var(--colorTheme);
+ /* color: var(--colorTheme); */
  opacity: 0.4;
 }
 

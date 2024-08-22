@@ -148,7 +148,7 @@ const ExploreEvents = ({topList}) => {
                 {fetchy ? fetchedTopList?.length > 0 ? 
                     fetchedTopList.map((li) => {
                       let {id} = li;
-                      return <EventCard3 height={310} contentExClass={'flex-column-reverse flex-sm-row'} truncate={3} width={'inherit'} listing={li} key={id} exClass='m-0 radius-0'/>
+                      return <EventCard3 height={310} titleSize={24} contentExClass={'px-4 pb-4'} truncate={3} width={'inherit'} listing={li} key={id} exClass='_hero m-0 radius-0'/>
                     })
                     :
                     <></>

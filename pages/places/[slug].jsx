@@ -89,7 +89,7 @@ export async function getStaticPaths() {
 
    const cachedListing = useMemo( () => listing, [listing?.id] );   
 
-    return <>{listing && listing != 'undefined' ? <><div className={`listing_page ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
+    return <>{listing && listing != 'undefined' ? <><div className={`listing_page _place ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
 {/* 
 <EventJsonLd
       name={`${cleanHtml(listing?.title?.rendered)}`}

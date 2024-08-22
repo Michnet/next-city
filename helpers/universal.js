@@ -433,6 +433,50 @@ export function srcWithFallback(src, fb = '/images/bg/fallback.jpg'){
   }
 }
 
+function hexToRGB(hex) {
+  // Remove the # character from the beginning of the hex code
+  hex = hex.replace("#", "");
+  
+  // Convert the red, green, and blue components from hex to decimal
+  // you can substring instead of slice as well
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  
+  // Return the RGB value as an object with properties r, g, and b
+  return {r, g, b};
+}
+
+export const closestColor = (targetColor, colorArray) => {
+  let closestDistance = null;
+  let closestColor = null;
+  
+  // Convert target color from hex string to RGB values
+  const [r1, g1, b1] = hexToRGB(targetColor);
+  
+  // Loop through the array of colors
+  colorArray.forEach((color) => {
+    // Convert current color from hex string to RGB values
+    const [r2, g2, b2] = hexToRGB(color);
+    
+    // Calculate the Euclidean distance between the target color and current color
+    const distance = Math.sqrt(
+      (r1 - r2) ** 2 +
+      (g1 - g2) ** 2 +
+      (b1 - b2) ** 2
+    );
+    
+    // Update closest color and distance if the current distance is smaller than the closest distance
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestColor = color;
+    }
+  });
+  
+  return closestColor;
+}
+
+
 
 export function createOccurenceClass(targetDate, targetEndDate){
   const now = new Date();

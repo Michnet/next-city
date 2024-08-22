@@ -21,11 +21,11 @@ import ActivityCard1 from '../Listings/cards/ActivityCard1';
 import { DualColorHeader } from '../Partials';
 import { Skeleton } from '@/components/skeletons/Skeletons';
 const SearchFilter = dynamic(() => import('./SearchFilter'));
+import EventCard3 from '@/components/UI/Listings/cards/EventCard3';
 
 const PAGE_SIZE = 22;
 
-
-const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=false, listingType, xlRow=6, cardExClass}) => {
+const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=false, listingType='all', xlRow=6, cardExClass}) => {
 
     const router = useRouter();
     const query = propQuery ?? router.query;
@@ -51,7 +51,7 @@ const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=f
             sort:'latest',
             _fields : fieldList,
             _embed: true, 
-            listing_type: listingType ?? 'event'
+            listing_type: listingType
         }
         
         /* if (query.category) {
@@ -93,7 +93,7 @@ const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=f
         const isRefreshing = isValidating && data && data.length === size;
 
     const {data:fbData, error:fbError} = useSWRInfinite(!isLoadingInitialData && isEmpty ? 
-        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, /* listing_type: listingType ?? 'event', */ _embed : true, 'event-date': 'any-day', exclude: query?.exclude ?? 0})}&per_page=${PAGE_SIZE}&page=${
+        (index) =>`${advancedFetchListingsUrl({ _fields : fieldList, listing_type: listingType, _embed : true, 'event-date': 'any-day', exclude: query?.exclude ?? 0})}&per_page=${PAGE_SIZE}&page=${
             index + 1
           }` : null,
         fetcher, {revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
@@ -149,8 +149,12 @@ let gridDisplay = (listings) => {
                     {viewType === 'Grid' && <ResponsiveMasonry columnsCountBreakPoints={columnObj ?? defCols}>
                             <Masonry gutter={isMobile ? "10px" : "15px"}> 
                             {listings.map(listing => {
+                                const {type} = listing;
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
-                               return <EventCard6 exImgClass='rounded-4' key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'m-0 rounded-0 py-2 px-3'} listing={listing}/>
+                               if(type == 'place'){
+                                return <EventCard3 dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
+                               }
+                               return <EventCard6  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={''} listing={listing}/>
                             })
                             }
                             </Masonry>
