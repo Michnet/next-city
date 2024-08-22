@@ -28,6 +28,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Mirrored from "@/components/UI/partials/Mirrored";
 import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
+import EventCard3  from '@/components/UI/Listings/cards/EventCard3';
 
 
 export async function getStaticProps() {
@@ -189,7 +190,7 @@ export default function Home(props) {
    <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestPlaces?.length > 0 ? 
           latestPlaces.map((li) => {
-           return <EventCard2 mini contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>
+           return <EventCard3 exClass='m-0' mini contentClass={'px-3'} height={250} width={270} key={li.id} listing = {li}/>
           })
           :
           <></>
@@ -200,7 +201,7 @@ export default function Home(props) {
    <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
-           return <EventCard5 mini contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>
+           return <EventCard2 mini contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>
           })
           :
           <></>
