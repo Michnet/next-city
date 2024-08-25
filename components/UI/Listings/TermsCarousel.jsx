@@ -9,30 +9,13 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
     const {query} = useRouter();
     const [locItems, setLocItems] = useState(items)
 
-
     function parentTerm(){
         if(query[`${queryKey}`]){ 
             return query[`${queryKey}`];
         }else if(slug) {
             return slug; 
         }else{
-            return 'events';
-        }
-    }
-
-    function fetchCondition(){
-        if(locItems?.length > 0){
-            if(query){
-                if(query[`${queryKey}`]){
-                    return false;
-                }else{
-                    return true;
-                }
-            }else{
-                true;
-            }
-        }else{
-            return false;
+            return 'places';
         }
     }
 

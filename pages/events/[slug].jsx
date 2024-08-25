@@ -11,7 +11,7 @@ import { EventJsonLd } from 'next-seo';
 
 import NotFound from "@/components/UI/site/NotFound";
 import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
-import ListingPage from "@/components/listing/pages/ListingPage";
+import ListingPage from "@/components/routes/listingSingle/ListingPage";
 import RelatedListings from "@/components/listing/partials/RelatedListings";
 
 

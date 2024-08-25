@@ -177,6 +177,8 @@ export const siteColorObjs = [
   {name: "brown", hex: "#AA8E69"},
 ]
 
+export const siteColorsArray = ["#8CC152","#DA4453","#E9573F","#4A89DC","#D770AD","#fb3365","#967ADC","#AA8E69"]
+
 
 export const siteColorObjsBackup = [
     {name: "green", hex: "#8CC152"}, 

@@ -2,7 +2,7 @@ import { cleanHtml } from "@/helpers/universal";
 import Link from "next/link";
 
 const EventCard = ({listing, width=200}) => {
-    let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
+    let {id, title, type, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
     return (
         <div className="content">
             <div className="bg-theme rounded-sm mb-n5 ms-3 overflow-hidden under-slider-btn d-inline-block shadow-l text-center">
@@ -15,7 +15,7 @@ const EventCard = ({listing, width=200}) => {
                 </div>
                 <div className="card-bottom p-3">
                     <span className="badge mb-2 mt-n2 font-11 color-white bg-red-dark text-uppercase font-600">10:30 AM at Jake's Place - Open</span>
-                    <Link href={`/events/${slug}`}><h1 className="color-white font-30">{cleanHtml(title.rendered)}</h1></Link>
+                    <Link href={`/${type}s/${slug}`}><h1 className="color-white font-30">{cleanHtml(title.rendered)}</h1></Link>
                     <p className="pe-5 me-5 color-white opacity-60">
                         Come and taste the awesome pies we've made and give your vote on who should be crowned king!
                     </p>

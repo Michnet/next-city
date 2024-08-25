@@ -1,18 +1,18 @@
 import dynamic from "next/dynamic";
 const ListingStater = dynamic(() => import("@/contexts/contextStaters/ListingStater"));
 import { fetchIdsUrl, listingServerQuery } from "@/helpers/rest";
-import { cleanHtml,  } from "@/helpers/universal";
+import { cleanHtml, closestColor,  } from "@/helpers/universal";
 import { memo, useMemo } from "react";
 import { useRouter } from "next/router";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
-import { EventJsonLd } from 'next-seo';
 
-//const ColorThief = require('colorthief');
+const ColorThief = require('colorthief');
 
 import NotFound from "@/components/UI/site/NotFound";
 import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
-import ListingPage from "@/components/listing/pages/ListingPage";
+import ListingPage from "@/components/routes/listingSingle/ListingPage";
 import RelatedListings from "@/components/listing/partials/RelatedListings";
+//import { siteColorsArray } from "@/helpers/base";
 
 
 export async function getStaticPaths() {
@@ -34,11 +34,23 @@ export async function getStaticPaths() {
 
   
     let serverQuery = await listingServerQuery(params);
-    let {serverObj} = serverQuery ?? {};
+    let serverObj = serverQuery?.serverObj ?? {};
     let {listing} = serverObj ?? {};
 
     let seoMetaObj = {}
     const { latitude, longitude, phone, address, slug, modified} = listing ?? {};
+
+    async function getThemeColor(){
+      if(listing?.cover?.length > 0 && listing?.cover?.startsWith('http')){
+        let gota = await ColorThief.getColor(listing?.cover)
+        .then(color => {return color})
+        .catch(err => { console.log('color error', err) });
+        if(gota){
+          //console.log('coverColor xxxxxxxxxxxxxx', gota);
+          //serverObj.coverColor = closestColor(gota, siteColorsArray);
+        }
+      }
+    }
 
     if(listing && listing != 'undefined'){
       seoMetaObj= {
@@ -54,6 +66,7 @@ export async function getStaticPaths() {
          slug:`/places/${slug}`,
          pageColor: serverObj?.themeColorHex ?? null
       }
+      await getThemeColor();
     }
 
     return {
@@ -80,43 +93,17 @@ export async function getStaticPaths() {
     }
   }
 
-  const ListingConst = ({listing, themeColor, themeColorHex}) => {
+  const ListingConst = ({listing, themeColor, themeColorHex, coverColor}) => {
     
     const {latitude, longitude, address, gallery, xtra_large_thumb, locations, venue, rating, event_date,category, dir_categories, id:listingId} = listing ?? {};
     const router = useRouter();
     const {query} = router;
 
-
+console.log('coverColor', coverColor);
    const cachedListing = useMemo( () => listing, [listing?.id] );   
 
     return <>{listing && listing != 'undefined' ? <><div className={`listing_page _place ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
-{/* 
-<EventJsonLd
-      name={`${cleanHtml(listing?.title?.rendered)}`}
-      startDate={event_date[0]?.start}
-      endDate={event_date[0]?.end}
-      location={{
-        name: venue,
-        //sameAs: 'https://example.com/my-place',
-        address: {
-          streetAddress: {address},
-          addressLocality: locations[0]?.name,
-          //addressRegion: 'CA',
-          //postalCode: '95129',
-          //addressCountry: 'US',
-        },
-      }}
-      geo={{
-        latitude: latitude,
-        longitude: longitude,
-      }}
-      rating={{
-        ratingValue: (rating/10) * 5,
-        ratingCount: '18',
-      }}
-      images={[xtra_large_thumb, ...gallery]}
-      description={`${listing?.short_desc}`}
-    /> */}
+
     <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
 
     <RelatedListings category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>

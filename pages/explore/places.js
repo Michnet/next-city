@@ -13,7 +13,7 @@ import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import ExploreListings from "@/components/routes/explore/ExploreListings";
 
-const listingType = 'event';
+const listingType = 'place';
 
 export async function getServerSideProps({ req, res, query }) {
   res.setHeader(
@@ -64,8 +64,8 @@ const ExploreEvents = ({topList}) => {
 
     const params = query ?? {};
 
-    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
-    listing_type: listingType, per_page: 5, ...params, 'event-date':'any-day'};
+    let load={_fields : `id,title,slug,ticket_min_price_html,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
+    listing_type: listingType, per_page: 5, sort: 'latest', ...params};
 
  const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
@@ -90,7 +90,7 @@ const ExploreEvents = ({topList}) => {
      {isTab ? <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
         <MainMenuBtn/>
         <ExplorerFilter/>
-     </HeaderWrapper> : <Header headerTitle={`Explore ${listingType}s`} headerClass={'header-always-show'}/>}
+     </HeaderWrapper> : <Header headerTitle='Explore' headerClass={'header-always-show'}/>}
       <ExploreListings topList={topList} type={listingType}/>
       </div>
       <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="exploreOffCanvas" >

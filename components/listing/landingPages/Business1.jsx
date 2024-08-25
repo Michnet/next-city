@@ -262,7 +262,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
         //}
 
         if(Array.isArray(wcu?.list)){
-        /* if(wcu?.list?.length > 0){
+        if(wcu?.list?.length > 0){
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
                 return <div className="strength_item"   style={{height: '250px', width: '400px', maxWidth: '95vw'}}>
@@ -275,7 +275,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                     <div className="content_box d-flex flex-column align-items-end align">
                                         <h5 className="strength_heading">{reason.item_title}</h5>
                                         <hr className='border-loud opacity-100 w-48' style={{borderTopWidth: '3px'}}/>
-                                        <p className="strength_descript">{reason.item_description}</p>
+                                        <p className="strength_descript truncate-7">{reason.item_description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -296,14 +296,14 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                 <h4 className="section_subHead gray_text mb-3">Some reasons you may like this event</h4>
                             </div>}
                             <div className="strengths_body col-12 col-md-8 p-0">
-                                <Splider exClass={'in_color card card-style'} options={{perMove:1, perPage:1, padding:{right: '20%'}}} height={'250px'} showDots>{reasonArr}</Splider>
+                                <Splider exClass={'in_color card card-style rounded-0'} options={{perMove:1, perPage:1, padding:{right: '0%'}}} height={'250px'} showDots>{reasonArr}</Splider>
                             </div>
                         </div>
                     </div>
                    </Suspense>
             </>
-        } */
-        if(wcu?.list?.length > 0){ 
+        }
+        /* if(wcu?.list?.length > 0){ 
             const {descript, sub_title,title} = wcu;
 
             strengthsView =   <Suspense offset={150} once height={200}>
@@ -336,7 +336,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                 <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='color-theme px-4 py-2 rounded-5 '/>}</>
                             </div>
                             </Suspense>
-        }
+        } */
         
         }
         if(team?.length > 0){

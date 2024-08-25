@@ -194,6 +194,8 @@ export const getUserRest = async(reqObj) => {
 }
 
 export async function advancedFetchListings(payload, signal){
+  console.log('topList xxxxxxxxxxxxxx', advancedFetchListingsUrl(payload))
+
     try {
         const res = await kyFetch.get(advancedFetchListingsUrl(payload), {signal:signal}).json();
         if(res){
@@ -301,11 +303,16 @@ export async function getLocalTaxonomy(payload){
             })
           }else{
               if(parent_slug){
-                let  parentArr = items.filter((it) => it.slug === parent_slug);
+
+                let  parentArr = items.filter((it) => it.slug == parent_slug);
                 if(parentArr?.length > 0){
+                  console.log('parentArr', parent_slug);
+
                     let parentId= parentArr[0].id;
                     currentArr = items.filter((it) => it.parent === parentId)
                 }else{
+                  console.log('parentArr 2', parent_slug);
+
                     currentArr = items.filter((it) => it.parent === 106)
                 }
               }else{
@@ -821,3 +828,28 @@ export const listingServerQuery = async(params) => {
       serverObj : serverObj
     }
   }
+
+export async function explorerServerQuery({query, listing_type}){
+  
+  let serverObj = {};
+  const {sort, category, tags, region} = query;
+
+  async function topListings(){
+    let thumbsize = 'xtra_large_thumb'
+    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+    listing_type: listing_type ?? 'all', per_page: 5, 'event-date':'any-day'};
+
+    const list = await advancedFetchListings(load);
+    if(list){
+      serverObj.topList = list;
+    }
+  }
+
+  await topListings();
+  const eventDate = query['event-date'] ?? null;
+
+  let seoDescript = `Explore ${category ? translateDate(category) : ''} events${region ? '' : 'all around you'} ${eventDate ? ', scheduled for ' + translateDate(eventDate) : ''}${region ? ' in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`;
+
+  
+  return {propsObj: serverObj, seoDescript: seoDescript}
+}

@@ -52,10 +52,17 @@ useEffect(() => {
   return (<>
   <style>{`.site_bg_holder:has(.bg-overlay) img.site_bg_img {
     display: block !important;
-} img.site_bg_img{transition: all 1s}`}</style>
-    <div className={`container-fluid p-0 ${pageClass ?? ""}`}>
+} 
+img.site_bg_img{
+    transition: all 5s; 
+    opacity: 0
+}
+._loaded img.site_bg_img{
+    opacity: 1;
+}`}</style>
+    <div id='page_box' className={`container-fluid p-0 ${pageClass ?? ""}`}>
         {<div style={{height: '120vh', position:'fixed', top:'0', left:'0', width: '100vw'}} className='site_bg_holder position-fixed top-0'>
-          <Image  src={srcWithFallback(uiBackground, '/images/bg/pageBg.jpg')} fill className='site_bg_img d-none object-cover top-0'/>
+          <Image  src={srcWithFallback(uiBackground, '/images/bg/pageBg.jpg')} fill className='site_bg_img object-cover top-0'/>
           <div  className="bg-overlay h-100 bg-theme-transparent-0 position-relative" style={{position: 'relative',background: 'var(--bgThemeTransparent0)', backdropFilter:'saturate(180%) blur(20px) brightness(var(--bgBrightness))', height: '100vh'}}/>
         </div>}
         <div className={`row flex-nowrap _scaffold`} /* style={{zIndex: 0, position: 'relative'}} */>

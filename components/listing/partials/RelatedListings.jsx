@@ -8,7 +8,7 @@ function RelatedListingsConst({category, locations, dir_categories, listingId}) 
   return (
     <Client>
               <div className="pt-3 hide_if_empty">
-                <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category.slug} ids={dir_categories} exclude={listingId}/>
+                <RelatedByTaxSplide nextUpdater random taxonomy={`category`} taxName={category?.name} slug={category?.slug} ids={dir_categories} exclude={listingId}/>
                 <Heading1 exClass="mx-3 mb-0" title={'More Options'} subtitle={'Other Pages you may like'}/>
                 <Search propQuery={{category: category?.slug, exclude:listingId}} hideHeading={true}/>
                 </div>

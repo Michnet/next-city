@@ -33,7 +33,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) 
   const {greeting} = listing.landing;
   const {general_merchandise} = acf ?? {}
   const {likes, gen} = acf?.community ?? {};
-  const {rl_awesome, color:catColor, name:catName} = category;
+  const {rl_awesome, color:catColor, name:catName} = category ?? {};
   const {isMobile, isLargeTab} = useRecoilValue(UISizes);
 
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";

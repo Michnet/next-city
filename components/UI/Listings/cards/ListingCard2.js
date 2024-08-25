@@ -5,12 +5,12 @@ import PostLike from "../../partials/social/PostLike";
 import { PriceView } from "../../PriceView";
 
 function ListingCard2({listing, exClass}) {
-    let {id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
+    let {id, title, short_desc,type, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug} = listing;
 
     return <div className={`listing_card card card-style ${exClass ?? ''}`}>
                 {/* <img src="/images/grocery/isolated/3.png" className="img-fluid my-3"/> */}
                 <div className="content">
-                    <Link href={`/events/${slug}`}><h3 className="mb-0">{cleanHtml(title.rendered)}</h3></Link>
+                    <Link href={`/${type}s/${slug}`}><h3 className="mb-0">{cleanHtml(title.rendered)}</h3></Link>
                     <span>
                         <RatingView rating={rating} id={id}/>
                         <span className="font-11 ps-2 color-theme opacity-30">Based on 331 Reviews</span>

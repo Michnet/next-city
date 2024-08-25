@@ -2,9 +2,16 @@
 export const pwaName = "LyveCity"; 
 
 export function onAppLoad(){
+    
     if (typeof window !== "undefined") {
          if (document.readyState !== 'loading') {
             appjsCode();
+            const pageBox = document.getElementById("page_box");
+            if(pageBox){
+                if(!pageBox.classList.contains("_loaded")){
+                    pageBox.classList.add("_loaded");
+                }
+            }
          }else{
             document.addEventListener("DOMContentLoaded", (event) => {
               appjsCode();

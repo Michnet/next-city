@@ -12,7 +12,7 @@ import Link from "next/link";
 import { generateTempArray } from '@/helpers/universal';
 import { Skeleton } from "@/components/skeletons/Skeletons";
 
-function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort='latest', ignorePriority = false, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
+function ActivityCarouselConst({optionsObj = {}, listingType, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort='latest', ignorePriority = false, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
 
     let theView, fetchy = true, linkQuery = '';
     let localObj ={gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}
@@ -28,7 +28,7 @@ function ActivityCarouselConst({optionsObj = {}, skeletonWidth=150, skeletonHeig
 
     let Card;
     let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
-    listing_type:'event', per_page: 5, ...queryObj, ...params};
+    listing_type:listingType ?? 'all', per_page: 5, ...queryObj, ...params};
 
     switch (cardType) {
       case 11:

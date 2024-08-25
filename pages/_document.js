@@ -37,7 +37,7 @@ export default class MyDocument extends Document {
           `}
         </Script>
       </Head>
-      <body className="theme-light" data-highlight="highlight-red" data-gradient="body-default">
+      <body className="theme-light" data-highlight="highlight-brown" data-gradient="body-default">
         
         <Main/>
         <NextScript />
