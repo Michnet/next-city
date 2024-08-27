@@ -265,7 +265,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
         if(wcu?.list?.length > 0){
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
-                return <div className="strength_item"   style={{height: '250px', width: '400px', maxWidth: '95vw'}}>
+                return <div className="strength_item"   style={{height: '350px', width: '400px', maxWidth: '95vw'}}>
                             <div className="content m-0">
                                 <div className="image_bg">
                                   <Image fill style={{objectFit:"cover"}} src= {`${reason?.mylisting_accordion_photo}`}/>
@@ -296,7 +296,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                 <h4 className="section_subHead gray_text mb-3">Some reasons you may like this event</h4>
                             </div>}
                             <div className="strengths_body col-12 col-md-8 p-0">
-                                <Splider exClass={'in_color card card-style rounded-0 mx-0'} options={{perMove:1, perPage:1, padding:{right: '0%'}}} height={'250px'} showDots>{reasonArr}</Splider>
+                                <Splider exClass={'in_color card card-style rounded-0 mx-0'} options={{perMove:1, perPage:1, padding:{right: '0%'}}} height={'350px'} showDots>{reasonArr}</Splider>
                             </div>
                         </div>
                     </div>

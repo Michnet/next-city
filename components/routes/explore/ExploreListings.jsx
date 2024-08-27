@@ -23,7 +23,7 @@ function translateDate(string){
 
 let topListKey = 'tops'
 
-const ExploreConst = ({topList, type='event'}) => {
+const ExploreConst = ({topList, type=null}) => {
  const router = useRouter();
  const {query} = router;
  const {sort, category, tags, region} = query;
@@ -77,7 +77,6 @@ const ExploreConst = ({topList, type='event'}) => {
     controller.abort();
   }
 }, [query, activeTopList]);
-console.log('lists', activeTopList);
 
   return (
     <>
@@ -114,7 +113,7 @@ console.log('lists', activeTopList);
               </Slider>}
               </div>
               <div className="inner_section mb-4">
-                 <Suspense fallback={'Loading'}><TermsCarousel queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={`${type}s`}  type={'dir_cats'} infinity/></Suspense>
+                 <Suspense fallback={'Loading'}><TermsCarousel listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="query_hint mx-2 p-2">

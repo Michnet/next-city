@@ -30,6 +30,7 @@ import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import Link from "next/link";
 import { Heading1 } from "@/components/UI/partials/headings/Heading1";
+import HeroGrid from "@/components/listing/landingPages/hero/HeroGrid";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
   const ListingPageConst = ({listing, themeColor, themeColorHex}) => {
@@ -119,7 +120,7 @@ return linkzz;
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        {/* activeKey != 'home' &&  */<Hero2  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
+        {/* activeKey != 'home' &&  */<HeroGrid  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 my-4'>

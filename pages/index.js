@@ -129,7 +129,7 @@ export default function Home(props) {
     const {serverObj} = props;
    const {eventCategories, topLocations, busyLocations, latestList, latestPlaces} = serverObj ?? {};
    
-  let imgArr = eventCategories.map((ct) => {
+  let imgArr = eventCategories?.map((ct) => {
     let {term_meta, id} = ct;
     let {image_url} = term_meta;
     return image_url;

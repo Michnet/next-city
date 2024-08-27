@@ -5,7 +5,7 @@ import Splider from "../partials/Splider";
 import { TermIconBox } from "../partials/termLinks"
 import Mirrored from './../partials/Mirrored';
 
-function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClass, filterArr, setFilterArr, inactiveLinks, infinity, imagey, variant, taxonomy}){
+function TermsCarousel({items=[], slug, listingType, type, queryLink, queryKey, heady, exClass, filterArr, setFilterArr, inactiveLinks, infinity, imagey, variant, taxonomy}){
     const {query} = useRouter();
     const [locItems, setLocItems] = useState(items)
 
@@ -15,7 +15,7 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
         }else if(slug) {
             return slug; 
         }else{
-            return 'places';
+            return null;
         }
     }
 
@@ -40,7 +40,7 @@ function TermsCarousel({items=[], slug, type, queryLink, queryKey, heady, exClas
         if(locItems?.length > 0){
             if(type === 'dir_cats'){
         catsArray = locItems.map((cat, i) => {
-            return <Mirrored YDistance={50} gap='3px' skewDegrees={0}><TermIconBox flipped exClass='mx-1 rounded-4' item={cat} key={i}  shadowy/></Mirrored>
+            return <Mirrored YDistance={50} gap='3px' skewDegrees={0}><TermIconBox listingType={listingType} flipped exClass='mx-1 rounded-4' item={cat} key={i}  shadowy/></Mirrored>
         }) }/* if(type === 'shop_cats'){
             catsArray = locItems.map(cat => {
                 return <div onClick={() => setFilterArr({...filterArr, category:cat.id})}><TermCarouselItemImg key = {cat.id} term = {cat} inactive={inactiveLinks}/></div>

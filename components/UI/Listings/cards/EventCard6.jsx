@@ -77,19 +77,20 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', min
                 <div className="minw-0 flex-shrink-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
                     <TermTag exTagClass={'rounded-3 text-11 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
-                    <Link href={`/${type}s/${slug}`}><h3 className={`text-16 smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
+                    <Link href={`/${type}s/${slug}`}><h3 className={`text-16 smLine text-capitalize truncate`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
                     <div className="title_meta d-flex  flex-column lh-11">
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>} */}
-                        <div className="pe-2"><span className="font-13 opacity-40 fw-400 accordionfont-11 text-truncate d-block">{tagline}</span></div>
+                        {/* <div className="pe-2"><span className="font-13 opacity-40 fw-400 accordionfont-11 text-truncate d-block">{tagline}</span></div> */}
+                        {ticket_min_price_html && <PriceView  preText={'From'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
                         
                     </div>
                 </div>
                 <div className="ms-auto"><a href="#" data-menu="menu-controls" className="icon icon-xss d-block color-theme"><i className="fa fa-ellipsis-v"></i></a>
                 </div>
             </div>
-                            {ticket_min_price_html && <PriceView /* currencyClass='color-white' */ preText={'From'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
+                            {/* {ticket_min_price_html && <PriceView  preText={'From'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> } */}
                             <div className="d-none mb-2 line-height-sm color-theme opacity-80">
                                 <p className="gx-text-grey _excerpt truncate-2 text-14" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
                             </div>

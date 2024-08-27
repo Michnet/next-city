@@ -178,6 +178,8 @@ export const siteColorObjs = [
 ]
 
 export const siteColorsArray = ["#8CC152","#DA4453","#E9573F","#4A89DC","#D770AD","#fb3365","#967ADC","#AA8E69"]
+export const siteColorNamesArray = ["green","red","orange","blue","pink","pink2","magenta","brown"];
+
 
 
 export const siteColorObjsBackup = [

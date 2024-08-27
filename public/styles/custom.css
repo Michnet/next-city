@@ -761,6 +761,10 @@ div.truncate-5 > p {
     -webkit-line-clamp: 3;
 }
 
+.listing_hero._grid .hero_title .profile_name h1 {
+    font-size: 30px;
+}
+
 .truncate-4 {
     --max-lines: 4;
     max-height: calc(4 * var(--lh));
@@ -1277,11 +1281,14 @@ h6.tax_pare {}
     text-align: right;
     text-transform: capitalize;
     overflow: visible;
+    height: 100%;
     max-height: 10.5em;
     line-height: 1.5;
     font-family: var(--headingFont);
     overflow-wrap: normal;
     text-shadow: 1px 1px 2px #00000040;
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
 }
 
 .mega_gallery .text_box ._text._biggy {
@@ -1316,7 +1323,9 @@ h6.tax_pare {}
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: grayscale(1);
+    border-radius: 10px;
+    mix-blend-mode: hue;
+    background: var(--listingTheme);
 }
 
 .serv_descript{
@@ -1350,9 +1359,8 @@ h6.tax_pare {}
 .mega_item.text_box {
     flex-grow: 1;
     display: flex;
-    align-items: center;
+    align-items: start;
     flex-direction: row;
-    min-height: 180px;
     overflow: visible;
     /* display: block; */
 }
@@ -1389,7 +1397,7 @@ h6.tax_pare {}
     max-height: 50vh;
 }
 
-#mini_wall_gallery img {
+#mini_wall_gallery img, .vertical_grid .mega_item.text_box {
     max-height: 17vh;
 }
 
@@ -3204,7 +3212,7 @@ span.clear_tag {
 }
 
 .list-custom-small ._link {
-    color: #1f1f1f;
+    color: var(--colorTheme);
     font-weight: 500;
     font-size: 13px;
     border-bottom: solid 1px rgba(0, 0, 0, 0.05);
@@ -3961,7 +3969,6 @@ ul.listing_menu .ex_label {display: none;}
 }
 
 ._price {
-    display: flex;
     flex-direction: column-reverse;
     font-family: var(--headingFont);
     color: var(--highlight);
@@ -4154,6 +4161,11 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     z-index: 2;
 }
 
+.horizontal_grid .mega_item.text_box {
+    max-height: 100%;
+    min-height: 100%;
+}
+
 
 .badge.bg-highlight {
     background: var(--secTheme) !important;
@@ -4297,7 +4309,14 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
+    .hero2.listing_hero._grid .hero_images .hero_cover{
+        filter: grayscale(1) brightness(0.8);
+        min-height: 300px;
+        margin-bottom: 0;
+    }
+
+.listing_hero._grid .mirror_box {margin-bottom: -60px;}
     .gx-chat-module-box .module_row{
     grid-template-columns: 250px calc(100% - 265px);
 }
@@ -4373,7 +4392,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     margin-bottom: 5px;
     top: 0px;
 }
-    .hero_title{
+    .hero_title._detail{
     padding: 5em !important;
 }
     .header.header-sticky.header-always-show.header-invert i:not(.left_menu_btn) {
@@ -4429,6 +4448,7 @@ div#explore_nav .view_filter {
 }
 ._mini .gx-profile-container{
     padding-top: 150px;
+    margin-bottom: -85px;
 }
 ._listing:has(.gx-profile-banner._mini) .main_content {
     padding-top: 0;
@@ -4459,7 +4479,9 @@ div#explore_nav .view_filter {
 }
      .hero2.listing_hero .hero_images .hero_cover img{transform: skewY(4deg);min-height: 107%;}
 
-.hero2.listing_hero .hero_images .hero_cover {}
+.hero2.listing_hero._grid .hero_images .hero_cover {
+    min-height: 375px;
+}
 
 .hero2.listing_hero .hero_images .hero_cover .card-bottom {
     height: 100%;
@@ -4536,6 +4558,10 @@ div#explore_nav .view_filter {
 }
     .page-content {
     padding-bottom: 62px;
+}
+
+.page-content.single_listing {
+    padding-bottom: 0;
 }
     #explore_nav .nav-item.active button, #explore_nav .nav-item.active button span i{}
 #explore_nav .nav-item button{
@@ -4790,6 +4816,14 @@ ul.listing_navigator.view_all.grid li .card {
     color: #fff;
 }
 
+.listing_hero._grid .hero_actions span {
+    color: var(--colorTheme);
+}
+
+.listing_hero._grid .hero_actions i {
+    border-radius: 50%;
+}
+
 .hero_actions {
     color: #fff;
 }
@@ -4867,4 +4901,27 @@ ul.listing_navigator.view_all.grid li .card {
 
 .hide_if_empty:empty {
     display: none;
+}
+
+.single_listing:has(.listing_hero._grid) .landing_row #mini_wall_gallery {
+    display: none;
+}
+
+.strength_item .strength_content {
+    padding-top: 87px;
+}
+
+.item_switch i {
+    border: 1px solid var(--borderTheme);
+    display: block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.listing_hero #wall_gallery_container {
+    max-width: 800px;
+    margin: auto;
 }

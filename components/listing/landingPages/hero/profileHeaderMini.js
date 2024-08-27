@@ -54,7 +54,7 @@ const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {
          <Image className="object-cover" fill quality={95} /* placeholder={<LoaderDualRingBoxed/>} fill style={{objectFit:"cover"}} */ src= {srcWithFallback(coverPhoto)} priority  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
 /> 
         <div className="gx-profile-container">
-          <div className="mini_head_content gap-3 row flex-nowrap md:flex-column overflow-hidden">
+          <div className="mini_head_content gap-3 row flex-nowrap md:flex-column overflow-hidden d-none d-md-flex">
               <div className="desc _left col-12 col-md-8 px-0">
               <div className="_title">
                 <Client><div className="title_name">

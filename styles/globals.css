@@ -4911,7 +4911,7 @@ font-size: 25px;
   background: var(--bgTheme);
   font-weight: 500;
   font-size: 30px;
-  float: right;
+  /* float: none; */
 }
 
 
@@ -6238,6 +6238,10 @@ body:not(._fixed_top) .single_listing .ant-layout-header .gx-header-notification
   .hero2.listing_hero .hero_images .hero_cover{
   min-height: 400px;
 }
+
+.hero2.listing_hero._grid .hero_images .hero_cover {
+    min-height: 170px;
+}
   .hero_images .mobile_1{
     margin-top: -47px;
     border-radius: 15px 15px 0 0;
@@ -6501,6 +6505,10 @@ section.landing_page .intro_content{
   .hero2.listing_hero .hero_images .hero_cover{
     height: 70vh;
   }
+
+.hero2.listing_hero._grid .hero_images .hero_cover {
+    height: 35vh;
+}
      .footer-bottom-container{
   padding: 0 10px;
 }
