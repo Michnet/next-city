@@ -762,7 +762,7 @@ div.truncate-5 > p {
 }
 
 .listing_hero._grid .hero_title .profile_name h1 {
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 .truncate-4 {
@@ -4311,7 +4311,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 
 @media (max-width: 992px) {
     .hero2.listing_hero._grid .hero_images .hero_cover{
-        filter: grayscale(1) brightness(0.8);
+        filter: grayscale(1) brightness(0.8) blur(2px);
         min-height: 300px;
         margin-bottom: 0;
     }
@@ -4480,7 +4480,7 @@ div#explore_nav .view_filter {
      .hero2.listing_hero .hero_images .hero_cover img{transform: skewY(4deg);min-height: 107%;}
 
 .hero2.listing_hero._grid .hero_images .hero_cover {
-    min-height: 375px;
+    min-height: 400px;
 }
 
 .hero2.listing_hero .hero_images .hero_cover .card-bottom {
