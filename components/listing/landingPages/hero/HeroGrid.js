@@ -29,7 +29,7 @@ import MegaGalleryMini from '@/components/UI/Galleries/MegaGalleryMini';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
-const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, token}) => {
+const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, token, exClass=''}) => {
   const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
   const {greeting} = listing.landing;
   const {general_merchandise} = acf ?? {}
@@ -96,7 +96,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
 
   return (<>
     <Suspense>
-        <div className={`hero2 listing_hero _grid ${styles['location']} d-block`}>
+        <div className={`hero2 listing_hero _grid ${styles['location']} d-block ${exClass}`}>
             <div className='hero_images d-block d-lg-none md-hero pos-relative'>
               <Mirrored coverTop gap={0} objClass=''  topPadding={'50px'} skewDegrees={4} skewDir={'-'} YDistance={200}>
                 <div className='hero_cover position-relative w-100'>
@@ -151,7 +151,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
                         </div>
                   </div>
                   
-                <MegaGalleryMini listing={listing} setActiveKey={setActiveKey}/>
+                <MegaGalleryMini listing={listing} setActiveKey={setActiveKey} gutter={'0px'}/>
                 
                 
             </div>
@@ -207,7 +207,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
           
 
 
-            <div className='hero_title _detail p-3 md:px-35 md:pb-45 pt-20 d-grid gap-4 align-items-center z-2 position-relative'>
+            <div className='hero_title _detail md:px-35 md:pb-45 pt-30 d-grid gap-4 align-items-center z-2 position-relative'>
             
              <div className='profile_name d-none d-md-block'>
              
@@ -226,7 +226,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
             <div> 
               <Client>
               <div className='row_flex gap-2 justify-between mb-3'>
-              {<button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
+              {<button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
                     <i className={`far fa-${general_merchandise?.length > 0 ? 'store' : 'comment-smile'} font-20 text-center color-white`}></i>
                     {general_merchandise?.length > 0 ? 'See Store' : 'Contact'}
                   </button>}
@@ -260,12 +260,11 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
                     Booking
                   </button>} />
                   } */}
-                  
 
                   <div className="color-theme d-flex align-items-center text-center hero_actions">
                     {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className={`bg-${randomEither(siteColorNamesArray)}-dark fal fa-phone text-center text-24`}></i><span>Call</span></a>}
                     <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`bg-${randomEither(siteColorNamesArray)}-dark ${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
-                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`fas fa-heart text-center text-24`}/><span>Save</span></div>} 
+                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`bg-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span>Save</span></div>} 
                         unlikedEl={<div style={{width: '50px'}} className="link"><i className={`bg-${randomEither(siteColorNamesArray)}-dark fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
                         <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className={`bg-${randomEither(siteColorNamesArray)}-dark fas fa-ellipsis-h text-center text-24`}></i>
                         <span>More</span></button>
@@ -299,8 +298,6 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
               <Client><div className="flex-grow-1 gap-2 d-flex md:items-end items-start flex-column col-12 col-md-6 px-0">
                 {id ? <><CountDownUI light fromActive eventId={id} />
               {<DateViewDescriptive fromActive eventId={id} exClass={'_hero mb-10'} light/>}</> : <></>}
-               
-                
               </div>
             </Client>
             </div>

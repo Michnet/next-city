@@ -8,13 +8,13 @@ import { cleanHtml, randomBetween, randomEither, shuffleArray, textSizeClass } f
 import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
 import { siteColors, siteSettings } from "@/helpers/base";
 
-export const HorizontalGrid = ({children, height}) => {
-  return <div style={{height : height ?? 150, marginBottom: '10px', gap: '10px'}} className="horizontal_grid">
+export const HorizontalGrid = ({children, height, gutter}) => {
+  return <div style={{height : height ?? 150, marginBottom: gutter, gap: gutter}} className="horizontal_grid">
           {children}
   </div>
 }
 
-const MegaGalleryMini = ({listing, color, setActiveKey}) => {
+const MegaGalleryMini = ({listing, color, setActiveKey, gutter='10px'}) => {
   const {landing, marketing,id, gallery:l_gallery, meta} = listing;
   //const {_job_gallery:l_gallery} = meta ?? {};
   const {greeting} = landing;
@@ -51,7 +51,7 @@ useEffect(() => {
   return () => setGallery([])
 }, [listing.id]);
 
-let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid>
+let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid gutter={gutter}>
   {shuffleArray([...grid1Arr]).map((item, index) => {
     if (typeof item == 'string') {
       if(item?.length > 0){
@@ -59,7 +59,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid>
           return  <GalleryPlate imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
             //let backGs = ['100', '200', '300', '400'];
-          return <div key={index} className={`mega_item card card-style m-0 text_box shadow-bg shadow-bg-l p-4 justify-end bg-listing`}>
+          return <div key={index} className={`mega_item card card-style m-0 text_box shadow-bg shadow-bg-m p-4 justify-end bg-listing`}>
             <p className={`_text truncate-7 color-white ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
           </div>
         }
@@ -82,7 +82,7 @@ galleryView = <>
           <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-3 overflow-hidden rounded-4">
           <Grid1/>
         {gallArr.length > 0 && <ResponsiveMasonry className="masonry vertical_grid" columnsCountBreakPoints={{0: 2, 575: 3, 1024: 4}}>
-            <Masonry gutter ='10px'>
+            <Masonry gutter = {gutter}>
             {gallArr.map((item, index) => {
               if (typeof item == 'string') {
                 if(item?.length > 0){

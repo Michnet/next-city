@@ -120,7 +120,7 @@ return linkzz;
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        {/* activeKey != 'home' &&  */<HeroGrid  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
+        {/* activeKey != 'home' &&  */<HeroGrid exClass={'_laid'}  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 my-4'>
