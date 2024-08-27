@@ -225,7 +225,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
              </div>
             <div> 
               <Client>
-              <div className='row_flex gap-2 justify-between'>
+              <div className='row_flex gap-2 justify-between mb-3'>
               {<button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
                     <i className={`far fa-${general_merchandise?.length > 0 ? 'store' : 'comment-smile'} font-20 text-center color-white`}></i>
                     {general_merchandise?.length > 0 ? 'See Store' : 'Contact'}

@@ -7,7 +7,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Image from "next/image";
-import { cleanHtml, randomBetween, resizedImage, shuffleArray, textSizeClass } from "@/helpers/universal";
+import { cleanHtml, randomBetween, randomEither, resizedImage, shuffleArray, textSizeClass } from "@/helpers/universal";
 import { LoaderDualRingBoxed, LoaderEllipsis } from "@/components/skeletons/Loaders";
 import { siteSettings, fallbackImgBlur, fallbackImgSrcSet } from "@/helpers/base";
 
@@ -22,7 +22,7 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, cont
     setLoading(false);
   }, [item])
   
-  return <div className={`gallery_plate pointer ${exClass ?? ''}`} onClick={onclickFunc ? () => onclickFunc() : null} >
+  return <div style={{background: `url(${resizedImage(item, imgSize)})`}} className={`shadow-bg-l shadow-bg gallery_plate pointer ${exClass ?? ''}`} onClick={onclickFunc ? () => onclickFunc() : null} >
     {loading ? <div className="d-flex justify-center align-center h-100 align-items-center"><LoaderEllipsis/></div> : 
       <>
       <div className={`mega_item`}>
@@ -179,7 +179,7 @@ galleryView = <>
                   return  <GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
                 }else{
                   if(item?.length > 0){
-                  return <div key={index} className={`mega_item text_box bg-gray-${backGs[Math.floor(Math.random()*backGs.length)]}`}>
+                  return <div key={index} className={`mega_item text_box bg-gray-${randomEither(backGs)}`}>
                     <p className={`_text truncate-7 ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
                   </div>
                   }

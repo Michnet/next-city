@@ -59,7 +59,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid>
           return  <GalleryPlate imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
             //let backGs = ['100', '200', '300', '400'];
-          return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-listing`}>
+          return <div key={index} className={`mega_item card card-style m-0 text_box shadow-bg shadow-bg-l p-4 justify-end bg-listing`}>
             <p className={`_text truncate-7 color-white ${textSizeClass({text : item})}`}>{cleanHtml(item)}</p>
           </div>
         }
@@ -78,7 +78,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid>
 
 galleryView = <> 
         
-        {gallArr?.length > 0 && <div id = 'wall_gallery_container' onClick={() => setActiveKey('gallery')} className="position-relative overflow-hidden">
+        {gallArr?.length > 0 && <div id = 'wall_gallery_container' onClick={() => setActiveKey('gallery')} className="position-relative">
           <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-3 overflow-hidden rounded-4">
           <Grid1/>
         {gallArr.length > 0 && <ResponsiveMasonry className="masonry vertical_grid" columnsCountBreakPoints={{0: 2, 575: 3, 1024: 4}}>
