@@ -2206,9 +2206,9 @@ select.multi-select._tags:focus {
 
 .overflow_card.listing_greeting > * {margin-left: -50px;}
 
-.strength_heading {font-size: 20px;color: #e7e7e7;font-weight: bold;}
+.strength_heading {color: #e7e7e7;font-weight: bold;}
 
-p.strength_descript {color: #ffffff;line-height: 1.3;}
+p.strength_descript {color: #ffffff;}
 .toggle_holder {width: 65px;height: 50px;}
 
 .mini_head_content .profile-actions .action_box i {

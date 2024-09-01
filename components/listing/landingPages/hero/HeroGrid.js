@@ -152,7 +152,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
                         </div>
                   </div>
                   
-                <MegaGalleryMini maxImages={isMobile ? 4 : 6} listing={listing} setActiveKey={setActiveKey} gutter={'3px'}/>
+                <MegaGalleryMini maxImages={isMobile ? 4 : 6} listing={listing} setActiveKey={setActiveKey} gutter={'5px'}/>
                 
                 
             </div>

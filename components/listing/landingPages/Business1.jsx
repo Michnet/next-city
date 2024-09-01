@@ -6,7 +6,7 @@ import { memo, Suspense, useMemo, useEffect } from 'react';
 import { Client } from 'react-hydration-provider';
 // import { BookingView } from '~/pages/events/[slug]';
 import Splider from '@/components/UI/partials/Splider';
-import { PostThumbnailSrc, resizedImage, srcWithFallback } from '@/helpers/universal';
+import { PostThumbnailSrc, randomEither, resizedImage, srcWithFallback } from '@/helpers/universal';
 import { CustomRow, DualColorHeader, SocialLinks } from '@/components/UI/Partials';
 import TagsCloud from '../partials/TagsCloud';
 import MegaGalleryMini from '@/components/UI/Galleries/MegaGalleryMini';
@@ -23,7 +23,7 @@ import ListingDetail from '../profileInfo/ListingDetail';
 import ListingStats from '../profileInfo/partials/ListingStats';
 import Widget from "@/components/UI/partials/Widget";
 import About from '../profileInfo/partials/About';
-import { homeurl } from './../../../helpers/base';
+import { homeurl, siteColorNamesArray } from '@/helpers/base';
 import { Heading1 } from '@/components/UI/partials/headings/Heading1';
 import ListingProductsSimple from '../shop/ListingProductsSimple';
 
@@ -265,17 +265,17 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
         if(wcu?.list?.length > 0){
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
-                return <div className="strength_item"   style={{height: '350px', width: '400px', maxWidth: '95vw'}}>
+                return <div className={`strength_item bg-cover bg-${randomEither(siteColorNamesArray)}-dark`}   style={{height: '350px', width: '400px', maxWidth: '95vw', background: `url(${resizedImage(reason?.mylisting_accordion_photo, 'medium')})`}}>
                             <div className="content m-0">
-                                <div className="image_bg">
+                                {/* <div className="image_bg">
                                   <Image fill style={{objectFit:"cover"}} src= {`${reason?.mylisting_accordion_photo}`}/>
-                                </div>
+                                </div> */}
                                
                                 <div className="strength_content">
                                     <div className="content_box d-flex flex-column align-items-end align">
-                                        <h5 className="strength_heading truncate-2">{reason.item_title}</h5>
+                                        <h5 className="strength_heading truncate-2 text-30">{reason.item_title}</h5>
                                         <hr className='border-loud opacity-100 w-48' style={{borderTopWidth: '3px'}}/>
-                                        <p className="strength_descript truncate-4">{reason.item_description}</p>
+                                        <p className="strength_descript truncate-4 text-18">{reason.item_description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +284,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             });
             strengthsView = <>
                     <Suspense offset={150} once height={200}>
-                    <div className="listing_strengths mb-50">
+                    <div className={`listing_strengths mb-50`}>
                         <div className="row_content row" data-aos="fade-right">
                             {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
