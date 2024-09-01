@@ -148,10 +148,11 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
                               unlikedEl={<div style={{width: '50px'}} className="link"><i className={`fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
 
                           </div> */}
+                          <ListingMetaMini  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                         </div>
                   </div>
                   
-                <MegaGalleryMini listing={listing} setActiveKey={setActiveKey} gutter={'0px'}/>
+                <MegaGalleryMini maxImages={isMobile ? 4 : 6} listing={listing} setActiveKey={setActiveKey} gutter={'3px'}/>
                 
                 
             </div>
@@ -262,11 +263,11 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
                   } */}
 
                   <div className="color-theme d-flex align-items-center text-center hero_actions">
-                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className={`bg-${randomEither(siteColorNamesArray)}-dark fal fa-phone text-center text-24`}></i><span>Call</span></a>}
-                    <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`bg-${randomEither(siteColorNamesArray)}-dark ${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
-                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`bg-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span>Save</span></div>} 
-                        unlikedEl={<div style={{width: '50px'}} className="link"><i className={`bg-${randomEither(siteColorNamesArray)}-dark fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
-                        <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className={`bg-${randomEither(siteColorNamesArray)}-dark fas fa-ellipsis-h text-center text-24`}></i>
+                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fal fa-phone text-center text-24`}></i><span>Call</span></a>}
+                    <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark ${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
+                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span>Save</span></div>} 
+                        unlikedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
+                        <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-ellipsis-h text-center text-24`}></i>
                         <span>More</span></button>
                     
                     </div>

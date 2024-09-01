@@ -14,7 +14,7 @@ export const HorizontalGrid = ({children, height, gutter}) => {
   </div>
 }
 
-const MegaGalleryMini = ({listing, color, setActiveKey, gutter='10px'}) => {
+const MegaGalleryMini = ({listing, color, setActiveKey, gutter='10px', withText=false, maxImages=5}) => {
   const {landing, marketing,id, gallery:l_gallery, meta} = listing;
   //const {_job_gallery:l_gallery} = meta ?? {};
   const {greeting} = landing;
@@ -29,10 +29,10 @@ const MegaGalleryMini = ({listing, color, setActiveKey, gutter='10px'}) => {
      return gallery.indexOf(item);
   }
 
-  const textArr = shuffleArray([...punchlines]);
+  const textArr = withText ? shuffleArray([...punchlines]) : [];
 
   let textOptions = textArr.splice(0, 1), galleryView;
-  let miniGall = gallery?.length > 0  ? [...gallery].splice(0, 5) : [];
+  let miniGall = gallery?.length > 0  ? [...gallery].splice(0, maxImages) : [];
   let megaGall = shuffleArray([...textOptions, ...miniGall]);
   let grid1Arr = megaGall.slice(0,2);
   let gallArr = megaGall.slice(2);

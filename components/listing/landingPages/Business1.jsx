@@ -284,8 +284,8 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             });
             strengthsView = <>
                     <Suspense offset={150} once height={200}>
-                    <div className="listing_strengths" data-aos="zoom-in">
-                        <div className="row_content row">
+                    <div className="listing_strengths mb-50">
+                        <div className="row_content row" data-aos="fade-right">
                             {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
                                 <h4 className="section_subHead gray_text mb-3">{wcu.wcu_intro_detail}</h4>
@@ -295,7 +295,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                 <h3 className="section_head dark_text">Why Attend</h3>
                                 <h4 className="section_subHead gray_text mb-3">Some reasons you may like this event</h4>
                             </div>}
-                            <div className="strengths_body col-12 col-md-8 p-0">
+                            <div className="strengths_body col-12 col-md-8 p-0" data-aos="zoom-in">
                                 <Splider exClass={'in_color card card-style rounded-0 mx-0'} options={{perMove:1, perPage:1, padding:{right: '0%'}}} height={'350px'} showDots>{reasonArr}</Splider>
                             </div>
                         </div>

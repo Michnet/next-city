@@ -1,5 +1,6 @@
 //import { nextPostState } from "@/contexts/atoms"
 import { openOffCanvas } from "@/helpers/appjs"
+import { srcWithFallback } from "@/helpers/universal"
 import { memo, useState, useEffect} from "react"
 //import { useRecoilValue } from "recoil"
 import BottomMenu from "../layouts/BottomMenu"
@@ -10,7 +11,7 @@ import Navigator from "./navigation/Navigator"
 import { NextPostLink, PreviousPostLink } from "./partials/ListingLinks"
 
 const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey}) =>{
-    const {phone, whatsapp, acf, id} = listing ?? {}
+    const {phone, whatsapp, acf, id, cover} = listing ?? {}
     const {general_merchandise} = acf ?? {}
 
     const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
     }, [listing])
     
 
-    let bottomContent = <div id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-3 px-2">
+    let bottomContent = <div style={{backgroundImage: `url(${srcWithFallback(cover)})`, width: '93vw'}} id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-3 px-2  bg-header bg-center bg-cover border-0 color-white mx-auto mb-10 font-900 shadow-bg shadow-bg-m">
                 <div className='footer_content py-0 bg-transparent minw-0 flex-shrink-1 shadow-0 justify-between'>
                     {/* <div className="row_flex align-items-center">
                 <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600 text-truncate me-2'/>
@@ -39,8 +40,8 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
                     </div> */}
                     <Navigator exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
                     </div>
-                    <button style={{height: '45px', borderRadius: '10px'}} data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 border'}>
-                    <i className="fas fa-ellipsis-h text-center text-24 color-theme"/>
+                    <button style={{height: '45px', borderRadius: '10px'}} data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 border-light'}>
+                    <i className="fas fa-ellipsis-h text-center text-24"/>
                     <div className="position-absolute show_in_transit"><LoaderRingBoxed size={75}/></div>
                     </button>
                    {/*  <div className='_fab'>

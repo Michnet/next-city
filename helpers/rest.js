@@ -786,13 +786,13 @@ export const listingServerQuery = async(params) => {
     const listing = postArr[0];
     serverObj.listing = listing && listing != 'undefined' ? listing :  null;
    
-    async function getFreshDesc(){ 
+   /*  async function getFreshDesc(){ 
       const newDesc = await fetchRephrase(listing?.short_desc, 'Paraphrase in English with humor and a marketing tone');
       if(newDesc){
         freshDesc = newDesc;
         return newDesc;
       }
-      }
+      } */
 
     async function extendListing(listing){
       //const blurUrl = listing?.cover ? await getBase64(listing.cover) : null;
@@ -800,7 +800,7 @@ export const listingServerQuery = async(params) => {
       //const blurryGal = await galleryWithBlurs(listing.gallery);
       const author = await getUserRest({key:'ID', val: listing.author_id});
   
-      serverObj = {...serverObj, listing : {...listing, freshDesc:freshDesc, author: author ? author.user : null }}
+      serverObj = {...serverObj, listing : {...listing, /* freshDesc:freshDesc,  */author: author ? author.user : null }}
       /* serverQuery = {...serverQuery, 
         serverObj : {...serverObj, 
           listing : {...listing, 
@@ -818,7 +818,7 @@ export const listingServerQuery = async(params) => {
     }
 
     if(listing){
-        await getFreshDesc();
+        //await getFreshDesc();
         await extendListing(listing);
         await getThemeColor();
     }

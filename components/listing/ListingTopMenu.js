@@ -92,7 +92,7 @@ let menuContent = <div className="menu_content">
 
 
 const TopMenuView = ({exClass}) => <div className={`profile-top-menu ${exClass ?? ''}`}>
-              <div style={{backgroundImage: `url(${srcWithFallback(cover)})`}}  className="bg-header bg-center bg-cover border-0 d-block d-md-none mx-auto p-0 s mb-0 font-900 shadow-bg shadow-bg-m btn-icon text-start">
+              <div  className="border-0 d-block d-md-none mx-auto p-0 s mb-0 font-900 btn-icon text-start">
           <i className="fas fa-bars left_menu_btn text-20 d-block d-md-none text-center" onClick={(e) => openOffCanvas(e)}  data-menu='mobile_sidebar'></i>
                 {menuContent}
               </div>
