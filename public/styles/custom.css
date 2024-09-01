@@ -4053,7 +4053,8 @@ ul.listing_menu .ex_label {display: none;}
 }
 .menu .menu-title {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: calc(100% - 55px) 55px;
+    padding-top: 15px;
     justify-content: flex-end;
     align-items: center;
     border-bottom: 1px solid var(--borderTheme);

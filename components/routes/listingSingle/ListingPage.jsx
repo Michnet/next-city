@@ -182,8 +182,8 @@ return linkzz;
     </div>
 
     <div id="listingActions" className="menu menu-box-bottom menu-box-detached">
-        <div className="menu-title mt-0 pt-0">
-              <div><h1>{cleanHtml(listing?.title.rendered)}</h1>
+        <div className="menu-title smLine mt-0">
+              <div><h1 className="truncate-2 p-0 px-3">{cleanHtml(listing?.title.rendered)}</h1>
               <p className="color-highlight">Options ...</p></div>
               <span className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
