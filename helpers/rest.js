@@ -1,5 +1,5 @@
 import { kyFetch, oathInfo, serializeQuery, userReviews, WPDomain, userActions, siteColorObjs, siteColors } from "./base";
-import { fetchRephrase, randomEither } from "./universal";
+import { fetchRephrase, randomEither, translateDate } from "./universal";
 import { getProductCategories } from "./WooRest";
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());

@@ -21,6 +21,9 @@ function reduceTextSize(){
   });
 } */
 
+export function translateDate(string){
+  return string.replaceAll("-", " ");
+}
 
 export function UICleanup(){
   closeMenus()
