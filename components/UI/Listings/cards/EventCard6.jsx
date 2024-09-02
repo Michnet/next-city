@@ -78,7 +78,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', min
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
                     <TermTag exTagClass={'rounded-3 text-12 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                     <Link href={`/${type}s/${slug}`}><h3 className={`text-16 smLine text-capitalize truncate fw-600`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
-                    <div className="mb-2 line-height-sm color-theme opacity-60">
+                    <div className="mb-2 line-height-sm color-theme opacity-50">
                                 <p className="gx-text-grey _excerpt truncate-2 text-14" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
                             </div>
                     <div className="title_meta d-flex  flex-column lh-11">

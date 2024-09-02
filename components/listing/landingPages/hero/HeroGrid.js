@@ -119,7 +119,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
                   </div>
                 </div>
                 </Mirrored>
-                <div className='row_flex justify-items-end gap-3 d-lg-none hero_title position-absolute  top-0 align-items-end justify-end text-right right-0 pe-4 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10', paddingTop: '100px'}}>
+                <div className='row_flex justify-items-end gap-3 d-lg-none hero_title position-absolute  top-0 align-items-end justify-end text-right right-0 pe-5 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10', paddingTop: '100px'}}>
                   <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
                   <div className='row_flex justify-end mb-10'>
                     <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>

@@ -244,7 +244,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                     <h5>Listing Features</h5>
                     <h4>Page Tags</h4>
                 </div>
-                <div className='tags_row py-5 card card-style'>
+                <div className='tags_row py-5 card card-style across_border partial_border mb-50'>
                 <div className='row_content'>
                     <TagsCloud live hue={colorHex} dark ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
@@ -273,9 +273,9 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                
                                 <div className="strength_content">
                                     <div className="content_box d-flex flex-column align-items-end align">
-                                        <h5 className="strength_heading truncate-2 text-30">{reason.item_title}</h5>
+                                        <h5 className="strength_heading truncate-2 text-30 fw-light">{reason.item_title}</h5>
                                         <hr className='border-loud opacity-100 w-48' style={{borderTopWidth: '3px'}}/>
-                                        <p className="strength_descript truncate-4 text-18">{reason.item_description}</p>
+                                        <p className="strength_descript truncate-4 text-16">{reason.item_description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -511,8 +511,8 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             {performersView}
             {guestsView}
             {strengthsView }
-            {reviewsView}
             {socialsView}
+            {reviewsView}
             <Client>{tagsView}</Client> 
             {statsView}
             {faqsView}

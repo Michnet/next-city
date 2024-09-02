@@ -766,7 +766,7 @@ div.truncate-5 > p {
 }
 
 .listing_hero._grid .hero_title .profile_name h1 {
-    font-weight: 100;
+    font-weight: 200;
 }
 
 .truncate-4 {
@@ -840,6 +840,7 @@ div.truncate-5 > p {
     background: var(--bgThemeTransparent);
     box-shadow: #00000042 0px 0px 23px 1px;
     backdrop-filter: blur(4px);
+    background-position: center;
 }
 
 #footer-bar .nav_i_subtitle {
@@ -1217,7 +1218,8 @@ h6.tax_pare {}
 }
 
 .single_listing .sc_heading_3 h4 {
-    color: var(--listingTheme);
+    /* color: var(--listingTheme); */
+    opacity: 0.5;
 }
 
 .accordion-button .group_icon {
@@ -4478,7 +4480,7 @@ div#explore_nav .view_filter {
     .listing_hero._grid #wall_gallery_container{
     margin-top: -30px;
 }
-    .listing_page{padding-bottom: 65px;}
+    .listing_page{padding-bottom: 75px;}
     .hero2.listing_hero .listing_meta i, .hero2.listing_hero.listing_meta._mini i {
     color: white;}
     .gx-chat-module-box .module_row{
@@ -4551,6 +4553,10 @@ div#explore_nav .view_filter {
     margin-bottom: 0;
     overflow: visible;
     max-width: 100vw;
+}
+
+#listing_header:not(.header-active) {
+    text-shadow: #000000a8 0px 1px 10px;
 }
 
 #listing_header .header_inner {
@@ -5008,4 +5014,7 @@ ul.listing_navigator.view_all.grid li .card {
     border: 1px solid var(--borderTheme);
     border-width: 0 0 0 1px;
     border-radius: 0;
+}
+
+.listing_page p {
 }

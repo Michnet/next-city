@@ -184,11 +184,11 @@ export default function Home(props) {
           <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '320px', backgroundImage: `url("${randomEither(ver == 'events' ? imgArr : placesImgArr)}")`}}/>
         </Mirrored>
         <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center" style={{textWrap: 'pretty'}}>
-          <h1 className="color-white fw-lighter text-center mb-4 font-28 w-75">{ver == 'events' ? 'Great events all around you' : 'Find you next favourite place'}</h1>
+          <h1 className="color-white fw-light text-center mb-4 font-28 w-75">{ver == 'events' ? 'Great events all around you' : 'Find you next favourite place'}</h1>
           <p className="color-white text-center mb-30">{`What ${ver == 'events' ? 'experiences' : 'place'} are you looking for today?`}</p>
-          <div className="row_flex gap-3 color-white flex-wrap justify-center align-items-center">
-            <button active={ver == 'events'} className={`big_btn btn btn-m rounded-m text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'events' ? 'transparent border-dark-dark' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('events')}><i className='text-22 text-center far fa-calendar-check'/><span>Search Events</span></button>
-            <button active={ver == 'places'} className={`big_btn btn btn-m rounded-m text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'places' ? 'transparent border-dark-dark' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('places')}><i className='text-22 text-center far fa-map-marked-alt'/><span>Search Places</span></button>
+          <div className="row_flex gap-3 color-white flex-nowrap justify-center align-items-center">
+            <button active={ver == 'events'} className={`big_btn btn btn-m rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'events' ? 'transparent border-dark-dark' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('events')}><i className='text-22 text-center far fa-calendar-check'/><span>Search Events</span></button>
+            <button active={ver == 'places'} className={`big_btn btn btn-m rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'places' ? 'transparent border-dark-dark' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('places')}><i className='text-22 text-center far fa-map-marked-alt'/><span>Search Places</span></button>
             
           </div>
         </div>
