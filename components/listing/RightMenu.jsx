@@ -5,6 +5,7 @@ import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import HeaderAnnex from "../layouts/partials/HeaderAnnex";
 import Mirrored from "../UI/partials/Mirrored";
+import { fallbackImgSrcSet } from '@/helpers/base';
 
 function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
     const {cover, large_thumb, title, locations} = listing ?? {};

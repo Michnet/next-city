@@ -5786,7 +5786,7 @@ footer .container.overlay {
 }
 
 .single_listing .woocommerce-Price-amount.amount {
-  color: var(--listingTheme);
+  color: var(--colorTheme);
 }
 
 .tab-pane.widgey .tab_inner {

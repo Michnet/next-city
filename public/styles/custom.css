@@ -765,6 +765,10 @@ div.truncate-5 > p {
     /* font-size: 30px; */
 }
 
+.listing_hero._grid .hero_title .profile_name h1 {
+    font-weight: 100;
+}
+
 .truncate-4 {
     --max-lines: 4;
     max-height: calc(4 * var(--lh));
@@ -4471,6 +4475,9 @@ div#explore_nav .view_filter {
 }
 
 @media (max-width: 768px) {
+    .listing_hero._grid #wall_gallery_container{
+    margin-top: -30px;
+}
     .listing_page{padding-bottom: 65px;}
     .hero2.listing_hero .listing_meta i, .hero2.listing_hero.listing_meta._mini i {
     color: white;}
@@ -4517,6 +4524,8 @@ div#explore_nav .view_filter {
     border-radius: inherit;
     overflow: hidden;
 }
+
+.listing_hero._grid .hero_images .hero_cover .card-bottom {backdrop-filter: brightness(0.5) blur(0.5px);}
      .hero2.listing_hero .hero_images .hero_cover img{transform: skewY(4deg);min-height: 107%;}
 
 .listing_hero._grid._laid .hero_cover img {
@@ -4989,4 +4998,14 @@ ul.listing_navigator.view_all.grid li .card {
 
 .hero_title._detail {
     scroll-snap-align: center;
+}
+.search-box input {
+    width: auto;
+    padding-left: 20px;
+    min-width: 100px
+}
+.search-box .search_action {
+    border: 1px solid var(--borderTheme);
+    border-width: 0 0 0 1px;
+    border-radius: 0;
 }

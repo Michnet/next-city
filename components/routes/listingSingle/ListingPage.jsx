@@ -36,7 +36,7 @@ const Navigator = dynamic(() => import("@/components/listing/navigation/Navigato
   const ListingPageConst = ({listing, themeColor, themeColorHex}) => {
     
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date} = listing ?? {};
+    const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date, type} = listing ?? {};
     const {_links} = meta ?? {};
     const router = useRouter();
     const {query} = router;
@@ -44,8 +44,6 @@ const Navigator = dynamic(() => import("@/components/listing/navigation/Navigato
     const {user, token} = useRecoilValue(authState);
     //const activeView = useRecoilValue(listingViewState);
     const [activeKey, setActiveKey] = useState(query?.view ?? view);
-
-    console.log('place listing', listing);
 
     function setActiveView(view){
      /*  const url = {
@@ -120,7 +118,8 @@ return linkzz;
     <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        {/* activeKey != 'home' &&  */<HeroGrid /* exClass={'_laid'}  */ user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}  />}
+        {type == 'event' ? <HeroGrid /* exClass={'_laid'}  */ user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> :
+        <Hero2 /* exClass={'_laid'}  */ user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>}
         <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 my-4'>

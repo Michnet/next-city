@@ -29,6 +29,8 @@ import { useRouter } from "next/router";
 import Mirrored from "@/components/UI/partials/Mirrored";
 import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 import EventCard3  from '@/components/UI/Listings/cards/EventCard3';
+import { useRecoilState } from 'recoil';
+import { siteVersionState } from "@/contexts/atoms";
 
 
 export async function getStaticProps() {
@@ -39,6 +41,11 @@ export async function getStaticProps() {
     const catsFilterArr = {
       _fields : taxfields,
       parent_slug: 'events',
+      per_page: 20
+    }
+    const placeCatsFilterArr = {
+      _fields : taxfields,
+      parent_slug: 'places',
       per_page: 20
     }
   
@@ -55,6 +62,21 @@ export async function getStaticProps() {
       per_page: 100
     }
     //Get event categories
+    async function getEvCats(){
+      const eCats = await getDirTerms('categories', catsFilterArr);
+      if(eCats){
+       serverObj.eventCategories = eCats;
+      }
+    }
+    //Get event categories
+    async function getPlaceCats(){
+      const pCats = await getDirTerms('categories', placeCatsFilterArr);
+      if(pCats){
+       serverObj.placeCategories = pCats;
+      }
+    }
+
+    //Get place categories
     async function getEvCats(){
       const eCats = await getDirTerms('categories', catsFilterArr);
       if(eCats){
@@ -103,6 +125,7 @@ export async function getStaticProps() {
     async function serverQuery(){
       await topListings();
       await getEvCats();
+      await getPlaceCats();
       await  getBusyLocs();
       await getTopLocs();
       await topPlaces();
@@ -127,9 +150,15 @@ export async function getStaticProps() {
 
 export default function Home(props) {
     const {serverObj} = props;
-   const {eventCategories, topLocations, busyLocations, latestList, latestPlaces} = serverObj ?? {};
+   const {eventCategories, placeCategories, topLocations, busyLocations, latestList, latestPlaces} = serverObj ?? {};
+   const [ver, setVer] = useRecoilState(siteVersionState);
    
   let imgArr = eventCategories?.map((ct) => {
+    let {term_meta, id} = ct;
+    let {image_url} = term_meta;
+    return image_url;
+  });
+  let placesImgArr = placeCategories?.map((ct) => {
     let {term_meta, id} = ct;
     let {image_url} = term_meta;
     return image_url;
@@ -152,21 +181,26 @@ export default function Home(props) {
 
       <div className="card card-style overflow-visible mx-0 mb-0 rounded-0 w-100">
         <Mirrored coverTop topPadding={0} skewDegrees={0}  skewDir={'-'} YDistance={250}>
-          <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '280px', backgroundImage: `url("${randomEither(imgArr)}")`}}/>
+          <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '320px', backgroundImage: `url("${randomEither(ver == 'events' ? imgArr : placesImgArr)}")`}}/>
         </Mirrored>
-        <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center">
-          <h1 className="color-white text-center mb-n1 font-24 w-75">Great events all around you?</h1>
-          <p className="color-white text-center mb-3 ">What experiences are you looking for today?</p>
+        <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center" style={{textWrap: 'pretty'}}>
+          <h1 className="color-white fw-lighter text-center mb-4 font-28 w-75">{ver == 'events' ? 'Great events all around you' : 'Find you next favourite place'}</h1>
+          <p className="color-white text-center mb-30">{`What ${ver == 'events' ? 'experiences' : 'place'} are you looking for today?`}</p>
+          <div className="row_flex gap-3 color-white flex-wrap justify-center align-items-center">
+            <button active={ver == 'events'} className={`big_btn btn btn-m rounded-m text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'events' ? 'transparent border-dark-dark' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('events')}><i className='text-22 text-center far fa-calendar-check'/><span>Search Events</span></button>
+            <button active={ver == 'places'} className={`big_btn btn btn-m rounded-m text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'places' ? 'transparent border-dark-dark' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('places')}><i className='text-22 text-center far fa-map-marked-alt'/><span>Search Places</span></button>
+            
+          </div>
         </div>
-        <div className="card-overlay bg-gradient rounded-0"></div>
+        <div className="card-overlay bg-gradient rounded-0" style={{backdropFilter: 'brightness(0.8) blur(0.5px)'}}></div>
       </div>
 
 
-    <SearchField exClass='mt-n4 mx-auto' styleObj={{maxWidth: '85%', width: '600px'}}/>
+    <SearchField exClass='mt-n4 mx-auto' styleObj={{maxWidth: '85%', width: '600px'}} listingtType={ver == 'events' ? 'event' : 'place'}/>
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
-    <SectionHeader exClass='px-3 mb-4 justify-center text-center'  title={'Event Categories'} subTitle={'Explore By Category'}/>
+    <SectionHeader exClass='px-3 mb-4 justify-center text-center'  title={`${ver == 'events' ? 'Event' : 'Place'} Categories`} subTitle={'Explore By Category'}/>
 
    {/*  <Splider exClass="mb-4" height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {
@@ -177,11 +211,14 @@ export default function Home(props) {
     </Splider> */}
     
     <div className='term_links_grid mb-3 sm:px-28 px-2 mx-auto' style={{maxWidth: '600px'}}>
-    {
-                eventCategories?.map((cat) => {
+            {ver == 'events' && <>{eventCategories?.map((cat) => {
                     return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>
                 })
-            }
+            }</>}
+            {ver == 'places' && <>{placeCategories?.map((cat) => {
+                    return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>
+                })
+            }</>}
             </div>
 
     <div className="divider mt-3 mb-4"></div>

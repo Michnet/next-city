@@ -13,6 +13,10 @@ const { persistAtom : persistTheme } = recoilPersist({
   key: 'UI'
 });
 
+const { persistAtom : persistSiteVersion } = recoilPersist({
+  key: 'Lyve_ver'
+});
+
 const { persistAtom : persistLoc } = recoilPersist({
   key: 'Lyve_lx'
 });
@@ -50,6 +54,12 @@ export const authState = atom({
   key: 'authState', 
   default: {auth_type: 'none'}, 
   effects_UNSTABLE: [persistAtom],
+});
+
+export const siteVersionState = atom({
+  key: 'siteVersionState', 
+  default: 'events', 
+  effects_UNSTABLE: [persistSiteVersion],
 });
 
 export const userMetaState = atom({
