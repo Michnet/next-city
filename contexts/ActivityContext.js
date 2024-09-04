@@ -21,7 +21,7 @@ export default function ActivityProvider(){
         per_page : PAGE_SIZE
     }
     if(token){
-        payload.JWT = token
+       // payload.JWT = token
     }
 
 

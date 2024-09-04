@@ -861,10 +861,6 @@ a:hover, a:hover * {
   color: var(--bs-black);
 }
 
-h3.section_head {
-  font-weight: bold;
-}
-
 .landing_row .section_subHead {
   font-size: 17px;
   margin-bottom: 60px;

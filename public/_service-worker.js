@@ -69,7 +69,7 @@ self.addEventListener('install', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Installed');}
 });
 
-const unCacheables = ['jwt-auth/v1', 'api/auth/', 'api/auth/session','m-api/v1/event-dates','m-api/v1/visit', '/buddyboss/v1', 'jet-reviews-api/v1','user-actions/v1']
+const unCacheables = ['jwt-auth/v1', 'api/auth/', '_next/data/', 'api/auth/session','m-api/v1/event-dates','m-api/v1/visit', '/buddyboss/v1', 'jet-reviews-api/v1','user-actions/v1']
 
 self.addEventListener('fetch', function(event) {
 	/* event.respondWith(

@@ -22,16 +22,16 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, cont
     setLoading(false);
   }, [item])
   
-  return <div style={{background: `url(${resizedImage(item, imgSize)})`}} className={`shadow-bg-m shadow-bg gallery_plate pointer ${exClass ?? ''}`} onClick={onclickFunc ? () => onclickFunc() : null} >
+  return <div /* style={{background: `url(${resizedImage(item, imgSize)})`}} */ className={` gallery_plate pointer ${exClass ?? ''}`} onClick={onclickFunc ? () => onclickFunc() : null} >
     {loading ? <div className="d-flex justify-center align-center h-100 align-items-center"><LoaderEllipsis/></div> : 
       <>
       <div className={`mega_item`}>
         {typeof item === 'string' ? 
-        <Image unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
-        /* onErrorCapture={() => {return <img src='/images/Lyvecity.png'/>;}} */ quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
+        <Image data-aos='zoom-in' unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
+        /* onErrorCapture={() => {return <img src='/images/Lyvecity.png'/>;}} */ quality={100} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
                     alt="LyveCity" src={resizedImage(item, imgSize)}/>
                     :
-        <Image placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}} quality={90} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
+        <Image data-aos='zoom-in' placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}} quality={100} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
                   alt="LyveCity" src={resizedImage(item.url, imgSize)}/>}
                   {content}
                    </div>
@@ -43,8 +43,8 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, cont
 }
 
 
-export const HorizontalGrid = ({children, height}) => {
-  return <div style={{height : height ?? 180}} className="horizontal_grid">
+export const HorizontalGrid = ({children, height, gutter='10px'}) => {
+  return <div style={{height : height ?? 150, marginBottom: gutter, gap: gutter}} className="horizontal_grid">
           {children}
   </div>
 }
@@ -96,7 +96,7 @@ const MegaGallery = ({listing, color, upcoming}) => {
   let textOptions = textArr.splice(0, 7), galleryView;
 
   //let megaGall = shuffleArray([...textOptions, ...gallery, ...teamLinks(team), ...teamLinks(performers)]);
-  let megaGall = shuffleArray([...gallery, ...teamLinks(team), ...teamLinks(performers)]);
+  let megaGall = [...gallery, ...teamLinks(team), ...teamLinks(performers)];
 
   let highlightIndex = [4,7,11,17]
 

@@ -53,6 +53,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
     if(listing){
         if(_stats?.length > 0){
             statsView = <Widget
+            headingExClass='mx-3 mb-3'
             dataAos="zoom-in"
             freeHeader 
             title= 'Event stats'
@@ -244,7 +245,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                     <h5>Listing Features</h5>
                     <h4>Page Tags</h4>
                 </div>
-                <div className='tags_row py-5 card card-style across_border partial_border mb-50'>
+                <div className='tags_row card card-style across_border partial_border mb-50'>
                 <div className='row_content'>
                     <TagsCloud live hue={colorHex} dark ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
@@ -265,8 +266,8 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
         if(wcu?.list?.length > 0){
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
-                return <div className={`strength_item bg-cover bg-${randomEither(siteColorNamesArray)}-dark`}   style={{height: '350px', width: '400px', maxWidth: '95vw', background: `url(${resizedImage(reason?.mylisting_accordion_photo, 'medium')})`}}>
-                            <div className="content m-0">
+                return <div className={`strength_item _item`}   style={{height: '350px', width: '400px', maxWidth: '95vw'}}>
+                            <div className={`content m-0 h-100 position-relative bg-cover bg-${randomEither(siteColorNamesArray)}-dark`} style={{background: `url(${resizedImage(reason?.mylisting_accordion_photo, 'medium')})`}}>
                                 {/* <div className="image_bg">
                                   <Image fill style={{objectFit:"cover"}} src= {`${reason?.mylisting_accordion_photo}`}/>
                                 </div> */}
@@ -284,7 +285,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             });
             strengthsView = <>
                     <Suspense offset={150} once height={200}>
-                    <div className={`listing_strengths mb-50`}>
+                    <div className={`features_1 listing_strengths mb-50`}>
                         <div className="row_content row" data-aos="fade-right">
                             {wcu?.wcu_intro_title ? <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
                                 <h3 className="section_head dark_text">{wcu.wcu_intro_title}</h3>
@@ -296,7 +297,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                 <h4 className="section_subHead gray_text mb-3">Some reasons you may like this event</h4>
                             </div>}
                             <div className="strengths_body col-12 col-md-8 p-0" data-aos="zoom-in">
-                                <Splider exClass={'in_color card card-style rounded-0 mx-0'} options={{perMove:1, perPage:1, padding:{right: '0%'}}} height={'350px'} showDots>{reasonArr}</Splider>
+                                <Splider exClass={'in_color card card-style rounded-0 mx-0'} options={{perMove:1, perPage:1, padding:{right: '5%', left: '3%'}}} height={'350px'} showDots>{reasonArr}</Splider>
                             </div>
                         </div>
                     </div>
@@ -488,7 +489,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
     }
     
     return (
-        <div className={`landing_row ${styles['landing_page']}`}>
+        <div className={`landing_row ${styles['landing_page']} business_1`}>
             {/* <div className={`home_intro _greeting`}>
                <div className="flex_container row"> 
                     <div className={`greeting_box col-12 col-md-8`}>

@@ -2,17 +2,12 @@
 
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import {useEffect, useState } from "react";
-import { GalleryPlate } from "./MegaGallery";
+import { GalleryPlate, HorizontalGrid } from "./MegaGallery";
 
 import { cleanHtml, randomBetween, randomEither, shuffleArray, textSizeClass } from "@/helpers/universal";
 import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
 import { siteColors, siteSettings } from "@/helpers/base";
 
-export const HorizontalGrid = ({children, height, gutter}) => {
-  return <div style={{height : height ?? 150, marginBottom: gutter, gap: gutter}} className="horizontal_grid">
-          {children}
-  </div>
-}
 
 const MegaGalleryMini = ({listing, color, setActiveKey, gutter='10px', withText=false, maxImages=5}) => {
   const {landing, marketing,id, gallery:l_gallery, meta} = listing;

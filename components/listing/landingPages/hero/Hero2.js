@@ -25,10 +25,11 @@ import { BookingView } from '@/components/listing/partials/ActionButtons';
 import PostLike from '@/components/UI/partials/social/PostLike';
 import NextPostLink from '@/components/UI/NextPostLink';
 import { openOffCanvas } from '@/helpers/appjs';
+import HeroDetail from './HeroDetail';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
-const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) => {
+const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, exClass=''}) => {
   const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
   const {greeting} = listing.landing;
   const {general_merchandise} = acf ?? {}
@@ -99,7 +100,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) 
 
   return (<>
     <Suspense>
-        <div className={`hero2 listing_hero ${styles['location']} d-block`}>
+        <div className={`hero2 listing_hero ${styles['location']} d-block ${exClass}`}>
             <div className='hero_images d-block d-md-none md-hero pos-relative'>
               {/* <div className={`${styles['slider_col']}`} >
 
@@ -149,18 +150,18 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) 
                   </div>
                 </div>
                 </Mirrored>
-                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 align-items-end justify-end text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
+                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
-                  <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/></div>
+                  <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple position-absolute'} eventId={id}/></div>
 
-                        <h1 className='mb-20 color-white truncate-3'>{cleanHtml(title?.rendered)}</h1>
+                        <h1 className='mb-20 color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
                         {/* <h1 className="styled_title mb-20 truncate-3 d-block">
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
                             <span className="list_title _last color-white" dangerouslySetInnerHTML={{__html: lastWords}}/> 
                         </h1> */}
                         <div className='title_meta d-flex justify-end mb-20'>
                           <Client>
-                        <p style={{lineHeight: '1.3em'}}>
+                        <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
                           <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
                           <span className="target mr-4 mb-4 gray_text"> {type} </span>
                           {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
@@ -169,14 +170,14 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) 
                         </div>
                         <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
                   </div>
-                  <div className="d-flex flex-column align-items-center text-center gap-2 hero_actions">
-                {/* <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600 text-truncate me-2'/> */}
+                  {/* <div className="d-flex flex-column align-items-center text-center gap-2 hero_actions">
                     {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
                     <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
                     <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`fas fa-heart text-center text-24`}/><span>Save</span></div>} 
                         unlikedEl={<div style={{width: '50px'}} className="link"><i className={`fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
-                        {/* <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className="fas fa-ellipsis-h text-center text-24"></i></button> */}
-                    
+                    </div> */}
+                  <div className="d-flex flex-column align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
+                  <ListingMetaMini listExClass='flex-column _vertical' filled={false}  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                     </div>
                     {/* <div className="row_flex flex-shrink-1 justify-end">
                     <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className="fas fa-ellipsis-h text-center text-24"></i></button>
@@ -260,85 +261,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token}) 
               </div> : <></>}
             </>}
           </div>
-          
-
-
-            <div className='hero_title p-3 md:px-35 md:py-45 d-grid gap-4 align-items-center z-2 position-relative'>
-             <div className='profile_name d-none d-md-block'>
-             <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
-                <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>
-                <div className='title_meta d-flex justify-end'>
-                  <Client>
-                <p style={{lineHeight: '1.6em'}}>
-                  <span className={`target mr-4 mb-4 color-${color}-dark`}> {cleanHtml(catName)} </span>
-                  <span className="target mr-4 mb-4"> {type} </span>
-                  {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
-                </p>
-                </Client>
-                </div>
-             </div>
-            <div> 
-              <Client>
-             <div>
-                <div className='status_greeting'>
-                  {/* <DateViewState fromActive exClass={'dotty ripple'} eventId={id}/> */}
-                  <div className='row_flex gap-2'>{actionTwoLink}{actionLink}</div>
-                  <p className = 'mb-10'>
-                        {greetingView}
-                  </p>
-                </div>
-              </div>
-              <p className = 'mb-20 text-15 smLine'>
-                  <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
-              </p></Client>
-              {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_hero mb-10 d-block'}/> : <></>}
-                <div className={`gap-2 flex-nowrap d-flex`}>
-                  {/* {whatsapp && <a href={`https://wa.me/${whatsapp}`} className="btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 shadow-s bg-whatsapp btn-icon text-start">
-                    <i className="fab fa-whatsapp font-15 text-center color-white"></i>
-                    WhatsApp
-                  </a>} */}
-                  {/* { <BookingView setActiveKey={setActiveKey}children={
-                  <button
-                    className={`rounded mr-0  ${styles['button-secondary']} ${styles['button']} ${styles['button-md']} `}
-                  >
-                    Booking
-                  </button>} />
-                  } */}
-                  <button onClick={() => setActiveKey('private-chat')} /* data-bs-toggle={isMobile ? 'offcanvas' : 'modal'} data-bs-target='#listing_contact' */
-                    className={`btn text-truncate color-theme rounded ${styles['learn-more']} ${styles['button']} ${styles['button-outline']} ${styles['button-md-border']} `}
-                  >
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          <div className={`card card-style mx-3 theme-dark`}>
-          <div
-            className={`z-1 p-5 pb-3 position-relative bg-theme ${styles['section-container']} card card-style w-auto m-0`}
-          >
-            {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
-            <div style={{rowGap: '20px', columnGap: '40px'}} className={`row md:flex-row flex-md-nowrap flex-col position-relative`}>
-              <div className={`col-12 col-md-6 text-right items-end px-0 ${styles['container4']}`}>
-              <span className={styles['text19']}><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
-              {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '200'}}>
-                  {tagline}
-                </span>}
-                {venue && <span className={`text-30 fw-600 opacity-50 truncate-4 smLine`}>
-                  <span className='fw-300'>@</span>
-                  {venue}
-                </span>}
-              </div>
-              <Client><div className="flex-grow-1 gap-2 d-flex md:items-end items-start flex-column col-12 col-md-6 px-0">
-                {id ? <><CountDownUI light fromActive eventId={id} />
-              {<DateViewDescriptive fromActive eventId={id} exClass={'_hero mb-10'} light/>}</> : <></>}
-               
-                
-              </div>
-            </Client>
-            </div>
-            </div>
-          </div>
+        <HeroDetail listing={listing} activeKey={activeKey} color={color} setActiveKey={setActiveKey} user={user} token={token} exClass=''/>
     </div></Suspense>
     <style jsx global>{`
     :root {
