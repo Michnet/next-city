@@ -5,7 +5,7 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { Client } from 'react-hydration-provider';
 import {fallbackImgSrcSet, homeurl, siteSettings, WPDomain } from "@/helpers/base";
 //import { BookingView } from '@/components/listing/partials/ActionButtons';
-import { memo, Suspense } from 'react';
+import { memo, Suspense, useEffect } from 'react';
 import { UISizes } from '@/contexts/atoms';
 import { GalleryPlate, HorizontalGrid } from '@/components/UI/Galleries/MegaGallery';
 import styles from '@/components/listing/styles/home1.module.css';
@@ -30,8 +30,10 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";
 
   let galArr = [], greetingView, firstWord='', lastWords='', actionTwoLink, actionLink, freshDesc;
+  let gridCols = () =>{
+    return isMobile ? 2 : 4
+  };
   /* const settings = { arrows: true, dots: true, infinite: true, speed: 1000, marginLeft: 10, marginRight: 10, slidesToShow: 1, cssEase: 'ease-out', slidesToScroll: 1, }; */
-  
 
   if(title){
   const wordArr = title?.rendered.split(' ');
@@ -144,16 +146,16 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
                 {/* <MegaGalleryMini maxImages={isMobile ? 4 : 6} listing={listing} setActiveKey={setActiveKey} gutter={'5px'}/> */}
                 <>{galArr?.length > 0 && <HorizontalGrid gutter={'3px'} onClick={() => setActiveKey('gallery')}>
                     {galArr.map((item, index) => {
-                      if(index < isMobile ? 2 : 4){
+                      if(index < gridCols()){
                       if (typeof item == 'string') {
                         if(item?.length > 0){
                           if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                            return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                            return  <GalleryPlate onclickFunc={() => setActiveKey('gallery')} imgSize='medium_large' item={item} key={index}/>;
                           }
                         }
                       }else{
                         if(item?.url?.includes(siteSettings.wpDomain)){
-                            return  <GalleryPlate imgSize='medium_large' item={item} key={index} />;
+                            return  <GalleryPlate onclickFunc={() => setActiveKey('gallery')} imgSize='medium_large' item={item} key={index} />;
                           }else{
                             return <>{item}</>
                           }

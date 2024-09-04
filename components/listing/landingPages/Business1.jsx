@@ -38,9 +38,9 @@ function processImg(images, cover){
 }
 
 const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveKey, upcoming, styles}) => {
-    const {address, venue, about_us, locations, author_id, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store} = listing ?? {};
+    const {address, venue, about_us, locations, author_id, rating, id, short_desc, content, dir_tags, ticket_min_price_html, landing,xtra_large_thumb, category, marketing, team, performers, meta, listing_store, type} = listing ?? {};
     const {tickets, general_merchandise} = listing_store;
-    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery, _performers} = meta ?? {};
+    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery, _performers, _wwd} = meta ?? {};
     const wcu = _wcu ? _wcu[0] : {};
     const {what_we_do} = marketing ??  {};
     const {faqs} = about_us ?? {};
@@ -267,7 +267,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             const reasons = wcu.list;
             const reasonArr =  reasons.map((reason) => {
                 return <div className={`strength_item _item`}   style={{height: '350px', width: '400px', maxWidth: '95vw'}}>
-                            <div className={`content m-0 h-100 position-relative bg-cover bg-${randomEither(siteColorNamesArray)}-dark`} style={{background: `url(${resizedImage(reason?.mylisting_accordion_photo, 'medium')})`}}>
+                            <div className={`content m-0 h-100 position-relative bg-cover bg-${randomEither(siteColorNamesArray)}-dark`} style={{background: `url(${resizedImage(reason?.mylisting_accordion_photo, 'medium_large')})`}}>
                                 {/* <div className="image_bg">
                                   <Image fill style={{objectFit:"cover"}} src= {`${reason?.mylisting_accordion_photo}`}/>
                                 </div> */}
@@ -292,9 +292,9 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                 <h4 className="section_subHead gray_text mb-3">{wcu.wcu_intro_detail}</h4>
                             </div> 
                             : 
-                            <div className="strengths_intro col-12 col-md-4 mt-4 px-3 text-center text-md-end">
-                                <h3 className="section_head dark_text">Why Attend</h3>
-                                <h4 className="section_subHead gray_text mb-3">Some reasons you may like this event</h4>
+                            <div className="strengths_intro col-12 col-md-4 mt-4 mb-4 px-3 text-center text-md-end">
+                                <h3 className="section_head dark_text">{type == 'event' ? 'Why Attend' : 'Why Consider'}</h3>
+                                <h4 className="section_subHead gray_text mb-3">{`Some reasons you may like this ${type == 'event' ? 'event' : 'place'}`}</h4>
                             </div>}
                             <div className="strengths_body col-12 col-md-8 p-0" data-aos="zoom-in">
                                 <Splider exClass={'in_color card card-style rounded-0 mx-0'} options={{perMove:1, perPage:1, padding:{right: '5%', left: '3%'}}} height={'350px'} showDots>{reasonArr}</Splider>
@@ -468,6 +468,42 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
                                 </div>
                                 </Suspense>
         }
+        if(_wwd?.length > 0){
+        if(_wwd[0].list?.length > 0){
+            
+            const {title, descript, sub_title, list} = _wwd[0];
+
+            servicesView =   <Suspense offset={150} once height={200}>
+                                <div className="listing_services padded_container">  
+                                    <Heading1 exClass='text-right mb-20' large title={type == 'event' ? `What's Happening` : 'Services Offered'} subtitle={'What to look forward to'}/>                                         
+                                    <div className="services_intro padded_container">
+                                        <h2 className="section_head dark_text">{title}</h2>
+                                        <h3 className="section_subHead gray_text">{descript}</h3>
+                                    </div>
+                                    <div className="services_body">
+                                        {list.map((service, index) => {
+                                            const {item_description, item_title, item_sub_title, mylisting_accordion_photo} = service;
+                                        return <div className="service_item" key={index} data-aos="zoom-in">
+                                            <div className="serv_number"><span>{`0${index + 1}`}</span></div>
+                                            {mylisting_accordion_photo &&  
+                                                <div className="serv_image" >
+                                                    <div className="image_bg shadow-card shadow-card-l" style={{  backgroundImage: `url("${mylisting_accordion_photo}")`  }}></div>
+                                                </div>
+                                            }
+                                            <div className="serv_content">
+                                                <h4 className="serv_heading"   dangerouslySetInnerHTML={{   __html: item_title}} />
+                                                <hr className='border-loud opacity-100 w-48 my-2' style={{borderTopWidth: '3px'}}/>
+                                                <p className="serv_descript"   dangerouslySetInnerHTML={{   __html: item_description}} />
+                                            </div>
+                                        </div>
+                                        }
+                                        )}
+                                    </div>
+                                    <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='color-theme px-4 py-2 rounded-5 '/>}</>
+                                </div>
+                                </Suspense>
+        }
+       }
         /* if(general_merchandise){
             const headContent = <DualColorHeader title={'Our Shop'} exClass={'version_1'}/>
             const bodyContent = <><ListingProductsSimple ids={general_merchandise} productType="simple" listingId = {listing?.id}/>
@@ -511,9 +547,9 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             {servicesView}   
             {performersView}
             {guestsView}
+            {reviewsView}
             {strengthsView }
             {socialsView}
-            {reviewsView}
             <Client>{tagsView}</Client> 
             {statsView}
             {faqsView}

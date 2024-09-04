@@ -1107,6 +1107,78 @@
   color: #FFF;
 }
 
+.color-youtube {
+  color: #ff0000 !important;
+}
+
+.bg-youtube {
+  background-color: #ff0000 !important;
+  color: #FFF;
+}
+
+.color-snapchat {
+  color: #fffc00 !important;
+}
+
+.bg-snapchat {
+  background-color: #fffc00 !important;
+  color: #FFF;
+}
+
+.color-tumblr {
+  color: #35465d !important;
+}
+
+.bg-tumblr {
+  background-color: #35465d !important;
+  color: #FFF;
+}
+
+.color-reddit {
+  color: #ff4500 !important;
+}
+
+.bg-reddit {
+  background-color: #ff4500 !important;
+  color: #FFF;
+}
+
+.color-discord {
+  color: #5865f2 !important;
+}
+
+.bg-discord {
+  background-color: #5865f2 !important;
+  color: #FFF;
+}
+
+.color-vimeo {
+  color: #1ab7ea !important;
+}
+
+.bg-vimeo {
+  background-color: #1ab7ea !important;
+  color: #FFF;
+}
+
+.color-skype {
+  color: #00aff0 !important;
+}
+
+.bg-skype {
+  background-color: #00aff0 !important;
+  color: #FFF;
+}
+
+.color-quora {
+  color: #aa2200 !important;
+}
+
+.bg-quora {
+  background-color: #aa2200 !important;
+  color: #FFF;
+}
+
 .color-instagram {
   color: #e1306c !important;
 }
