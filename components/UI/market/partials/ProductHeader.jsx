@@ -7,6 +7,7 @@ const ProductHeader = ({product}) => {
     const [loading, setLoading] = useState(true);
     const {listing} = product ?? {};
     const {id, title, phone, whatsapp, cover, logo, slug, type} = listing ?? {};
+    console.log('listing product', product);
 
     useEffect(() => {
         if(product){
@@ -32,7 +33,7 @@ const ProductHeader = ({product}) => {
         <div className='content_box'>
             <div className='row_flex gap-2'>
             <button className='btn btn-outline-secondary listing_link border mb-3'>
-                    <Link href={`/events/${slug}`}>
+                    <Link href={`/${type}/${slug}`}>
                         Go to Business Page 
                     </Link>
                 </button>

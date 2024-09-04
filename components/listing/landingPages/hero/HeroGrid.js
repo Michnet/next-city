@@ -31,7 +31,7 @@ const HeroGridConst = ({listing, palette, activeKey, color, setActiveKey, user, 
 
   let galArr = [], greetingView, firstWord='', lastWords='', actionTwoLink, actionLink, freshDesc;
   let gridCols = () =>{
-    return isMobile ? 2 : 4
+    return isMobile ? 3 : 4
   };
   /* const settings = { arrows: true, dots: true, infinite: true, speed: 1000, marginLeft: 10, marginRight: 10, slidesToShow: 1, cssEase: 'ease-out', slidesToScroll: 1, }; */
 

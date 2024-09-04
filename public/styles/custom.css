@@ -5063,3 +5063,17 @@ ul.listing_navigator.view_all.grid li .card {
 .section_head {
     font-weight: 300;
 }
+
+.splide__pagination {
+    transform: none;
+}
+button {}
+
+.search_links.version_link button._active {
+    padding-right: 0 !important;
+}
+
+.search_links.version_link button._active i {
+    padding-right: 0;
+    width: 100%;
+}

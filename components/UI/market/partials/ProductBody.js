@@ -18,7 +18,7 @@ const ProductBody = ({product}) => {
                             <DualColorHeader exClass={'mb-20'} title={'Item Detail'}/>
                             <div className="ant-row-flex gx-mb-1">
                             </div>
-                            <Client><p className='text-13' dangerouslySetInnerHTML={{  __html: description}} /></Client>
+                            <Client><p className='text-13 opacity-70' dangerouslySetInnerHTML={{  __html: description}} /></Client>
                     </div>
                     </>
     }else{

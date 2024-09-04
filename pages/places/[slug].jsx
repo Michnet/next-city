@@ -89,7 +89,7 @@ export async function getStaticPaths() {
           noHeader: listing && listing != 'undefined' ? true : false
         },
       },
-      revalidate: 6000, // In seconds
+      revalidate: 300, // In seconds
     }
   }
 
