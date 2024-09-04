@@ -771,7 +771,7 @@ div.truncate-5 > p {
 
 .hero_title .profile_name h1 {
     text-wrap: balance;
-    font-size: 35px;
+    font-size: 40px;
     font-weight: 300;
 }
 
@@ -4349,7 +4349,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 
 @media (max-width: 992px) {
     .hero2.listing_hero .hero_images .hero_cover .card-bottom{
-    backdrop-filter: grayscale(1) brightness(0.7);
+    backdrop-filter: grayscale(1) brightness(0.5);
     height: 100%;
 }
     .hero2.listing_hero._grid .hero_images .hero_cover{
@@ -4630,6 +4630,7 @@ div#explore_nav .view_filter {
 .hero_images .listing_meta._mini ._meta._vertical li:not(:last-child) {
     border-width: 0 0 1px 0;
     padding: 0 0 5px 0;
+    border: none;
 }
 
 .hero_images .listing_meta._mini ._meta._vertical li i {
@@ -4640,6 +4641,11 @@ div#explore_nav .view_filter {
     /* flex-shrink: 1; */
     /* border-bottom: 3px dashed rgb(226 226 226 / 10%); */
     border-right: none;
+    margin-top: -18px;
+    padding-right: 0;
+}
+
+.listing_hero._grid .hero_images .hero_title .profile_name {
     padding-right: 0;
 }
 
@@ -4710,6 +4716,10 @@ div#explore_nav .left_menu_btn {
 }
 
 @media (max-width: 575px){
+    .hero2.listing_hero .hero_images .hero_cover{
+    min-height: 300px;
+    height: 62vh;
+}
     .excerptView{padding-left: 22px;}
     .tabpane.pad_tab{
         padding: 10px
@@ -5076,4 +5086,10 @@ button {}
 .search_links.version_link button._active i {
     padding-right: 0;
     width: 100%;
+}
+
+.hero_meta {
+    border-left: 1px dashed var(--bs-gray-600);
+    padding-left: 10px;
+    height: fit-content;
 }

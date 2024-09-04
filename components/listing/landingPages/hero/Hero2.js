@@ -152,8 +152,6 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                 </Mirrored>
                 <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
-                  <div className='row_flex justify-end mb-10'><DateViewState fromActive exClass={'bg-theme dotty ripple position-absolute'} eventId={id}/></div>
-
                         <h1 className='mb-20 color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
                         {/* <h1 className="styled_title mb-20 truncate-3 d-block">
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
@@ -168,7 +166,6 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                         </p>
                         </Client>
                         </div>
-                        <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
                   </div>
                   {/* <div className="d-flex flex-column align-items-center text-center gap-2 hero_actions">
                     {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
@@ -177,6 +174,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                         unlikedEl={<div style={{width: '50px'}} className="link"><i className={`fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
                     </div> */}
                   <div className="d-flex flex-column align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
+                  <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>
                   <ListingMetaMini listExClass='flex-column _vertical' filled={false}  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                     </div>
                     {/* <div className="row_flex flex-shrink-1 justify-end">

@@ -77,10 +77,10 @@ function RelatedByTaxSplide({ids, titleComp, splideObj={}, author, listy, taxNam
     listView = <>
          {cachedTitle?.title && <SectionHeader exClass='px-3 mb-2'  title={`${cachedTitle.title}`} subTitle={`${cachedTitle.subTitle}`}/>}
           {titleComp ?? <></>}
-          <Splider height={210} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...splideObj}}>
+          <Splider height={210} options={{gap:10, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...splideObj}}>
             {listings?.length > 0 ? 
                 listings.map((li) => {
-                return <ActivityCard2 exClass={'ms-0 me-2 mb-0'} mini width={200} key={li.id} listing = {li}/>
+                return <ActivityCard2 exClass={'ms-0 mb-0'} mini width={200} key={li.id} listing = {li}/>
                 })
                 :
                 <></>
