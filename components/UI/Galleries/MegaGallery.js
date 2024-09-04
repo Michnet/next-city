@@ -27,11 +27,11 @@ export const GalleryPlate = ({item, overlay, highlight, onclickFunc = null, cont
       <>
       <div className={`mega_item`}>
         {typeof item === 'string' ? 
-        <Image data-aos='zoom-in' unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
+        <Image unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
         /* onErrorCapture={() => {return <img src='/images/Lyvecity.png'/>;}} */ quality={100} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
                     alt="LyveCity" src={resizedImage(item, imgSize)}/>
                     :
-        <Image data-aos='zoom-in' placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}} quality={100} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
+        <Image placeholder="blur" blurDataURL={item.blurUrl ?? fallbackImgBlur} unoptimized  onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}} quality={100} className="h-auto w-100" width={400} height={200} data-aos="fade" data-aos-offset={100} data-aos-once="true" data-aos-delay={30}
                   alt="LyveCity" src={resizedImage(item.url, imgSize)}/>}
                   {content}
                    </div>
