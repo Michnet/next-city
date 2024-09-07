@@ -179,20 +179,21 @@ export default function Home(props) {
 
 <div className="page-content">
 
-      <div className="card card-style overflow-visible mx-0 mb-0 rounded-0 w-100">
+      <div className="card card-style overflow-visible mx-0 mb-0 rounded-0 w-100 home_hero">
         <Mirrored coverTop topPadding={0} skewDegrees={0}  skewDir={'-'} YDistance={250}>
           <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '320px', backgroundImage: `url("${randomEither(ver == 'events' ? imgArr : placesImgArr)}")`}}/>
         </Mirrored>
         <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center w-75 mx-auto" style={{textWrap: 'pretty'}}>
           <h1 className="color-white fw-light text-center mb-2 font-28 w-75">{ver == 'events' ? 'Great events all around you' : 'Find you next favourite place'}</h1>
-          <p className="color-white text-center mb-30">{`What ${ver == 'events' ? 'experiences' : 'place'} are you looking for today?`}</p>
-          <div className="row_flex gap-3 color-white flex-nowrap justify-center align-items-center search_links version_link">
-            <button active={ver == 'events'} className={`big_btn btn btn-m rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'events' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('events')}><i className='text-22 text-center far fa-calendar-check'/><span className={`truncate`}>Search Events</span></button>
-            <button active={ver == 'places'} className={`big_btn btn btn-m rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'places' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('places')}><i className='text-22 text-center far fa-map-marked-alt'/><span className={`truncate`}>Search Places</span></button>
+          <p className="color-white text-center mb-30">{`What ${ver == 'events' ? 'experiences' : 'places'} are you looking for today?`}</p>
+          <div className="row_flex gap-2 color-white flex-nowrap justify-center align-items-center search_links version_link">
+            <button style={{height: '45px'}} active={ver == 'events'} className={`big_btn btn rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'events' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('events')}><i className='text-22 text-center far fa-calendar-check'/>
+            <span className='truncate d-block text-10 mb-n1 opacity-60 text-capitalize'>{`${ver == 'events' ? 'Searching' : 'Switch to'}`}</span><span className={`truncate`}>Events</span></button>
+            <button style={{height: '45px'}} active={ver == 'places'} className={`big_btn btn rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'places' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('places')}><i className='text-22 text-center far fa-map-marked-alt'/><span className='truncate d-block text-10 mb-n1 opacity-60 text-capitalize'>{`${ver == 'places' ? 'Searching' : 'Switch to'}`}</span><span className={`truncate`}>Places</span></button>
             
           </div>
         </div>
-        <div className="card-overlay bg-gradient rounded-0" style={{backdropFilter: 'brightness(0.8) blur(0.5px)'}}></div>
+        <div className="card-overlay bg-gradient rounded-0" style={{backdropFilter: 'brightness(0.5) blur(0.5px)'}}></div>
       </div>
 
 
@@ -224,7 +225,7 @@ export default function Home(props) {
     <div className="divider mt-3 mb-4"></div>
 
    <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Places'} subTitle={'Be the first to know'}/>
-   <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+   <Splider exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestPlaces?.length > 0 ? 
           latestPlaces.map((li) => {
            return <EventCard3 exClass='m-0' mini contentClass={'px-3'} height={250} width={270} key={li.id} listing = {li}/>
@@ -235,7 +236,7 @@ export default function Home(props) {
     </Splider>
 
    <SectionHeader inverted iconClass={'far fa-calendar-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
-   <Splider height={300} options={{gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+   <Splider options={{gap: 15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
            return <EventCard2 mini contentClass={'px-3'} height={180} width={270} key={li.id} listing = {li}/>

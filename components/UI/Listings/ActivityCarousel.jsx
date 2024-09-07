@@ -12,7 +12,7 @@ import Link from "next/link";
 import { generateTempArray } from '@/helpers/universal';
 import { Skeleton } from "@/components/skeletons/Skeletons";
 
-function ActivityCarouselConst({optionsObj = {}, listingType, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=200, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort='latest', ignorePriority = false, eventDate, orderby, order, cardWidth, shadowHeight, iconClass}) {
+function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=null, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort='latest', ignorePriority = false, eventDate, orderby, order, cardWidth, shadowHeight, iconClass, include}) {
 
     let theView, fetchy = true, linkQuery = '';
     let localObj ={gap: 15, arrows: false, wheel:false, height: 250, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}
@@ -82,6 +82,9 @@ function ActivityCarouselConst({optionsObj = {}, listingType, skeletonWidth=150,
       load.sort = sort;
       linkQuery.concat(`sort=${sort}`);
     }
+    if(include){
+      load.include = include;
+    }
 
     if(eventDate){
       load['event-date'] = eventDate
@@ -109,7 +112,7 @@ function ActivityCarouselConst({optionsObj = {}, listingType, skeletonWidth=150,
     if(isLoadingInitialData){
       theView =  <>
             <Skeleton exClass='ms-3 mb-3' width='60%'/>
-            <Splider height={skeletonHeight + 25}  options={{...spliderOptions}}>
+            <Splider /* height={skeletonHeight + 25} */  options={{...spliderOptions}}>
                 {generateTempArray(8).map((item, i) => ( <Skeleton exClass={exCardClass} roundy height={skeletonHeight} width = {skeletonWidth} key={i}/> ))}
             </Splider>
           </>
@@ -121,7 +124,7 @@ function ActivityCarouselConst({optionsObj = {}, listingType, skeletonWidth=150,
          ));
        
           theView =  <>
-                      <div className="d-flex px-3 mb-3">
+                      {title && <div className="d-flex px-3 mb-3">
                       <div className="align-self-center">
                         <DualColorHeader title={title} subTitle={subtitle} iconClass={iconClass}/>
                       </div>
@@ -131,8 +134,8 @@ function ActivityCarouselConst({optionsObj = {}, listingType, skeletonWidth=150,
               query: {...load},
             }}  className="font-12">View All</Link>
                       </div>
-                      </div>
-                      <Splider height={height}  options={{...spliderOptions}}>
+                      </div>}
+                      <Splider autoHeight={autoHeight} options={{height: height, ...spliderOptions}}>
                           {
                               itemArray
                           }

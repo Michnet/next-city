@@ -10,7 +10,7 @@ import TermTag from "../../partials/TermTag";
 import { fallbackImgSrcSet } from '@/helpers/base';
 import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
 
-const EventCard2 = ({listing, width=220, contentClass='px-1', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
+const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, type} = listing;
     const {likes} = acf?.community ?? {};
 

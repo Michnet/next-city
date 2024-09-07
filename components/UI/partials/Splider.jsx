@@ -1,13 +1,11 @@
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
-const Splider = ({children, options={}, height, showDots=false, exClass=''}) => {
-    let optObj = {type: 'loop', pauseOnHover: true, autoWidth: true, ...options,  pagination: showDots, wheel: false}
+const Splider = ({children, options={}, height=null, autoHeight=true, showDots=false, exClass='', type= 'loop' }) => {
+    let optObj = {pauseOnHover: true, autoWidth: true, height: height, type:type, autoHeight: autoHeight,  pagination: showDots, wheel: false, ...options}
     return (
-        <div className={`splider ${exClass}`} style={{height: height ?? 'auto'}}>
-            {children?.length > 0 && <Splide hasTrack={false} style={{height: 'inherit'}} options={...optObj}>
-                <SplideTrack style={{height: 'inherit'}}>
+        <div className={`splider ${exClass}`}>
+            {children?.length > 0 && <Splide options={{...optObj}}>
                     {children.map((chi, i) => <SplideSlide key={i}>{chi}</SplideSlide>)}
-                </SplideTrack>
             </Splide>}
         </div>
     )

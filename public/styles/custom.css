@@ -231,12 +231,13 @@ h6 {
 }
 
 .card.pdt-card._mini .pdt_actions i {
-    font-size: 16px;
+    font-size: 18px;
     border: 1px solid var(--borderTheme);
+    border: none;
     width: 30px;
     height: 30px;
     line-height: 30px;
-    border-radius: 50%;
+    border-radius: 7px;
 }
 
 .card.pdt-card._mini 
@@ -251,8 +252,14 @@ h6 {
     object-position: center;
 }
 
-.pdt-card.flex-row .pdt-img {
-    max-width: 35%;
+.pdt-card.flex-row .pdt-img {max-width: 100%;}
+
+.pdt-card.flex-row .thumb {
+    width: 35%;
+}
+
+.pdt-card .thumb {
+    text-align: center;
 }
 div.truncate-5 > p {
     --max-lines: inherit;
@@ -2501,6 +2508,10 @@ border-color: #FF9800;
     font-weight: 700
 }
 
+.single_listing .pdt-card .woocommerce-Price-amount.amount {
+    color: var(--colorTheme);
+}
+
 .activityCard.-type-2 .woocommerce-Price-currencySymbol {
     opacity:0.6;
     font-weight: 500
@@ -3820,7 +3831,7 @@ ul.listing_navigator {display: flex;align-items: center;grid-column-gap: 10px;gr
 
 #footer-bar ul.listing_navigator.view_all li.active .link_icon {
     opacity: 1 !important;
-    color: var(--colorTheme);
+    color: var(--listingTheme);
 }
 
 ul.listing_navigator li .l_menu._item svg {color: #b9b9b9;font-size: 16px;}
@@ -4872,12 +4883,12 @@ ul.listing_navigator.view_all li.active .nav_i_title {
 }
 
 #footer-bar ul.listing_navigator.view_all li.active .nav_i_title {
-    color: var(--listingTheme);
+    /* color: var(--listingTheme); */
 }
 
 #footer-bar ul.listing_navigator.view_all li.active .nav_i_subtitle {
     /* color: var(--colorTheme); */
-    opacity: 1 !important;
+    opacity: 0.7 !important;
     font-weight: 600;
 }
 
@@ -4926,7 +4937,7 @@ ul.listing_navigator.view_all.grid li .card {
 }
 
 .listing_hero .hero_actions i {
-    border-radius: 50%;
+    border-radius: 7px;
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -5077,19 +5088,33 @@ ul.listing_navigator.view_all.grid li .card {
 .splide__pagination {
     transform: none;
 }
-button {}
-
 .search_links.version_link button._active {
-    padding-right: 0 !important;
+    /* padding-right: 0 !important; */
 }
 
 .search_links.version_link button._active i {
-    padding-right: 0;
-    width: 100%;
+    /* padding-right: 0; */
+    /* width: 100%; */
 }
 
 .hero_meta {
     border-left: 1px dashed var(--bs-gray-600);
     padding-left: 10px;
     height: fit-content;
+}
+
+.pdt-card.flex-col .pdt_name {
+    font-weight: 400;
+}
+
+.big_btn.btn-icon > i {
+    background: transparent;
+}
+
+.big_btn.btn-icon {
+    padding-left: 40px !important;
+}
+
+.home_hero .card-overlay {
+    backdrop-filter: brightness(0.5);
 }

@@ -5781,10 +5781,6 @@ footer .container.overlay {
   opacity: 0.9;
 }
 
-.single_listing .woocommerce-Price-amount.amount {
-  color: var(--colorTheme);
-}
-
 .tab-pane.widgey .tab_inner {
   padding: 20px 15px;
 }

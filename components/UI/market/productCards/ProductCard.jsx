@@ -31,10 +31,13 @@ const ProductCard = ({product, user, horizontal=false, mini=true, sized, exClass
     </section>
   </div> */}
 
-  <div className={`pdt_box d-flex ${boxClass}`}><div className={`card card-style flex-grow-1 m-0 bg-theme pdt-card d-flex ${mini ? '_mini' : ''} ${sized ? '_sized' : ''} ${horizontal ? 'flex-row' : 'flex-col'} ${exClass}`}>
-							<img src={imgUrl} className="pdt-img"/>
+  <div className={`pdt_box d-flex ${boxClass}`}>
+    <div className={`card card-style flex-grow-1 m-0 bg-theme pdt-card d-flex ${mini ? '_mini' : ''} ${sized ? '_sized' : ''} ${horizontal ? 'flex-row' : 'flex-col'} ${exClass}`}>
+              <div className="thumb">
+							  <img src={imgUrl} className="pdt-img"/>
+              </div>
 							<div className={`content m-0 p-${mini ? '2' : '3'}`}>
-              <Link href={`/market/product/${id}`}><h3 className={`mb-2 fw-400 truncate${mini ? '' : '-2'} smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h3></Link>
+              <Link href={`/market/product/${id}`}><h4 className={`mb-2 pdt_name truncate${mini ? '' : '-2'} smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h4></Link>
 								{/* <a href="#">
 									<i className="fa fa-star color-yellow-dark font-10"></i>
 									<i className="fa fa-star color-yellow-dark font-10"></i>

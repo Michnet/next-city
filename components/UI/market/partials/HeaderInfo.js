@@ -15,7 +15,7 @@ const HeaderInfo = ({product}) => {
         infoView =  <>
                     <div className="header-info">
                             <h3 className="gx-product-title">{cleanHtml(name)}</h3>
-                            <p><PriceView priceHTml={price_html}/></p>
+                            <p><PriceView exClass={'_inline'} priceHTml={price_html}/></p>
                             <div className="ant-row-flex gx-mb-1">
                             {rating && rating > 0 && <RatingView
                                 name=""
@@ -24,7 +24,7 @@ const HeaderInfo = ({product}) => {
                                 editing={false}/>}
                             <strong className="gx-d-inline-block gx-ml-2">{rating}</strong>
                             </div>
-                            <Client><p dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
+                            <Client><p className='opacity-70 text-14' dangerouslySetInnerHTML={{  __html: short_description}} /></Client>
                     </div>
                     </>
     }else{
