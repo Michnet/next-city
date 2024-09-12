@@ -6263,7 +6263,6 @@ svg.svg-white{
 .accordion-button,
 .accordion-item,
 .accordion-button:not(.collapsed){
-	color: #ffffff;
 	background: #202124;
 }
 .accordion-button::after,

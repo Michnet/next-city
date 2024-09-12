@@ -13,7 +13,7 @@ const ParallaxSection = ({bg, translateY= [0, 50], translateX= [0, 0], children,
     }
   
     const childComponent = {
-      translateY: [0, 10],
+      translateY: [0, 0],
       scale: [1, 1, "easeOutCubic"],
       shouldAlwaysCompleteAnimation: true,
       expanded: false,

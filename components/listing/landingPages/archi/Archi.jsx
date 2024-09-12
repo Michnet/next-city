@@ -18,7 +18,7 @@ import { GalleryPlate, HorizontalGrid } from "@/components/UI/Galleries/MegaGall
 import { siteColors, siteSettings } from "@/helpers/base";
 import { ParallaxBanner } from "react-scroll-parallax";
 import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
-import { Heading1 } from "@/components/UI/partials/headings/Heading1";
+import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
 
 
 function Archi({listing, setActiveKey, colorHex}){
@@ -27,7 +27,7 @@ function Archi({listing, setActiveKey, colorHex}){
     const {faqs} = about_us ?? {};
     let wcu = _wcu[0] ?? null
 
-    let detailView, reviewsView, servicesView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
+    let detailView, reviewsView, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
     if(listing){
         if(_links?.length > 0){
             socialsView = <div className='card card-style partial_border double_left bottom_left my-5 p-5'>
@@ -104,6 +104,25 @@ function Archi({listing, setActiveKey, colorHex}){
                     </HorizontalGrid>; 
                 }
             }
+
+            galleryView = <><section id="section-portfolio" className="no-top no-bottom w-100" aria-label="section-portfolio">
+                            <Section  id="gallery" exClass={'p-0 bg-color'}   className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
+                                <div className='overlay-bg z-2 opacity-70'>
+                                    <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Go to Gallery</button>
+                                </div>
+                            <ParallaxChildSection  translateY={[0, 0]} speed={15} expanded={true} translateX= {[0, -10]}>
+                                <div style={{minWidth: '110%'}}>{horizontalGallery}</div>
+                            </ParallaxChildSection>
+                            <ParallaxChildSection  translateY={[0, 0]} speed={-5} expanded={true} translateX= {[-10, 0]}>
+                                <div style={{minWidth: '110%'}}>{horizontalGallery2}</div>
+                            </ParallaxChildSection>
+                            </Section> 
+                        </section>
+                        
+                        <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
+                            <div className="overlay-bg"/>
+                            <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Gallery</button>
+                        </section></>
         }
           if(_wwd?.length > 0){
             if(_wwd[0].list?.length > 0){
@@ -118,9 +137,9 @@ function Archi({listing, setActiveKey, colorHex}){
 
            if(faqs?.length > 0){
                     let trimFaqs = faqs?.slice(0,3);
-                faqsView = <Section translateX={[0, 10]} translateY={[0, 0]} underLay overLay={false} exClass='bg-fixed py-5' bgUrl={`${randomEither(gallery)}`}>
+                faqsView = <Section dark={false} exClass='bg-fixed py-5' bgUrl={`${randomEither(gallery)}`}>
                     {/* <div className='overlay-bg position-relative z-0'/> */}
-                        <DualColorTitle title={'FAQs'} subtitle={'Frequently asked'}/>
+                        <HeadingSeparatorDot align='right' title={'FAQs'} subtitle={'Frequently asked'}/>
                 <div className="card card-style partial_border across_border shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
                         <div className="content px-3 py-2">
                             
@@ -134,16 +153,11 @@ function Archi({listing, setActiveKey, colorHex}){
                 }
 
           reviewsView = <Suspense offset={150} once height={200} data-aos="zoom-in">
-            <ParallaxSection overLay={false} underLay={true} dark exClass='py-5' id='reviews' title='What Users Think' bg={`${srcWithFallback(randomEither(gallery))}`}>
-                <div><div className="row">
-                        <div className="col-md-6 offset-md-3 text-center" data-aos='fade-up'>
-                            <h2 className='text-30 mb-0 color-white'>What Users Think</h2>
-                            <div className="separator"><span><i className="fa fa-circle"></i></span></div>
-                        </div>
-                    </div>
+            <Section  exClass='py-5 bg-fixed' id='reviews' title='User Reviews' bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
+                <div>
               <Client>
-                    <PostReviews sliderOptions={{padding: {left: '40px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client></div>
-              </ParallaxSection>
+                    <PostReviews sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client></div>
+              </Section>
               </Suspense>
               
     }
@@ -172,54 +186,15 @@ function Archi({listing, setActiveKey, colorHex}){
             <Section exClass='p-0'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
-            {reviewsView}
-            {detailView}
-            {/*<!-- section begin -->*/}
-            {servicesView}
-            {servs2}
-            {/*<!-- section close -->*/}
-
-
-            {/*<!-- section begin -->*/}
-            {gallery?.length > 0 && <><section id="section-portfolio" className="no-top no-bottom w-100" aria-label="section-portfolio">
-                {/* <div className="container">
-
-                    <div className="spacer-single"></div>
-
-                    <div className="row">
-                        <div className="col-md-12 text-center">
-                            <ul id="filters" data-aos='fade-up' data-aos-delay="0s">
-                                <li><a href="#" data-filter="*" className="selected">All Projects</a></li>
-                                <li><a href="#" data-filter=".residential">Residential</a></li>
-                                <li><a href="#" data-filter=".hospitaly">Hospitaly</a></li>
-                                <li><a href="#" data-filter=".office">Office</a></li>
-                                <li><a href="#" data-filter=".commercial">Commercial</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                </div> */}
-
-                <div id="gallery" onClick={() => setActiveKey('gallery')}  className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
-                    <div className='overlay-bg z-2 opacity-70'/>
-                <ParallaxChildSection  translateY={[0, 0]} speed={15} expanded={true} translateX= {[0, -10]}>
-                    <div className="w-100">{horizontalGallery}</div>
-                </ParallaxChildSection>
-                <ParallaxChildSection  translateY={[0, 0]} speed={-5} expanded={true} translateX= {[-10, 0]}>
-                    <div className="w-100">{horizontalGallery2}</div>
-                </ParallaxChildSection>
-                </div>
-
-                <div id="loader-area">
-                    <div className="project-load"></div>
-                </div>
-            </section>
             
-            <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
-                <div className="overlay-bg"/>
-                <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Gallery</button>
-            </section></>}
+            {detailView}
+            
+            {/*<!-- section begin -->*/}
+            {servs2}
+            {servicesView}
+            
+            {galleryView}
+            {reviewsView}
             {/*<!-- section close -->*/}
             
             {faqsView}
