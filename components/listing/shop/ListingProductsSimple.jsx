@@ -24,7 +24,7 @@ function ListingProductsSimple({ids, isSample, exClass, noHeader=false, title, p
 
 
     const simplePdtHeadRef = useRef(null);
-    const PAGE_SIZE = 3; let Card;
+    const PAGE_SIZE = 10; let Card;
 
 
     const scroller = () => scrollToSpot(simplePdtHeadRef, 0);
