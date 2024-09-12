@@ -36,7 +36,8 @@ function Archi({listing, setActiveKey, colorHex}){
           }
         if(content){
             detailView = <Section dark={false} bgUrl={`${randomEither(gallery)}`} exClass='py-3 bg-fixed'>
-                <div className='p-2 p-sm-5'><ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
+                <div className='p-2 p-sm-5'>
+                    <ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
                 {socialsView}
                 </div>
             </Section>
@@ -110,7 +111,7 @@ function Archi({listing, setActiveKey, colorHex}){
                                 <div className='overlay-bg z-2 opacity-70'>
                                     <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Go to Gallery</button>
                                 </div>
-                            <ParallaxChildSection  translateY={[0, 0]} speed={15} expanded={true} translateX= {[0, -10]}>
+                            <ParallaxChildSection  translateY={[0, 0]} speed={15} expanded={true} translateX= {[10, 0]}>
                                 <div style={{minWidth: '110%'}}>{horizontalGallery}</div>
                             </ParallaxChildSection>
                             <ParallaxChildSection  translateY={[0, 0]} speed={-5} expanded={true} translateX= {[-10, 0]}>
