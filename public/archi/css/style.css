@@ -56,6 +56,9 @@
 
 
 @scope (.archi) {
+ :scope{
+	--headingFont: 'Dosis',Arial, Helvetica, sans-serif;
+ }
 
 *{
 	--bg-dark-1:#18191b;
@@ -167,6 +170,8 @@ body.no-scroll::-webkit-scrollbar {
 #wrapper.wrapper-s2{
 	background: #ffffff;
 }
+
+
 
 #page-overlay{
 background: rgba(0,0,0,.7);
@@ -12254,5 +12259,8 @@ ul#slide-list{
 	.de__banner a.btn-custom{
 	    padding: 5px;
 	}
+	}
+	.faq_qn{
+		font-family: var(--headingFont);
 	}
 }

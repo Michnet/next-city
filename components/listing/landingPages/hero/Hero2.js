@@ -152,7 +152,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                 </Mirrored>
                 <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
-                        <h1 className='mb-20 color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
+                        <h1 className='mb-20 color-white truncate-3 text-capitalize' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1>
                         {/* <h1 className="styled_title mb-20 truncate-3 d-block">
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
                             <span className="list_title _last color-white" dangerouslySetInnerHTML={{__html: lastWords}}/> 

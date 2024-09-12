@@ -83,6 +83,8 @@ self.addEventListener('fetch', function(event) {
 
 	event.respondWith(
 		(async () => {
+			//Just fetch fresh data everywhere
+			return fetch(event.request);
 		  
 		  if(unCachList.test(event.request.url)){
 			//console.log('unCachList', event.request.url);

@@ -25,7 +25,7 @@ const FAQs = ({postID, faqs, exClass=''}) => {
           faqs.map((item, index) => (
                 <div key={index} className="accordion-item">
                     <button aria-expanded={index == 0 ? true : false} className="accordion-button collapsed px-0 bb-thin" type="button" data-bs-toggle="collapse" data-bs-target={`#accord_${postID}_${index}`}>
-                    <span className="font-600 font-13 line-height-s faq_qn">{item.faq_question}</span>
+                    <span className="line-height-s faq_qn">{item.faq_question}</span>
                     <i className="bi bi-plus font-20"></i>
                     </button>
                     <div id={`accord_${postID}_${index}`} className={`accordion-collapse collapse ${index == 0 ? 'show' : ''}`} data-bs-parent={`#accord_${postID}`}>

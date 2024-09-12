@@ -20,12 +20,13 @@ function Features({features, exClass='', defTitle='Our Features'}) {
                                     {list.map((service, index) => {
                                             const {item_description, item_title, item_sub_title, mylisting_accordion_photo} = service;
                                             return <div className="col-md-4" data-aos='fade-left'>
+                                                <a className="image-popup-no-margins" href="/archi/images/misc/pic_1.jpg">
+                                                            <img src={mylisting_accordion_photo} className="img-responsive mb-4" alt=""/>
+                                                        </a>
                                                         <DualColorTitle string={item_title}/>
                                                         {item_description}
                                                         <div className="spacer-single"></div>
-                                                        <a className="image-popup-no-margins" href="/archi/images/misc/pic_1.jpg">
-                                                            <img src={mylisting_accordion_photo} className="img-responsive" alt=""/>
-                                                        </a>
+                                                        
                                                     </div>
                                     }
                                     )

@@ -3,17 +3,23 @@ import Head from "next/head"
 import { Client } from "react-hydration-provider";
 import { useEffect, Suspense } from "react";
 import ParallaxSection from "@/components/UI/sections/ParallaxSection";
-import { randomEither, resizedImage, cleanHtml } from '@/helpers/universal';
+import { randomEither, resizedImage, cleanHtml, shuffleArray, srcWithFallback } from '@/helpers/universal';
 import ListingInfoCard from "@/components/listing/landingPages/hero/partials/ListingInfoCard";
 import ListingDetail from "../../profileInfo/ListingDetail";
 import PostReviews from './../../reviews/postReviews';
-//import DualColorTitle from "@/components/UI/partials/headings/DualColorTitle";
+import DualColorTitle from "@/components/UI/partials/headings/DualColorTitle";
 import Features from "@/components/UI/features/Features";
 import FeaturesTabs from "@/components/UI/features/FeaturesTabs";
 import Section from "@/components/UI/sections/Section";
-import {DualColorHeader } from '@/components/UI/Partials';
+import {DualColorHeader, SocialLinks } from '@/components/UI/Partials';
 import TagsCloud from '@/components/listing/partials/TagsCloud';
 import FAQs from "@/components/UI/FAQs";
+import { GalleryPlate, HorizontalGrid } from "@/components/UI/Galleries/MegaGallery";
+import { siteColors, siteSettings } from "@/helpers/base";
+import { ParallaxBanner } from "react-scroll-parallax";
+import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
+import { Heading1 } from "@/components/UI/partials/headings/Heading1";
+
 
 function Archi({listing, setActiveKey, colorHex}){
     const {meta, title, cover, content, about_us,id, author_id, type, dir_tags} = listing ?? {};
@@ -21,10 +27,19 @@ function Archi({listing, setActiveKey, colorHex}){
     const {faqs} = about_us ?? {};
     let wcu = _wcu[0] ?? null
 
-    let detailView, reviewsView, servicesView, servs2, tagsView, faqsView;
+    let detailView, reviewsView, servicesView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
     if(listing){
+        if(_links?.length > 0){
+            socialsView = <div className='card card-style partial_border double_left bottom_left my-5 p-5'>
+                <Heading1 exClass='mb-5' title={'Connect & Engage'} subtitle="Our Social Media Community"/>
+                <SocialLinks iconsOnly={true} exClass='_large flex-wrap' links={_links}/></div>
+          }
         if(content){
-            detailView = <Section dark={false} bgUrl={`${randomEither(gallery)}`} exClass='py-3 bg-fixed'><ListingDetail textExClass='' type={type} exClass='p-4' detail={content} id={listing.id}/></Section>
+            detailView = <Section dark={false} bgUrl={`${randomEither(gallery)}`} exClass='py-3 bg-fixed'>
+                <div className='p-2 p-sm-5'><ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
+                {socialsView}
+                </div>
+            </Section>
           }
           if(dir_tags?.length > 0){
             let tagClick = (tag) => {
@@ -33,7 +48,7 @@ function Archi({listing, setActiveKey, colorHex}){
                     query: { tags: tag.slug },
                   })
             }
-            tagsView = <Section exClass='py-4' title='Our Tags' descript={''} id="tags" bgUrl={randomEither(gallery)}>
+            tagsView = <Section exClass='py-4 bg-fixed' title='Our Tags' descript={''} id="tags" bgUrl={srcWithFallback(randomEither(gallery))}>
                 <div data-aos="zoom-in">
                 <div className='tags_row card card-style across_border partial_border mb-50'>
                 <div className='row_content'>
@@ -42,6 +57,53 @@ function Archi({listing, setActiveKey, colorHex}){
                  </div>
                  </div></div>
                  </Section>
+        }
+        if(gallery?.length > 0){
+            let megaGall = shuffleArray([...gallery]);
+            if(megaGall?.length > 0){
+                let grid1Arr = megaGall.slice(0,4);
+                let grid2Arr = megaGall.slice(4, 7);
+
+                horizontalGallery = <HorizontalGrid gutter={0}>
+                {grid1Arr.map((item, index) => {
+                  if (typeof item == 'string') {
+                    if(item?.length > 0){
+                      if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
+                        return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                      }
+                    }
+                  }else{
+                    if(item?.url?.includes(siteSettings.wpDomain)){
+                        return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                      }else{
+                        return <>{item}</>
+                      }
+                  }
+                }
+                )}
+                </HorizontalGrid>; 
+
+                if(grid2Arr?.length > 0){
+                    horizontalGallery2 = <HorizontalGrid gutter={0}>
+                    {grid2Arr.map((item, index) => {
+                      if (typeof item == 'string') {
+                        if(item?.length > 0){
+                          if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
+                            return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                          }
+                        }
+                      }else{
+                        if(item?.url?.includes(siteSettings.wpDomain)){
+                            return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                          }else{
+                            return <>{item}</>
+                          }
+                      }
+                    }
+                    )}
+                    </HorizontalGrid>; 
+                }
+            }
         }
           if(_wwd?.length > 0){
             if(_wwd[0].list?.length > 0){
@@ -56,9 +118,9 @@ function Archi({listing, setActiveKey, colorHex}){
 
            if(faqs?.length > 0){
                     let trimFaqs = faqs?.slice(0,3);
-                faqsView = <Section exClass='bg-fixed py-5' bgUrl={`${randomEither(gallery)}`}>
-                    <div className='overlay-bg position-relative z-0'/>
-                        {/* <DualColorTitle title={'FAQs'} subtitle={'Frequently asked'}/> */}
+                faqsView = <Section translateX={[0, 10]} translateY={[0, 0]} underLay overLay={false} exClass='bg-fixed py-5' bgUrl={`${randomEither(gallery)}`}>
+                    {/* <div className='overlay-bg position-relative z-0'/> */}
+                        <DualColorTitle title={'FAQs'} subtitle={'Frequently asked'}/>
                 <div className="card card-style partial_border across_border shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
                         <div className="content px-3 py-2">
                             
@@ -72,10 +134,18 @@ function Archi({listing, setActiveKey, colorHex}){
                 }
 
           reviewsView = <Suspense offset={150} once height={200} data-aos="zoom-in">
-            <Section exClass='pb-4' id='reviews' title='What Users Think' bgUrl={`${randomEither(gallery)}`}>
-              <Client><PostReviews sliderOptions={{padding: {left: '15px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
-              </Section>
+            <ParallaxSection overLay={false} underLay={true} dark exClass='py-5' id='reviews' title='What Users Think' bg={`${srcWithFallback(randomEither(gallery))}`}>
+                <div><div className="row">
+                        <div className="col-md-6 offset-md-3 text-center" data-aos='fade-up'>
+                            <h2 className='text-30 mb-0 color-white'>What Users Think</h2>
+                            <div className="separator"><span><i className="fa fa-circle"></i></span></div>
+                        </div>
+                    </div>
+              <Client>
+                    <PostReviews sliderOptions={{padding: {left: '40px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client></div>
+              </ParallaxSection>
               </Suspense>
+              
     }
 
   return (<>
@@ -99,13 +169,11 @@ function Archi({listing, setActiveKey, colorHex}){
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
-            <div className='z-1 position-relative w-100 d-flex justify-center'>
-              <ListingInfoCard styleObj={{maxWidth: '90%', width: '100%'}} listing={listing} exClass={'border-0 position-absolute mt-n5 mx-auto'}/>
-            </div>
+            <Section exClass='p-0'>
+              <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
+            </Section>
             {reviewsView}
             {detailView}
-            {faqsView}
-
             {/*<!-- section begin -->*/}
             {servicesView}
             {servs2}
@@ -113,7 +181,7 @@ function Archi({listing, setActiveKey, colorHex}){
 
 
             {/*<!-- section begin -->*/}
-            <section id="section-portfolio" className="no-top no-bottom" aria-label="section-portfolio">
+            {gallery?.length > 0 && <><section id="section-portfolio" className="no-top no-bottom w-100" aria-label="section-portfolio">
                 {/* <div className="container">
 
                     <div className="spacer-single"></div>
@@ -133,40 +201,38 @@ function Archi({listing, setActiveKey, colorHex}){
 
                 </div> */}
 
-                <div id="gallery" className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
-                    {gallery.map((it, ind) => {
-                        if(ind < 8){
-                            return <div  className="col-md-3 col-sm-6 col-6 item residential bg-cover bg-center" onClick={() => setActiveKey('gallery')} style={{height: 200}}>
-                                    <div className="picframe mh-100">
-                                            <span className="overlay">
-                                                <span className="pf_text text-center">
-                                                    <span className="project-name">{cleanHtml(title?.rendered)}</span>
-                                                </span>
-                                            </span>
-                                        <img className='object-cover object-center' src={resizedImage(it, 'medium_large')} alt=""/>
-                                    </div>
-                                </div>
-                        }
-                    })}
+                <div id="gallery" onClick={() => setActiveKey('gallery')}  className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
+                    <div className='overlay-bg z-2 opacity-70'/>
+                <ParallaxChildSection  translateY={[0, 0]} speed={15} expanded={true} translateX= {[0, -10]}>
+                    <div className="w-100">{horizontalGallery}</div>
+                </ParallaxChildSection>
+                <ParallaxChildSection  translateY={[0, 0]} speed={-5} expanded={true} translateX= {[-10, 0]}>
+                    <div className="w-100">{horizontalGallery2}</div>
+                </ParallaxChildSection>
                 </div>
 
                 <div id="loader-area">
                     <div className="project-load"></div>
                 </div>
             </section>
+            
+            <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
+                <div className="overlay-bg"/>
+                <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Gallery</button>
+            </section></>}
             {/*<!-- section close -->*/}
-
+            
+            {faqsView}
+            {tagsView}
 
             {/*<!-- section begin -->*/}
-            <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
-                <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Gallery</button>
-            </section>
+            
             {/*<!-- logo carousel section close -->*/}
 
 
             {/*<!-- section begin -->*/}
             
-            {tagsView}
+            
             {/*<!-- section close -->*/}
 
 
@@ -245,12 +311,7 @@ function Archi({listing, setActiveKey, colorHex}){
     </div>
 </main>
 </div>
-<style>{`.hero {
-    padding-bottom: 65px;
-}
-#reviews {
-    padding-top: 150px;
-}`}
+<style>{``}
 </style>
 </>
   )

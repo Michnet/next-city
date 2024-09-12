@@ -428,7 +428,7 @@ export const listingUrlBase = (type) => {
 }
 
 
-export function srcWithFallback(src, fb = '/images/bg/fallback.jpg'){
+export function srcWithFallback(src, fb = '/images/bg/pageBg.jpg'){
   if(src?.includes('http') || src?.charAt(0) === '/'){
     return src;
   }else{
