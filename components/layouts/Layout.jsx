@@ -17,6 +17,7 @@ import SearchForm1 from "../UI/search/SearchForm1";
 import SnackBar from "../UI/partials/SnackBar";
 import UserSideMenu from "../UI/user/UserSideMenu";
 import UISettings from "./UISettings";
+import { ParallaxScrollProvider } from '@/contexts/ParallaxContext';
 //import { getSession } from "next-auth/react";
 
 function sizing(width, setWidth){
@@ -101,8 +102,8 @@ function LayoutConst({ children, headerTitle, settings}) {
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
-          <Scaffold  headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>
-            {children}
+            <Scaffold  headerTitle={headerTitle} settings={cachedSettings} uiSize={uiSize}>
+              <ParallaxScrollProvider>{children}</ParallaxScrollProvider>
             </Scaffold>
           <Client>
 		  <div
@@ -292,7 +293,7 @@ function LayoutConst({ children, headerTitle, settings}) {
            --xsFontSize: 12px;
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
-           --lh: 1.6em;
+           --lh: 1.6;
           --headingFont: "Jost", sans-serif !important;
           --handFont: 'Dr Sugiyama', cursive;
           --fontFamily: "Roboto", sans-serif !important;
@@ -324,6 +325,7 @@ function LayoutConst({ children, headerTitle, settings}) {
       @scope(.theme-dark) {
           :scope {
               --colorTheme: #FFF;
+              --bs-body-color: #fff;
               --bgTheme: #0f1117;
               --bgThemeDark: #000;
               --borderThemeAlt: rgba(0, 0, 0, 0.1);
@@ -341,12 +343,12 @@ function LayoutConst({ children, headerTitle, settings}) {
       }
       @scope(.smLine) {
         :scope {
-            --lh:1.2em;
+            --lh:1.2;
           }
       }
       @scope(.lgLine) {
         :scope {
-            --lh:2.2em;
+            --lh:2.2;
           }
       }
       .bg-theme-transparent-2{
@@ -359,8 +361,11 @@ function LayoutConst({ children, headerTitle, settings}) {
       h1, h2, h3, h4, h5, h6{
         font-family: var(--headingFont);
       }
+      .bgDarkTransparent{background: var(--bgDarkTransparent);}
+      .bgDarkTransparent2{background: var(--bgDarkTransparent2);}
       body {
         line-height: var(--lh);
+        color: var(--colorTheme);
       }`}</style></Client>
         </div>
         {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}

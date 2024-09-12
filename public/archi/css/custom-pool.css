@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1,h2,h3,h4,h5,h6,
+blockquote.testimonial-big .title{
+	font-family: "Montserrat";
+	font-weight: 700;
+	text-transform: none;
+	letter-spacing: normal;
+}
+
+body{
+	font-family: "Montserrat";
+	font-size: 15px;
+	line-height: 1.7em;
+}
+
+blockquote.testimonial-big{
+	font-size: 18px;
+}
+
+.de_tab.tab_steps .de_nav li span{
+	font-family: "Montserrat";
+}
+
+.expand h4{
+	font-size: 15px;
+}
+
+h1{
+	letter-spacing: 0;
+	font-size: 46px;
+	text-transform: none;
+	letter-spacing: -2px;
+}
+
+h2{
+	font-size: 30px;
+	letter-spacing: -1.15px;
+}
+
+header,
+header.smaller:not(.header-bottom):not(.side-header):not(.force-header-mobile),
+header.smaller,
+header.header-mobile{
+	background: #304154;
+}
+
+#mainmenu,
+#mainmenu li a{
+	font-size: 15px;
+	font-weight: 500;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+#mainmenu > li > a{
+	font-weight: 600;
+}
+
+.de_count.ultra-big{
+	padding: 0;
+}
+
+.de_count.ultra-big h3{
+	letter-spacing: -10px;
+	margin-bottom: 0;
+}
+
+.de_count.ultra-big span{
+	letter-spacing: 0;
+	font-size: 16px;
+}
+
+.de_phone-simple .d-num{
+	color: #000000;
+}
+
+a.btn-custom,
+a.btn-custom:hover{
+	color: #ffffff;
+	letter-spacing: 0;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: none;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.box-number.square i{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.de_tab.tab_steps .de_nav li span{
+	text-transform: none;
+}
+
+p.lead{
+	font-size: 17px;
+}
+
+.de-post-poster .d-content h3{
+	font-size: 20px;
+}
+
+footer{
+	font-size: 14px;
+}
+
+footer .widget ul li{
+	padding: 2px 0;
+}
+
+footer address span{
+	padding: 2px 0;
+}

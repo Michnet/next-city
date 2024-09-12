@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+h1,h2,h3,h4,h5,h6{
+	font-family: "Bebas Neue";
+}
+
+h2{
+	letter-spacing: 10px;
+}
+h5{
+	font-family: Roboto;
+	font-size: 16px;
+}

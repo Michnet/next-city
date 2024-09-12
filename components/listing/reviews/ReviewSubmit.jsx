@@ -7,7 +7,7 @@ import  {useEffect, useState} from 'react';
 import { useRecoilState } from 'recoil';
 import { authState } from '@/contexts/atoms';
 import { submitReview } from '@/helpers/rest';
-import ReviewCard from './ReviewCard';
+import ReviewCard from './reviewCards/ReviewCard';
 import GuestPrompt from '@/components/UI/GuestPrompt';
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import CallToActions from '@/components/UI/CallToActions';

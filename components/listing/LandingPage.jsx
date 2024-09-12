@@ -1,4 +1,7 @@
+import dynamic from "next/dynamic";
 import { memo } from "react";
+import { Client } from "react-hydration-provider";
+const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
 import BusinessOne from "./landingPages/Business1";
 import Rockfest from "./landingPages/rockfest/Rockfest";
 import styles from './styles/home1.module.css';
@@ -13,7 +16,10 @@ import styles from './styles/home1.module.css';
 
     return  <div className="landing_page">
               {/* <Rockfest listing={listing} setActiveKey={setActiveKey}/> */}
-            <BusinessOne styles={styles}  color={color} colorHex={colorHex} listing ={listing} cover={cover} setActiveKey={setActiveKey}/>
+              
+                <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
+              
+           {/*  <BusinessOne styles={styles}  color={color} colorHex={colorHex} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
         </div>
         }
 

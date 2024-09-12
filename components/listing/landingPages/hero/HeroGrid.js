@@ -16,7 +16,7 @@ import Image from 'next/image';
 //import VisitorActions from '../../partials/VisitorActions';
 import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
 import Link from 'next/link';
-import HeroDetail from './HeroDetail';
+import HeroDetail from './partials/HeroDetail';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 

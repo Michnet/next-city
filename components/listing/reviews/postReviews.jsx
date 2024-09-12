@@ -6,13 +6,13 @@ import CallToActions from '@/components/UI/CallToActions';
 import { authState, activeReviewsState } from '@/contexts/atoms';
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 import { fetchListingReviews } from '@/helpers/rest';
+import dynamic from 'next/dynamic';
 //import ReviewCard from './ReviewCard';
-import SingleReview from './SingleReview';
 import Splider from '@/components/UI/partials/Splider';
 import { Heading1 } from '@/components/UI/partials/headings/Heading1';
 
 
-function PostReviews({id, author_id, fromActive=false, preview = false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false}) {
+function PostReviews({id, author_id, headerLess=false, light=true, fromActive=false, cardType=1, preview = false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false, sliderOptions={}}) {
     const [auth, setAuth] = useRecoilState(authState);
     const {user} = auth ?? {};
     const [page, setPage] = useState(0);
@@ -20,6 +20,7 @@ function PostReviews({id, author_id, fromActive=false, preview = false, carousel
     const [reviews, setReviews] = useState(null);
     const activeReviews = fromActive ? useRecoilValue(activeReviewsState) : null;
 
+    let localSliderOptions = {gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop', ...sliderOptions}
     let userOwned = user?.id == author_id;
  
     async function getReviews(payload, signal){
@@ -62,11 +63,25 @@ function PostReviews({id, author_id, fromActive=false, preview = false, carousel
       
     }, [id, activeReviews]);
 
+    let SingleReview
+    switch (cardType) {
+        case 1:
+            SingleReview = dynamic(() => import('./reviewCards/SingleReview'));
+            break;
+        case 2:
+            SingleReview = dynamic(() => import('./reviewCards/SingleReview2'));
+            break;
+    
+        default:
+            SingleReview = dynamic(() => import('./reviewCards/SingleReview'));
+            break;
+    }
+
     let reviewsView, totalView; 
-    let fallBackView = <>{loading ?  <div><LoaderDualRingBoxed height={300}/></div> : <>{
+    let fallBackView = <div style={{maxWidth: 500, marginLeft: 'auto', marginRight: 'auto'}}>{loading ?  <div><LoaderDualRingBoxed height={300}/></div> : <>{
         userOwned ? 
-        <CallToActions title={'No Reviews Yet'} light descript={'No one has submitted a review for your event yet. Share your page and encourage others to share their reviews of your event'}/> 
-        : <CallToActions bgClass={'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light  title={'Be the first'} actionComponent={withButton ? <button className='btn' onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>}</>
+        <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} title={'No Reviews Yet'} light={light} descript={'No one has submitted a review for your event yet. Share your page and encourage others to share their reviews of your event'}/> 
+        : <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light={light}  title={'Be the first'} actionComponent={withButton ? <button className={`btn ${light ? '' : 'btn-light'}`} onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>}</div>
     if(loading){
         reviewsView = <div><LoaderDualRingBoxed height={300}/></div>
     }else if(reviews){
@@ -75,7 +90,7 @@ function PostReviews({id, author_id, fromActive=false, preview = false, carousel
         if(list?.length > 0){
     
          if(carousel){
-             reviewsView = <Splider height={preview ? 210 : 300} options={{gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'carousel'}}>  
+             reviewsView = <Splider options={{...localSliderOptions}}>  
              {list.map((item) => {
                  return <SingleReview preview={preview} transparent={transparentCards} exClass={`mx-0 ${transparentCards ? 'border' : ''}`} width={300} reload={reload} review={item} key={item.id} user={user} listingId={id}/>
              })} 
@@ -105,7 +120,7 @@ function PostReviews({id, author_id, fromActive=false, preview = false, carousel
    
   return (
    <>
-       <Heading1 title={'User Reviews'} subtitle={'What Others Are Saying'}/>
+       {!headerLess && <Heading1 title={'User Reviews'} subtitle={'What Others Are Saying'}/>}
         {reviews?.list?.length > 0 ? 
     <div className={`listing_reviews pos-relative _wall ${carousel ? '_slider' : ''}`}>
         

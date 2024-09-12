@@ -3568,7 +3568,7 @@ option.reset {color: var(--theme);}
 
 .filter_box {border: 1px solid #d4d4d4;border-radius: 10px;margin-bottom: 20px;padding: 15px 3%;}
 
-.tab_inner {padding-top: 0;max-width: 100%;overflow: hidden;}
+.tab_inner {padding-top: 0;max-width: 100%;}
 
 .tab-pane .tab_inner:empty {
   display: none;

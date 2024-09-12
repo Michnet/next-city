@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+h1,h2,h3,h4,h5,h6{
+	font-weight:600;
+}
+
+
+h1,h2,h3,h4,h5,h6,
+.big-white,
+.ultra-big-white,
+.de_tab.tab_steps .de_nav li span,
+.teaser-text,
+.text-slider,
+#mainmenu,
+.btn,
+a.btn,
+.btn-line,
+a.btn-line,
+#filters,
+.ultra-big-white,
+.wm,
+blockquote.testimonial-big.s2 .title,
+.tp-title,
+.countdown-amount,
+.countdown-period,
+.de_count h3,
+.ultra-big-2,
+.tp-caption,
+.pricing-s1.light .top .price b,
+blockquote.testimonial-big .title,
+.list-inline-style-1,
+.list-boxed-s1{
+font-family: 'Bebas Neue',Arial, Helvetica, sans-serif;
+}
+
+
+h1,h2,h3,h4,h5,h6,
+.de_tab.tab_steps .de_nav li span
+{
+letter-spacing:0;
+text-transform:none;
+}
+
+h1{
+	font-size:48px;
+}
+h2{
+	font-size:42px;
+}
+h3{
+	font-size:28px;
+}
+h4{
+	font-size:22px;
+}
+
+
+a.btn-custom,a.btn-custom:hover{
+	font-size:16px;
+	padding-bottom:6px;
+}
+
+.list-inline-style-1{
+font-size:24px;
+line-height:1.4em;
+}
+
+.list-inline-style-1.lis-f{
+	font-size:48px;
+}
+
+.list-boxed-s1{
+	font-size:36px;
+}
+
+.list-inline-style-1.lis-f li:before{
+	height:52px;
+	overflow:hidden;
+}
+
+#subheader h1{
+	letter-spacing:0;
+	text-transform:none;
+}
+
+.blog-list h3, .blog-read h3{
+font-size:22px;
+}
+
+.big-white{
+	font-size:13px;
+}
+
+.ultra-big-white{
+	letter-spacing:0;
+	text-transform:none;
+	font-weight:600;
+	font-size:72px;
+}
+
+.text-slider{
+font-size:60px;
+letter-spacing:5px;
+}
+
+.big-custom-1{
+	font-family:"Bebas Neue";
+	font-size:60px;
+	letter-spacing:0;
+	font-weight:bold;
+	line-height:1.1em;
+	letter-spacing:-1px;
+}
+
+#mainmenu{
+	font-size:16px;
+}
+
+.small-white{
+	font-size:18px;
+	font-weight:400;
+}

@@ -25,7 +25,7 @@ import { BookingView } from '@/components/listing/partials/ActionButtons';
 import PostLike from '@/components/UI/partials/social/PostLike';
 import NextPostLink from '@/components/UI/NextPostLink';
 import { openOffCanvas } from '@/helpers/appjs';
-import HeroDetail from './HeroDetail';
+import HeroDetail from './partials/HeroDetail';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
@@ -100,7 +100,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
 
   return (<>
     <Suspense>
-        <div className={`hero2 listing_hero ${styles['location']} d-block ${exClass}`}>
+        <div className={`hero hero2 listing_hero ${styles['location']} d-block ${exClass}`}>
             <div className='hero_images d-block d-md-none md-hero pos-relative'>
               {/* <div className={`${styles['slider_col']}`} >
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { LoaderDualRingBoxed } from "../skeletons/Loaders";
 
-const FAQs = ({postID, faqs}) => {
+const FAQs = ({postID, faqs, exClass=''}) => {
 
     const [loading, setLoading] = useState(true);
     
@@ -17,7 +17,7 @@ const FAQs = ({postID, faqs}) => {
     
    
     return (
-      <><div className="border-0 accordion-s">
+      <><div className={`border-0 accordion-s ${exClass}`}>
         {loading ? <LoaderDualRingBoxed/> : <>
         {faqs?.length > 0 ? 
         <>
