@@ -5268,3 +5268,11 @@ div#explore_nav .left_menu_btn {
     -webkit-mask-image: url(/images/masks/1.png);
     mask-image: url(/images/masks/1.png);
   }
+
+.listing_card:hover img {
+    transform: rotate(7deg) scale(1.2);
+}
+
+.listing_card img {
+    transition: all .5s;
+}

@@ -84,7 +84,16 @@ self.addEventListener('fetch', function(event) {
 	event.respondWith(
 		(async () => {
 			//Just fetch fresh data everywhere
+			if(event.request.url.includes('gravatar')){
+				const requestURL = new URL(event.request.url);
+				var req = new Request(requestURL.searchParams.get('d'), {
+                    method: event.request.method,
+                    headers: event.request.headers
+                });
+				return fetch(req);
+			}else{
 			return fetch(event.request);
+			}
 		  
 		  if(unCachList.test(event.request.url)){
 			//console.log('unCachList', event.request.url);

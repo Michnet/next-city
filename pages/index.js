@@ -31,6 +31,7 @@ import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 import EventCard3  from '@/components/UI/Listings/cards/EventCard3';
 import { useRecoilState } from 'recoil';
 import { siteVersionState } from "@/contexts/atoms";
+import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
 
 
 export async function getStaticProps() {
@@ -245,6 +246,15 @@ export default function Home(props) {
           <></>
         }
     </Splider>
+   {/* <div className='d-flex p-3'>
+      {latestList?.length > 0 ? 
+          latestList.map((li) => {
+           return <EventCardImage mini contentClass={'px-3'} height={150} key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }
+    </div> */}
 
     <section  className="layout-pt-md layout-pb-md  px-30 mb-5 border mx-3">
     <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>

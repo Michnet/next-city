@@ -10,7 +10,7 @@ import TermTag from "../../partials/TermTag";
 import { fallbackImgSrcSet } from '@/helpers/base';
 import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
 
-const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
+const EventCardImage = ({listing, width= 'fit-content', contentClass='px-2', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, type} = listing;
     const {likes} = acf?.community ?? {};
 
@@ -61,10 +61,8 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, hei
                       </div>
                     ))}
                   </Slider> */}
-                <div className="card-bottom px-3 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
+                <div className="d-none card-bottom px-3 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>
-                    {/* {event_date[0]?.start ? <p className="color-white font-12 opacity-80 truncate mb-2"><i className="color-highlight far fa-calendar"></i> <DateViewString date={event_date[0].start} format={'MMMM D'}/> <i className="color-highlight ms-3 far fa-clock"></i> <DateViewString date={event_date[0].start} format={'hh:mm A'}/> </p> : <></>} */}
-                    {/* {locations?.length > 0 ? <p className="color-white font-12 opacity-80 mb-2"><i className="color-highlight fa fa-map-marker-alt"></i> {locations[0].name}</p> : <></>} */}
                     <div className={`d-flex flex-row justify-between align-items-center`}>
 
                     </div>
@@ -72,16 +70,12 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, hei
                     {<TermTag exTagClass={'rounded-3 px-2 text-12'} exClass={'lgLine'} term={category} type={'tag'} linkTax={'category'}/>}
                     </div>
                     <div className='_right'>
-                    {/* {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> } */}
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney  mb-2 me-2'/> : <></>}
                     </div>
                 </div>
-                <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>
+                <div className="d-none card-overlay bg-gradient opacity-90 rounded-0"></div>
             </div>
-            <div className={`py-2 row_flex ${contentClass}`}>
-                    {/* <div>
-                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
-                    </div> */}
+            <div className={`d-none py-2 row_flex ${contentClass}`}>
                     <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
                         <Link href={`/${type}s/${slug}`}><h3 className={`text-16 mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
                         {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>}
@@ -90,19 +84,11 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, hei
                         {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
                         <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
                         </div>
-                        {/* <div className={`d-flex flex-row justify-between align-items-center`}>{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</div> */}
                         </div>
                   </div>  
-            {/* <div className="d-flex flex-row flex-nowrap m-2 ms-3 mb-1 align-items-center gap-2 justify-between">
-                <div className="">
-                <Link href={`/events/${slug}`}><h3 className={`text-15 ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
-                    <p className="truncate font-11 mb-2 pb-1"><i className="fa fa-map-marker-alt me-2"></i>{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</p>
-                </div>
-                {noButton ? <></> : <Link className='text-nowrap h-fit btn bg-highlight rounded-xl shadow-xl text-uppercase p-2 font-900 font-10' href={`/events/${slug}`}>Learn More</Link>}
-            </div> */}
         </div>
         </>
     )
 }
 
-export default EventCard2;
+export default EventCardImage;
