@@ -8,7 +8,7 @@ import TermTag from "../../partials/TermTag";
 //import Slider from "react-slick";
 //import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
 import { fallbackImgSrcSet } from '@/helpers/base';
-import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
+//import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
 //import { openOffCanvas } from "@/helpers/appjs";
 
 import dayjs from "dayjs";
@@ -24,7 +24,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', min
     const imgArr2 = shuffleArray([_embedded['wp:featuredmedia'][0].source_url, ...gallery]);
 
     return (<>
-    <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_2 m-0 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
+    <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_6 event_card_2 m-0 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
 
             <div className="d-none gap-2 activity_header mb-1 pt-2 px-2">
                 <div>
@@ -48,7 +48,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', min
             </div>
 
 
-            <div className="card position-relative shadow-0 mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
+            <div className="overflow-hidden card position-relative shadow-0 mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
                 <img onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={resizedImage(srcWithFallback(imgArr2[0]), 'medium_large')} fill={true} className={`pos-relative object-cover ${exImgClass}`} style={{minHeight:minHeight}}/>
                 
                 <div className="card-bottom px-2 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>

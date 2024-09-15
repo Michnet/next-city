@@ -20,7 +20,7 @@ function PostReviews({id, author_id, headerLess=false, light=true, fromActive=fa
     const [reviews, setReviews] = useState(null);
     const activeReviews = fromActive ? useRecoilValue(activeReviewsState) : null;
 
-    let localSliderOptions = {gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 0, right: 15}, perPage:1, autoplay: true, perMove: 1, interval:6000, type:'loop', ...sliderOptions}
+    let localSliderOptions = {gap:15, arrows: false, wheel:false, autoWidth: true, padding: { left: 0, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...sliderOptions}
     let userOwned = user?.id == author_id;
  
     async function getReviews(payload, signal){

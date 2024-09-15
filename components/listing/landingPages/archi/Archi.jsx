@@ -19,6 +19,8 @@ import { siteColors, siteSettings } from "@/helpers/base";
 import { ParallaxBanner } from "react-scroll-parallax";
 import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
 import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+
 
 
 function Archi({listing, setActiveKey, colorHex}){
@@ -30,15 +32,20 @@ function Archi({listing, setActiveKey, colorHex}){
     let detailView, reviewsView, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
     if(listing){
         if(_links?.length > 0){
-            socialsView = <div className='card card-style partial_border double_left bottom_left my-5 p-5'>
-                <Heading1 exClass='mb-5' title={'Connect & Engage'} subtitle="Our Social Media Community"/>
-                <SocialLinks iconsOnly={true} exClass='_large flex-wrap' links={_links}/></div>
+            socialsView = <Section dark={false} bgUrl={`${randomEither(gallery)}`} exClass='py-1 bg-fixed'>
+            <div className='p-5'>
+            {/* <div className='card card-style partial_border double_left bottom_left my-5 p-5'> */}
+                <Heading1 exClass='mb-5' title={'Our Social Profiles'} subtitle="Connect & Engage"/>
+                <SocialLinks iconsOnly={false} exClass='_large flex-wrap' links={_links}/></div>
+            {/* </div> */}
+        </Section>
+            
+           
           }
         if(content){
             detailView = <Section dark={false} bgUrl={`${randomEither(gallery)}`} exClass='py-3 bg-fixed'>
                 <div className='p-2 p-sm-5'>
                     <ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
-                {socialsView}
                 </div>
             </Section>
           }
@@ -109,7 +116,7 @@ function Archi({listing, setActiveKey, colorHex}){
             galleryView = <><section id="section-portfolio" className="no-top no-bottom w-100" aria-label="section-portfolio">
                             <Section  id="gallery" exClass={'p-0 bg-color'}   className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
                                 <div className='overlay-bg z-2 opacity-70'>
-                                    <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Go to Gallery</button>
+                                    <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Our Gallery</button>
                                 </div>
                             <ParallaxChildSection  translateY={[0, 0]} speed={15} expanded={true} translateX= {[10, 0]}>
                                 <div style={{minWidth: '110%'}}>{horizontalGallery}</div>
@@ -122,7 +129,7 @@ function Archi({listing, setActiveKey, colorHex}){
                         
                         <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
                             <div className="overlay-bg"/>
-                            <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Gallery</button>
+                            <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Full Gallery</button>
                         </section></>
         }
           if(_wwd?.length > 0){
@@ -187,32 +194,18 @@ function Archi({listing, setActiveKey, colorHex}){
             <Section exClass='p-0'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
-            
+            {/* <ResponsiveMasonry className='hero_grid' columnsCountBreakPoints={{0: 1, 575: 2}}>
+            <Masonry className='grid_box' gutter='10px'> */}
             {detailView}
-            
-            {/*<!-- section begin -->*/}
             {servs2}
             {servicesView}
-            
             {galleryView}
+            {socialsView}
             {reviewsView}
-            {/*<!-- section close -->*/}
-            
             {faqsView}
             {tagsView}
-
-            {/*<!-- section begin -->*/}
-            
-            {/*<!-- logo carousel section close -->*/}
-
-
-            {/*<!-- section begin -->*/}
-            
-            
-            {/*<!-- section close -->*/}
-
-
-            {/*<!-- footer begin -->*/}
+            {/* </Masonry>
+            </ResponsiveMasonry> */}
         {/* <footer>
             <div className="container">
                 <div className="row">

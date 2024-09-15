@@ -83,7 +83,7 @@ export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = 
           </span>}
         </div>}
         <div className="align-self-center">
-          <p className="mb-n2 mt-n1 font-700 font-11 color-highlight">{subTitle}</p>
+          <p className="mb-n1 font-700 font-11 opacity-60">{subTitle}</p>
           <h3 className="font-700 mb-0">{title}</h3>
         </div>
         {linkPath ? <div className="align-self-center ms-auto me-2">

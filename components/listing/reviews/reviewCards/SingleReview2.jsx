@@ -4,10 +4,10 @@ function SingleReview2({ review, user, preview, listingId, noTime, reload, width
     const {rating, id} = review ?? {}
 
   return (
-    <div className={`card card-style shadow-sm ${exClass} ${transparent ? 'bg-transparent shadow-0 border-o' : ''}`} style={{width: width}}>
+    <div className={`review_card_2 card card-style shadow-sm ${exClass} ${transparent ? 'bg-transparent shadow-0 border-o' : ''}`} style={{width: width}}>
       <div className="de_testi">
           <blockquote>
-          <h5 className="'font-17 mb-2">{title}</h5>
+          <h5 className="'font-17 text-20 mb-2 color-white fw-100">{title}</h5>
               <p>
                 {content}
               </p>

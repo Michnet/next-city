@@ -10,7 +10,7 @@ import TermTag from "../../partials/TermTag";
 import { fallbackImgSrcSet } from '@/helpers/base';
 import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
 
-const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
+const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, type} = listing;
     const {likes} = acf?.community ?? {};
 
@@ -28,7 +28,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, hei
 
     return (<>
     <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
-            <div className="card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
+            <div className="overflow-hidden card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
 
                 <Image unoptimized onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={srcWithFallback(imgArr2[0])} fill={true} className={'pos-relative object-cover'} style={{minHeight:minHeight}}/>
                 {/* <Slider
@@ -61,7 +61,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, hei
                       </div>
                     ))}
                   </Slider> */}
-                <div className="card-bottom px-3 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
+                <div className="card-bottom px-3 d-flex justify-between align-items-start gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>
                     {/* {event_date[0]?.start ? <p className="color-white font-12 opacity-80 truncate mb-2"><i className="color-highlight far fa-calendar"></i> <DateViewString date={event_date[0].start} format={'MMMM D'}/> <i className="color-highlight ms-3 far fa-clock"></i> <DateViewString date={event_date[0].start} format={'hh:mm A'}/> </p> : <></>} */}
                     {/* {locations?.length > 0 ? <p className="color-white font-12 opacity-80 mb-2"><i className="color-highlight fa fa-map-marker-alt"></i> {locations[0].name}</p> : <></>} */}
@@ -69,7 +69,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=180, hei
 
                     </div>
                     {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> }
-                    {<TermTag exTagClass={'rounded-3 px-2 text-12'} exClass={'lgLine'} term={category} type={'tag'} linkTax={'category'}/>}
+                    {<TermTag exTagClass={'rounded-3 text-12'} exClass={'lgLine'} term={category} type={'hash'} linkTax={'category'}/>}
                     </div>
                     <div className='_right'>
                     {/* {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> } */}
