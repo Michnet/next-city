@@ -230,13 +230,14 @@ export default function Home(props) {
    <Splider exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestPlaces?.length > 0 ? 
           latestPlaces.map((li) => {
-           return <EventCard3 truncate={2} exClass='m-0' mini contentClass={'px-3'} height={220} width={200} key={li.id} listing = {li}/>
+           return <EventCard3 truncate={2} exClass='m-0' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
           })
           :
           <></>
         }
     </Splider>
 
+    <section  className="mb-2">
    <SectionHeader inverted iconClass={'far fa-calendar-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider options={{gap: 15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
@@ -247,16 +248,20 @@ export default function Home(props) {
           <></>
         }
     </Splider>
+    </section>
+    
+    <section  className="mb-2">
     <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Dice Roll'} subTitle={'Explore events & places'}/>
    <div className='p-3 h_masonry gap-2'>
       {latest?.length > 0 ? 
           shuffleArray(latest).map((li) => {
-           return <EventCardImage width={'auto'} styleObj={{flexBasis: `${randomBetween(20,60)}%`}} /* width={randomBetween(130,320)} */ maxWidth={'50%'} mini contentClass={'px-3'} height={120} maxHeight={'180px'} key={li.id} listing = {li}/>
+           return <EventCardImage width={'auto'} styleObj={{flexBasis: `${randomBetween(20,40)}%`}} /* width={randomBetween(130,320)} */ maxWidth={'50%'} mini contentClass={'px-3'} height={120} maxHeight={'180px'} key={li.id} listing = {li}/>
           })
           :
           <></>
         }
     </div>
+    </section>
 
     <section  className="layout-pt-md layout-pb-md  px-30 mb-5 border mx-3">
     <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>

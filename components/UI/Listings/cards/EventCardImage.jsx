@@ -64,8 +64,9 @@ const EventCardImage = ({listing, width= 'fit-content', contentClass='px-2', min
                 </div> */}
                 <div className="show_on_reveal align-items-end card-overlay bg-gradient opacity-90 rounded-0 p-2 p-sm-3 color-white">
                 <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
-                        <Link href={`/${type}s/${slug}`}><h3 className={`text-16 color-white mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
-                        {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative text-truncate d-block'/> : <></>}
+                <i className={`far fa-${type == 'event' ? 'calendar-alt' : 'map-marked-alt'} text-center bg-dark mb-2`} style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/>
+                        <Link href={`/${type}s/${slug}`}><h3 className={`text-16 color-white mb-1 smLine truncate-2`}>{cleanHtml(title.rendered)}</h3></Link>
+                        {/* {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative text-truncate d-block'/> : <></>} */}
                         {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-14 opacity-80">{short_desc}</p>}
                         {/* <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
                         {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}

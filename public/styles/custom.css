@@ -2662,7 +2662,7 @@ border-color: #FF9800;
 }
 
 .splider .splide__track {
-    overflow: hidden;
+    overflow: visible;
 }
 
 .user_i {

@@ -61,34 +61,38 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, hei
                       </div>
                     ))}
                   </Slider> */}
-                <div className="card-bottom px-3 d-flex justify-between align-items-start gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
+                <div className="card-bottom  px-3 d-flex justify-between align-items-start gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>
                     {/* {event_date[0]?.start ? <p className="color-white font-12 opacity-80 truncate mb-2"><i className="color-highlight far fa-calendar"></i> <DateViewString date={event_date[0].start} format={'MMMM D'}/> <i className="color-highlight ms-3 far fa-clock"></i> <DateViewString date={event_date[0].start} format={'hh:mm A'}/> </p> : <></>} */}
                     {/* {locations?.length > 0 ? <p className="color-white font-12 opacity-80 mb-2"><i className="color-highlight fa fa-map-marker-alt"></i> {locations[0].name}</p> : <></>} */}
                     <div className={`d-flex flex-row justify-between align-items-center`}>
 
                     </div>
-                    {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> }
-                    {<TermTag exTagClass={'rounded-3 text-12'} exClass={'lgLine'} term={category} type={'hash'} linkTax={'category'}/>}
+                    {/* {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> } */}
+                    {/* <TermTag exTagClass={'rounded-3 text-12'} exClass={'lgLine'} term={category} type={'hash'} linkTax={'category'}/> */}
                     </div>
                     <div className='_right'>
                     {/* {ticket_min_price_html && <PriceView currencyClass='color-white' preText={''}  exClass={'_inline white-currency'} priceHTml={ticket_min_price_html}/> } */}
-                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney  mb-2 me-2'/> : <></>}
+                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date'/> : <></>}
                     </div>
                 </div>
-                <div className="card-overlay bg-gradient opacity-90 rounded-0"></div>
+                {/* <div className="card-overlay bg-gradient opacity-90 rounded-0"/> */}
             </div>
             <div className={`py-2 row_flex ${contentClass}`}>
                     {/* <div>
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
                     </div> */}
+                    
                     <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
-                        <Link href={`/${type}s/${slug}`}><h3 className={`text-16 mb-1 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
-                        {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>}
+                        <Link href={`/${type}s/${slug}`}><h3 className={`text-15 fw-400 smLine ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered)}</h3></Link>
+                        {/* {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>} */}
+                        <div className="row_flex gap-2">
+                        <TermTag  exTagClass={'rounded-3 text-12 truncate'} exClass={'lgLine'} term={category} type={'hash'} linkTax={'category'}/>
+                        <ListingMeta location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/> </div>
                         {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-14 opacity-80">{short_desc}</p>}
-                        <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine`}>
+                        <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine mt-2`}>
                         {<ListingMetaMini filled page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}
-                        <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/>
+                        {/* <ListingMeta filled location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/> */}
                         </div>
                         {/* <div className={`d-flex flex-row justify-between align-items-center`}>{ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }</div> */}
                         </div>

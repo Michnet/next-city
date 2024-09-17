@@ -26,7 +26,7 @@ const EventCard3 = ({listing, width=320, dataAos, height=260, exClass='', trunca
                             <div><p className={`color-white font-13 mb-0 opacity-70 truncate-${truncate}`}>{cleanHtml(short_desc)}</p></div>
                             </div>
                             <div className='row_flex gap-3 justify-between align-items-center mb-1'>
-                            <TermTag exTagClass={'rounded-3 px-2 text-11 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'tag'} linkTax={'category'}/>
+                            <TermTag exTagClass={'rounded-3 text-11 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                             {ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
                             
                             </div>
