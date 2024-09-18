@@ -15,6 +15,7 @@ import Link from 'next/link';
 import PostLike from '@/components/UI/partials/social/PostLike';
 import NextPostLink from '@/components/UI/NextPostLink';
 import { openOffCanvas } from '@/helpers/appjs';
+import { hashtag } from '@/helpers/universal';
 
 const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, exClass=''}) => {
   const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
@@ -39,9 +40,9 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
     galArr = gallery.slice(0,4);
   }
   if(greeting){
-      greetingView = <p className="greeting_msg">{greeting}</p>
+      greetingView = <p className="greeting_msg smLine">{greeting}</p>
   }else{
-      greetingView = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
+      greetingView = <p className="greeting_msg smLine">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
   }
 
   if(user){
@@ -63,7 +64,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
   return (<div>
     <div>
         <div className={`hero_detail ${exClass}`}>
-            <div className='hero_title _detail md:px-35 md:pb-45 pt-30 d-block d-lg-grid gap-4 align-items-center z-2 position-relative'>
+            <div className='hero_title _detail sm:px-10 md:px-35 md:pb-20 pt-0 pt-30 d-block d-lg-grid gap-4 align-items-center z-2 position-relative'>
             
              <div className='profile_name d-none d-md-block'>
              
@@ -79,7 +80,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                 </Client>
                 </div>
              </div>
-            <div className='d-md-block'> 
+            <div className='d-md-block _right card card-style mx-0 p-4 p-sm-5'> 
               <Client>
               <div className='row_flex gap-2 justify-between mb-3'>
               {<button data-aos='fade-left' onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
@@ -95,13 +96,13 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                 <div className='status_greeting' data-aos='zoom-in'>
                   {/* <DateViewState fromActive exClass={'dotty ripple'} eventId={id}/> */}
                   <div className='row_flex gap-2'>{actionLink}{actionTwoLink}</div>
-                  <p className = 'mb-10'>
+                  <p className = 'mb-10 smLine'>
                         {greetingView}
                   </p>
                 </div>
               </div>
-              <p className = 'mb-20 text-15 smLine' data-aos='zoom-in'>
-                  <span  dangerouslySetInnerHTML={{__html: short_desc}}/>
+              <p className = 'mb-20 text-14 smLine opacity-60' data-aos='zoom-in'>
+                  <span  dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_inline _hero mb-10 d-block'}/> : <></>}
                 <div className={`gap-2 flex-wrap d-flex justify-between`}>

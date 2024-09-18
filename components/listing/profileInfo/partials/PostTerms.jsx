@@ -2,6 +2,7 @@ import { DualColorHeader } from "@/components/UI/Partials";
 import TermTag from "@/components/UI/partials/TermTag";
 import Widget from "@/components/UI/partials/Widget";
 import { getLocalTaxonomy } from "@/helpers/rest";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const PostTerms = ({post, termKey, title,taxonomy, linkTax}) => {
@@ -25,7 +26,12 @@ const PostTerms = ({post, termKey, title,taxonomy, linkTax}) => {
                     >
                       <div className="listing_tags">
                         {terms.map((item) => {
-                          return <TermTag exploreLink linkTax={linkTax} key={item.id} term={item} type={'icon-box'} collection/>
+                          const {name, taxonomy, slug } = item ?? {};
+                          return <Link href={`/explore?${linkTax}=${slug}`} className={'icon-box'}>
+                            <div  className="icon_box">
+                        <span  className="gx-text-truncate icon_text" dangerouslySetInnerHTML={{__html: name}}/>
+                      </div>
+                          </Link>
                         })}
                       </div>
                     </Widget>

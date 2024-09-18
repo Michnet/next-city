@@ -169,14 +169,14 @@ export const siteColors = [
 ];
 
 export const siteColorObjs = [
-  {name: "green", hex: "#8CC152"}, 
-  {name: "red", hex: "#DA4453"}, 
-  {name: "orange", hex: "#E9573F"}, 
-  {name: "blue", hex: "#4A89DC"}, 
-  {name: "pink", hex: "#D770AD"} , 
-  {name: "pink2", hex: "#fb3365"} , 
-  {name: "magenta", hex: "#967ADC"}, 
-  {name: "brown", hex: "#AA8E69"},
+  {name: "green", hex: "#8CC152", themeName: 'Green'}, 
+  {name: "red", hex: "#DA4453", themeName: 'Red'}, 
+  {name: "orange", hex: "#E9573F", themeName: 'Orange'}, 
+  {name: "blue", hex: "#4A89DC", themeName: 'Blue'}, 
+  {name: "pink", hex: "#D770AD", themeName: 'Pink'} , 
+  {name: "pink2", hex: "#fb3365", themeName: 'Pink2'} , 
+  {name: "magenta", hex: "#967ADC", themeName: 'Magenta'}, 
+  {name: "brown", hex: "#AA8E69", themeName: 'Brown'},
 ]
 
 export const siteColorsArray = ["#8CC152","#DA4453","#E9573F","#4A89DC","#D770AD","#fb3365","#967ADC","#AA8E69"]

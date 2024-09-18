@@ -38,7 +38,7 @@ export async function getStaticPaths() {
     let {listing} = serverObj ?? {};
 
     let seoMetaObj = {}
-    const { latitude, longitude, phone, address, slug, modified} = listing ?? {};
+    const { latitude, longitude, phone, address, slug, modified, type} = listing ?? {};
 
     if(listing && listing != 'undefined'){
       seoMetaObj= {
@@ -82,7 +82,7 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing, themeColor, themeColorHex}) => {
     
-    const {latitude, longitude, address, gallery, xtra_large_thumb, locations, venue, rating, event_date,category, dir_categories, id:listingId} = listing ?? {};
+    const {latitude, type, longitude, address, gallery, xtra_large_thumb, locations, venue, rating, event_date,category, dir_categories, id:listingId} = listing ?? {};
     const router = useRouter();
     const {query} = router;
 
@@ -118,7 +118,7 @@ export async function getStaticPaths() {
       description={`${listing?.short_desc}`}
     />
     <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
-    <RelatedListings category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
+    <RelatedListings type={type} category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
     <VisitRecord Id={listing?.id}/>
     <ListingStater type={listing?.type} id={listing?.id}/></div>
               </> :

@@ -147,7 +147,7 @@ let defCols = {0: 1, 480: 2, 600: 3, 768:2, 1200: 3}
 let gridDisplay = (listings) => {
     return <>{timelineView ?  <ListingTimeline items={listings} dualColumn/> : <> 
                     {viewType === 'Grid' && <ResponsiveMasonry columnsCountBreakPoints={columnObj ?? defCols}>
-                            <Masonry gutter={isMobile ? "10px" : "15px"}> 
+                            <Masonry gutter={"20px"}> 
                             {listings.map(listing => {
                                 const {type} = listing;
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
@@ -175,7 +175,7 @@ if(withSideFilter){
 }
 let skeletonView = <> 
                 {viewType === 'Grid' && <ResponsiveMasonry columnsCountBreakPoints={columnObj ?? defCols}>
-                    <Masonry gutter={isMobile ? "10px" : "20px"}> 
+                    <Masonry gutter={"20px"}> 
                         {generateTempArray(8).map((item, i) => (
                             <Skeleton roundy height={180} key={i}/>
                         ))}

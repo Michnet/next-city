@@ -61,9 +61,9 @@ export const SocialLinks = ({links, iconsOnly=true, exClass=''}) => {
   return <div className={`links_container links_box gap-3 d-flex ${exClass}`}>
         {links.map((el) => {
           const {network, url} = el;
-          return <a target={'_blank'} href={url} className="link_link">
+          return <a target={'_blank'} href={url} className={`link_link bg-${network.toLowerCase()}`}>
             <i className={`fab fa-${network.toLowerCase()} color-${network.toLowerCase()}`}/>
-            {!iconsOnly && <span className={`ms-1 color-${network.toLowerCase()}`}>{network}</span>}
+            {!iconsOnly && <span className={`ms-1 color-white}`}>{network}</span>}
           </a>
         })}
       </div>

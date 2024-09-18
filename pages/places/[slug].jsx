@@ -95,7 +95,7 @@ export async function getStaticPaths() {
 
   const ListingConst = ({listing, themeColor, themeColorHex, coverColor}) => {
     
-    const {latitude, longitude, address, gallery, xtra_large_thumb, locations, venue, rating, event_date,category, dir_categories, id:listingId} = listing ?? {};
+    const {type, locations, venue, rating, event_date,category, dir_categories, id:listingId} = listing ?? {};
     const router = useRouter();
     const {query} = router;
 
@@ -106,7 +106,7 @@ console.log('coverColor', coverColor);
 
     <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
 
-    <RelatedListings category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
+    <RelatedListings type={type} category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
     <VisitRecord Id={listing?.id}/>
     <ListingStater id={listing?.id}/></div>
               </> :

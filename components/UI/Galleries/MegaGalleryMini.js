@@ -74,7 +74,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid gutter={gutter}>
 galleryView = <> 
         
         {gallArr?.length > 0 && <div id = 'wall_gallery_container' onClick={() => setActiveKey('gallery')} className="position-relative">
-          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-3 overflow-hidden rounded-4">
+          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 mx-3 overflow-hidden">
           <Grid1/>
         {gallArr.length > 0 && <ResponsiveMasonry className="masonry vertical_grid" columnsCountBreakPoints={{0: 2, 575: 3, 1024: 4}}>
             <Masonry gutter = {gutter}>

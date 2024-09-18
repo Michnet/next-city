@@ -131,14 +131,14 @@ const ExploreConst = ({topList, type=null}) => {
               <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Hints</button> 
               }</div></> : <></>}</>
               <div className="inner_section mt-20">
-                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={`Latest ${type}s`} subtitle={`Fresh and New ${type}s`} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
+                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={`Latest ${type ? type+'s' : ''}`} subtitle={`Fresh and New ${type ? type+'s' : ''}`} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
-              {!query || sort !== 'top-rated' && <div className="inner_section px-2 mt-20">
+              {!query || sort !== 'top-rated' && <div className="inner_section px-2">
                     <ActivityCarousel listingType={type} skeletonHeight={200} skeletonWidth={200} height={220} mini noFallback cardWidth={200} exCardClass={'_mini ms-0 me-2'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
 
-              {type == 'event' && <>{ !query || eventDate !== 'this-week' && <div className="inner_section mt-20">
+              {type == 'event' && <>{ !query || eventDate !== 'this-week' && <div className="inner_section">
                     <ActivityCarousel listingType={type} skeletonHeight={200} skeletonWidth={270} thumbsize={'xtra_large_thumb,thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
               </div>}</>}
 

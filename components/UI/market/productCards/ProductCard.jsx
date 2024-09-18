@@ -36,8 +36,8 @@ const ProductCard = ({product, user, horizontal=false, mini=true, sized, exClass
               <div className="thumb">
 							  <img src={imgUrl} className="pdt-img"/>
               </div>
-							<div className={`content m-0 p-${mini ? '2' : '3'}`}>
-              <Link href={`/market/product/${id}`}><h4 className={`mb-2 pdt_name truncate${mini ? '' : '-2'} smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h4></Link>
+							<div className={`content m-0 p-${mini ? '2' : '3'} ${horizontal ? '' : 'bg-theme-transparent-0'}`}>
+              <Link href={`/market/product/${id}`}><h4 className={`mb-1 pdt_name truncate${mini ? '' : '-2'} smLine font-${mini ? '14' : '16'}`}>{cleanHtml(name)}</h4></Link>
 								{/* <a href="#">
 									<i className="fa fa-star color-yellow-dark font-10"></i>
 									<i className="fa fa-star color-yellow-dark font-10"></i>

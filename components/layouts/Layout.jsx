@@ -18,6 +18,7 @@ import SnackBar from "../UI/partials/SnackBar";
 import UserSideMenu from "../UI/user/UserSideMenu";
 import UISettings from "./UISettings";
 import { ParallaxScrollProvider } from '@/contexts/ParallaxContext';
+import { siteColorObjs } from '@/helpers/base';
 //import { getSession } from "next-auth/react";
 
 function sizing(width, setWidth){
@@ -144,11 +145,11 @@ function LayoutConst({ children, headerTitle, settings}) {
             <div className="divider divider-margins mb-n2"></div>
             <div className="content">
               <div className="highlight-changer">
-                {themeColorsArr.map((el, ind) => {
-                  const {highlight, icon, colorClass, themeName} = el;
-                  return <a onClick={(e) => changeHighlight(e)} key={ind} href="#" data-change-highlight={highlight}>
-                    <i className={icon}/>
-                    <span className={colorClass}>{themeName}</span>
+                {siteColorObjs.map((el, ind) => {
+                  const {name, themeName} = el;
+                  return <a onClick={(e) => changeHighlight(e)} key={ind} href="#" data-change-highlight={name}>
+                    <i className={`fa fa-circle color-${name}-dark`}/>
+                    <span className={`color-${name}-light`}>{themeName}</span>
                   </a>
                 })}
                 <div className="clearfix"></div>

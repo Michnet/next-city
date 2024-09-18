@@ -8,7 +8,7 @@ import ActivityCard2 from "../UI/Listings/cards/ActivityCard2";
 import { SectionHeader } from "@/components/UI/Partials";
 
 
-function RelatedByTaxSplide({ids, titleComp, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
+function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
 
     const [loading, setLoading] = useState(true);
     const [horizontal, setHorizontal] = useState(listy ?? false);
@@ -49,6 +49,10 @@ function RelatedByTaxSplide({ids, titleComp, splideObj={}, author, listy, taxNam
     }
       if(taxonomy_2){
       payload[`${taxonomy_2}`] = ids2.toString();
+    } 
+      if(type){
+      payload[`listing_type`] = type;
+      payload[`sort`] = 'latest';
     } 
 
 

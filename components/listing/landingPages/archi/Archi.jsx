@@ -33,10 +33,10 @@ function Archi({listing, setActiveKey, colorHex}){
     let detailView, reviewsView, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
     if(listing){
         if(_links?.length > 0){
-            socialsView = <Section dark={false} bgUrl={`${randomEither(gallery)}`} exClass='py-1 bg-fixed'>
-            <div className='p-5'>
+            socialsView = <Section fullWidth overlay={false} exClass='shadow-0 border py-1 bg-fixed bg-transparent'>
+            <div className='p-4 p-sm-5'>
             {/* <div className='card card-style partial_border double_left bottom_left my-5 p-5'> */}
-                <Heading1 exClass='mb-5' title={'Our Social Profiles'} subtitle="Connect & Engage"/>
+                <Heading1 exClass='mb-3' title={'Our Social Profiles'} subtitle="Connect & Engage"/>
                 <SocialLinks iconsOnly={false} exClass='_large flex-wrap' links={_links}/></div>
             {/* </div> */}
         </Section>
@@ -114,7 +114,7 @@ function Archi({listing, setActiveKey, colorHex}){
                 }
             }
 
-            galleryView = <><section id="section-portfolio" className="no-top no-bottom w-100" aria-label="section-portfolio">
+            galleryView = <><section id="section-gallery" className="no-top no-bottom" aria-label="section-gallery">
                             <Section fullWidth  id="gallery" exClass={'p-0 bg-color'}   className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
                                 <div className='overlay-bg z-2 opacity-70'>
                                     <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Our Gallery</button>
@@ -126,19 +126,20 @@ function Archi({listing, setActiveKey, colorHex}){
                                 <div style={{minWidth: '110%'}}>{horizontalGallery2}</div>
                             </ParallaxChildSection>
                             </Section> 
-                        </section>
-                        
-                        <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
+                            <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
                             <div className="overlay-bg"/>
                             <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Full Gallery</button>
-                        </section></>
+                        </section>
+                        </section>
+                        
+                        </>
         }
           if(_wwd?.length > 0){
             if(_wwd[0].list?.length > 0){
 
                         servicesView = <section id="section-about"><Features features={_wwd} defTitle='What we do'/></section>
 
-                        servs2 = <Section id="section-steps" exClass="jarallax text-light bg-fixed" bgUrl={randomEither(gallery)}>
+                        servs2 = <Section id="section-steps" exClass="jarallax text-light bg-fixed pb-5" bgUrl={randomEither(gallery)}>
                                     <FeaturesTabs features={_wwd} defTitle='What we do'/>
                                 </Section>
             }
@@ -146,7 +147,7 @@ function Archi({listing, setActiveKey, colorHex}){
 
            if(faqs?.length > 0){
                     let trimFaqs = faqs?.slice(0,3);
-                faqsView = <Section dark={false} exClass='bg-fixed py-5' bgUrl={`${randomEither(gallery)}`}>
+                faqsView = <Section dark={false} exClass='bg-fixed pt-5 pb-3' bgUrl={`${randomEither(gallery)}`}>
                     {/* <div className='overlay-bg position-relative z-0'/> */}
                         <HeadingSeparatorDot align='right' title={'FAQs'} subtitle={'Frequently asked'}/>
                 <div className="card card-style partial_border across_border shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
@@ -162,7 +163,7 @@ function Archi({listing, setActiveKey, colorHex}){
                 }
 
           reviewsView = <Suspense offset={150} once height={200} data-aos="zoom-in">
-            <Section  exClass='py-5 bg-fixed' id='reviews' title='User Reviews' bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
+            <Section exClass='py-5 pb-0 bg-fixed' id='reviews' title='User Reviews' bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
                 <div>
               <Client>
                     <PostReviews sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client></div>
@@ -192,10 +193,10 @@ function Archi({listing, setActiveKey, colorHex}){
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
-            <section className="py-0 px-0 px-sm-4 bg-transparent">
+            <section className="py-0 px-0 px-sm-4 rounded-0 bg-transparent shadow-0">
                 <MegaGalleryMini listing={listing} setActiveKey={setActiveKey}/>
             </section>
-            <Section overlay={false} exContainerClass={'px-3'} dark={false} exClass='p-0 pb-5 bg-transparent'>
+            <Section fullWidth overlay={false}  dark={false} exClass='p-0 bg-transparent'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
 
@@ -204,9 +205,8 @@ function Archi({listing, setActiveKey, colorHex}){
             {servicesView}
             {reviewsView}
             {socialsView}
-            
-            {faqsView}
             {tagsView}
+            {faqsView}
             {galleryView}
         {/* <footer>
             <div className="container">

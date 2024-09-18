@@ -24,7 +24,7 @@ function Features({features, exClass='', defTitle='Our Features'}) {
                                             const {item_description, item_title, item_sub_title, mylisting_accordion_photo} = service;
                                             return <div className="col-md-4" data-aos='fade-left'>
                                                 <a className="image-popup-no-margins" href="/archi/images/misc/pic_1.jpg">
-                                                                <img src={mylisting_accordion_photo} className={`img-responsive mb-4 masked mask-${randomEither(siteMasks)}`} alt=""/>
+                                                                <img src={mylisting_accordion_photo} className={`mb-4 masked mask-${randomEither(siteMasks)}`} alt=""/>
                                                         </a>
                                                         <DualColorTitle string={item_title}/>
                                                         {item_description}

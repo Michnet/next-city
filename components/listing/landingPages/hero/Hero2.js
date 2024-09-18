@@ -37,6 +37,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
   const {rl_awesome, color:catColor, name:catName} = category ?? {};
   const {isMobile, isLargeTab} = useRecoilValue(UISizes);
 
+
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";
 
   let galArr = [], greetingView, firstWord='', lastWords='', actionTwoLink, actionLink, freshDesc;
@@ -150,14 +151,14 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                   </div>
                 </div>
                 </Mirrored>
-                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 pb-4 color-white text-shadow-l' style={{zIndex: '10'}}>
-                  <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
+                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
+                  <div className='profile_name h-fit minw-0 flex-shrink-1'>
                         <h1 className='mb-20 color-white truncate-3 text-capitalize' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1>
                         {/* <h1 className="styled_title mb-20 truncate-3 d-block">
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
                             <span className="list_title _last color-white" dangerouslySetInnerHTML={{__html: lastWords}}/> 
                         </h1> */}
-                        <div className='title_meta d-flex justify-end mb-20'>
+                        <div className='title_meta d-flex justify-end'>
                           <Client>
                         <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
                           <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
@@ -224,15 +225,15 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
               onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
             />
           </div>
-            {!isLargeTab && <>
-            <div className='d-block lg:d-none mid_img'>
+            <>
+            {galArr[0]  ? <div className='d-block lg:d-none mid_img'>
               <img 
                 className='h-full object-center object-cover' 
                 src={srcWithFallback(galArr[0])}
                 onError = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
                 />
-            </div>
-            <div className='d-block lg:d-none grid_img'>
+            </div> : <></>}
+            {!isLargeTab && <div className='d-block lg:d-none grid_img'>
               {galArr[1] ? <ResponsiveMasonry className='hero_grid' columnsCountBreakPoints={{0: 4, 900: 1}}>
             <Masonry className='grid_box' gutter='10px'>
               {galArr.slice(1,3).map((im, i) => {
@@ -243,10 +244,10 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
               })}
             </Masonry>
             </ResponsiveMasonry> : <></>}
-            </div>
-            </>}
+            </div>}
+            </>
 
-            {isLargeTab && <>
+            {!isLargeTab && <>
               {galArr[0] ?
               <div className='d-none lg:d-block overflow-hidden'>
                 <HorizontalGrid height={'100%'}>
