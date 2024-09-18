@@ -21,16 +21,19 @@ import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection"
 import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
 //import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
+import  ListingProductsSimple  from '@/components/listing/shop/ListingProductsSimple';
+import { PriceView } from "@/components/UI/PriceView";
 
 
 
-function Archi({listing, setActiveKey, colorHex}){
-    const {meta, title, cover, content, about_us,id, author_id, type, dir_tags} = listing ?? {};
+function Archi({listing, setActiveKey, colorHex, color}){
+    const {meta, title, cover, content, about_us,id, ticket_min_price_html, author_id, type, dir_tags, listing_store} = listing ?? {};
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery, _performers, _wwd} = meta ?? {};
+    const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us ?? {};
     let wcu = _wcu[0] ?? null
 
-    let detailView, reviewsView, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
+    let detailView, reviewsView, shopView,ticketsHint, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
     if(listing){
         if(_links?.length > 0){
             socialsView = <Section fullWidth overlay={false} exClass='shadow-0 border py-1 bg-fixed bg-transparent'>
@@ -66,6 +69,44 @@ function Archi({listing, setActiveKey, colorHex}){
                  </div>
                  </div></div>
                  </Section>
+        }
+        if(general_merchandise?.length > 0){
+            shopView = <Section fullWidth dark={false} overlay={false} exClass='border rounded-0 py-3 shadow-0 bg-transparent'>
+                <Heading1 title={'Our Store'} subtitle={`Latest items from page store`}/>
+                <div className='card card-style partial_border top_left only_top pt-4 ps-3'>
+                <ListingProductsSimple noHeader={true} ids={general_merchandise.slice(0,4)} productType="simple" listingId = {listing?.id}/>
+                <button className=' btn-theme btn w-fit' onClick={() => {setActiveKey("merchandise")}}>Go to Page Store</button>
+                </div>
+                </Section>
+        }
+        if(tickets?.length > 0){
+            ticketsHint = <Section dark={false}  bgUrl={srcWithFallback(randomEither([cover, ...gallery]))} exClass="px-4 pb-4 pt-3"><div className='mb-20 sc_heading_3 px-4 mt-4'>
+            <h5>Engage Now</h5>
+            <h4>Booking Options</h4>
+        </div>
+        <div data-aos="zoom-in" className='p-0'>
+                                <div className='ps-data d-flex flex-column p-3'>
+                                        <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
+                                            <div className='cover_content'>
+                                                <h4>Online Booking Available</h4>
+                                                <div className='divider mt-3 w-25'/>
+                                                <>{ticket_min_price_html && <PriceView preText={'Starting from'}  exClass={'_inline text-20'} priceHTml={ticket_min_price_html}/> }</> 
+                                            </div>
+                                            
+                                        </div>
+                                        <div className='content_box'>
+                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m  mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`gradient-${color}`}`}>
+                                                    <i className="fas fa-qrcode font-15 text-center bg-transparent"/>
+                                                      See Options
+                                                </button>}
+
+                                            <div className='card_footer'>            
+                                            </div>
+
+                                        </div>
+                                </div>
+                        </div>
+                        </Section>
         }
         if(gallery?.length > 0){
             let megaGall = shuffleArray([...gallery]);
@@ -202,7 +243,9 @@ function Archi({listing, setActiveKey, colorHex}){
 
             {detailView}
             {servs2}
+            {shopView}
             {servicesView}
+            {ticketsHint}
             {reviewsView}
             {socialsView}
             {tagsView}
