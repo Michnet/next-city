@@ -145,8 +145,10 @@ export const serializeQuery = (query) => {
         .join('&');
 };
 
+export const siteMasks = [5,6,7,8,10,13,14,16,18,19,20,21,22,25,26,28];
+
 export const siteColors = [
-  "highlight", 
+  //"highlight", 
   "green", 
   //"grass", 
   "red", 

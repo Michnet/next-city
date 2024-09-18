@@ -1,7 +1,7 @@
 /* Generating Color Pack*/
 :root {
-  --secTheme: #e9774f;
-  --highlight: #3BAFDA !important;
+  --secTheme:#e9774f;
+  --highlight:#3BAFDA !important;
 }
 
 .color-highlight {
@@ -38,6 +38,10 @@
   color: #3BAFDA;
 }
 
+.form-floating-over > .form-control:not(:-moz-placeholder-shown) ~ label {
+  color: #3BAFDA;
+}
+
 .form-floating-over > .form-control:not(:placeholder-shown) ~ label {
   color: #3BAFDA;
 }
@@ -58,4 +62,4 @@
 .interest-check input:checked ~ label {
   color: #FFF !important;
   background-color: #3BAFDA !important;
-}
+}/*# sourceMappingURL=highlight_aqua.css.map */

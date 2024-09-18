@@ -2,7 +2,7 @@
 import { memo, useEffect, useMemo } from "react";
 import "@/public/scss/bootstrap.scss";
 import "@/styles/globals.css";
-import "@/public/scss/style.scss";
+import "@/public/scss/style.min.css";
 import "@/public/styles/custom.min.css";
 import { RecoilRoot } from "recoil";
 import { Client, HydrationProvider } from "react-hydration-provider";

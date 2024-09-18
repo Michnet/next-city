@@ -1,7 +1,7 @@
 /* Generating Color Pack*/
 :root {
-  --secTheme: #2ABA66;
-  --highlight: #2ABA66 !important;
+  --secTheme:#2ABA66;
+  --highlight:#2ABA66 !important;
 }
 
 .color-highlight {
@@ -38,6 +38,10 @@
   color: #2ABA66;
 }
 
+.form-floating-over > .form-control:not(:-moz-placeholder-shown) ~ label {
+  color: #2ABA66;
+}
+
 .form-floating-over > .form-control:not(:placeholder-shown) ~ label {
   color: #2ABA66;
 }
@@ -58,4 +62,4 @@
 .interest-check input:checked ~ label {
   color: #FFF !important;
   background-color: #2ABA66 !important;
-}
+}/*# sourceMappingURL=highlight_grass.css.map */

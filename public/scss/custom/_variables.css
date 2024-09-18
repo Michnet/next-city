@@ -21,6 +21,86 @@
   --text-80: 80px;
 }
 
+.mask-5 {
+  -webkit-mask-image: url(/images/masks/mask-5.png);
+  mask-image: url(/images/masks/mask-5.png);
+}
+
+.mask-6 {
+  -webkit-mask-image: url(/images/masks/mask-6.png);
+  mask-image: url(/images/masks/mask-6.png);
+}
+
+.mask-7 {
+  -webkit-mask-image: url(/images/masks/mask-7.png);
+  mask-image: url(/images/masks/mask-7.png);
+}
+
+.mask-8 {
+  -webkit-mask-image: url(/images/masks/mask-8.png);
+  mask-image: url(/images/masks/mask-8.png);
+}
+
+.mask-10 {
+  -webkit-mask-image: url(/images/masks/mask-10.png);
+  mask-image: url(/images/masks/mask-10.png);
+}
+
+.mask-13 {
+  -webkit-mask-image: url(/images/masks/mask-13.png);
+  mask-image: url(/images/masks/mask-13.png);
+}
+
+.mask-14 {
+  -webkit-mask-image: url(/images/masks/mask-14.png);
+  mask-image: url(/images/masks/mask-14.png);
+}
+
+.mask-16 {
+  -webkit-mask-image: url(/images/masks/mask-16.png);
+  mask-image: url(/images/masks/mask-16.png);
+}
+
+.mask-18 {
+  -webkit-mask-image: url(/images/masks/mask-18.png);
+  mask-image: url(/images/masks/mask-18.png);
+}
+
+.mask-19 {
+  -webkit-mask-image: url(/images/masks/mask-19.png);
+  mask-image: url(/images/masks/mask-19.png);
+}
+
+.mask-20 {
+  -webkit-mask-image: url(/images/masks/mask-20.png);
+  mask-image: url(/images/masks/mask-20.png);
+}
+
+.mask-21 {
+  -webkit-mask-image: url(/images/masks/mask-21.png);
+  mask-image: url(/images/masks/mask-21.png);
+}
+
+.mask-22 {
+  -webkit-mask-image: url(/images/masks/mask-22.png);
+  mask-image: url(/images/masks/mask-22.png);
+}
+
+.mask-25 {
+  -webkit-mask-image: url(/images/masks/mask-25.png);
+  mask-image: url(/images/masks/mask-25.png);
+}
+
+.mask-26 {
+  -webkit-mask-image: url(/images/masks/mask-26.png);
+  mask-image: url(/images/masks/mask-26.png);
+}
+
+.mask-28 {
+  -webkit-mask-image: url(/images/masks/mask-28.png);
+  mask-image: url(/images/masks/mask-28.png);
+}
+
 :root {
   --color-white: #ffffff;
   --color-black: #000000;
