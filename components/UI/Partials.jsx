@@ -83,8 +83,8 @@ export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = 
           </span>}
         </div>}
         <div className="align-self-center">
-          <p className="mb-n1 font-700 font-11 opacity-60">{subTitle}</p>
-          <h3 className="font-700 mb-0">{title}</h3>
+           <h3 className="font-700 mb-0 _title">{title}</h3>
+          <p className="mb-n1 font-700 font-11 _subtitle">{subTitle}</p>
         </div>
         {linkPath ? <div className="align-self-center ms-auto me-2">
            <button onClick={() => router.push({ pathname: linkPath, query: linkQuery })}>{link}</button>

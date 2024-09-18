@@ -239,7 +239,7 @@ export default function Home(props) {
 
     <section  className="mb-2">
    <SectionHeader inverted iconClass={'far fa-calendar-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
-   <Splider options={{gap: 15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+   <Splider options={{gap: 15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15, bottom:15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
            return <EventCard2 mini contentClass={'px-3'} minHeight={150} height={150} width={200} key={li.id} listing = {li}/>
@@ -250,27 +250,33 @@ export default function Home(props) {
     </Splider>
     </section>
     
-    <section  className="mb-2">
-    <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Dice Roll'} subTitle={'Explore events & places'}/>
-   <div className='p-3 h_masonry gap-2'>
-      {latest?.length > 0 ? 
-          shuffleArray(latest).map((li) => {
-           return <EventCardImage width={'auto'} styleObj={{flexBasis: `${randomBetween(20,40)}%`}} /* width={randomBetween(130,320)} */ maxWidth={'50%'} mini contentClass={'px-3'} height={120} maxHeight={'180px'} key={li.id} listing = {li}/>
-          })
-          :
-          <></>
-        }
-    </div>
-    </section>
-
-    <section  className="layout-pt-md layout-pb-md  px-30 mb-5 border mx-3">
-    <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
+    <section  className="mb-2 row">
+      <div className="col-12 col-md-6 px-0">
+          <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Dice Roll'} subTitle={'Explore events & places'}/>
+        <div className='p-3 h_masonry gap-2'>
+            {latest?.length > 0 ? 
+                shuffleArray(latest).map((li) => {
+                return <EventCardImage width={'auto'} styleObj={{flexBasis: `${randomBetween(20,40)}%`}} /* width={randomBetween(130,320)} */ maxWidth={'50%'} mini contentClass={'px-3'} height={120} maxHeight={'180px'} key={li.id} listing = {li}/>
+                })
+                :
+                <></>
+              }
+          </div>
+      </div>
+      <div className="col-12 col-md-6">
+      <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
+      <div className="layout-pt-md layout-pb-md  px-30 mb-5 border mx-3">
+    
       <div className='tags_row bg-transparent'>
                 <div className='row_content' style={{minHeight : '130px'}}>                  
         <TagsCloud  dark itemsList={busyLocations} onClickFunc={tagClick}/>
                   </div>
                   </div>
-      </section>
+      </div>
+      </div>
+    </section>
+
+    
 
     <AddListingCard/>
 {/* 

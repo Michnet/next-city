@@ -544,7 +544,7 @@ export const generateTempArray = (maxItems) => {
   };
 
 export function hashtag(text){
-    var repl = text.replace(/#(\w+)/g, '<a class="hashed_text" href="/search?hashtag=#$1"><strong>#$1</strong></a>');
+    var repl = text.replace(/#(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1"><strong>#$1</strong></a>').replace(/@(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1"><strong>@$1</strong></a>');
     return `<p>${repl}</p>`;
 }
 

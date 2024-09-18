@@ -32,6 +32,7 @@ import Link from "next/link";
 import { Heading1 } from "@/components/UI/partials/headings/Heading1";
 import HeroGrid from "@/components/listing/landingPages/hero/HeroGrid";
 import HeroParallax from "@/components/listing/landingPages/hero/HeroParallax";
+import ProfileInfo from "@/components/listing/profileInfo/ProfileInfo";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
   const ListingPageConst = ({listing, themeColor, themeColorHex}) => {
@@ -127,7 +128,7 @@ return linkzz;
             <Navigator itemClass='col-sm-4 col-md-3 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
             </div>
         </Client>
-        
+        <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={listing} setActiveKey={setActiveKey}/>
         
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
           {/* <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/> */}

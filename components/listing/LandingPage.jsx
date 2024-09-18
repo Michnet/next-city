@@ -19,7 +19,6 @@ import styles from './styles/home1.module.css';
               {/* <Rockfest listing={listing} setActiveKey={setActiveKey}/> */}
               
                 <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
-                <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={listing} setActiveKey={setActiveKey}/>
            {/*  <BusinessOne styles={styles}  color={color} colorHex={colorHex} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
         </div>
         }

@@ -1,5 +1,5 @@
 
-import Link from "next/link";
+import div from "next/link";
 import { Client } from "react-hydration-provider";
 
 
@@ -40,36 +40,36 @@ const TermTag = ({term, targetStyleObj={}, preText = null, exploreLink, type, co
 
   switch (type) {
     case 'tag':
-      termView =  <Link
+      termView =  <div
         href={`/explore?${linkTax}=${slug}`} className={`d-block bg-white ${taxonomy} ${exClass ?? ''} term-link _tag rounded-4 pos-relative`}>
         <span className="d-block position-absolute h-100 w-100 opacity-20" style={{borderRadius:'inherit', background: color?.length > 0 ? color : 'var(--highlight)'}}/>
         <span className={`gx-rounded-lg d-block  truncate  fw-600 ${exTagClass ?? ''}`} style={{color: color?.length > 0 ? color : 'var(--highlight)'}} dangerouslySetInnerHTML={{__html:  name}}/>
 
-      </Link>;
+      </div>;
       break;
 
     case 'hash':
-      termView =  <Link
+      termView =  <div
         href={`/explore?${linkTax}=${slug}`}
         className={`d-block lh-1 ${taxonomy} ${exTagClass ?? ''} term-link _hash`}>
           <Client><span className="truncate" style={{color : color ?? 'var(--highlight)'}}>{preText ? <span>{preText}</span> :  <></>}<span className="gx-mb-0" dangerouslySetInnerHTML={{__html:  name}}/></span></Client>
 
-      </Link>;
+      </div>;
       break;
 
       case 'icon':
-        termView =  <Link
+        termView =  <div
         href={`/explore?${linkTax}=${slug}`}
         className={`${taxonomy} ${exClass ?? ''} term-link _icon`}>
         <div  className="icon_box">
           <span className="icon_icon"> <i style={{backgroundColor : color, ...targetStyleObj}} className={rl_awesome}/> </span> 
         </div>
   
-        </Link>
+        </div>
       break;
 
       case 'icon-box':
-        termView =  <Link
+        termView =  <div
           href={`/explore?${linkTax}=${slug}`}
           className={`${taxonomy} ${exClass ?? ''} term-link _icon-box`}>
           <div  className="icon_box">
@@ -77,18 +77,18 @@ const TermTag = ({term, targetStyleObj={}, preText = null, exploreLink, type, co
                         <span style={{color : colorText ? colorise() : 'var(--colorTheme)' }} className="gx-text-truncate icon_text" dangerouslySetInnerHTML={{__html: name}}/>
                       </div>
 
-        </Link>;
+        </div>;
       break;
   
     default:
-      termView =  <Link
+      termView =  <div
           href={`/explore?${linkTax}=${slug}`}
           className={`${taxonomy} ${exClass ?? ''} term-link _icon-box`}>
           <div  className="icon_box">
                         <span style={{color : colorText ? color : 'initial'}} className="gx-text-truncate icon_text" dangerouslySetInnerHTML={{__html: name}}/>
                       </div>
 
-        </Link>
+        </div>
       break;
   }
   }
@@ -98,11 +98,11 @@ const TermTag = ({term, targetStyleObj={}, preText = null, exploreLink, type, co
             <>
              {termView}
              {exploreLink ? 
-             <Link
+             <div
              href={`/explore?${linkTax}=${slug}`}
              className={`explore_link d-block shadow-0 border w-fit btn btn-link`}>
               {`Explore ${linkTax}`}   
-              </Link>
+              </div>
               :
               <></>
              }

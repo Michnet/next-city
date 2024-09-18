@@ -65,7 +65,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
         <div className={`hero_detail ${exClass}`}>
             <div className='hero_title _detail md:px-35 md:pb-45 pt-30 d-block d-lg-grid gap-4 align-items-center z-2 position-relative'>
             
-             <div className='profile_name d-none d-lg-block'>
+             <div className='profile_name d-none d-md-block'>
              
              <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                 <h1 className='mb-20'><span className={`heady`}>{cleanHtml(title?.rendered)}</span></h1>

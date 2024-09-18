@@ -18,7 +18,10 @@ function FeaturesTabs({features, exClass='', defTitle='Our Features'}) {
                             <ul id="featuresTabs1" role="tablist" className="px-3 overflow-x-auto flex-nowrap pb-4 de_nav nav nav-tabs border-0 m-0">
                                 {list.map((li, index) => {
                                     const {item_title, item_sub_title, mylisting_accordion_photo} = li;
-                                    return <li data-bs-toggle="tab" data-bs-target={`#feat1-${index}`}  id={`feat1-${index}-tab`} className={`me-4 border-0 p-0 nav-link ${index == 0 ? 'active' : ''}`} data-aos='zoom-in' data-aos-delay="0s"><span className='position-relative p-0 bg-cover' style={{background: `url(${mylisting_accordion_photo})`}}><span className='feat_ind m-0'>0{index + 1}</span>{item_title}</span>
+                                    return <li data-bs-toggle="tab" data-bs-target={`#feat1-${index}`}  id={`feat1-${index}-tab`} className={`me-4 border-0 p-0 nav-link ${index == 0 ? 'active' : ''}`} data-aos='zoom-in' data-aos-delay="0s"><span className='position-relative p-0 bg-cover feat_box' style={{background: `url(${mylisting_accordion_photo})`}}>
+                                        <span className='feat_ind m-0'>0{index + 1}</span>
+                                        <span className='feat_title'>{item_title}</span>
+                                    </span>
                                     <div className="v-border"></div>
                                 </li>
                                 })}

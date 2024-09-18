@@ -2662,8 +2662,7 @@ border-color: #FF9800;
     height: inherit !important;
 }
 
-.splider .splide__track {
-}
+.splider .splide__track {padding-bottom: 20px;}
 
 .user_i {
     font-size: 25px;
@@ -4172,7 +4171,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
 
 .listing_meta i, .listing_meta._mini i, .nav-link{
  /* color: var(--colorTheme); */
- opacity: 0.4;
+ opacity: 0.5;
 }
 
 .form-checkbox .badge {
@@ -4514,9 +4513,9 @@ ul.listing_navigator.view_all.grid li .card {
 }
 
 a.link_link {
-    box-shadow: #00000033 0px 0px 6px 1px;
     border-radius: 25px;
     padding: 7px 15px;
+    border: 1px solid var(--borderTheme);
 }
 
 .listing_page .tabpane {
@@ -5323,3 +5322,69 @@ section.sec_sideImg .sect_content{
 }
 
 /*media qs end*/
+
+.section_header ._title {
+    font-weight: 300;
+}
+
+.section_header ._subtitle {
+    opacity: 50%;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link:not(.active) span {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    padding: 0;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link {
+    flex-shrink: 1;
+    width: fit-content;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link .feat_title {
+    height: fit-content;
+    width: fit-content;
+    padding: 0;
+    border: none;
+    line-height: 1em;
+    background: transparent;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link.active .feat_title {
+    margin-bottom: -41px;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link:not(.active) .feat_title, .de_tab.tab_steps .de_nav li.nav-link:not(.active) .v-border {
+    display: none;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link:not(.active) {
+    height: 60px;
+    margin: 0;
+    flex-shrink: 1;
+    /* width: fit-content; */
+}
+
+.de_tab.tab_steps .de_nav li.nav-link.active .feat_ind {
+    margin-bottom: 20px;
+    display: none;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link .feat_box {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+}
+
+.de_tab.tab_steps .de_nav li.nav-link .v-border {
+    border: none;
+    height: 30px;
+}
+
+#featuresTabs1 {
+    align-items: end;
+}

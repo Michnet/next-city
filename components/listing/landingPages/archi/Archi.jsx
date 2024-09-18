@@ -44,7 +44,7 @@ function Archi({listing, setActiveKey, colorHex}){
            
           }
         if(content){
-            detailView = <Section exContainerClass={'row_flex'} sideImg dark={false} bgUrl={`${randomEither(gallery)}`} exClass='p-0 bg-fixed'>
+            detailView = <Section fullWidth exContainerClass={'row_flex'} sideImg dark={false} bgUrl={`${srcWithFallback(randomEither(gallery))}`} exClass='p-0 bg-fixed'>
                 <div className='p-2 p-sm-5'>
                     <ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
                 </div>
@@ -57,11 +57,11 @@ function Archi({listing, setActiveKey, colorHex}){
                     query: { tags: tag.slug },
                   })
             }
-            tagsView = <Section exClass='py-4' title='Our Tags' descript={''} id="tags" dark={false}>
+            tagsView = <Section exClass='py-4' title='Our Tags' descript={''} id="tags" bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
                 <div data-aos="zoom-in">
                 <div className='tags_row card card-style across_border partial_border mb-50'>
                 <div className='row_content'>
-                    <TagsCloud live hue={colorHex} dark={true} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
+                    <TagsCloud live hue={colorHex} dark={false} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='position-absolute bottom-0 right-0 pe-3 opacity-30 lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>
@@ -115,7 +115,7 @@ function Archi({listing, setActiveKey, colorHex}){
             }
 
             galleryView = <><section id="section-portfolio" className="no-top no-bottom w-100" aria-label="section-portfolio">
-                            <Section  id="gallery" exClass={'p-0 bg-color'}   className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
+                            <Section fullWidth  id="gallery" exClass={'p-0 bg-color'}   className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
                                 <div className='overlay-bg z-2 opacity-70'>
                                     <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Our Gallery</button>
                                 </div>
@@ -195,7 +195,7 @@ function Archi({listing, setActiveKey, colorHex}){
             <section className="py-0 px-0 px-sm-4 bg-transparent">
                 <MegaGalleryMini listing={listing} setActiveKey={setActiveKey}/>
             </section>
-            <Section exClass='p-0'>
+            <Section overlay={false} exContainerClass={'px-3'} dark={false} exClass='p-0 pb-5 bg-transparent'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
 
