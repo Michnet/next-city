@@ -4,6 +4,7 @@ import { Client } from "react-hydration-provider";
 const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
 import BusinessOne from "./landingPages/Business1";
 import Rockfest from "./landingPages/rockfest/Rockfest";
+import ProfileInfo from "./profileInfo/ProfileInfo";
 import styles from './styles/home1.module.css';
 //import { useRecoilValue } from "recoil";
 //import { activeDateState } from "@/contexts/atoms";
@@ -18,7 +19,7 @@ import styles from './styles/home1.module.css';
               {/* <Rockfest listing={listing} setActiveKey={setActiveKey}/> */}
               
                 <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
-              
+                <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={listing} setActiveKey={setActiveKey}/>
            {/*  <BusinessOne styles={styles}  color={color} colorHex={colorHex} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
         </div>
         }

@@ -19,7 +19,8 @@ import { siteColors, siteSettings } from "@/helpers/base";
 import { ParallaxBanner } from "react-scroll-parallax";
 import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
 import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+//import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
 
 
 
@@ -43,7 +44,7 @@ function Archi({listing, setActiveKey, colorHex}){
            
           }
         if(content){
-            detailView = <Section dark={false} bgUrl={`${randomEither(gallery)}`} exClass='py-3 bg-fixed'>
+            detailView = <Section exContainerClass={'row_flex'} sideImg dark={false} bgUrl={`${randomEither(gallery)}`} exClass='p-0 bg-fixed'>
                 <div className='p-2 p-sm-5'>
                     <ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
                 </div>
@@ -56,12 +57,12 @@ function Archi({listing, setActiveKey, colorHex}){
                     query: { tags: tag.slug },
                   })
             }
-            tagsView = <Section exClass='py-4 bg-fixed' title='Our Tags' descript={''} id="tags" bgUrl={srcWithFallback(randomEither(gallery))}>
+            tagsView = <Section exClass='py-4' title='Our Tags' descript={''} id="tags" dark={false}>
                 <div data-aos="zoom-in">
                 <div className='tags_row card card-style across_border partial_border mb-50'>
                 <div className='row_content'>
-                    <TagsCloud live hue={colorHex} dark={false} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
-                    <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
+                    <TagsCloud live hue={colorHex} dark={true} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
+                    <DualColorHeader exClass='position-absolute bottom-0 right-0 pe-3 opacity-30 lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>
                  </Section>
@@ -187,25 +188,26 @@ function Archi({listing, setActiveKey, colorHex}){
     <div id="wrapper" className="">
         {/* <ArchiHeader/> */}
         {/*<!-- content begin -->*/}
-        <div id="content" className="no-bottom no-top">
+        <div id="content" className="bg-transparent no-bottom no-top">
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
+            <section className="py-0 px-0 px-sm-4 bg-transparent">
+                <MegaGalleryMini listing={listing} setActiveKey={setActiveKey}/>
+            </section>
             <Section exClass='p-0'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
-            {/* <ResponsiveMasonry className='hero_grid' columnsCountBreakPoints={{0: 1, 575: 2}}>
-            <Masonry className='grid_box' gutter='10px'> */}
+
             {detailView}
             {servs2}
             {servicesView}
-            {galleryView}
-            {socialsView}
             {reviewsView}
+            {socialsView}
+            
             {faqsView}
             {tagsView}
-            {/* </Masonry>
-            </ResponsiveMasonry> */}
+            {galleryView}
         {/* <footer>
             <div className="container">
                 <div className="row">

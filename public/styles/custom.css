@@ -1450,6 +1450,7 @@ h6.tax_pare {}
 
 .gallery_plate .mega_item {
     height: 100%;
+    width: 100%;
 }
 
 
@@ -2662,7 +2663,6 @@ border-color: #FF9800;
 }
 
 .splider .splide__track {
-    overflow: visible;
 }
 
 .user_i {
@@ -4513,6 +4513,12 @@ ul.listing_navigator.view_all.grid li .card {
     gap: 10px;
 }
 
+a.link_link {
+    box-shadow: #00000033 0px 0px 6px 1px;
+    border-radius: 25px;
+    padding: 7px 15px;
+}
+
 .listing_page .tabpane {
     max-width: 1024px;
     margin-left: auto;
@@ -4636,6 +4642,10 @@ ul.listing_navigator.view_all.grid li .card {
     color: #fff;
 }
 
+.section_container._light h2 {
+    color: var(--colorTheme);
+}
+
 .parx_section.faintBg div:has(.gradientOverlay) {
     background: var(--bgTheme);
 }
@@ -4730,8 +4740,69 @@ ul.listing_navigator.view_all.grid li .card {
     margin-right: 0;
     margin-left: auto;
 }
+.masked{
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    object-fit: contain;
+    max-width: 100%;
+  }
+.mask1 {
+    -webkit-mask-image: url(/images/masks/1.png);
+    mask-image: url(/images/masks/1.png);
+  }
 
+.listing_card:hover img {
+    transform: rotate(4deg) scale(1.2);
+}
 
+.listing_card img {
+    transition: all .5s;
+}
+.review_card_2.bg-transparent .de_testi blockquote {
+    background: transparent;
+}
+
+.review_card_2.bg-transparent .de_testi blockquote:before {
+    background: transparent;
+    color: var(--listingTheme);
+}
+
+.h_masonry {
+    display: flex;
+    justify-items: stretch;
+    flex-wrap: wrap;
+}
+
+.h_masonry > * {
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: 48%;
+}
+
+.show_on_reveal {
+    display: none;
+}
+
+.hover_reveal:hover .show_on_reveal {
+    display: flex;
+}
+
+section.sec_sideImg .sideImg {
+    webkit-mask-image: linear-gradient(white 10%, transparent 100%);
+    mask-image: linear-gradient(white 10%,transparent 100%);
+    background-color: var(--listingTheme);
+    min-height: 270px;
+}
+
+section.sec_sideImg .sec_content {
+    flex-direction: column;
+}
+
+section.sec_sideImg .sect_content {
+    display: flex;
+    flex-direction: column;
+}
 /*media qs*/
 @media (min-width: 992px) {
 .status_greeting:has(.event_state){
@@ -4749,7 +4820,7 @@ ul.listing_navigator.view_all.grid li .card {
 
 @media (max-width: 992px) {
     .hero2.listing_hero .hero_images .hero_cover .card-bottom{
-    backdrop-filter: grayscale(1) brightness(0.5);
+    backdrop-filter: brightness(0.5);
     height: 100%;
 }
     .hero2.listing_hero._grid .hero_images .hero_cover{
@@ -5098,8 +5169,16 @@ div#explore_nav .left_menu_btn {
 }
 
 @media (min-width: 576px){
+section.sec_sideImg .sideImg{
+    webkit-mask-image: linear-gradient(90deg, white 10%, transparent 100%);
+    mask-image: linear-gradient(90deg, white 10%,transparent 100%);
+    min-height: 300px;
+}
 .gx-timeline-center > ._flipped {
   justify-content: flex-start;
+}
+section.sec_sideImg .sect_content{
+    flex-direction: row;
 }
 }
 
@@ -5109,7 +5188,7 @@ div#explore_nav .left_menu_btn {
 }
     .hero2.listing_hero .hero_images .hero_cover{
     min-height: 300px;
-    height: 62vh;
+    height: 72vh;
 }
     .excerptView{padding-left: 22px;}
     .tabpane.pad_tab{
@@ -5244,51 +5323,3 @@ div#explore_nav .left_menu_btn {
 }
 
 /*media qs end*/
-
-.masked{
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-    object-fit: contain;
-    max-width: 100%;
-  }
-.mask1 {
-    -webkit-mask-image: url(/images/masks/1.png);
-    mask-image: url(/images/masks/1.png);
-  }
-
-.listing_card:hover img {
-    transform: rotate(4deg) scale(1.2);
-}
-
-.listing_card img {
-    transition: all .5s;
-}
-.review_card_2.bg-transparent .de_testi blockquote {
-    background: transparent;
-}
-
-.review_card_2.bg-transparent .de_testi blockquote:before {
-    background: transparent;
-    color: var(--listingTheme);
-}
-
-.h_masonry {
-    display: flex;
-    justify-items: stretch;
-    flex-wrap: wrap;
-}
-
-.h_masonry > * {
-    flex-shrink: 1;
-    flex-grow: 1;
-    flex-basis: 48%;
-}
-
-.show_on_reveal {
-    display: none;
-}
-
-.hover_reveal:hover .show_on_reveal {
-    display: flex;
-}

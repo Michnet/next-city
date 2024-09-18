@@ -108,7 +108,7 @@ export async function getStaticProps() {
   
       const list = await advancedFetchListings(load);
       if(list){
-        serverObj.latestList = list;
+        serverObj.latestList = list?.length > 0 ? list : [];
       }
     }
     async function topPlaces(){
@@ -118,7 +118,7 @@ export async function getStaticProps() {
   
       const list = await advancedFetchListings(load);
       if(list){
-        serverObj.latestPlaces = list;
+        serverObj.latestPlaces = list?.length > 0 ? list : [];
       }
     }
   

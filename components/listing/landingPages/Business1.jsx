@@ -17,7 +17,7 @@ import {spliderVariableWidth} from '@/helpers/sliders'
 import PostReviews from '../reviews/postReviews';
 import FAQs from "@/components/UI/FAQs";
 import { useRouter } from 'next/router';
-import ProfileInfo from '../profileInfo/ProfileInfo';
+//import ProfileInfo from '../profileInfo/ProfileInfo';
 import { PriceView } from '@/components/UI/PriceView';
 import ListingDetail from '../profileInfo/ListingDetail';
 import ListingStats from '../profileInfo/partials/ListingStats';
@@ -555,7 +555,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             {faqsView}
             {teamView}
             {sponsorsView}
-            <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
+            
         </div>
     )
 }
