@@ -1,4 +1,6 @@
-function FeaturesTabs({features, exClass='', defTitle='Our Features'}) {
+import { HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
+
+function FeaturesTabs({features, light=false, exClass='', defTitle='Our Features'}) {
     let featuresView;
 
     if(features?.length > 0){
@@ -6,12 +8,7 @@ function FeaturesTabs({features, exClass='', defTitle='Our Features'}) {
             const {title, descript, sub_title, list} = features[0];
 
                     featuresView = <div className="row">
-                    <div className="col-md-6 offset-md-3 text-center" data-aos='fade-up'>
-                        <h1>{title ?? defTitle}</h1>
-                        <div className="separator"><span><i className="fa fa-circle"></i></span></div>
-                        <div className="spacer-single"></div>
-                        {descript ?? <></>}
-                    </div>
+                    <HeadingSeparatorDot exClass='mb-5' light={light}  title={title ?? defTitle} subtitle={descript ?? null}/>
 
                     <div className="col-md-12 px-0">
                         <div className="de_tab tab_steps">

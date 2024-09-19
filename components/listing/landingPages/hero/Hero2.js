@@ -151,13 +151,14 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                   </div>
                 </div>
                 </Mirrored>
-                <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
+                <div className='row_flex justify-items-start position-absolute pt-120  top-0 justify-end text-right right-0 pe-4 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
+                  <div className="d-flex flex-column align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
+                  <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>
+                    </div>
+                  </div>
+                {/* <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit minw-0 flex-shrink-1'>
                         <h1 className='mb-20 color-white truncate-3 text-capitalize' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1>
-                        {/* <h1 className="styled_title mb-20 truncate-3 d-block">
-                          <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
-                            <span className="list_title _last color-white" dangerouslySetInnerHTML={{__html: lastWords}}/> 
-                        </h1> */}
                         <div className='title_meta d-flex justify-end'>
                           <Client>
                         <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
@@ -168,48 +169,12 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                         </Client>
                         </div>
                   </div>
-                  {/* <div className="d-flex flex-column align-items-center text-center gap-2 hero_actions">
-                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
-                    <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
-                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`fas fa-heart text-center text-24`}/><span>Save</span></div>} 
-                        unlikedEl={<div style={{width: '50px'}} className="link"><i className={`fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
-                    </div> */}
                   <div className="d-flex flex-column align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
                   <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>
                   <ListingMetaMini listExClass='flex-column _vertical' filled={false}  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                     </div>
-                    {/* <div className="row_flex flex-shrink-1 justify-end">
-                    <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className="fas fa-ellipsis-h text-center text-24"></i></button>
-                    <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
-                    </div> */} 
-                 {/*  <ListingMetaMini filled  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/> */}
-                  {/* <div className='row_flex justify-end gap-3'>{actionTwoLink}{actionLink}</div> */}
-                  {/* {<VisitorActions  mini setActiveKey={setActiveKey} exClass={'justify-end'} listing={listing}/>} */}
-                  </div>
-                {/* <Slider arrows={false}  {...fadingSlide} responsive = {[...largeResp]} autoPlaySpeed={5000} speed={2000}>
-                    {[cover ?? '', ...galArr].map((item, index) =>
-                      <>
-                    <Mirrored gap={15} objClass='card card-style bg-cover shadow-bg shadow-bg-xl' objBg={item} topPadding={'0px'} skewDegrees={0} key={index}  skewDir={'-'} YDistance={200}>
-                    <div className='hero_cover position-relative w-100'>
-                    <Image                   
-                          //placeholder="blur"
-                          //changerKey={listing.id}
-                          //blurDataURL={coverBlur}
-                          fill
-                          priority
-                          alt="image"
-                          src={item}
-                          className={`object-cover ${styles['image6']}`}
-                          //onError={(e) => {e.target.src = '/images/bg/fallback.jpg'}}
-                          onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
-                          //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
-                          </div>
-                    </Mirrored>
-                      </>
-                        )
-                      }
-                  </Slider> */}
+                  </div> */}
+                
             </div>
           <div className='hero_images d-md-grid d-none'>
             <div className='hero_cover position-relative'>
@@ -228,7 +193,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
             <>
             {galArr[0]  ? <div className='d-block lg:d-none mid_img'>
               <img 
-                className='h-full object-center object-cover' 
+                className='h-full object-center object-cover w-100' 
                 src={srcWithFallback(galArr[0])}
                 onError = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
                 />

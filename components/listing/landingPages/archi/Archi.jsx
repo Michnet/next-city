@@ -62,18 +62,18 @@ function Archi({listing, setActiveKey, colorHex, color}){
             }
             tagsView = <Section exClass='py-4' title='Our Tags' descript={''} id="tags" bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
                 <div data-aos="zoom-in">
-                <div className='tags_row card card-style across_border partial_border mb-50'>
+                <div className='tags_row card card-style across_border partial_border pb_right mb-50'>
                 <div className='row_content'>
-                    <TagsCloud live hue={colorHex} dark={false} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
+                    <TagsCloud live hue={colorHex} dark={true} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='position-absolute bottom-0 right-0 pe-3 opacity-30 lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>
                  </Section>
         }
         if(general_merchandise?.length > 0){
-            shopView = <Section fullWidth dark={false} overlay={false} exClass='border rounded-0 py-3 shadow-0 bg-transparent'>
+            shopView = <Section fullWidth dark={false} overlay={false} exClass='rounded-0 py-3 shadow-0 bg-transparent'>
                 <Heading1 title={'Our Store'} subtitle={`Latest items from page store`}/>
-                <div className='card card-style partial_border top_left only_top pt-4 ps-3'>
+                <div className='card card-style px-0 shadow-0 bg-transparent m-0'>
                 <ListingProductsSimple noHeader={true} ids={general_merchandise.slice(0,4)} productType="simple" listingId = {listing?.id}/>
                 <button className=' btn-theme btn w-fit' onClick={() => {setActiveKey("merchandise")}}>Go to Page Store</button>
                 </div>
@@ -180,7 +180,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
 
                         servicesView = <section id="section-about"><Features features={_wwd} defTitle='What we do'/></section>
 
-                        servs2 = <Section id="section-steps" exClass="jarallax text-light bg-fixed pb-5" bgUrl={randomEither(gallery)}>
+                        servs2 = <Section id="section-steps" exClass="jarallax bg-fixed py-5" bgUrl={randomEither(gallery)}>
                                     <FeaturesTabs features={_wwd} defTitle='What we do'/>
                                 </Section>
             }
@@ -204,9 +204,10 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 }
 
           reviewsView = <Suspense offset={150} once height={200} data-aos="zoom-in">
-            <Section exClass='py-5 pb-0 bg-fixed' id='reviews' title='User Reviews' bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
-                <div>
+            <Section dark fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
+                <div className='pt-0 pt-sm-5'>
               <Client>
+                    <HeadingSeparatorDot exClass='me-5 mb-3' light align='right' title={'User Reviews'} subtitle={`Verified reviews about this ${type}`}/>
                     <PostReviews sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client></div>
               </Section>
               </Suspense>
@@ -234,9 +235,9 @@ function Archi({listing, setActiveKey, colorHex, color}){
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
-            <section className="py-0 px-0 px-sm-4 rounded-0 bg-transparent shadow-0">
+            {/* <section className="py-0 px-0 px-sm-4">
                 <MegaGalleryMini listing={listing} setActiveKey={setActiveKey}/>
-            </section>
+            </section> */}
             <Section fullWidth overlay={false}  dark={false} exClass='p-0 bg-transparent'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>

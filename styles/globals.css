@@ -96,13 +96,10 @@ border-color: var(--listingTheme);
 
 .hero_title .profile_name {
   text-align: right;
-  border-right: 3px solid #cdcccc;
-  padding-right: 20px;
 }
 
 .hero_title .profile_name h1 {
   font-size: 35px;
-  margin-bottom: 0;
   font-weight: 700;
   line-height: 1.2em;
 }

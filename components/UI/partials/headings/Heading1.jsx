@@ -6,10 +6,11 @@ export const Heading1 = ({title, large, small, subtitle=null, desc, exClass='mb-
     </div>
   )
 }
-export const HeadingSeparatorDot = ({title, align='center', small, subtitle=null, desc, exClass='px-3'}) => {
-  return ( <div className={`text-${align} sc_heading_dot ${exClass}`} data-aos='fade-up'>
-              <h3 className='text-30 mb-0 text-center'>{title}</h3>
+export const HeadingSeparatorDot = ({title, light=false, align='center', small, subtitle=null, desc, exClass='px-3'}) => {
+  return ( <div className={`text-${align} bg-transparent sc_heading_dot ${exClass} ${light ? 'theme-dark' : ''}`} data-aos='fade-up'>
+              <h3 className='mb-0 _title'>{title}</h3>
               <div className="separator"><span><i className="fa fa-circle"></i></span></div>
+              {subtitle && <p className='_subtitle'>{subtitle}</p>}
           </div>
   )
 }

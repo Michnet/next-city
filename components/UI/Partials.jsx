@@ -125,9 +125,9 @@ export  const CustomRow = ({exClass, headContent, bodyContent, sideContent}) => 
   )
 }
 
-export const ListingMetaMini = ({page_views, ratings, exClass, page_likes, filled, colors, listExClass=''}) => {
+export const ListingMetaMini = ({page_views, ratings, exClass, page_likes, filled, colors, listExClass='align-items-center'}) => {
   return <div className={`listing_meta _mini ${exClass ?? ''}`}>
-            <Client><ul className={`mb-0 gx-text-truncate _meta w-auto d-flex align-items-center ${listExClass}`}>
+            <Client><ul className={`mb-0 gx-text-truncate _meta w-auto d-flex  ${listExClass}`}>
                 {page_likes ? <li><i className={`bi bi-suit-heart${filled ? '-fill' : ''} mr-4 ${colors ? `color-${randomEither(siteColors)}-dark` : ''}`}></i>{page_likes}</li> : null}
                 {ratings ? <li><i className={`bi bi-star${filled ? '-fill' : ''}  mr-4 ${colors ? `color-${randomEither(siteColors)}-dark` : ''}`}/> {ratings} </li> : null}
                 {page_views ? <li><i className={`bi bi-eye${filled ? '-fill' : ''} mr-4 ${colors ? `color-${randomEither(siteColors)}-dark` : ''}`}></i>{page_views}</li> : null}

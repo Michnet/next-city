@@ -76,7 +76,7 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
 
   return (<>
     <Suspense>
-        <div className={`hero hero2 listing_hero  _grid _parallax ${styles['location']} d-block ${exClass}`}>
+        <div className={`hero listing_hero  _grid _parallax ${styles['location']} d-block ${exClass}`}>
             <div className='hero_images d-block md-hero pos-relative'>
                 <div className='hero_cover position-relative w-100'>
                   <ParallaxSection overLay={false} underLay={true} bg={srcWithFallback(randomEither([cover, ...gallery]))} styleObj={{height: 400}}>
@@ -85,7 +85,7 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
                   <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
                   <div className='row_flex justify-end mb-10'>
                     <DateViewState fromActive exClass={'bg-theme dotty ripple position-absolute'} eventId={id}/>
-                    </div>
+                    </div>{/* 
 
                         <h1 className='mb-20 color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
                         <div className='title_meta d-flex justify-end mb-20'>
@@ -97,11 +97,8 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
                         </p>
                         </Client>
                         </div>
-                          <ListingMetaMini  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
-                          {/* <div className="color-theme d-flex align-items-center text-center hero_actions" data-aos='fade-up'>
-                          <VisitorActions listing={listing}/>
-                          </div> */}
-                        </div>
+                          <ListingMetaMini  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/> */}
+                      </div>
                         
                   </div>
                   </div>
@@ -146,27 +143,6 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
               onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
             />
           </div>
-            {!isLargeTab && <>
-            <div className='d-block lg:d-none mid_img'>
-              <img 
-                className='h-full object-center object-cover' 
-                src={srcWithFallback(galArr[0])}
-                onError = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
-                />
-            </div>
-            <div className='d-block lg:d-none grid_img'>
-              {galArr[1] ? <ResponsiveMasonry className='hero_grid' columnsCountBreakPoints={{0: 4, 900: 1}}>
-            <Masonry className='grid_box' gutter='10px'>
-              {galArr.slice(1,3).map((im, i) => {
-                return <img 
-                src={srcWithFallback(im)} 
-                onError = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
-                key={i}/>
-              })}
-            </Masonry>
-            </ResponsiveMasonry> : <></>}
-            </div>
-            </>}
 
             {isLargeTab && <>
               {galArr[0] ?
