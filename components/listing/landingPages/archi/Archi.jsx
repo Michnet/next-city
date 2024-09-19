@@ -2,12 +2,12 @@
 import Head from "next/head"
 import { Client } from "react-hydration-provider";
 import { useEffect, Suspense } from "react";
-import ParallaxSection from "@/components/UI/sections/ParallaxSection";
-import { randomEither, resizedImage, cleanHtml, shuffleArray, srcWithFallback } from '@/helpers/universal';
+//import ParallaxSection from "@/components/UI/sections/ParallaxSection";
+import { randomEither, /* resizedImage, cleanHtml, */ shuffleArray, srcWithFallback } from '@/helpers/universal';
 import ListingInfoCard from "@/components/listing/landingPages/hero/partials/ListingInfoCard";
 import ListingDetail from "../../profileInfo/ListingDetail";
 import PostReviews from './../../reviews/postReviews';
-import DualColorTitle from "@/components/UI/partials/headings/DualColorTitle";
+//import DualColorTitle from "@/components/UI/partials/headings/DualColorTitle";
 import Features from "@/components/UI/features/Features";
 import FeaturesTabs from "@/components/UI/features/FeaturesTabs";
 import Section from "@/components/UI/sections/Section";
@@ -15,12 +15,12 @@ import {DualColorHeader, SocialLinks } from '@/components/UI/Partials';
 import TagsCloud from '@/components/listing/partials/TagsCloud';
 import FAQs from "@/components/UI/FAQs";
 import { GalleryPlate, HorizontalGrid } from "@/components/UI/Galleries/MegaGallery";
-import { siteColors, siteSettings } from "@/helpers/base";
-import { ParallaxBanner } from "react-scroll-parallax";
+import { /* siteColors,  */siteSettings } from "@/helpers/base";
+//import { ParallaxBanner } from "react-scroll-parallax";
 import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
 import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
 //import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
+//import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
 import  ListingProductsSimple  from '@/components/listing/shop/ListingProductsSimple';
 import { PriceView } from "@/components/UI/PriceView";
 
@@ -60,11 +60,11 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     query: { tags: tag.slug },
                   })
             }
-            tagsView = <Section exClass='py-4' title='Our Tags' descript={''} id="tags" bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
+            tagsView = <Section dark exClass='py-4 pb-0' title='Our Tags' descript={''} id="tags" bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
                 <div data-aos="zoom-in">
                 <div className='tags_row card card-style across_border partial_border pb_right mb-50'>
                 <div className='row_content'>
-                    <TagsCloud live hue={colorHex} dark={true} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
+                    <TagsCloud live hue={colorHex} dark={false} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='position-absolute bottom-0 right-0 pe-3 opacity-30 lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>
@@ -80,7 +80,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 </Section>
         }
         if(tickets?.length > 0){
-            ticketsHint = <Section dark={false}  bgUrl={srcWithFallback(randomEither([cover, ...gallery]))} exClass="px-4 pb-4 pt-3"><div className='mb-20 sc_heading_3 px-4 mt-4'>
+            ticketsHint = <Section  /* bgUrl={srcWithFallback(randomEither([cover, ...gallery]))} */ exClass="px-4 pb-4 pt-3"><div className='mb-20 sc_heading_3 px-4 mt-4'>
             <h5>Engage Now</h5>
             <h4>Booking Options</h4>
         </div>
@@ -188,7 +188,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
 
            if(faqs?.length > 0){
                     let trimFaqs = faqs?.slice(0,3);
-                faqsView = <Section dark={false} exClass='bg-fixed pt-5 pb-3' bgUrl={`${randomEither(gallery)}`}>
+                faqsView = <Section dark={false} exClass='bg-fixed pt-5 pb-3' /* bgUrl={`${randomEither(gallery)}`} */>
                     {/* <div className='overlay-bg position-relative z-0'/> */}
                         <HeadingSeparatorDot align='right' title={'FAQs'} subtitle={'Frequently asked'}/>
                 <div className="card card-style partial_border across_border shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
@@ -249,8 +249,8 @@ function Archi({listing, setActiveKey, colorHex, color}){
             {ticketsHint}
             {reviewsView}
             {socialsView}
-            {tagsView}
             {faqsView}
+            {tagsView}
             {galleryView}
         {/* <footer>
             <div className="container">

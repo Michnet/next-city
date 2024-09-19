@@ -81,13 +81,12 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
                 <div className='hero_cover position-relative w-100'>
                   <ParallaxSection overLay={false} underLay={true} bg={srcWithFallback(randomEither([cover, ...gallery]))} styleObj={{height: 400}}>
                   <div className='card-bottom'>
-                  <div className='row_flex justify-items-end gap-3 d-lg-none hero_title position-absolute  bottom-0 align-items-end justify-end text-right right-0 px-4 pb-5 color-white text-shadow-l' style={{zIndex: '10', paddingTop: '100px'}}>
+                  <div className='bg-gradient row_flex justify-items-end gap-3 d-lg-none hero_title position-absolute  bottom-0 align-items-end justify-end text-right right-0 px-30 pb-4 color-white text-shadow-l' style={{zIndex: '10', paddingTop: '100px'}}>
                   <div className='profile_name h-fit mb-10 minw-0 flex-shrink-1'>
                   <div className='row_flex justify-end mb-10'>
                     <DateViewState fromActive exClass={'bg-theme dotty ripple position-absolute'} eventId={id}/>
-                    </div>{/* 
-
-                        <h1 className='mb-20 color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
+                    </div>
+                        <h1 className='mb-20 text-40 handy color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
                         <div className='title_meta d-flex justify-end mb-20'>
                           <Client>
                         <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
@@ -97,7 +96,7 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
                         </p>
                         </Client>
                         </div>
-                          <ListingMetaMini  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/> */}
+                          <ListingMetaMini  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                       </div>
                         
                   </div>

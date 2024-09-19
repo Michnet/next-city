@@ -1492,6 +1492,7 @@ h6.tax_pare {}
 
 .hero2.listing_hero .hero_images .hero_title {
     padding-bottom: 100px;
+    background: linear-gradient(0deg, var(--bgDarkTransparent2), transparent);
 }
 
 .h_annex > * {
@@ -3969,7 +3970,7 @@ ul.listing_menu .ex_label {display: none;}
 .greeting_msg {
     margin-bottom: 25px;
     margin-top: 15px;
-    font-weight: 500;
+    font-weight: 300;
     font-family: var(--headingFont);
     line-height: 26px;
 }
@@ -4641,9 +4642,11 @@ a.link_link {
 }
 
 .hero_meta {
-    border-left: 1px dashed var(--bs-gray-600);
+    border: 1px dashed var(--bs-gray-600);
     padding-left: 10px;
     height: fit-content;
+    border-width: 1px 0 0 0;
+    padding: 10px;
 }
 
 .pdt-card.flex-col .pdt_name {
@@ -4845,7 +4848,7 @@ section.sec_sideImg .sideImg {
     webkit-mask-image: linear-gradient(white 10%, transparent 100%);
     mask-image: linear-gradient(white 10%,transparent 100%);
     background-color: var(--listingTheme);
-    min-height: 220px;
+    min-height: 200px;
 }
 
 section.sec_sideImg .sec_content {
@@ -5276,6 +5279,9 @@ section.sec_sideImg .sect_content{
 }
 
 @media (max-width: 575px){
+    section.sec_sideImg .sideImg{
+    margin-bottom: -100px;
+}
     .hero_title .profile_name h1 .list_title{font-size: 30px;}
     .separator span:before, .separator span:after{
     max-width: 20vw;
@@ -5501,10 +5507,8 @@ section.sec_sideImg .sect_content{
     font-size: large;
 }
 
-.listing_hero._grid {}
-
 .listing_hero._grid .hero_images {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .hero_detail {max-width: 1024px;margin-left: auto;margin-right: auto;}

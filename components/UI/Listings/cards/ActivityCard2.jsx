@@ -64,7 +64,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
   
   return (
           <div style={{width: width ?? 300}} className={`listing_card ${exClass ?? ''} ${mini ? '_mini' : ''}`}
-            key={id} data-aos="fade" data-aos-once="true" data-aos-delay={60}
+            key={id} /* data-aos="fade" data-aos-once="true" data-aos-delay={60} */
           >
             <div
               className="activityCard -type-2  hover-inside-slider"

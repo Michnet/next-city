@@ -6,13 +6,9 @@ import { Client } from 'react-hydration-provider';
 import {fallbackImgSrcSet, homeurl, WPDomain } from "@/helpers/base";
 //import { BookingView } from '@/components/listing/partials/ActionButtons';
 import { Suspense, useEffect } from 'react';
-import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
-import DateViewString from '@/components/UI/partials/dateViews/DateViewString';
 import Mirrored from '@/components/UI/partials/Mirrored';
-import { PriceView } from '@/components/UI/PriceView';
 import { UISizes } from '@/contexts/atoms';
 import { HorizontalGrid } from '@/components/UI/Galleries/MegaGallery';
-import CountDownUI from '@/components/UI/CountDownUI';
 import styles from '@/components/listing/styles/home1.module.css';
 import { ListingMetaMini } from '@/components/UI/Partials';
 //import { fadingSlide, largeResp } from '@/helpers/sliders';
@@ -21,10 +17,6 @@ import Image from 'next/image';
 //import VisitorActions from '../../partials/VisitorActions';
 import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
 import Link from 'next/link';
-import { BookingView } from '@/components/listing/partials/ActionButtons';
-import PostLike from '@/components/UI/partials/social/PostLike';
-import NextPostLink from '@/components/UI/NextPostLink';
-import { openOffCanvas } from '@/helpers/appjs';
 import HeroDetail from './partials/HeroDetail';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
@@ -151,29 +143,23 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                   </div>
                 </div>
                 </Mirrored>
-                <div className='row_flex justify-items-start position-absolute pt-120  top-0 justify-end text-right right-0 pe-4 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
+                {/* <div className='row_flex justify-items-start position-absolute pt-120  top-0 justify-end text-right right-0 pe-4 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className="d-flex flex-column align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
                   <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>
-                    </div>
-                  </div>
-                {/* <div className='row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 pe-3 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
-                  <div className='profile_name h-fit minw-0 flex-shrink-1'>
-                        <h1 className='mb-20 color-white truncate-3 text-capitalize' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1>
-                        <div className='title_meta d-flex justify-end'>
-                          <Client>
-                        <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
-                          <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
-                          <span className="target mr-4 mb-4 gray_text"> {type} </span>
-                          {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
-                        </p>
-                        </Client>
-                        </div>
-                  </div>
-                  <div className="d-flex flex-column align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
-                  <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>
-                  <ListingMetaMini listExClass='flex-column _vertical' filled={false}  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
                     </div>
                   </div> */}
+                <div className='flex-sm-row flex-column row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 px-30 color-white text-shadow-l' style={{zIndex: '10'}}>
+                  <div className='profile_name h-fit minw-0 flex-shrink-1'>
+                        {/* <h1 className='color-white text-40 truncate-3 text-capitalize handy' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1> */}
+                        <h1 className="styled_title handy lh-1 text-50 mb-0 color-white d-block">
+                          <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/><span> </span><span className="list_title _last" dangerouslySetInnerHTML={{__html: lastWords}}/> 
+                        </h1>
+                  </div>
+                  <div className="d-flex flex-row align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
+                  <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>
+                  <ListingMetaMini  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
+                    </div>
+                  </div>
                 
             </div>
           <div className='hero_images d-md-grid d-none'>
