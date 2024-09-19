@@ -30,7 +30,7 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
       greetingView = <p className="greeting_msg">Welcome to <span className="_title text-outlined"   dangerouslySetInnerHTML={{   __html: listing?.title?.rendered}}/></p>
   }
 
-  return (<div className={`listing_info_card bg-transparent theme-dark ${exClass}`} style={{...locStyle}}>
+  return (<div className={`listing_info_card bg-transparent ${exClass}`} style={{...locStyle}}>
           <div className={`card card-style m-0 border-0 bg-theme`} data-aos='zoom-in'>
           <div
             className={`z-1 p-5 p-sm-4 p-md-5 pb-3 position-relative ${styles['section-container']} bg-transparent card card-style border-0 w-auto m-0`}
