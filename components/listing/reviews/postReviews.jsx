@@ -10,9 +10,10 @@ import dynamic from 'next/dynamic';
 //import ReviewCard from './ReviewCard';
 import Splider from '@/components/UI/partials/Splider';
 import { Heading1 } from '@/components/UI/partials/headings/Heading1';
+import { typeName } from '@/helpers/universal';
 
 
-function PostReviews({id, author_id, headerLess=false, light=true, fromActive=false, cardType=1, preview = false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false, sliderOptions={}}) {
+function PostReviews({id, type=null, author_id, headerLess=false, light=true, fromActive=false, cardType=1, preview = false, carousel, limit, reload, title, bgImage=false, transparentCards=false, setActiveKey, withButton=false, sliderOptions={}}) {
     const [auth, setAuth] = useRecoilState(authState);
     const {user} = auth ?? {};
     const [page, setPage] = useState(0);
@@ -80,8 +81,8 @@ function PostReviews({id, author_id, headerLess=false, light=true, fromActive=fa
     let reviewsView, totalView; 
     let fallBackView = <div style={{maxWidth: 500, marginLeft: 'auto', marginRight: 'auto'}}>{loading ?  <div><LoaderDualRingBoxed height={300}/></div> : <>{
         userOwned ? 
-        <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} title={'No Reviews Yet'} light={light} descript={'No one has submitted a review for your event yet. Share your page and encourage others to share their reviews of your event'}/> 
-        : <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} descript={'No one has submitted a review for this page. If you have had a real life experience with this business/event, be the first to add a review'} light={light}  title={'Be the first'} actionComponent={withButton ? <button className={`btn ${light ? '' : 'btn-light'}`} onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>}</div>
+        <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} title={'No Reviews Yet'} light={light} descript={`No one has submitted a review for your listing yet. Share your page and encourage others to share their reviews of your ${typeName(type)}`}/> 
+        : <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} descript={`No one has submitted a review for this page. If you have had a real life experience with this ${typeName(type)}, be the first to add a review`} light={light}  title={'Be the first'} actionComponent={withButton ? <button className={`btn ${light ? '' : 'btn-light'}`} onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>}</div>
     if(loading){
         reviewsView = <div><LoaderDualRingBoxed height={300}/></div>
     }else if(reviews){

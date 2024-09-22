@@ -39,17 +39,17 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
             <div style={{rowGap: '20px', columnGap: '20px'}} className={`row md:flex-row flex-sm-nowrap flex-col position-relative`}>
               <div className={`col-12 col-sm-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']} data-aos='fade-left'><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
-              {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '200'}} data-aos='fade-right'>
+              {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '300'}} data-aos='fade-right'>
                   {tagline}
                 </span>}
-                {venue && <span className={`text-30 fw-600 opacity-50 truncate-4 smLine`} data-aos='fade-left'>
-                  <span className='fw-300'>@</span>
+                {venue && <span className={`text-30 fw-600 truncate-4 smLine`} data-aos='fade-left'>
+                  <span className='fw-300 opacity-50'>@</span>
                   {venue}
                 </span>}
               </div>
               <Client><div className="flex-grow-1 gap-2 d-flex md:items-end items-start flex-column col-12 col-sm-6 px-0" data-aos='fade-right'>
                 {id ? <><CountDownUI light fromActive eventId={id} />
-              {<DateViewDescriptive fromActive eventId={id} exClass={'_hero mb-10'} light/>}</> : <></>}
+              {<DateViewDescriptive hideIfEnded fromActive eventId={id} exClass={'_hero mb-10'} light/>}</> : <></>}
               </div>
             </Client>
             </div>

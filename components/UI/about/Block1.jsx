@@ -36,9 +36,9 @@ const Block1 = () => {
           <div className="my-3">
           <Link
             className=" btn  px-30 fw-400 text-14 btn-outline-theme radius-30"
-            href="/explore/events"
+            href="/explore"
           >
-            Explore Events
+            Explore listings
           </Link>
         </div>
           </div>

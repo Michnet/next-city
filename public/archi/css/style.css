@@ -42,9 +42,6 @@
 * media query
 
 /* import fonts */
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,600,600i,700,700i,800,800i);
-@import url(https://fonts.googleapis.com/css?family=Dosis:400,200,300,500,600,700,800);
-@import url(https://fonts.googleapis.com/css?family=Allura);
 
 /* import icons */
 @import url("../fonts/font-awesome/css/font-awesome.css");
@@ -57,7 +54,7 @@
 
 @scope (.archi) {
  :scope{
-	--headingFont: 'Dosis',Arial, Helvetica, sans-serif;
+	
  }
 
 *{
@@ -73,7 +70,6 @@ background:#000000 !important;
 
 body {
 	/* display:none; */
-	font-family: "Roboto",Arial, Helvetica, sans-serif;
 	font-size: 15px;
 	font-weight:400;
 	color: #bbbbbb;
@@ -419,7 +415,6 @@ overflow:visible;
 	margin:0;
 	float:none;
 	text-align:center;
-	font-family:"Dosis";
 	letter-spacing:5px;
 	font-size:14px;
 	padding:0;
@@ -601,7 +596,6 @@ overflow:visible;
 	}
 	
 	#mainmenu {
-	font-family:"Roboto", Arial, Helvetica, sans-serif;
 	float: right;
 	font-size:11px;
 	font-weight:400;
@@ -1897,7 +1891,6 @@ footer {
 	.blog-list .date-box .month,
 	.blog-read .date-box .month 	{
 	color:#fff;
-	font-family:"Roboto";
 	font-weight:600;
 	letter-spacing:16px;
 	padding:7px 0 7px 0;
@@ -3423,11 +3416,9 @@ left: 0;
 	background:none;
 	}
 	.de_count h3{
-	font-family:"Dosis", Arial, Helvetica, sans-serif;
 	font-size:40px;
 	}
 	.de_light .de_count h3{
-	font-family:"Roboto";
 	font-weight:500;
 	}
 	.de_count i{
@@ -3718,7 +3709,6 @@ left: 0;
 	/* ------------------------------ */
 	h1, h2, h3, h4, h5, h6 {
 	color: #07003b;
-	font-family: 'Dosis',Arial, Helvetica, sans-serif;
 	font-weight:400;
 	}
 	
@@ -3787,7 +3777,6 @@ left: 0;
 	letter-spacing:-1px;
 	}
 	h1.title strong{
-	font-family:"Allura";
 	text-transform:none;
 	letter-spacing:0;
 	font-weight:normal;
@@ -3801,7 +3790,6 @@ left: 0;
 	font-size:72px;
 	}
 	h1.title-3 strong{
-	font-family:"Allura";
 	text-transform:none;
 	letter-spacing:0;
 	font-weight:normal;
@@ -3823,7 +3811,6 @@ left: 0;
 	
 	h1.title-6 strong{
 	font-size: 100px;
-	font-family:"Allura";
 	text-transform:none;
 	letter-spacing:0;
 	font-weight:normal;
@@ -3910,7 +3897,6 @@ left: 0;
 	
 	
 	h3.s2 span{
-		font-family:"Allura";
 		text-transform:none;
 		letter-spacing:0;
 		font-size:40px;
@@ -3922,7 +3908,6 @@ left: 0;
 	}
 	
 	h3.style-1{
-		font-family:"Roboto";
 		letter-spacing:0;
 		text-transform:none;
 		margin-bottom:20px;
@@ -3933,7 +3918,6 @@ left: 0;
 	}
 	
 	.typing-wrap{
-	font-family:"Dosis";
 	font-size:30px;
 	margin:0;
 	line-height:60px;
@@ -5055,7 +5039,6 @@ padding: 5px 8px 5px 8px;
 	.de_tab.tab_steps .de_nav li span {
 	padding:30px 0 30px 0;
 	color:#222;
-	font-family:"Dosis";
 	font-size:16px;
 	border-radius:120px;
 	-moz-border-radius:120px;
@@ -5307,7 +5290,6 @@ padding: 5px 8px 5px 8px;
 	background:none;
 	border:none;
 	margin-top:20px;
-	font-family:"Dosis";
 	font-size:14px;
 	text-transform:uppercase;
 	letter-spacing:2px;
@@ -5441,7 +5423,6 @@ padding: 5px 8px 5px 8px;
 	border:solid 1px rgba(255,255,255,.2);
 	padding:10px 20px 10px 20px;
 	margin:5px;
-	font-family:"Dosis";
 	text-transform:uppercase;
 	letter-spacing:5px;
 	}
@@ -5490,7 +5471,6 @@ padding: 5px 8px 5px 8px;
 	}
 	
 	.expand h4{
-		font-family:"Roboto";
 		font-size:14px;
 		font-weight:600;
 		cursor:pointer;
@@ -6282,11 +6262,6 @@ svg.svg-white{
 }
 
 
-
-.label {
-font-family: "Roboto",Arial, Helvetica, sans-serif;
-}
-
 table thead {
 font-weight: bold;
 }
@@ -6557,7 +6532,7 @@ blockquote.testimonial-big.s2 .title{
 /* ======================================== */
 .toggle-list{list-style:none; margin:0; padding:0;}
 .toggle-list li{ margin-bottom:10px; background:#fff; border:solid 1px #ddd;border-bottom:solid 3px #ddd;}
-.toggle-list li h2{-moz-user-select: none; -html-user-select: none; user-select: none; color:#555;font-size:16px; line-height:20px; font-family:"Roboto",Arial, Helvetica, sans-serifr; padding:10px 20px 0px 60px; font-weight:700; display:block; letter-spacing:normal;}
+.toggle-list li h2{-moz-user-select: none; -html-user-select: none; user-select: none; color:#555;font-size:16px; line-height:20px; padding:10px 20px 0px 60px; font-weight:700; display:block; letter-spacing:normal;}
 .toggle-list li .acc_active:hover{ color:#777;
 background:url(../images/icon-slide-plus.png) 20px center no-repeat; 
 padding-left:80px; 
@@ -9182,7 +9157,6 @@ margin-bottom:60px;
 }
 
 .teaser-text{
-font-family:"Dosis";
 font-size:14px;
 color:rgba(255,255,255,.5);
 line-height:normal;
@@ -9390,7 +9364,6 @@ margin: auto;
 }
 
 .teaser{
-font-family:"Roboto",Arial;
 font-size:15px;
 font-weight:300;
 }
@@ -9592,7 +9565,6 @@ right:-15px;
 .text-slider{
 	line-height:60px;
 	color:#fff;
-	font-family:"Dosis";
 	font-size:60px;
 	text-transform:uppercase;
 	font-weight:300;
@@ -9835,7 +9807,6 @@ background-size:cover;
 	top:150px;
 	left:0;
 	padding-left:20px;
-	font-family:"Roboto", Arial, Helvetica, sans-serif;
 	font-size:12px;
 	margin-left:-120px;
 	border-radius: 0 0 2px 0;
@@ -10487,7 +10458,6 @@ cursor: pointer;
 
 .de_review blockquote{
 border:none;
-font-family:"Roboto Slab", Georgia, "Times New Roman", Times, serif;
 }
 
 .de_review .de_nav li span {

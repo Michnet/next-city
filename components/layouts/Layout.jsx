@@ -295,9 +295,9 @@ function LayoutConst({ children, headerTitle, settings}) {
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
            --lh: 1.6;
-          --headingFont: "Jost", sans-serif !important;
+          --headingFont: "Source Sans Pro", sans-serif !important;
           --handFont: 'Engagement', cursive;
-          --fontFamily: "Roboto", sans-serif !important;
+          --fontFamily: "Jost", sans-serif !important;
           --bgDarkTransparent0: #000000f2;
           --bgDarkTransparent: rgba(0, 0, 0, 0.902);
           --bgDarkTransparent2: rgba(15, 17, 23, 0.76);

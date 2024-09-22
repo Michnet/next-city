@@ -56,7 +56,7 @@ export default function listingMenu({listing, userId}){
   )
 } */
 
-if(type === 'event'){
+if(type === 'event' || type === 'special-sale'){
   tabList.push(
     {
       id: 'occurrences',

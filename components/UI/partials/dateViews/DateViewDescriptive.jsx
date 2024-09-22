@@ -6,7 +6,7 @@ import { useRecoilValue } from "recoil";
 import SkeletonCube from "@/components/skeletons/SkeletonCube";
 import { createOccurenceClass } from "@/helpers/universal";
 
-const DateViewDescriptive = ({eventId, fromActive, customDate=null, customEndDate, exClass, icon}) => {
+const DateViewDescriptive = ({eventId, hideIfEnded=false, fromActive, customDate=null, customEndDate, exClass, icon}) => {
     var isBetween = require('dayjs/plugin/isBetween');
     dayjs.extend(isBetween);
     var relativeTime = require('dayjs/plugin/relativeTime')
@@ -118,10 +118,14 @@ const DateViewDescriptive = ({eventId, fromActive, customDate=null, customEndDat
             label = final > 1 ? 'months' : 'month'
           }
         }else{
+          if(hideIfEnded){
+            return <></>
+          }else{
             color = '#a50e0e';
             prefix = 'Ended';
             final = dayjs(targetEndDate).fromNow();
             label = null
+          }
          /*  return <div className="event_date">
                     {dates?.length > 0 && <p className="text-truncate">
                       <span className="mr-5 lh-1"><i className="las la-stopwatch"></i></span>
@@ -131,14 +135,14 @@ const DateViewDescriptive = ({eventId, fromActive, customDate=null, customEndDat
         }
       }
     
-      return <div className={`event_date descript ${exClass ?? ''}`}>
+      return <><div className={`event_date descript ${exClass ?? ''}`}>
                 <div className="event_date">
                     <p className="text-13 lh-14  text-truncate" style={{color: color}}>
                       <span className="mr-5 lh-1"><i className={iClass}/></span>
                        {prefix} {final} {label}
                     </p>
                   </div>
-             </div>
+             </div></>
     }else{
       return <></>
     }

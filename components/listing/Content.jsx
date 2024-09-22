@@ -57,14 +57,14 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
               }/></>;
             case 'merchandise':
               return general_merchandise?.length > 0 ? <div className='px-3'>
-              <DualColorHeader exClass={'mb-20 mt-20'} title={'Event Store'} desc={"Items available for this event. You can pre-order or contact the listing's manager"}/>
+              <DualColorHeader exClass={'mb-20 mt-20'} title={'Page Store'} desc={"Items available in this store. You can pre-order or contact the listing's manager"}/>
               <ListingProductsSimple isSample ={isSample} listy ids={general_merchandise} productType="simple" listingId = {listing?.id} relatedIds={general_merchandise}/></div> : 'empty';
             case 'tickets':
               return tickets?.length > 0 ? <div>
               <DualColorHeader exClass={'mb-20'} title={'Online booking available'} desc={'Book your slot at this event by selecting a ticket option. Click to see all the details before booking'}/>
               <ListingProductsSimple isSample ={isSample} listy ids={tickets} productType="booking" listingId = {id} relatedIds={tickets}/></div>
               :
-              <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this event has not added any online booking options. Contact them to inquire further'}/>
+              <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this listing has not added any online booking options. Contact them to inquire further'}/>
         }
     }
 
@@ -123,7 +123,7 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
           }else{
 
             if(id === 'occurrences'){
-              if(type !== 'event'){
+              if(type !== 'event' && type !== 'special-sale'){
                   return;
               }
             }

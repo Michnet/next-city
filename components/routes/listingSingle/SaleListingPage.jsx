@@ -84,7 +84,7 @@ if(listing){
                 <Link href={'/add-listing'}><button
             className="btn btn-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
             >
-            Create event page
+            Create listing page
             </button></Link>
             <Link href={'/about/about-us'}><button
             className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500"

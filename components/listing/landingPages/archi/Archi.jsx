@@ -167,10 +167,10 @@ function Archi({listing, setActiveKey, colorHex, color}){
                                 <div style={{minWidth: '110%'}}>{horizontalGallery2}</div>
                             </ParallaxChildSection>
                             </Section> 
-                            <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
+                            {/* <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
                             <div className="overlay-bg"/>
                             <button onClick={() => setActiveKey('gallery')} className="btn btn-line py-3 btn-big">See Full Gallery</button>
-                        </section>
+                        </section> */}
                         </section>
                         
                         </>
@@ -188,10 +188,10 @@ function Archi({listing, setActiveKey, colorHex, color}){
 
            if(faqs?.length > 0){
                     let trimFaqs = faqs?.slice(0,3);
-                faqsView = <Section dark={false} exClass='bg-fixed pt-5 pb-3' /* bgUrl={`${randomEither(gallery)}`} */>
+                faqsView = <Section dark={false} exClass='bg-fixed pt-3 pb-0' /* bgUrl={`${randomEither(gallery)}`} */>
                     {/* <div className='overlay-bg position-relative z-0'/> */}
-                        <HeadingSeparatorDot align='right' title={'FAQs'} subtitle={'Frequently asked'}/>
-                <div className="card card-style partial_border across_border shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
+                        <HeadingSeparatorDot exClass='ms-3' align='left' title={'FAQs'} subtitle={'Frequently asked'}/>
+                <div className="card card-style partial_border top_left shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
                         <div className="content px-3 py-2">
                             
                             {trimFaqs?.length > 0 && <FAQs exClass='transparent highlighty' faqs={trimFaqs} postID={id}/>}

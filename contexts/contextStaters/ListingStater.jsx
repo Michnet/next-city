@@ -70,7 +70,7 @@ function ListingStaterConst({id, author, type}) {
     if (navigator.serviceWorker) {
       navigator.serviceWorker.ready.then((registration) => {
         let subTypesArr = ['reviews'];
-        if(type == 'event'){
+        if(type == 'event' || type == 'special-sale'){
           subTypesArr.push('dates');
         }
         registration.active.postMessage({type:'listingState', listingId:id, subTypes:[...subTypesArr]});

@@ -181,7 +181,7 @@ const ProfileChat = ({id, author, count, slug, thumbnail}) => {
               <CircularProgress/>
             </div> : showCommunication()
           }
-        </div> : <GuestPrompt title={'Login to chat with the event listing manager'}/>}
+        </div> : <GuestPrompt title={"Login to chat with the listing's manager"}/>}
       </div>
     </div>
   );

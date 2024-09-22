@@ -138,7 +138,7 @@ const ExploreConst = ({topList, type=null}) => {
                     <ActivityCarousel listingType={type} skeletonHeight={200} skeletonWidth={200} height={220} mini noFallback cardWidth={200} exCardClass={'_mini ms-0 me-2'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
 
-              {type == 'event' && <>{ !query || eventDate !== 'this-week' && <div className="inner_section">
+              {(type == 'event' || type == 'special-sale') && <>{ !query || eventDate !== 'this-week' && <div className="inner_section">
                     <ActivityCarousel listingType={type} skeletonHeight={200} skeletonWidth={270} thumbsize={'xtra_large_thumb,thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
               </div>}</>}
 

@@ -429,6 +429,7 @@ export const listingUrlBase = (type) => {
 
 
 export function srcWithFallback(src, fb = '/images/bg/fallback2-md.jpg'){
+  console.log('faulty src', src);
   if(src?.includes('http') || src?.charAt(0) === '/'){
     return src;
   }else{
@@ -546,6 +547,19 @@ export const generateTempArray = (maxItems) => {
 export function hashtag(text){
     var repl = text.replace(/#(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1">#$1</a>').replace(/@(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1">@$1</a>');
     return `<p>${repl}</p>`;
+}
+
+export function typeName(type){
+  switch (type) {
+    case 'place':
+      return 'place';
+    case 'event':
+      return 'event';
+    case 'special-sale':
+      return 'special sale';
+    default:
+      return 'listing';
+  }
 }
 
 

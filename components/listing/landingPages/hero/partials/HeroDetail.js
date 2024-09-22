@@ -52,7 +52,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                           <Client>
                         <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
                           <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
-                          <span className="target mr-4 mb-4 gray_text"> {type} </span>
+                          {/* <span className="target mr-4 mb-4 gray_text"> {type} </span> */}
                           {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
                         </p>
                         </Client>
@@ -140,7 +140,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                   </p>
                 </div>
               </div> */}
-              <p className = 'mb-20 text-14 smLine' data-aos='zoom-in'>
+              <p className = 'mb-20 text-16 smLine' data-aos='zoom-in'>
                   <span  dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_inline _hero mb-10 d-block'}/> : <></>}
@@ -162,7 +162,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                 </div>
                 </div>
                 <div className='col-12 col-lg-6'>
-                <MegaGalleryMini gutter={5} exClass='mx-n4 mb-n3 minw-100' listing={listing} setActiveKey={setActiveKey}/>
+                <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={5} exClass='mx-n4 mb-n3 minw-100' listing={listing} setActiveKey={setActiveKey}/>
                 </div>
               </div>
             </div>

@@ -61,7 +61,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
         className="listing_edit rounded-5 btn btn-sm m-0 btn-outline-secondary"
         target='_blank'>Edit Listing</Link>
     }else{
-      actionLink = <button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}} className='btn ui-2 animated'>{general_merchandise?.length > 0 ?'Event Store':'Contact Us'}</button>
+      actionLink = <button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}} className='btn ui-2 animated'>{general_merchandise?.length > 0 ?'Our Store':'Contact Us'}</button>
     }
 
     if(user?.id === 1){
@@ -71,7 +71,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
        target='_blank'>Rebuild Listing</Link>
    }
  }else{
-  actionLink = <button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}} className='btn ui-2 animated'>{general_merchandise?.length > 0 ?'Event Store':'Contact Us'}</button>
+  actionLink = <button onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}} className='btn ui-2 animated'>{general_merchandise?.length > 0 ?'Our Store':'Contact Us'}</button>
 }
 
   /* let randomColor = () => {
@@ -151,7 +151,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                 <div className='flex-sm-row flex-column row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 px-30 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit minw-0 flex-shrink-1'>
                         {/* <h1 className='color-white text-40 truncate-3 text-capitalize handy' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1> */}
-                        <h1 className="styled_title handy lh-1 text-50 mb-0 color-white d-block">
+                        <h1 className="styled_title handy lh-1 truncate-4 text-50 mb-0 color-white d-block">
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/><span> </span><span className="list_title _last" dangerouslySetInnerHTML={{__html: lastWords}}/> 
                         </h1>
                   </div>

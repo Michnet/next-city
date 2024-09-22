@@ -56,8 +56,8 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
             headingExClass='mx-3 mb-3'
             dataAos="zoom-in"
             freeHeader 
-            title= 'Event stats'
-            subtitle={'Key stats about event'}
+            title= 'Listing stats'
+            subtitle={'Key stats about this listing'}
             coverClass={'backdropGray'}
             exClass=''
             cover= {srcWithFallback(processImg(gallery, cover))}
@@ -125,7 +125,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
 
         if(general_merchandise?.length > 0){
             shopView = <div className='my-5'>
-                <Heading1 title={'Our Store'} subtitle='Latest items on this event'/>
+                <Heading1 title={'Our Store'} subtitle='Latest items in this store'/>
                 <div className='card card-style partial_border top_left only_top pt-4 ps-3'>
                 <ListingProductsSimple noHeader={true} ids={general_merchandise.slice(0,4)} productType="simple" listingId = {listing?.id}/>
                 <button className=' btn-theme btn w-fit' onClick={() => {setActiveKey("merchandise")}}>Go to Page Store</button>

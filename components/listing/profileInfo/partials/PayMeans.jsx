@@ -3,8 +3,9 @@ import { getDirPaymentMethods } from "@/helpers/rest";
 import { DualColorHeader } from "@/components/UI/Partials";
 import TermTag from "@/components/UI/partials/TermTag";
 import Widget from "@/components/UI/partials/Widget";
+import { typeName } from "@/helpers/universal";
 
-function PayMeans({listingId}) {
+function PayMeans({listingId, type}) {
     const [payMeans, setPayMeans] = useState(null);
 
     async function getPayMeans(id){
@@ -29,7 +30,7 @@ function PayMeans({listingId}) {
         payView = <Widget 
         title= {<DualColorHeader exClass={'mb-0 sm-font'} title={'Payment Methods'}/>}
         icon = {<i className="bi bi-wallet2"/> }
-        subtitle={'Payment options accepted in this event'}
+        subtitle={`Payment options accepted in this ${type ? typeName(type) : 'listing'}`}
         >
           <div className="listing_tags">
             {payMeans.map((item) => {

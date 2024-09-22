@@ -232,7 +232,7 @@ useEffect(() => {
           
           if(content !== 'empty'){
             if(id === 'occurrences'){
-              if(type !== 'event'){
+              if(type !== 'event' && type !== 'special-sale'){
                   return;
               }
             }

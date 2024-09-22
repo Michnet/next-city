@@ -38,7 +38,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
                     <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className="fas fa-ellipsis-h text-center text-24"></i></button>
                     <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
                     </div> */}
-                    <Navigator exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
+                    <Navigator items={5} faClass='far' exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
                     </div>
                     <button style={{height: '45px', borderRadius: '10px'}} data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 border-light'}>
                     <i className="fas fa-ellipsis-h text-center text-24"/>

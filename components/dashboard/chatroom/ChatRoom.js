@@ -139,7 +139,7 @@ const Chat = () => {
     if(subjects?.length > 0){
     let thumbsize = 'xtra_large_thumb';
     let load={_fields : `id,title,slug,event_date, ${thumbsize}`, 
-    listing_type:'event', 'event-date':'any-day', include_ids: subjects};
+    listing_type:'all', 'event-date':'any-day', include_ids: subjects, sort: 'latest'};
 
     const list = await advancedFetchListings(load);
     if(list){
@@ -228,7 +228,7 @@ const Chat = () => {
             <div className="gx-chat-sidenav-scroll-tab-1">
               {loading ? <div style={{height:300}}><LoaderDualRingBoxed/></div> : <>{chatUsers && chatUsers.length === 0 ?
                 <div className="gx-p-5">
-                  <p>No conversation found. To start a new conversation, visit any listing page to start a private chat with the event or business owner. All your conversation will appear here.</p>
+                  <p>No conversation found. To start a new conversation, visit any listing page to start a private chat with the listing's owner. All your conversation will appear here.</p>
                 </div>
                 :
                 <ChatUserList chatUsers={chatUsers}

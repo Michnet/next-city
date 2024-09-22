@@ -38,8 +38,7 @@ const Navigator = dynamic(() => import("@/components/listing/navigation/Navigato
   const ListingPageConst = ({listing, themeColor, themeColorHex}) => {
     
     //const {listing} = serverObj;
-    const {short_desc, meta, cover, category, about_us, logo, thumbnail, dir_categories, tagline, whatsapp, title, latitude, longitude, phone, address, id, slug, modified, gallery, xtra_large_thumb, locations, venue, rating, event_date, type} = listing ?? {};
-    const {_links} = meta ?? {};
+    const {slug,  type} = listing ?? {};
     const router = useRouter();
     const {query} = router;
     const [view, setView] = useRecoilState(listingViewState);
@@ -84,7 +83,7 @@ if(listing){
                 <Link href={'/add-listing'}><button
             className="btn btn-theme rounded-22 w-auto px-10 h-full text-14 fw-500"
             >
-            Create event page
+            Create listing page
             </button></Link>
             <Link href={'/about/about-us'}><button
             className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500"

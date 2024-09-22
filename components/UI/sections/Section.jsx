@@ -1,5 +1,3 @@
-import { randomEither } from "@/helpers/universal"
-
 function Section({overlay=true, sideImg, fullWidth=false, children, dark=false, id='', exClass='', bgUrl, title, exContainerClass='', containerStyle={}}) {
     let locStyle = {}
     if(bgUrl){

@@ -25,7 +25,7 @@ function Splash() {
             id: 1,
             imgSrc: "/images/undraw/1.svg",
             title: "Showcase your event",
-            subtitle: "Your event's landing page", 
+            subtitle: "Your event or business landing page", 
             descript: "Let the world know about your soon-coming event with a free beautiful landing page!"
         },
         {

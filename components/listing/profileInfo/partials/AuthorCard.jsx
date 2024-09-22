@@ -14,7 +14,7 @@ function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
       </div>
       <div className="card-body z-2 position-relative bg-gradient-fade justify-end d-flex flex-column">
           <h5 className="card-title mb-0">Created By LyveCity</h5>
-          <span className="small smLine">If you are the owner or organiser of this event, you can claim it and take over it's management on LyveCity</span>
+          <span className="small smLine">If you are the owner or organiser of this listing, you can claim it and take over it's management on LyveCity</span>
           {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
           <div className='card_actions mt-20'><a href={`https://lyvecityclub.com/claim-listing/?listing_id=${listingId}`} target={'_blank'} className="btn btn-primary mx-auto">Claim</a></div>
       </div>
