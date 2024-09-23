@@ -36,7 +36,7 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
             className={`z-1 p-5 p-sm-4 p-md-5 pb-3 position-relative ${styles['section-container']} bg-transparent card card-style border-0 w-auto m-0`}
           >
             {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
-            <div style={{rowGap: '20px', columnGap: '20px'}} className={`row md:flex-row flex-sm-nowrap flex-col position-relative`}>
+            <div style={{rowGap: '20px', columnGap: '20px'}} className={`w-100 row md:flex-row flex-sm-nowrap flex-col position-relative`}>
               <div className={`col-12 col-sm-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']} data-aos='fade-left'><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
               {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '300'}} data-aos='fade-right'>

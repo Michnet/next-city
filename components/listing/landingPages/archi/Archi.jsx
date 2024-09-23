@@ -20,7 +20,7 @@ import { /* siteColors,  */siteSettings } from "@/helpers/base";
 import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
 import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
 //import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-//import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
+import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
 import  ListingProductsSimple  from '@/components/listing/shop/ListingProductsSimple';
 import { PriceView } from "@/components/UI/PriceView";
 
@@ -71,9 +71,9 @@ function Archi({listing, setActiveKey, colorHex, color}){
                  </Section>
         }
         if(general_merchandise?.length > 0){
-            shopView = <Section fullWidth dark={false} overlay={false} exClass='rounded-0 py-3 shadow-0 bg-transparent'>
+            shopView = <Section fullWidth dark={false} overlay={false} exClass='overflow-visible rounded-0 py-3 shadow-0 bg-transparent'>
                 <Heading1 title={'Our Store'} subtitle={`Latest items from page store`}/>
-                <div className='card card-style px-0 shadow-0 bg-transparent m-0'>
+                <div className='card card-style px-0 shadow-0 bg-transparent m-0 overflow-visible'>
                 <ListingProductsSimple noHeader={true} ids={general_merchandise.slice(0,4)} productType="simple" listingId = {listing?.id}/>
                 <button className=' btn-theme btn w-fit' onClick={() => {setActiveKey("merchandise")}}>Go to Page Store</button>
                 </div>
@@ -111,8 +111,8 @@ function Archi({listing, setActiveKey, colorHex, color}){
         if(gallery?.length > 0){
             let megaGall = shuffleArray([...gallery]);
             if(megaGall?.length > 0){
-                let grid1Arr = megaGall.slice(0,4);
-                let grid2Arr = megaGall.slice(4, 7);
+                let grid1Arr = megaGall.slice(0,3);
+                let grid2Arr = megaGall.slice(3, 6);
 
                 horizontalGallery = <HorizontalGrid gutter={0}>
                 {grid1Arr.map((item, index) => {
@@ -160,12 +160,8 @@ function Archi({listing, setActiveKey, colorHex, color}){
                                 <div className='overlay-bg z-2 opacity-70'>
                                     <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Our Gallery</button>
                                 </div>
-                            <ParallaxChildSection  translateY={[0, 0]} speed={15} expanded={true} translateX= {[10, 0]}>
                                 <div style={{minWidth: '110%'}}>{horizontalGallery}</div>
-                            </ParallaxChildSection>
-                            <ParallaxChildSection  translateY={[0, 0]} speed={-5} expanded={true} translateX= {[-10, 0]}>
                                 <div style={{minWidth: '110%'}}>{horizontalGallery2}</div>
-                            </ParallaxChildSection>
                             </Section> 
                             {/* <section id="view-all-projects" className="call-to-action bg-color text-center" data-speed="5" data-type="background" aria-label="view-all-projects">
                             <div className="overlay-bg"/>
@@ -190,7 +186,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     let trimFaqs = faqs?.slice(0,3);
                 faqsView = <Section dark={false} exClass='bg-fixed pt-3 pb-0' /* bgUrl={`${randomEither(gallery)}`} */>
                     {/* <div className='overlay-bg position-relative z-0'/> */}
-                        <HeadingSeparatorDot exClass='ms-3' align='left' title={'FAQs'} subtitle={'Frequently asked'}/>
+                        <HeadingSeparatorDot exClass='ms-4' align='left' title={'FAQs'} subtitle={'Frequently asked'}/>
                 <div className="card card-style partial_border top_left shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
                         <div className="content px-3 py-2">
                             
@@ -235,13 +231,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
-            {/* <section className="py-0 px-0 px-sm-4">
-                <MegaGalleryMini listing={listing} setActiveKey={setActiveKey}/>
-            </section> */}
+            <section className="bg-transparent shadow-0 rounded-0 py-0 px-0 px-sm-4 overflow-visible">
+                <MegaGalleryMini imgShadows columnsObj={{0: 3, 1024: 4}} gutter={10} exClass='minw-100' listing={listing} setActiveKey={setActiveKey}/>
+            </section>
             <Section fullWidth overlay={false}  dark={false} exClass='p-0 bg-transparent'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
-
             {detailView}
             {servs2}
             {shopView}

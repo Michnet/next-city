@@ -288,15 +288,16 @@ function LayoutConst({ children, headerTitle, settings}) {
 		  </Client>
 
       <Client><style>{`:root{
-           --miniFontSize: 13px;
-           --fontSize: var(--font-size);
-           --mdFontSise: 15px;--smFontSize: 14px;
-           --xsFontSize: 12px;
+           --miniFontSize: 12px;
+           --fontSize: 15px;
+           --mdFontSise: 17px;
+           --smFontSize: 13px;
+           --xsFontSize: 11px;
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
            --lh: 1.6;
           --headingFont: "Source Sans Pro", sans-serif !important;
-          --handFont: 'Engagement', cursive;
+          --handFont: 'Cookie', cursive;
           --fontFamily: "Jost", sans-serif !important;
           --bgDarkTransparent0: #000000f2;
           --bgDarkTransparent: rgba(0, 0, 0, 0.902);

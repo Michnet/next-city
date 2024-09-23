@@ -478,7 +478,7 @@ display: flex;
     display: inline;
 }
 
-.list_title {white-space: normal;letter-spacing: 0.1em;line-height: 1;}
+.list_title {white-space: normal;line-height: 1;}
 
 .gx-profile-banner-avatar-info ._title {
 margin-bottom: 23px;

@@ -148,7 +148,7 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
                   <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>
                     </div>
                   </div> */}
-                <div className='flex-sm-row flex-column row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 px-30 color-white text-shadow-l' style={{zIndex: '10'}}>
+                <div className='flex-column row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 px-30 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit minw-0 flex-shrink-1'>
                         {/* <h1 className='color-white text-40 truncate-3 text-capitalize handy' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1> */}
                         <h1 className="styled_title handy lh-1 truncate-4 text-50 mb-0 color-white d-block">

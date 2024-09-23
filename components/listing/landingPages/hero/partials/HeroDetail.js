@@ -161,9 +161,9 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                   </button> */}
                 </div>
                 </div>
-                <div className='col-12 col-lg-6'>
+                {/* <div className='col-12 col-lg-6'>
                 <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={5} exClass='mx-n4 mb-n3 minw-100' listing={listing} setActiveKey={setActiveKey}/>
-                </div>
+                </div> */}
               </div>
             </div>
 

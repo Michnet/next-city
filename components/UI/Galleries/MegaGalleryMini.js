@@ -9,7 +9,7 @@ import { LoaderDualRingBoxed } from "@/components/skeletons/Loaders";
 import { siteColors, siteSettings } from "@/helpers/base";
 
 
-const MegaGalleryMini = ({listing, columnsObj={0: 2, 575: 3, 1024: 4}, setActiveKey, gutter='10px', withText=false, maxImages=5, exClass=''}) => {
+const MegaGalleryMini = ({listing, imgShadows=false, columnsObj={0: 2, 575: 3, 1024: 4}, setActiveKey, gutter='10px', withText=false, maxImages=5, exClass=''}) => {
   const {landing, marketing,id, gallery:l_gallery, meta} = listing;
   //const {_job_gallery:l_gallery} = meta ?? {};
   const {greeting} = landing;
@@ -51,7 +51,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid gutter={gutter}>
     if (typeof item == 'string') {
       if(item?.length > 0){
         if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-          return  <GalleryPlate imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+          return  <GalleryPlate imgShadow={imgShadows} imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
             //let backGs = ['100', '200', '300', '400'];
           return <div key={index} className={`mega_item card card-style m-0 text_box shadow-bg shadow-bg-m p-4 justify-end bg-listing`}>
@@ -61,7 +61,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid gutter={gutter}>
       }
     }else{
       if(item?.url?.includes(siteSettings.wpDomain)){
-          return  <GalleryPlate imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+          return  <GalleryPlate imgShadow={imgShadows} imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
           return <>{item}</>
         }
@@ -74,7 +74,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid gutter={gutter}>
 galleryView = <> 
         
         {gallArr?.length > 0 && <div id = 'wall_gallery_container' onClick={() => setActiveKey('gallery')} className={`position-relative ${exClass}`}>
-          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1 overflow-hidden">
+          <div id='mini_wall_gallery' className="mega_gallery _vertical pos-relative z-1">
           <Grid1/>
         {gallArr.length > 0 && <ResponsiveMasonry className="masonry vertical_grid" columnsCountBreakPoints={{...columnsObj}}>
             <Masonry gutter = {gutter}>
@@ -82,7 +82,7 @@ galleryView = <>
               if (typeof item == 'string') {
                 if(item?.length > 0){
                   if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                    return  <GalleryPlate item={item} key={index} highlight={highlightIndex.includes(index)} /* overlay={index == randomBetween(0, gallery?.length)} *//>;
+                    return  <GalleryPlate imgShadow={imgShadows} item={item} key={index} highlight={highlightIndex.includes(index)} /* overlay={index == randomBetween(0, gallery?.length)} *//>;
                   }else{
                       //let backGs = ['100', '200', '300', '400'];
                     return <div key={index} className={`mega_item card card-style m-0 text_box p-4 justify-end bg-listing`}>
@@ -92,7 +92,7 @@ galleryView = <>
                 }
               }else{
                 if(item?.url?.includes(siteSettings.wpDomain)){
-                    return  <GalleryPlate item={item} key={index} highlight={highlightIndex.includes(index)} /* overlay={index == randomBetween(0, gallery?.length)} *//>;
+                    return  <GalleryPlate imgShadow={imgShadows} item={item} key={index} highlight={highlightIndex.includes(index)} /* overlay={index == randomBetween(0, gallery?.length)} *//>;
                   }else{
                     return <>{item}</>
                   }

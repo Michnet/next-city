@@ -66,7 +66,7 @@ export const SocialLinks = ({links, iconsOnly=true, exClass=''}) => {
             {!iconsOnly && <span className={`ms-1 color-white}`}>{network}</span>}
           </a> */}
 
-          <a target={'_blank'} href={url} className={`shadow-bg shadow-bg-s mb-3 text-start btn btn-m btn-full  btn-icon rounded-s text-uppercase font-700 bg-${network.toLowerCase()}`}><i className={`fab fa-${network.toLowerCase()} rounded-s font-16 text-center`}></i> {network}</a>
+          <a target={'_blank'} href={url} className={`shadow-bg shadow-bg-s mb-3 text-start btn btn-m btn-full  btn-icon rounded-s text-uppercase font-700 bg-${network.toLowerCase()}`}><i className={`fab fa-${network.toLowerCase()} text-center`}></i> {network}</a>
           </>
         })}
       </div>
