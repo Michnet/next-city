@@ -1498,7 +1498,7 @@ h6.tax_pare {}
 }
 
 .hero2.listing_hero .hero_images .hero_title {
-    padding-bottom: 100px;
+    padding-bottom: 80px;
     /* background: linear-gradient(0deg, var(--bgDarkTransparent2), transparent); */
 }
 
@@ -5332,7 +5332,7 @@ section.sec_sideImg .sect_content{
     section.sec_sideImg .sideImg{
     margin-bottom: -100px;
 }
-    .hero_title .profile_name h1 .list_title{font-size: 30px;}
+    .hero_title .profile_name h1 .list_title{font-size: 38px;}
     .separator span:before, .separator span:after{
     max-width: 20vw;
 }

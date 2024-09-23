@@ -22,7 +22,7 @@ export const GalleryPlate = ({item, imgShadow=false, overlay, highlight, onclick
     setLoading(false);
   }, [item])
   
-  return <div style={{background: imgShadow ? `url(${resizedImage(item, imgSize)})` : null}} className={` gallery_plate pointer ${exClass} ${imgShadow ? 'shadow-bg shadow-bg-l' : ''}`} onClick={onclickFunc ? () => onclickFunc() : null} >
+  return <div /* style={{background: imgShadow ? `url(${resizedImage(item, imgSize)})` : null}} */ className={` gallery_plate pointer ${exClass} ${imgShadow ? 'shadow' : ''}`} onClick={onclickFunc ? () => onclickFunc() : null} >
     {loading ? <div className="d-flex justify-center align-center h-100 align-items-center"><LoaderEllipsis/></div> : 
       <>
       <div className={`mega_item`}>

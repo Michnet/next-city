@@ -296,7 +296,7 @@ function LayoutConst({ children, headerTitle, settings}) {
            --bgFontSize: 19px;
            --exBigFontSize: 22px;
            --lh: 1.6;
-          --headingFont: "Source Sans Pro", sans-serif !important;
+          --headingFont: "Jost", sans-serif !important;
           --handFont: 'Cookie', cursive;
           --fontFamily: "Jost", sans-serif !important;
           --bgDarkTransparent0: #000000f2;

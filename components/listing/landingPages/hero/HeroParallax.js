@@ -86,7 +86,7 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
                   <div className='row_flex justify-end mb-10'>
                     <DateViewState fromActive exClass={'bg-theme dotty ripple position-absolute'} eventId={id}/>
                     </div>
-                        <h1 className='mb-20 text-40 handy color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
+                        <h1 className='mb-20 text-40 color-white truncate-3' data-aos='zoom-in'>{cleanHtml(title?.rendered)}</h1>
                         <div className='title_meta d-flex justify-end mb-20'>
                           <Client>
                         <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
