@@ -50,7 +50,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                         </h1> */}
                         <div className='title_meta d-flex justify-end'>
                           <Client>
-                        <p style={{lineHeight: '1.3em'}} data-aos='fade-right'>
+                        <p style={{lineHeight: '1.3em'}} >
                           <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
                           {/* <span className="target mr-4 mb-4 gray_text"> {type} </span> */}
                           {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
@@ -58,7 +58,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                         </Client>
                                               
                         </div>
-                        <div className='status_greeting' data-aos='zoom-in'>
+                        <div className='status_greeting'>
                         {/* <DateViewState fromActive exClass={'dotty ripple'} eventId={id}/> */}
                         <div className='row_flex gap-2'>{actionLink}{actionTwoLink}</div>
                         <p className = 'mb-10 smLine'>
@@ -66,7 +66,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                         </p>
                       </div>
                         <div className='row_flex gap-2 justify-between mb-3'>
-                          {<button data-aos='fade-left' onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
+                          {<button  onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
                                 <i className={`far fa-${general_merchandise?.length > 0 ? 'store' : 'comment-smile'} font-20 text-center color-white`}></i>
                                 {general_merchandise?.length > 0 ? 'See Store' : 'Contact'}
                               </button>}
@@ -140,12 +140,12 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                   </p>
                 </div>
               </div> */}
-              <p className = 'mb-20 text-16 smLine' data-aos='zoom-in'>
+              <p className = 'mb-20 text-18 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_inline _hero mb-10 d-block'}/> : <></>}
                 <div className={`gap-2 flex-wrap d-flex justify-between`}>
-                  <div className="color-theme d-flex align-items-center text-center hero_actions" data-aos='fade-up'>
+                  <div className="color-theme d-flex align-items-center text-center hero_actions">
                     {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fal fa-phone text-center text-24`}></i><span className='action_label'>Call</span></a>}
                     <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark ${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span className='action_label'>Chat</span></button>
                     <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span className='action_label'>Save</span></div>} 

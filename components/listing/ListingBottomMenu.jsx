@@ -25,7 +25,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
     }, [listing])
     
 
-    let bottomContent = <div style={{width: '100%'}} id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-3 px-2 border-0 font-900">
+    let bottomContent = <div style={{width: '100%'}} id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-1 px-2 border-0 font-900">
                 <div className='footer_content py-0 bg-transparent minw-0 flex-shrink-1 shadow-0 justify-between'>
                     {/* <div className="row_flex align-items-center">
                 <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600 text-truncate me-2'/>
@@ -40,8 +40,12 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
                     </div> */}
                     <Navigator items={4} faClass='far' exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
                     </div>
+                    <button style={{height: '45px'}} data-menu='listingMenuRight' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center flex-column justify-center'}>
+                    <i className="fas fa-ellipsis-h text-center link_icon"/>
+                    <span className="truncate nav_i_title fw-500 opacity-50 text-10 text-uppercase ">More</span>
+                    </button>
                     <button style={{height: '45px', borderRadius: '10px'}} data-menu='listingActions' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center justify-center  px-2 border-light'}>
-                    <i className="fas fa-ellipsis-h text-center text-24"/>
+                    <i className="fas fa-location text-center text-24"/>
                     <div className="position-absolute show_in_transit"><LoaderRingBoxed size={75}/></div>
                     </button>
                    {/*  <div className='_fab'>

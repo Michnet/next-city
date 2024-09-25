@@ -869,7 +869,7 @@ div.truncate-5 > p {
     bottom: -75px;
     transition: all .7s;
     display: grid;
-    grid-template-columns: calc(100% - 75px) 48px;
+    grid-template-columns: calc(100% - 100px) 42px 42px;
 }
 
 ._listing:has(.header-active) #footer-bar {
@@ -3897,10 +3897,11 @@ ul.listing_navigator {display: flex;align-items: center;grid-column-gap: 10px;gr
     display: none;
 }
 
-#footer-bar ul.listing_navigator.view_all li .link_icon {
+#footer-bar .link_icon {
     font-size: 20px;
     line-height: 30px;
     margin-right: auto !important;
+    margin-left: auto;
     opacity: 1;
 }
 
@@ -4689,6 +4690,7 @@ a.link_link {
 
 .splide__pagination {
     transform: none;
+    position: relative;
 }
 
 .hero_meta {
@@ -5575,4 +5577,11 @@ section.sec_sideImg .sect_content{
     margin-top: -27px;
     position: relative;
     margin-left: -6px;
+}
+
+.listing_card.event_card_6 .short_desc {
+    font-size: var(--fontSize);
+}
+.listing_card.event_card_6 ._title {
+    font-size: var(--mdFontSise);
 }

@@ -154,7 +154,7 @@ let gridDisplay = (listings) => {
                                if(type == 'place'){
                                 return <EventCard3 dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
                                }
-                               return <EventCard6  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={''} listing={listing}/>
+                               return <EventCard6 imageRadius={4} contentClass='px-0'  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'bg-transparent shadow-0 radius-0'} listing={listing}/>
                             })
                             }
                             </Masonry>

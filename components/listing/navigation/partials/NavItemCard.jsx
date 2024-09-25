@@ -3,9 +3,6 @@ function NavItemCard({buttony=false, faClass='fal', subTitle, title, badgeClass,
     <>
         {/* <i className="fa fa-angle-right "/>
         <i className="fa fa-angle-left "/> */}
-
-
-
         <div className={`card card-style text-left m-0 w-fit overflow-visible ${exClass}`}>
             <div className="d-flex align-items-center it_box">
                 <div className="it_icon">

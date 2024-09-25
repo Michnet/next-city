@@ -15,7 +15,7 @@ import dayjs from "dayjs";
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
-const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
+const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentClass='px-3', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, _embedded,modified,tagline, type} = listing;
     const {likes} = acf?.community ?? {};
 
@@ -26,15 +26,15 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', min
     return (<>
     <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_6 event_card_2 m-0 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
 
-            <div className="d-none gap-2 activity_header mb-1 pt-2 px-2">
-                <div>
+            <div className="gap-2 activity_header mb-1 pt-2 px-2 d-flex">
+                <div className='hide_if_empty'>
                     {/* <img src={user_avatar?.thumb} width={avatarSize} className="rounded-xl mt-1"/> */}
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
                 </div>
                 <div className="minw-0 flex-shrink-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
                     <TermTag exTagClass={'rounded-3 text-11 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
-                    <Link href={`/${type}s/${slug}`}><h3 className={`smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
+                    <Link href={`/${type}s/${slug}`}><h5 className={`smLine text-capitalize _title ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h5></Link>
                     <div className="title_meta d-flex  flex-column lh-11">
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
@@ -48,8 +48,8 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', min
             </div>
 
 
-            <div className="overflow-hidden card position-relative shadow-0 mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
-                <img onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={resizedImage(srcWithFallback(imgArr2[0]), 'medium_large')} fill={true} className={`pos-relative object-cover ${exImgClass}`} style={{minHeight:minHeight}}/>
+            <div className={`overflow-hidden card position-relative shadow-0 mb-0 card-img rounded-${imageRadius}`} style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
+                <img onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback2-sm.jpg', e.target.srcset= {fallbackImgSrcSet}, console.log('error src', e.target.src)}} src={resizedImage(srcWithFallback(imgArr2[0]), 'medium_large')} fill={true} className={`pos-relative object-cover ${exImgClass} rounded-${imageRadius}`} style={{minHeight:minHeight}}/>
                 
                 <div className="card-bottom px-2 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>
@@ -70,15 +70,14 @@ const EventCard6 = ({listing, width=220, exImgClass='', contentClass='px-3', min
                 <div className="content mt-0 mb-1 mx-0">
                     <div className="_content gx-mb-0">
                     <div className="d-flex gap-2 mb-1">
-                <div className="hide_if_empty">
-                    {/* <img src={user_avatar?.thumb} width={avatarSize} className="rounded-xl mt-1"/> */}
+                {/* <div className="hide_if_empty">
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
-                </div>
+                </div> */}
                 <div className="minw-0 flex-shrink-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
-                    <TermTag exTagClass={'rounded-3 text-12 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
-                    <Link href={`/${type}s/${slug}`}><h3 className={`smLine text-capitalize truncate fw-600`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
-                    <div className="mb-2 line-height-sm color-theme opacity-50">
+                    {/* <TermTag exTagClass={'rounded-3 text-12 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/> */}
+                    {/* <Link href={`/${type}s/${slug}`}><h3 className={`smLine text-capitalize truncate fw-600 _title`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link> */}
+                    <div className="line-height-sm color-theme short_desc">
                                 <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
                             </div>
                     <div className="title_meta d-flex  flex-column lh-11">

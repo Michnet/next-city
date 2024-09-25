@@ -32,6 +32,7 @@ import EventCard3  from '@/components/UI/Listings/cards/EventCard3';
 import { useRecoilState } from 'recoil';
 import { siteVersionState } from "@/contexts/atoms";
 import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
+import SalesCard from "@/components/UI/Listings/cards/SalesCard";
 
 
 export async function getStaticProps() {
@@ -122,6 +123,17 @@ export async function getStaticProps() {
       }
     }
   
+    async function topSales(){
+      let thumbsize = 'xtra_large_thumb'
+      let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+      listing_type:'special-sale', per_page: 5, sort:'latest', ignorePriority:true};
+  
+      const list = await advancedFetchListings(load);
+      if(list){
+        serverObj.latestSales = list?.length > 0 ? list : [];
+      }
+    }
+  
   
     async function serverQuery(){
       await topListings();
@@ -130,6 +142,7 @@ export async function getStaticProps() {
       await  getBusyLocs();
       await getTopLocs();
       await topPlaces();
+      await topSales();
     }
   
     await serverQuery();
@@ -151,7 +164,7 @@ export async function getStaticProps() {
 
 export default function Home(props) {
     const {serverObj} = props;
-   const {eventCategories, placeCategories, topLocations, busyLocations, latestList, latestPlaces} = serverObj ?? {};
+   const {eventCategories, placeCategories, latestSales, topLocations, busyLocations, latestList, latestPlaces} = serverObj ?? {};
    const [ver, setVer] = useRecoilState(siteVersionState);
    
   let imgArr = eventCategories?.map((ct) => {
@@ -226,23 +239,37 @@ export default function Home(props) {
 
     <div className="divider mt-3 mb-4"></div>
 
-   <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Places'} subTitle={'Be the first to know'}/>
+   {latestSales?.length > 0 && <><SectionHeader inverted iconClass={'far fa-tags'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Discounts'} subTitle={'Best Deals in the market'}/>
    <Splider exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
+      {latestSales?.length > 0 ? 
+          latestSales.map((li) => {
+           return <SalesCard truncate={3} exClass='m-0' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
+          })
+          :
+          <></>
+        }
+    </Splider></>
+    }
+
+{latestPlaces?.length > 0 && <><SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Places'} subTitle={'Be the first to know'}/>
+   <Splider  exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestPlaces?.length > 0 ? 
           latestPlaces.map((li) => {
-           return <EventCard3 truncate={2} exClass='m-0' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
+           return <EventCard3 truncate={2} exClass='mx-0 mb-3' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
           })
           :
           <></>
         }
     </Splider>
+    </>
+}
 
     <section  className="mb-2">
    <SectionHeader inverted iconClass={'far fa-calendar-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Latest Events'} subTitle={'Your early bird advantage'}/>
    <Splider options={{gap: 15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15, bottom:15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
-           return <EventCard2 mini contentClass={'px-3'} minHeight={150} height={150} width={200} key={li.id} listing = {li}/>
+           return <EventCard2 exClass='mx-0 mb-3 mt-2' mini contentClass={'px-3'} minHeight={150} height={150} width={200} key={li.id} listing = {li}/>
           })
           :
           <></>

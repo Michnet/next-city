@@ -23,6 +23,7 @@ import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings
 import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
 import  ListingProductsSimple  from '@/components/listing/shop/ListingProductsSimple';
 import { PriceView } from "@/components/UI/PriceView";
+import FeaturesCarousel from "@/components/UI/features/FeaturesCarousel";
 
 
 
@@ -61,7 +62,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                   })
             }
             tagsView = <Section dark exClass='py-4 pb-0' title='Our Tags' descript={''} id="tags" bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
-                <div data-aos="zoom-in">
+                <div>
                 <div className='tags_row card card-style across_border partial_border pb_right mb-50'>
                 <div className='row_content'>
                     <TagsCloud live hue={colorHex} dark={false} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
@@ -84,7 +85,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
             <h5>Engage Now</h5>
             <h4>Booking Options</h4>
         </div>
-        <div data-aos="zoom-in" className='p-0'>
+        <div className='p-0'>
                                 <div className='ps-data d-flex flex-column p-3'>
                                         <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
                                             <div className='cover_content'>
@@ -156,7 +157,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
             }
 
             galleryView = <><section id="section-gallery" className="no-top no-bottom" aria-label="section-gallery">
-                            <Section fullWidth  id="gallery" exClass={'p-0 bg-color'}   className="row g-0" data-aos='fade-up' data-aos-delay=".3s">
+                            <Section fullWidth  id="gallery" exClass={'p-0 bg-color'}   className="row g-0">
                                 <div className='overlay-bg z-2 opacity-70'>
                                     <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Our Gallery</button>
                                 </div>
@@ -174,7 +175,9 @@ function Archi({listing, setActiveKey, colorHex, color}){
           if(_wwd?.length > 0){
             if(_wwd[0].list?.length > 0){
 
-                        servicesView = <section id="section-about"><Features features={_wwd} defTitle='What we do'/></section>
+                        servicesView = <section id="section-about" className='pt-40'>
+                            <FeaturesCarousel features={_wwd} defTitle='What we do'/>
+                            </section>
 
                         servs2 = <Section id="section-steps" exClass="jarallax bg-fixed py-5" bgUrl={randomEither(gallery)}>
                                     <FeaturesTabs features={_wwd} defTitle='What we do'/>
@@ -187,7 +190,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 faqsView = <Section dark={false} exClass='bg-fixed pt-3 pb-0' /* bgUrl={`${randomEither(gallery)}`} */>
                     {/* <div className='overlay-bg position-relative z-0'/> */}
                         <HeadingSeparatorDot exClass='ms-4' align='left' title={'FAQs'} subtitle={'Frequently asked'}/>
-                <div className="card card-style partial_border top_left shadow mt-4 mb- position-relative z-1" data-aos="zoom-in">
+                <div className="card card-style partial_border top_left shadow mt-4 mb- position-relative z-1">
                         <div className="content px-3 py-2">
                             
                             {trimFaqs?.length > 0 && <FAQs exClass='transparent highlighty' faqs={trimFaqs} postID={id}/>}
@@ -199,7 +202,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     </Section>
                 }
 
-          reviewsView = <Suspense offset={150} once height={200} data-aos="zoom-in">
+          reviewsView = <Suspense offset={150} once height={200}>
             <Section dark fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
                 <div className='pt-0 pt-sm-5'>
               <Client>
