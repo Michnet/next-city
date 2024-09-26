@@ -38,13 +38,13 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
     let historyView, teamView, performersView, statsView, guestsView, contactsView, contentView, groupView, tagsView, visionView, missionView, galleryView, paymentsView;
     
     if(listing){
-      const {acf, content, cover, dir_tags, about_us, team, gallery, meta} = listing;
+      const {acf, content, cover, dir_tags, about_us, team, gallery, meta,phone,website,whatsapp} = listing;
       const {"_special-guests": special_guests, _performers:performers} = meta ?? {}
 
       if(acf){
         const {contactDetails} = acf;
           if(contactDetails){
-                contactsView= <PageContact contacts={contactDetails}/>
+                contactsView= <PageContact phone = {phone} website={website}whatsapp={whatsapp} contacts={contactDetails}/>
 
           } else{
             contactsView = <div></div>

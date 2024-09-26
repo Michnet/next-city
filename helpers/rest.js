@@ -306,13 +306,9 @@ export async function getLocalTaxonomy(payload){
 
                 let  parentArr = items.filter((it) => it.slug == parent_slug);
                 if(parentArr?.length > 0){
-                  console.log('parentArr', parent_slug);
-
                     let parentId= parentArr[0].id;
                     currentArr = items.filter((it) => it.parent == parentId)
                 }else{
-                  console.log('parentArr 2', parent_slug);
-
                     currentArr = items.filter((it) => it.parent == 106)
                 }
               }else{

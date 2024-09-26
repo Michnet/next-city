@@ -869,7 +869,7 @@ div.truncate-5 > p {
     bottom: -75px;
     transition: all .7s;
     display: grid;
-    grid-template-columns: calc(100% - 100px) 42px 42px;
+    grid-template-columns: calc(100% - 120px) 42px 42px;
 }
 
 ._listing:has(.header-active) #footer-bar {
@@ -1109,7 +1109,7 @@ div.truncate-5 > p {
     flex-direction: column;
     align-items: center;
     border: 1px solid #8985854f;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 25%;
     margin-right: 10px;
     padding: 5px 0;
@@ -1130,6 +1130,10 @@ div.truncate-5 > p {
 
 .cd_block:last-child {
     margin-right: 0
+}
+
+.archi .cd_block {
+    border-radius: 0;
 }
 
 .cd_num {
@@ -4010,9 +4014,10 @@ ul.listing_menu .ex_label {display: none;}
 .greeting_msg {
     margin-bottom: 25px;
     margin-top: 15px;
-    font-weight: 300;
+    font-weight: 500;
     font-family: var(--headingFont);
     line-height: 26px;
+    font-size: var(--bgFontSize);
 }
 
 .footer-contact-us, .footer-register-now {
@@ -4244,10 +4249,7 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     /* opacity: 1; */
 }
 
-.listing_meta i, .listing_meta._mini i, .nav-link{
- /* color: var(--colorTheme); */
- opacity: 0.5;
-}
+
 
 .form-checkbox .badge {
     position: absolute;
@@ -4590,9 +4592,8 @@ ul.listing_navigator.view_all.grid li .card {
 }
  .links_container._large a i {
     font-size: 22px;
-    background: #00000087;
     height: 100%;
-    line-height: 35px;
+    line-height: 42px;
     padding: 0 9px;
 }
 
@@ -4702,7 +4703,8 @@ a.link_link {
 }
 
 .pdt-card.flex-col .pdt_name {
-    font-weight: 400;
+    font-weight: 500;
+    text-transform: capitalize;
 }
 
 .big_btn.btn-icon > i {
@@ -4912,6 +4914,10 @@ section.sec_sideImg .sect_content {
     flex-direction: column;
 }
 
+.listing_meta i, .listing_meta._mini i{
+ /* color: var(--colorTheme); */
+ opacity: 0.5;
+}
 
 /*media qs*/
 @media (min-width: 992px) {
@@ -5087,6 +5093,10 @@ div#explore_nav .view_filter {
 }
 
 @media (max-width: 768px) {
+.nav-link{
+ /* color: var(--colorTheme); */
+ opacity: 0.5;
+}
     .hero2.listing_hero .hero_images {
     margin-bottom: -60px;
 }
@@ -5334,7 +5344,7 @@ section.sec_sideImg .sect_content{
     section.sec_sideImg .sideImg{
     margin-bottom: -100px;
 }
-    .hero_title .profile_name h1 .list_title{font-size: 38px;}
+    .hero_title .profile_name h1 .list_title{font-size: 30px;}
     .separator span:before, .separator span:after{
     max-width: 20vw;
 }
@@ -5571,6 +5581,8 @@ section.sec_sideImg .sect_content{
 
 .hero_detail {max-width: 1024px;margin-left: auto;margin-right: auto;}
 
+.hero_detail .title_meta span {font-weight: 300;}
+
 #footer-bar .it_box {flex-direction: column;text-align: center;}
 
 #footer-bar li.active .it_box {
@@ -5580,7 +5592,7 @@ section.sec_sideImg .sect_content{
 }
 
 .listing_card.event_card_6 .short_desc {
-    font-size: var(--fontSize);
+    font-size: 16px;
 }
 .listing_card.event_card_6 ._title {
     font-size: var(--mdFontSise);

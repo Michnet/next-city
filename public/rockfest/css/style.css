@@ -7500,7 +7500,7 @@ a.btn-right {
  }
  
  .accordion-item button[aria-expanded=true] .faq_qn {
-     color: var(--primary-color);
+     color: var(--listingTheme);
      font-weight: bold;
  }
  
@@ -7513,7 +7513,7 @@ a.btn-right {
  }
  
  .cd_block:last-child span.cd_num {
-     color: var(--primary-color);
+     color: var(--listingTheme);
  }
  
  .dark-scheme  .card.card-style.partial_border.across_border:after, .dark-scheme .card.card-style.partial_border.across_border:before {

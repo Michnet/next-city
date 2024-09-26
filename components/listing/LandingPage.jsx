@@ -17,9 +17,9 @@ import styles from './styles/home1.module.css';
     //const {act_id, act_dates} = activeDate ?? {};
 
     return  <div className="landing_page">
-              {/* <Rockfest listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/> */}
+              <Rockfest listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
               
-                <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
+                {/* <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/> */}
            {/*  <BusinessOne styles={styles}  color={color} colorHex={colorHex} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
         </div>
         }

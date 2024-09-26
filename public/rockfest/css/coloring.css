@@ -246,7 +246,7 @@ address.s1 span i,
 .ul-style-3 li:after,
 .accordion-button:not(.collapsed)
 {
-    color: var(--primary-color);
+    color: var(--listingTheme);
 }
 
 section.dark {
@@ -254,12 +254,12 @@ section.dark {
 }
 
 .bg-gradient-to-top-right {
-    background: linear-gradient(to top right, var(--primary-color), var(--primary-color-2));
+    background: linear-gradient(to top right, var(--listingTheme), var(--primary-color-2));
 }
 
 .feature-box-type-1 i,
 #preloader {
-    background-image: linear-gradient(to top right, var(--primary-color), var(--primary-color-2));
+    background-image: linear-gradient(to top right, var(--listingTheme), var(--primary-color-2));
 }
 
 .overlay-gradient {

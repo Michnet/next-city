@@ -120,7 +120,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
              </div>}
              </Client>
             <div className='_right card card-style mx-0 p-4 p-sm-5 gap-4 mb-0 row flex-lg-row flex-lg-nowrap'> 
-              <div className='col-12 col-lg-6'>
+              <div className='col-12 col-lg-6 p-0'>
               <Client>
               {/* <div className='row_flex gap-2 justify-between mb-3'>
               {<button data-aos='fade-left' onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
@@ -140,7 +140,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                   </p>
                 </div>
               </div> */}
-              <p className = 'mb-20 text-18 smLine'>
+              <p className = 'mb-20 text-16 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
               </p></Client>
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_inline _hero mb-10 d-block'}/> : <></>}

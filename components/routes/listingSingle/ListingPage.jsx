@@ -30,7 +30,7 @@ import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import Link from "next/link";
 import { Heading1 } from "@/components/UI/partials/headings/Heading1";
-import HeroGrid from "@/components/listing/landingPages/hero/HeroGrid";
+//import HeroGrid from "@/components/listing/landingPages/hero/HeroGrid";
 import HeroParallax from "@/components/listing/landingPages/hero/HeroParallax";
 import ProfileInfo from "@/components/listing/profileInfo/ProfileInfo";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
@@ -124,7 +124,7 @@ return linkzz;
         <Client>
           <div className='border mx-2 pb-2 mb-2 mt-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
-            <Navigator itemClass='col-sm-4 col-md-3 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
+            <Navigator faClass={'fad'} itemClass='col-sm-4 col-md-3 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
             </div>
         </Client>
         <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={listing} setActiveKey={setActiveKey}/>

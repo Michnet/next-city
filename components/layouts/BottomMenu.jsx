@@ -22,7 +22,7 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
         icon: "fad fa-search",
         color: 'gradient-red',
         name: "Explore",
-        routePath: "/explore/events",
+        routePath: "/explore",
         link: true
     },
     {id: 3,
@@ -36,7 +36,6 @@ export default function BottomMenu({settings, btnProps, exClass='', icon, conten
         icon: "fad fa-cog",
         color: 'gradient-red',
         name: "Settings",
-        routePath: "/explore/events",
         func: openOffCanvas,
         link: false,
         props: {

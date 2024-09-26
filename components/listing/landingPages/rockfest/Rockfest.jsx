@@ -270,7 +270,7 @@ function Rockfest({listing, setActiveKey}) {
                                 <div className="spacer-single"></div>
                             </div>
                         </div>
-                        {shuffleArray(gallery).splice(0,3).map((el) => {
+                        {gallery?.length > 0 && shuffleArray(gallery).splice(0,3).map((el) => {
                         return <div className="col-md-4">
                             <div className="de-image-text s2">
                                 {/* <a href="#" className="d-text">

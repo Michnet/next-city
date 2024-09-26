@@ -4,7 +4,7 @@ import { Client } from "react-hydration-provider";
 import { useRecoilValue } from "recoil";
 import listingMenu from "../ListingMenu";
 import { memo, useEffect } from "react";
-import NavItem from "./partials/NavItem";
+//import NavItem from "./partials/NavItem";
 import NavItemCard from "./partials/NavItemCard";
 
 function Navigator({listing, items = null, faClass, activeKey, setActiveKey, lMenu, exClass='', itemClass=''}) {

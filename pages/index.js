@@ -255,7 +255,7 @@ export default function Home(props) {
    <Splider  exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestPlaces?.length > 0 ? 
           latestPlaces.map((li) => {
-           return <EventCard3 truncate={2} exClass='mx-0 mb-3' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
+           return <EventCard3 truncate={2} exClass='mx-0 mb-4 mt-2' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
           })
           :
           <></>
@@ -269,7 +269,7 @@ export default function Home(props) {
    <Splider options={{gap: 15, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15, bottom:15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestList?.length > 0 ? 
           latestList.map((li) => {
-           return <EventCard2 exClass='mx-0 mb-3 mt-2' mini contentClass={'px-3'} minHeight={150} height={150} width={200} key={li.id} listing = {li}/>
+           return <EventCard2 exClass='mx-0 mb-4 mt-2' mini contentClass={'px-3'} minHeight={150} height={150} width={200} key={li.id} listing = {li}/>
           })
           :
           <></>

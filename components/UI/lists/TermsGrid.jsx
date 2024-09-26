@@ -1,5 +1,6 @@
 import { siteState } from '@/contexts/siteContext';
 import { closeMenus } from "@/helpers/appjs"
+import { getDirTerms } from '@/helpers/rest';
 import { useRouter } from 'next/router';
 //import { useSearchParams } from 'next/navigation';
 import  {useEffect, useState} from 'react';
@@ -15,10 +16,28 @@ const TermsGrid = ({id, listy, exClass, shadowy=true}) => {
 
     const {query} = useRouter();
     const queryCategory = query?.category
+    let taxfields = "id,count,extra_meta,term_meta,description,parent,name,slug";
+
 
     const { dirCats} = useRecoilValue(siteState);
+
+    const catsFilterArr = {
+        _fields : taxfields,
+        parent: id ?? 0,
+        per_page: 5,
+        orderby:'count',
+        order: 'desc'
+      }
+      //Get event categories
+      async function getCats(){
+        const eCats = await getDirTerms('categories', catsFilterArr);
+        if(eCats){
+            setCats(eCats); 
+        }
+        setLoading(false);
+      }
      
-    function getTaxonomies() {
+   /*  function getTaxonomies() {
         if(dirCats){
             const catId = () => {
                 if(id){ 
@@ -31,12 +50,16 @@ const TermsGrid = ({id, listy, exClass, shadowy=true}) => {
             setCats(editedList);
             setLoading(false);
         }
-      }
+      } */
 
 useEffect(() => {
-getTaxonomies();
+   getCats();
   
-  }, [dirCats]);
+  }, [id]);
+/* useEffect(() => {
+   getCats();
+  
+  }, [dirCats]); */
 
   let catsArray;
   if(cats){

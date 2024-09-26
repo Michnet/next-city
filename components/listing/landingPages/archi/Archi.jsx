@@ -234,7 +234,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
-            <section className="bg-transparent shadow-0 rounded-0 py-0 px-0 px-sm-4 overflow-visible">
+            <section className="bg-transparent hide_if_empty shadow-0 rounded-0 py-0 px-0 px-sm-4 overflow-visible">
                 <MegaGalleryMini imgShadows columnsObj={{0: 3, 1024: 4}} gutter={10} exClass='minw-100' listing={listing} setActiveKey={setActiveKey}/>
             </section>
             <Section fullWidth overlay={false}  dark={false} exClass='p-0 bg-transparent'>

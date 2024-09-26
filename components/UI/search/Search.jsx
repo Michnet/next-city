@@ -22,6 +22,7 @@ import { DualColorHeader } from '../Partials';
 import { Skeleton } from '@/components/skeletons/Skeletons';
 const SearchFilter = dynamic(() => import('./SearchFilter'));
 import EventCard3 from '@/components/UI/Listings/cards/EventCard3';
+import SalesCard from '../Listings/cards/SalesCard';
 
 const PAGE_SIZE = 22;
 
@@ -153,8 +154,10 @@ let gridDisplay = (listings) => {
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
                                if(type == 'place'){
                                 return <EventCard3 dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
+                               }else if(type == 'special-sale'){
+                                return <SalesCard dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
                                }
-                               return <EventCard6 imageRadius={4} contentClass='px-0'  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'bg-transparent shadow-0 radius-0'} listing={listing}/>
+                               return <EventCard6 imageRadius={4} contentClass='px-2'  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'bg-transparent shadow-0 radius-0'} listing={listing}/>
                             })
                             }
                             </Masonry>
