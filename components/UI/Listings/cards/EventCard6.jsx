@@ -39,7 +39,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>} */}
-                        <div className="pe-2"><span className="font-13 opacity-40 fw-400 accordionfont-11 text-truncate d-block">{tagline}</span></div>
+                        {/* <div className="pe-2"><span className="font-13 opacity-40 fw-400 accordionfont-11 text-truncate d-block">{tagline}</span></div> */}
                         
                     </div>
                 </div>
