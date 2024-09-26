@@ -1,4 +1,9 @@
-function NavItemCard({buttony=false, faClass='fal', subTitle, title, badgeClass, badgeNumber, icon, exClass=''}) {
+import { siteColors } from "@/helpers/base"
+import { randomEither } from "@/helpers/universal"
+
+function NavItemCard({buttony=false, randomColor=false, faClass='fal', subTitle, title, badgeClass, badgeNumber, icon, exClass=''}) {
+
+
   return (
     <>
         {/* <i className="fa fa-angle-right "/>
@@ -7,7 +12,7 @@ function NavItemCard({buttony=false, faClass='fal', subTitle, title, badgeClass,
             <div className="d-flex align-items-center it_box">
                 <div className="it_icon">
                     {/* <img src={thumbnail} className="object-cover rounded-sm me-3" width="70" height="70"/> */}
-                    <i className={`${faClass} ${icon ?? 'far fa-square'} bg-transparent rounded link_icon me-2`}/>
+                    <i className={`${faClass} ${icon ?? 'far fa-square'} bg-transparent rounded link_icon me-2 ${randomColor ? 'color-'+randomEither(siteColors)+'-dark' : ''}`}/>
                 </div>
                 <div className="it_text flex-shrink-1 minw-0">
                 {<span className="pt-0 text-uppercase  text-nowrap truncate nav_i_title">

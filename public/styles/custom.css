@@ -678,6 +678,10 @@ div.truncate-5 > p {
     padding: 5px 8px !important;
 }
 
+body.theme-dark .btn {
+    color: var(--colorTheme);
+}
+
 .btn-m {
     font-size: 12px;
     padding: 13px 20px
@@ -3351,7 +3355,7 @@ span.clear_tag {
 }
 
 .cta-descript{
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 ._logo_img._light, ._logo_img._dark {
@@ -3835,7 +3839,6 @@ ul.listing_navigator.view_all li .link_icon {
     font-size: 25px;
     line-height: 50px;
     text-align: center;
-    opacity: 0.5;
 }
 
 ul.listing_navigator.view_all.grid .link_icon {
@@ -4450,7 +4453,7 @@ ul.listing_navigator.view_all li.active  .nav_i_title {
 }
 
 ul.listing_navigator.view_all li.active .card {
-    background: var(--listingTheme);
+    background: var(--bgThemeLight);
 }
 
 #footer-bar ul.listing_navigator.view_all li.active .card {padding: 0;}

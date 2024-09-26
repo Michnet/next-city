@@ -18,7 +18,8 @@ export default function listingMenu({listing, userId}){
     id : 'home',
     icon : "fa-home-lg-alt",
     title : 'Home', 
-    subTitle : "Home Page", 
+    subTitle : "Home Page",
+    description: ``, 
     widgetClass: 'pt-0 no-pad',
   },
   /* {
@@ -43,18 +44,36 @@ export default function listingMenu({listing, userId}){
         />
   }, */
 ];
-/* 
- if(community_id){
+
+if(general_merchandise?.length > 0){
+  tabList.push({
+    id : 'merchandise',
+    icon: "fa-store-alt", title: 'Shop',
+    subTitle : "Our Store",
+    widgetClass: 'shop widgey gx-px-lg-0 bg-transparent',
+    badgeNumber: general_merchandise?.length ?? 0,
+    badgeClass: 'bg-warning',
+    buttony: true
+  });
+}else{
+tabList.push({
+  id: 'merchandise',
+  content: 'empty'
+})
+}
+
+if(community_id){
   tabList.push(
     { 
       id: 'community',
-      icon: "far fa-comments",
-      title: 'Community', subTitle : "Public Chat", 
+      icon: "fa-comments",
+      title: 'Community', 
+      subTitle : "Public Chat", 
       widgetClass: "pad_tab",
       innerClass: 'bg_tab border-0 pb-0 mb-0',
     }
   )
-} */
+}
 
 if(type === 'event' || type === 'special-sale'){
   tabList.push(
@@ -170,24 +189,6 @@ if(listing_articles){
   })
 } */
  
-if(general_merchandise?.length > 0){
-    tabList.push({
-      id : 'merchandise',
-      icon: "fa-store-alt", title: 'Shop',
-      subTitle : "Our Store",
-      widgetClass: 'shop widgey gx-px-lg-0 bg-transparent',
-      badgeNumber: general_merchandise?.length ?? 0,
-      badgeClass: 'bg-warning',
-      buttony: true
-    });
-}else{
-  tabList.push({
-    id: 'merchandise',
-    content: 'empty'
-  })
-}
-
-
 return tabList;
 }
 

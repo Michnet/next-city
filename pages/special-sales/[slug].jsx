@@ -11,7 +11,7 @@ import { EventJsonLd } from 'next-seo';
 
 import NotFound from "@/components/UI/site/NotFound";
 import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
-import SaleListingPage from "@/components/routes/listingSingle/SaleListingPage";
+import ListingPage from "@/components/routes/listingSingle/ListingPage";
 import RelatedListings from "@/components/listing/partials/RelatedListings";
 
 
@@ -117,7 +117,7 @@ export async function getStaticPaths() {
       images={[xtra_large_thumb, ...gallery]}
       description={`${listing?.short_desc}`}
     />
-    <SaleListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
+    <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
     <RelatedListings type={type} category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
     <VisitRecord Id={listing?.id}/>
     <ListingStater type={listing?.type} id={listing?.id}/></div>

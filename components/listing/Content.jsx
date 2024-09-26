@@ -12,6 +12,7 @@ import { EventDatesActive } from "../UI/partials/dateViews/EventDates";
 const FAQs = dynamic(() => import("../UI/FAQs"));
 const MegaGallery = dynamic(() => import("../UI/Galleries/MegaGallery"));
 import LandingPage from "./LandingPage"
+//import ListingCommunity from "./partials/ListingCommunity";
 //import listingMenu from "./ListingMenu";
 import { ListingContact } from "./partials/ListingContact";
 const ProfileContact = dynamic(() => import("./partials/ProfileContact"));
@@ -40,6 +41,7 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
             return <ComponentActivity
             setActiveKey={setActiveKey}
             noLink
+            type={type}
             scope={'groups'}
             scope_slug = 'group_id'
             scope_id={community_id}
@@ -65,6 +67,14 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
               <ListingProductsSimple isSample ={isSample} listy ids={tickets} productType="booking" listingId = {id} relatedIds={tickets}/></div>
               :
               <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this listing has not added any online booking options. Contact them to inquire further'}/>
+            /* case 'community':
+              return <ListingCommunity
+              setActiveKey={setActiveKey}
+              noLink
+              scope={'groups'}
+              scope_slug = 'group_id'
+              scope_id={community_id}
+            /> */
         }
     }
 

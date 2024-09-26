@@ -43,12 +43,12 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
 
       if(acf){
         const {contactDetails} = acf;
-          if(contactDetails){
+         /*  if(contactDetails){
                 contactsView= <PageContact phone = {phone} website={website}whatsapp={whatsapp} contacts={contactDetails}/>
 
           } else{
             contactsView = <div></div>
-          }
+          } */
     
             if(gallery?.length > 0){
             galleryView = <Widget 
@@ -79,6 +79,8 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
       </Widget>
       
      } */
+
+     contactsView= <PageContact phone = {phone} website={website}whatsapp={whatsapp} /* contacts={contactDetails} *//>
 
      if(dir_tags){
       groupView = <PostTerms linkTax={'category'} post={listing} termKey='dir_categories' taxonomy={'categories'} title={'Category'}/>
