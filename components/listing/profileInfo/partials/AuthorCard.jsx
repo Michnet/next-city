@@ -1,6 +1,6 @@
 // import { srcWithFallback } from "~/server/UniversalFunctions";
 
-import { srcWithFallback } from "@/helpers/universal";
+import { resizedImage, srcWithFallback } from "@/helpers/universal";
 
 function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
   let authorView;
@@ -10,7 +10,7 @@ function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
       authorView = <div /* data-aos='zoom-in' */ className={`author_card ${exClass ?? ''}`}>
    
       <div className="card card-style text-center shadow-sm m-0" style={{minHeight: '300px'}}>
-      <div style={{background: `url(${srcWithFallback(cover)})`}} className="position-absolute z-1 h-100 bg-cover card-img-top position-relative">
+      <div style={{background: `url(${srcWithFallback(resizedImage(cover, 'medium_large'))})`}} className="position-absolute z-1 h-100 bg-cover card-img-top position-relative">
       </div>
       <div className="card-body z-2 position-relative bg-gradient-fade justify-end d-flex flex-column">
           <h5 className="card-title mb-0">Created By LyveCity</h5>
@@ -27,7 +27,7 @@ function AuthorCard({author, setActiveKey, cover, exClass, listingId}) {
       authorView = <div /* data-aos='zoom-in' */ className={`author_card ${exClass ?? ''}`}>
    
       <div className="card card-style text-center shadow-sm m-0" style={{minHeight: '300px'}}>
-      <div style={{background: `url(${srcWithFallback(cover)})`}} className="h-100 bg-cover card-img-top position-absolute">
+      <div style={{background: `url(${srcWithFallback(resizedImage(cover, 'medium_large'))})`}} className="h-100 bg-cover card-img-top position-absolute">
          
       </div>
       <div className="card-body bg-gradient-fade">

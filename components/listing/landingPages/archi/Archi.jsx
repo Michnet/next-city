@@ -61,11 +61,11 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     query: { tags: tag.slug },
                   })
             }
-            tagsView = <Section dark exClass='py-4 pb-0' title='Our Tags' descript={''} id="tags" bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
+            tagsView = <Section  exClass='py-4 pb-0' title='Our Tags' descript={''} id="tags" /* bgUrl={`${srcWithFallback(randomEither(gallery))}`} */>
                 <div>
                 <div className='tags_row card card-style across_border partial_border pb_right mb-50'>
                 <div className='row_content'>
-                    <TagsCloud live hue={colorHex} dark={false} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
+                    <TagsCloud live hue={colorHex} dark={true} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
                     <DualColorHeader exClass='position-absolute bottom-0 right-0 pe-3 opacity-30 lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>
@@ -120,12 +120,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
                   if (typeof item == 'string') {
                     if(item?.length > 0){
                       if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                        return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                        return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                       }
                     }
                   }else{
                     if(item?.url?.includes(siteSettings.wpDomain)){
-                        return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                        return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                       }else{
                         return <>{item}</>
                       }
@@ -140,12 +140,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
                       if (typeof item == 'string') {
                         if(item?.length > 0){
                           if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                            return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                            return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                           }
                         }
                       }else{
                         if(item?.url?.includes(siteSettings.wpDomain)){
-                            return  <GalleryPlate imgSize='medium_large' item={item} key={index}/>;
+                            return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                           }else{
                             return <>{item}</>
                           }

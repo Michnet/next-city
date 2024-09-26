@@ -1,5 +1,5 @@
 import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
-import { cleanHtml, shuffleArray } from "@/helpers/universal";
+import { cleanHtml, resizedImage, shuffleArray } from "@/helpers/universal";
 import Link from "next/link";
 import { memo, useMemo } from "react";
 //import Slider from "react-slick";
@@ -107,7 +107,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                             height={size ? size  : '100%'}
                             className="object-cover js-lazy"
                             placeholder={<LoaderSiteLogo/>}
-                            src={imgSrc}
+                            src={resizedImage(imgSrc, 'medium')}
                             onError={(e) => {e.target.src = '/images/bg/fallback-sm.jpg'}}
                             alt="image"
                           />
