@@ -236,7 +236,7 @@ const BusinessOneConst = ({listing, cover, color, colorHex, scroller, setActiveK
         if(dir_tags?.length > 0){
             let tagClick = (tag) => {
                 router.push({
-                    pathname: '/explore/events',
+                    pathname: '/explore',
                     query: { tags: tag.slug },
                   })
             }

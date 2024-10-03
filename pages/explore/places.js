@@ -89,7 +89,7 @@ const ExploreEvents = ({topList}) => {
      <div className="page-content" style={{overflow: 'initial'}}>
      {isTab ? <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
         <MainMenuBtn/>
-        <ExplorerFilter/>
+        <ExplorerFilter listingType={listingType}/>
      </HeaderWrapper> : <Header headerTitle='Explore' headerClass={'header-always-show'}/>}
       <ExploreListings topList={topList} type={listingType}/>
       </div>
@@ -100,7 +100,7 @@ const ExploreEvents = ({topList}) => {
                   </div>
                 <div className="offcanvas-body pb-0">
                   <aside className="sidebar  xl:d-block">
-                    <SearchFilter3/>
+                    <SearchFilter3 listingType={listingType}/>
                   </aside>
                 </div>
             </div>

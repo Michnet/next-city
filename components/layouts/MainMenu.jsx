@@ -1,11 +1,11 @@
-import { closeMenus, toggleTheme } from "@/helpers/appjs"
+import { closeMenus } from "@/helpers/appjs"
 import { isActiveLink } from "@/helpers/universal";
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { UserCard } from "../UI/UserCard"
-import {openOffCanvas} from "@/helpers/appjs";
+//import {openOffCanvas} from "@/helpers/appjs";
 import TermsGrid from './../UI/lists/TermsGrid';
-import { quickLinks } from "@/helpers/data";
+import { quickLinks, exploreLinks } from "@/helpers/data";
 import Logo from "../UI/Logo";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
 import UISettings from "./UISettings";
@@ -35,6 +35,13 @@ function MainMenu() {
         color: 'gradient-brown',
         name: "Explore Places",
         routePath: "/explore/places",
+        isNew: false
+    },
+    {id: 2,
+        icon: "far fa-tags",
+        color: 'gradient-brown',
+        name: "Explore Special Sales",
+        routePath: "/explore/special-sales",
         isNew: false
     },
     {id: 3,
@@ -101,9 +108,28 @@ function MainMenu() {
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Quick Links</h5>
                                         <div className="quick_links">
+                                        {exploreLinks?.map((item) => (
+                                        <div className="mb-10" key={item.id}>
+                                        <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
+                                        <div className="d-flex flex-column y-gap-10">
+                                            {item.menuList.map((menu, i) => (
+                                            <Link className='close-menu' onClick={() => closeMenus()} href={menu.routerPath} as={menu.routerPath} key={i}>
+                                                {menu.name}
+                                            </Link>
+                                            ))}
+                                        </div>
+                                        </div>
+                                    ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15 hide_in_collapse">
+                                    <div className="content my-0">
+                                        <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Help Links</h5>
+                                        <div className="quick_links">
                                         {quickLinks?.map((item) => (
                                         <div className="mb-10" key={item.id}>
-                                        <h5 className="text-15 fw-300 mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
+                                        <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
                                         <div className="d-flex flex-column y-gap-10">
                                             {item.menuList.map((menu, i) => (
                                             <Link className='close-menu' onClick={() => closeMenus()} href={menu.routerPath} as={menu.routerPath} key={i}>

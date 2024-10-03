@@ -5,6 +5,7 @@ import { useState, memo } from "react";
 //import LocationExtractor from "~/appComponents/components/UI/LocationExtractor";
 import { useRecoilValue } from "recoil";
 import { actionsState, authState, locationState } from "@/contexts/atoms";
+import { typeName } from "@/helpers/universal";
 //import { fetchLocation } from "~/server/WpRest";
 
 export const eventsThisWeek =  {
@@ -38,10 +39,12 @@ export const sortRandom = {
   sort: 'random'
 }
 
-const ExplorerFilterConst = () => {
+const ExplorerFilterConst = ({listingType}) => {
   const router = useRouter();
   const {query} = router;
   const {city, city_zone, coords} = useRecoilValue(locationState);
+
+  let pathName = `/explore/${typeName(listingType, '')}`
 
   //const [address, setAddress] = useState(null);
   const [proximity, setProximity] = useState(20);
@@ -64,7 +67,7 @@ const ExplorerFilterConst = () => {
 
   const mainLinks = [
     {id:'home',
-    url : '/explore/events',
+    url : `/explore/${typeName(listingType, '')}`,
     title: 'Home',
     icon: <i className="bi bi-house"/>
     },
@@ -97,7 +100,7 @@ const ExplorerFilterConst = () => {
     params: nearbyObj,
     func: () => {
       //if(address){
-        let url = {pathname: '/explore/events', query: {...nearbyObj}}
+        let url = {pathname: pathName, query: {...nearbyObj}}
         router.push(url, url)
       //}
     }
@@ -110,7 +113,7 @@ const ExplorerFilterConst = () => {
       title: 'View History',
       icon: <i className="bi bi-eye"/>,
       func: () => {
-        let url = {pathname: '/explore/events', query: {include_ids:viewed.join(',')}}
+        let url = {pathname: pathName, query: {include_ids:viewed.join(',')}}
         router.push(url, url)
     }
       })
@@ -122,7 +125,7 @@ const ExplorerFilterConst = () => {
     if(likes?.length > 0){
       myLibrary.push({id:'liked',
       func: () => {
-          let url = {pathname: '/explore/events', query: {...query, include_ids:likes.join(',')}}
+          let url = {pathname: pathName, query: {...query, include_ids:likes.join(',')}}
           router.push(url, url, {shallow: true})
       },
       title: 'My Favourites',
@@ -139,7 +142,7 @@ const ExplorerFilterConst = () => {
                   setFilterId(id); 
                   if(func){func()
                   }else{
-                    let urlObj = {pathname: url ?? '/explore/events', query: id=== 'home' ? {} : {...query, ...itemParams}}
+                    let urlObj = {pathname: url ?? pathName, query: id=== 'home' ? {} : {...query, ...itemParams}}
                     router.push(urlObj, urlObj, {shallow: true})}
                   }
                 }  

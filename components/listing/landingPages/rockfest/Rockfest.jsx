@@ -48,7 +48,7 @@ function Rockfest({listing, setActiveKey}) {
 
             let tagClick = (tag) => {
                 router.push({
-                    pathname: '/explore/events',
+                    pathname: '/explore',
                     query: { tags: tag.slug },
                   })
             }

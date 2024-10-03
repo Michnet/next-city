@@ -31,10 +31,10 @@ function ProfileHeader({user}) {
 			</div>
 		</div>
 		<div className="d-flex px-3 py-2">
-			{reviewed?.length > 0 && <Link className="pe-2 btn me-2" href={`/explore/events?include_ids=${reviewed.join(',')}`}>
+			{reviewed?.length > 0 && <Link className="pe-2 btn me-2" href={`/explore?include_ids=${reviewed.join(',')}`}>
 				<strong className="color-blue-dark pe-2">{reviewed?.length}</strong><span className="font-12">{`Review${reviewed?.length > 1 ?  's' : ''}`}</span>
 			</Link>}
-			{likes?.length > 0 && <Link className="pe-2 btn" href={`/explore/events?include_ids=${likes.join(',')}`}>
+			{likes?.length > 0 && <Link className="pe-2 btn" href={`/explore?include_ids=${likes.join(',')}`}>
 				<strong className="color-blue-dark pe-2">{likes?.length}</strong><span className="font-12">{`Favorite${likes?.length > 1 ?  's' : ''}`}</span>
 			</Link>}
 		</div>

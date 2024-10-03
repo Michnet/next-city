@@ -12,13 +12,13 @@
 // import DateSearchEvents from "../hero/hero-events/DateSearchEvents";
 import { memo, useState } from "react";
 import { useRouter } from "next/router";
-import { UICleanup } from "@/helpers/universal";
+import { typeName, UICleanup } from "@/helpers/universal";
 import DateSearchEvents from "./specialSearch/DateSearchEvents";
 import TagsFilter from "./specialSearch/TagsFilter";
 import LocationSearch from "./specialSearch/LocationSearch";
 import CategorySearch from "./specialSearch/CategorySearch";
 
-const SearchFilter3Const = () => {
+const SearchFilter3Const = ({listingType}) => {
 
   const [params, setParams] = useState({})
   
@@ -46,7 +46,7 @@ const SearchFilter3Const = () => {
     params['tags'] = tags.join(',')
   }  
   const push_url = {
-    pathname: '/explore/events',
+    pathname: `/explore/${typeName(listingType, '')}`,
     query: {...params},
   } 
   return (
@@ -61,10 +61,10 @@ const SearchFilter3Const = () => {
               <LocationSearch  params={params} setParams={setParams} query={query}/>
       </div>
 
-      <div className="sidebar__item z-2">
+      {listingType == 'event' || listingType == 'special-sale' ? <div className="sidebar__item z-2">
               <h5 className="text-13 fw-600 mb-10 gray_text text-uppercase">Event Date</h5>
               <DateSearchEvents dates={dates} setDates={setDates} params={params} setParams={setParams} query={query}/>
-      </div>
+      </div> :  <></>}
 
       <div className="sidebar__item">
         <h5 className="text-13 fw-600 mb-10 gray_text text-uppercase">Search by key word(s)</h5>

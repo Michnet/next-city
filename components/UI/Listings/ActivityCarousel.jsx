@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { DualColorHeader } from "../Partials";
 import Splider from "@/components/UI/partials/Splider";
 import Link from "next/link";
-import { generateTempArray } from '@/helpers/universal';
+import { generateTempArray, typeName } from '@/helpers/universal';
 import { Skeleton } from "@/components/skeletons/Skeletons";
 
 function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, skeletonWidth=150, skeletonHeight=120, defListings = null, thumbsize = 'xtra_large_thumb', height=null, queryObj={}, cardType, noFallback, exCardClass, title, mini = false, subtitle, icon, catSlug, orderMeta, exClass, gap =null, sort='latest', ignorePriority = false, eventDate, orderby, order, cardWidth, shadowHeight, iconClass, include}) {
@@ -130,7 +130,7 @@ function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, 
                       </div>
                       <div className="align-self-center ms-auto">
                           <Link href={{
-              pathname: '/explore/events',
+              pathname: `/explore/${typeName(listingType, '')}`,
               query: {...load},
             }}  className="font-12">View All</Link>
                       </div>

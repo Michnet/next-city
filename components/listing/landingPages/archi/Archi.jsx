@@ -57,7 +57,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
           if(dir_tags?.length > 0){
             let tagClick = (tag) => {
                 router.push({
-                    pathname: '/explore/events',
+                    pathname: '/explore',
                     query: { tags: tag.slug },
                   })
             }
@@ -242,7 +242,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
             
-            {servs2}
+            {/* {servs2} */}
             {shopView}
             {servicesView}
             {ticketsHint}

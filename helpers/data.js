@@ -18,7 +18,9 @@ export const quickLinks = [
         { name: "Privacy Policy", routerPath: "/support/privacy" },
         { name: "Terms and Conditions", routerPath: "/support/tos" },
       ],
-    },
+    }
+  ]
+export const exploreLinks = [
     {
       id: 3,
       title: "Events",
@@ -28,6 +30,17 @@ export const quickLinks = [
         { name: "This Week", routerPath: "/explore/events?event-date=this-week" },
         { name: "This Weekend", routerPath: "/explore/events?event-date=this-weekend" },
         { name: "Happening Today", routerPath: "/explore/events?event-date=today" },
+      ],
+    },
+    {
+      id: 3,
+      title: "Special sales",
+      menuList: [
+        { name: "Top Rated", routerPath: "/explore/special-sales?sort=top-rated" },
+        { name: "Latest", routerPath: "/explore/special-sales" },
+        { name: "This Week", routerPath: "/explore/special-sales?event-date=this-week" },
+        { name: "This Weekend", routerPath: "/explore/special-sales?event-date=this-weekend" },
+        { name: "Happening Today", routerPath: "/explore/special-sales?event-date=today" },
       ],
     },
   ]

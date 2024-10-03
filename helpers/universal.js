@@ -553,7 +553,7 @@ export function hashtag(text){
     return `<p>${repl}</p>`;
 }
 
-export function typeName(type){
+export function typeName(type, fb='listing'){
   switch (type) {
     case 'place':
       return 'place';
@@ -562,7 +562,7 @@ export function typeName(type){
     case 'special-sale':
       return 'special sale';
     default:
-      return 'listing';
+      return fb;
   }
 }
 

@@ -181,7 +181,7 @@ export default function Home(props) {
   const router = useRouter();
 
   function tagClick(tag){
-    router.push(`/explore/events?region=${tag.slug}`);
+    router.push(`/explore?region=${tag.slug}`);
   }
 
   const cachedCategories = useMemo(() => eventCategories);

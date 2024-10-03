@@ -13,7 +13,7 @@ import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import ExploreListings from "@/components/routes/explore/ExploreListings";
 
-const listingType = 'event';
+const listingType = 'special-sale';
 
 export async function getServerSideProps({ req, res, query }) {
   res.setHeader(
