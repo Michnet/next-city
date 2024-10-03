@@ -130,10 +130,10 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_inline _hero mb-10 d-block'}/> : <></>}
                 <div className={`gap-2 flex-wrap d-flex justify-between`}>
                   <div className="color-theme d-flex align-items-center text-center hero_actions">
-                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fal fa-phone text-center text-24`}></i><span className='action_label'>Call</span></a>}
-                    <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark ${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span className='action_label'>Chat</span></button>
+                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-phone text-center text-24`}></i><span className='action_label'>Call</span></a>}
+                    <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark ${activeKey == 'private-chat' ? '_active' : ''} fas fa-comment-dots text-center text-24`}/><span className='action_label'>Chat</span></button>
                     <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span className='action_label'>Save</span></div>} 
-                        unlikedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fal fa-heart text-center text-24`}/><span className='action_label'>Save</span></div>} listing={id} user={user}/>
+                        unlikedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span className='action_label'>Save</span></div>} listing={id} user={user}/>
                         <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-ellipsis-h text-center text-24`}></i>
                         <span className='action_label'>More</span></button>
                     

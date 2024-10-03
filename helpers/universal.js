@@ -618,7 +618,7 @@ export const scrollTop = () => {
   window.scrollTo({top : 0, behavior: 'smooth'});
 };
 
-export function resizedImage(imgUrl, desiredSize){
+export function resizedImage(imgUrl='', desiredSize){
   switch (true) {
     case imgUrl.includes('.jpeg'):
       return imgUrl.replace(".jpeg", `-${desiredSize}.jpeg`);

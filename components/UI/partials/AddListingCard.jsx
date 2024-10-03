@@ -18,8 +18,8 @@ function AddListingCard({exClass='', height=200, shadowy=false}) {
                     <h2 className="color-white pt-0 pb-1 truncate-2">List Your Event</h2>
                     <i className='fa'/>
                 </div>
-                <p className="color-white opacity-80 lh-13"> 
-                  Get the word out with a free landing page for your event
+                <p className="color-white opacity-80 lh-13 text-14"> 
+                  Get the word out with a free landing page for your event, business and special sales
                 </p>
             </div>
             <div className="card-bottom mb-3 me-3">
@@ -27,9 +27,9 @@ function AddListingCard({exClass='', height=200, shadowy=false}) {
             </div>
             <div className="card-bottom px-3 pb-2 row_flex gap-3 justify-between align-items-center">
                 <div>
-                <h5 className={`font-13 mb-n1 truncate-2 ${`color-highlight`}`}>Start Today</h5>
+                <h5 className={`font-13 mb-n1 truncate-2 ${`color-highlight`}`}>All Free</h5>
                 </div>
-                <Link href={`/add-listing`} className="h-fit border-dark-light color-gray-dark text-nowrap  btn btn-s rounded-xl font-900 mt-2 text-uppercase font-11">Add Event</Link>
+                <Link href={`/add-listing`} className="h-fit border-dark-light color-gray-dark text-nowrap  btn btn-s rounded-xl font-900 mt-2 text-uppercase font-11">Learn More</Link>
             </div>
             <div className={`card-overlay opacity-90 bg-highlight`}/>
             <div className="card-overlay bg-gradient"/>
