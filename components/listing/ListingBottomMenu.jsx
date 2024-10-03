@@ -5,14 +5,14 @@ import { memo, useState, useEffect} from "react"
 //import { useRecoilValue } from "recoil"
 import BottomMenu from "../layouts/BottomMenu"
 import { LoaderRingBoxed } from "../skeletons/Loaders"
-import PostLike from "../UI/partials/social/PostLike"
+//import PostLike from "../UI/partials/social/PostLike"
 import Navigator from "./navigation/Navigator"
 //import Navigator from "./Navigator"
-import { NextPostLink, PreviousPostLink } from "./partials/ListingLinks"
+//import { NextPostLink, PreviousPostLink } from "./partials/ListingLinks"
 
-const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey}) =>{
+const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey}) =>{/* 
     const {phone, whatsapp, acf, id, cover} = listing ?? {}
-    const {general_merchandise} = acf ?? {}
+    const {general_merchandise} = acf ?? {} */
 
     const [loading, setLoading] = useState(true);
 
@@ -55,7 +55,11 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
                     </button>
                     </div> */}
                 </div>    
-    return <BottomMenu content={bottomContent}/>
+    return <><BottomMenu content={bottomContent}/>
+    <style>
+      {`#footer-bar{will-change:transform}`}
+    </style>
+    </>
 }
 const ListingBottomMenu = memo(ListingBottomMenuConst)
 export default ListingBottomMenu;

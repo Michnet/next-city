@@ -26,10 +26,10 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
     return (<>
     <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_6 event_card_2 m-0 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
 
-            <div className="gap-2 activity_header mb-1 pt-2 px-2 d-flex">
+            <div className="gap-2 activity_header mb-2 pt-2 px-2 d-flex align-items-center">
                 <div className='hide_if_empty'>
                     {/* <img src={user_avatar?.thumb} width={avatarSize} className="rounded-xl mt-1"/> */}
-                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
+                    {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date darky mb-2 me-2'/> : <></>}
                 </div>
                 <div className="minw-0 flex-shrink-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}

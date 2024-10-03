@@ -18,7 +18,6 @@ const PageContact = ({contacts, phone, whatsapp,website}) => {
             </div>
           </div>
         }
-
         {phone && 
           <div className="gx-media gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
             <div className="row_flex gap-2 lh-1 opacity-50 mb-1 text-13">
@@ -27,6 +26,17 @@ const PageContact = ({contacts, phone, whatsapp,website}) => {
             </div>
             <div className="gx-media-body">
               <p className="gx-mb-0 fw-500">{phone}</p>
+            </div>
+          </div>
+        }
+        {whatsapp && 
+          <div className="gx-media gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
+            <div className="row_flex gap-2 lh-1 opacity-50 mb-1 text-13">
+              <i className={`fab fa-whatsapp`}/>
+              <span className="gx-mb-0 gx-text-grey gx-fs-sm">WhatsApp</span>
+            </div>
+            <div className="gx-media-body">
+              <p className="gx-mb-0 fw-500">{whatsapp}</p>
             </div>
           </div>
         }

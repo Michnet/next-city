@@ -3,7 +3,7 @@ import Head from "next/head"
 import { Client } from "react-hydration-provider";
 import { useEffect, Suspense } from "react";
 //import ParallaxSection from "@/components/UI/sections/ParallaxSection";
-import { randomEither, /* resizedImage, cleanHtml, */ shuffleArray, srcWithFallback } from '@/helpers/universal';
+import { randomEither, resizedImage, /* cleanHtml, */ shuffleArray, srcWithFallback } from '@/helpers/universal';
 import ListingInfoCard from "@/components/listing/landingPages/hero/partials/ListingInfoCard";
 import ListingDetail from "../../profileInfo/ListingDetail";
 import PostReviews from './../../reviews/postReviews';
@@ -48,7 +48,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
            
           }
         if(content){
-            detailView = <Section fullWidth exContainerClass={'row_flex'} sideImg dark={false} bgUrl={`${srcWithFallback(randomEither(gallery))}`} exClass='p-0 bg-fixed'>
+            detailView = <Section fullWidth exContainerClass={'row_flex'} sideImg dark={false} bgUrl={`${srcWithFallback(resizedImage(randomEither(gallery), 'medium_large'))}`} exClass='p-0 bg-fixed'>
                 <div className='p-2 p-sm-5'>
                     <ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
                 </div>
@@ -61,7 +61,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     query: { tags: tag.slug },
                   })
             }
-            tagsView = <Section  exClass='py-4 pb-0' title='Our Tags' descript={''} id="tags" /* bgUrl={`${srcWithFallback(randomEither(gallery))}`} */>
+            tagsView = <Section  exClass='py-4 pb-0' title='Our Tags' descript={''} id="tags" /* bgUrl={`${srcWithFallback(resizedImage(randomEither(gallery), 'medium_large'))}`} */>
                 <div>
                 <div className='tags_row card card-style across_border partial_border pb_right mb-50'>
                 <div className='row_content'>
@@ -120,12 +120,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
                   if (typeof item == 'string') {
                     if(item?.length > 0){
                       if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                        return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
+                        return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
                       }
                     }
                   }else{
                     if(item?.url?.includes(siteSettings.wpDomain)){
-                        return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
+                        return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
                       }else{
                         return <>{item}</>
                       }
@@ -140,12 +140,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
                       if (typeof item == 'string') {
                         if(item?.length > 0){
                           if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                            return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
+                            return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
                           }
                         }
                       }else{
                         if(item?.url?.includes(siteSettings.wpDomain)){
-                            return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
+                            return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
                           }else{
                             return <>{item}</>
                           }
@@ -179,7 +179,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                             <FeaturesCarousel features={_wwd} defTitle='What we do'/>
                             </section>
 
-                        servs2 = <Section id="section-steps" exClass="jarallax bg-fixed py-5" bgUrl={randomEither(gallery)}>
+                        servs2 = <Section id="section-steps" exClass="jarallax bg-fixed py-5" bgUrl={resizedImage(randomEither(gallery), 'medium_large')}>
                                     <FeaturesTabs features={_wwd} defTitle='What we do'/>
                                 </Section>
             }
@@ -187,7 +187,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
 
            if(faqs?.length > 0){
                     let trimFaqs = faqs?.slice(0,3);
-                faqsView = <Section dark={false} exClass='bg-fixed pt-3 pb-0' /* bgUrl={`${randomEither(gallery)}`} */>
+                faqsView = <Section dark={false} exClass='bg-fixed pt-3 pb-0' /* bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`} */>
                     {/* <div className='overlay-bg position-relative z-0'/> */}
                         <HeadingSeparatorDot exClass='ms-4' align='left' title={'FAQs'} subtitle={'Frequently asked'}/>
                 <div className="card card-style partial_border top_left shadow mt-4 mb- position-relative z-1">
@@ -203,7 +203,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 }
 
           reviewsView = <Suspense offset={150} once height={200}>
-            <Section dark fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${srcWithFallback(randomEither(gallery))}`}>
+            <Section dark fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${srcWithFallback(resizedImage(randomEither(gallery), 'medium_large'))}`}>
                 <div className='pt-0 pt-sm-5'>
               <Client>
                     <HeadingSeparatorDot exClass='me-5 mb-3' light align='right' title={'User Reviews'} subtitle={`Verified reviews about this ${type}`}/>
@@ -234,13 +234,14 @@ function Archi({listing, setActiveKey, colorHex, color}){
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
-            <section className="bg-transparent hide_if_empty shadow-0 rounded-0 py-0 px-0 px-sm-4 overflow-visible">
+            <section className="d-none d-lg-block bg-transparent hide_if_empty shadow-0 rounded-0 py-0 px-0 px-sm-4 overflow-visible">
                 <MegaGalleryMini imgShadows columnsObj={{0: 3, 1024: 4}} gutter={10} exClass='minw-100' listing={listing} setActiveKey={setActiveKey}/>
             </section>
+            {detailView}
             <Section fullWidth overlay={false}  dark={false} exClass='p-0 bg-transparent'>
               <ListingInfoCard styleObj={{width: '100%'}} listing={listing} exClass={'border-0 mx-auto'}/>
             </Section>
-            {detailView}
+            
             {servs2}
             {shopView}
             {servicesView}

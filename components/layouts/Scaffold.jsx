@@ -61,10 +61,10 @@ img.site_bg_img{
     opacity: 1;
 }`}</style>
     <div id='page_box' className={`container-fluid p-0 ${pageClass ?? ""}`}>
-        {<div style={{height: '120vh', position:'fixed', top:'0', left:'0', width: '100vw'}} className='site_bg_holder position-fixed top-0'>
+        {/* {<div style={{height: '120vh', position:'fixed', top:'0', left:'0', width: '100vw'}} className='site_bg_holder position-fixed top-0'>
           <Image  src={srcWithFallback(uiBackground, '/images/bg/pageBg.jpg')} fill className='site_bg_img object-cover top-0'/>
           <div  className="bg-overlay h-100 bg-theme-transparent-0 position-relative" style={{position: 'relative',background: 'var(--bgThemeTransparent0)', backdropFilter:'saturate(180%) blur(20px) brightness(var(--bgBrightness))', height: '100vh'}}/>
-        </div>}
+        </div>} */}
         <div className={`row flex-nowrap _scaffold`} /* style={{zIndex: 0, position: 'relative'}} */>
             <div className="col-auto d-none d-md-block p-0 p-md-2" style={{height: '100vh', position: 'sticky', top: '0', maxWidth: '250px', zIndex: '1'}}>
                 <div id="sidebar" className="_main collapse collapse-horizontal d-none d-md-block rounded-m bg-theme-transparent" style={{backdropFilter: 'blur(2px)'}}>

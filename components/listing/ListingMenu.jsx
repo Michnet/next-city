@@ -55,18 +55,18 @@ if(general_merchandise?.length > 0){
     badgeClass: 'bg-warning',
     buttony: true
   });
-}else{
+}/* else{
 tabList.push({
   id: 'merchandise',
   content: 'empty'
 })
-}
+} */
 
 if(community_id){
   tabList.push(
     { 
       id: 'community',
-      icon: "fa-comments",
+      icon: "fa-users",
       title: 'Community', 
       subTitle : "Public Chat", 
       widgetClass: "pad_tab",
@@ -164,13 +164,13 @@ if(gallery?.length > 0){
      // content: <MegaGallery gallery={listing.gallery}/>
     }
    )
-}else{
+}/* else{
   tabList.push({
     id: 'gallery',
     content: 'empty'
   })
 } 
-
+ */
 if(listing_articles){
  tabList.push(
   {

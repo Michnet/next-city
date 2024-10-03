@@ -437,6 +437,9 @@ export function srcWithFallback(src, fb = '/images/bg/fallback2-md.jpg'){
   }
   //return src;
 }
+export function srcUrlWithFallback(src, fb = '/images/bg/fallback2-md.jpg'){
+  return `url(${src}), url(${fb})`;
+}
 
 function hexToRGB(hex) {
   // Remove the # character from the beginning of the hex code

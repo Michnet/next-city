@@ -115,31 +115,15 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
              {!isLargeTab && <div className='profile_name d-none d-lg-block mb-4'>
                {nameView}
              </div>}
-             {isLargeTab && <div className='profile_name card card-style d-block d-lg-none mx-0 p-4'>
+             {isLargeTab && <><div className='profile_name card card-style d-block d-lg-none mx-0 p-4'>
                {nameView}
-             </div>}
+             </div>
+             <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={5} exClass='minw-100 mb-3' listing={listing} setActiveKey={setActiveKey}/>
+             </>}
              </Client>
             <div className='_right card card-style mx-0 p-4 p-sm-5 gap-4 mb-0 row flex-lg-row flex-lg-nowrap'> 
               <div className='col-12 col-lg-6 p-0'>
               <Client>
-              {/* <div className='row_flex gap-2 justify-between mb-3'>
-              {<button data-aos='fade-left' onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
-                    <i className={`far fa-${general_merchandise?.length > 0 ? 'store' : 'comment-smile'} font-20 text-center color-white`}></i>
-                    {general_merchandise?.length > 0 ? 'See Store' : 'Contact'}
-                  </button>}
-                <div className='row_flex gap-2 justify-end item_switch align-items-center' data-aos='fade-right'>
-                  <PreviousRouteLink/>
-                  <NextPostLink type={type} current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
-              </div>
-            </div>
-             <div>
-                <div className='status_greeting' data-aos='zoom-in'>
-                  <div className='row_flex gap-2'>{actionLink}{actionTwoLink}</div>
-                  <p className = 'mb-10 smLine'>
-                        {greetingView}
-                  </p>
-                </div>
-              </div> */}
               <p className = 'mb-20 text-16 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
               </p></Client>

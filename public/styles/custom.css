@@ -765,6 +765,8 @@ body.theme-dark .btn {
     max-height: calc(1em * var(--lh));
     -webkit-line-clamp: 1;
     white-space: nowrap;
+    display: block;
+    max-width: 95%;
 }
 
 .truncate-2 {
