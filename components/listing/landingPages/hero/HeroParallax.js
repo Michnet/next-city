@@ -104,7 +104,7 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
                   </ParallaxSection>
                 </div>
                 
-                <>{galArr?.length > 0 && <HorizontalGrid gutter={'3px'} onClick={() => setActiveKey('gallery')}>
+               {/*  <>{galArr?.length > 0 && <HorizontalGrid gutter={'3px'} onClick={() => setActiveKey('gallery')}>
                     {galArr.map((item, index) => {
                       if(index < gridCols()){
                       if (typeof item == 'string') {
@@ -124,7 +124,7 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
                     }
                     )}
                     
-                    </HorizontalGrid>}</>
+                    </HorizontalGrid>}</> */}
                 
                 
             </div>
