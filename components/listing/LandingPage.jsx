@@ -1,8 +1,6 @@
 import dynamic from "next/dynamic";
 import { memo } from "react";
 import { Client } from "react-hydration-provider";
-const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
-//const Rockfest = dynamic(() => import("./landingPages/rockfest/Rockfest"), {ssr: false});
 //import BusinessOne from "./landingPages/Business1";
 //import Rockfest from "./landingPages/rockfest/Rockfest";
 //import ProfileInfo from "./profileInfo/ProfileInfo";
@@ -15,11 +13,23 @@ const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
     /* const {short_desc, meta, cover, ticket_min_price_html, about_us, logo, thumbnail, dir_categories, tagline, title, latitude, longitude, phone, address, id, slug, locations} = listing ?? {}; */
     //const activeDate =  useRecoilValue(activeDateState);
     //const {act_id, act_dates} = activeDate ?? {};
+    const {type} = listing;
+
+    function landingView(){switch (type) {
+      case 'event':
+        const Rockfest = dynamic(() => import("./landingPages/rockfest/Rockfest"), {ssr: false});
+        return <Rockfest listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/> 
+    
+      default:
+        const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
+        return <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
+    }
+  }
 
     return  <div className="landing_page">
-              {/* <Rockfest listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/> */}
+              {/* */}
               
-                <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
+                {landingView()}
            {/*  <BusinessOne styles={styles}  color={color} colorHex={colorHex} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
         </div>
         }

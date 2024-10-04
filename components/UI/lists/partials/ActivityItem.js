@@ -101,7 +101,7 @@ dayjs.extend(relativeTime)
         setLoaded(true)
         return () => {
           setLoaded(false);
-          resetForm()
+          //resetForm()
         }
       }, [user, compActivity]);
 
@@ -207,6 +207,7 @@ dayjs.extend(relativeTime)
 
                                         
                                         {can_delete && user?.id == user_id && <span className="pointer color-theme me-0 ms-auto opacity-60" onClick={() => deleteActivity()}><i className="bi bi-trash"/></span>}
+                                        {<span className="pointer color-theme me-0 ms-auto opacity-60" onClick={() => setEditing(true)}><i className="bi bi-edit"/></span>}
                                       </div>
                                     :
                                     <>

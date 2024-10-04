@@ -117,7 +117,7 @@ export async function getStaticPaths() {
       images={[xtra_large_thumb, ...gallery]}
       description={`${listing?.short_desc}`}
     />
-    <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
+    <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex} listingType={'event'}/>
     <RelatedListings type={type} category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
     <VisitRecord Id={listing?.id}/>
     <ListingStater type={listing?.type} id={listing?.id}/></div>

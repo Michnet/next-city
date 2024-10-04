@@ -13,12 +13,14 @@ import FAQs from "@/components/UI/FAQs";
 import { useRouter } from "next/router";
 
 function Rockfest({listing, setActiveKey}) {
-    const {title, cover, gallery:l_gal, item_min_price_html, short_desc, meta, venue, id, dir_tags} = listing ?? {};
+    const {title, cover, gallery:l_gal, item_min_price_html, short_desc, meta, venue, id, dir_tags, listing_store} = listing ?? {};
     const {_job_location, listing_gallery, _wwd_services, _wwd_intro_detail, _wwd_intro_title, _welcome_message, _wcu, "_frequently-asked-questions":faqs} = meta ?? {}
     let sponsors = meta['_event-sponsors'], wcu = _wcu[0] ?? null;
     const gallery = l_gal?.length > 0 ? [...l_gal] : [...listing_gallery]
     let sponsorsView, tagsView, strengthsView, faqsView;
     const router = useRouter();
+    const {tickets, general_merchandise} = listing_store;
+
 
     if(listing){
         if(dir_tags?.length > 0){
@@ -75,7 +77,7 @@ function Rockfest({listing, setActiveKey}) {
         }
 
         if(wcu?.list?.length > 0){ 
-            const {descript, sub_title,title} = wcu;
+            const {descript, sub_title,title,list} = wcu;
 
             strengthsView =   <Suspense offset={150} once height={200}>
                             <div className="listing_services padded_container">                                           
@@ -103,7 +105,7 @@ function Rockfest({listing, setActiveKey}) {
                                     )
                                     }
                                 </div>
-                                <>{ <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='color-theme px-4 py-2 rounded-5 '/>}</>
+                                <>{tickets?.length > 0 && <BookingView setActiveKey={setActiveKey} text='Grab your slot' exClass='color-theme px-4 py-2 rounded-5 '/>}</>
                             </div>
                             </Suspense>
         }

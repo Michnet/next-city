@@ -1,15 +1,15 @@
-import dynamic from 'next/dynamic';
+//import dynamic from 'next/dynamic';
 import { cleanHtml, randomEither } from '@/helpers/universal';
 import { useRecoilValue } from 'recoil';
 import { Client } from 'react-hydration-provider';
 import {homeurl, siteColorNamesArray, WPDomain } from "@/helpers/base";
 import { memo, useEffect } from 'react';
-import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
-import DateViewString from '@/components/UI/partials/dateViews/DateViewString';
+//import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
+//import DateViewString from '@/components/UI/partials/dateViews/DateViewString';
 import { PriceView } from '@/components/UI/PriceView';
 import { UISizes } from '@/contexts/atoms';
-import CountDownUI from '@/components/UI/CountDownUI';
-import styles from '@/components/listing/styles/home1.module.css';
+//import CountDownUI from '@/components/UI/CountDownUI';
+//import styles from '@/components/listing/styles/home1.module.css';
 import { ListingMetaMini, PreviousRouteLink } from '@/components/UI/Partials';
 import Link from 'next/link';
 import PostLike from '@/components/UI/partials/social/PostLike';
@@ -132,7 +132,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                   <div className="color-theme d-flex align-items-center text-center hero_actions">
                     {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-phone text-center text-24`}></i><span className='action_label'>Call</span></a>}
                     <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark ${activeKey == 'private-chat' ? '_active' : ''} fas fa-comment-dots text-center text-24`}/><span className='action_label'>Chat</span></button>
-                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span className='action_label'>Save</span></div>} 
+                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-heart-circle text-center text-24`}/><span className='action_label'>Save</span></div>} 
                         unlikedEl={<div style={{width: '50px'}} className="link"><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-heart text-center text-24`}/><span className='action_label'>Save</span></div>} listing={id} user={user}/>
                         <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className={`border-theme color-${randomEither(siteColorNamesArray)}-dark fas fa-ellipsis-h text-center text-24`}></i>
                         <span className='action_label'>More</span></button>

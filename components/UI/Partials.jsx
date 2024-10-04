@@ -149,8 +149,8 @@ export function PreviousRouteLink() {
     )
   }
 
-  export const Avatar = ({alt, src, width, rounded, height, style, imgClass, hideOnEmpty=true, exClass=''}) => {
-    return <div className={`border-wrap _avatar ${exClass}`} style={{borderRadius: rounded ? '50%' : 0}}><img onError={(e) => {hideOnEmpty ? e.target.style.display = "none" : e.target.src = '/images/bg/fallback.jpg'}} className={imgClass ?? ''} src={src} alt={alt} style={{objectFit:'cover', minWidth: width ? width : 20, width: width ?? 35, borderRadius: rounded ? '50%' : '0', height: rounded ? width : height ?? 35, ...style}}/></div>
+  export const Avatar = ({alt, src, width, rounded, height, style, imgClass, hideOnEmpty=false, exClass=''}) => {
+    return <div className={`border-wrap _avatar ${exClass}`} style={{borderRadius: rounded ? '50%' : 0}}><img onError={(e) => {hideOnEmpty ? e.target.style.display = "none" : e.target.src = '/images/avatars/fb.png'}} className={imgClass ?? ''} src={src} alt={alt} style={{objectFit:'cover', minWidth: width ? width : 20, width: width ?? 35, borderRadius: rounded ? '50%' : '0', height: rounded ? width : height ?? 35, ...style}}/></div>
   }
   
 

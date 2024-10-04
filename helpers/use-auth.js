@@ -35,7 +35,7 @@ function useProvideAuth () {
 
   function setTheAuth(authObj){
     localStorage.setItem('u_cred', JSON.stringify(authObj));
-    setRecoilAuth(authObj)
+    setRecoilAuth(authObj);
   }
 
    const {auth_type, soc_updater, user:ucred_user, token:ucred_token} = theAuth()  ?? {};
@@ -351,6 +351,7 @@ async function loginFunc(jwt, username){
     const token = cookies.get("token");
 
     if(auth_type == 'none'){
+      setTheAuth({...theAuth()});
       if(status === "authenticated"){
         userSignOut()
       }else{
@@ -443,11 +444,11 @@ export function AuthProvider() {
   const {getAuthUser,setUpMessaging} = authFunctions;
   useEffect(() => {
     setUpMessaging();
-     //getAuthUser();
-     /* const interval = setInterval(() => {
+     getAuthUser();
+     const interval = setInterval(() => {
        getAuthUser();
      }, 10000);
-     return () => clearInterval(interval); */
+     return () => clearInterval(interval);
    }, []);
 
    

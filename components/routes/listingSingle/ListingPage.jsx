@@ -35,7 +35,7 @@ import HeroParallax from "@/components/listing/landingPages/hero/HeroParallax";
 import ProfileInfo from "@/components/listing/profileInfo/ProfileInfo";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
-  const ListingPageConst = ({listing, themeColor, themeColorHex}) => {
+  const ListingPageConst = ({listing, themeColor, themeColorHex, listingType}) => {
     
     //const {listing} = serverObj;
     const {slug,  type} = listing ?? {};
@@ -120,7 +120,7 @@ return linkzz;
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         {type == 'event' ? <Hero2  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> : <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>}
-        <Content lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
+        <Content listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 mb-2 mt-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>

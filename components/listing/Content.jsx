@@ -40,6 +40,7 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
             case 'community':
             return <ComponentActivity
             setActiveKey={setActiveKey}
+            interactive={true}
             noLink
             type={type}
             scope={'groups'}

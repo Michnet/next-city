@@ -1,6 +1,6 @@
 import {memo, useEffect, useState } from "react";
 import useSWRInfinite from "swr/infinite";
-import {addGroupMember, bpPublicActivitiesUrl, createBPActivity, fetcher } from "@/helpers/rest";
+import {addGroupMember, removeGroupMember, bpPublicActivitiesUrl, createBPActivity, fetcher } from "@/helpers/rest";
 import { clearInputField, typeName} from "@/helpers/universal";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { authState, userMetaState } from "@/contexts/atoms";
@@ -10,14 +10,19 @@ import { CommentLoader } from "@/components/skeletons/Skeletons";
 import GuestPrompt from "../GuestPrompt";
 import CallToActions from "../CallToActions";
 
-const ComponentActivityConst =({scope, scope_slug, scope_id, noLink, setActiveKey, type})=> {
-  const {user, token} = useRecoilValue(authState);
+const ComponentActivityConst =({scope, scope_slug, scope_id, noLink, setActiveKey, type, interactive=false})=> {
+  const [auth, setAuth] = useRecoilState(authState);
+  let {user, token} = auth;
   const [sending, setSending] = useState(false);
   const [newItem, setNewItem] = useState(false);
+  const [msg, setMsg] = useState(null);
+  const [changingMembership, setChangingMembership] = useState(false);
   //const [loading, setLoading] = useState(true);
-  const [user_meta, setUser_meta] = useRecoilState(userMetaState);
+  //const [user_meta, setUser_meta] = useRecoilState(userMetaState);
+  let {user_meta} = user ?? {};
   const {groups} = user_meta?.communities ?? {};
   const groupMem = user && groups?.includes(scope_id);
+
  
   const payload = {
     scope: scope,
@@ -70,12 +75,43 @@ const ComponentActivityConst =({scope, scope_slug, scope_id, noLink, setActiveKe
         const isRefreshing = isValidating && data && data.length === size;
 
 async function addMember(){
+  setChangingMembership(true);
    const res = await addGroupMember(scope_id, {user_id: user?.id, JWT: token});
+  
    if(res?.role == 'Member'){
       let newGrp = [...groups, scope_id];
-      let newCommunities = {...user_meta?.communities, groups: newGrp}
-      setUser_meta({...user_meta, communities: newCommunities})
+      let oldCommunities = user_meta?.communities;
+      let newCommunities = {...oldCommunities, groups: newGrp}
+      setAuth({...auth, user : {...user, user_meta : { ...user_meta, communities: newCommunities}}})
+   }else{
+    if(res?.message){
+      setMsg(res.message);
+    }
    }
+   setChangingMembership(false);
+}
+
+console.log('scope_id', scope_id)
+async function removeMember(){
+  setChangingMembership(true);
+   const res = await removeGroupMember(scope_id, {user_id: user?.id, JWT: token});
+   if(res){
+    if(res.removed){
+      let newGrp = [...groups];
+      const index = newGrp.indexOf(scope_id);
+      if (index > -1) {
+        newGrp.splice(index, 1); // 2nd parameter means remove one item only
+      }else{
+      }
+      let newCommunities = {...user_meta?.communities, groups: newGrp}
+      setAuth({...auth, user : {...user, user_meta : { ...user_meta, communities: newCommunities}}})
+    }else{
+      if(res?.code == 'bp_rest_group_member_failed_to_remove'){
+        setMsg("Action not completed succesfully. It's likely that you had already un-followed this community.");
+      }
+   }
+   }
+   setChangingMembership(false);
 }
 
 useEffect(() => {
@@ -99,10 +135,10 @@ useEffect(() => {
                         {sending ? 
                           <></> : 
                             <>{newItem ? 
-                              <ActivityItem noLink={noLink} avatarSize={30} activity={newItem} user={user} token={token}/> : 
+                              <ActivityItem interactive={interactive} noLink={noLink} avatarSize={30} activity={newItem} user={user} token={token}/> : 
                                 <></>}</>}
                         {activities.map((activity) => {
-                          return <ActivityItem noLink={noLink} key={activity?.id} avatarSize={30} activity={activity} user={user} token={token}/>
+                          return <ActivityItem interactive={interactive} noLink={noLink} key={activity?.id} avatarSize={30} activity={activity} user={user} token={token}/>
                         })}
                         {isLoadingMore && <CommentLoader num={4}/>}
                       </div>
@@ -122,7 +158,7 @@ useEffect(() => {
       <div className="activity_wall gx-entrysec- mt-0">
         {user ? 
         <>
-          {groupMem ? <div className="new_post mb-20 card card-style mx-0 p-3 rounded-0">
+          {groupMem ? <><div className="new_post mb-20 card card-style mx-0 p-3 rounded-0">
               <form className='d-flex flex-column' onSubmit={(e) => {createPost(e)}}>{sending ? <LoaderEllipsis/> : <> 
               <textarea style={{height: 100, border: 'none', borderBottom: '1px solid var(--borderTheme)'}} name="content" className="p-3 d-block mb-10 text-13 outline-none w-full resize-none placeholder:text-sm" placeholder="What's on your mind for this community"/></>}  
             {/*  <input type="file" name='media_file' /> */}
@@ -136,20 +172,33 @@ useEffect(() => {
               </button>
               </div>  
             </form>
-              {/*  <p className="text-sm text-blue-900 ">Enter atleast 15 characters</p> */}
               </div>
+              <div className="d-flex gap-2 mb-20">
+              <button disabled={changingMembership} className="btn" variant="primary" onClick={() => removeMember()}>{changingMembership ? 'Requesting ...' : `Un-Follow this ${typeName(type)}`}</button>
+              </div>
+              </>
               :
               <CallToActions exClass='mb-24' thin descript={`Only followers of this ${typeName(type)} can participate in it's community chat`} light bgClass={'bg-theme'} title={'Not a follower'} 
               actionComponent={
                 <div className="d-flex gap-2">
-                  <button className="btn btn-sm" variant="primary" onClick={() => addMember()}>{`Follow ${typeName(type)}`}</button>
+                  <button disabled={changingMembership} className="btn btn-sm" variant="primary" onClick={() => addMember()}>{changingMembership ? 'Requesting ...' : `Follow this ${typeName(type)}`}</button>
                   <button className="btn btn-sm" variant="secondary" onClick={() => setActiveKey('private-chat')}>Private Chat Instead</button>   
                 </div>}/> 
               }
             </> : 
             <GuestPrompt title={'Login to participate in this community'}/>
             }
-        
+            <div className={`mb-10 bg-highlight bg-listing toast border-0 ${msg ? 'show' : ''}`} role="alert" aria-live="assertive" aria-atomic="true">
+              <div className="toast-header justify-between">
+                <strong className="mr-auto">Just Now</strong>
+                <button type="button" className="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" onClick={() => setMsg(false)}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="toast-body">
+                {msg}
+              </div>
+            </div>
            {timelineView}
       </div> </>
     );

@@ -1,18 +1,20 @@
-import { authState } from "@/contexts/atoms";
-import { closeMenus, toggleTheme } from "@/helpers/appjs";
+import { closeMenus } from "@/helpers/appjs";
 import { cleanHtml, srcWithFallback } from "@/helpers/universal";
 import { Client } from "react-hydration-provider";
-import { useRecoilValue } from "recoil";
+//import { useRecoilValue } from "recoil";
 import HeaderAnnex from "../layouts/partials/HeaderAnnex";
 import Mirrored from "../UI/partials/Mirrored";
 import { fallbackImgSrcSet } from '@/helpers/base';
 
 function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
-    const {user} = useRecoilValue(authState);
     let listView;
 
     if(lMenu){
+		let buttoned = lMenu.filter((el) => el.buttony);
+		if(buttoned?.length > 0){
+			lMenu.push(lMenu.splice(lMenu.indexOf(buttoned[0]), 1)[0]);
+		}
         listView = <>
                     {lMenu.map((el, ind) => {
                       if(el?.content !== 'empty'){
@@ -20,7 +22,7 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu}) {
 					  if(buttony){
 						return <button onClick={() => {closeMenus(); setActiveKey(id)}} className="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-highlight btn-icon text-start" key={id}>
 						<i className={`fal ${icon}  font-15 text-center`}></i>
-						<span className="position-relative">{subTitle}
+						<span className="position-relative color-white">{subTitle}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
                                          {badgeNumber}
                                       </span> : <></>}</span>

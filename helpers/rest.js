@@ -608,7 +608,22 @@ export async function addGroupMember(group_id, payload){
   try {
       const res = await kyFetch.post(bpGroupUrl(group_id, payload, `members`)).json();
       if(res){
-          console.log('geo succeeded', res)
+          return res;
+        }else{
+        console.log('failed', res)
+      }
+    } catch (error) {
+      console.log('geo failed', error)
+      /* if (error.name === 'HTTPError') {
+        const errorJson = await error.response.json();
+      } */
+    }
+}
+export async function removeGroupMember(group_id, payload){
+  try {
+      const res = await kyFetch.delete(bpGroupUrl(group_id, payload, `members/${payload.user_id}`)).json();
+      if(res){
+          console.log('delete succeeded', res)
           return res;
         }else{
         console.log('failed', res)
