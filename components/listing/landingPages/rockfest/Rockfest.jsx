@@ -8,9 +8,10 @@ import Splider from "@/components/UI/partials/Splider";
 import TagsCloud from "../../partials/TagsCloud";
 import { DualColorHeader } from "@/components/UI/Partials";
 import { Suspense } from "react";
-import { BookingView } from "@/pages/events/[slug]";
+//import { BookingView } from "@/pages/events/[slug]";
 import FAQs from "@/components/UI/FAQs";
 import { useRouter } from "next/router";
+import { BookingView } from "../../partials/ActionButtons";
 
 function Rockfest({listing, setActiveKey}) {
     const {title, cover, gallery:l_gal, item_min_price_html, short_desc, meta, venue, id, dir_tags, listing_store} = listing ?? {};
