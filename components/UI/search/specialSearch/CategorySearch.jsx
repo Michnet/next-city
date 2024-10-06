@@ -7,7 +7,7 @@ import { ActiveQueryOption } from "@/components/UI/Partials";
 const CategorySearch = ({category, setCategory, params, setParams, categories, query}) => {
   const {slug} = category ?? {}
 
-  let baseCat = 106;
+  let baseCat = 0;
 
   const [selectedItem, setSelectedItem] = useState(null);
   const [options, setOptions] = useState(categories ?? null);

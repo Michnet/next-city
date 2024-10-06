@@ -60,7 +60,7 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
               }/></>;
             case 'merchandise':
               return general_merchandise?.length > 0 ? <div className='px-3'>
-              <DualColorHeader exClass={'mb-20 mt-20'} title={'Page Store'} desc={"Items available in this store. You can pre-order or contact the listing's manager"}/>
+              <DualColorHeader exClass={'mb-20 mt-20'} title={'Page Store'} desc={"Items available in this store"}/>
               <ListingProductsSimple isSample ={isSample} listy ids={general_merchandise} productType="simple" listingId = {listing?.id} relatedIds={general_merchandise}/></div> : 'empty';
             case 'tickets':
               return tickets?.length > 0 ? <div>

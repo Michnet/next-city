@@ -12,24 +12,28 @@ import {  advancedFetchListingsUrl, explorerServerQuery, fetcherWithSignal } fro
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import ExploreListings from "@/components/routes/explore/ExploreListings";
+import { removeLastCharacter } from "@/helpers/universal";
 
-const listingType = null;
+//const listingType = null;
 
-export async function getServerSideProps({ req, res, query }) {
+
+export async function getServerSideProps({res, req, query}) {
+
   res.setHeader(
     'Cache-Control',
     'public, s-maxage=60, stale-while-revalidate=120'
   )
   
-  let serverObj = await explorerServerQuery({query: query});
-  const {propsOBj, seoDescript} = serverObj;
+  let serverObj = await explorerServerQuery({query: query, listing_type: 'all'});
+  let {seoDescript} = serverObj;
 
   return {
     props: {
-       ...propsOBj,
-       headerTitle: `Explore LyveCity`,
+       ...serverObj,
+       listingType: 'all',
+       headerTitle: `Explore all`,
        seoMeta:{
-          title: `Explore`,
+          title: `Explore all`,
           description: seoDescript
        },
         settings : {
@@ -48,23 +52,24 @@ export async function getServerSideProps({ req, res, query }) {
 }
 }
 
-let topListKey = 'tops'
 
-const ExploreEvents = ({topList}) => {
+const ExploreDirectory = (props) => {
+  const {topList,listingType} = props;
  const router = useRouter();
  const {query} = router;
  const {isTab} = useRecoilValue(UISizes);
  const [fetchy, setFetchy] = useState(false);
  const [loading, setLoading] = useState(true);
 
- const cachedTopList = useMemo(() => topList, [topListKey])
+ //const cachedTopList = useMemo(() => topList, [topListKey])
+ const cachedTopList = topList ?? []
 
  let controller = new AbortController();
     let {signal} = controller;
 
     const params = query ?? {};
 
-    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, per_page: 5, ...params, 'event-date':'any-day'};
+    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, per_page: 5, ...params, 'event-date':'any-day', sort: 'latest'};
 
  const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
@@ -107,4 +112,4 @@ const ExploreEvents = ({topList}) => {
   );
 };
 
-export default ExploreEvents;
+export default ExploreDirectory;

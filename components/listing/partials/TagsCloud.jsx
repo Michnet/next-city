@@ -3,10 +3,13 @@ import { pwaName } from '@/helpers/appjs';
 import { siteColorObjs } from '@/helpers/base';
 import { getDirTermsUrl, getDirTerms} from '@/helpers/rest';
 import { getLocalTaxonomy } from "@/helpers/rest";
+import { useRouter } from 'next/router';
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 
 const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue = null, itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
+
+  const router = useRouter();
 
   const [items, setItems] = useState([]);
   //const {colorTheme} = useRecoilValue(UIState);
@@ -14,6 +17,13 @@ const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue = null, ite
  const filterArr = {
   _fields : "id,count,extra_meta,term_meta,description,parent,name,slug",
   include: ids?.join(',')
+}
+
+let tagClick = (tag) => {
+  router.push({
+      pathname: '/explore',
+      query: { tags: tag.slug },
+    })
 }
 
   async function getTags(signal){
@@ -103,7 +113,7 @@ const color_options = {
     tags={createTags()}
     colorOptions={color_options}
     renderer={renderer ??  baseRenderer}
-    onClick = {onClickFunc ? (tag) => onClickFunc(tag) : null}
+    onClick = {live ?  (tag) => tagClick(tag) : onClickFunc ? (tag) => onClickFunc(tag) : null}
   />
   </>
   )

@@ -22,6 +22,7 @@ export default function listingMenu({listing, userId}){
     description: ``, 
     widgetClass: 'pt-0 no-pad',
   },
+  
   /* {
     id: 'profile',
     icon : 'far fa-id-card',
@@ -48,7 +49,8 @@ export default function listingMenu({listing, userId}){
 if(general_merchandise?.length > 0){
   tabList.push({
     id : 'merchandise',
-    icon: "fa-store-alt", title: 'Shop',
+    icon: "fa-store-alt", 
+    title: 'Shop',
     subTitle : "Our Store",
     widgetClass: 'shop widgey gx-px-lg-0 bg-transparent',
     badgeNumber: general_merchandise?.length ?? 0,
@@ -62,18 +64,6 @@ tabList.push({
 })
 } */
 
-if(community_id){
-  tabList.push(
-    { 
-      id: 'community',
-      icon: "fa-users",
-      title: 'Community', 
-      subTitle : "Public Chat", 
-      widgetClass: "pad_tab",
-      innerClass: 'bg_tab border-0 pb-0 mb-0',
-    }
-  )
-}
 
 if(type === 'event' || type === 'special-sale'){
   tabList.push(
@@ -102,6 +92,19 @@ if(type === 'event'){
     badgeClass: 'bg-info',
     //buttony: true
   });
+}
+
+if(community_id){
+  tabList.push(
+    { 
+      id: 'community',
+      icon: "fa-users",
+      title: 'Community', 
+      subTitle : "Public Chat", 
+      widgetClass: "pad_tab",
+      innerClass: 'bg_tab border-0 pb-0 mb-0',
+    }
+  )
 }
 
 if(!userId || userId != author_id){

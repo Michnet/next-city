@@ -99,7 +99,6 @@ export async function getStaticPaths() {
     const router = useRouter();
     const {query} = router;
 
-console.log('coverColor', coverColor);
    const cachedListing = useMemo( () => listing, [listing?.id] );   
 
     return <>{listing && listing != 'undefined' ? <><div className={`listing_page _place ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>

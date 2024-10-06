@@ -10,9 +10,21 @@ export async function getStaticProps(context) {
         mMenu: 'show',
         mMenuContent:{
           icon : 'las la-filter', 
-          data_bs_toggle : "offcanvas",
-          'data_bs_target' : "#mobileFilters"}
-      }
+          /* data_bs_toggle : "offcanvas",
+          'data_bs_target' : "#mobileFilters", */
+          btnProps:{
+            'data-menu' : "mobileFilters"}
+        }
+      },
+      /* settings : {
+        noHeader: true,
+        mMenu: 'show',
+        mMenuContent:{
+          icon : 'las la-filter', 
+          btnProps:{
+          'data-menu' : "exploreOffCanvas"}
+          
+      }, */
     } 
   }
 }
@@ -20,9 +32,9 @@ export async function getStaticProps(context) {
 const SearchPage = () => {
   return (
     <>
-        <SiteHead title={`Search`}>
-           {/*  <Script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDquFA71wYW2IHiZOADRsHKG2NFs1X6ZG0" /> */}
-        </SiteHead>
+        {/* <SiteHead title={`Search`}>
+            <Script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDquFA71wYW2IHiZOADRsHKG2NFs1X6ZG0" />
+        </SiteHead> */}
         <div className="page-content">
           <Search withSideFilter columnObj={{0: 1, 420: 2, 600: 3, 768:2, 992:3,  1200: 4}}/>
         </div>

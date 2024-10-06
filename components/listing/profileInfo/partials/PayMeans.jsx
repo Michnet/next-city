@@ -11,7 +11,10 @@ function PayMeans({listingId, type}) {
     async function getPayMeans(id){
         const means = await getDirPaymentMethods({post : id});
         if(means){
+          console.log('means', means)
         setPayMeans(means.items);
+        }else{
+          console.log('means vv', means)
         }
     }
 
@@ -27,11 +30,7 @@ function PayMeans({listingId, type}) {
     let payView;
 
     if(payMeans?.length > 0){
-        payView = <Widget 
-        title= {<DualColorHeader exClass={'mb-0 sm-font'} title={'Payment Methods'}/>}
-        icon = {<i className="bi bi-wallet2"/> }
-        subtitle={`Payment options accepted in this ${type ? typeName(type) : 'listing'}`}
-        >
+        payView = <Widget title={'Payment Methods'} subtitle={`Payment options applicable with this ${type ? typeName(type) : 'listing'}`}>
           <div className="listing_tags">
             {payMeans.map((item) => {
               return <TermTag key={item.id} term={item} type={'icon-box'} collection/>

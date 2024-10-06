@@ -137,6 +137,7 @@ function PostReviews({id, type=null, author_id, headerLess=false, light=true, fr
        
        <div className="reviews">
             {reviewsView}
+            {preview && <button className=' btn-link btn w-fit' onClick={() => {setActiveKey("reviews")}}>Go to Reviews</button>}
         </div>
    </div> : fallBackView}
    </>

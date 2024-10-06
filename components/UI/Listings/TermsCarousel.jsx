@@ -45,7 +45,7 @@ function TermsCarousel({items=[], slug, listingType, type, queryLink, queryKey, 
         if(pCats){
            //setLocalParent(pCat); 
            console.log('pp', pCats)
-           await getCats(pCats[0].id);
+           await getCats(pCats[0]?.id);
          }else{
             await getCats('4')
          }

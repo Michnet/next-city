@@ -70,6 +70,10 @@ export const createBPActivity = async (payload) =>{
   }
 }
 
+export function removeLastCharacter(str){
+  return str.slice(0, -1);
+}
+
 export const bPSingleActivityCommentUrl = (act_ID, token, payload = {}) =>{
 
   let endPoint = `wp-json/buddyboss/v1/activity/${act_ID}/comment?${serializeQuery({

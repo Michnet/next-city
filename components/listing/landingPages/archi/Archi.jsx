@@ -1,14 +1,14 @@
 //import ArchiHeader from "./parts/ArchiHeader";
 import Head from "next/head"
 import { Client } from "react-hydration-provider";
-import { useEffect, Suspense } from "react";
+import {Suspense } from "react";
 //import ParallaxSection from "@/components/UI/sections/ParallaxSection";
 import { randomEither, resizedImage, /* cleanHtml, */ shuffleArray, srcWithFallback } from '@/helpers/universal';
 import ListingInfoCard from "@/components/listing/landingPages/hero/partials/ListingInfoCard";
 import ListingDetail from "../../profileInfo/ListingDetail";
 import PostReviews from './../../reviews/postReviews';
 //import DualColorTitle from "@/components/UI/partials/headings/DualColorTitle";
-import Features from "@/components/UI/features/Features";
+//import Features from "@/components/UI/features/Features";
 import FeaturesTabs from "@/components/UI/features/FeaturesTabs";
 import Section from "@/components/UI/sections/Section";
 import {DualColorHeader, SocialLinks } from '@/components/UI/Partials';
@@ -17,7 +17,7 @@ import FAQs from "@/components/UI/FAQs";
 import { GalleryPlate, HorizontalGrid } from "@/components/UI/Galleries/MegaGallery";
 import { /* siteColors,  */siteSettings } from "@/helpers/base";
 //import { ParallaxBanner } from "react-scroll-parallax";
-import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
+//import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
 import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
 //import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
@@ -33,6 +33,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
     const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us ?? {};
     let wcu = _wcu[0] ?? null
+
 
     let detailView, reviewsView, shopView,ticketsHint, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
     if(listing){
@@ -120,12 +121,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
                   if (typeof item == 'string') {
                     if(item?.length > 0){
                       if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
-                        return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
+                        return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                       }
                     }
                   }else{
                     if(item?.url?.includes(siteSettings.wpDomain)){
-                        return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
+                        return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                       }else{
                         return <>{item}</>
                       }
@@ -207,7 +208,8 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 <div className='pt-0 pt-sm-5'>
               <Client>
                     <HeadingSeparatorDot exClass='me-5 mb-3' light align='right' title={'User Reviews'} subtitle={`Verified reviews about this ${type}`}/>
-                    <PostReviews sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client></div>
+                    <PostReviews sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
+                    </div>
               </Section>
               </Suspense>
               

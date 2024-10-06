@@ -194,7 +194,6 @@ export const getUserRest = async(reqObj) => {
 }
 
 export async function advancedFetchListings(payload, signal){
-  console.log('topList xxxxxxxxxxxxxx', advancedFetchListingsUrl(payload))
 
     try {
         const res = await kyFetch.get(advancedFetchListingsUrl(payload), {signal:signal}).json();
@@ -268,22 +267,20 @@ export const getDirPaymentMethodsUrl = (payload) => {
 
 
 export const getDirPaymentMethods = async (payload) => {
-  
-  const reponse = await kyFetch.get(`${getDirPaymentMethodsUrl(payload)}`)
-      .then(async(response) => {
+  try{
+  const response = await kyFetch.get(`${getDirPaymentMethodsUrl(payload)}`).json()
           if (response) {
               const data = {
-                  items: response.json(),
+                  items: response,
                  /*  totalItems: response.headers['x-wp-total'],
                   totalPages: response.headers['x-wp-totalpages'], */
               };
               return data;
           } else return null;
-      })
-      .catch(() => {
+    }
+    catch(e){
           return null;
-      });
-  return reponse;
+      };
 }
 
 export async function getLocalTaxonomy(payload){
@@ -309,7 +306,7 @@ export async function getLocalTaxonomy(payload){
                     let parentId= parentArr[0].id;
                     currentArr = items.filter((it) => it.parent == parentId)
                 }else{
-                    currentArr = items.filter((it) => it.parent == 106)
+                    currentArr = items.filter((it) => it.parent == 0)
                 }
               }else{
                   currentArr = items.filter((it) => it.parent == 0)
@@ -843,12 +840,15 @@ export const listingServerQuery = async(params) => {
 export async function explorerServerQuery({query, listing_type}){
   
   let serverObj = {};
-  const {sort, category, tags, region} = query;
+  const {sort, category, tags, region} = query ?? {};
+  const eventDate = query ? query['event-date']  ?? null : null;
+
+  let seoDescript = `Explore ${category ? translateDate(category) : ''} ${listing_type}s ${region ? '' : 'all around you'} ${eventDate ? ', scheduled for ' + translateDate(eventDate) : ''}${region ? ' in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`;
 
   async function topListings(){
     let thumbsize = 'xtra_large_thumb'
     let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
-    listing_type: listing_type ?? 'all', per_page: 5, 'event-date':'any-day'};
+    listing_type: listing_type ?? 'all', per_page: 5, 'event-date':'any-day', sort:'latest'};
 
     const list = await advancedFetchListings(load);
     if(list){
@@ -857,10 +857,6 @@ export async function explorerServerQuery({query, listing_type}){
   }
 
   await topListings();
-  const eventDate = query['event-date'] ?? null;
-
-  let seoDescript = `Explore ${category ? translateDate(category) : ''} events${region ? '' : 'all around you'} ${eventDate ? ', scheduled for ' + translateDate(eventDate) : ''}${region ? ' in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`;
-
   
-  return {propsObj: serverObj, seoDescript: seoDescript}
+  return {...serverObj, seoDescript: seoDescript}
 }

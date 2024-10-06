@@ -6,7 +6,7 @@ import { PriceView } from "../../PriceView";
 import TermTag from "../../partials/TermTag";
 import { ListingMeta, ListingMetaMini } from "../../Partials";
 
-const EventCard3 = ({listing, width=320, dataAos, height=260, exClass='', truncate=3, contentExClass='', titleSize=18}) => {
+const EventCard3 = ({listing, width=320, dataAos, height=260, exClass='', truncate=2, contentExClass='', titleSize=18}) => {
     let {id, title, address, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, type, category} = listing ?? {};
     const {likes} = acf?.community ?? {};
     return (<>
@@ -25,10 +25,9 @@ const EventCard3 = ({listing, width=320, dataAos, height=260, exClass='', trunca
                             <Link href={`/${type}s/${slug}`}><h1 className={`smLine color-white font-${titleSize} font-800 truncate-${truncate - 1}`}>{cleanHtml(title.rendered)}</h1></Link>
                             <div><p className={`color-white font-13 mb-0 opacity-70 truncate-${truncate}`}>{cleanHtml(short_desc)}</p></div>
                             </div>
-                            <div className='row_flex gap-3 justify-between align-items-center mb-1'>
+                            <div className='mb-1'>
                             <TermTag exTagClass={'rounded-3 text-11 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
-                            {ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
-                            
+                            {/* {ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> } */}
                             </div>
                             <div className={`_meta_row d-flex flex-nowrap justify-start align-items-center gap-2 border-top-light border-alt pt-1 smLine color-white`}>
                                 {<ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>}

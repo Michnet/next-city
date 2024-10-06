@@ -871,7 +871,7 @@ body.theme-dark .btn {
     box-shadow: #00000042 0px 0px 23px 1px;
     backdrop-filter: blur(4px);
     background-position: center;
-    bottom: -75px;
+    bottom: -90px;
     transition: all .7s;
     display: grid;
     grid-template-columns: calc(100% - 120px) 42px 42px;
@@ -1833,6 +1833,21 @@ button.back_link {
     transition: all 0.4s;
 }
 
+.sidebar-content .list-custom-small a {
+    font-size: var(--fontSize);
+    line-height: 1.3;
+    padding: 5px 0;
+}
+
+.sidebar-content .list-custom-small a i {
+    line-height: 30px;
+    margin-top: 0;
+}
+
+.sidebar-content .list-custom-small a i:last-child {
+    display: none;
+}
+
 #sidebar:not(.show) ._link, #sidebar:not(.show) .link {
     margin: auto;
 }
@@ -2757,7 +2772,7 @@ border-color: #FF9800;
 
 .terms_grid .col.listy .term_box span {
     text-align: left !important;
-    font-size: 13px !important;
+    font-size: var(--fontSize) !important;
 }
 
 #sidebar.collapse:not(.show) .hide_in_collapsed, #sidebar.collapse.collapsing .hide_in_collapsed {
@@ -3517,7 +3532,7 @@ span.list_title._first {
 
 
 #listingMenuRight .list-custom-small ._link {
-    font-size: 15px;
+    font-size: 17px;
 }
 
 #listingMenuRight .list-custom-small ._link i {
@@ -4133,7 +4148,7 @@ ul.listing_menu .ex_label {display: none;}
 }
 
 .card.pdt-card._mini ._price ins bdi, .card.pdt-card._mini ._price bdi {
-    font-size: 16px;
+    font-size: 14px;
     gap: 3px;
 }
 
@@ -4585,7 +4600,7 @@ ul.listing_navigator.view_all.grid li .card {
     filter: brightness(0.92);
 }
 
-#footer-bar li:not(.active) .nav_i_title {font-size: 9px;opacity: 0.5;font-weight: 500;}
+#footer-bar li:not(.active) .nav_i_title, #footer-bar button .nav_i_title {font-size: 9px;font-weight: 600;opacity: 0.3 !important;}
 
 #footer-bar li .nav_i_title {/* display: block; */}
 
@@ -4711,8 +4726,9 @@ a.link_link {
 }
 
 .pdt-card.flex-col .pdt_name {
-    font-weight: 500;
+    font-weight: 400;
     text-transform: capitalize;
+    opacity: 0.7;
 }
 
 .big_btn.btn-icon > i {
@@ -5285,6 +5301,8 @@ div#explore_nav .view_filter {
     #explore_nav .nav-item.active button, #explore_nav .nav-item.active button span i{}
 #explore_nav .nav-item button{
     color: var(--colorTheme);
+    opacity: 0.8;
+    font-size: var(--fontSize);
 }
     .main_content{/* padding-bottom: 62px; */}
 
@@ -5589,7 +5607,7 @@ section.sec_sideImg .sect_content{
 
 .hero_detail {max-width: 1024px;margin-left: auto;margin-right: auto;}
 
-.hero_detail .title_meta span {font-weight: 300;}
+.hero_detail .title_meta span {font-weight: 400;}
 
 #footer-bar .it_box {flex-direction: column;text-align: center;}
 
@@ -5604,4 +5622,13 @@ section.sec_sideImg .sect_content{
 }
 .listing_card.event_card_6 ._title {
     font-size: var(--mdFontSise);
+}
+.search_form.tagged._modal .accordion-item {
+    margin-bottom: 15px;
+}
+
+.search_form .group_filter {
+    margin: 5px 0 7px;
+    border-width: 0 0 1px 0px;
+    padding: 5px 4px;
 }

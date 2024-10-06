@@ -33,11 +33,11 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
                 </div>
                 <div className="minw-0 flex-shrink-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
-                    <TermTag exTagClass={'rounded-3 text-13 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
+                    <TermTag exTagClass={'rounded-3 text-13 fw-600 color-theme'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                     <Link href={`/${type}s/${slug}`}><h5 className={`smLine text-capitalize _title ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h5></Link>
                     <div className="title_meta d-flex  flex-column lh-11">
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
-                        {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
+                        <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div>
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>} */}
                         {/* <div className="pe-2"><span className="font-13 opacity-40 fw-400 accordionfont-11 text-truncate d-block">{tagline}</span></div> */}
                         
@@ -49,7 +49,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
 
 
             <div className={`overflow-hidden card position-relative shadow-0 mb-0 card-img rounded-${imageRadius}`} style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
-                <div /* onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}, console.log('error src', e.target.src)}} */ src={resizedImage(srcWithFallback(imgArr2[0], '/images/bg/fallback-sm.jpg'), 'medium_large')} fill={true} className={`h-100 w-100 bg-cover pos-relative object-cover ${exImgClass} rounded-${imageRadius}`} style={{minHeight:minHeight, background: srcUrlWithFallback(resizedImage(imgArr2[0], 'medium_large'), '/images/bg/fallback-sm.jpg')}}/>
+                <img onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}, console.log('error src', e.target.src)}} src={resizedImage(srcWithFallback(imgArr2[0], '/images/bg/fallback-sm.jpg'), 'medium_large')} fill={true} className={`h-100 w-100 bg-cover pos-relative object-cover ${exImgClass} rounded-${imageRadius}`} style={{minHeight:minHeight, /* background: srcUrlWithFallback(resizedImage(imgArr2[0], 'medium_large'), '/images/bg/fallback-sm.jpg') */}}/>
                 
                 <div className="card-bottom px-2 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>

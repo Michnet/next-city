@@ -10,7 +10,7 @@ import Widget from "@/components/UI/partials/Widget";
 import { DualColorHeader, Floater } from "@/components/UI/Partials";
 //import ListingStats from "./partials/ListingStats";
 import TeamMini from "../team/TeamMini";
-import About from "./partials/About";
+//import About from "./partials/About";
 import PostTerms from "./partials/PostTerms";
 import AuthorCard from "./partials/AuthorCard";
 import ListingSkeleton from "@/components/skeletons/fullPage/ListingSkeleton";
@@ -38,7 +38,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
     let historyView, teamView, performersView, statsView, guestsView, contactsView, contentView, groupView, tagsView, visionView, missionView, galleryView, paymentsView;
     
     if(listing){
-      const {acf, content, cover, dir_tags, about_us, team, gallery, meta,phone,website,whatsapp} = listing;
+      const {acf, content, cover, dir_tags, about_us, team, gallery, meta,phone,website,whatsapp, type} = listing;
       const {"_special-guests": special_guests, _performers:performers} = meta ?? {}
 
       if(acf){
@@ -86,7 +86,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
       groupView = <PostTerms linkTax={'category'} post={listing} termKey='dir_categories' taxonomy={'categories'} title={'Category'}/>
     }
 
-      paymentsView = <PayMeans listingId={listing.id}/>
+      paymentsView = <PayMeans listingId={listing.id} type={type}/>
 
      /* if(content){
        contentView = <Widget freeHeader subtitle={'More About Listing'} title= 'Event Detail' > <div className="position-relative">

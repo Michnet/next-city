@@ -7,7 +7,7 @@ import { closeMenus } from '@/helpers/appjs';
 const TaggedSearchConst = ({accordion, category, location, queryTags, setSearchCat, setSearchTags, modal}) => {
 
   const router = useRouter();
-  const basecat = '106';
+  const basecat = '0';
 
   const [catOptions, setCatOptions] = useState(null);
   const [keyword, setKeyword] = useState('');
@@ -203,8 +203,8 @@ const customRenderer = (tag, size, color) => {
           color, 
           animation: 'blinker 3s linear infinite',
           animationDelay: `${Math.random() * 2}s`,
-          margin: '0 5px 2px 0',
-          padding: '3px', 
+          margin: '0 5px 5px 0',
+          padding: '5px 7px', 
           fontSize: `15px`,
           display : 'block'
           }} 
@@ -222,7 +222,7 @@ const customRenderer = (tag, size, color) => {
           animation: 'blinker 3s linear infinite',
           animationDelay: `${Math.random() * 2}s`,
           margin: '0 5px 5px 0',
-          padding: '3px 6px', 
+          padding: '3px', 
           borderWidth : '1px',
           //fontSize: size,
           display : 'block'

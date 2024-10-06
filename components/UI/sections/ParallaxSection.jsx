@@ -8,7 +8,7 @@ const ParallaxSection = ({bg, translateY= [0, 50], translateX= [0, 0], children,
       translateY: translateY,
       translateX: translateX,
       //opacity: faintBg ? [0.3, 0.4] : [1, 0.8],
-      scale: [1.35, 1.2, "easeOutCubic"],
+      //scale: [1, 1.2, "easeOutCubic"],
       shouldAlwaysCompleteAnimation: true
     }
   

@@ -12,24 +12,42 @@ import {  advancedFetchListingsUrl, explorerServerQuery, fetcherWithSignal } fro
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import ExploreListings from "@/components/routes/explore/ExploreListings";
+import { removeLastCharacter } from "@/helpers/universal";
 
-const listingType = 'special-sale';
+//const listingType = null;
 
-export async function getServerSideProps({ req, res, query }) {
-  res.setHeader(
+
+export async function getStaticPaths() {
+  const data = ['places', 'special-sales','services','events']
+  const paths = data?.map(item => {
+      return {
+          params: {slug : `${item}`}
+      }
+  });
+
+  return {
+      paths,
+      fallback: 'blocking'
+  } 
+}
+
+export async function getStaticProps({params}) {
+
+  /* res.setHeader(
     'Cache-Control',
     'public, s-maxage=60, stale-while-revalidate=120'
-  )
+  ) */
   
-  let serverObj = await explorerServerQuery({query: query, listing_type: listingType});
-  const {propsOBj, seoDescript} = serverObj;
+  let serverObj = await explorerServerQuery({query: params.query, listing_type: removeLastCharacter(params.slug)});
+  let {seoDescript} = serverObj;
 
   return {
     props: {
-       ...propsOBj,
-       headerTitle: `Explore LyveCity ${listingType}s`,
+       ...serverObj,
+       listingType: removeLastCharacter(params.slug),
+       headerTitle: `Explore ${params.slug}`,
        seoMeta:{
-          title: `Explore ${listingType}s`,
+          title: `Explore ${params.slug}`,
           description: seoDescript
        },
         settings : {
@@ -50,22 +68,24 @@ export async function getServerSideProps({ req, res, query }) {
 
 let topListKey = 'tops'
 
-const ExploreEvents = ({topList}) => {
+const ExploreDirectory = (props) => {
+  const {topList,listingType} = props;
+  console.log('pros', props)
  const router = useRouter();
  const {query} = router;
  const {isTab} = useRecoilValue(UISizes);
  const [fetchy, setFetchy] = useState(false);
  const [loading, setLoading] = useState(true);
 
- const cachedTopList = useMemo(() => topList, [topListKey])
+ //const cachedTopList = useMemo(() => topList, [topListKey])
+ const cachedTopList = topList ?? []
 
  let controller = new AbortController();
     let {signal} = controller;
 
     const params = query ?? {};
 
-    let load={_fields : `id,title,slug,ticket_min_price_html,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
-    listing_type: listingType, per_page: 5, sort: 'latest', ...params};
+    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, per_page: 5, ...params, 'event-date':'any-day', sort: 'latest'};
 
  const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
@@ -89,18 +109,19 @@ const ExploreEvents = ({topList}) => {
      <div className="page-content" style={{overflow: 'initial'}}>
      {isTab ? <HeaderWrapper header_id={'explore_nav'} innerClass={'flex_row justify-between'}>
         <MainMenuBtn/>
-        <ExplorerFilter listingType={listingType}/>
-     </HeaderWrapper> : <Header headerTitle='Explore' headerClass={'header-always-show'}/>}
+        <ExplorerFilter/>
+     </HeaderWrapper> : <Header headerTitle={`Explore LyveCity`} headerClass={'header-always-show'}/>}
       <ExploreListings topList={topList} type={listingType}/>
       </div>
       <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="exploreOffCanvas" >
-                <div className="menu-title"><h1>Filter Results</h1>
-                    <p className="color-highlight">Filter your Search Results</p>
+                <div className="menu-title">
+                  <div><h1>Filter Results</h1>
+                    <p className="color-highlight">Filter your Search Results</p></div>
                       <i className="fas fa-times close-menu" onClick={() => closeMenus()}/>
                   </div>
                 <div className="offcanvas-body pb-0">
                   <aside className="sidebar  xl:d-block">
-                    <SearchFilter3 listingType={listingType}/>
+                    <SearchFilter3/>
                   </aside>
                 </div>
             </div>
@@ -108,4 +129,4 @@ const ExploreEvents = ({topList}) => {
   );
 };
 
-export default ExploreEvents;
+export default ExploreDirectory;

@@ -15,7 +15,12 @@ import { Client } from "react-hydration-provider";
     //const {act_id, act_dates} = activeDate ?? {};
     const {type} = listing;
 
-    function landingView(){switch (type) {
+    function landingView(){
+      const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
+    return <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
+      
+     /*  switch (type) {
+      
       case 'event':
         const Rockfest = dynamic(() => import("./landingPages/rockfest/Rockfest"), {ssr: false});
         return <Rockfest listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/> 
@@ -23,7 +28,7 @@ import { Client } from "react-hydration-provider";
       default:
         const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
         return <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
-    }
+    } */
   }
 
     return  <div className="landing_page">

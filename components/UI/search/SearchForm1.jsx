@@ -5,7 +5,7 @@ import { closeMenus } from '@/helpers/appjs';
 
 const SearchForm1 = ({cancelSearchModal}) => {
 
-  const baseCat = 106;
+  const baseCat = 0;
 
   const [catOptions, setCatOptions] = useState(null);
   const [keyword, setKeyword] = useState(null);
@@ -225,7 +225,7 @@ function setupTags(value, arr, setArr){
                             className="form-control"
                             value={parentCat.id}
                             onChange={(e) => {selectParent(e.target.value, catOptions, setGrandCatId, setParentCat, Dir_categories);}}>
-                            {createOptions(catOptions, parentCat, grandCatId, 'All Categories', 106)}
+                            {createOptions(catOptions, parentCat, grandCatId, 'All Categories', 0)}
                           </select>
                           </div>
                         }

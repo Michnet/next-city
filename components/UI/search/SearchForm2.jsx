@@ -7,7 +7,7 @@ import { randomEither } from '@/helpers/universal';
 
 const SearchForm2 = ({cancelSearchModal}) => {
 
-  const baseCat = 106;
+  const baseCat = 0;
 
   const [catOptions, setCatOptions] = useState(null);
   const [keyword, setKeyword] = useState(null);
@@ -256,7 +256,7 @@ function setupTagsWithLabels(e){
                                 <label className="text-uppercase font-700 font-11">Category</label>
                                 <select value={parentCat.id}
                             onChange={(e) => {selectParent(e.target.value, catOptions, setGrandCatId, setParentCat, Dir_categories);}}>
-                                  {createOptions(catOptions, parentCat, grandCatId, 'All Categories', 106)}
+                                  {createOptions(catOptions, parentCat, grandCatId, 'All Categories', 0)}
                                 </select>
                                 <span><i className="fa fa-chevron-down"></i></span>
                             </div>

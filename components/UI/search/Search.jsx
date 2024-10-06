@@ -23,6 +23,8 @@ import { Skeleton } from '@/components/skeletons/Skeletons';
 const SearchFilter = dynamic(() => import('./SearchFilter'));
 import EventCard3 from '@/components/UI/Listings/cards/EventCard3';
 import SalesCard from '../Listings/cards/SalesCard';
+import { closeMenus } from "@/helpers/appjs";
+
 
 const PAGE_SIZE = 22;
 
@@ -157,7 +159,7 @@ let gridDisplay = (listings) => {
                                }else if(type == 'special-sale'){
                                 return <SalesCard dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
                                }
-                               return <EventCard6 imageRadius={4} contentClass='px-2'  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'bg-transparent shadow-0 radius-0'} listing={listing}/>
+                               return <EventCard6  contentClass='px-2'  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'bg-transparent shadow-0 radius-0'} listing={listing}/>
                             })
                             }
                             </Masonry>
@@ -224,6 +226,18 @@ if(isEmpty){
  if(withSideFilter){
     if(isTab) {
     //filterView = <BSDrawer layout={'start'} content={sidefilterView} id={'mobileFilters'}  className='mobile_view filters'/>
+    filterView = <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="mobileFilters" >
+         <div className="menu-title">
+            <div><h1>Filter Results</h1>
+                    <p className="color-highlight">Filter your Search Results</p>
+                    </div>
+                      <i className="fas fa-times close-menu" onClick={() => closeMenus()}/>
+                  </div>
+                <div className="offcanvas-body pb-0">
+                  <aside className="sidebar  xl:d-block">{sidefilterView}
+                  </aside>
+                  </div>
+    </div>
     }else{
         filterView = <div  className='col-3 filters sticky_col'>
                         {sidefilterView}

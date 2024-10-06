@@ -30,10 +30,12 @@ const ExploreConst = ({topList, type=null}) => {
  const eventDate = query['event-date'] ?? null;
  const [showHint, setShowHint] = useState(true);
  const {isTab} = useRecoilValue(UISizes);
- const [fetchy, setFetchy] = useState(false);
+ //const [fetchy, setFetchy] = useState(false);
  const [loading, setLoading] = useState(true);
+ console.log('stupid', topList)
 
- const cachedTopList = useMemo(() => topList, [topListKey])
+ const cachedTopList = useMemo(() => topList, [topListKey]);
+ let fetchy = topList?.length > 0 ? false : true;
 
  function translateTags(string){
    let arr = string.split(',');
@@ -51,18 +53,19 @@ const ExploreConst = ({topList, type=null}) => {
     const params = query ?? {};
 
     let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,xtra_large_thumb`, 
-    listing_type: type ?? 'all', per_page: 5, ...params, 'event-date':'any-day'};
+    listing_type: type ?? 'all', per_page: 5, ...params, 'event-date':'any-day', sort:'latest'};
 
- const { data:fetchedTopList, error } = useSWR(fetchy ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
+ const { data:fetchedTopList, error } = useSWR(topList?.length <= 0 ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: true, revalidateOnReconnect: true });
 
   const isLoadingInitialData = fetchy && !fetchedTopList && !error;
   const isEmpty = fetchy && fetchedTopList?.length === 0;
 
- let activeTopList = fetchy ? fetchedTopList : cachedTopList;
+ //let activeTopList = fetchy ? fetchedTopList : cachedTopList;
+ let activeTopList = topList?.length > 0 ? topList : fetchedTopList;
 
  useEffect(() => {
   if(query){
-     setFetchy(true)
+     //setFetchy(true)
   }
   if(activeTopList && activeTopList?.length > 0){
     setLoading(false);
@@ -93,24 +96,14 @@ const ExploreConst = ({topList, type=null}) => {
             </div>}</Client>
             <div className="explore_content col minw-0 p-md-2 p-0">
               <div className="inner_section mb-3 top_list">
-                {loading ? <Skeleton  height={300}/> : <Slider  {...fadingSlide} autoplaySpeed={5000} speed={2000} responsive = {[...largeResp]} >
-                {fetchy ? fetchedTopList && fetchedTopList?.length > 0 ? 
-                    fetchedTopList.map((li) => {
+                {loading ? <Skeleton  height={300}/> : <>{
+                activeTopList?.length > 0 && <Slider  {...fadingSlide} autoplaySpeed={5000} speed={2000} responsive = {[...largeResp]} >
+                { activeTopList.map((li) => {
                       let {id} = li;
                       return <EventCard3 height={310} titleSize={24} contentExClass={'px-4 pb-4'} truncate={3} width={'inherit'} listing={li} key={id} exClass='_hero m-0 radius-0'/>
                     })
-                    :
-                    <></>
-                    :
-                    cachedTopList && cachedTopList?.length > 0 ? 
-                      cachedTopList.map((li) => {
-                        let {id} = li;
-                        return <EventCard3 width={'inherit'} listing={li} key={id} exClass='m-0 radius-0'/>
-                      })
-                      :
-                      <></>
                   }
-              </Slider>}
+              </Slider>}</>}
               </div>
               <div className="inner_section mb-4">
                  <Suspense fallback={'Loading'}><TermsCarousel listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
