@@ -47,7 +47,7 @@ function SiteActivity({user, token}) {
                     {isLoadingMore && <CommentLoader num={4}/>}
                     </div>
                         <div className="activity-footer flex_row gap-2">                        
-                        <span id='activityLoader' className="btn" /* onClick={() => setSize(size + 1)} */>End of List</span>
+                        {!isReachingEnd && <span id='activityLoader' className="btn" onClick={() => setSize(size + 1)}>Show More</span>}
                         <span className="btn" onClick={() => setSize(1)}> Refresh</span>
                         </div>
                     </div>

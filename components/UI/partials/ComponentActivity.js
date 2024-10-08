@@ -180,7 +180,7 @@ useEffect(() => {
         {user ? 
         <> {single && singleItem && 
           <div><ActivityItem interactive={interactive} noLink={noLink} avatarSize={30} activity={singleItem} user={user} token={token}/>
-          <Heading1 exClass='mt-3 mb-20 align-items-center' subtitle='More page followers' title={'Latest in this community'}/>
+          <Heading1 exClass='mt-3 mb-20 align-items-center' subtitle='More from page followers' title={'Latest in this community'}/>
           </div>
           }
           {groupMem ? <><div className="new_post mb-20 card card-style mx-0 p-3 rounded-0">
