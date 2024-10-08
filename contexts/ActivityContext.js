@@ -45,7 +45,7 @@ export default function ActivityProvider(){
         const isRefreshing = isValidating && data && data.length === size;
 
     useEffect(() => {
-        setAtomState({activities, alert, setAlert, size, setSize, isLoadingInitialData, isLoadingMore});
+        setAtomState({activities, alert, setAlert, size, setSize, isLoadingInitialData, isLoadingMore,isReachingEnd});
     }, [activities])
     
 

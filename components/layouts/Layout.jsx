@@ -59,7 +59,7 @@ function LayoutConst({ children, headerTitle, settings}) {
   const [loading, setLoading] = useState(true);
 
 
-  const cachedChildren = useMemo(() => children, [headerTitle])
+  //const cachedChildren = useMemo(() => children, [headerTitle])
   const cachedSettings = useMemo(() => settings, [headerTitle])
   
   let themeColorsArr = [

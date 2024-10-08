@@ -160,7 +160,6 @@ export const bPActivitiesUrl = (payload) =>{
 }
 
 
-
 export const bpPublicActivitiesUrl = (payload) =>{
   let endPoint;
   if(payload){

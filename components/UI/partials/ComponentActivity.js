@@ -1,7 +1,7 @@
 import {memo, useEffect, useState } from "react";
 import useSWRInfinite from "swr/infinite";
-import {addGroupMember, removeGroupMember, bpPublicActivitiesUrl, createBPActivity, fetcher } from "@/helpers/rest";
-import { clearInputField, typeName} from "@/helpers/universal";
+import {addGroupMember, removeGroupMember, bpPublicActivitiesUrl, createBPActivity, fetcher, bPActivitiesUrl } from "@/helpers/rest";
+import { bPSingleActivityUrl, clearInputField, typeName, getBPActivity} from "@/helpers/universal";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { authState, userMetaState } from "@/contexts/atoms";
 import ActivityItem from "../lists/partials/ActivityItem";
@@ -9,6 +9,8 @@ import { LoaderEllipsis } from "@/components/skeletons/Loaders";
 import { CommentLoader } from "@/components/skeletons/Skeletons";
 import GuestPrompt from "../GuestPrompt";
 import CallToActions from "../CallToActions";
+import { useRouter } from "next/router";
+import { Heading1 } from "./headings/Heading1";
 
 const ComponentActivityConst =({scope, scope_slug, scope_id, noLink, setActiveKey, type, interactive=false})=> {
   const [auth, setAuth] = useRecoilState(authState);
@@ -17,11 +19,16 @@ const ComponentActivityConst =({scope, scope_slug, scope_id, noLink, setActiveKe
   const [newItem, setNewItem] = useState(false);
   const [msg, setMsg] = useState(null);
   const [changingMembership, setChangingMembership] = useState(false);
+  const [singleItem, setSingleItem] = useState(null);
   //const [loading, setLoading] = useState(true);
   //const [user_meta, setUser_meta] = useRecoilState(userMetaState);
   let {user_meta} = user ?? {};
   const {groups} = user_meta?.communities ?? {};
   const groupMem = user && groups?.includes(scope_id);
+
+  const router = useRouter();
+  const {query} = router;
+  let single = query?.act_id ? true : false;
 
  
   const payload = {
@@ -57,12 +64,17 @@ const ComponentActivityConst =({scope, scope_slug, scope_id, noLink, setActiveKe
     setSending(false);
   }
 
+  async function fetchSingle(){ 
+    const data = await getBPActivity(query?.act_id, {id: query?.act_id});
+    if(data?.id) {
+            setSingleItem(data);
+        } ;
+  }
+
   const PAGE_SIZE = 5;
 
     const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite (
-        (index) =>`${ bpPublicActivitiesUrl(payload)}&per_page=${PAGE_SIZE}&page=${
-            index + 1
-          }`,
+        (index) => `${bPActivitiesUrl(payload)}&per_page=${PAGE_SIZE}&page=${ index + 1 }`,
         fetcher,
         {refreshInterval : 60000}
       );
@@ -91,7 +103,6 @@ async function addMember(){
    setChangingMembership(false);
 }
 
-console.log('scope_id', scope_id)
 async function removeMember(){
   setChangingMembership(true);
    const res = await removeGroupMember(scope_id, {user_id: user?.id, JWT: token});
@@ -116,12 +127,21 @@ async function removeMember(){
 
 useEffect(() => {
   if(activities){
-    
   }
   return () => {
     setNewItem(false);
   }
 }, [scope_id, scope, token, user]);
+
+useEffect(() => {
+  if(single){
+    fetchSingle()
+  }
+  return () => {
+    setSingleItem(null);
+  }
+}, [scope_id, scope, token, user,query]);
+
 
   let timelineView;
 
@@ -131,6 +151,7 @@ useEffect(() => {
     if(activities?.length > 0){
     timelineView = <>
                   <div className="activity">
+                      
                       <div>
                         {sending ? 
                           <></> : 
@@ -144,7 +165,7 @@ useEffect(() => {
                       </div>
                           <div className="activity-footer">                        
                             {isReachingEnd ? <></> : <span className="btn btn-sm" onClick={() => setSize(size + 1)}>Load More</span>}
-                            <span className="btn btn-sm" onClick={() => setSize(1)}> Reset</span>
+                            <span className="btn btn-sm" onClick={() => setSize(1)}> Refresh</span>
                           </div>
                         </div>
                     </>
@@ -157,7 +178,11 @@ useEffect(() => {
       <>
       <div className="activity_wall gx-entrysec- mt-0">
         {user ? 
-        <>
+        <> {single && singleItem && 
+          <div><ActivityItem interactive={interactive} noLink={noLink} avatarSize={30} activity={singleItem} user={user} token={token}/>
+          <Heading1 exClass='mt-3 mb-20 align-items-center' subtitle='More page followers' title={'Latest in this community'}/>
+          </div>
+          }
           {groupMem ? <><div className="new_post mb-20 card card-style mx-0 p-3 rounded-0">
               <form className='d-flex flex-column' onSubmit={(e) => {createPost(e)}}>{sending ? <LoaderEllipsis/> : <> 
               <textarea style={{height: 100, border: 'none', borderBottom: '1px solid var(--borderTheme)'}} name="content" className="p-3 d-block mb-10 text-13 outline-none w-full resize-none placeholder:text-sm" placeholder="What's on your mind for this community"/></>}  

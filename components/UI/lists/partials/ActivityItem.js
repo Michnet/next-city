@@ -22,11 +22,12 @@ dayjs.extend(relativeTime)
       const [sending, setSending] = useState(false);
       const [editing, setEditing] = useState(false);
       const [comments, setComments] = useState(null);
-      const [showPrompt, setShowPrompt] = useState(false);
-      const {id, type, activity_meta} = compActivity ?? {};
-      const {category, listing} = activity_meta ?? {};
+      const [showPrompt, setShowPrompt] = useState(false);     
 
-      const {title, feature_media, content, name,  user_id, content_stripped, favorite_count, can_comment, can_delete, favorited, can_edit, can_favorite, user_avatar, comment_count, date, activity_data} = compActivity ?? {};
+      const {title, id, type, activity_meta, feature_media, content, name,  user_id, content_stripped, favorite_count, can_comment, can_delete, favorited, can_edit, can_favorite, user_avatar, comment_count, date, activity_data} = compActivity ?? {};
+
+      const {category, listing} = activity_meta ?? {};
+      const {type:listingType, slug} = listing ?? {}
 
       const [liked, setLiked] = useState(favorited ?? false);
 
@@ -125,7 +126,7 @@ dayjs.extend(relativeTime)
           
           if(type === 'new_job_listing'){
             activity_content = <>
-            <Link  href={`/events/${listing?.slug}`}><h5 className="_listing_title" dangerouslySetInnerHTML={{__html: listing?.title}}/></Link>
+            <Link  href={`/${listingType}s/${listing?.slug}?view=community&act_id=${id}`}><h5 className="_listing_title" dangerouslySetInnerHTML={{__html: listing?.title}}/></Link>
               <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(listing.excerpt)}}/>
             </>
           }
@@ -164,15 +165,15 @@ dayjs.extend(relativeTime)
                                       </div>
                                         <div className="pe-3">
                                             <Client><h5 className="_title mb-0 font-16 font-700" dangerouslySetInnerHTML={{__html: getHeading()}}/></Client>
-                                            {noLink ? <></> : <>{group_name ? <>{listing?.type ? <Link className="_sub_title truncate-2 lh-12 opacity-60 text-13" href={`/${listing.type == 'event' ? 'events' : 'places'}/${listing?.slug}`}>{group_name}</Link> : <h6 className="lh-12 _sub_title truncate-2 opacity-60 text-13">{group_name}</h6>}</> : <></>}</>}
+                                            {noLink ? <></> : <div>{group_name ? <>{listing?.type ? <><Link className="_sub_title link truncate-2 lh-12  text-13" href={`/${listingType}s/${listing?.slug}?view=community&act_id=${id}`}>{group_name}</Link></> : <h6 className="lh-12 _sub_title truncate-2 opacity-50 text-13">{group_name}</h6>}</> : <></>}</div>}
                                             <div className="title_meta d-flex align-items-center lh-11 opacity-50">
                                                 {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11">@joesome</span></div>
                                                 <div className="pe-2">&middot;</div> */}
                                                 <div><span className="opacity-60 font-11">{dayjs(localiseDate(date)).fromNow()}</span></div>
                                             </div>
                                         </div>
-                                        <div className="ms-auto"><a href="#" data-menu="menu-controls" onClick={(e) => openOffCanvas(e)}className="icon icon-xss d-block color-theme"><i className="fa fa-ellipsis-v"></i></a>
-                                        </div>
+                                        {/* <div className="ms-auto"><a href="#" data-menu="menu-controls" onClick={(e) => openOffCanvas(e)}className="icon icon-xss d-block color-theme"><i className="fa fa-ellipsis-v"></i></a>
+                                        </div> */}
                                     </div>
                                     {head_extras}
                                     <div className="overflow-hidden mb-3 activity_body">
@@ -200,8 +201,8 @@ dayjs.extend(relativeTime)
                                     <div className='activity_footer'>
                                       {interactive ? <>{user ? 
                                       <div className="reactions_i_group d-flex pb-1">
-                                        {can_comment && <span /* data-menu="menu-reply" */  className="color-theme me-2 opacity-60 
-                                        pointer" onClick={() => {fetchComments(); setCommenting(!commenting)}}><i className="bi bi-chat-left pe-1"/>  {comment_count > 0 && <span class="badge rounded-pill bg-warning">{comment_count}</span>}</span>}
+                                        <span /* data-menu="menu-reply" */  className="color-theme me-2 opacity-60 
+                                        pointer" onClick={() => {fetchComments(); setCommenting(!commenting)}}><i className="bi bi-chat-left pe-1"/>  {comment_count > 0 && <span class="badge rounded-pill bg-warning">{comment_count}</span>}</span>
 
                                         {can_favorite && <span onClick={() => toggleLike()} className={`me-2 opacity-60`}><i className={`pe-1 bi ${liked ? 'bi-heart-fill color-highlight' : 'bi-heart'}`}/>{favorite_count > 0 && <span className="badge rounded-pill bg-info">{favorite_count}</span>}</span>}
 
@@ -217,10 +218,10 @@ dayjs.extend(relativeTime)
                                     {imagesView}
                                     </div>
                                     {commenting &&  <div className="comment_box mt-15">
-                                        <form onSubmit={(e) => sendReply(e)} className="w-100">
+                                        {can_comment && <form onSubmit={(e) => sendReply(e)} className="w-100">
                                           {/* sending ? <div className='d-flex justify-center align-items-center border rounded' style={{height: '80px'}}><LoaderEllipsis/></div> : */ <textarea style={{border: 'none', borderBottom: '1px solid var(--borderTheme)'}} rows={2} id='com_content' name='com_content' className="d-block w-100 com_content border rounded-0 bg-transparent p-2 text-13" />}
                                           <button type="submit" className="btn btn-xs btn-outline-theme mb-0 mt-10">Post Reply</button>
-                                        </form>
+                                        </form>}
                                         {sending ? <LoaderDualRingBoxed/> : <>{comments?.length > 0 && 
                                         <div className='act_comments mt-15'>
                                         {comments.map((comItem) => {

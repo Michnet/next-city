@@ -43,8 +43,6 @@ function TermsCarousel({items=[], slug, listingType, type, queryLink, queryKey, 
         console.log('loc', localSlug);
         const pCats = await getDirTerms('categories', {_fields: 'id', slug: localSlug});
         if(pCats){
-           //setLocalParent(pCat); 
-           console.log('pp', pCats)
            await getCats(pCats[0]?.id);
          }else{
             await getCats('4')

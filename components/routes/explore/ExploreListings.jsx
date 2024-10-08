@@ -32,7 +32,6 @@ const ExploreConst = ({topList, type=null}) => {
  const {isTab} = useRecoilValue(UISizes);
  //const [fetchy, setFetchy] = useState(false);
  const [loading, setLoading] = useState(true);
- console.log('stupid', topList)
 
  const cachedTopList = useMemo(() => topList, [topListKey]);
  let fetchy = topList?.length > 0 ? false : true;

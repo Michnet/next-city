@@ -95,12 +95,10 @@ export const sendBPActivityComment = async (activityId, token,payload={}) =>{
   }
 }
 
-export const bPSingleActivityUrl = (act_ID, token, payload = {}) =>{
-
-  let endPoint = `wp-json/buddyboss/v1/activity/${act_ID}/?${serializeQuery({
-          JWT: token,
-          ...payload
-      })}`
+export const bPSingleActivityUrl = (act_ID, payload = {}, token) =>{
+  let qObject = {...payload }; 
+  if(token){qObject.JWT = token}
+  let endPoint = `wp-json/buddyboss/v1/activity/${act_ID}/?${serializeQuery({...qObject})}`
 
   return `${WPDomain}/${endPoint}`;
 }
@@ -120,7 +118,7 @@ export const getBPActivityComments = async (activityId, token, payload={}) =>{
 
 export const updateBPActivity = async (activityId, token, payload) =>{ 
   try{
-  const data = await kyFetch.post(bPSingleActivityUrl(activityId, token, payload)).json();
+  const data = await kyFetch.post(bPSingleActivityUrl(activityId, payload, token)).json();
   if(data) {
           return {activities : data}
       } else return null;
@@ -130,8 +128,20 @@ export const updateBPActivity = async (activityId, token, payload) =>{
   };
 }
 
+export const getBPActivity = async (activityId, payload, token) =>{ 
+  try{
+  const data = await kyFetch.get(bPSingleActivityUrl(activityId, payload, token)).json();
+  if(data) {
+          return data
+      } else return null;
+    }
+  catch(e){
+      return null;
+  };
+}
+
 export const deleteBPActivity = async (activityId, token, payload) =>{ 
-  const data = await kyFetch.delete(bPSingleActivityUrl(activityId, token, payload)).json();
+  const data = await kyFetch.delete(bPSingleActivityUrl(activityId, payload, token)).json();
   if(data){
     return data;
   }

@@ -76,7 +76,7 @@ function MainMenu() {
                                                 let {id, icon, color, name, routePath, isNew} = el;
                                                 return <Link key={id} href={routePath} className='close-menu' onClick={() => closeMenus()}>
                                                         <i className={`${icon} 
-                                                        ${isActiveLink(routePath, router.asPath)? 'gradient-menu color-white' : 'gradient-highlight color-white'} 
+                                                        ${isActiveLink(routePath, router.asPath) ? 'gradient-menu color-white' : 'gradient-highlight color-white'} 
                                                         rounded-sm`}></i>
                                                         <span>{name}</span>
                                                         {isNew && <span className="badge bg-highlight">NEW</span>}
@@ -90,7 +90,7 @@ function MainMenu() {
                                 <div className="card card-style bg-transparent mb-15 shadow-0 border pb-15">
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Top Categories</h5>
-                                        <TermsGrid shadowy={false} /* id={106} */ listy/>
+                                        <TermsGrid shadowy={false} id={0} listy/>
                                     </div>
                                 </div>
 

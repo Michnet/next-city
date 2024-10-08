@@ -115,8 +115,8 @@ return linkzz;
             </HeaderWrapper>
             <SiteMapContent links={siteMapper()}/>
 
-    <ListingBottomMenu user={user} lMenu={lMenu} setActiveKey={setActiveView} listing={listing} color={color} activeKey={activeKey}/>
-    <div className="page-content single_listing">
+        <ListingBottomMenu user={user} lMenu={lMenu} setActiveKey={setActiveView} listing={listing} color={color} activeKey={activeKey}/>
+        <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         {type == 'event' ? <Hero2  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> : <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>}

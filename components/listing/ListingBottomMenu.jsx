@@ -27,17 +27,6 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
 
     let bottomContent = <div style={{width: '100%'}} id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-1 px-2 border-0 font-900">
                 <div className='footer_content py-0 bg-transparent minw-0 flex-shrink-1 shadow-0 justify-between'>
-                    {/* <div className="row_flex align-items-center">
-                <BookingView  simple={false} setActiveKey={setActiveKey} activeKey={general_merchandise?.length > 0 ? 'merchandise' : 'private-chat'} text={general_merchandise?.length > 0 ?'Event Store':'Contact Us'} exClass='fw-600 text-truncate me-2'/>
-                    {phone && <a style={{width: '50px', maxWidth: '50px'}} className={''} href={`tel:${phone}`}><i className="fal fa-phone text-center text-24"></i><span>Call</span></a>}
-                    <button onClick={(e) => setActiveKey('private-chat')} style={{width: '50px'}} className={`link`}><i className={`${activeKey == 'private-chat' ? '_active fas' : 'fal'} fa-comment-dots text-center text-24`}/><span>Chat</span></button>
-                    <PostLike likedEl={<div style={{width: '50px'}} className="link"><i className={`fas fa-heart text-center text-24`}/><span>Save</span></div>} 
-                        unlikedEl={<div style={{width: '50px'}} className="link"><i className={`fal fa-heart text-center text-24`}/><span>Save</span></div>} listing={id} user={user}/>
-                    </div>
-                    <div className="row_flex flex-shrink-1 justify-end">
-                    <button data-menu='listingActions' onClick={(e) => openOffCanvas(e)} style={{width: '50px'}} className={'link'}><i className="fas fa-ellipsis-h text-center text-24"></i></button>
-                    <NextPostLink current={listing.slug} styleObj={{width: '50px', maxWidth: '50px'}}/>
-                    </div> */}
                     <Navigator items={4} faClass='far' exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
                     </div>
                     <button style={{height: '45px'}} data-menu='listingMenuRight' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center flex-column justify-center'}>

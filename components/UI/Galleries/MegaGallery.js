@@ -10,6 +10,7 @@ import Image from "next/image";
 import { cleanHtml, randomBetween, randomEither, resizedImage, shuffleArray, textSizeClass } from "@/helpers/universal";
 import { LoaderDualRingBoxed, LoaderEllipsis } from "@/components/skeletons/Loaders";
 import { siteSettings, fallbackImgBlur, fallbackImgSrcSet } from "@/helpers/base";
+import LazyLoad from "react-lazyload";
 
 export const GalleryPlate = ({item, imgShadow=false, overlay, highlight, onclickFunc = null, content, exClass='', styleObj, imgSize='medium'}) => {
   const [theme, setTheme] = useState('#000');
@@ -59,7 +60,7 @@ const MegaGallery = ({listing, color, upcoming}) => {
   const [loading, setLoading] = useState(true);
   const [gallery, setGallery] = useState([])
   const punchlines = Array.isArray(punch_lines) ? punch_lines.map((el) => el.text) : [];
-  const [gridFactor, setGridFactor] = useState(1)
+  const [gridFactor, setGridFactor] = useState(0)
   
 
   function itemIndex(item){
@@ -170,13 +171,13 @@ let gridObj = {0: 1 + gridFactor, 575: 2 + gridFactor, 768: 3 + gridFactor, 1024
 
 galleryView = <>
         <div id = 'wall_gallery_container' className={`position-relative overflow-hidden ${miniGrid ? 'mini_grid' : ''}`}>
-          <div id='wall_gallery' className="mega_gallery _vertical" onLoad={() =>   setUpToggler()}>
+          <div id='wall_gallery' className="mega_gallery _vertical" /* onLoad={() =>   setUpToggler()} */>
         {megaGall.length > 2 && <ResponsiveMasonry columnsCountBreakPoints={{...gridObj}}>
             <Masonry gutter={miniGrid ? '5px' : "10px"}>
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
                 if(item.includes(siteSettings.wpDomain) || item.includes(siteSettings.cdnDomain)){
-                  return  <GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+                  return  <LazyLoad offset={300}><GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/></LazyLoad>;
                 }else{
                   if(item?.length > 0){
                   return <div key={index} className={`mega_item text_box bg-gray-${randomEither(backGs)}`}>
@@ -197,7 +198,7 @@ galleryView = <>
                       </button></Link> : <></>}
                     </div>}/>;
                   }else{ */
-                    return  <GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
+                    return  <LazyLoad><GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/></LazyLoad>;
                   //}
                   }else{
                     return <>{item}</>
@@ -209,7 +210,8 @@ galleryView = <>
             </Masonry>
         </ResponsiveMasonry>}
         </div>
-        <>{megaGall.length > 2 ? <div id='gallery_extender' className="bg-gradient-fade w-100 d-flex align-items-end  w-100 justify-center"><button onClick={() => revealMore()}  className="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Show more Wall</button></div>  : <></>}</>
+        <div className="d-flex justify-center p-2">End of Gallery</div>{/* 
+        <>{megaGall.length > 2 ? <div id='gallery_extender' className="bg-gradient-fade w-100 d-flex align-items-end  w-100 justify-center"><button onClick={() => revealMore()}  className="default-link btn btn-m rounded-s gradient-highlight shadow-bg shadow-bg-s px-5 mb-0 mt-2">Show more Wall</button></div>  : <></>}</> */}
         </div>
         
 </>

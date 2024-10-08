@@ -13,6 +13,7 @@ import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import ExploreListings from "@/components/routes/explore/ExploreListings";
 import { removeLastCharacter } from "@/helpers/universal";
+import ExploreBottomMenu from "@/components/routes/explore/ExploreBottomMenu";
 
 //const listingType = null;
 
@@ -52,6 +53,7 @@ export async function getStaticProps({params}) {
        },
         settings : {
         noHeader: true,
+        noFooter: true,
         mMenu: 'show',
         mMenuContent:{
           icon : 'las la-filter', 
@@ -66,11 +68,8 @@ export async function getStaticProps({params}) {
 }
 }
 
-let topListKey = 'tops'
-
 const ExploreDirectory = (props) => {
   const {topList,listingType} = props;
-  console.log('pros', props)
  const router = useRouter();
  const {query} = router;
  const {isTab} = useRecoilValue(UISizes);
@@ -111,6 +110,7 @@ const ExploreDirectory = (props) => {
         <MainMenuBtn/>
         <ExplorerFilter/>
      </HeaderWrapper> : <Header headerTitle={`Explore LyveCity`} headerClass={'header-always-show'}/>}
+      <ExploreBottomMenu/>
       <ExploreListings topList={topList} type={listingType}/>
       </div>
       <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="exploreOffCanvas" >

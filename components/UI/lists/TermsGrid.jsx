@@ -23,7 +23,7 @@ const TermsGrid = ({id, listy, exClass, shadowy=true}) => {
 
     const catsFilterArr = {
         _fields : taxfields,
-        parent: id ?? 0,
+        parent: 0 ?? 0,
         per_page: 5,
         orderby:'count',
         order: 'desc'
@@ -32,6 +32,7 @@ const TermsGrid = ({id, listy, exClass, shadowy=true}) => {
       async function getCats(){
         const eCats = await getDirTerms('categories', catsFilterArr);
         if(eCats){
+            console.log('catzz', eCats);
             setCats(eCats); 
         }
         setLoading(false);
