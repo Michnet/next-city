@@ -69,11 +69,13 @@ const MegaGallery = ({listing, color, upcoming}) => {
 
 
   function slides() {
-    return gallery.map((pic) => {
-      return {
-        src : pic 
-      }
-    })
+    if(Array.isArray(gallery)){
+      return gallery.map((pic) => {
+        return {
+          src : pic 
+        }
+      })
+    }
   }
 
   function teamLinks(group){

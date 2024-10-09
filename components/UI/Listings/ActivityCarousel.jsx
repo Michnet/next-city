@@ -27,7 +27,7 @@ function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, 
     const params = query ?? {};
 
     let Card;
-    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+    let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,max_discount,${thumbsize}`, 
     listing_type:listingType ?? 'all', per_page: 5, ...queryObj, ...params};
 
     switch (cardType) {

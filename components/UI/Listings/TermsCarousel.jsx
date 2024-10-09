@@ -5,7 +5,7 @@ import Splider from "../partials/Splider";
 import { TermIconBox } from "../partials/termLinks"
 import Mirrored from './../partials/Mirrored';
 
-function TermsCarousel({items=[], slug, listingType, type, queryLink, queryKey, heady, exClass='', filterArr, setFilterArr, inactiveLinks, infinity, imagey, variant, taxonomy}){
+function TermsCarousel({items=[], slug, listingType, type, flipped=false, queryKey, heady, exClass='', filterArr, setFilterArr, inactiveLinks, infinity, imagey, variant, taxonomy}){
     const {query} = useRouter();
     const [locItems, setLocItems] = useState(items);
     const[loading, setLoading] = useState(true);
@@ -40,15 +40,14 @@ function TermsCarousel({items=[], slug, listingType, type, queryLink, queryKey, 
       //Get event categories
       async function getPCat(){
       if(localSlug){
-        console.log('loc', localSlug);
         const pCats = await getDirTerms('categories', {_fields: 'id', slug: localSlug});
         if(pCats){
            await getCats(pCats[0]?.id);
          }else{
-            await getCats('4')
+            await getCats('0')
          }
         }else{
-           await getCats('2')
+           await getCats('0')
         }
       }
       
@@ -75,7 +74,8 @@ function TermsCarousel({items=[], slug, listingType, type, queryLink, queryKey, 
         if(locItems?.length > 0){
             if(type === 'dir_cats'){
         catsArray = locItems.map((cat, i) => {
-            return <Mirrored exClass='mb-4' YDistance={50} gap='3px' skewDegrees={0}><TermIconBox listingType={listingType} flipped exClass='mb-4  mx-1 rounded-4' item={cat} key={i}  shadowy/></Mirrored>
+            return <TermIconBox listingType={listingType} flipped={flipped} exClass='mb-3 mx-1 rounded-4' item={cat} key={i}  shadowy/>
+            /* return <Mirrored exClass='mb-4' YDistance={50} gap='3px' skewDegrees={0}><TermIconBox listingType={listingType} flipped={flipped} exClass='mx-1 rounded-4' item={cat} key={i}  shadowy/></Mirrored> */
         }) }/* if(type === 'shop_cats'){
             catsArray = locItems.map(cat => {
                 return <div onClick={() => setFilterArr({...filterArr, category:cat.id})}><TermCarouselItemImg key = {cat.id} term = {cat} inactive={inactiveLinks}/></div>
@@ -87,7 +87,7 @@ function TermsCarousel({items=[], slug, listingType, type, queryLink, queryKey, 
 
 
   return (
-    <>{catsArray?.length > 0 ? <Splider exClass={exClass} options={{pagination: false, breakpoints: { 600: {pagination: false}, }, arrows: false, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:7}, perPage:1, autoplay: false, perMove: 1, interval:4000, type:'loop'}}>
+    <>{catsArray?.length > 0 ? <Splider exClass={`terms_carousel ${exClass}`} options={{pagination: false, breakpoints: { 600: {pagination: false}, }, arrows: false, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:7}, perPage:1, autoplay: false, perMove: 1, interval:4000, type:'loop'}}>
         {catsArray}
     </Splider> : <></>}</>
   )

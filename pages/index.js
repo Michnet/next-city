@@ -33,6 +33,7 @@ import { useRecoilState } from 'recoil';
 import { siteVersionState } from "@/contexts/atoms";
 import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
 import SalesCard from "@/components/UI/Listings/cards/SalesCard";
+import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 
 
 export async function getStaticProps() {
@@ -125,7 +126,7 @@ export async function getStaticProps() {
   
     async function topSales(){
       let thumbsize = 'xtra_large_thumb'
-      let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,${thumbsize}`, 
+      let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,max_discount,locations,${thumbsize}`, 
       listing_type:'special-sale', per_page: 5, sort:'latest', ignorePriority:true};
   
       const list = await advancedFetchListings(load);
@@ -184,9 +185,21 @@ export default function Home(props) {
     router.push(`/explore?region=${tag.slug}`);
   }
 
-  const cachedCategories = useMemo(() => eventCategories);
+  //const cachedCategories = useMemo(() => eventCategories);
   //const cachedLocations = useMemo(() => eventCategories);
   let latest = [...latestPlaces, ...latestList];
+  function activeCats(){
+    switch (ver) {
+      case 'event':
+        return eventCategories;
+
+      case 'place':
+        return placeCategories;
+    
+      default:
+        return eventCategories;
+    }
+  }
 
   return (
     <>
@@ -196,15 +209,15 @@ export default function Home(props) {
 
       <div className="card card-style overflow-visible mx-0 mb-0 rounded-0 w-100 home_hero">
         <Mirrored coverTop topPadding={0} skewDegrees={0}  skewDir={'-'} YDistance={250}>
-          <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '320px', backgroundImage: `url("${randomEither(ver == 'events' ? imgArr : placesImgArr)}")`}}/>
+          <div className="w-100 bg-cover" style={{backgroundPosition: 'center', height: '320px', backgroundImage: `url("${randomEither(ver == 'event' ? imgArr : placesImgArr)}")`}}/>
         </Mirrored>
         <div className="card-bottom mb-5 px-3 d-flex flex-column align-items-center w-75 mx-auto" style={{textWrap: 'pretty'}}>
-          <h1 className="color-white fw-light text-center mb-2 font-28 w-75">{ver == 'events' ? 'Great events all around you' : 'Find you next favourite place'}</h1>
-          <p className="color-white text-center mb-30">{`What ${ver == 'events' ? 'experiences' : 'places'} are you looking for today?`}</p>
+          <h1 className="color-white fw-light text-center mb-2 font-28 w-75">{ver == 'event' ? 'Great events all around you' : 'Find you next favourite place'}</h1>
+          <p className="color-white text-center mb-30">{`What ${ver == 'event' ? 'experiences' : 'places'} are you looking for today?`}</p>
           <div className="row_flex gap-2 color-white flex-nowrap justify-center align-items-center search_links version_link">
-            <button style={{height: '45px'}} active={ver == 'events'} className={`big_btn btn rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'events' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('events')}><i className='text-22 text-center far fa-calendar-check'/>
-            <span className='truncate d-block text-10 mb-n1 opacity-60 text-capitalize'>{`${ver == 'events' ? 'Searching' : 'Switch to'}`}</span><span className={`truncate`}>Events</span></button>
-            <button style={{height: '45px'}} active={ver == 'places'} className={`big_btn btn rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'places' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('places')}><i className='text-22 text-center far fa-map-marked-alt'/><span className='truncate d-block text-10 mb-n1 opacity-60 text-capitalize'>{`${ver == 'places' ? 'Searching' : 'Switch to'}`}</span><span className={`truncate`}>Places</span></button>
+            <button style={{height: '45px'}} active={ver == 'event'} className={`big_btn btn rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'event' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('event')}><i className='text-22 text-center far fa-calendar-check'/>
+            <span className='truncate d-block text-10 mb-n1 opacity-60 text-capitalize'>{`${ver == 'event' ? 'Searching' : 'Switch to'}`}</span><span className={`truncate`}>Events</span></button>
+            <button style={{height: '45px'}} active={ver == 'place'} className={`big_btn btn rounded-s text-uppercase text-nowrap font-900 color-white btn-icon text-start bg-${ver == 'place' ? 'transparent border-dark-dark _active' : 'highlight shadow-bg shadow-bg-m'}`} onClick={() => setVer('place')}><i className='text-22 text-center far fa-map-marked-alt'/><span className='truncate d-block text-10 mb-n1 opacity-60 text-capitalize'>{`${ver == 'place' ? 'Searching' : 'Switch to'}`}</span><span className={`truncate`}>Places</span></button>
             
           </div>
         </div>
@@ -212,11 +225,11 @@ export default function Home(props) {
       </div>
 
 
-    <SearchField exClass='mt-n4 mx-auto' styleObj={{maxWidth: '85%', width: '600px'}} listingtType={ver == 'events' ? 'event' : 'place'}/>
+    <SearchField exClass='mt-n4 mx-auto' styleObj={{maxWidth: '85%', width: '600px'}} listingtType={ver == 'event' ? 'event' : 'place'}/>
 
     {/* <HeroSearch categories={cachedCategories} topLocations={topLocations}/> */}
 
-    <SectionHeader exClass='px-3 mb-4 justify-center text-center'  title={`${ver == 'events' ? 'Event' : 'Place'} Categories`} subTitle={'Explore By Category'}/>
+    <SectionHeader exClass='px-3 mb-4 justify-center text-center'  title={`${ver == 'event' ? 'Event' : 'Place'} Categories`} subTitle={'Explore By Category'}/>
 
    {/*  <Splider exClass="mb-4" height={100} options={{pagination: false, arrows: false, height: 100, autoWidth: true, wheel: true, padding: { left: 10, right: 15, top:10}, perPage:1, autoplay: true, perMove: 1, interval:4000, type:'loop'}}>
     {
@@ -227,14 +240,15 @@ export default function Home(props) {
     </Splider> */}
     
     <div className='term_links_grid mb-3 sm:px-28 px-2 mx-auto' style={{maxWidth: '600px'}}>
-            {ver == 'events' && <>{eventCategories?.map((cat) => {
+    <TermsCarousel items={activeCats()} listingType={ver} queryKey={'category'} queryLink={`/explore/${ver}s?category=`} exClass={'pt-10'} slug={ver ? `${ver}s` : null}  type={'dir_cats'} infinity/>
+           {/*  {ver == 'event' && <>{eventCategories?.map((cat) => {
                     return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>
                 })
             }</>}
-            {ver == 'places' && <>{placeCategories?.map((cat) => {
+            {ver == 'place' && <>{placeCategories?.map((cat) => {
                     return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>
                 })
-            }</>}
+            }</>} */}
             </div>
 
     <div className="divider mt-3 mb-4"></div>
@@ -243,7 +257,7 @@ export default function Home(props) {
    <Splider exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestSales?.length > 0 ? 
           latestSales.map((li) => {
-           return <SalesCard truncate={3} exClass='m-0' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
+           return <SalesCard exClass='m-0 mb-3' mini contentClass={'px-3'} height={170} /* width={'auto'} */ key={li.id} listing = {li}/>
           })
           :
           <></>

@@ -58,7 +58,7 @@ export const authState = atom({
 
 export const siteVersionState = atom({
   key: 'siteVersionState', 
-  default: 'events', 
+  default: 'event', 
   effects_UNSTABLE: [persistSiteVersion],
 });
 

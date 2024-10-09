@@ -32,7 +32,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
     const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery, _performers, _wwd} = meta ?? {};
     const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us ?? {};
-    let wcu = _wcu[0] ?? null
+    let wcu = _wcu ? _wcu[0] : null
 
 
     let detailView, reviewsView, shopView,ticketsHint, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;

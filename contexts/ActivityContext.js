@@ -30,7 +30,7 @@ export default function ActivityProvider(){
             index + 1
           }`,
         fetcher,
-       /*  {refreshInterval : 120000} */
+        {refreshInterval : 300000},
         { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
       );
 

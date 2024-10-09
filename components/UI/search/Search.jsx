@@ -44,7 +44,7 @@ const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=f
 
 
     let {isTab, isMobile} = useRecoilValue(UISizes);
-    let fieldList = "id,title,slug,event_date,featured_media,ticket_min_price_html,featured,rating,acf,short_desc,page_views,level,category,_links,type,xtra_large_thumb, gallery,locations,large_thumb,thumbnail,longitude,latitude,level,tagline,modified";
+    let fieldList = "id,title,slug,event_date,featured_media,ticket_min_price_html,featured,rating,acf,short_desc,page_views,level,category,_links,type,xtra_large_thumb, gallery,locations,max_discount,large_thumb,thumbnail,longitude,latitude,level,tagline,modified";
 
     function setUpFilters(){
 
@@ -159,7 +159,7 @@ let gridDisplay = (listings) => {
                                }else if(type == 'special-sale'){
                                 return <SalesCard dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
                                }
-                               return <EventCard6  contentClass='px-2'  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'bg-transparent shadow-0 radius-0'} listing={listing}/>
+                               return <EventCard6 dataAos={'zoom-in'} contentClass='px-2'  key={listing.id} truncate={false} noButton={false} width={'auto'} exClass={'bg-transparent shadow-0 radius-0'} listing={listing}/>
                             })
                             }
                             </Masonry>

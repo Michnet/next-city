@@ -37,7 +37,7 @@ export function messageServiceWorker(message){
 }
 
 export function shuffleArray(array) { 
-  return array ? array.sort( ()=>Math.random()-0.5 ) : [];
+  return array && Array.isArray(array) ? array.sort( ()=>Math.random()-0.5 ) : [];
 }
 
 export function sortArray(arr, key, ascending){

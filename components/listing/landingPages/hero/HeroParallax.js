@@ -144,7 +144,7 @@ const HeroParallaxConst = ({listing, palette, activeKey, color, setActiveKey, us
           </div>
 
             {isLargeTab && <>
-              {galArr[0] ?
+              {Array.isArray(galArr) && galArr[0] ?
               <div className='d-none lg:d-block overflow-hidden'>
                 <HorizontalGrid height={'100%'}>
                 {galArr.slice(0,3).map((im, i) => {

@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import Splider from "../UI/partials/Splider";
 import ActivityCard2 from "../UI/Listings/cards/ActivityCard2";
 import { SectionHeader } from "@/components/UI/Partials";
+import { cleanHtml } from "@/helpers/universal";
 
 
 function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
@@ -16,7 +17,7 @@ function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, lis
     const setNextPost = useSetRecoilState(nextPostState);
 
     function titleFunc(){
-      let titleObj = {subTitle: taxName ?? null}
+      let titleObj = {subTitle: taxName ? cleanHtml(taxName) : null}
        if(taxonomy){
         if(taxonomy == 'category'){
           titleObj.title = 'More in Category';
@@ -79,7 +80,7 @@ function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, lis
       setNextPost(listings[0]?.slug);
     }
     listView = <>
-         {cachedTitle?.title && <SectionHeader exClass='px-3 mb-2'  title={`${cachedTitle.title}`} subTitle={`${cachedTitle.subTitle}`}/>}
+         {cachedTitle?.title && <SectionHeader exClass='px-3 mb-2'  title={`${cleanHtml(cachedTitle.title)}`} subTitle={`${cachedTitle.subTitle}`}/>}
           {titleComp ?? <></>}
           <Splider height={210} options={{gap:10, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...splideObj}}>
             {listings?.length > 0 ? 

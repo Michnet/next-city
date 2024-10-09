@@ -105,7 +105,7 @@ const ExploreConst = ({topList, type=null}) => {
               </Slider>}</>}
               </div>
               <div className="inner_section mb-4">
-                 <Suspense fallback={'Loading'}><TermsCarousel listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
+                 <Suspense fallback={'Loading'}><TermsCarousel flipped={true} listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="query_hint mx-2 p-2">

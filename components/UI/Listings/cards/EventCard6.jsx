@@ -19,7 +19,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, _embedded,modified,tagline, type} = listing;
     const {likes} = acf?.community ?? {};
 
-    const slicedGal = shuffleArray(gallery).slice(0, 5);
+    //const slicedGal = shuffleArray(gallery).slice(0, 5);
     //const imgArr = [xtra_large_thumb ?? large_thumb, ...slicedGal];
     const imgArr2 = shuffleArray([_embedded['wp:featuredmedia'][0].source_url, ...gallery]);
 
