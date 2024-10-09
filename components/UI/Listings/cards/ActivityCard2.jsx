@@ -108,7 +108,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                             className="object-cover js-lazy"
                             placeholder={<LoaderSiteLogo/>}
                             src={resizedImage(imgSrc, 'medium')}
-                            onError={(e) => {e.target.src = '/images/bg/fallback-sm.jpg'}}
+                            onError={(e) => {e.target.src = imgSrc;/* '/images/bg/fallback-sm.jpg' */}}
                             alt="image"
                           />
                   {mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='card_date mr-10'/> : <></>}
