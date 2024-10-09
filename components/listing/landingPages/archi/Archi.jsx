@@ -28,8 +28,8 @@ import FeaturesCarousel from "@/components/UI/features/FeaturesCarousel";
 
 
 function Archi({listing, setActiveKey, colorHex, color}){
-    const {meta, title, cover, content, about_us,id, ticket_min_price_html, author_id, type, dir_tags, listing_store} = listing ?? {};
-    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _job_gallery:gallery, _performers, _wwd} = meta ?? {};
+    const {meta, title, cover, content, about_us,id, ticket_min_price_html, author_id, type, dir_tags, listing_store, gallery} = listing ?? {};
+    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _performers, _wwd} = meta ?? {};
     const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us ?? {};
     let wcu = _wcu ? _wcu[0] : null
@@ -81,6 +81,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 </div>
                 </Section>
         }
+
         if(tickets?.length > 0){
             ticketsHint = <Section  /* bgUrl={srcWithFallback(randomEither([cover, ...gallery]))} */ exClass="px-4 pb-4 pt-3"><div className='mb-20 sc_heading_3 px-4 mt-4'>
             <h5>Engage Now</h5>
@@ -120,12 +121,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 {grid1Arr.map((item, index) => {
                   if (typeof item == 'string') {
                     if(item?.length > 0){
-                      if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
+                      if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain) || item?.includes('https')){
                         return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                       }
                     }
                   }else{
-                    if(item?.url?.includes(siteSettings.wpDomain)){
+                    if(item?.url?.includes(siteSettings.wpDomain) || item?.url.includes('https')){
                         return  <GalleryPlate imgSize='medium' item={item} key={index}/>;
                       }else{
                         return <>{item}</>
@@ -140,12 +141,12 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     {grid2Arr.map((item, index) => {
                       if (typeof item == 'string') {
                         if(item?.length > 0){
-                          if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
+                          if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain) || item?.includes('https')){
                             return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
                           }
                         }
                       }else{
-                        if(item?.url?.includes(siteSettings.wpDomain)){
+                        if(item?.url?.includes(siteSettings.wpDomain) || item?.url.includes('https')){
                             return  <GalleryPlate imgSize='thumbnail' item={item} key={index}/>;
                           }else{
                             return <>{item}</>
