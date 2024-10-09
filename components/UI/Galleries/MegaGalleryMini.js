@@ -50,7 +50,7 @@ let Grid1 = () => <>{grid1Arr?.length > 0 && <HorizontalGrid gutter={gutter}>
   {shuffleArray([...grid1Arr]).map((item, index) => {
     if (typeof item == 'string') {
       if(item?.length > 0){
-        if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
+        if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain) || item.includes('https')){
           return  <GalleryPlate imgShadow={imgShadows} imgSize='medium_large' item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/>;
         }else{
             //let backGs = ['100', '200', '300', '400'];
@@ -81,7 +81,7 @@ galleryView = <>
             {gallArr.map((item, index) => {
               if (typeof item == 'string') {
                 if(item?.length > 0){
-                  if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain)){
+                  if(item?.includes(siteSettings.wpDomain) || item?.includes(siteSettings.cdnDomain) || item.includes('https')){
                     return  <GalleryPlate imgShadow={imgShadows} item={item} key={index} highlight={highlightIndex.includes(index)} /* overlay={index == randomBetween(0, gallery?.length)} *//>;
                   }else{
                       //let backGs = ['100', '200', '300', '400'];

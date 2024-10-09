@@ -58,10 +58,10 @@ if(lMenu){
 }
 
 let menuContent = <div className="menu_content">
-<div className="d-flex flex-row flex-nowrap gap-3 align-items-center flex-shrink-1 minw-0">
+<div className="d-flex flex-row flex-nowrap gap-3 align-items-center flex-shrink-1 flex-grow-1 minw-0">
     <i className="fas fa-chevron-left d-none d-md-block" onClick={() => router.back()}/>
     {/* <MainMenuBtn/>  */}
-    <div className="menu_logo  flex-shrink-1" onClick={() => setActiveKey('home')}> 
+    <div className="menu_logo  flex-shrink-1 flex-grow-1" onClick={() => setActiveKey('home')}> 
       {logoView} 
       {<div className='flex-shrink-1' style={{width: 'calc(100% - 40px)'}}>
         <h4 className="smLine _title truncate text-16">{cleanHtml(title?.rendered)}</h4>

@@ -178,7 +178,7 @@ galleryView = <>
             <Masonry gutter={miniGrid ? '5px' : "10px"}>
             {megaGall.map((item, index) => {
               if (typeof item === 'string') {
-                if(item.includes(siteSettings.wpDomain) || item.includes(siteSettings.cdnDomain)){
+                if(item.includes(siteSettings.wpDomain) || item.includes(siteSettings.cdnDomain) || item.includes('https')){
                   return  <LazyLoad offset={300}><GalleryPlate imgSize={gridFactor == 0 ? 'medium_large' : 'medium'} onclickFunc = {() => setSlideIndex(itemIndex(item))} /* data-bs-toggle='modal' data-bs-target="#photo_view" */  item={item} key={index} highlight={highlightIndex.includes(index)} overlay={index == randomBetween(0, gallery?.length)}/></LazyLoad>;
                 }else{
                   if(item?.length > 0){
