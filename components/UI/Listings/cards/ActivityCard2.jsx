@@ -36,7 +36,8 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
   };
 
 
-  const imgSrc = useMemo(() => processImg(imgArr), [listing.id] );
+  //const imgSrc = useMemo(() => processImg(imgArr), [listing.id] );
+  const imgSrc = processImg(imgArr);
 
   // custom navigation
   function Arrow(props) {

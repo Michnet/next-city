@@ -2,7 +2,8 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { closeMenus } from "./appjs";
-import { kyFetch, open_ai_rapid_headers, serializeQuery, WPDomain } from "./base";
+import { kyFetch, open_ai_rapid_headers, serializeQuery, WPDomain, siteSettings } from "./base";
+
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
 
@@ -633,21 +634,21 @@ export const scrollTop = () => {
 };
 
 export function resizedImage(imgUrl='', desiredSize){
-  switch (true) {
-    case imgUrl.includes('.jpeg'):
-      return imgUrl.replace(".jpeg", `-${desiredSize}.jpeg`);
-      break;
-    case imgUrl.includes('.webp'):
-      return imgUrl.replace(".webp", `-${desiredSize}.webp`);
-      break;
-    case imgUrl.includes('.jpg'):
-      return imgUrl.replace(".jpg", `-${desiredSize}.jpg`);
-      break;
-    case imgUrl.includes('.png'):
-      return imgUrl.replace(".png", `-${desiredSize}.png`);
-      break;
-    case imgUrl.includes('.gif'):
-      return imgUrl.replace(".gif", `-${desiredSize}.gif`);
-      break;
-  }  
+  console.log('imgUrl', imgUrl);
+  if(imgUrl?.includes(siteSettings.wpDomain) || imgUrl?.includes(siteSettings.cdnDomain)){
+    switch (true) {
+      case imgUrl.includes('.jpeg'):
+        return imgUrl.replace(".jpeg", `-${desiredSize}.jpeg`);
+      case imgUrl.includes('.webp'):
+        return imgUrl.replace(".webp", `-${desiredSize}.webp`);
+      case imgUrl.includes('.jpg'):
+        return imgUrl.replace(".jpg", `-${desiredSize}.jpg`);
+      case imgUrl.includes('.png'):
+        return imgUrl.replace(".png", `-${desiredSize}.png`);
+      case imgUrl.includes('.gif'):
+        return imgUrl.replace(".gif", `-${desiredSize}.gif`);
+    } 
+  }else{
+    return imgUrl;
+  }
 }

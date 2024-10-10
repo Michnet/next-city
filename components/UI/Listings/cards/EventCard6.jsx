@@ -59,7 +59,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
                     </div>
                     <div className='_right'>
                     <div className="row_flex justify-end" style={{flex: '1 1'}}>
-                            <TermTag targetStyleObj={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}} exTagClass={'rounded-3 px-2 text-20 fw-600'} exClass={'lgLine w-fit'} term={category} type={'icon'} linkTax={'category'}/>
+                            <TermTag targetStyleObj={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}} exTagClass={'text-18 fw-600'} exClass={'lgLine w-fit'} term={category} type={'icon'} linkTax={'category'}/>
                             <i className={`far fa-${type == 'event' ? 'calendar-alt' : 'map-marked-alt'} text-center bg-theme-light`} style={{width: '28px', height: '28px', borderRadius: '50%', lineHeight: '28px'}}/>
                         </div>
                     </div>

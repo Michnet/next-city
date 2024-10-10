@@ -4722,7 +4722,7 @@ a.link_link {
 
 .splide__pagination {
     transform: none;
-    position: relative;
+    position: relative !important;
 }
 
 .hero_meta {
@@ -5523,10 +5523,12 @@ section.sec_sideImg .sect_content{
 .section_header ._title {
     font-weight: bold;
     font-size: var(--mdFontSise);
+    line-height: 1;
 }
 
 .section_header ._subtitle {
-    opacity: 50%;
+    color: var(--highlight);
+    /* color: var(--listingTheme); */
 }
 
 .de_tab.tab_steps .de_nav li.nav-link:not(.active) span {
@@ -5661,7 +5663,7 @@ section.sec_sideImg .sect_content{
     height: 100%;
     justify-content: center;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .discount_label .discount_num {
@@ -5683,13 +5685,18 @@ section.sec_sideImg .sect_content{
     background: var(--highlight);
     color: #fff;
     position: relative;
-    z-index: 0;
+    z-index: 1;
 }
 
 .sale_content ._content {
     z-index: 1;
     position: relative;
-    justify-content: center;
+    justify-content: flex-end;
+    color: #fff;
+}
+
+.sale_content ._content > * {
+    z-index: 2;
 }
 
 .sale_content .discount_label:before {
@@ -5711,8 +5718,6 @@ section.sec_sideImg .sect_content{
 }
 
 .sale_card .sale_content {
-    margin: 20px;
-    margin-left: 40px;
 }
 
 .term_i_box > * {
@@ -5720,10 +5725,15 @@ section.sec_sideImg .sect_content{
 }
 
 .discount_label .label_content .pre_num {
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .discount_label .label_content .post_num {
     color: var(--darkBg);
     font-weight: 600;
+}
+
+
+.listing_content {
+    font-size: 16px;
 }

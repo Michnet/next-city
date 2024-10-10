@@ -99,7 +99,7 @@ const ExploreConst = ({topList, type=null}) => {
                 activeTopList?.length > 0 && <Slider  {...fadingSlide} autoplaySpeed={5000} speed={2000} responsive = {[...largeResp]} >
                 { activeTopList.map((li) => {
                       let {id} = li;
-                      return <EventCard3 height={310} titleSize={24} contentExClass={'px-4 pb-4'} truncate={3} width={'inherit'} listing={li} key={id} exClass='_hero m-0 radius-0'/>
+                      return <EventCard3 cardBottomExClass='' height={310} titleSize={24} contentExClass={'px-4 pb-4'} truncate={3} width={'inherit'} listing={li} key={id} exClass='_hero m-0 radius-0'/>
                     })
                   }
               </Slider>}</>}

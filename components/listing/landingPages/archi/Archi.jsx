@@ -49,7 +49,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
            
           }
         if(content){
-            detailView = <Section fullWidth exContainerClass={'row_flex'} sideImg dark={false} bgUrl={`${srcWithFallback(resizedImage(randomEither(gallery), 'medium_large'))}`} exClass='p-0 bg-fixed'>
+            detailView = <Section fullWidth exContainerClass={'row_flex'} sideImg dark={false} bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`} exClass='p-0 bg-fixed'>
                 <div className='p-2 p-sm-5'>
                     <ListingDetail textExClass='' type={type}  detail={content} id={listing.id}/>
                 </div>
@@ -205,7 +205,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 }
 
           reviewsView = <Suspense offset={150} once height={200}>
-            <Section dark fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${srcWithFallback(resizedImage(randomEither(gallery), 'medium_large'))}`}>
+            <Section dark fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`}>
                 <div className='pt-0 pt-sm-5'>
               <Client>
                     <HeadingSeparatorDot exClass='me-5 mb-3' light align='right' title={'User Reviews'} subtitle={`Verified reviews about this ${type}`}/>

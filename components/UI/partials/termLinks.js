@@ -17,7 +17,7 @@ export const TermIcon = ({item, flipped=false, shadowy=true, listingType}) => {
                 </div>
 }
 
-export const TermIconBox = ({item, listingType, flipped=false, externalTitle=false, shadowy=true, exClass='', width='100px', height='100px'}) => {
+export const TermIconBox = ({item, listingType, flipped=false, externalTitle=false, shadowy=true, exClass='', width='80px', height='80px'}) => {
     let {name, slug, term_meta, id} = item;
     let {color, rl_awesome} = term_meta;
     let linker = `/explore${listingType ? '/'+listingType+'s' : ''}?category=${slug}`;

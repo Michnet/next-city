@@ -33,7 +33,7 @@ import { useRecoilState } from 'recoil';
 import { siteVersionState } from "@/contexts/atoms";
 import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
 import SalesCard from "@/components/UI/Listings/cards/SalesCard";
-import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
+//import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 
 
 export async function getStaticProps() {
@@ -44,12 +44,18 @@ export async function getStaticProps() {
     const catsFilterArr = {
       _fields : taxfields,
       parent_slug: 'events',
-      per_page: 20
+      per_page:6,
+      order: 'desc',
+      orderby: 'count',
+      page: 1
     }
     const placeCatsFilterArr = {
       _fields : taxfields,
       parent_slug: 'places',
-      per_page: 20
+      per_page:6,
+      order: 'desc',
+      orderby: 'count',
+      page: 1
     }
   
     const busyLocsQuery = {
@@ -92,6 +98,13 @@ export async function getStaticProps() {
       const busyLocs = await getDirTerms('locations', busyLocsQuery);
       if(busyLocs){
        serverObj.busyLocations = busyLocs;
+      }
+    }
+    //Get top tags
+    async function getTopTags(){
+      const topTags = await getDirTerms('tags', busyLocsQuery);
+      if(topTags){
+       serverObj.topTags = topTags;
       }
     }
   
@@ -144,6 +157,7 @@ export async function getStaticProps() {
       await getTopLocs();
       await topPlaces();
       await topSales();
+      await getTopTags();
     }
   
     await serverQuery();
@@ -165,8 +179,9 @@ export async function getStaticProps() {
 
 export default function Home(props) {
     const {serverObj} = props;
-   const {eventCategories, placeCategories, latestSales, topLocations, busyLocations, latestList, latestPlaces} = serverObj ?? {};
+   const {eventCategories, placeCategories, latestSales, topTags, busyLocations, latestList, latestPlaces} = serverObj ?? {};
    const [ver, setVer] = useRecoilState(siteVersionState);
+   console.log('serverObj', serverObj)
    
   let imgArr = eventCategories?.map((ct) => {
     let {term_meta, id} = ct;
@@ -181,8 +196,8 @@ export default function Home(props) {
 
   const router = useRouter();
 
-  function tagClick(tag){
-    router.push(`/explore?region=${tag.slug}`);
+  function tagClick(tag, slug='region'){
+    router.push(`/explore?${slug}=${tag.slug}`);
   }
 
   //const cachedCategories = useMemo(() => eventCategories);
@@ -240,7 +255,13 @@ export default function Home(props) {
     </Splider> */}
     
     <div className='term_links_grid mb-3 sm:px-28 px-2 mx-auto' style={{maxWidth: '600px'}}>
-    <TermsCarousel items={activeCats()} listingType={ver} queryKey={'category'} queryLink={`/explore/${ver}s?category=`} exClass={'pt-10'} slug={ver ? `${ver}s` : null}  type={'dir_cats'} infinity/>
+    {activeCats()?.map((cat, i) => {
+                          return <TermIconBox listingType={ver} flipped={false} exClass='rounded-4' item={cat} key={i}  shadowy/>;
+
+                   /*  return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>; */
+                })
+            }
+    {/* <TermsCarousel items={activeCats()} listingType={ver} queryKey={'category'} queryLink={`/explore/${ver}s?category=`} exClass={'pt-10'} slug={ver ? `${ver}s` : null}  type={'dir_cats'} infinity/> */}
            {/*  {ver == 'event' && <>{eventCategories?.map((cat) => {
                     return <TermIconBox width='80px' height='80px' externalTitle exClass='rounded-4' item={cat}/>
                 })
@@ -303,10 +324,11 @@ export default function Home(props) {
                 <></>
               }
           </div>
+          <AddListingCard/>
       </div>
       <div className="col-12 col-md-6">
-      <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='px-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
-      <div className="layout-pt-md layout-pb-md  px-30 mb-5 border mx-3">
+      <SectionHeader iconClass={'far fa-map'} bgClass={'bg-twitter'} exClass='pe-3 mb-2'  title={'Busy Locations'} subTitle={'Top Destinations'}/>
+      <div className="layout-pt-md layout-pb-sm  px-20 mb-4 border">
     
       <div className='tags_row bg-transparent'>
                 <div className='row_content' style={{minHeight : '130px'}}>                  
@@ -314,12 +336,20 @@ export default function Home(props) {
                   </div>
                   </div>
       </div>
+
+      <SectionHeader iconClass={'far fa-tags'} bgClass={'bg-twitter'} exClass='pe-3 mb-2'  title={'Top Tags'} subTitle={'Frequently used tags'}/>
+      <div className="layout-pt-md layout-pb-sm mb-4 px-20 border">
+    
+      <div className='tags_row bg-transparent'>
+                <div className='row_content' style={{minHeight : '130px'}}>                  
+        <TagsCloud  dark itemsList={topTags} onClickFunc={(e) => tagClick(e, 'tag')}/>
+                  </div>
+                  </div>
+      </div>
       </div>
     </section>
-
     
-
-    <AddListingCard/>
+    
 {/* 
     <SectionHeader iconClass={'far fa-heart'} bgClass={'bg-twitter'} exClass='px-3 mb-2' link={'See All'} title={'Most Liked'} subTitle={'Meet the favourites'}/>
    <Splider height={130} options={{arrows: false, navigation: false, wheel:false, height: 'auto', gap: 10, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>

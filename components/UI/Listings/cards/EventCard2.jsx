@@ -85,7 +85,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, hei
                     </div> */}
                     
                     <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
-                        <Link href={`/${type}s/${slug}`}><h3 className={`text-15 fw-500 smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
+                        <Link href={`/${type}s/${slug}`}><h3 className={`text-15 fw-bold smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>} */}
                         <div className="row_flex gap-2">
                         <TermTag  exTagClass={'rounded-3 text-12 truncate'} exClass={'lgLine'} term={category} type={'hash'} linkTax={'category'}/>
