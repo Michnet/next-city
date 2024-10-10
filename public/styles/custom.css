@@ -5654,6 +5654,11 @@ section.sec_sideImg .sect_content{
 .sale_card .content_box {
     grid-template-columns: 60% 40%;
     position: relative;
+    grid-auto-rows: 100%;
+}
+
+.sale_card.card_2 .content_box {
+    grid-template-columns: 30% 70%;
 }
 
 .discount_label .label_content {
@@ -5666,12 +5671,23 @@ section.sec_sideImg .sect_content{
     margin-right: 15px;
 }
 
+.card_2 .discount_label .label_content {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
 .discount_label .discount_num {
     font-size: 60px;
     text-wrap: nowrap;
     position: relative;
     line-height: 1;
     font-weight: 600;
+}
+
+.sale_card.card_2 .discount_label .discount_num {
+    font-size: 30px;
+    margin: 5px 0 -5px;
 }
 
 .discount_label .discount_num .label {
@@ -5688,11 +5704,29 @@ section.sec_sideImg .sect_content{
     z-index: 1;
 }
 
+.sale_card.card_2 .discount_label {
+    position: absolute;
+    border-radius: 50%;
+    top: 17px;
+    left: -35px;
+    height: 60px;
+    width: 60px;
+}
+
+.sale_card.card_2 .discount_label:before {
+    display: none;
+}
+
 .sale_content ._content {
     z-index: 1;
     position: relative;
     justify-content: flex-end;
     color: #fff;
+}
+
+.card_2 .sale_content ._content {
+    color: var(--colorTheme);
+    justify-content: center;
 }
 
 .sale_content ._content > * {
@@ -5726,6 +5760,10 @@ section.sec_sideImg .sect_content{
 
 .discount_label .label_content .pre_num {
     font-weight: 300;
+}
+
+.card_2 .discount_label .label_content .pre_num {
+    color: var(--colorTheme);
 }
 
 .discount_label .label_content .post_num {

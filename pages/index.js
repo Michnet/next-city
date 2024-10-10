@@ -33,6 +33,7 @@ import { useRecoilState } from 'recoil';
 import { siteVersionState } from "@/contexts/atoms";
 import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
 import SalesCard from "@/components/UI/Listings/cards/SalesCard";
+import SalesCard2 from "@/components/UI/Listings/cards/SalesCard2";
 //import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 
 
@@ -278,7 +279,7 @@ export default function Home(props) {
    <Splider exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestSales?.length > 0 ? 
           latestSales.map((li) => {
-           return <SalesCard exClass='m-0 mb-3' mini contentClass={'px-3'} height={170} /* width={'auto'} */ key={li.id} listing = {li}/>
+           return <SalesCard2 exClass='m-0 mb-3' mini contentClass={'px-3'} height={170} /* width={'auto'} */ key={li.id} listing = {li}/>
           })
           :
           <></>
