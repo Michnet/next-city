@@ -9,7 +9,6 @@ import {useMemo, memo, useEffect, useState, Suspense } from "react";
 //import { useRouter } from "next/router"
 import PageLoader from "../skeletons/fullPage/PageLoader";
 //import { srcWithFallback } from "@/helpers/universal";
-import { NavigationEvents } from "@/app/utils/navigation-events";
 import Script from "next/script";
 import BottomMenu from "./BottomMenu";
 
@@ -94,9 +93,6 @@ img.site_bg_img{
             <Activity/>
         </div>
     </Client>
-      <Suspense fallback={null}>
-        <NavigationEvents/>
-      </Suspense>
       <Script strategy={'afterInteractive'} type={'module'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/>
       {noFooter ? <></> : <BottomMenu btnProps={btnProps} icon={icon}/>}
     </>

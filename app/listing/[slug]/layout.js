@@ -60,9 +60,7 @@ export default async function ListingLayout({ children, params}) {
 
    // const lMenu = useMemo(() => listingMenu({listing:listing/* , userId: user?.id */}), [listing?.id] );
    const lMenu = listingMenu({listing:listing});
-   
-   console.log('from slug layout', params);
-    
+       
     return (<>
             <div className="listing_page _place">
                 <HeaderWrapper headerClass={`header-invert header-always-show`} header_id={'listing_header'}>

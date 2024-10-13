@@ -3,18 +3,12 @@
 //import Script from "next/script";
 //import { run_template } from "./../../helpers/js";
 import dynamic from "next/dynamic";
-
 import { useRecoilValue, useRecoilState } from 'recoil';
-import RouteLoader from "./RouteLoader";
 import {useMemo, memo, useState } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
 import { closeMenus, changeHighlight, openOffCanvas } from "@/helpers/appjs";
-//const Scaffold = dynamic(() => import("./Scaffold"));
 import {UISizes, UIWidthState} from '@/contexts/atoms';
-//import Header from "./partials/Header";
-//import { useRouter } from "next/router"
-//import BottomMenu from "./BottomMenu";
 import { BSReveal } from "../UI/partials/BSReveal";
 import SearchForm1 from "../UI/search/SearchForm1";
 //import Splash from "../UI/Splash";
@@ -23,9 +17,6 @@ import UserSideMenu from "../UI/user/UserSideMenu";
 import UISettings from "./UISettings";
 import { ParallaxScrollProvider } from '@/contexts/ParallaxContext';
 import { siteColorObjs } from '@/helpers/base';
-//import { getSession } from "next-auth/react";
-import { useSearchParams } from 'next/navigation'
-//import Scaffold from '@/app/layouts/appScaffold';
 
 function sizing(width, setWidth){
   if (typeof window !== 'undefined') {
@@ -65,7 +56,6 @@ function LayoutConst({ children, headerTitle, settings, appRouter=false}) {
   const [loading, setLoading] = useState(true);
   const Scaffold = dynamic(() => appRouter ? import('@/app/layouts/appScaffold') : import("./Scaffold"))
 
-  const searchParams = useSearchParams();
   //const cachedChildren = useMemo(() => children, [headerTitle])
   const cachedSettings = useMemo(() => settings, [headerTitle])
   
