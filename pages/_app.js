@@ -1,4 +1,3 @@
-//import Head from "next/head";
 import { memo, useEffect, useMemo } from "react";
 import "@/public/scss/bootstrap.scss";
 import "@/styles/globals.css";
@@ -18,23 +17,17 @@ import Layout from "@/components/layouts/Layout";
 import UIProvider from "@/contexts/UIContext";
 import SiteProvider from "@/contexts/siteContext";
 import MessagesStater from "@/contexts/contextStaters/MessagesStater";
-//import { useRouter } from "next/router";
-//import SWMessaging from "@/contexts/contextStaters/SWMessaging";
 import { run_template } from "@/helpers/js";
-//import SiteHead from "@/components/UI/SiteHead";
-//import "@/public/scripts/bootstrap.min.js";
-//import { DefaultSeo } from 'next-seo';
 import SeoHead from "@/components/UI/SeoHead";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import '@splidejs/react-splide/css';
 import { Analytics} from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import RouteLoader from "@/components/layouts/RouteLoader";
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;
- /*  const cachedSettings = useMemo(() => settings, [headerTitle]);
-  const cachedSeoMeta = useMemo(() => seoMeta, [headerTitle]); */
   
   const Session = getSession();
 
@@ -59,14 +52,8 @@ function MyAppConst({ Component, pageProps, platform }) {
 }, []);
 
   return <>
-      {/* <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-        <title>LyveCity</title>
-      </Head> */}
       <RecoilRoot>
-      {/* <SiteHead title={'Home'} description='home desc' seoMeta={cachedSeoMeta}/> */}
       <SeoHead seoMeta={seoMeta}/>
-      
         <SessionProvider>
             <HydrationProvider>
               <div className="menu-hider" onClick={() => closeMenus()}></div>
@@ -77,6 +64,7 @@ function MyAppConst({ Component, pageProps, platform }) {
                 <AuthProvider/>
                 <UIProvider platform={platform}/>
                 {/* <SWMessaging/> */}
+                <RouteLoader/>
                 <SiteProvider/>
                 <MessagesStater/>
                 <ActivityProvider/>

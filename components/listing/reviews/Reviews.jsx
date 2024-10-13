@@ -1,3 +1,5 @@
+"use client";
+
 import  {useState, useEffect, memo} from 'react';
 import PostReviews from './postReviews';
 import ReviewSubmit from './ReviewSubmit';

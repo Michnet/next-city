@@ -27,6 +27,18 @@ const nextConfig = {
       {
         hostname: '*.spotlists.com',
       },
+      {
+        hostname: '*.googleapis.com',
+      },
+      {
+        hostname: 'googleapis.com',
+      },
+      {
+        hostname: 'googleusercontent.com',
+      },
+      {
+        hostname: '*.googleusercontent.com',
+      }
     ],
       //domains: ['spotlists.com','jaribu.spotlists.com','staging.lyvecityclub.com','lyvecityclub.com'],
       deviceSizes: [320, 480, 575, 640, 750, 828, 1080, 1200, 1920],

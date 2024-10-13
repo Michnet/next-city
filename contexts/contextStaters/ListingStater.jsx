@@ -1,3 +1,5 @@
+"use client";
+
 import { getEventDates } from "@/helpers/rest";
 import { memo, useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";

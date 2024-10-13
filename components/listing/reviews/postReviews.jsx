@@ -1,3 +1,5 @@
+"use client";
+
 import  {useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import Image from 'next/image';

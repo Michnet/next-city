@@ -1,16 +1,20 @@
+"use client";
+
 //import Script from "next/script";
 //import { run_template } from "./../../helpers/js";
+import dynamic from "next/dynamic";
+
 import { useRecoilValue, useRecoilState } from 'recoil';
 import RouteLoader from "./RouteLoader";
 import {useMemo, memo, useState } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
 import { closeMenus, changeHighlight, openOffCanvas } from "@/helpers/appjs";
-import Scaffold from "./Scaffold";
+//const Scaffold = dynamic(() => import("./Scaffold"));
 import {UISizes, UIWidthState} from '@/contexts/atoms';
 //import Header from "./partials/Header";
 //import { useRouter } from "next/router"
-import BottomMenu from "./BottomMenu";
+//import BottomMenu from "./BottomMenu";
 import { BSReveal } from "../UI/partials/BSReveal";
 import SearchForm1 from "../UI/search/SearchForm1";
 //import Splash from "../UI/Splash";
@@ -20,6 +24,8 @@ import UISettings from "./UISettings";
 import { ParallaxScrollProvider } from '@/contexts/ParallaxContext';
 import { siteColorObjs } from '@/helpers/base';
 //import { getSession } from "next-auth/react";
+import { useSearchParams } from 'next/navigation'
+//import Scaffold from '@/app/layouts/appScaffold';
 
 function sizing(width, setWidth){
   if (typeof window !== 'undefined') {
@@ -49,7 +55,7 @@ function pinHeader(){
   }
 }
 
-function LayoutConst({ children, headerTitle, settings}) {
+function LayoutConst({ children, headerTitle, settings, appRouter=false}) {
   const uiSize = useRecoilValue(UISizes);
   //const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
   const [width, setWidth] = useRecoilState(UIWidthState);
@@ -57,49 +63,22 @@ function LayoutConst({ children, headerTitle, settings}) {
   const {mMenuContent, noFooter} = settings ?? {};
   const {btnProps, icon} = mMenuContent ?? {}
   const [loading, setLoading] = useState(true);
+  const Scaffold = dynamic(() => appRouter ? import('@/app/layouts/appScaffold') : import("./Scaffold"))
 
-
+  const searchParams = useSearchParams();
   //const cachedChildren = useMemo(() => children, [headerTitle])
   const cachedSettings = useMemo(() => settings, [headerTitle])
   
-  let themeColorsArr = [
-    {highlight:"blue", icon: "fa fa-circle color-blue-dark",
-      colorClass: "color-blue-light", themeName : "Default"},
-    {highlight:"red", icon: "fa fa-circle color-red-dark",
-      colorClass: "color-red-light", themeName : "Red"},
-    {highlight:"orange", icon: "fa fa-circle color-orange-dark",
-      colorClass: "color-orange-light", themeName : "Orange"},
-    {highlight:"pink2", icon: "fa fa-circle color-pink2-dark",
-      colorClass: "color-pink-dark", themeName: "Pink"},
-    {highlight:"magenta", icon: "fa fa-circle color-magenta-dark",
-      colorClass: "color-magenta-light", themeName : "Purple"},
-    {highlight:"aqua", icon: "fa fa-circle color-aqua-dark",
-      colorClass: "color-aqua-light", themeName : "Aqua"},
-    {highlight:"teal", icon: "fa fa-circle color-teal-dark",
-      colorClass: "color-teal-light", themeName : "Teal"},
-    {highlight:"mint", icon: "fa fa-circle color-mint-dark",
-      colorClass: "color-mint-light", themeName : "Mint"},
-    {highlight:"green", icon: "fa fa-circle color-green-light",
-      colorClass: "color-green-light", themeName : "Lemon"},
-    {highlight:"grass", icon: "fa fa-circle color-green-dark",
-      colorClass: "color-green-dark", themeName: "Grass"},
-    {highlight:"sunny", icon: "fa fa-circle color-yellow-light",
-      colorClass: "color-yellow-light", themeName : "Sunny"},
-    {highlight:"yellow", icon: "fa fa-circle color-yellow-dark",
-      colorClass: "color-yellow-light", themeName : "Goldish"},
-    {highlight:"brown", icon: "fa fa-circle color-brown-dark",
-      colorClass: "color-brown-light", themeName : "Coffee"}
-]
 
   return (
     <>
-      <main /* className={`${inter.className}`} */ onLoad={() => {console.log('sizing in main'); sizing(width, setWidth);}}>
+      <main /* className={`${inter.className}`} */ onLoad={() => {sizing(width, setWidth);}}>
         {/* <div id="preloader">
           <div className="spinner-border color-highlight" role="status"></div>
         </div> */}
         <div id="page" onLoad={() => pinHeader()}>
           {/* {!noHeader && <Header headerTitle={headerTitle}/>} */}
-          {noFooter ? <></> : <BottomMenu btnProps={btnProps} icon={icon}/>}
+          {/* {noFooter ? <></> : <BottomMenu btnProps={btnProps} icon={icon}/>} */}
           {/* <!--start of page content, add your stuff here--> */}
           {/* <!--Page modals, sheets, offcanvas*/}
           <div id='header_intersector' className="w-100 position-absolute" style={{height: '1px', top: '30px'}}/>
@@ -136,8 +115,6 @@ function LayoutConst({ children, headerTitle, settings}) {
             <SnackBar/>
           <div id="snackbar-liked" className="snackbar-toast rounded-m bg-green-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-check me-3"></i>Added to favourites</div>
           <div id="snackbar-unliked" className="snackbar-toast rounded-m bg-yellow-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-info me-3"></i>Removed from favourites!</div>
-
-
             <BSReveal id={'menu-highlights'}>
             <div className="menu-title px-3">
               <h1>Theme Colors</h1>
@@ -370,11 +347,7 @@ function LayoutConst({ children, headerTitle, settings}) {
         color: var(--colorTheme);
       }`}</style></Client>
         </div>
-        {/* <Script strategy={'afterInteractive'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/> */}
-        {/* <Script defer='true'  strategy={"afterInteractive"} onReady={() => console.log('Custom loaded')} src="/scripts/custom.js"/> */}
-        {/* {run_template()} */}
-        {/* <Script>{onAppLoad()}</Script> */}
-        <RouteLoader />
+        {/* <RouteLoader /> */}
       </main>
       {/* <Splash/> */}
     </>

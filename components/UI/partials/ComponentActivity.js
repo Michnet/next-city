@@ -1,3 +1,5 @@
+"use client";
+
 import {memo, useEffect, useState } from "react";
 import useSWRInfinite from "swr/infinite";
 import {addGroupMember, removeGroupMember, bpPublicActivitiesUrl, createBPActivity, fetcher, bPActivitiesUrl } from "@/helpers/rest";

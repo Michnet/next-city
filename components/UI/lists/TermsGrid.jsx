@@ -1,8 +1,9 @@
+"use client";
 import { siteState } from '@/contexts/siteContext';
 import { closeMenus } from "@/helpers/appjs"
 import { getDirTerms } from '@/helpers/rest';
-import { useRouter } from 'next/router';
-//import { useSearchParams } from 'next/navigation';
+//import { useRouter } from 'next/router';
+import { useSearchParams, useRouter} from 'next/navigation';
 import  {useEffect, useState} from 'react';
 import { useRecoilValue } from 'recoil';
 //import {siteState } from '../../../contexts/siteContext';
@@ -14,8 +15,12 @@ const TermsGrid = ({id, listy, exClass, shadowy=true}) => {
     const [loading, setLoading] = useState(true);
     const [orderBy, setOrderBy] = useState('count');
 
-    const {query} = useRouter();
-    const queryCategory = query?.category
+    const searchParams = useSearchParams()
+ 
+    const queryCategory = searchParams.get('category')
+
+    //const {query} = useRouter();
+    //const queryCategory = query?.category
     let taxfields = "id,count,extra_meta,term_meta,description,parent,name,slug";
 
 

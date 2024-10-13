@@ -1,12 +1,15 @@
+"use client";
+
 import  { useEffect, useState } from "react";
 import { googleDirectionsUrl, homeurl, siteKeys } from "@/helpers/base";
 import dynamic from "next/dynamic";
 // import { isListingAuthor } from "~/server/UniversalFunctions";
 import { useRecoilValue } from 'recoil';
 import { authState, UISizes } from "@/contexts/atoms";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import { isListingAuthor } from "@/helpers/universal";
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
 
 const PostLike = dynamic(() => import('@/components/UI/partials/social/PostLike'), { ssr: false });
 
@@ -14,7 +17,8 @@ const VisitorActions = ({listing, mini, setActiveKey, extraItem, exClass}) => {
   const {user, token} = useRecoilValue(authState);
   const [loading, setLoading] = useState(true);
   const {whatsapp} = listing ?? {}
-  const router = useRouter();
+  //const router = useRouter();
+  const pathname = usePathname()
 
   useEffect(() => {
     setLoading(false)
@@ -57,7 +61,7 @@ const VisitorActions = ({listing, mini, setActiveKey, extraItem, exClass}) => {
                           <label>Directions</label>
                           </div>
                           <div className="action_box" onClick = {async () => {if (navigator?.share) { try { await navigator.share({ 
-              url: `${homeurl}${router.asPath}` 
+              url: `${homeurl}${pathname}` 
           }); } catch (err) { onError?.(err); } } }}>
                           <i className="las la-share-alt"/>
                           <label>Share</label>

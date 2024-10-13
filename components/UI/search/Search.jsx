@@ -1,3 +1,5 @@
+"use client";
+
 import  {memo, useEffect, useRef, useState} from 'react';
 import dynamic from 'next/dynamic';
 // import { advancedFetchListingsUrl } from '../../server/WpRest';
@@ -24,7 +26,6 @@ const SearchFilter = dynamic(() => import('./SearchFilter'));
 import EventCard3 from '@/components/UI/Listings/cards/EventCard3';
 import SalesCard from '../Listings/cards/SalesCard';
 import { closeMenus } from "@/helpers/appjs";
-
 
 const PAGE_SIZE = 22;
 
@@ -155,7 +156,7 @@ let gridDisplay = (listings) => {
                                 const {type} = listing;
                                // return <ListingCard listing={listing} key ={listing.id} user={user}/>
                                if(type == 'place'){
-                                return <EventCard3 dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
+                                return <EventCard3 dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4'} listing={listing}/>
                                }else if(type == 'special-sale'){
                                 return <SalesCard dataAos={'zoom-in'} exImgClass='rounded-4' key={listing.id} noButton={false} width={'auto'} exClass={'m-0 rounded-4 py-2 px-3'} listing={listing}/>
                                }

@@ -1,4 +1,4 @@
-import { cleanHtml } from "@/helpers/universal";
+import { cleanHtml, randomEither } from "@/helpers/universal";
 import Link from "next/link";
 import PostLike from "../../partials/social/PostLike";
 //import DateViewString from "../../partials/dateViews/DateViewString";
@@ -6,12 +6,13 @@ import { PriceView } from "../../PriceView";
 import TermTag from "../../partials/TermTag";
 import { ListingMeta, ListingMetaMini } from "../../Partials";
 
-const EventCard3 = ({listing, width=320, cardBottomExClass='bg-gradient', withDesc= false, dataAos, height=260, exClass='', truncate=2, contentExClass='', titleSize=18}) => {
+const EventCard3 = ({listing, width=320, cardBottomExClass='bg-gradient', withDesc= false, dataAos, height='auto', exClass='', truncate=2, contentExClass='', titleSize=18}) => {
     let {id, title, address, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, type, category} = listing ?? {};
     const {likes} = acf?.community ?? {};
     return (<>
-                    <div data-aos={dataAos} className={`listing_card card card-style event_card_3 position-relative ${exClass}`} style={{height: height, width: width}}>
-                    <div className={`img_div bg-cover position-absolute top-0 left-0 w-100 h-100`} style={{backgroundImage:`url("${xtra_large_thumb}")`}}/>
+                    <div data-aos={dataAos} className={`listing_card card card-style event_card_3 position-relative ${exClass}`} style={{width: width}}>
+                    {/* <div className={`img_div bg-cover position-absolute top-0 left-0 w-100 h-100`} style={{backgroundImage:`url("${xtra_large_thumb}")`}}/> */}
+                    <img className={`img_img bg-cover  top-0 left-0`} style={{width: '100%', height: height}} src = {randomEither([xtra_large_thumb, ...gallery])}/>
                             <div className="card-top p-3 flex-column d-flex align-items-end gap-1">
                                 {/* <Link href={`/events/${slug}`} className="btn btn-s bg-theme color-theme rounded-s scale-box font-700 text-uppercase float-end">Learn More</Link> */}
                                 <PostLike style={{width: 28, height:28, lineHeight: '28px'}} exClass={'w-fit text-center bg-theme-transparent-0 rounded'} listing={listing?.id}/>
@@ -36,7 +37,6 @@ const EventCard3 = ({listing, width=320, cardBottomExClass='bg-gradient', withDe
                         </div>
                                 </div>
                             </div>
-                           {/*  <div className="card-overlay bg-gradient opacity-75"></div> */}
                     </div>
         </>
     )

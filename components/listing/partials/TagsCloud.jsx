@@ -1,9 +1,10 @@
-//import { pwaName } from '@/helpers/appjs';
+"use client";
+
 import { pwaName } from '@/helpers/appjs';
 import { siteColorObjs } from '@/helpers/base';
 import { getDirTermsUrl, getDirTerms} from '@/helpers/rest';
 import { getLocalTaxonomy } from "@/helpers/rest";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 

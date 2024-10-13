@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { openOffCanvas} from "@/helpers/appjs";
 import { isActiveLink } from "@/helpers/universal";
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { LoaderDualRing } from "../skeletons/Loaders";
 
 export default function BottomMenu({settings, btnProps, exClass='', icon, content=null}) {

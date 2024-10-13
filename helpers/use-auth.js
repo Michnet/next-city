@@ -6,7 +6,7 @@ import { atom, useSetRecoilState } from "recoil";
 import { authState, userMetaState } from "@/contexts/atoms";
 import { useSession, signOut, getSession, signIn } from "next-auth/react";
 import { authKey, kyFetch, serializeQuery, WPDomain } from './base';
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import { messageServiceWorker } from './universal';
 import { Client } from "react-hydration-provider";
 
@@ -31,7 +31,7 @@ function useProvideAuth () {
   const setRecoilAuth = useSetRecoilState(authState);
   const setUseAuthState = useSetRecoilState(useAuthState);
   //const setUMetaState = useSetRecoilState(userMetaState);
-  const router = useRouter();
+  //const router = useRouter();
 
   function setTheAuth(authObj){
     localStorage.setItem('u_cred', JSON.stringify(authObj));

@@ -1,3 +1,5 @@
+"use client";
+
 import  {useEffect, useState } from "react";
 import {openOffCanvas, showToast} from "@/helpers/appjs";
 import { useRecoilState, useRecoilValue } from "recoil";

@@ -1,3 +1,5 @@
+"use client";
+
 // import { cleanHtml} from '~/server/UniversalFunctions';
 import { memo } from 'react';
 // import { Avatar, UserAvatar } from '~/appComponents/components/UI/components';
@@ -10,7 +12,7 @@ import { Avatar } from '@/components/UI/Partials';
 import { UserAvatar } from '@/components/UI/UserAvatar';
 import { openOffCanvas } from '@/helpers/appjs';
 //import MainMenuBtn from '@/components/layouts/partials/MainMenuBtn';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { BookingView } from '@/components/listing/partials/ActionButtons';
 
 const ListingTopMenuConst = ({listing, activeKey, setActiveKey, lMenu}) => {

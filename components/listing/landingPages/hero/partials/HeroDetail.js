@@ -3,14 +3,14 @@ import { cleanHtml, randomEither } from '@/helpers/universal';
 import { useRecoilValue } from 'recoil';
 import { Client } from 'react-hydration-provider';
 import {homeurl, siteColorNamesArray, WPDomain } from "@/helpers/base";
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 //import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
 //import DateViewString from '@/components/UI/partials/dateViews/DateViewString';
 import { PriceView } from '@/components/UI/PriceView';
 import { UISizes } from '@/contexts/atoms';
 //import CountDownUI from '@/components/UI/CountDownUI';
 //import styles from '@/components/listing/styles/home1.module.css';
-import { ListingMetaMini, PreviousRouteLink } from '@/components/UI/Partials';
+import {PreviousRouteLink } from '@/components/UI/Partials';
 import Link from 'next/link';
 import PostLike from '@/components/UI/partials/social/PostLike';
 import NextPostLink from '@/components/UI/NextPostLink';
@@ -121,12 +121,12 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
              <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={5} exClass='minw-100 mb-3' listing={listing} setActiveKey={setActiveKey}/>
              </>}
              </Client>
-            <div className='_right card card-style mx-0 p-4 p-sm-5 gap-4 mb-0 row flex-lg-row flex-lg-nowrap'> 
+            <div className='_right card card-style mx-0 p-3 p-sm-5 gap-4 mb-0 row flex-lg-row flex-lg-nowrap'> 
               <div className='col-12 col-lg-6 p-0'>
-              <Client>
+              {short_desc && <Client>
               <p className = 'mb-20 text-16 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
-              </p></Client>
+              </p></Client>}
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_inline _hero mb-10 d-block'}/> : <></>}
                 <div className={`gap-2 flex-wrap d-flex justify-between`}>
                   <div className="color-theme d-flex align-items-center text-center hero_actions">

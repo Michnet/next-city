@@ -1,24 +1,30 @@
+"use client";
+
 import MainMenu from "./MainMenu"
 import { Client } from "react-hydration-provider";
 import Activity from "../UI/lists/Activity";
 import Header from "./partials/Header";
-import {useMemo, memo, useEffect, useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/router"
+import {useMemo, memo, useEffect, useState, Suspense } from "react";
+//import Image from "next/image";
+//import { useRouter } from "next/router"
 import PageLoader from "../skeletons/fullPage/PageLoader";
-import { srcWithFallback } from "@/helpers/universal";
+//import { srcWithFallback } from "@/helpers/universal";
+import { NavigationEvents } from "@/app/utils/navigation-events";
+import Script from "next/script";
+import BottomMenu from "./BottomMenu";
 
 
 function ScaffoldConst({children, uiSize, settings, headerTitle}) {
     const {isTab, isLargeTab} = uiSize;
-    const {noHeader, autoShowHeader, hideNews, uiBackground, pageClass} = settings ?? {};
+    const {noHeader, autoShowHeader,mMenuContent, hideNews, noFooter, uiBackground, pageClass} = settings ?? {};
+    const {btnProps, icon} = mMenuContent ?? {}
 
     //const cachedChildren = useMemo(() => children, [headerTitle])
     //const cachedChildren = () => children;
     const [loading, setLoading] = useState(true);
     const [loaderRoute, setLoaderRoute] = useState('')
 
-    const router = useRouter();
+    //const router = useRouter();
 
 
   const handleStarting = (url) => {
@@ -30,7 +36,7 @@ const handleStoping = () => {
   setLoading(false)
 }
 
-useEffect(() => {
+/* useEffect(() => {
       setLoading(false)
         router?.events.on('routeChangeStart', handleStarting)
         router?.events.on('routeChangeComplete', handleStoping)
@@ -40,13 +46,13 @@ useEffect(() => {
           router?.events.off('routeChangeComplete', handleStoping)
           router?.events.off('routeChangeError', handleStoping)
         }
-  }, []);
+  }, []); */
 
 useEffect(() => {
       setLoading(false);
         return () => {setLoading(true)
         }
-  }, [headerTitle, settings, router.asPath]);
+  }, [headerTitle, settings/* , router.asPath */]);
 
  
   return (<>
@@ -61,10 +67,6 @@ img.site_bg_img{
     opacity: 1;
 }`}</style>
     <div id='page_box' className={`container-fluid p-0 ${pageClass ?? ""}`}>
-        {/* {<div style={{height: '120vh', position:'fixed', top:'0', left:'0', width: '100vw'}} className='site_bg_holder position-fixed top-0'>
-          <Image  src={srcWithFallback(uiBackground, '/images/bg/pageBg.jpg')} fill className='site_bg_img object-cover top-0'/>
-          <div  className="bg-overlay h-100 bg-theme-transparent-0 position-relative" style={{position: 'relative',background: 'var(--bgThemeTransparent0)', backdropFilter:'saturate(180%) blur(20px) brightness(var(--bgBrightness))', height: '100vh'}}/>
-        </div>} */}
         <div className={`row flex-nowrap _scaffold`} /* style={{zIndex: 0, position: 'relative'}} */>
             <div className="col-auto d-none d-md-block p-0 p-md-2" style={{height: '100vh', position: 'sticky', top: '0', maxWidth: '250px', zIndex: '1'}}>
                 <div id="sidebar" className="_main collapse collapse-horizontal d-none d-md-block rounded-m bg-theme-transparent" style={{backdropFilter: 'blur(2px)'}}>
@@ -92,6 +94,11 @@ img.site_bg_img{
             <Activity/>
         </div>
     </Client>
+      <Suspense fallback={null}>
+        <NavigationEvents/>
+      </Suspense>
+      <Script strategy={'afterInteractive'} type={'module'} onReady={() => console.log('Main loaded')} src="/scripts/bootstrap.min.js"/>
+      {noFooter ? <></> : <BottomMenu btnProps={btnProps} icon={icon}/>}
     </>
   )
 }

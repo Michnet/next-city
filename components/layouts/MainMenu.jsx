@@ -1,7 +1,7 @@
 import { closeMenus } from "@/helpers/appjs"
 import { isActiveLink } from "@/helpers/universal";
 import Link from "next/link"
-import { useRouter } from "next/router"
+//import { useRouter } from "next/router"
 import { UserCard } from "../UI/UserCard"
 //import {openOffCanvas} from "@/helpers/appjs";
 import TermsGrid from './../UI/lists/TermsGrid';
@@ -11,10 +11,12 @@ import AddListingCard from "@/components/UI/partials/AddListingCard";
 import UISettings from "./UISettings";
 import MainMenuBtn from "./partials/MainMenuBtn";
 import { Client } from "react-hydration-provider";
+import { usePathname } from 'next/navigation'
 
 
 function MainMenu() {
- const router = useRouter();
+ //const router = useRouter();
+ const pathname = usePathname();
 
  const topLinks = [
     {id: 1,
@@ -76,7 +78,7 @@ function MainMenu() {
                                                 let {id, icon, color, name, routePath, isNew} = el;
                                                 return <Link key={id} href={routePath} className='close-menu' onClick={() => closeMenus()}>
                                                         <i className={`${icon} 
-                                                        ${isActiveLink(routePath, router.asPath) ? 'gradient-menu color-white' : 'gradient-highlight color-white'} 
+                                                        ${isActiveLink(routePath, pathname) ? 'gradient-menu color-white' : 'gradient-highlight color-white'} 
                                                         rounded-sm`}></i>
                                                         <span>{name}</span>
                                                         {isNew && <span className="badge bg-highlight">NEW</span>}
@@ -112,11 +114,13 @@ function MainMenu() {
                                         <div className="mb-10" key={item.id}>
                                         <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
                                         <div className="d-flex flex-column y-gap-10">
-                                            {item.menuList.map((menu, i) => (
-                                            <Link className='close-menu' onClick={() => closeMenus()} href={menu.routerPath} as={menu.routerPath} key={i}>
+                                            {item.menuList.map((menu, i) => {
+                                                const {routerPath} = menu;
+                                                return (
+                                            <Link className='close-menu' onClick={() => closeMenus()} href={menu.routerPath} as={menu.routerPath} key={routerPath}>
                                                 {menu.name}
                                             </Link>
-                                            ))}
+                                            )})}
                                         </div>
                                         </div>
                                     ))}
@@ -131,11 +135,13 @@ function MainMenu() {
                                         <div className="mb-10" key={item.id}>
                                         <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
                                         <div className="d-flex flex-column y-gap-10">
-                                            {item.menuList.map((menu, i) => (
-                                            <Link className='close-menu' onClick={() => closeMenus()} href={menu.routerPath} as={menu.routerPath} key={i}>
+                                            {item.menuList.map((menu, i) => {
+                                                const {routerPath} = menu;
+                                                return(
+                                            <Link className='close-menu' onClick={() => closeMenus()} href={menu.routerPath} as={menu.routerPath} key={routerPath}>
                                                 {menu.name}
                                             </Link>
-                                            ))}
+                                            )})}
                                         </div>
                                         </div>
                                     ))}

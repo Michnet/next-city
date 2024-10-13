@@ -1,3 +1,5 @@
+"use client";
+
 import  {useState, useEffect, memo, useMemo} from "react";
 import { Client } from "react-hydration-provider";
 // import ListingLoader from "~/appComponents/components/skeletons/React-content-loader/FullPage/ListingPage";
@@ -41,31 +43,6 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
       const {acf, content, cover, dir_tags, about_us, team, gallery, meta,phone,website,whatsapp, type} = listing;
       const {"_special-guests": special_guests, _performers:performers} = meta ?? {}
 
-      if(acf){
-        const {contactDetails} = acf;
-         /*  if(contactDetails){
-                contactsView= <PageContact phone = {phone} website={website}whatsapp={whatsapp} contacts={contactDetails}/>
-
-          } else{
-            contactsView = <div></div>
-          } */
-    
-            if(gallery?.length > 0){
-            galleryView = <Widget 
-            noPadding
-            styleName={'absolute_header handy_header shadow-none bg-transparent'}
-                            title="Gallery"
-                            icon = {'fas fa-images'}
-                            >
-                              <div className="listing_gallery">
-                                <Photos photoList={gallery}/>
-                                </div>
-                                <div className="content_footer px-2 pb-2 bottom-0 position-absolute">
-                                <button  className="btn btn-sm btn-secondary" onClick={() => {setActiveKey("gallery")}}> Go to Gallery <i className="bi bi-arrow-right-circle" /></button>
-                                </div>
-                            </Widget>
-              }
-     }
 
     /*  if(_stats?.length > 0){
       statsView = <Widget 
@@ -174,8 +151,8 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                       {teamView}
                 </div>
               </div> */}
-
-              <ResponsiveMasonry className="masonry_grid sticky_items hide_empty padded_items" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3, 1199 : 1}}>
+              <RelatedByTaxSplide titleComp={<Heading1 small exClass='mb-2 mx-3' title={'From same account'} subtitle={'Other listings by this Author'}/>} splideObj={{padding:0}} author={listing?.author_id} exclude={listing?.id}/>
+              <ResponsiveMasonry className="masonry_grid sticky_items hide_empty padded_items" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3}}>
                 <Masonry>
                   {contentView}
                   {/* <About communitySize={members_count ?? null} listing={cachedListing} /> */} 
@@ -185,10 +162,9 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                   {visionView}
                   {missionView}
                   {historyView}
-                  <div><Heading1 exClass='mb-2 mx-3' title={'Author'} subtitle={'Listing Owner'}/>
+                  {/* <div><Heading1 exClass='mb-2 mx-3' title={'Author'} subtitle={'Listing Owner'}/> */}
                   <AuthorCard listingId={listing?.id} exClass='mb-20' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
-                  <RelatedByTaxSplide titleComp={<Heading1 small exClass='mb-2 mx-3' title={'Related By Author'} subtitle={'Other listings by this Author'}/>} splideObj={{padding:0}} author={listing?.author_id} exclude={listing?.id}/>
-                  </div>
+                  {/* </div> */}
                   {contactsView}
                   {groupView}
                   {paymentsView}

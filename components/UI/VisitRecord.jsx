@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from 'react';
 import {useRecoilValue, useRecoilState } from 'recoil';
 import { actionsState, locationState } from '@/contexts/atoms';

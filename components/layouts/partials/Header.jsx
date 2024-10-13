@@ -3,7 +3,7 @@ import { openOffCanvas, toggleTheme } from "@/helpers/appjs";
 import { Client } from "react-hydration-provider";
 import { UserAvatar } from "@/components/UI/UserAvatar";
 import MainMenuBtn from "./MainMenuBtn";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {memo } from "react";
 import Logo from "@/components/UI/Logo";
 import HeaderAnnex from "./HeaderAnnex";

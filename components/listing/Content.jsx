@@ -68,14 +68,9 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
               <ListingProductsSimple isSample ={isSample} listy ids={tickets} productType="booking" listingId = {id} relatedIds={tickets}/></div>
               :
               <ListingContact light listing={listing} title={'No online booking options'} descript={'The listing manager for this listing has not added any online booking options. Contact them to inquire further'}/>
-            /* case 'community':
-              return <ListingCommunity
-              setActiveKey={setActiveKey}
-              noLink
-              scope={'groups'}
-              scope_slug = 'group_id'
-              scope_id={community_id}
-            /> */
+
+              default:
+                return <LandingPage colorHex={colorHex} activeKey={activeKey} listing={listing} setActiveKey={setActiveKey} color={color}/>
         }
     }
 
@@ -88,8 +83,6 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
           let content = itContent(id);
           
           if(content == 'empty'){
-            
-            
             const customRenderer = (tag, size, color) => {
               return (
                 <span  key={tag.id} style={{ color }} className={`fb_tag pointer tag-${size}`}>

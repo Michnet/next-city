@@ -24,7 +24,6 @@ const ListingBottomMenu = dynamic(() => import('@/components/listing/ListingBott
 
 //const ColorThief = require('colorthief');
 
-
 import SiteMapContent, { siteColorObjs, siteColors } from "@/helpers/base";
 import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
@@ -119,12 +118,13 @@ return linkzz;
         <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        {type == 'event' ? <Hero2  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> : <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>}
+        <Hero2  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>
+        {/* <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> */}
         <Content listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 mb-2 mt-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
-            <Navigator  faClass={'fad'} itemClass='col-sm-4 col-md-3 col-lg-2 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} listing={listing} activeKey={activeKey}/>
+            <Navigator  faClass={'fad'} itemClass='col-sm-4 col-md-3 col-lg-2 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} /* listing={listing} */ activeKey={activeKey}/>
             </div>
         </Client>
         <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={listing} setActiveKey={setActiveKey}/>
@@ -132,22 +132,7 @@ return linkzz;
         <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
           {/* <ListingFooter listing={listing} thumbnail={thumbnail} activeKey={activeKey} links={_links} setActiveKey={setActiveView} short_desc={short_desc} title={title?.rendered} tagline={tagline}  tabList={lMenu}    rootClassName="root-class-name"/> */}
         </LazyLoad>
-        {/* <CallToActions exClass={'rounded-0 mx-2 text-white bg-dark-dark'} title='Get listed' centered thin   actionComponent={
-            <div className="d-flex  gap-3 flex-center">
-                <Link href={'/add-listing'}><button
-            className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500 border-dark-light shadow-0"
-            >
-            Create event page
-            </button></Link>
-            <Link href={'/about/about-us'}><button
-            className="btn btn-outline-theme rounded-22 w-auto px-10 h-full text-14 fw-500 border-dark-light shadow-0"
-            >
-            Learn More
-            </button></Link>
-            </div>
-            }
-            descript = {"List your event on LyveCity today. It's FREE"}
-            /> */}
+        
     </div>
 
     <Client>
@@ -159,7 +144,6 @@ return linkzz;
       </style>
     </Client>
 
-    {/* <ListingSideMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> */}
     <RightMenu lMenu={lMenu} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>
     <div id="activeViewModal" className="menu menu-box-bottom menu-box-detached">
         <div className="menu-title">

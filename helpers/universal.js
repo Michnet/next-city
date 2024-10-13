@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 import { closeMenus } from "./appjs";
 import { kyFetch, open_ai_rapid_headers, serializeQuery, WPDomain, siteSettings } from "./base";
 
@@ -51,14 +50,6 @@ export function sortArray(arr, key, ascending){
   }
 }
 
-export const useDidMountEffect = (func, deps) => {
-  const didMount = useRef(false);
-
-  useEffect(() => {
-      if (didMount.current) func();
-      else didMount.current = true;
-  }, deps);
-}
 
 export const createBPActivity = async (payload) =>{ 
   try{
@@ -563,8 +554,8 @@ export const generateTempArray = (maxItems) => {
     return result;
   };
 
-export function hashtag(text){
-    var repl = text.replace(/#(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1">#$1</a>').replace(/@(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1">@$1</a>');
+export function hashtag(text=''){
+    var repl = text ? text.replace(/#(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1">#$1</a>').replace(/@(\w+)/g, '<a class="hashed_text" href="/search?search_keywords=$1">@$1</a>') : '';
     return `<p>${repl}</p>`;
 }
 

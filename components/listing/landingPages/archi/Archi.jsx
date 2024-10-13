@@ -1,7 +1,9 @@
+"use client";
+
 //import ArchiHeader from "./parts/ArchiHeader";
-import Head from "next/head"
+//import Head from "next/head"
 import { Client } from "react-hydration-provider";
-import {Suspense } from "react";
+//import {Suspense } from "react";
 //import ParallaxSection from "@/components/UI/sections/ParallaxSection";
 import { randomEither, resizedImage, /* cleanHtml, */ shuffleArray, srcWithFallback } from '@/helpers/universal';
 import ListingInfoCard from "@/components/listing/landingPages/hero/partials/ListingInfoCard";
@@ -24,6 +26,7 @@ import MegaGalleryMini from "@/components/UI/Galleries/MegaGalleryMini";
 import  ListingProductsSimple  from '@/components/listing/shop/ListingProductsSimple';
 import { PriceView } from "@/components/UI/PriceView";
 import FeaturesCarousel from "@/components/UI/features/FeaturesCarousel";
+import { useRouter } from "next/navigation";
 
 
 
@@ -33,6 +36,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
     const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us ?? {};
     let wcu = _wcu ? _wcu[0] : null
+    const router = useRouter();
 
 
     let detailView, reviewsView, shopView,ticketsHint, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
@@ -67,7 +71,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 <div className='tags_row card card-style across_border partial_border pb_right mb-50'>
                 <div className='row_content'>
                     <TagsCloud live hue={colorHex} dark={true} ids={dir_tags} /* hue={color} */ onClickFunc={tagClick}/>
-                    <DualColorHeader exClass='position-absolute bottom-0 right-0 pe-3 opacity-30 lg_text' title={'# Tagged In'} />
+                    <DualColorHeader titleClass='fw-bold text-30 color-theme' exClass='position-absolute bottom-0 right-0 pe-3 opacity-20 lg_text' title={'# Tagged In'} />
                  </div>
                  </div></div>
                  </Section>
@@ -204,7 +208,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     </Section>
                 }
 
-          reviewsView = <Suspense offset={150} once height={200}>
+          reviewsView = <>
             <Section dark fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`}>
                 <div className='pt-0 pt-sm-5'>
               <Client>
@@ -212,13 +216,13 @@ function Archi({listing, setActiveKey, colorHex, color}){
                     <PostReviews sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
               </Section>
-              </Suspense>
+              </>
               
     }
 
   return (<>
-    <Head>
-        <link href="/archi/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap" />
+    <>
+        {/* <link href="/archi/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap" /> */}
         <link href="/archi/css/plugins.css" rel="stylesheet" type="text/css"/>
         <link href="/archi/css/style.css" rel="stylesheet" type="text/css"/>
         <link href="/archi/css/color.css" rel="stylesheet" type="text/css"/>
@@ -227,7 +231,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
         <link rel="stylesheet" href="/archi/css/colors/yellow.css" type="text/css" id="colors"/>
         <link rel="stylesheet" href="/archi/rs-plugin/css/settings.css" type="text/css"/>
         <link rel="stylesheet" href="/archi/css/rev-settings.css" type="text/css"/>
-    </Head>
+    </>
     <div className="page_wrapper archi">
 <main id="homepage">
     <div id="wrapper" className="">
@@ -237,7 +241,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
            {/*  <ParallaxSection faintBg={true} exClass='themedOverlay' bg={cover} underLay={true} overLay={false}>
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
-            <section className="d-none d-lg-block bg-transparent hide_if_empty shadow-0 rounded-0 py-0 px-0 px-sm-4 overflow-visible">
+            <section className="d-none d-lg-block bg-transparent hide_if_empty shadow-0 rounded-0 py-0 px-0 overflow-visible">
                 <MegaGalleryMini imgShadows columnsObj={{0: 3, 1024: 4}} gutter={10} exClass='minw-100' listing={listing} setActiveKey={setActiveKey}/>
             </section>
             {detailView}

@@ -8,7 +8,6 @@ export default function listingMenu({listing, userId}){
   const {faqs} = about_us ?? {};
   //const {act_dates} = useRecoilValue(activeDateState) ?? {};
   let gallery = meta?._job_gallery;
-  console.log('listing', listing)
 
   const acf = listing?.acf;
   const{listing_articles, general_merchandise, tickets} = acf ?? {};
@@ -19,7 +18,7 @@ export default function listingMenu({listing, userId}){
     icon : "fa-home-lg-alt",
     title : 'Home', 
     subTitle : "Home Page",
-    description: ``, 
+    description: '', 
     widgetClass: 'pt-0 no-pad',
   },
   

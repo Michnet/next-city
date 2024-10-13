@@ -1,4 +1,6 @@
-import  { useEffect, useState } from "react";
+"use client";
+
+//import  { useEffect, useState } from "react";
 import { PriceView } from '@/components/UI/PriceView';
 //const Image = dynamic(() => import("next/image"));
 import { Client } from "react-hydration-provider";
@@ -12,17 +14,17 @@ import Image from "next/image";
 
 const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {
   const {user} = useRecoilValue(authState);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const {ticket_min_price_html} = listing ?? {}
   const {isMobile, isTab} = useRecoilValue(UISizes);
-
+/* 
   useEffect(() => {
     setLoading(false)
-  
+
     return () => {
       setLoading(true)
     }
-  }, [listing, user]);
+  }, [listing, user]); */
   
 
   let coverPhoto,  firstWord, lastWords,  callView;

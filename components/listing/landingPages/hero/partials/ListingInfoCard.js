@@ -1,3 +1,5 @@
+"use client";
+
 import { Client } from 'react-hydration-provider';
 import { memo, useEffect } from 'react';
 import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDescriptive';
@@ -39,13 +41,15 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
             <div style={{rowGap: '10px', columnGap: '20px'}} className={`w-100 row md:flex-row flex-sm-nowrap flex-col position-relative`}>
               <div className={`col-12 col-sm-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']} /* data-aos='fade-left' */><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
-              {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '500'}} /* data-aos='fade-right' */>
-                  {tagline}
-                </span>}
-                {venue && <span className={`text-30 fw-600 truncate-4 smLine`} /* data-aos='fade-left' */>
-                  <span className='fw-300 opacity-50'>@</span>
+              {venue && <span className={`text-30 fw-300 truncate-4 smLine`} /* data-aos='fade-left' */>
+                  {/* <span className='fw-400 opacity-50'>@</span> */}
+                  <i className='fal fa-street-view text-22 me-2 color-listing-theme'/>
                   {venue}
                 </span>}
+              {tagline && <span className={`text-18 color-theme opacity-50`} style={{fontWeight: '500'}} /* data-aos='fade-right' */>
+                  {tagline}
+                </span>}
+                
               </div>
               <Client><div className="flex-grow-1 gap-2 d-flex md:items-end items-start flex-column col-12 col-sm-6 px-0" /* data-aos='fade-right' */>
                 {id ? <><CountDownUI light fromActive eventId={id} />

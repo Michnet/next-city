@@ -1,3 +1,5 @@
+"use client";
+
 // import { ListingContact } from "../../UI/components";
 import CallToActions from "@/components/UI/CallToActions";
 import { authState } from "@/contexts/atoms";

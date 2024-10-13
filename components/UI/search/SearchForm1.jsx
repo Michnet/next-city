@@ -1,5 +1,5 @@
 import  { useState, useEffect} from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Dir_tags, Dir_categories, Dir_locations } from '@/public/data/localCache';
 import { closeMenus } from '@/helpers/appjs';
 

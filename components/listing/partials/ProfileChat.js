@@ -1,3 +1,5 @@
+"use client";
+
 import {useState, useEffect} from "react";
 // import Conversation from "../../chat/Conversation";
 // import CircularProgress from "../../CircularProgress";

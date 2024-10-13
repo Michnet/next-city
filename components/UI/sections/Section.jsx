@@ -1,3 +1,5 @@
+"use client";
+
 import { srcUrlWithFallback} from "@/helpers/universal";
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 

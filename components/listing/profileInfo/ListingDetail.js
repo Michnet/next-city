@@ -1,3 +1,5 @@
+"use client";
+
 import  {useState, useEffect, memo} from "react";
 import { Client } from "react-hydration-provider";
 import Widget from "@/components/UI/partials/Widget";

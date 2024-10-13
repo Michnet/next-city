@@ -1,9 +1,11 @@
+"use client";
+
 import { siteColors } from "@/helpers/base"
 import { randomEither } from "@/helpers/universal"
 import { Client } from "react-hydration-provider";
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
-export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, exClass}) {
+export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, exClass, titleClass=''}) {
   return (
     <div className={`d-flex pb-2 align-items-center gap-2  ${exClass ?? ''}`}>
         {iconClass ? <div className="align-self-center ms-auto">
@@ -11,7 +13,7 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, e
         </div> : <></>}
         <div>
             {<h6 className="mb-n1 opacity-80 color-highlight">{subTitle}</h6>}
-            <h3>{title}</h3>
+            <h3 className={titleClass}>{title}</h3>
             {desc && <p className="opacity-70">{desc}</p>}
         </div>
     </div>

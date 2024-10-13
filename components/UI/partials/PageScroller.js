@@ -1,5 +1,18 @@
-import  {useRef} from "react";
-import { scrollToSpot, useDidMountEffect } from "@/helpers/universal";
+"use client";
+
+import  {useRef, useEffect} from "react";
+import { scrollToSpot } from "@/helpers/universal";
+
+
+
+export const useDidMountEffect = (func, deps) => {
+  const didMount = useRef(false);
+
+  useEffect(() => {
+      if (didMount.current) func();
+      else didMount.current = true;
+  }, deps);
+}
 
 const PageScroller = ({activeKey, resetKey}) => {
   

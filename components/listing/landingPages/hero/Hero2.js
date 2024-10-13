@@ -1,11 +1,13 @@
+"use client"
+
 import dynamic from 'next/dynamic';
 import { cleanHtml, srcWithFallback, randomEither, fetchRephrase } from '@/helpers/universal';
 import { useRecoilValue } from 'recoil';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { Client } from 'react-hydration-provider';
+//import { Client } from 'react-hydration-provider';
 import {fallbackImgSrcSet, homeurl, WPDomain } from "@/helpers/base";
 //import { BookingView } from '@/components/listing/partials/ActionButtons';
-import { Suspense, useEffect } from 'react';
+import { Suspense} from 'react';
 import Mirrored from '@/components/UI/partials/Mirrored';
 import { UISizes } from '@/contexts/atoms';
 import { HorizontalGrid } from '@/components/UI/Galleries/MegaGallery';
@@ -21,7 +23,7 @@ import HeroDetail from './partials/HeroDetail';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
-const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, exClass=''}) => {
+const Hero2 = ({listing, main=false, activeKey, params={view :''}, color, setActiveKey, user, token, exClass=''}) => {
   const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
   const {greeting} = listing.landing;
   const {general_merchandise} = acf ?? {}
@@ -85,10 +87,12 @@ const Hero2 = ({listing, palette, activeKey, color, setActiveKey, user, token, e
      }
   } */
   //let nowColor = randomColor();
-
-  if(activeKey !== 'home' && activeKey !=='cover'){
-    const ProfileHeaderMini = dynamic(() => import('./profileHeaderMini'));
-    return <ProfileHeaderMini activeKey={activeKey}   color={color} setActiveKey={setActiveKey} listing={listing}/>
+  if(main){
+  }else{
+    if(activeKey !== 'home' && activeKey !=='cover'){
+      const ProfileHeaderMini = dynamic(() => import('./profileHeaderMini'));
+      return <ProfileHeaderMini activeKey={activeKey}   color={color} setActiveKey={setActiveKey} listing={listing}/>
+    }
   }
 
   return (<>

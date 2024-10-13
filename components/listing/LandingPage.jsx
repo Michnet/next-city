@@ -1,6 +1,9 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import { memo } from "react";
-import { Client } from "react-hydration-provider";
+import Archi from "./landingPages/archi/Archi";
+//import { Client } from "react-hydration-provider";
 //import BusinessOne from "./landingPages/Business1";
 //import Rockfest from "./landingPages/rockfest/Rockfest";
 //import ProfileInfo from "./profileInfo/ProfileInfo";
@@ -16,7 +19,7 @@ import { Client } from "react-hydration-provider";
     const {type} = listing;
 
     function landingView(){
-      const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
+      //const Archi = dynamic(() => import("./landingPages/archi/Archi"), {ssr: false});
     return <Archi listing={listing} setActiveKey={setActiveKey} color={color} colorHex={colorHex}/>
       
      /*  switch (type) {
@@ -32,10 +35,7 @@ import { Client } from "react-hydration-provider";
   }
 
     return  <div className="landing_page">
-              {/* */}
-              
                 {landingView()}
-           {/*  <BusinessOne styles={styles}  color={color} colorHex={colorHex} listing ={listing} cover={cover} setActiveKey={setActiveKey}/> */}
         </div>
         }
 

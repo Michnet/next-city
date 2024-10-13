@@ -1,6 +1,8 @@
+"use client";
+
 import  { useEffect, useState } from "react";
 
-const DualColorTitle = ({string}) => {
+const DualColorTitle = ({string, titleClass=''}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const DualColorTitle = ({string}) => {
   }
 
     return ( 
-                   <h3 className={`ds_title styled_title`}><span className="ds_span _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
+                   <h3 className={`ds_title styled_title ${titleClass}`}><span className="ds_span _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
                     {lastWords}
                     </h3>);
   

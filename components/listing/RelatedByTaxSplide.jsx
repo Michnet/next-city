@@ -1,3 +1,5 @@
+"use client";
+
 import { nextPostState } from "@/contexts/atoms";
 import { useEffect, useState, useMemo } from "react";
 import { useSetRecoilState } from "recoil";

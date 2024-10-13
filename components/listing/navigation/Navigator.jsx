@@ -1,14 +1,14 @@
-import { authState } from "@/contexts/atoms";
+//import { authState } from "@/contexts/atoms";
 import { closeMenus } from "@/helpers/appjs";
 import { Client } from "react-hydration-provider";
-import { useRecoilValue } from "recoil";
-import listingMenu from "../ListingMenu";
+//import { useRecoilValue } from "recoil";
+//import listingMenu from "../ListingMenu";
 import { memo, useEffect } from "react";
 //import NavItem from "./partials/NavItem";
 import NavItemCard from "./partials/NavItemCard";
 
-function Navigator({listing, items = null, faClass, activeKey, setActiveKey, lMenu, exClass='', itemClass='', randomColor=false}) {
-    const {user} = useRecoilValue(authState);
+function Navigator({items = null, faClass, activeKey, setActiveKey, lMenu, exClass='', itemClass='', randomColor=false}) {
+    //const {user} = useRecoilValue(authState);
     let listView;
 
 	useEffect(() => {

@@ -1,3 +1,5 @@
+"use client";
+
 import { activeDateState } from "@/contexts/atoms";
 import { getEventDates } from "@/helpers/rest";
 import { createOccurenceState } from "@/helpers/universal";

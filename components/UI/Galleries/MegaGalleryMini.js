@@ -1,4 +1,4 @@
-//import dynamic from "next/dynamic";
+"use client";
 
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import {useEffect, useState } from "react";

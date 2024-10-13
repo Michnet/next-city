@@ -16,7 +16,7 @@ import RelatedListings from "@/components/listing/partials/RelatedListings";
 
 
 export async function getStaticPaths() {
-    const res = await fetch(fetchIdsUrl({type: 'job_listing', listing_type:'event', slugs: true}));
+    const res = await fetch(fetchIdsUrl({type: 'job_listing', per_page: 10, page: 1, listing_type:'event', slugs: true}));
     const data = await res.json();
     const paths = data?.map(item => {
         return {
@@ -31,8 +31,6 @@ export async function getStaticPaths() {
   }
   
   export async function getStaticProps({ params }) {
-
-  
     let serverQuery = await listingServerQuery(params);
     let {serverObj} = serverQuery ?? {};
     let {listing} = serverObj ?? {};
