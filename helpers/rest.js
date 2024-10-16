@@ -847,7 +847,7 @@ export async function explorerServerQuery({query, listing_type}){
   async function topListings(){
     let thumbsize = 'xtra_large_thumb'
     let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,max_discount,${thumbsize}`, 
-    listing_type: listing_type ?? 'all', per_page: 5, 'event-date':'any-day', sort:'latest'};
+    listing_type: listing_type ?? 'all', per_page: 5, 'event-date':'any-day', sort:'latest',category:category,region:region};
 
     const list = await advancedFetchListings(load);
     if(list){

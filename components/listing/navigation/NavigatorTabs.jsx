@@ -1,16 +1,14 @@
-"use client";
-
+//import { authState } from "@/contexts/atoms";
 import { closeMenus } from "@/helpers/appjs";
 import { Client } from "react-hydration-provider";
-//import listingMenu from "../../../../components/listing/ListingMenu";
-import {useEffect } from "react";
+//import { useRecoilValue } from "recoil";
+//import listingMenu from "../ListingMenu";
+import { memo, useEffect } from "react";
 //import NavItem from "./partials/NavItem";
-import NavItemCard from "../../../../components/listing/navigation/partials/NavItemCard";
-import { useRouter } from "next/navigation";
+import NavItemCard from "./partials/NavItemCard";
 
-function Navigator({items = null, faClass, base, slug, activeKey, lMenu, exClass='', itemClass='', randomColor=false}) {
-	const router = useRouter();
-    const setActiveKey = (newKey) => router.push(`/${base}/${slug}/${newKey}`);
+function NavigatorTabs({items = null, faClass, activeKey, setActiveKey, lMenu, exClass='', itemClass='', randomColor=false}) {
+    //const {user} = useRecoilValue(authState);
     let listView;
 
 	useEffect(() => {
@@ -40,7 +38,7 @@ function Navigator({items = null, faClass, base, slug, activeKey, lMenu, exClass
 							if(el?.content !== 'empty'){
 								const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
 							  
-								return <li onClick={() => {closeMenus(); setActiveKey(id)}} className={`close-menu overflow-visible position-relative ${activeKey === id ? 'active' : ''} ${itemClass}`}  key={id}>
+								return <li id={`nav-${id}-tab`} onClick={() => {closeMenus(); setActiveKey(id)}} data-bs-toggle="tab" data-bs-target={`#nav-${id}`} type="button" role="tab" aria-controls={`nav-${id}`} aria-selected={activeKey == id} className={`nav-link close-menu overflow-visible position-relative ${activeKey === id ? 'active' : ''} ${itemClass}`}  key={id}>
 									  <NavItemCard randomColor={randomColor} faClass={faClass ?? 'fal'} icon={icon} buttony={buttony} title={title} subTitle={subTitle} badgeNumber={badgeNumber} badgeClass={badgeClass}/>
 								  </li>
 								}
@@ -50,10 +48,10 @@ function Navigator({items = null, faClass, base, slug, activeKey, lMenu, exClass
       }
   return (
     <Client>
-		<ul className={`listing_navigator ${exClass}`}>
+		<nav><div className={`nav nav-tabs listing_navigator ${exClass}`} id="nav-tab" role="tablist">
 			{listView}
-		</ul>
+		</div></nav>
     </Client>
   )
 }
-export default Navigator
+export default NavigatorTabs

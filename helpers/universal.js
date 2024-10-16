@@ -625,7 +625,6 @@ export const scrollTop = () => {
 };
 
 export function resizedImage(imgUrl='', desiredSize){
-  console.log('imgUrl', imgUrl);
   if(imgUrl?.includes(siteSettings.wpDomain) || imgUrl?.includes(siteSettings.cdnDomain)){
     switch (true) {
       case imgUrl.includes('.jpeg'):

@@ -1,6 +1,4 @@
-"use client";
-
-//import  { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { PriceView } from '@/components/UI/PriceView';
 //const Image = dynamic(() => import("next/image"));
 import { Client } from "react-hydration-provider";
@@ -10,24 +8,27 @@ import {fallbackImgSrcSet } from "@/helpers/base";
 import { srcWithFallback } from "@/helpers/universal";
 import VisitorActions from "../../partials/VisitorActions";
 import Image from "next/image";
+import { Heading1 } from '@/components/UI/partials/headings/Heading1';
 
 
-const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {
+const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null, lMenu}) => {
   const {user} = useRecoilValue(authState);
-  //const [loading, setLoading] = useState(true);
+  const [activeObj, setActiveObj] = useState(null);
   const {ticket_min_price_html} = listing ?? {}
   const {isMobile, isTab} = useRecoilValue(UISizes);
-/* 
-  useEffect(() => {
-    setLoading(false)
-
-    return () => {
-      setLoading(true)
-    }
-  }, [listing, user]); */
-  
 
   let coverPhoto,  firstWord, lastWords,  callView;
+
+  useEffect(() => {
+    if(lMenu){
+      setActiveObj(lMenu.filter((el) => el.id == activeKey)[0])
+    }
+    return () => {
+      setActiveObj({id:'home'})
+    }
+  }, [listing, user, lMenu, activeKey]);
+  
+
 
   if(listing){
 
@@ -63,6 +64,7 @@ const ProfileHeaderMini = ({listing, setActiveKey, activeKey=null}) => {
                 {/* tagline && <h2 className="text-16 fw-normal" dangerouslySetInnerHTML={{__html: tagline}}/> */} 
                    <h1 className="styled_title"><span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/> 
                     <span className="list_title _last" dangerouslySetInnerHTML={{__html: lastWords}}/> 
+                    {activeObj && activeObj?.id != 'home' && <Heading1 exClass='mb-3 listing_view_heading' title={activeObj?.subTitle} subtitle={activeObj?.description}/>}
                     </h1>
                   </div>
                   </Client>

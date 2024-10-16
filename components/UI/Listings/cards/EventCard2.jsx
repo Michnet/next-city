@@ -3,12 +3,12 @@ import Link from "next/link";
 import DateView from "../../partials/dateViews/DateView";
 import Image from 'next/image';
 import { ListingMetaMini, ListingMeta, SlickArrow } from "../../Partials";
-import { PriceView } from "../../PriceView";
+//import { PriceView } from "../../PriceView";
 import TermTag from "../../partials/TermTag";
 //import Slider from "react-slick";
 //import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
 import { fallbackImgSrcSet } from '@/helpers/base';
-import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
+//import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
 
 const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, type} = listing;

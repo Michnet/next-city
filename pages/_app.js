@@ -25,6 +25,7 @@ import '@splidejs/react-splide/css';
 import { Analytics} from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import RouteLoader from "@/components/layouts/RouteLoader";
+import { SiteLinksSearchBoxJsonLd } from "next-seo";
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;
@@ -52,6 +53,15 @@ function MyAppConst({ Component, pageProps, platform }) {
 }, []);
 
   return <>
+    <SiteLinksSearchBoxJsonLd
+      url="https://lyvecity.com"
+      potentialActions={[
+        {
+          target: 'https://lyvecity.com/search?search_keywords',
+          queryInput: 'best restaurant',
+        }
+      ]}
+    />
       <RecoilRoot>
       <SeoHead seoMeta={seoMeta}/>
         <SessionProvider>

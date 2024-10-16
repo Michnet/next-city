@@ -6,7 +6,7 @@ import Activity from "../UI/lists/Activity";
 import Header from "./partials/Header";
 import {useMemo, memo, useEffect, useState, Suspense } from "react";
 //import Image from "next/image";
-//import { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import PageLoader from "../skeletons/fullPage/PageLoader";
 //import { srcWithFallback } from "@/helpers/universal";
 import Script from "next/script";
@@ -23,7 +23,7 @@ function ScaffoldConst({children, uiSize, settings, headerTitle}) {
     const [loading, setLoading] = useState(true);
     const [loaderRoute, setLoaderRoute] = useState('')
 
-    //const router = useRouter();
+    const router = useRouter();
 
 
   const handleStarting = (url) => {
@@ -35,7 +35,7 @@ const handleStoping = () => {
   setLoading(false)
 }
 
-/* useEffect(() => {
+useEffect(() => {
       setLoading(false)
         router?.events.on('routeChangeStart', handleStarting)
         router?.events.on('routeChangeComplete', handleStoping)
@@ -45,7 +45,7 @@ const handleStoping = () => {
           router?.events.off('routeChangeComplete', handleStoping)
           router?.events.off('routeChangeError', handleStoping)
         }
-  }, []); */
+  }, []);
 
 useEffect(() => {
       setLoading(false);
@@ -77,7 +77,6 @@ img.site_bg_img{
                     {<Header headerTitle={headerTitle} headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
                 </>}
                 {/* {cachedChildren} */}
-                {/* <PageLoader route={loaderRoute}/> */}
                 {loading ? <PageLoader route={loaderRoute}/> : children}
             </div>
             <Client>{!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>

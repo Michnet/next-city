@@ -9,7 +9,7 @@ import Mirrored from "../UI/partials/Mirrored";
 import { fallbackImgSrcSet } from '@/helpers/base';
 import { useRouter } from 'next/navigation';
 
-function RightMenu({listing, activeKey, setActiveKey, lMenu, base, slug, appRouter=false}) {
+function RightMenu({listing, activeKey, setActiveKey, lMenu, base, slug}) {
     const {cover, large_thumb, title, locations} = listing ?? {};
     let listView;
 	const router = useRouter();
@@ -24,7 +24,7 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu, base, slug, appRout
                       if(el?.content !== 'empty'){
                       const {id, icon, buttony, title, subTitle, badgeNumber, badgeClass} = el;
 					  if(buttony){
-						return <button onClick={() => {closeMenus(); appRouter ? router.push(`/${base}/${slug}/${id}`) : setActiveKey(id)}} className="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-highlight btn-icon text-start" key={id}>
+						return <button onClick={() => {closeMenus(); setActiveKey(id)}} className="btn btn-m shadow-bg shadow-bg-m mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s gradient-highlight btn-icon text-start" key={id}>
 						<i className={`fal ${icon} fw-600  font-15 text-center`}></i>
 						<span className="position-relative color-white">{subTitle}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>
@@ -32,7 +32,7 @@ function RightMenu({listing, activeKey, setActiveKey, lMenu, base, slug, appRout
                                       </span> : <></>}</span>
 					</button>
 					  }
-                      return <span onClick={() => {closeMenus(); appRouter ? router.push(`/${base}/${slug}/${id}`) : setActiveKey(id)}} className={`_link close-menu ${activeKey === id ? 'active' : ''}`}  key={id}>
+                      return <span onClick={() => {closeMenus(); setActiveKey(id)}} className={`_link close-menu ${activeKey === id ? 'active' : ''}`}  key={id}>
 							<i className={`fal ${icon ?? 'far fa-square'} font-20 bg-transparent rounded opacity-70`}></i>
 							<span className="position-relative">{buttony ? subTitle : title}
                                       {badgeNumber > 0 ? <span style={{marginTop: '0 !important'}} className={`position-absolute top-0 start-100 badge rounded-pill ${badgeClass ?? 'bg-info'}`}>

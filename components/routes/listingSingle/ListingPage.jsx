@@ -32,6 +32,7 @@ import { Heading1 } from "@/components/UI/partials/headings/Heading1";
 //import HeroGrid from "@/components/listing/landingPages/hero/HeroGrid";
 import HeroParallax from "@/components/listing/landingPages/hero/HeroParallax";
 import ProfileInfo from "@/components/listing/profileInfo/ProfileInfo";
+import ContentTabs from "@/components/listing/Content-Tabs";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
   const ListingPageConst = ({listing, themeColor, themeColorHex, listingType}) => {
@@ -43,25 +44,26 @@ const Navigator = dynamic(() => import("@/components/listing/navigation/Navigato
     const [view, setView] = useRecoilState(listingViewState);
     const {user, token} = useRecoilValue(authState);
     //const activeView = useRecoilValue(listingViewState);
-    const [activeKey, setActiveKey] = useState(query?.view ?? view);
+    //const [activeKey, setActiveKey] = useState(query?.view ?? view);
+    const [activeKey, setActiveKey] = useState(router.asPath.split('#')[1] ?? view);
 
     function setActiveView(view){
      /*  const url = {
-        pathname: router.pathname,
+        pathname: router.as,
         query: { ...router.query, view: view }
       }
       router.push(url, undefined, { shallow: true }) */
       setActiveKey(view)
     }
-
+/* 
 useEffect(() => {
-  setActiveKey(view);
+  setActiveKey(router.asPath.split('#')[1] ?? view);
   return () => setActiveKey(view);
-}, [listing?.id, view]);
+}, [listing?.id, view]); */
 
 useEffect(() => {
   scrollTop();
-  setActiveKey(query?.view ?? view);
+  setActiveKey(router.asPath.split('#')[1] ?? view);
 }, [query?.view, view]);
 
 const viewModes = [ { id: 1, title: 'Wall', mode : 'home' }, /* { id: 2, title: 'Profile', mode : 'profile' }, */ { id: 3, title: 'Shop', mode : 'merchandise' }, { id: 4, title: 'Cover Only', mode : 'cover' } ];
@@ -70,8 +72,8 @@ let VisitorActionsView;
 const cachedListing = useMemo( () => listing, [listing?.id] );
 //const color = useMemo( () => randomEither(siteColors), [cachedListing.id] );
 const color = themeColor;
-const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing?.id, user?.id] );
-
+//const lMenu = useMemo(() => listingMenu({listing:cachedListing, userId: user?.id}), [listing?.id, user?.id]);
+let lMenu = listingMenu({listing:cachedListing});
 
 if(listing){
     VisitorActionsView = <div>
@@ -102,7 +104,7 @@ if(listing){
   lMenu.map((el) => {
   if(el?.content !== 'empty'){
   const {id, icon, buttony, title, subTitle} = el;
-  linkzz.push({ name: title, routerPath: `/events/${slug}?view=${id}` })
+  linkzz.push({ name: title, routerPath: `/${type}s/${slug}/#${id}` })
   }
 });
 return linkzz;
@@ -118,9 +120,9 @@ return linkzz;
         <div className="page-content single_listing">
 
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
-        <Hero2  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>
+        <Hero2 lMenu={lMenu}  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>
         {/* <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> */}
-        <Content listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
+        <ContentTabs listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 mb-2 mt-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
@@ -182,6 +184,6 @@ return linkzz;
   }
 
 
-  const ListingPage = memo(ListingPageConst);
+  //const ListingPage = memo(ListingPageConst);
   
-  export default ListingPage;
+  export default ListingPageConst;

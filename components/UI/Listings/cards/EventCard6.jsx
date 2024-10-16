@@ -24,20 +24,19 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
     const imgArr2 = shuffleArray([_embedded['wp:featuredmedia'][0].source_url, ...gallery]);
 
     return (<>
-    <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_6 event_card_2 m-0 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
+    <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_6 event_card_2 m-0 ${exClass} ${transparent ? 'bg-transparent' : ''}`} style={{width: width}}>
 
-            <div className="gap-2 activity_header mb-2 pt-2  d-flex align-items-center">
-                <div className='hide_if_empty'>
-                    {/* <img src={user_avatar?.thumb} width={avatarSize} className="rounded-xl mt-1"/> */}
+            <div className="gap-2 activity_header  d-flex align-items-center">
+                {/* <div className='hide_if_empty'>
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date darky mb-2 me-2'/> : <></>}
-                </div>
+                </div> */}
                 <div className="minw-0 flex-shrink-1 flex-grow-1">
                     {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
-                    <TermTag exTagClass={'rounded-3 text-13 fw-500 color-theme'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
-                    <Link href={`/${type}s/${slug}`}><h5 className={`smLine text-capitalize _title ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h5></Link>
+                    {/* <TermTag exTagClass={'rounded-3 text-13 fw-500 color-theme'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
+                    <Link href={`/${type}s/${slug}`}><h5 className={`smLine text-capitalize _title ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h5></Link> */}
                     <div className="title_meta d-flex  flex-column lh-11">
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
-                        <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div>
+                        {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customEndDate={event_date[0].end} customDate={event_date[0].start}/> : <></>} */}
                         {/* <div className="pe-2"><span className="font-13 opacity-40 fw-400 accordionfont-11 text-truncate d-block">{tagline}</span></div> */}
                         
@@ -70,16 +69,16 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
                 <div className="content mt-0 mb-1 mx-0">
                     <div className="_content gx-mb-0">
                     <div className="d-flex gap-2 mb-1">
-                {/* <div className="hide_if_empty">
+                <div className="hide_if_empty">
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
-                </div> */}
+                </div>
                 <div className="minw-0 flex-shrink-1">
-                    {/* <h5 className="_title mb-0 font-16 font-700">{cleanHtml(title.rendered)}</h5> */}
-                    {/* <TermTag exTagClass={'rounded-3 text-12 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/> */}
+                    <h5 className="_title mb-0 font-16 text-capitalize font-700 truncate-2">{cleanHtml(title.rendered).toLowerCase()}</h5>
+                    <TermTag exTagClass={'rounded-3 text-12 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                     {/* <Link href={`/${type}s/${slug}`}><h3 className={`smLine text-capitalize truncate fw-600 _title`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link> */}
-                    <div className="line-height-sm color-theme short_desc">
-                                <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
-                            </div>
+                    {/* <div className="line-height-sm color-theme short_desc">
+                        <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
+                    </div> */}
                     <div className="title_meta d-flex  flex-column lh-11">
                         {/* <div className="pe-2"><span className="font-11 opacity-60 accordionfont-11 text-truncate">@{slug}</span></div> */}
                         {/* <div><span className="opacity-40 font-11">{dayjs(localiseDate(modified)).fromNow()}</span></div> */}

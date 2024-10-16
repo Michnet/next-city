@@ -2,9 +2,11 @@
 //import { useRecoilValue } from "recoil";
 //import { activeDateState, listingNoticesState } from "~/contexts/contexts";
 
+import { cleanHtml, typeName } from "@/helpers/universal";
+
 export default function listingMenu({listing, userId}){
 
-  const {type, about_us, author_id,community_id,meta} = listing ?? {};
+  const {type, about_us, author_id,community_id,meta, title} = listing ?? {};
   const {faqs} = about_us ?? {};
   //const {act_dates} = useRecoilValue(activeDateState) ?? {};
   let gallery = meta?._job_gallery;
@@ -17,8 +19,8 @@ export default function listingMenu({listing, userId}){
     id : 'home',
     icon : "fa-home-lg-alt",
     title : 'Home', 
-    subTitle : "Home Page",
-    description: '', 
+    subTitle : "Welcome",
+    description: `Welcome to ${cleanHtml(title.rendered)} on LyveCity.`, 
     widgetClass: 'pt-0 no-pad',
   },
   
@@ -50,7 +52,8 @@ if(general_merchandise?.length > 0){
     id : 'merchandise',
     icon: "fa-store-alt", 
     title: 'Shop',
-    subTitle : "Our Store",
+    subTitle : "Our Shop",
+    description: `Checkout our online store at ${cleanHtml(title.rendered)} on LyveCity.`, 
     widgetClass: 'shop widgey gx-px-lg-0 bg-transparent',
     badgeNumber: general_merchandise?.length ?? 0,
     badgeClass: 'bg-warning',
@@ -71,6 +74,7 @@ if(type === 'event' || type === 'special-sale'){
       icon: 'fa-calendar-alt',
       title: 'Dates',
       subTitle : 'Occurences', 
+      description: `The ${cleanHtml(title.rendered)} ${typeName(type)} dates on LyveCity. Connect now and learn more`, 
       widgetClass:  'profile widgey pad_tab',
       //badgeNumber: act_dates?.length ?? 0,
       badgeClass: 'bg-success'
@@ -85,6 +89,7 @@ if(type === 'event'){
     id : 'tickets',
     icon: "fas fa-qrcode", title: 'Tickets',
     subTitle : "Booking Options",
+    description: `Check out the available booking options for the event.`, 
     widgetClass: 'shop widgey pad_tab',
     innerClass: 'px-3 sm:px-10',
     badgeNumber: tickets?.length ?? 0,
@@ -98,7 +103,8 @@ if(community_id){
     { 
       id: 'community',
       icon: "fa-users",
-      title: 'Community', 
+      title: 'Community',
+      description: `Catch up on the latest in ${cleanHtml(title.rendered)} through our fans page.`,  
       subTitle : "Public Chat", 
       widgetClass: "pad_tab",
       innerClass: 'bg_tab border-0 pb-0 mb-0',
@@ -112,6 +118,7 @@ if(!userId || userId != author_id){
       id: 'private-chat',
       icon: "fa-comment-dots", 
       title: 'Contact',
+      description: `Connect with our team for a one-to-one chat - on phone, chat and more`, 
       subTitle : "Private Chat", 
       widgetClass : "widgey pad_tab",
       innerClass: 'bg_tab private_chat',
@@ -123,6 +130,7 @@ tabList.push( {
   id: 'reviews',
   icon:  "fa-star", 
   title : 'Reviews',
+  description: `Our verified public user reviews.`, 
   subTitle :"User Rating",
   widgetClass: 'pad_tab',
   innerClass: 'bg_tab border-0',
@@ -133,6 +141,7 @@ if(faqs?.length > 0){
   tabList.push({
     id : 'faqs',
     icon: "fa-question-circle", 
+    description: `Got questions? Check out the most frequent questions from our page visitors`, 
     title: 'Questions',
     subTitle : "Frequent Questions",
     widgetClass: 'widgey pad_tab',
@@ -160,6 +169,7 @@ if(gallery?.length > 0){
       id: 'gallery',
       icon: 'fa-photo-video',
       title: 'Gallery',
+      description: `Our gallery. See all the action at ${cleanHtml(title.rendered)} in our gallery.`, 
       subTitle : 'Page Media',
       widgetClass : "_gallery  glass no-pad",
       innerClass: 'inner__class px-10',

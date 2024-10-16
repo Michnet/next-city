@@ -11,10 +11,7 @@ function PayMeans({listingId, type}) {
     async function getPayMeans(id){
         const means = await getDirPaymentMethods({post : id});
         if(means){
-          console.log('means', means)
         setPayMeans(means.items);
-        }else{
-          console.log('means vv', means)
         }
     }
 

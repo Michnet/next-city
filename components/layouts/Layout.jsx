@@ -10,13 +10,13 @@ import AuthUI from "../auth/AuthUI";
 import { closeMenus, changeHighlight, openOffCanvas } from "@/helpers/appjs";
 import {UISizes, UIWidthState} from '@/contexts/atoms';
 import { BSReveal } from "../UI/partials/BSReveal";
-import SearchForm1 from "../UI/search/SearchForm1";
 //import Splash from "../UI/Splash";
 import SnackBar from "../UI/partials/SnackBar";
 import UserSideMenu from "../UI/user/UserSideMenu";
 import UISettings from "./UISettings";
 import { ParallaxScrollProvider } from '@/contexts/ParallaxContext';
 import { siteColorObjs } from '@/helpers/base';
+import SearchForm1 from "../UI/search/SearchForm1";
 
 function sizing(width, setWidth){
   if (typeof window !== 'undefined') {
@@ -46,7 +46,7 @@ function pinHeader(){
   }
 }
 
-function LayoutConst({ children, headerTitle, settings, appRouter=false}) {
+function LayoutConst({ children, headerTitle, settings}) {
   const uiSize = useRecoilValue(UISizes);
   //const {isMobile, isTab, isLargeTab, isDeskTop} = uiSize
   const [width, setWidth] = useRecoilState(UIWidthState);
@@ -54,7 +54,7 @@ function LayoutConst({ children, headerTitle, settings, appRouter=false}) {
   const {mMenuContent, noFooter} = settings ?? {};
   const {btnProps, icon} = mMenuContent ?? {}
   const [loading, setLoading] = useState(true);
-  const Scaffold = dynamic(() => appRouter ? import('@/app/layouts/appScaffold') : import("./Scaffold"))
+  const Scaffold = dynamic(() => import("./Scaffold"))
 
   //const cachedChildren = useMemo(() => children, [headerTitle])
   const cachedSettings = useMemo(() => settings, [headerTitle])

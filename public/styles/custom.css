@@ -120,7 +120,7 @@ h6 {
 .slick-next{
     right: 5px !important;
 }
-.menu-active.menu{display: block;background: var(--bgThemeTransparent);}
+.menu-active.menu{display: block;background: var(--bgTheme);}
 
 #listingMenuRight .h_annex i {
     color: var(--color-white);
@@ -5761,11 +5761,11 @@ section.sec_sideImg .sect_content{
 }
 
 .listing_card.event_card_3 .img_img {
-    max-height: 300px;
+    max-height: 340px;
     object-fit: cover;
-    min-height: 175px;
+    min-height: 220px;
 }
 .top_list .event_card_3 .img_img {
     -webkit-mask-image: linear-gradient(#fff calc(100% - 141px),transparent);
-    mask-image: linear-gradient(#fff calc(100% - 141px),transparent);
+    mask-image: linear-gradient(#fff calc(100% - 320px), transparent);
 }

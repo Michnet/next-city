@@ -37,7 +37,6 @@ const TermsGrid = ({id, listy, exClass, shadowy=true}) => {
       async function getCats(){
         const eCats = await getDirTerms('categories', catsFilterArr);
         if(eCats){
-            console.log('catzz', eCats);
             setCats(eCats); 
         }
         setLoading(false);

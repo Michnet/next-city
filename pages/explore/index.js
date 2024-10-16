@@ -98,8 +98,9 @@ const ExploreDirectory = (props) => {
       <ExploreListings topList={topList} type={listingType}/>
       </div>
       <div className="menu menu-box-left search_filter bg-theme" tabIndex="-1" id="exploreOffCanvas" >
-                <div className="menu-title"><h1>Filter Results</h1>
-                    <p className="color-highlight">Filter your Search Results</p>
+                <div className="menu-title">
+                  <div><h1>Filter Results</h1>
+                    <p className="color-highlight">Filter your Search Results</p></div>
                       <i className="fas fa-times close-menu" onClick={() => closeMenus()}/>
                   </div>
                 <div className="offcanvas-body pb-0">

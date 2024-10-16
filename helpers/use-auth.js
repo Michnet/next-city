@@ -174,6 +174,7 @@ async function getUserMeta(){
       const {user, jwt} = res;
       userLoginBySocial(user, jwt, oauth_token, '');
     }
+
     //setTheAuth({...theAuth(), loading:false});
   }
 

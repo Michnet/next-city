@@ -15,6 +15,7 @@ import {advancedFetchListingsUrl, fetcherWithSignal } from "@/helpers/rest";
 import Slider from "react-slick";
 import { fadingSlide, largeResp } from "@/helpers/sliders";
 import { Skeleton } from "@/components/skeletons/Skeletons";
+import { typeName } from "@/helpers/universal";
 //import SeoHead from "@/components/UI/SeoHead";
 
 function translateDate(string){
@@ -123,7 +124,7 @@ const ExploreConst = ({topList, type=null}) => {
               <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Hints</button> 
               }</div></> : <></>}</>
               <div className="inner_section mt-20">
-                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={`Latest ${type ? type+'s' : ''}`} subtitle={`Fresh and New ${type ? type+'s' : ''}`} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
+                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} exCardClass={'me-2'} title={`Latest ${typeName(type)}s`} subtitle={`Fresh and New ${type ? type+'s' : ''}`} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2">

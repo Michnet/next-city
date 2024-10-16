@@ -20,10 +20,11 @@ import Image from 'next/image';
 import DateViewState from '@/components/UI/partials/dateViews/DateViewState';
 import Link from 'next/link';
 import HeroDetail from './partials/HeroDetail';
+import ProfileHeaderMini from './profileHeaderMini';
 //import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 //import AliceCarousel from 'react-alice-carousel';
 
-const Hero2 = ({listing, main=false, activeKey, params={view :''}, color, setActiveKey, user, token, exClass=''}) => {
+const Hero2 = ({listing, main=false, lMenu, activeKey, params={view :''}, color, setActiveKey, user, token, exClass=''}) => {
   const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
   const {greeting} = listing.landing;
   const {general_merchandise} = acf ?? {}
@@ -87,13 +88,10 @@ const Hero2 = ({listing, main=false, activeKey, params={view :''}, color, setAct
      }
   } */
   //let nowColor = randomColor();
-  if(main){
-  }else{
     if(activeKey !== 'home' && activeKey !=='cover'){
-      const ProfileHeaderMini = dynamic(() => import('./profileHeaderMini'));
-      return <ProfileHeaderMini activeKey={activeKey}   color={color} setActiveKey={setActiveKey} listing={listing}/>
+     // const ProfileHeaderMini = dynamic(() => import('./profileHeaderMini'));
+      return <ProfileHeaderMini activeKey={activeKey} lMenu={lMenu}  color={color} setActiveKey={setActiveKey} listing={listing}/>
     }
-  }
 
   return (<>
     <Suspense>

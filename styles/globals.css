@@ -516,10 +516,6 @@ margin-bottom: 23px;
 
 .gx-profile-banner-top-left * {max-width: 100%;}
 
-.gx-profile-banner h2 {
-  color: var(--bs-gray-100);
-}
-
 ._location .list_location {
   margin-bottom: 4px;
   display: inline-block;

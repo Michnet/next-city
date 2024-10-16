@@ -1,5 +1,5 @@
 import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
-import { cleanHtml, resizedImage, shuffleArray } from "@/helpers/universal";
+import { cleanHtml, randomEither, resizedImage, shuffleArray } from "@/helpers/universal";
 import Link from "next/link";
 import { memo, useMemo } from "react";
 //import Slider from "react-slick";
@@ -12,7 +12,7 @@ import { PriceView } from "../../PriceView";
 
 const processImg = (images, cover) => {
   if(images && images.length > 0){
-      const targetImg = images[Math.floor(Math.random()*images.length)];
+      const targetImg = randomEither(images);
       return targetImg
   }else if(cover){
       return cover;
@@ -23,7 +23,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
 
   const {type, id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery} = listing;
   const slicedGal = shuffleArray(gallery).slice(0, 5);
-  const imgArr = [xtra_large_thumb, ...slicedGal];
+  const imgArr = slicedGal?.length > 0 ? [xtra_large_thumb, ...slicedGal] : [xtra_large_thumb];
   const {likes} = acf?.community ?? {};
  
 
@@ -108,8 +108,8 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                             height={size ? size  : '100%'}
                             className="object-cover js-lazy"
                             placeholder={<LoaderSiteLogo/>}
-                            src={resizedImage(imgSrc, 'medium')}
-                            onError={(e) => {e.target.src = imgSrc;/* '/images/bg/fallback-sm.jpg' */}}
+                            src={imgSrc/* resizedImage(imgSrc, 'medium') */}
+                            onError={(e) => {console.log('tag', e.target.src); e.target.src = '/images/bg/fallback-sm.jpg'}}
                             alt="image"
                           />
                   {mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='card_date mr-10'/> : <></>}

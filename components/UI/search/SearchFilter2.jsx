@@ -2,7 +2,13 @@ function SearchFilter2() {
   return (
   <div id="menu-filter" className="menu menu-box-left" data-menu-height="cover" data-menu-width="cover">
   <div className="notch-clear"></div>
-  <div className="menu-title ms-n1"><h1>Filter Results</h1><p className="color-highlight">Filter your Search Results</p><a href="#" className="close-menu"><i className="fa fa-times"></i></a></div>
+  <div className="menu-title ms-n1">
+    <div>
+    <h1>Filter Results</h1>
+    <p className="color-highlight">Filter your Search Results</p>
+    </div><a href="#" className="close-menu">
+    <i className="fa fa-times"></i></a>
+    </div>
   <p className="mb-3 mx-3 mt-n1">
       Filters can be expanded by default or collapsed. You can use any checkbox or radio style found in <a href="component-inputs.html">Component Inputs</a>. We have plenty of options to make your
       filters rich and powerful.
