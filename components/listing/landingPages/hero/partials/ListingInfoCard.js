@@ -38,15 +38,15 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
             className={`z-1 p-4 p-md-5 pb-3 position-relative ${styles['section-container']} bg-transparent card card-style border-0 w-auto m-0`}
           >
             {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
-            <div style={{rowGap: '10px', columnGap: '20px'}} className={`w-100 row md:flex-row flex-sm-nowrap flex-col position-relative`}>
+            <div style={{rowGap: '10px', columnGap: '20px'}} className={`row md:flex-row flex-sm-nowrap flex-col position-relative`}>
               <div className={`col-12 col-sm-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']} /* data-aos='fade-left' */><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
-              {venue && <span className={`text-30 fw-300 truncate-4 smLine`} /* data-aos='fade-left' */>
+              {venue && <span className={`text-30 fw-200 truncate-4 smLine`} /* data-aos='fade-left' */>
                   {/* <span className='fw-400 opacity-50'>@</span> */}
                   <i className='fal fa-street-view text-22 me-2 color-listing-theme'/>
                   {venue}
                 </span>}
-              {tagline && <span className={`text-18 color-theme opacity-50`} style={{fontWeight: '500'}} /* data-aos='fade-right' */>
+              {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '500'}} /* data-aos='fade-right' */>
                   {tagline}
                 </span>}
                 

@@ -41,9 +41,7 @@ function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, lis
         page: page,
         _embed: true, 
         };
-    if(random){
-        payload['random'] = true;
-    }
+    
     if(author){
       payload['author'] = author;
     }
@@ -53,10 +51,13 @@ function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, lis
       if(taxonomy_2){
       payload[`${taxonomy_2}`] = ids2.toString();
     } 
-      if(type){
+    if(type){
       payload[`listing_type`] = type;
       payload[`sort`] = 'latest';
     } 
+    if(random){
+      payload['sort'] = 'random';
+  }
 
 
     const { data:listings, error } = useSWR(advancedFetchListingsUrl({...payload}), fetcher, {revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false });

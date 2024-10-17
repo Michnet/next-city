@@ -151,7 +151,7 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
                       {teamView}
                 </div>
               </div> */}
-              <RelatedByTaxSplide titleComp={<Heading1 small exClass='mb-2 mx-3' title={'From same account'} subtitle={'Other listings by this Author'}/>} splideObj={{padding:0}} author={listing?.author_id} exclude={listing?.id}/>
+              <RelatedByTaxSplide titleComp={<Heading1 small exClass='mb-2 mx-3' title={'Same account'} subtitle={'Other listings by this Author'}/>} splideObj={{padding:0}} author={listing?.author_id} exclude={listing?.id}/>
               <ResponsiveMasonry className="masonry_grid sticky_items hide_empty padded_items" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3}}>
                 <Masonry>
                   {contentView}

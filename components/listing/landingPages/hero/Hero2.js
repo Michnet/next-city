@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from 'next/dynamic';
-import { cleanHtml, srcWithFallback, randomEither, fetchRephrase } from '@/helpers/universal';
+import { cleanHtml, srcWithFallback, randomEither, fetchRephrase, resizedImage } from '@/helpers/universal';
 import { useRecoilValue } from 'recoil';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 //import { Client } from 'react-hydration-provider';
@@ -126,15 +126,17 @@ const Hero2 = ({listing, main=false, lMenu, activeKey, params={view :''}, color,
             </div> */}
               <Mirrored coverTop gap={2} objClass=''  topPadding={'50px'} skewDegrees={4} skewDir={'-'} YDistance={200}>
                 <div className='hero_cover position-relative w-100'>
-                  <Image                   
+                  <img                   
                   //placeholder="blur"
                    //changerKey={listing.id}
                    //blurDataURL={coverBlur}
+                   //fetchpriority="high"
+                   fetchPriority='high'
                    quality={100}
                    fill
                    priority
                    alt="image"
-                   src={srcWithFallback(cover)}
+                   src={srcWithFallback(resizedImage(cover, 'large'))}
                    className={`object-cover ${styles['image6']}`}
                    //onError={(e) => {e.target.src = '/images/bg/fallback.jpg'}}
                    onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}

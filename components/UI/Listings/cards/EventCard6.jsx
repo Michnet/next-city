@@ -68,7 +68,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
             <div className={`pt-2 ${contentClass}`}>
                 <div className="content mt-0 mb-1 mx-0">
                     <div className="_content gx-mb-0">
-                    <div className="d-flex gap-2 mb-1">
+                    <Link href={`/${type}s/${slug}`} className="d-flex gap-2 mb-1">
                 <div className="hide_if_empty">
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
                 </div>
@@ -88,9 +88,9 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
                         
                     </div>
                 </div>
-                <div className="ms-auto"><a href="#" data-menu="menu-controls" className="icon icon-xss d-block color-theme"><i className="fa fa-ellipsis-v"></i></a>
-                </div>
-            </div>
+                {/* <div className="ms-auto"><a href="#" data-menu="menu-controls" className="icon icon-xss d-block color-theme"><i className="fa fa-ellipsis-v"></i></a>
+                </div> */}
+            </Link>
                             {/* {ticket_min_price_html && <PriceView  preText={'From'}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> } */}
                             {/* <div className="mb-2 line-height-sm color-theme opacity-80">
                                 <p className="gx-text-grey _excerpt truncate-2 text-14" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
