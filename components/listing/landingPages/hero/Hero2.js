@@ -25,12 +25,13 @@ import ProfileHeaderMini from './profileHeaderMini';
 //import AliceCarousel from 'react-alice-carousel';
 
 const Hero2 = ({listing, main=false, lMenu, activeKey, params={view :''}, color, setActiveKey, user, token, exClass=''}) => {
-  const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
+  const {cover, page_views, title, rating, acf, meta, category, author_id, gallery, id} = listing ?? {};
   const {greeting} = listing.landing;
   const {general_merchandise} = acf ?? {}
   const {likes, gen} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category ?? {};
   const {isMobile, isLargeTab} = useRecoilValue(UISizes);
+  const {google_cover} = meta ?? {}
 
 
   //const [coverBlur] = coverBlur ? useNextBlurhash(`${coverBlur}`, 800, 600) : "La7Cy]enMJay*0e.R5aetmjZWBax";
@@ -136,7 +137,7 @@ const Hero2 = ({listing, main=false, lMenu, activeKey, params={view :''}, color,
                    fill
                    priority
                    alt="image"
-                   src={srcWithFallback(resizedImage(cover, 'large'))}
+                   src={srcWithFallback(resizedImage(cover ?? google_cover, 'large'))}
                    className={`object-cover ${styles['image6']}`}
                    //onError={(e) => {e.target.src = '/images/bg/fallback.jpg'}}
                    onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}
@@ -174,7 +175,7 @@ const Hero2 = ({listing, main=false, lMenu, activeKey, params={view :''}, color,
               priority
               fill
               alt="image"
-              src={srcWithFallback(cover)}
+              src={srcWithFallback(cover  ?? google_cover)}
               className={styles['image6']}
               //onError={(e) => {e.target.src = '/images/bg/fallback.jpg'}}
               onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback.jpg', e.target.srcset= {fallbackImgSrcSet}}}

@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
         <link rel="stylesheet" type="text/css" href="/styles/style.min.css"></link> */}
         {/* <link rel="stylesheet" type="text/css" href="/fonts/bootstrap-icons.css"></link> */}
         {/* <link rel="stylesheet" type="text/css" href="/styles/style.css"></link> */}
-        <link href="https://fonts.googleapis.com/css?family=Cookie|Source+Sans+Pro:100,300,400,500,600,700,900|Jost:100,300,400,500,600,700,800,900&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Cookie|Source+Sans+Pro:100,300,400,500,600,700,900|Jost:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="/fonts/css/all.min.css"/>    
         <link rel="manifest" href="/_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js"/>
         <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/icon-192x192.png"></link>

@@ -872,6 +872,7 @@ body.theme-dark .btn {
 
 ._listing #footer-bar, .theme-dark  ._listing #footer-bar {
     background: var(--bgTheme);
+    /* background: red; */
     box-shadow: #00000042 0px 0px 23px 1px;
     backdrop-filter: blur(4px);
     background-position: center;
@@ -882,7 +883,7 @@ body.theme-dark .btn {
 }
 
 ._listing:has(.header-active) #footer-bar {
-    bottom: 0;
+    bottom: 5px;
 }
 
 #footer-bar .footer_content {
@@ -3930,7 +3931,7 @@ ul.listing_navigator {display: flex;align-items: center;grid-column-gap: 10px;gr
 }
 
 #footer-bar .link_icon {
-    font-size: 26px;
+    font-size: 22px;
     line-height: 30px;
     margin-right: auto !important;
     margin-left: auto;

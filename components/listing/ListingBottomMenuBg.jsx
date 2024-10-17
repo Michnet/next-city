@@ -53,5 +53,5 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
                 </div>    
     return <BottomMenu content={bottomContent}/>
 }
-const ListingBottomMenu = memo(ListingBottomMenuConst)
-export default ListingBottomMenu;
+const ListingBottomMenuBg = memo(ListingBottomMenuConst)
+export default ListingBottomMenuBg;
