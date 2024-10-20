@@ -1,5 +1,4 @@
 "use client";
-
 import MainMenu from "./MainMenu"
 import { Client } from "react-hydration-provider";
 import Activity from "../UI/lists/Activity";
@@ -7,28 +6,30 @@ import Header from "./partials/Header";
 import {useMemo, memo, useEffect, useState, Suspense } from "react";
 //import Image from "next/image";
 import { useRouter } from "next/router"
-import PageLoader from "../skeletons/fullPage/PageLoader";
+//import PageLoader from "../skeletons/fullPage/PageLoader";
 //import { srcWithFallback } from "@/helpers/universal";
 import Script from "next/script";
 import BottomMenu from "./BottomMenu";
+import PageContent from "./PageContent";
 
 
 function ScaffoldConst({children, uiSize, settings, headerTitle}) {
     const {isTab, isLargeTab} = uiSize;
     const {noHeader, autoShowHeader,mMenuContent, hideNews, noFooter, uiBackground, pageClass} = settings ?? {};
     const {btnProps, icon} = mMenuContent ?? {}
-
-    //const cachedChildren = useMemo(() => children, [headerTitle])
-    //const cachedChildren = () => children;
-    const [loading, setLoading] = useState(true);
-    const [loaderRoute, setLoaderRoute] = useState('')
-
     const router = useRouter();
 
 
+    const cachedChildren = useMemo(() => children, [router.asPath])
+    //const cachedChildren = () => children;
+    /* const [loading, setLoading] = useState(true);
+    const [loaderRoute, setLoaderRoute] = useState('') */
+
+/* 
+
   const handleStarting = (url) => {
-    setLoading(true);
     setLoaderRoute(url)
+    setLoading(true);
   }
 
 const handleStoping = () => {
@@ -51,7 +52,7 @@ useEffect(() => {
       setLoading(false);
         return () => {setLoading(true)
         }
-  }, [headerTitle, settings/* , router.asPath */]);
+  }, [headerTitle, settings]); */
 
  
   return (<>
@@ -77,7 +78,10 @@ img.site_bg_img{
                     {<Header headerTitle={headerTitle} headerClass={isTab ? autoShowHeader ? 'header-auto-show' : 'header-always-show' : 'header-always-show'}/>}
                 </>}
                 {/* {cachedChildren} */}
-                {loading ? <PageLoader route={loaderRoute}/> : children}
+                {/* {loading ? <PageLoader route={loaderRoute}/> : cachedChildren} */}
+                <PageContent>
+                  {cachedChildren}
+                </PageContent>
             </div>
             <Client>{!hideNews && <div className="lg-sticky col p-2 flex-grow-0 d-none d-lg-block right_view" style={{width: '295px', minWidth: '295px', top: '0px'}}>
                 <Activity/>

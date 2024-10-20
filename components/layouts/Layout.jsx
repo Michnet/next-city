@@ -17,6 +17,7 @@ import UISettings from "./UISettings";
 import { ParallaxScrollProvider } from '@/contexts/ParallaxContext';
 import { siteColorObjs } from '@/helpers/base';
 import SearchForm1 from "../UI/search/SearchForm1";
+import RouteLoader from "./RouteLoader";
 
 function sizing(width, setWidth){
   if (typeof window !== 'undefined') {
@@ -337,7 +338,7 @@ function LayoutConst({ children, headerTitle, settings}) {
         color: var(--colorTheme);
       }`}</style></Client>
         </div>
-        {/* <RouteLoader /> */}
+        <RouteLoader/>
       </main>
       {/* <Splash/> */}
     </>

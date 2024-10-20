@@ -24,7 +24,6 @@ import "aos/dist/aos.css";
 import '@splidejs/react-splide/css';
 import { Analytics} from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import RouteLoader from "@/components/layouts/RouteLoader";
 import { SiteLinksSearchBoxJsonLd } from "next-seo";
 
 function MyAppConst({ Component, pageProps, platform }) {
@@ -74,7 +73,6 @@ function MyAppConst({ Component, pageProps, platform }) {
                 <AuthProvider/>
                 <UIProvider platform={platform}/>
                 {/* <SWMessaging/> */}
-                <RouteLoader/>
                 <SiteProvider/>
                 <MessagesStater/>
                 <ActivityProvider/>

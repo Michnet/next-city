@@ -50,8 +50,6 @@
   z-index: 100000; /* Above WP toolbar. */
 }
 
-.mini_head_content.row.flex-nowrap.md\:flex-column.overflow-hidden {}
-
 #preloader{
     transition: all 150ms ease !important;
     display: none;
@@ -83,8 +81,6 @@ h1 {
 
 h2 {
     font-size: 22px;
-    line-height: 25px;
-    font-weight: 800
 }
 
 h3 {
@@ -127,10 +123,6 @@ h6 {
 }
 .page-content.single_listing .color-highlight {
     color: var(--listingTheme) !important;
-}
-.page-content.single_listing .card {
-    /* background-color: var(--bgThemeTransparent3); */
-    /* border: 1px solid var(--borderThemeAlt); */
 }
 
 .card.card-style.top_border {
@@ -187,9 +179,6 @@ h6 {
     border-radius: 0;
     box-shadow: none !important;
     background: transparent;
-}
-
-.card.card-style.partial_border.across_border {
 }
 
 .card.card-style.partial_border.across_border:before, .card.card-style.partial_border.across_border:after {
@@ -882,9 +871,7 @@ body.theme-dark .btn {
     grid-template-columns: calc(100% - 120px) 42px 42px;
 }
 
-._listing:has(.header-active) #footer-bar {
-    bottom: 5px;
-}
+._listing:has(.header-active) #footer-bar {bottom: 0;}
 
 #footer-bar .footer_content {
     height: inherit;
@@ -3883,6 +3870,10 @@ ul.listing_navigator li {
     cursor: pointer;
 }
 
+ul.listing_navigator.grid li .nav_i_title {
+    font-size: var(--smFontSize);
+}
+
 #footer-bar ul.listing_navigator li {
     /* max-width: 27vw; */
     /* border: 1px solid var(--borderTheme); */
@@ -4901,6 +4892,7 @@ a.link_link {
 
 .listing_card img {
     transition: all .5s;
+    filter: brightness(0.95);
 }
 .review_card_2.bg-transparent .de_testi blockquote {
     background: transparent;
@@ -5377,7 +5369,7 @@ section.sec_sideImg .sect_content{
     section.sec_sideImg .sideImg{
     margin-bottom: -100px;
 }
-    .hero_title .profile_name h1 .list_title{font-size: 30px;}
+    .hero_title .profile_name h1 .list_title{font-size: 30px;line-height: 20px;}
     .separator span:before, .separator span:after{
     max-width: 20vw;
 }
@@ -5769,4 +5761,8 @@ section.sec_sideImg .sect_content{
 .top_list .event_card_3 .img_img {
     -webkit-mask-image: linear-gradient(#fff calc(100% - 141px),transparent);
     mask-image: linear-gradient(#fff calc(100% - 320px), transparent);
+}
+
+.sc_heading_3 .h_title {
+    line-height: 1;
 }

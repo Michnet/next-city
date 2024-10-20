@@ -34,6 +34,7 @@ import { siteVersionState } from "@/contexts/atoms";
 import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
 import SalesCard from "@/components/UI/Listings/cards/SalesCard";
 import SalesCard2 from "@/components/UI/Listings/cards/SalesCard2";
+import ListingsMasonry from "@/components/UI/Listings/ListingsMasonry";
 //import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
 
 
@@ -316,15 +317,7 @@ export default function Home(props) {
     <section  className="mb-2 row">
       <div className="col-12 col-md-6 px-0">
           <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Dice Roll'} subTitle={'Explore events & places'}/>
-        <div className='p-3 h_masonry gap-2'>
-            {latest?.length > 0 ? 
-                shuffleArray(latest).map((li) => {
-                return <EventCardImage width={'auto'} styleObj={{flexBasis: `${randomBetween(20,40)}%`}} /* width={randomBetween(130,320)} */ maxWidth={'50%'} mini contentClass={'px-3'} height={120} maxHeight={'180px'} key={li.id} listing = {li}/>
-                })
-                :
-                <></>
-              }
-          </div>
+        <ListingsMasonry/>
           <AddListingCard/>
       </div>
       <div className="col-12 col-md-6">

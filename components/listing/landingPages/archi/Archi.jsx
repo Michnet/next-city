@@ -332,8 +332,6 @@ function Archi({listing, setActiveKey, colorHex, color}){
     </div>
 </main>
 </div>
-<style>{``}
-</style>
 </>
   )
 }

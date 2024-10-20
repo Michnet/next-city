@@ -25,7 +25,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
     }, [listing])
     
 
-    let bottomContent = <div style={{width: 'calc(100vw - 10px)', left: '5px'}} id="footer-bar" className="rounded-4 footer-bar-1 d-md-none align-items-center gap-1 px-2 border-0 font-900">
+    let bottomContent = <div style={{width: '100vw'}} id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-1 px-2 border-0 font-900">
                 <div className='footer_content py-0 bg-transparent minw-0 flex-shrink-1 shadow-0 justify-between'>
                     <Navigator items={4} faClass='far' exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
                     </div>

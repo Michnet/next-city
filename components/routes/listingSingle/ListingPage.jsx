@@ -32,7 +32,7 @@ import { Heading1 } from "@/components/UI/partials/headings/Heading1";
 //import HeroGrid from "@/components/listing/landingPages/hero/HeroGrid";
 import HeroParallax from "@/components/listing/landingPages/hero/HeroParallax";
 import ProfileInfo from "@/components/listing/profileInfo/ProfileInfo";
-import ContentTabs from "@/components/listing/Content-Tabs";
+//import ContentTabs from "@/components/listing/Content-Tabs";
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
   const ListingPageConst = ({listing, themeColor, themeColorHex, listingType}) => {
@@ -122,7 +122,7 @@ return linkzz;
         <PageScroller activeKey={activeKey} resetKey={'home'}/>
         <Hero2 lMenu={lMenu}  user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/>
         {/* <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> */}
-        <ContentTabs listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
+        <Content listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
           <div className='border mx-2 pb-2 mb-2 mt-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
