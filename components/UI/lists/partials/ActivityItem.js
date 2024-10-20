@@ -4,7 +4,7 @@ import Link from "next/link";
 import { memo, Suspense, useEffect, useState } from "react";
 import {openOffCanvas} from "@/helpers/appjs";
 import { Avatar } from "../../Partials";
-import { clearInputField, deleteBPActivity, localiseDate, getBPActivityComments, likeBPActivity, sendBPActivityComment, updateBPActivity } from "@/helpers/universal";
+import { clearInputField, deleteBPActivity, localiseDate, getBPActivityComments, likeBPActivity, sendBPActivityComment, updateBPActivity, srcWithFallback } from "@/helpers/universal";
 import GuestPrompt from "../../GuestPrompt";
 import { LoaderDualRingBoxed, LoaderEllipsis } from "@/components/skeletons/Loaders";
 import { Client } from "react-hydration-provider";
@@ -178,7 +178,8 @@ dayjs.extend(relativeTime)
                                     {head_extras}
                                     <div className="overflow-hidden mb-3 activity_body">
                                         {/* <img src={type == 'new_job_listing' ? listing?.thumb_url : '/images/bg/fallback.jpg'} className="img-fluid"/> */}
-                                        {type === 'new_job_listing' && <Suspense offset={150} once><img className="rounded-4 img-fluid feat_img mb-10 w-100 object-cover" src={listing?.thumb_url}/></Suspense>}
+                                        {type === 'new_job_listing' && <Suspense offset={150} once>
+                                          <img className="rounded-4 img-fluid feat_img mb-10 w-100 object-cover" src={srcWithFallback(listing?.thumb_url)}/></Suspense>}
                                         <div className="content mt-0 mb-1">
                                             <span className="opacity-50 d-block pt-1 font-11">LyveCity.com</span>
                                             

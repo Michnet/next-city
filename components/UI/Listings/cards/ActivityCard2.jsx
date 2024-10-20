@@ -8,6 +8,7 @@ import { ListingMeta, ListingMetaMini } from "../../Partials";
 import DateView from "../../partials/dateViews/DateView";
 import DateViewState from "../../partials/dateViews/DateViewState";
 import PostLike from "../../partials/social/PostLike";
+import TermTag from "../../partials/TermTag";
 import { PriceView } from "../../PriceView";
 
 const processImg = (images, cover) => {
@@ -21,7 +22,7 @@ const processImg = (images, cover) => {
 
 const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
 
-  const {type, id, title, short_desc, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery} = listing;
+  const {type, id, title, category, event_date, page_views, rating, acf, locations, level, ticket_min_price_html, xtra_large_thumb, gallery} = listing;
   const slicedGal = shuffleArray(gallery).slice(0, 5);
   const imgArr = slicedGal?.length > 0 ? [xtra_large_thumb, ...slicedGal] : [xtra_large_thumb];
   const {likes} = acf?.community ?? {};
@@ -114,13 +115,12 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                           />
                   {mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='card_date mr-10'/> : <></>}
                   <div className="stats_box">
-                    <div className="_lefty d-flex flex-column align-items-start gap-2">
+                    <div className="_lefty d-flex flex-column align-items-start gap-2 flex-grow-1">
+                    <TermTag exTagClass={'rounded-3 text-12 fw-600 w-100'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                     {/* {mini ? <></> : <ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>} */}
                     {!mini && event_date && event_date[0] ? <DateViewState exClass={mini ? '_texty bg-theme' : ''} customDate={event_date[0].start} customEndDate={event_date[0].end} eventId={id}/> : <></>}
                     </div>
-                    <div className="cardImage__leftBadge position-relative bottom-0">
                     
-                    </div>
                     {ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
                   </div>
                   <div className="cardImage__wishlist">

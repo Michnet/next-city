@@ -16,12 +16,16 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
 const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentClass='px-3', minHeight=180, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
-    let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, _embedded,modified,tagline, type} = listing;
+    let {id, title, category, event_date, page_views, rating,  locations, ticket_min_price_html,  gallery, slug, acf, _embedded, type} = listing;
     const {likes} = acf?.community ?? {};
 
     //const slicedGal = shuffleArray(gallery).slice(0, 5);
     //const imgArr = [xtra_large_thumb ?? large_thumb, ...slicedGal];
-    const imgArr2 = shuffleArray([_embedded['wp:featuredmedia'][0].source_url, ...gallery]);
+    let tempArr = [...gallery];
+    if(_embedded['wp:featuredmedia']){
+        tempArr.push(_embedded['wp:featuredmedia'][0].source_url)
+    }
+    const imgArr2 = shuffleArray([...tempArr]);
 
     return (<>
     <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_6 event_card_2 m-0 ${exClass} ${transparent ? 'bg-transparent' : ''}`} style={{width: width}}>

@@ -2272,12 +2272,10 @@ button.back_link {
 ._mini .activityCard.-type-2 .stats_box {
     background: linear-gradient(180deg, transparent, black);
     flex-direction: row;
-    padding: 0;
+    padding: 25px 10px 6px;
     align-items: center;
     column-gap: 10px;
     white-space: nowrap;
-    padding-right: 10px;
-    padding-top: 25px;
     color: #fff;
 }
 
@@ -3871,6 +3869,10 @@ ul.listing_navigator li {
 }
 
 ul.listing_navigator.grid li .nav_i_title {
+    font-size: var(--fontSize);
+}
+
+ul.listing_navigator.grid li .nav_i_subtitle {
     font-size: var(--smFontSize);
 }
 
@@ -5603,7 +5605,7 @@ section.sec_sideImg .sect_content{
 #footer-bar .it_box {flex-direction: column;text-align: center;}
 
 #footer-bar li.active .it_box {
-    margin-top: -27px;
+    margin-top: -10px;
     position: relative;
     margin-left: -6px;
 }

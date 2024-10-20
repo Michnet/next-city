@@ -436,8 +436,12 @@ export const listingUrlBase = (type) => {
 
 export function srcWithFallback(src, fb = '/images/bg/fallback2-md.jpg'){
   //console.log('faulty src', src);
-  if(src?.includes('http') || src?.charAt(0) === '/' || src?.includes('lyvecityclub')){
-    return src;
+  if(src){
+    if(src?.includes('http') || src?.charAt(0) === '/' || src?.includes('lyvecityclub')){
+      return src;
+    }else{
+      return fb;
+    }
   }else{
     return fb;
   }
