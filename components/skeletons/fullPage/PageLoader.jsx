@@ -14,7 +14,7 @@ export function urlString(str, theArray=[]){
 const PageLoader = ({route}) => {
 
   let loaderView;
-  let listingRoutes = ['/events/','/places/','/special-sales/'];
+  let listingRoutes = ['/events/','/places/','/special-sales/','/services/'];
 if(route){
   if(route.includes(urlString(route, listingRoutes))){
     const ListingSkeleton = dynamic(() => import("./ListingSkeleton"));

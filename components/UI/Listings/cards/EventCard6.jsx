@@ -77,7 +77,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
                     {event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative card_date outliney darky mb-2 me-2'/> : <></>}
                 </div>
                 <div className="minw-0 flex-shrink-1">
-                    <h5 className="_title mb-0 font-16 text-capitalize font-700 truncate-2">{cleanHtml(title.rendered).toLowerCase()}</h5>
+                    <h5 className="_title mb-0 font-16 text-capitalize font-700 truncate-2 lh-12">{cleanHtml(title.rendered).toLowerCase()}</h5>
                     <TermTag exTagClass={'rounded-3 text-12 fw-600'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                     {/* <Link href={`/${type}s/${slug}`}><h3 className={`smLine text-capitalize truncate fw-600 _title`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link> */}
                     {/* <div className="line-height-sm color-theme short_desc">
