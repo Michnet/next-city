@@ -27,20 +27,21 @@ import  ListingProductsSimple  from '@/components/listing/shop/ListingProductsSi
 import { PriceView } from "@/components/UI/PriceView";
 import FeaturesCarousel from "@/components/UI/features/FeaturesCarousel";
 import { useRouter } from "next/navigation";
+import GoogleReviews from "../../reviews/googleReviews";
 //import WpComments from "@/components/UI/Comments/wpComments";
 
 
 
 function Archi({listing, setActiveKey, colorHex, color}){
     const {meta, title, cover, content, about_us,id, ticket_min_price_html, author_id, type, dir_tags, listing_store, gallery} = listing ?? {};
-    const {_wcu, _event_program, _stats, _links, "_event-sponsors": sponsors, "_special-guests": special_guests, _performers, _wwd} = meta ?? {};
+    const {_wcu, _event_program, _stats, _links, google_reviews, "_event-sponsors": sponsors, "_special-guests": special_guests, _performers, _wwd} = meta ?? {};
     const {tickets, general_merchandise} = listing_store;
     const {faqs} = about_us ?? {};
     let wcu = _wcu ? _wcu[0] : null
     const router = useRouter();
 
 
-    let detailView, reviewsView, shopView,ticketsHint, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
+    let detailView, reviewsView, googleReviewsView, shopView,ticketsHint, servicesView, galleryView, servs2, tagsView, faqsView, socialsView, horizontalGallery, horizontalGallery2;
     if(listing){
         if(_links?.length > 0){
             socialsView = <Section fullWidth overlay={false} exClass='shadow-0 border py-1 bg-fixed bg-transparent'>
@@ -214,10 +215,23 @@ function Archi({listing, setActiveKey, colorHex, color}){
                 <div className='pt-0 pt-sm-5'>
               <Client>
                     <HeadingSeparatorDot exClass='me-5 mb-3' light align='right' title={'User Reviews'} subtitle={`Verified reviews about this ${type}`}/>
-                    <PostReviews sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
+                    <PostReviews google sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
               </Section>
               </>
+
+              if(google_reviews){
+
+          googleReviewsView = <>
+            <Section fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`}>
+                <div className='pt-0 pt-sm-5'>
+              <Client>
+                    <HeadingSeparatorDot exClass='me-5 mb-3' align='right' title={'Google Reviews'} subtitle={`User reviews from google ${type}`}/>
+                    <GoogleReviews listing={listing} sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
+                    </div>
+              </Section>
+              </>
+        }
               
     }
 
@@ -265,6 +279,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
         /> */}
             {faqsView}
             {tagsView}
+            {googleReviewsView}
             {galleryView}
         {/* <footer>
             <div className="container">

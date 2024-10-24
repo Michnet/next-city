@@ -4904,11 +4904,18 @@ a.link_link {
 }
 .review_card_2.bg-transparent .de_testi blockquote {
     background: transparent;
+    padding: 15px;
+}
+
+.review_card_2.bg-transparent .de_testi blockquote p {
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .review_card_2.bg-transparent .de_testi blockquote:before {
     background: transparent;
     color: var(--listingTheme);
+    display: none;
 }
 
 .h_masonry {
@@ -4945,6 +4952,7 @@ section.sec_sideImg .sec_content {
 section.sec_sideImg .sect_content {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .listing_meta i, .listing_meta._mini i{
@@ -5584,6 +5592,12 @@ section.sec_sideImg .sect_content{
     overflow: hidden;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     padding-bottom: 0;
+}
+.de_testi blockquote{
+    color: var(--colorTheme) !important;
+}
+section._dark .de_testi blockquote {
+    color: #fff !important;
 }
 
 .sc_heading_dot ._title {

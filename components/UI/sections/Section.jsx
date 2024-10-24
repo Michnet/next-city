@@ -11,7 +11,7 @@ function Section({overlay=true, sideImg, fullWidth=false, children, dark=false, 
     } */
 
   return (
-    <section id={id} className={`section_container position-relative bg-cover bg-center ${!dark ? '_light' : ''} ${sideImg ? 'sec_sideImg' : ''} ${exClass}`} style={{...locStyle}}>
+    <section id={id} className={`section_container position-relative bg-cover bg-center ${dark ? '_dark' : '_light'} ${sideImg ? 'sec_sideImg' : ''} ${exClass}`} style={{...locStyle}}>
         {/* {bgUrl && <div className="bg-cover bg-fixed bg-center position-absolute h-100 w-100 z-0" style={{background: srcUrlWithFallback(bgUrl)}}/>} */}
         {bgUrl && <ParallaxBanner className="z-0 position-absolute h-100 w-100">
             <ParallaxBannerLayer translateY = {[0,50]}
@@ -26,7 +26,7 @@ function Section({overlay=true, sideImg, fullWidth=false, children, dark=false, 
         
         <div className={`sect_content position-relative z-1 mx-auto ${exContainerClass}`} style={{maxWidth: fullWidth ? '100%' : '800px'}}>
             {sideImg && <div className="sideImg bg-cover bg-center" style={{minWidth: '30%', background: `${srcUrlWithFallback(bgUrl)}`, ...locStyle}}/>}
-            <div>
+            <div className="minw-0">
             {title && <div className="row">
             <div className="col-md-6 offset-md-3 text-center" data-aos='fade-up'>
                 <h2 className='text-30 mb-0'>{title}</h2>

@@ -19,10 +19,9 @@ import { hashtag } from '@/helpers/universal';
 import MegaGalleryMini from '@/components/UI/Galleries/MegaGalleryMini';
 
 const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, exClass=''}) => {
-  const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, xtra_large_thumb, whatsapp, phone} = listing ?? {};
+  const {cover, page_views, title, rating, acf, category, author_id, venue,tagline, short_desc, gallery, id, type, locations, ticket_min_price_html, phone, meta} = listing ?? {};
   const {greeting} = listing?.landing ?? {};
   const {general_merchandise} = acf ?? {}
-  const {likes, gen} = acf?.community ?? {};
   const {rl_awesome, color:catColor, name:catName} = category ?? {};
   const {isMobile, isLargeTab} = useRecoilValue(UISizes);
 
