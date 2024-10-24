@@ -27,7 +27,7 @@ const ListingBottomMenuConst = ({lMenu, listing, setActiveKey, user, activeKey})
 
     let bottomContent = <div style={{width: '100vw'}} id="footer-bar" className="footer-bar-1 d-md-none align-items-center gap-1 px-2 border-0 font-900">
                 <div className='footer_content py-0 bg-transparent minw-0 flex-shrink-1 shadow-0 justify-between'>
-                    <Navigator items={4} faClass='fal' exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
+                    <Navigator items={4} faClass='far' exClass='px-3 view_all' lMenu={lMenu} setActiveKey={setActiveKey} listing={listing} activeKey={activeKey}/>
                     </div>
                     <button style={{height: '45px'}} data-menu='listingMenuRight' onClick={(e) => openOffCanvas(e)} className={'d-flex align-items-center flex-column justify-center'}>
                     <i className="fas fa-ellipsis-h text-center link_icon"/>

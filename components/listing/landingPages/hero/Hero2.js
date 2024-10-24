@@ -155,10 +155,10 @@ const Hero2 = ({listing, main=false, lMenu, activeKey, params={view :''}, color,
                   </div> */}
                 <div className='flex-column row_flex justify-items-end gap-3 hero_title position-absolute  bottom-0 justify-end text-right right-0 px-30 ps-5 color-white text-shadow-l' style={{zIndex: '10'}}>
                   <div className='profile_name h-fit minw-0 flex-shrink-1'>
-                        {/* <h1 className='color-white text-40 truncate-3 text-capitalize handy' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1> */}
-                        <h1 className="styled_title lh-1 truncate-4 text-50 mb-0 color-white">
+                        <h1 className='truncate-3 text-capitalize' data-aos='zoom-in'>{cleanHtml(title?.rendered).toLowerCase()}</h1>
+                        {/* <h1 className="styled_title lh-1 truncate-4 text-50 mb-0 color-white">
                           <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/><span> </span><span className="list_title _last" dangerouslySetInnerHTML={{__html: lastWords}}/> 
-                        </h1>
+                        </h1> */}
                   </div>
                   <div className="d-flex flex-row align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
                   <DateViewState fromActive exClass={'bg-theme dotty ripple'} eventId={id}/>

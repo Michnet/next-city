@@ -17,7 +17,7 @@ import {DualColorHeader, SocialLinks } from '@/components/UI/Partials';
 import TagsCloud from '@/components/listing/partials/TagsCloud';
 import FAQs from "@/components/UI/FAQs";
 import { GalleryPlate, HorizontalGrid } from "@/components/UI/Galleries/MegaGallery";
-import { /* siteColors,  */siteSettings } from "@/helpers/base";
+import { /* siteColors,  */siteSettings, WPDomain } from "@/helpers/base";
 //import { ParallaxBanner } from "react-scroll-parallax";
 //import ParallaxChildSection from "@/components/UI/sections/ParallaxChildSection";
 import { Heading1, HeadingSeparatorDot } from "@/components/UI/partials/headings/Heading1";
@@ -27,6 +27,7 @@ import  ListingProductsSimple  from '@/components/listing/shop/ListingProductsSi
 import { PriceView } from "@/components/UI/PriceView";
 import FeaturesCarousel from "@/components/UI/features/FeaturesCarousel";
 import { useRouter } from "next/navigation";
+//import WpComments from "@/components/UI/Comments/wpComments";
 
 
 
@@ -255,6 +256,13 @@ function Archi({listing, setActiveKey, colorHex, color}){
             {ticketsHint}
             {reviewsView}
             {socialsView}
+            {/* <WpComments
+          maxDepth={1}
+          postID={listing.id}
+          hostUrl={WPDomain}
+          allowComments={user ? true : false}
+          //user = {userObj}
+        /> */}
             {faqsView}
             {tagsView}
             {galleryView}

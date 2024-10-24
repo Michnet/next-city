@@ -156,6 +156,51 @@ export const likeBPActivity = async (act_ID, token) =>{
       }
 
 }
+
+
+export const fetchComments = async (payload) => {
+  let endpoint;
+  if (payload) {
+      endpoint = `wp-json/wp/v2/comments?${serializeQuery({
+          ...payload
+      })}`;
+  } else {
+      endpoint = 'wp-json/wp/v2/comments';
+  }
+  try{
+  const response = await kyFetch.get(`${WPDomain}/${endpoint}`).json();
+  console.log('comms', response);
+    if (response && response.length > 0) {
+        const data = {
+            items: response,
+            //totalItems: response.headers['x-wp-total'],
+            //totalPages: response.headers['x-wp-totalpages']
+        };
+        return data;
+    } 
+  }catch(e){
+    return null;
+  }
+}
+
+
+export const createComment = async (payload) => {
+  let endpoint = `wp-json/wp/v2/comments?${serializeQuery({
+          ...payload,
+          JWT : getToken()
+      })}`;
+  try{
+  const response = await kyFetch.post(`${WPDomain}/${endpoint}`).json()
+    if (response) {
+        
+        return response;
+    } else return null;
+
+  }catch(e){
+    return null;
+  }
+}
+
 export const fetchRephrase = async (text, instruction = null) => {
   //return text;
     const options = {

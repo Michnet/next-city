@@ -785,6 +785,12 @@ body.theme-dark .btn {
 .hero_title .profile_name h1 {
     text-wrap: balance;
     font-size: 40px;
+    color: transparent;
+    background: linear-gradient(130deg, #ffffff, var(--listingTheme));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: brightness(1.5);
 }
 
 .truncate-4 {
@@ -860,7 +866,7 @@ body.theme-dark .btn {
 }
 
 ._listing #footer-bar, .theme-dark  ._listing #footer-bar {
-    background: var(--bgThemeTransparent);
+    background: var(--bgTheme);
     /* background: red; */
     box-shadow: #00000042 0px 0px 23px 1px;
     backdrop-filter: blur(4px);
@@ -3509,7 +3515,7 @@ span.term_icon_box {
 }
 
 span.list_title._first {
-    color: var(--listingTheme);
+    /* color: var(--listingTheme); */
 }
 
 .btn-icon i {
@@ -3940,6 +3946,8 @@ ul.listing_navigator {display: flex;align-items: center;grid-column-gap: 10px;gr
     line-height: 45px;
     border-radius: 50% !important;
     font-size: 23px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #footer-bar ul.listing_navigator.view_all li.active .it_icon {
@@ -5132,8 +5140,7 @@ div#explore_nav .view_filter {
     margin-bottom: 20px;
 }
     .hero_title .profile_name h1{
-    font-size: 21px;
-    margin-bottom: 20px;
+    font-size: 32px;
 }
     .single_listing .gx-profile-banner{
     filter: brightness(0.5);
@@ -5371,7 +5378,7 @@ section.sec_sideImg .sect_content{
     section.sec_sideImg .sideImg{
     margin-bottom: -100px;
 }
-    .hero_title .profile_name h1 .list_title{font-size: 30px;line-height: 20px;}
+    .hero_title .profile_name h1 .list_title, .hero_title .profile_name h1 span{font-size: 30px;line-height: 24px;}
     .separator span:before, .separator span:after{
     max-width: 20vw;
 }
@@ -5766,4 +5773,8 @@ section.sec_sideImg .sect_content{
 
 .sc_heading_3 .h_title {
     line-height: 1;
+}
+
+.listing_card ._content a {
+    color: var(--colorTheme);
 }
