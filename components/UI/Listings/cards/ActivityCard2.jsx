@@ -137,7 +137,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                   <div className="flex-grow-1">
                     <Link href={`/${type}s/${listing.slug}`}>
                       <h4 className={`activityCard__title lh-13 text-dark-1 ${mini ? 'd-block text-truncate mb-0' : ''}`}>
-                        <span >{cleanHtml(title?.rendered)}</span>
+                        <span className="text-capitalize">{cleanHtml(title?.rendered).toLowerCase()}</span>
                       </h4>
                     </Link>
                     

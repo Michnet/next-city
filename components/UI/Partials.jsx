@@ -73,7 +73,7 @@ export const SocialLinks = ({links, iconsOnly=true, exClass=''}) => {
       </div>
 }
 
-export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = true, title, subTitle, link, linkUrl='#', iconClass, color, desc, exClass=''}){
+export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = true, title, subTitle, link,  iconClass, color, exClass=''}){
   const router = useRouter();
   return (
     <div className={`section_header d-flex pb-2 ${exClass}`}>
@@ -87,8 +87,8 @@ export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = 
           </span>}
         </div>}
         <div className="align-self-center">
-           <h3 className="font-700 mb-0 _title">{title}</h3>
-          <p className="mb-n1 font-700 font-11 _subtitle">{subTitle}</p>
+           <h3 className="fw-200 mb-0 _title">{title}</h3>
+          <p className="mb-n1 font-13 _subtitle">{subTitle}</p>
         </div>
         {linkPath ? <div className="align-self-center ms-auto me-2">
            <button onClick={() => router.push({ pathname: linkPath, query: linkQuery })}>{link}</button>

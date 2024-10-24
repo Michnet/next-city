@@ -1252,9 +1252,8 @@ h6.tax_pare {}
 }
 
 .sc_heading_3 h5 {
-  /* color: var(--listingTheme); */
-  font-size: 14px;
   opacity: 0.5;
+  font-size: 14px;
   font-weight: 500;
 }
 .object-center {
@@ -3930,7 +3929,7 @@ ul.listing_navigator {display: flex;align-items: center;grid-column-gap: 10px;gr
 }
 
 #footer-bar .link_icon {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 30px;
     margin-right: auto !important;
     margin-left: auto;
@@ -3945,7 +3944,6 @@ ul.listing_navigator {display: flex;align-items: center;grid-column-gap: 10px;gr
     height: 45px;
     line-height: 45px;
     border-radius: 50% !important;
-    font-size: 23px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -5517,7 +5515,7 @@ section.sec_sideImg .sect_content{
 }
 
 .section_header ._subtitle {
-    color: var(--highlight);
+    /* color: var(--highlight); */
     /* color: var(--listingTheme); */
 }
 
@@ -5773,6 +5771,7 @@ section.sec_sideImg .sect_content{
 
 .sc_heading_3 .h_title {
     line-height: 1;
+    font-weight: 600;
 }
 
 .listing_card ._content a {
