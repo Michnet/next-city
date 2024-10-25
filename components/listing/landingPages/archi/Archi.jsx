@@ -226,7 +226,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
             <Section fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`}>
                 <div className='pt-0 pt-sm-5'>
               <Client>
-                    <HeadingSeparatorDot exClass='me-5 mb-3' align='right' title={'Google Reviews'} subtitle={`User reviews from google`}/>
+                    <HeadingSeparatorDot exClass='me-5 mb-3' align='right' title={'Google Reviews'} /* subtitle={`User reviews from google`} *//>
                     <GoogleReviews listing={listing} sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
                     </div>
               </Section>

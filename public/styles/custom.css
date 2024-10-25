@@ -1836,6 +1836,7 @@ button.back_link {
     padding: 5px 0;
     line-height: 30px;
     border: none;
+    position: relative;
 }
 
 .sidebar-content .list-custom-small a i {
@@ -4375,6 +4376,11 @@ input:hover, input:focus, input:active, select:hover, select:focus, select:activ
     background: var(--secTheme) !important;
 }
 
+.list-custom-small .badge {
+    top: 0;
+    margin-top: 9px !important;
+}
+
 .pdt_hero .splide.main_frame img {
     height: 100%;
     object-fit: cover;
@@ -5162,6 +5168,15 @@ div#explore_nav .view_filter {
 }
 
 @media (max-width: 768px) {
+    #mobile_sidebar{
+        background: transparent;
+        padding: 20px;
+    }
+
+#sidebar_menu {
+    background: var(--bgTheme);
+    border-radius: 16px !important;
+}
 .nav-link{
  /* color: var(--colorTheme); */
  opacity: 0.5;
@@ -5174,7 +5189,7 @@ div#explore_nav .view_filter {
     margin-bottom: 20px;
 }
     .hero_title .profile_name h1{
-    font-size: 32px;
+    font-size: 40px;
 }
     .single_listing .gx-profile-banner{
     filter: brightness(0.5);
@@ -5818,4 +5833,21 @@ section._dark .de_testi blockquote {
 
 .listing_card ._content a {
     color: var(--colorTheme);
+}
+
+.htm_carousel {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.htm_carousel .slide {
+    display: inline-block;
+    white-space: normal;
+    max-width: 80vw;
+}
+
+.htm_carousel .slide > * {
+    max-width: inherit;
 }
