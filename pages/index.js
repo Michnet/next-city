@@ -183,7 +183,6 @@ export default function Home(props) {
     const {serverObj} = props;
    const {eventCategories, placeCategories, latestSales, topTags, busyLocations, latestList, latestPlaces} = serverObj ?? {};
    const [ver, setVer] = useRecoilState(siteVersionState);
-   console.log('serverObj', serverObj)
    
   let imgArr = eventCategories?.map((ct) => {
     let {term_meta, id} = ct;

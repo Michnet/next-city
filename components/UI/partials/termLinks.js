@@ -1,5 +1,7 @@
 import { closeMenus } from "@/helpers/appjs";
-import { cleanHtml } from "@/helpers/universal";
+import { cleanHtml, randomEither } from "@/helpers/universal";
+import { siteColors } from "@/helpers/base";
+
 import Link from "next/link";
 
 export const TermIcon = ({item, flipped=false, shadowy=true, listingType}) => {
@@ -10,8 +12,8 @@ export const TermIcon = ({item, flipped=false, shadowy=true, listingType}) => {
     return <div key={id} className="icon_bound text-center me-n2 px-5" style={{width: '75px',}}>
                     <Link onClick={() => closeMenus()} href={linker}  className={`term_box icon icon-xxl mb-1`} >
                     <span style={{width: 60, height: 60,  background: `${flipped ? 'var(--bgTheme)' : color}`}} className={`term_icon_box ${shadowy ? flipped ? 'shadow':'shadow-bg shadow-bg-sm' : ''}`}>
-                        <i className={`text-center text-40 ${rl_awesome?.length > 0 ? rl_awesome : 'fas fa-feather'} ${flipped ? '_flipped bg-theme' : ''}`} style={{color: flipped ? color : '#fff'}}></i></span>
-                    <div className='_title'><span className="font-500 color-theme truncate-2 text-10 opacity-70 ">{cleanHtml(name).replace(' and ', ' & ')}</span></div>
+                        <i className={`text-center text-40 ${rl_awesome?.length > 0 ? rl_awesome : 'fas fa-feather'} ${flipped ? `_flipped color-${randomEither(siteColors)}-dark` : 'color-white'}`} /* style={{color: flipped ? color : '#fff'}} */></i></span>
+                    <div className='_title'><span className="font-500 color-theme truncate-2 text-10">{cleanHtml(name).replace(' and ', ' & ')}</span></div>
                 </Link>
                     
                 </div>

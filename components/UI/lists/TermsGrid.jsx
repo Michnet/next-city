@@ -10,7 +10,7 @@ import { useRecoilValue } from 'recoil';
 import { TermIcon } from '../partials/termLinks';
 //import TermCarouselIcon from './TermCarouselIcon';
 
-const TermsGrid = ({id, listy, exClass, shadowy=true}) => {
+const TermsGrid = ({id, listy, exClass, flipped=false, shadowy=true}) => {
     const [cats, setCats] = useState(null);
     const [loading, setLoading] = useState(true);
     const [orderBy, setOrderBy] = useState('count');
@@ -69,7 +69,7 @@ useEffect(() => {
   let catsArray;
   if(cats){
    catsArray = cats.map(cat => {
-       return <div className={`${listy ? 'col listy px-0' : 'col-md-3 col-sm-4 col-xs-6'}`}> <TermIcon onClick={() => closeMenus()} shadowy exClass={cat.slug === queryCategory ? 'active' : null}  key = {cat.id} item = {cat} /> </div>
+       return <div className={`${listy ? 'col listy px-0' : 'col-md-3 col-sm-4 col-xs-6'}`}> <TermIcon shadowy={shadowy} flipped={flipped} onClick={() => closeMenus()} exClass={cat.slug === queryCategory ? 'active' : null}  key = {cat.id} item = {cat} /> </div>
    })
   }
 

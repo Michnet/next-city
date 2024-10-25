@@ -11,21 +11,18 @@ function AddListingCard({exClass='', height=200, shadowy=false}) {
 
   return ( <>
   <Client>
-<div className={`card card-style round-medium  top-30 ${shadowy && 'shadow-bg shadow-bg-l'}  ${exClass}`} style={{ height: height}}>
+<div className={`card card-style round-medium  top-30 ${shadowy && 'shadow-bg shadow-bg-l'}  ${exClass}`} /* style={{ height: height}} */>
             
-            <div className="card-top mt-3 mx-3">
+            <div className="position-relative z-2  mt-3 mx-3">
                 <div className='row_flex gap-2 mb-2 justify-between'>
-                    <h2 className="color-white pt-0 pb-1 truncate-2">Get Listed on LyveCity</h2>
+                    <h2 className="color-white pt-0 pb-1 truncate-2 lh-1">Get Listed on LyveCity</h2>
                     <i className='fa'/>
                 </div>
-                <p className="color-white opacity-80 lh-13 text-15"> 
+                <p className="color-white opacity-80 lh-13 text-15 mb-4"> 
                   Connect with more customers and grow your business with a free listing on LyveCity
                 </p>
             </div>
-            <div className="card-bottom mb-3 me-3">
-                
-            </div>
-            <div className="card-bottom px-3 pb-2 row_flex gap-3 justify-between align-items-center">
+            <div className="position-relative z-2 px-3 pb-2 row_flex gap-3 justify-between align-items-center">
                 <div>
                 <h5 className={`font-14 mb-n1 truncate-2 ${`color-highlight`}`}>{/* <i className='far fa-thumbs-up'/> */}It's Free</h5>
                 </div>

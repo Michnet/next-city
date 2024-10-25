@@ -1736,7 +1736,7 @@ button.back_link {
 }
 
 .sidebar-content a span.term_icon_box {
-    background: var(--bgDarkTransparent) !important;
+    /* background: var(--bgDarkTransparent) !important; */
 }
 
 #sidebar:not(.show) .card.border {
@@ -1835,11 +1835,22 @@ button.back_link {
     line-height: 1.3;
     padding: 5px 0;
     line-height: 30px;
+    border: none;
 }
 
 .sidebar-content .list-custom-small a i {
     line-height: 30px;
     margin-top: 0;
+}
+.sidebar-content .free_icons i{
+    font-size: 21px !important;
+    font-weight: 500;
+    box-shadow: none;
+}
+
+.sidebar-content .free_icons i.las {
+    font-weight: 600;
+    font-size: 26px !important;
 }
 
 .sidebar-content .list-custom-small a i:last-child {
@@ -1877,6 +1888,10 @@ button.back_link {
     height: fit-content;
     display: block;
     overflow: visible;
+}
+
+.sidebar-content > .card-style:not(:last-child) {
+    border-bottom: 1px solid var(--borderTheme);
 }
 
 #sidebar .terms_grid .row {
@@ -2749,7 +2764,7 @@ border-color: #FF9800;
 
 .terms_grid .col.listy .term_box {
     display: grid;
-    grid-template-columns: 50px auto;
+    grid-template-columns: 50px calc(100% - 50px);
     width: 100% !important;
     align-items: center;
     justify-items: start;
@@ -2771,6 +2786,19 @@ border-color: #FF9800;
 .terms_grid .col.listy .term_box span {
     text-align: left !important;
     font-size: var(--fontSize) !important;
+}
+
+.terms_grid .col.listy .term_box ._title span {
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.terms_grid .col.listy .term_box ._title {
+    min-width: 0;
+    max-width: 100%;
 }
 
 #sidebar.collapse:not(.show) .hide_in_collapsed, #sidebar.collapse.collapsing .hide_in_collapsed {
@@ -3352,7 +3380,7 @@ span.clear_tag {
 
 .terms_grid .col.listy .term_box .term_icon_box i {
     line-height: inherit;
-    font-size: 20px !important;
+    /* font-size: 20px !important; */
 }
 
 .terms_grid .col.listy .icon_bound {
@@ -4909,7 +4937,7 @@ a.link_link {
 
 .review_card_2.bg-transparent .de_testi blockquote p {
     font-weight: 400;
-    font-size: 20px;
+    font-size: var(--mdFontSise);
 }
 
 .review_card_2.bg-transparent .de_testi blockquote:before {
