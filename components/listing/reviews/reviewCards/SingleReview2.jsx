@@ -1,3 +1,4 @@
+import { cleanString } from "@/helpers/universal";
 import dayjs from "dayjs";
 
 function SingleReview2({google=false, review, user, preview, listingId, noTime, reload, width='auto', exClass='', transparent }) {
@@ -11,8 +12,8 @@ function SingleReview2({google=false, review, user, preview, listingId, noTime, 
           <div className="de_testi">
               <blockquote>
              {/*  <h5 className="'font-17 text-20 mb-2 color-white fw-100">{title}</h5> */}
-                  <p>
-                    {text}
+                  <p className="rev_content mb-3">
+                    {cleanString(text)}
                   </p>
                   <div id={`score_stars`} className='score_stars'
                     style={{

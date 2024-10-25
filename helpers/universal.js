@@ -12,6 +12,9 @@ dayjs.extend(timezone)
 export function cleanHtml(str){
     return str?.replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&#8216;/g, "'").replace(/&#038;/g, "&").replace(/&#8211;/g, "-");
 }
+export function cleanString(str){
+    return str?.replace('u2019', "'").replace(".nn", ". ").replace('.n', ". ");
+}
 
 /* 
 function reduceTextSize(){
@@ -155,6 +158,15 @@ export const likeBPActivity = async (act_ID, token) =>{
         return null;
       }
 
+}
+
+export function isJsonString(str) {
+  try {
+      JSON.parse(str);
+  } catch (e) {
+      return false;
+  }
+  return true;
 }
 
 

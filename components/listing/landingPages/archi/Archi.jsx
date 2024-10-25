@@ -5,7 +5,7 @@
 import { Client } from "react-hydration-provider";
 //import {Suspense } from "react";
 //import ParallaxSection from "@/components/UI/sections/ParallaxSection";
-import { randomEither, resizedImage, /* cleanHtml, */ shuffleArray, srcWithFallback } from '@/helpers/universal';
+import { isJsonString, randomEither, resizedImage, /* cleanHtml, */ shuffleArray, srcWithFallback } from '@/helpers/universal';
 import ListingInfoCard from "@/components/listing/landingPages/hero/partials/ListingInfoCard";
 import ListingDetail from "../../profileInfo/ListingDetail";
 import PostReviews from './../../reviews/postReviews';
@@ -221,16 +221,20 @@ function Archi({listing, setActiveKey, colorHex, color}){
               </>
 
               if(google_reviews){
-
-          googleReviewsView = <>
-            <Section fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`}>
-                <div className='pt-0 pt-sm-5'>
-              <Client>
-                    <HeadingSeparatorDot exClass='me-5 mb-3' align='right' title={'Google Reviews'} /* subtitle={`User reviews from google`} *//>
-                    <GoogleReviews listing={listing} sliderOptions={{padding: {left: '20px'}}} light={false} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
-                    </div>
-              </Section>
-              </>
+                if(isJsonString(google_reviews)){
+                let g_revs = JSON.parse(google_reviews);
+                if(g_revs?.length > 0){
+                    googleReviewsView = <>
+                    <Section fullWidth sideImg exClass='py-0 bg-fixed right_img' id='reviews' bgUrl={`${resizedImage(randomEither(gallery), 'medium_large')}`}>
+                        <div className='pt-0 pt-sm-5'>
+                    <Client>
+                            <HeadingSeparatorDot exClass='me-5 mb-3' align='right' title={'Google Reviews'} /* subtitle={`User reviews from google`} *//>
+                            <GoogleReviews reviewsList={g_revs} listing={listing} sliderOptions={{padding: {left: '20px'}}} light={true} headerLess={true} cardType={2} transparentCards={true} preview={true} fromActive author_id={author_id} withButton setActiveKey={setActiveKey}  id={id}  limit={3} carousel /* bgImage={processImg(gallery)} *//></Client>
+                            </div>
+                    </Section>
+                    </>
+                }
+            }
         }
               
     }

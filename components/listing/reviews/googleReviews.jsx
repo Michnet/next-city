@@ -1,18 +1,18 @@
 "use client";
 
 import  {useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil';
-import Image from 'next/image';
+import { useRecoilState } from 'recoil';
+//import Image from 'next/image';
 import CallToActions from '@/components/UI/CallToActions';
 import { authState } from '@/contexts/atoms';
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 import dynamic from 'next/dynamic';
 import Splider from '@/components/UI/partials/Splider';
 import { Heading1 } from '@/components/UI/partials/headings/Heading1';
-import { typeName } from '@/helpers/universal';
+import { isJsonString, typeName } from '@/helpers/universal';
 
 
-function GoogleReviews({id, type=null, listing, headerLess=false, light=true,  cardType=1, preview = false, carousel,  reload, bgImage=false, transparentCards=false, setActiveKey, withButton=false, sliderOptions={}}) {
+function GoogleReviews({id, type=null, reviewsList, listing, headerLess=false, light=true,  cardType=1, preview = false, carousel,  reload, bgImage=false, transparentCards=false, setActiveKey, withButton=false, sliderOptions={}}) {
     const [auth, setAuth] = useRecoilState(authState);
     const {user} = auth ?? {};
     const [loading, setLoading] = useState(true);
@@ -25,9 +25,15 @@ function GoogleReviews({id, type=null, listing, headerLess=false, light=true,  c
 
     useEffect(() => {
         setLoading(true);
-        let g_revs = JSON.parse(google_reviews);
-        if(g_revs?.length > 0){
-            setReviews(g_revs)
+        if(reviewsList?.length > 0){
+            setReviews(reviewsList);
+        }else{
+            if(isJsonString(google_reviews)){
+            let g_revs = JSON.parse(google_reviews);
+            if(g_revs?.length > 0){
+                setReviews(g_revs);
+            }
+        }
         }
         setLoading(false);
         return () => {setReviews(null);

@@ -759,7 +759,7 @@ body.theme-dark .btn {
     -webkit-line-clamp: 1;
     white-space: nowrap;
     display: block;
-    max-width: 95%;
+    max-width: 99%;
 }
 
 .truncate-2 {
@@ -3377,6 +3377,7 @@ span.clear_tag {
     line-height: 30px;
     border-radius: 10px;
     margin-bottom: 0;
+    background: transparent !important;
 }
 
 .terms_grid .col.listy .term_box .term_icon_box i {
@@ -4946,6 +4947,33 @@ a.link_link {
     font-size: var(--mdFontSise);
 }
 
+.review_card_2 .rev_content {
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.review_card_2 .rev_content::-webkit-scrollbar {
+    width: 3px;
+    display: block;
+}
+/* Track */
+.review_card_2 .rev_content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.review_card_2 .rev_content::-webkit-scrollbar-thumb {
+  background: var(--bgThemeLight);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.review_card_2 .rev_content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 .review_card_2.bg-transparent .de_testi blockquote:before {
     background: transparent;
     color: var(--listingTheme);
@@ -5171,11 +5199,13 @@ div#explore_nav .view_filter {
     #mobile_sidebar{
         background: transparent;
         padding: 20px;
+        box-shadow: none;
     }
 
 #sidebar_menu {
-    background: var(--bgTheme);
+    background: var(--bgThemeTransparent);
     border-radius: 16px !important;
+    backdrop-filter: blur(14px);
 }
 .nav-link{
  /* color: var(--colorTheme); */
@@ -5424,6 +5454,9 @@ section.sec_sideImg .sect_content{
 }
 
 @media (max-width: 575px){
+    #mobile_sidebar{
+    padding: 10px;
+}
     section.sec_sideImg .sideImg{
     margin-bottom: -100px;
 }
@@ -5566,7 +5599,7 @@ section.sec_sideImg .sect_content{
 }
 
 .section_header ._subtitle {
-    /* color: var(--highlight); */
+    opacity: 0.5;
     /* color: var(--listingTheme); */
 }
 
