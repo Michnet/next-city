@@ -140,7 +140,7 @@ function MainMenu() {
                                         <div className="quick_links">
                                         {exploreLinks?.map((item) => (
                                         <div className="mb-10" key={item.id}>
-                                        <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
+                                        <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 "><span className="color-highlight-gradient fw-300">{item.title}</span></h5>
                                         <div className="d-flex flex-column y-gap-10">
                                             {item.menuList.map((menu, i) => {
                                                 const {routerPath} = menu;
@@ -161,7 +161,7 @@ function MainMenu() {
                                         <div className="quick_links">
                                         {quickLinks?.map((item) => (
                                         <div className="mb-10" key={item.id}>
-                                        <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 uppercase">{item.title}</h5>
+                                        <h5 className="text-15 fw-bold mb-10 border-bottom pb-10 "><span className="color-highlight-gradient fw-300">{item.title}</span></h5>
                                         <div className="d-flex flex-column y-gap-10">
                                             {item.menuList.map((menu, i) => {
                                                 const {routerPath} = menu;

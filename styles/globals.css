@@ -94,10 +94,6 @@ border-color: var(--listingTheme);
 }
 .heady{font-family: var(--headingFontFamily);}
 
-.hero_title .profile_name {
-  text-align: right;
-}
-
 .hero_title .profile_name h1 {
   font-size: 35px;
   font-weight: 700;

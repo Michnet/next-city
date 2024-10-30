@@ -22,7 +22,7 @@ const ListingDetailConst = ({id, detail, exClass='',type='event', textExClass='o
     
 
      if(detail){
-       contentView = <Widget bodyClass={'p-3'} headingExClass={'mx-0 mb-2'} exClass={'bg-transparent mx-0 shadow-0 top_border partial_border'} styleObj={{backgroundColor : 'transparent !important'}} freeHeader subtitle={'More About Listing'} title={`More about this ${typeName(type)}`}> <div className="position-relative">
+       contentView = <Widget bodyClass={'p-3'} headingExClass={'mx-0 mb-2'} exClass={'bg-transparent mx-0 shadow-0 top_left partial_border'} styleObj={{backgroundColor : 'transparent !important'}} freeHeader subtitle={'More About Listing'} title={`More about this ${typeName(type)}`}> <div className="position-relative">
                           <Client><div className={`listing_content ${textExClass}  ${fullContent ? '' : 'truncate-5'}`} dangerouslySetInnerHTML={{ __html: hashtag(cleanHtml(detail))}}/>
                           </Client>
                           {/* {fullContent ? <></> : <div className="_hidden_hint"></div>} */}

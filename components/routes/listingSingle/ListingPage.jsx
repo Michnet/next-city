@@ -140,7 +140,8 @@ return linkzz;
     <Client>
       <style>
           {`:root{
-            --listingTheme : ${siteColorObjs?.filter((col) => col.name === color)[0]?.hex ?? '#000'}
+            --listingTheme : ${siteColorObjs?.filter((col) => col.name === color)[0]?.hex ?? '#000'};
+            --listingGradient : var(--gradient-${color});
           }
           `}
       </style>

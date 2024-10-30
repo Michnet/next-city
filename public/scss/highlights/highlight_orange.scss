@@ -1,20 +1,29 @@
 /* Generating Color Pack*/
 
-$colorHighlightLight: #C04000;
-$colorHighlightDark: #FF5F1F;
+$colorHighlightLight: #ff7336;
+$colorHighlightDark: #d04408;
 
-$colorSec: #5f1fff;
+$colorSec: #6c00f2;
 
 :root{
     --secTheme:#{$colorSec};
     --highlight:#{$colorHighlightDark} !important;
+    --bg-gradient-highlight:linear-gradient(45deg, $colorHighlightLight, $colorSec)!important;
 }
 
 .color-highlight{color:$colorHighlightDark!important;}
 .bg-highlight{background-color:$colorHighlightDark!important; color:#FFF!important;}
 .border-highlight{border-color:$colorHighlightDark!important;}
-.gradient-highlight{background-image:linear-gradient(to bottom, $colorHighlightLight, $colorHighlightDark)!important;}
-
+.gradient-highlight{background-image:linear-gradient(45deg, $colorHighlightLight, $colorSec);}
+.bg-highlight-sec{background-color:$colorSec!important; color:#FFF!important;}
+.border-highlight-sec{border-color:$colorSec!important;}
+.color-highlight-sec{color:$colorSec;}
+.color-highlight-gradient{
+    background-image:linear-gradient(45deg, $colorHighlightLight, $colorSec);
+    -webkit-background-clip: text;
+     background-clip: text;
+     -webkit-text-fill-color: transparent;
+}
 //.form-control:focus,
 //.form-select:focus{border-color:$colorHighlightDark!important;}
 .footer-bar-2 .active-nav,

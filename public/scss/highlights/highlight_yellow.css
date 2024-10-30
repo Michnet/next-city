@@ -1,7 +1,8 @@
 /* Generating Color Pack*/
 :root {
-  --secTheme:#427df6;
-  --highlight:#F6BB42 !important;
+  --secTheme: #427df6;
+  --highlight: #F6BB42 !important;
+  --bg-gradient-highlight: linear-gradient(45deg, #FFCE54, #427df6) !important;
 }
 
 .color-highlight {
@@ -18,7 +19,27 @@
 }
 
 .gradient-highlight {
-  background-image: linear-gradient(to bottom, #FFCE54, #F6BB42) !important;
+  background-image: linear-gradient(45deg, #FFCE54, #427df6);
+}
+
+.bg-highlight-sec {
+  background-color: #427df6 !important;
+  color: #FFF !important;
+}
+
+.border-highlight-sec {
+  border-color: #427df6 !important;
+}
+
+.color-highlight-sec {
+  color: #427df6;
+}
+
+.color-highlight-gradient {
+  background-image: linear-gradient(45deg, #FFCE54, #427df6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-bar-2 .active-nav,
@@ -35,10 +56,6 @@
 }
 
 .form-floating-over > .form-control:focus ~ label {
-  color: #F6BB42;
-}
-
-.form-floating-over > .form-control:not(:-moz-placeholder-shown) ~ label {
   color: #F6BB42;
 }
 
@@ -62,4 +79,4 @@
 .interest-check input:checked ~ label {
   color: #FFF !important;
   background-color: #F6BB42 !important;
-}/*# sourceMappingURL=highlight_yellow.css.map */
+}

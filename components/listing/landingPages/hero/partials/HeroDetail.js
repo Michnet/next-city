@@ -10,7 +10,7 @@ import { PriceView } from '@/components/UI/PriceView';
 import { UISizes } from '@/contexts/atoms';
 //import CountDownUI from '@/components/UI/CountDownUI';
 //import styles from '@/components/listing/styles/home1.module.css';
-import {PreviousRouteLink } from '@/components/UI/Partials';
+import {ListingMetaMini, PreviousRouteLink } from '@/components/UI/Partials';
 import Link from 'next/link';
 import PostLike from '@/components/UI/partials/social/PostLike';
 import NextPostLink from '@/components/UI/NextPostLink';
@@ -42,15 +42,19 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
     }
 
     nameView = <>
-        <div className='row_flex justify-items-end gap-3 hero_title  justify-end text-right flex-lg-column' style={{zIndex: '10'}}>
+        <div className='row_flex justify-items-center gap-3 hero_title flex-lg-row' style={{zIndex: '10'}}>
+                <div className="d-flex flex-column flex-grow-1 align-items-end gap-2 d-none d-md-flex hero_meta" data-aos='fade-up'>
+                  <h1 className="styled_title mb-20 d-block text-right">
+                          <span className="list_title _first color-theme" dangerouslySetInnerHTML={{__html: firstWord}}/><span> </span><span className="list_title _last color-highlight-gradient" dangerouslySetInnerHTML={{__html: lastWords}}/> 
+                        </h1>
+                        <ListingMetaMini listExClass='flex-lg-row flex-column _vertical align-items-start' filled={false}  exClass={'pos-relative z-2 justify-end'} /* page_likes={likes?.length ?? null} */  page_views={page_views} ratings={rating}/>
+                    </div>
                   <div className='profile_name h-fit minw-0 flex-shrink-1 flex-grow-1'>
-                        {/* <h1 className="styled_title mb-20 d-block">
-                          <span className="list_title _first" dangerouslySetInnerHTML={{__html: firstWord}}/><span> </span><span className="list_title _last" dangerouslySetInnerHTML={{__html: lastWords}}/> 
-                        </h1> */}
-                        <div className='title_meta d-flex justify-end'>
+                        
+                        <div className='title_meta d-flex'>
                           <Client>
                         <p style={{lineHeight: '1.3em'}} >
-                          <span className={`target mr-4 mb-4 color-${color}-light`}> {cleanHtml(catName)} </span>
+                          <span className={`target mr-4 mb-4`}> {cleanHtml(catName)} </span>
                           {/* <span className="target mr-4 mb-4 gray_text"> {type} </span> */}
                           {locations ? <><span className='gray_text'> In</span> <span className="target mr-4"> {locations[0]?.name} </span></> : <></>}
                         </p>
@@ -65,7 +69,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                         </p>
                       </div>
                         <div className='row_flex gap-2 justify-between mb-3'>
-                          {<button  onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-s text-uppercase text-nowrap font-900 color-white shadow-s bg-listing btn-icon text-start">
+                          {<button  onClick={() => {setActiveKey(general_merchandise?.length > 0 ? 'merchandise' : 'private-chat')}}  className="big_btn btn btn-m shadow-bg shadow-bg-m  rounded-5 text-uppercase text-nowrap font-900 color-white shadow-s gradient-highlight btn-icon text-start">
                                 <i className={`far fa-${general_merchandise?.length > 0 ? 'store' : 'comment-smile'} font-20 text-center color-white`}></i>
                                 {general_merchandise?.length > 0 ? 'See Store' : 'Contact'}
                               </button>}
@@ -75,10 +79,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                           </div>
                         </div>
                   </div>
-                  {/* <div className="d-flex flex-column align-items-center text-center gap-2 hero_meta" data-aos='fade-up'>
-                        <ListingMetaMini listExClass='flex-lg-row flex-column _vertical align-items-start' filled={false}  exClass={'pos-relative z-2 justify-end'} page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>
-                    </div> */}
-                    
+                  
                   </div> 
     </>
   }
@@ -123,7 +124,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
             <div className='_right card card-style mx-0 p-3 p-sm-5 gap-4 mb-0 row flex-lg-row flex-lg-nowrap'> 
               <div className='col-12 col-lg-6 p-0'>
               {short_desc && <Client>
-              <p className = 'mb-20 text-16 smLine'>
+              <p className = 'mb-20 text-18 smLine'>
                   <span  dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
               </p></Client>}
               {ticket_min_price_html ? <PriceView priceHTml={ticket_min_price_html} exClass={'_inline _hero mb-10 d-block'}/> : <></>}

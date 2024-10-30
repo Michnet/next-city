@@ -17,8 +17,8 @@ function RelatedListingsConst({category, type=null, locations, dir_categories, l
                 <>
                   <div className="pt-3 hide_if_empty"><RelatedByTaxSplide  taxonomy={`region`} slug={locations[0]?.slug} taxName={locations[0]?.name} exclude={listingId}/></div>
                 </>}
-                <Heading1 exClass="mx-3 mb-0" title={'More Options'} subtitle={'Other Pages you may like'}/>
-                  <Search type={type} columnObj={{0: 1, 420: 2, 600: 3, 992:2, 1024:3,1240: 4}} propQuery={{category: category?.slug, exclude:listingId}} hideHeading={true}/>
+                   {/* <Heading1 exClass="mx-3 mb-0" title={'More Options'} subtitle={'Other Pages you may like'}/> */}
+                  <Search title='Explore' subtitle={'Other Pages you may like'} type={type} columnObj={{0: 1, 420: 2, 600: 3, 992:2, 1024:3,1240: 4}} propQuery={{category: category?.slug, exclude:listingId}} hideHeading={true}/>
                 </div>
         </Client>
   )

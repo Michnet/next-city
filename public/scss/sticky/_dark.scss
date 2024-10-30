@@ -55,10 +55,11 @@
     rgba(0, 0, 0,1) 100%);
 }
 
-$theme-dark-transparent-background: #000000e6;
+$theme-dark-transparent-background: rgba(0, 0, 0, 0.902);
 $theme-dark-transparent-background-2: rgba(0, 0, 0, 0.76);
 $theme-dark-background-light: #232426;
 $color_white: #FFF;
+$color_black: #0c0c0c;
 
 $theme-light-text: #666666;
 $theme-light-structure:#FFFFFF;
@@ -66,15 +67,6 @@ $theme-light-background:#f0f0f0;
 $theme-light-background-light:#c7c7c7;
 $theme-light-transparent-background: #ffffffe6;
 $theme-light-transparent-background-2: #f0f0f0d0;
-
-
-/* 
-:root{
-    --colorTheme:#{$color_white};
-    --bgTheme:#{$theme-dark-background};
-    --bgDarkTransparent:#{$theme-dark-transparent-background};
-    --borderTheme:rgba(255,255,255,0.12);
-} */
 
 body{
     color: #000;

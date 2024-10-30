@@ -87,8 +87,8 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, hei
                     <div style={{minWidth:0, flexShrink: 1, flexGrow: 1}}>
                         <Link href={`/${type}s/${slug}`}><h3 className={`text-15 fw-bold smLine text-capitalize ${truncate ? 'truncate' : 'truncate-2'}`}>{cleanHtml(title.rendered).toLowerCase()}</h3></Link>
                         {/* {event_date && event_date[0] ? <DateViewDescriptive customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='position-relative'/> : <></>} */}
-                        <div className="row_flex gap-2">
-                        <TermTag  exTagClass={'rounded-3 text-12 truncate'} exClass={'lgLine'} term={category} type={'hash'} linkTax={'category'}/>
+                        <div className="row_flex gap-2 align-items-center">
+                        <TermTag  exTagClass={'rounded-3 text-13 truncate color-highlight-gradient'} exClass={'lgLine minw-0 flex-shrink-1'} term={category} type={'hash'} linkTax={'category'}/>
                         <ListingMeta location={locations?.length > 0 ? locations[0].name : null} duration={listing.duration}/> </div>
                         {mini ? <></> : <p className="card_desc truncate-2 mb-1 text-14 opacity-80">{short_desc}</p>}
                         {/* <div className={`d-flex flex-wrap justify-start align-items-center gap-2 border-top-light pt-1 smLine mt-2`}>

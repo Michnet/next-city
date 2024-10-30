@@ -1,72 +1,73 @@
 // Importing Bootstrap Variables to Reuse
 @import "bootstrap/functions";
 @import "bootstrap/variables";
-@import "custom/tools";
-@import "custom/variables";
+@import "custom/_tools";
+@import "custom/_variables";
 
 //Importing Sticky Utility Classes
-@import "sticky/variables";
+@import "sticky/_variables";
 
 //Importing Sturctural Elements
-@import "sticky/typography";
-@import "sticky/structure";
-@import "sticky/logos";
-@import "sticky/header-bar";
-@import "sticky/footer-bar";
-@import "sticky/menu";
-@import "sticky/utilities";
+@import "sticky/_typography";
+@import "sticky/_structure";
+@import "sticky/_logos";
+@import "sticky/_header-bar";
+@import "sticky/_footer-bar";
+@import "sticky/_menu";
+@import "sticky/_utilities";
 
 //Importing Components
-@import "components/preloader";
-@import "components/buttons";
-@import "components/icons";
-@import "components/accordion";
-@import "components/offline";
-@import "components/add-to-home";
-@import "components/ads";
-@import "components/alerts";
-@import "components/notifications";
-@import "components/back-to-top";
-@import "components/cards";
-@import "components/chips";
-@import "components/dividers";
-@import "components/switches";
-@import "components/checkradio";
-@import "components/inputs";
-@import "components/range";
-@import "components/list-group";
-@import "components/pricing";
-@import "components/toasts";
-@import "components/snackbars";
-@import "components/pagination";
-@import "components/search";
-@import "components/tabs";
-@import "components/working-hours";
-@import "components/iframes";
-@import "components/footer";
-@import "components/carousels";
+@import "components/_preloader";
+@import "components/_buttons";
+@import "components/_icons";
+@import "components/_accordion";
+@import "components/_offline";
+@import "components/_add-to-home";
+@import "components/_ads";
+@import "components/_alerts";
+@import "components/_notifications";
+@import "components/_back-to-top";
+@import "components/_cards";
+@import "components/_chips";
+@import "components/_dividers";
+@import "components/_switches";
+@import "components/_checkradio";
+@import "components/_inputs";
+@import "components/_range";
+@import "components/_list-group";
+@import "components/_pricing";
+@import "components/_toasts";
+@import "components/_snackbars";
+@import "components/_pagination";
+@import "components/_search";
+@import "components/_tabs";
+@import "components/_working-hours";
+@import "components/_iframes";
+@import "components/_footer";
+@import "components/_carousels";
 
 //Importing Pages
-@import "pages/calendar";
-@import "pages/chat";
-@import "pages/contact";
-@import "pages/map";
-@import "pages/media";
-@import "pages/timeline";
+@import "pages/_calendar";
+@import "pages/_chat";
+@import "pages/_contact";
+@import "pages/_map";
+@import "pages/_media";
+@import "pages/_timeline";
 //Rebuilt in Sticky v48
 //@import "pages/vcard";
 
+
 //Importing Dark and Color Scheme
 @import "sticky/_dark";
-@import "sticky/colors";
+@import "sticky/_colors";
 
 //Demo Aligns for Icons and Background Demo Images
 //Can be deleted to save space
-@import "components/zdemo";
-@import "custom/spacing";
-@import "custom/typography";
+@import "components/_zdemo";
+@import "custom/_spacing";
+@import "custom/_typography";
 
 //Importing Plugins
-@import "plugins/splide";
+@import "plugins/_splide";
 
 

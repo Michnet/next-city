@@ -8,7 +8,7 @@ import { siteSettings } from "@/helpers/base";
 import { Client } from "react-hydration-provider";
 //import Slider from "react-slick"
 //import { fadingSlide, largeResp } from "@/helpers/sliders";
-import {useMemo } from 'react';
+//import {useMemo } from 'react';
 // import ActivityCard1 from "@/components/UI/Listings/cards/ActivityCard1";
 import {SectionHeader } from "@/components/UI/Partials";
 // import ListingCard2 from "@/components/UI/Listings/cards/ListingCard2";
@@ -20,19 +20,19 @@ import EventCard2 from "@/components/UI/Listings/cards/EventCard2";
 //import ListingCard3 from "@/components/UI/Listings/cards/ListingCard3";
 import SearchField from "@/components/UI/search/SearchField";
 //import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
-import { randomBetween, randomEither, shuffleArray } from '@/helpers/universal';
+import {randomEither} from '@/helpers/universal';
 import TagsCloud from "@/components/listing/partials/TagsCloud";
 //import HeroSearch from "@/components/UI/search/HeroSearch";
 import AddListingCard from "@/components/UI/partials/AddListingCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Mirrored from "@/components/UI/partials/Mirrored";
-import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
+//import EventCard5 from "@/components/UI/Listings/cards/EventCard5";
 import EventCard3  from '@/components/UI/Listings/cards/EventCard3';
 import { useRecoilState } from 'recoil';
 import { siteVersionState } from "@/contexts/atoms";
-import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
-import SalesCard from "@/components/UI/Listings/cards/SalesCard";
+//import EventCardImage from "@/components/UI/Listings/cards/EventCardImage";
+//import SalesCard from "@/components/UI/Listings/cards/SalesCard";
 import SalesCard2 from "@/components/UI/Listings/cards/SalesCard2";
 import ListingsMasonry from "@/components/UI/Listings/ListingsMasonry";
 //import TermsCarousel from "@/components/UI/Listings/TermsCarousel";
@@ -291,7 +291,7 @@ export default function Home(props) {
    <Splider  exClass='mb-3' options={{gap: 15, arrows: false, wheel:false,  autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop'}}>
       {latestPlaces?.length > 0 ? 
           latestPlaces.map((li) => {
-           return <EventCard3 truncate={2} exClass='mx-0 mb-4 mt-2' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
+           return <EventCard3 truncate={3} exClass='mx-0 mb-4 mt-2' mini contentClass={'px-3'} height={200} width={200} key={li.id} listing = {li}/>
           })
           :
           <></>

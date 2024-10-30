@@ -1,9 +1,9 @@
 /* Generating Color Pack*/
 
-$colorHighlightLight: #222529;
-$colorHighlightDark: #16181c;
+$colorHighlightLight: #D770AD;
+$colorHighlightDark: #b43a83;
 
-$colorSec: #1c1a16;
+$colorSec: #00539c;
 
 :root{
     --secTheme:#{$colorSec};
@@ -24,8 +24,8 @@ $colorSec: #1c1a16;
      background-clip: text;
      -webkit-text-fill-color: transparent;
 }
-///.form-control:focus,
-///.form-select:focus{border-color:$colorHighlightDark!important;}
+//.form-control:focus,
+//.form-select:focus{border-color:$colorHighlightDark!important;}
 .footer-bar-2 .active-nav,
 .footer-bar-5 strong,
 .footer-bar-4 strong,

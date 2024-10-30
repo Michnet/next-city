@@ -43,8 +43,8 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
               <span className={styles['text19']} /* data-aos='fade-left' */><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
               {venue && <span className={`text-30 fw-200 truncate-4 smLine`} /* data-aos='fade-left' */>
                   {/* <span className='fw-400 opacity-50'>@</span> */}
-                  <i className='fal fa-street-view text-22 me-2 color-listing-theme'/>
-                  {venue}
+                  <i className='fal fa-street-view text-22 me-2 color-theme'/>
+                  <span className='color-highlight-gradient'>{venue}</span>
                 </span>}
               {tagline && <span className={`text-18 color-theme`} style={{fontWeight: '500'}} /* data-aos='fade-right' */>
                   {tagline}

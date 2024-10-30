@@ -7,23 +7,23 @@ $colorHighlightDark: #DA4453;
 
 $colorPack: (
     "highlight" $colorHighlightLight $colorHighlightDark, 
-    "green" #A0D468 #8CC152 rgba(140, 193, 82, 0.3) rgba(140, 193, 82, 0.7), 
-    "grass" #34cc73 #2ABA66 rgba(140, 193, 82, 0.3) rgba(140, 193, 82, 0.7), 
-    "red" #ED5565 #DA4453 rgba(218, 68, 83, 0.3) rgba(218, 68, 83, 0.7), 
-    "orange" #FC6E51 #E9573F rgba(233, 87, 63, 0.3) rgba(233, 87, 63, 0.7), 
-    "yellow" #FFCE54 #F6BB42 rgba(246, 187, 66, 0.3) rgba(246, 187, 66, 0.7), 
-    "sunny" #f0b31b #d99914 rgba(246, 187, 66, 0.3) rgba(246, 187, 66, 0.7), 
-    "blue" #5D9CEC #4A89DC rgba(74, 137, 220, 0.3) rgba(74, 137, 220, 0.7), 
-    "teal" #A0CECB #7DB1B1 rgba(125, 177, 177, 0.3) rgba(125, 177, 177, 0.7), 
-    "mint" #48CFAD #37BC9B rgba(55, 188, 155, 0.3) rgba(55, 188, 155, 0.7), 
-    "pink" #EC87C0 #D770AD rgba(215, 112, 173, 0.3) rgba(215, 112, 173, 0.7), 
-    "pink2" #ff5982 #fb3365 rgba(215, 112, 173, 0.3) rgba(215, 112, 173, 0.7), 
-    "magenta" #AC92EC #967ADC rgba(150, 122, 220, 0.3) rgba(150, 122, 220, 0.7), 
-    "brown" #BAA286 #AA8E69 rgba(170, 142, 105, 0.3) rgba(170, 142, 105, 0.7),
-    "gray" #e2e5ea #AAB2BD rgba(170, 178, 189, 0.3) rgba(170, 178, 189, 0.7),
-    "aqua" #4FC1E9 #3BAFDA rgba(67, 74, 84, 0.3) rgba(67, 74, 84, 0.7),
-    "night" #222529 #16181c rgba(67, 74, 84, 0.3) rgba(67, 74, 84, 0.7),
-    "dark" #656D78 #434A54 rgba(67, 74, 84, 0.3) rgba(67, 74, 84, 0.7)
+    "green" #4A9C09 #A036F3 rgba(140, 193, 82, 0.3) rgba(140, 193, 82, 0.7) #3a7b06, 
+    "grass" #34cc73 #252669 rgba(140, 193, 82, 0.3) rgba(140, 193, 82, 0.7) #15a351, 
+    "red" #e81416 #00239c rgba(218, 68, 83, 0.3) rgba(218, 68, 83, 0.7) #c4070a, 
+    "orange" #ff7336 #6c00f2 rgba(233, 87, 63, 0.3) rgba(233, 87, 63, 0.7) #c7430b, 
+    "yellow" #FFCE54 #F6BB42 rgba(246, 187, 66, 0.3) rgba(246, 187, 66, 0.7) #dca414, 
+    "sunny" #f0b31b #d99914 rgba(246, 187, 66, 0.3) rgba(246, 187, 66, 0.7) #cc9813, 
+    "blue" #0d0de0 #fc766a rgba(74, 137, 220, 0.3) rgba(74, 137, 220, 0.7) #4d4dff, 
+    "teal" #A0CECB #7DB1B1 rgba(125, 177, 177, 0.3) rgba(125, 177, 177, 0.7) #0707b5, 
+    "mint" #48CFAD #37BC9B rgba(55, 188, 155, 0.3) rgba(55, 188, 155, 0.7) #66b0ab, 
+    "pink" #D770AD #00539c rgba(215, 112, 173, 0.3) rgba(215, 112, 173, 0.7) #c04d92, 
+    "pink2" #ff5982 #03dea8 rgba(215, 112, 173, 0.3) rgba(215, 112, 173, 0.7) #de2a57, 
+    "magenta" #FF00FF #00ff00 rgba(150, 122, 220, 0.3) rgba(150, 122, 220, 0.7) #de02de, 
+    "brown" #a3876a #5b0e2d rgba(170, 142, 105, 0.3) rgba(170, 142, 105, 0.7) #7a634a,
+    "gray" #e2e5ea #AAB2BD rgba(170, 178, 189, 0.3) rgba(170, 178, 189, 0.7) #a3b2ca,
+    "aqua" #76D4DF #9e15bf rgba(67, 74, 84, 0.3) rgba(67, 74, 84, 0.7) #489fa9,
+    "night" #222529 #16181c rgba(67, 74, 84, 0.3) rgba(67, 74, 84, 0.7) #1a1f25,
+    "dark" #656D78 #434A54 rgba(67, 74, 84, 0.3) rgba(67, 74, 84, 0.7) #434c59
 );
 $gradientPack: (
     "default" #f2f2f7 #f2f2f7, 
@@ -38,10 +38,17 @@ $gradientPack: (
     "dark" #343341 #535468
 );
 
+:root{
+    @each $colorName, $colorHex1, $colorHex2, $colorHex3, $colorHex4, $colorHex5 in $colorPack{
+    --color-#{$colorName}-light:$colorHex1!important;
+    --color-#{$colorName}-dark:$colorHex5!important;
+    --gradient-#{$colorName}:linear-gradient(45deg, $colorHex1 , $colorHex2);
+    }
+}
 .color-highlight{color:nth(nth($colorPack,1),3)!important;}
 .bg-highlight{background-color:nth(nth($colorPack,1),3)!important; color:#FFF!important;}
 .border-highlight{border-color:nth(nth($colorPack,1),3)!important;}
-.gradient-highlight{background-image:linear-gradient(to bottom, nth(nth($colorPack,1),2), nth(nth($colorPack,1),3))!important;}
+.gradient-highlight{background-image:linear-gradient(45deg, nth(nth($colorPack,1),2), nth(nth($colorPack,1),3))!important;}
 .gradient-menu{background-image:linear-gradient(130deg, #7ea5f6, #ff384c)!important;}
 
 @each $gradientName, $gradientHex1, $gradientHex2 in $gradientPack{
@@ -51,18 +58,18 @@ $gradientPack: (
 
 }
 
-@each $colorName, $colorHex1, $colorHex2, $colorHex3, $colorHex4 in $colorPack{
+@each $colorName, $colorHex1, $colorHex2, $colorHex3, $colorHex4, $colorHex5 in $colorPack{
     .color-#{$colorName}-light{color:$colorHex1!important;}
     .bg-#{$colorName}-light{background-color:$colorHex1!important; color:#FFF!important;}
     .bg-fade-#{$colorName}-dark{background-color:$colorHex4!important; color:#FFF!important;}
     .bg-fade-#{$colorName}-light{background-color:$colorHex3!important; color:#FFF!important;}
-    .color-#{$colorName}-dark{color:$colorHex2!important;}
+    .color-#{$colorName}-dark{color:$colorHex5!important;}
     .color-icon-#{$colorName}{stroke:$colorHex2!important; fill:$colorHex3!important;}
-    .bg-#{$colorName}-dark{background-color:$colorHex2!important; color:#FFF!important;}
+    .bg-#{$colorName}-dark{background-color:$colorHex5!important; color:#FFF!important;}
     .border-#{$colorName}-light{border-color:$colorHex1!important;}
-    .border-#{$colorName}-dark{border-color:$colorHex2!important;}
-    .focus-#{$colorName}:focus{border-color:$colorHex2!important;}
-    .gradient-#{$colorName}{background-image:linear-gradient(to bottom, $colorHex1 , $colorHex2);}
+    .border-#{$colorName}-dark{border-color:$colorHex5!important;}
+    .focus-#{$colorName}:focus{border-color:$colorHex5!important;}
+    .gradient-#{$colorName}{background-image:linear-gradient(45deg, $colorHex1 , $colorHex2);}
 }
 
 
@@ -81,7 +88,7 @@ $socialColors: (
     "mail" #3498db, 
     "phone" #27ae60, 
     "youtube" #ff0000, 
-    "snapchat" #fffc00, 
+    "snapchat" #bbb800, 
     "tumblr" #35465d, 
     "reddit" #ff4500, 
     "discord" #5865f2, 

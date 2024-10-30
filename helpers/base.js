@@ -169,35 +169,35 @@ export const siteColors = [
 ];
 
 export const siteColorObjs = [
-  {name: "green", hex: "#8CC152", themeName: 'Green'}, 
-  {name: "red", hex: "#DA4453", themeName: 'Red'}, 
-  {name: "orange", hex: "#E9573F", themeName: 'Orange'}, 
-  {name: "blue", hex: "#4A89DC", themeName: 'Blue'}, 
+  {name: "green", hex: "#4A9C09", themeName: 'Green'}, 
+  {name: "red", hex: "#e81416", themeName: 'Red'}, 
+  {name: "orange", hex: "#ff7336", themeName: 'Orange'}, 
+  {name: "blue", hex: "#0D0DE0", themeName: 'Blue'}, 
   {name: "pink", hex: "#D770AD", themeName: 'Pink'} , 
-  {name: "pink2", hex: "#fb3365", themeName: 'Pink2'} , 
-  {name: "magenta", hex: "#967ADC", themeName: 'Magenta'}, 
-  {name: "brown", hex: "#AA8E69", themeName: 'Brown'},
+  {name: "pink2", hex: "#ff5982", themeName: 'Pink2'} , 
+  {name: "magenta", hex: "#FF00FF", themeName: 'Magenta'}, 
+  {name: "brown", hex: "#a3876a", themeName: 'Brown'},
 ]
 
-export const siteColorsArray = ["#8CC152","#DA4453","#E9573F","#4A89DC","#D770AD","#fb3365","#967ADC","#AA8E69"]
+export const siteColorsArray = ["#4A9C09","#e81416","#ff7336","#4A89DC","#D770AD","#ff5982","#FF00FF","#a3876a"]
 export const siteColorNamesArray = ["green","red","orange","blue","pink","pink2","magenta","brown"];
 
 
 
 export const siteColorObjsBackup = [
-    {name: "green", hex: "#8CC152"}, 
+    {name: "green", hex: "#4A9C09"}, 
     {name: "grass", hex: "#2ABA66"}, 
-    {name: "red", hex: "#DA4453"}, 
-    {name: "orange", hex: "#E9573F"}, 
+    {name: "red", hex: "#e81416"}, 
+    {name: "orange", hex: "#ff7336"}, 
     {name: "yellow", hex: "#F6BB42"}, 
     {name: "sunny", hex: "#d99914"}, 
     {name: "blue", hex: "#4A89DC"}, 
     {name: "teal", hex: "#7DB1B1"}, 
     {name: "mint", hex: "#37BC9B"}, 
     {name: "pink", hex: "#D770AD"} , 
-    {name: "pink2", hex: "#fb3365"} , 
-    {name: "magenta", hex: "#967ADC"}, 
-    {name: "brown", hex: "#AA8E69"},
+    {name: "pink2", hex: "#ff5982"} , 
+    {name: "magenta", hex: "#FF00FF"}, 
+    {name: "brown", hex: "#a3876a"},
     {name: "gray", hex: "#AAB2BD"},
     {name: "aqua", hex: "#3BAFDA"},
     {name: "night", hex: "#16181c"},

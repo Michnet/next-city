@@ -126,7 +126,7 @@ dayjs.extend(relativeTime)
           
           if(type === 'new_job_listing'){
             activity_content = <>
-            <Link  href={`/${listingType}s/${listing?.slug}?view=community&act_id=${id}`}><h5 className="_listing_title" dangerouslySetInnerHTML={{__html: listing?.title}}/></Link>
+            <Link  href={`/${listingType}s/${listing?.slug}?view=community&act_id=${id}`}><h5><span className="_listing_title" dangerouslySetInnerHTML={{__html: listing?.title}}/></h5></Link>
               <p className="gx-text-grey _excerpt truncate-2" dangerouslySetInnerHTML={{__html: hashtag(listing.excerpt)}}/>
             </>
           }

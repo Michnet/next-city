@@ -50,8 +50,8 @@ const TermTag = ({term, outliney=false, targetStyleObj={}, preText = null, explo
     case 'hash':
       termView =  <div
         /* href={`/explore?${linkTax}=${slug}`} */
-        className={`d-block lh-1 ${taxonomy} ${exTagClass ?? ''} term-link _hash`}>
-          <Client><span className="truncate" /* style={{color : 'var(--grayText)'}} */>{preText ? <span>{preText}</span> :  <></>}<span className="gx-mb-0" dangerouslySetInnerHTML={{__html:  name}}/></span></Client>
+        className={`d-block lh-1 ${taxonomy} ${exClass ?? ''}  term-link _hash`}>
+          <Client><span /* style={{color : 'var(--grayText)'}} */>{preText ? <span>{preText}</span> :  <></>}<span className={`truncate gx-mb-0 ${exTagClass ?? ''}`} dangerouslySetInnerHTML={{__html:  name}}/></span></Client>
       </div>;
       break;
 

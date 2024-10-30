@@ -63,6 +63,7 @@ export default function SeoHead({seoMeta }) {
       <meta name="robots" content={`${robots ?? 'all'}`}/>
       <meta property="description" content={`${description ?? originalDescription}`} key="ogDescription"/>
       <meta name="theme-color" content={`${color}`}/>
+      <meta name="theme-color" content={`${color}`} media="(prefers-color-scheme: dark)"/>
       <meta name="msapplication-navbutton-color" content={`${color}`}/>
       <meta name="apple-mobile-web-app-status-bar-style" content={`${color}`}/>
       {type ? (

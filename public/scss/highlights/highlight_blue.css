@@ -1,65 +1,82 @@
 /* Generating Color Pack*/
 :root {
-  --secTheme:#dc9d4a;
-  --highlight:#4A89DC !important;
+  --secTheme: #fc766a;
+  --highlight: #0c0cb6 !important;
+  --bg-gradient-highlight: linear-gradient(45deg, #0d0de0, #fc766a) !important;
 }
 
 .color-highlight {
-  color: #4A89DC !important;
+  color: #0c0cb6 !important;
 }
 
 .bg-highlight {
-  background-color: #4A89DC !important;
+  background-color: #0c0cb6 !important;
   color: #FFF !important;
 }
 
 .border-highlight {
-  border-color: #4A89DC !important;
+  border-color: #0c0cb6 !important;
 }
 
 .gradient-highlight {
-  background-image: linear-gradient(to bottom, #5D9CEC, #4A89DC) !important;
+  background-image: linear-gradient(45deg, #0d0de0, #fc766a);
+}
+
+.bg-highlight-sec {
+  background-color: #fc766a !important;
+  color: #FFF !important;
+}
+
+.border-highlight-sec {
+  border-color: #fc766a !important;
+}
+
+.color-highlight-sec {
+  color: #fc766a;
+}
+
+.color-highlight-gradient {
+  background-image: linear-gradient(45deg, #0d0de0, #fc766a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-bar-2 .active-nav,
 .footer-bar-5 strong,
 .footer-bar-4 strong,
 .splide__pagination__page.is-active {
-  background-color: #4A89DC !important;
+  background-color: #0c0cb6 !important;
 }
 
 .footer-bar-1 .active-nav i,
 .footer-bar-1 .active-nav span,
 .footer-bar-3 .active-nav i {
-  color: #4A89DC;
+  color: #0c0cb6;
 }
 
 .form-floating-over > .form-control:focus ~ label {
-  color: #4A89DC;
-}
-
-.form-floating-over > .form-control:not(:-moz-placeholder-shown) ~ label {
-  color: #4A89DC;
+  color: #0c0cb6;
 }
 
 .form-floating-over > .form-control:not(:placeholder-shown) ~ label {
-  color: #4A89DC;
+  color: #0c0cb6;
 }
 
 .form-floating-over > .form-select ~ label {
-  color: #4A89DC;
+  color: #0c0cb6;
 }
 
 .color-highlight {
-  color: #4A89DC;
+  color: #0c0cb6;
 }
 
 .bg-highlight {
-  background-color: #4A89DC;
+  background-color: #0c0cb6;
   color: #FFF !important;
 }
 
 .interest-check input:checked ~ label {
   color: #FFF !important;
-  background-color: #4A89DC !important;
-}/*# sourceMappingURL=highlight_blue.css.map */
+  background-color: #0c0cb6 !important;
+}

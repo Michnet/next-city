@@ -26,10 +26,11 @@ const SearchFilter = dynamic(() => import('./SearchFilter'));
 import EventCard3 from '@/components/UI/Listings/cards/EventCard3';
 import SalesCard from '../Listings/cards/SalesCard';
 import { closeMenus } from "@/helpers/appjs";
+import { Heading1 } from '../partials/headings/Heading1';
 
 const PAGE_SIZE = 22;
 
-const SearchConst = ({withSideFilter, propQuery = null, columnObj, hideHeading=false, listingType='all', xlRow=6, cardExClass}) => {
+const SearchConst = ({withSideFilter, title=null, subtitle=null, propQuery = null, columnObj, hideHeading=false, listingType='all', xlRow=6, cardExClass}) => {
 
     const router = useRouter();
     const query = propQuery ?? router.query;
@@ -268,16 +269,17 @@ if(isEmpty){
                           {showThumb && 
                                 <div className='thumb_view'>
                                     <div className='view_control'>
+                                        {title && <Heading1 exClass="mx-3 mb-0" title={title} subtitle={subtitle}/>}
                                         <div className='view_type'>
                                             <button onClick={() => setViewType('Grid')}><i className="las la-table"></i></button>
                                             <button onClick={() => setViewType('Row')}><i className="las la-exchange-alt"></i></button>
                                         </div>
-                                        <div className='layout_type'>
+                                        {/* <div className='layout_type'>
                                             <div className="form-check form-switch">
                                             <input onChange={(e) => setTimelineView(e.target.checked)} className="form-check-input" on type="checkbox" role="switch" id="flexSwitchCheckChecked" />
                                             <label className="form-check-label" for="flexSwitchCheckChecked">Timeline View</label>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     {itemsView}
                                     {errorView}                                
