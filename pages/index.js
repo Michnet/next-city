@@ -167,7 +167,7 @@ export async function getStaticProps() {
     return {
       props: {
         serverObj: serverObj,
-        seoMeta:{title: 'Home'},
+        seoMeta:{title: 'The event and business directory for everyone'},
         headerTitle: 'LyveCity',
         settings:{
           autoShowHeader: true

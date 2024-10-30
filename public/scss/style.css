@@ -6001,7 +6001,7 @@ body.theme-dark, body .theme-dark {
   --gradient-mint: linear-gradient(45deg, #48CFAD, #37BC9B);
   --color-pink-light: #D770AD !important;
   --color-pink-dark: #c04d92 !important;
-  --gradient-pink: linear-gradient(45deg, #D770AD, #00539c);
+  --gradient-pink: linear-gradient(45deg, #D770AD, #0078e1);
   --color-pink2-light: #ff5982 !important;
   --color-pink2-dark: #de2a57 !important;
   --gradient-pink2: linear-gradient(45deg, #ff5982, #03dea8);
@@ -6680,7 +6680,7 @@ body.theme-dark, body .theme-dark {
 }
 
 .color-icon-pink {
-  stroke: #00539c !important;
+  stroke: #0078e1 !important;
   fill: rgba(215, 112, 173, 0.3) !important;
 }
 
@@ -6702,7 +6702,7 @@ body.theme-dark, body .theme-dark {
 }
 
 .gradient-pink {
-  background-image: linear-gradient(45deg, #D770AD, #00539c);
+  background-image: linear-gradient(45deg, #D770AD, #0078e1);
 }
 
 .color-pink2-light {

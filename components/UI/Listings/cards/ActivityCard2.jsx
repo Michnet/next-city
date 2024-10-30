@@ -116,7 +116,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                   {mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='card_date mr-10'/> : <></>}
                   <div className="stats_box">
                     <div className="_lefty d-flex flex-column align-items-start gap-2 flex-grow-1">
-                    <TermTag exTagClass={'rounded-3 text-12 fw-600 w-100'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
+                    <TermTag exTagClass={'rounded-3 color-highlight-gradient text-12 fw-600 w-100'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                     {/* {mini ? <></> : <ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>} */}
                     {!mini && event_date && event_date[0] ? <DateViewState exClass={mini ? '_texty bg-theme' : ''} customDate={event_date[0].start} customEndDate={event_date[0].end} eventId={id}/> : <></>}
                     </div>
@@ -136,7 +136,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                 <div className=' mb-0 w-100 content-collapsible'>
                   <div className="flex-grow-1">
                     <Link href={`/${type}s/${listing.slug}`}>
-                      <h4 className={`color-highlight-gradient activityCard__title lh-13 text-dark-1 ${mini ? 'd-block text-truncate mb-0' : ''}`}>
+                      <h4 className={`activityCard__title lh-13 text-dark-1 ${mini ? 'd-block text-truncate mb-0' : ''}`}>
                         <span className="text-capitalize">{cleanHtml(title?.rendered).toLowerCase()}</span>
                       </h4>
                     </Link>
