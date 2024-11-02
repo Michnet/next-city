@@ -11,8 +11,8 @@ function RelatedListingsConst({category, type=null, locations, dir_categories, l
   return (
     <Client>
               <div className="pt-3 hide_if_empty">
-                <RelatedByTaxSplide titleComp={<Heading1 exClass='px-3 mb-2'  title={`More ${type}s`} subtitle={`Other ${type}s you may like`}/>} type={type} nextUpdater random  exclude={listingId}/>
-                <RelatedByTaxSplide random taxonomy={`category`} taxName={category?.name} slug={category?.slug} ids={dir_categories} exclude={listingId}/>
+              <RelatedByTaxSplide random taxonomy={`category`} taxName={category?.name} slug={category?.slug} ids={dir_categories} exclude={listingId}/>
+                <RelatedByTaxSplide cardWidth={150} cardExClass={'xs'} titleComp={<Heading1 exClass='px-3 mb-2'  title={`More ${type}s`} subtitle={`Other ${type}s you may like`}/>} type={type} nextUpdater random  exclude={listingId}/>
                 {locations?.length > 0 && 
                 <>
                   <div className="pt-3 hide_if_empty"><RelatedByTaxSplide  taxonomy={`region`} slug={locations[0]?.slug} taxName={locations[0]?.name} exclude={listingId}/></div>

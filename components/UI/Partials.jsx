@@ -12,8 +12,8 @@ export function DualColorHeader({title, subTitle, iconClass, colorClass, desc, e
           {iconClass && <i className={`opacity-40 ${iconClass} font-24 ${colorClass}`}></i>}
         </div> : <></>}
         <div>
-            {<h6 className="mb-n1 opacity-80 color-highlight">{subTitle}</h6>}
-            <h3 className={titleClass}>{title}</h3>
+            {<h6 className="mb-n1">{subTitle}</h6>}
+            <h3 className={`${titleClass} color-highlight-gradient`}>{title}</h3>
             {desc && <p className="opacity-70">{desc}</p>}
         </div>
     </div>
@@ -87,7 +87,7 @@ export function SectionHeader({linkPath, linkQuery, inverted = false, bigIcon = 
           </span>}
         </div>}
         <div className="align-self-center">
-           <h3 className="fw-200 mb-0 _title">{title}</h3>
+           <h3 className="fw-200 mb-0 _title w-fit color-highlight-gradient">{title}</h3>
           <p className="mb-n1 font-13 _subtitle">{subTitle}</p>
         </div>
         {linkPath ? <div className="align-self-center ms-auto me-2">

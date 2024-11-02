@@ -6039,7 +6039,7 @@ body.theme-dark, body .theme-dark {
 }
 
 .gradient-highlight {
-  background-image: linear-gradient(45deg, #ED5565, #DA4453) !important;
+  background-image: linear-gradient(45deg, #ED5565, #DA4453);
 }
 
 .gradient-menu {

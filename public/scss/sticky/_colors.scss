@@ -48,7 +48,7 @@ $gradientPack: (
 .color-highlight{color:nth(nth($colorPack,1),3)!important;}
 .bg-highlight{background-color:nth(nth($colorPack,1),3)!important; color:#FFF!important;}
 .border-highlight{border-color:nth(nth($colorPack,1),3)!important;}
-.gradient-highlight{background-image:linear-gradient(45deg, nth(nth($colorPack,1),2), nth(nth($colorPack,1),3))!important;}
+.gradient-highlight{background-image:linear-gradient(45deg, nth(nth($colorPack,1),2), nth(nth($colorPack,1),3));}
 .gradient-menu{background-image:linear-gradient(130deg, #7ea5f6, #ff384c)!important;}
 
 @each $gradientName, $gradientHex1, $gradientHex2 in $gradientPack{

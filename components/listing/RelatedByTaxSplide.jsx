@@ -11,7 +11,7 @@ import { SectionHeader } from "@/components/UI/Partials";
 import { cleanHtml } from "@/helpers/universal";
 
 
-function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
+function RelatedByTaxSplide({ids, titleComp,type=null, cardExClass='', cardWidth=200, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
 
     const [loading, setLoading] = useState(true);
     const [horizontal, setHorizontal] = useState(listy ?? false);
@@ -88,7 +88,7 @@ function RelatedByTaxSplide({ids, titleComp,type=null, splideObj={}, author, lis
           <Splider height={210} options={{gap:10, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...splideObj}}>
             {listings?.length > 0 ? 
                 listings.map((li) => {
-                return <ActivityCard2 exClass={'ms-0 mb-0'} mini width={200} key={li.id} listing = {li}/>
+                return <ActivityCard2 exClass={`ms-0 mb-0 ${cardExClass}`} mini width={cardWidth} key={li.id} listing = {li}/>
                 })
                 :
                 <></>

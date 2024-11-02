@@ -2574,7 +2574,11 @@ border-color: #FF9800;
 }
 
 .listing_card._mini .activityCard.-type-2 .activityCard__title {
-    font-size: 14px
+    font-size: 16px;
+}
+
+.listing_card._mini.xs .activityCard.-type-2 .activityCard__title {
+    font-size: 13px;
 }
 
 .woocommerce-Price-currencySymbol {
@@ -5894,9 +5898,13 @@ section._dark .de_testi blockquote {
     display: inline-block;
     white-space: normal;
     max-width: 80vw;
+    margin-top: 0;
+    margin-bottom: auto;
+    height: inherit;
+    display: inline-flex;
 }
 
-.htm_carousel .slide > * {
+.htm_carousel .slide  * {
     max-width: inherit;
 }
 .hashed_text, .activity_body ._listing_title, .tag-cloud, .section_header .icon-xs._big i, .view_control .sc_heading_3 h5, .hero_actions, #footer-bar ul.listing_navigator.view_all li.active .link_icon, .gx-pro-contact-list a{
