@@ -41,7 +41,7 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
             <div style={{rowGap: '10px', columnGap: '20px'}} className={`row md:flex-row flex-sm-nowrap flex-col position-relative`}>
               <div className={`col-12 col-sm-6 text-right items-end px-0 ${styles['container4']}`}>
               <span className={styles['text19']} /* data-aos='fade-left' */><DateViewString eventId={listing?.id}  format={'MMMM D'}/></span>
-              {venue && <span className={`text-30 fw-200 truncate-4 smLine`} /* data-aos='fade-left' */>
+              {venue && <span className={`text-30 fw-300 truncate-4 smLine`} /* data-aos='fade-left' */>
                   {/* <span className='fw-400 opacity-50'>@</span> */}
                   <i className='fal fa-street-view text-22 me-2 color-theme'/>
                   <span className='color-highlight-gradient'>{venue}</span>

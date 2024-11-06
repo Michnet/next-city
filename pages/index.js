@@ -325,7 +325,7 @@ export default function Home(props) {
     
       <div className='tags_row bg-transparent'>
                 <div className='row_content' style={{minHeight : '130px'}}>                  
-        <TagsCloud  dark itemsList={busyLocations} onClickFunc={tagClick}/>
+        <TagsCloud gradient  dark itemsList={busyLocations} onClickFunc={tagClick}/>
                   </div>
                   </div>
       </div>

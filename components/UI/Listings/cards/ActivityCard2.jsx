@@ -116,7 +116,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                   {mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='card_date mr-10'/> : <></>}
                   <div className="stats_box">
                     <div className="_lefty d-flex flex-column align-items-start gap-2 flex-grow-1">
-                    <TermTag exTagClass={'rounded-3 text-13 fw-300 w-100'} exClass={'lgLine w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
+                    <TermTag exTagClass={'rounded-3 text-13 fw-300 w-100'} exClass={'lgLine w-fit flex-shrink-1 minw-0 mw-100'} term={category} type={'hash'} linkTax={'category'}/>
                     {/* {mini ? <></> : <ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>} */}
                     {!mini && event_date && event_date[0] ? <DateViewState exClass={mini ? '_texty bg-theme' : ''} customDate={event_date[0].start} customEndDate={event_date[0].end} eventId={id}/> : <></>}
                     </div>

@@ -167,7 +167,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
             galleryView = <><section id="section-gallery" className="no-top no-bottom" aria-label="section-gallery">
                             <Section fullWidth  id="gallery" exClass={'p-0 bg-color'}   className="row g-0">
                                 <div className='overlay-bg z-2 opacity-70'>
-                                    <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Our Gallery</button>
+                                    <button onClick={() => setActiveKey('gallery')} className='btn border-0 btn-dark handy bg-transparent text-30 rounded-0 p-2 px-4'>Go to Gallery</button>
                                 </div>
                                 <div style={{minWidth: '110%'}}>{horizontalGallery}</div>
                                 <div style={{minWidth: '110%'}}>{horizontalGallery2}</div>

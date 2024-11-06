@@ -7,7 +7,7 @@ const Widget = ({title, freeHeader=false, styleObj={}, bodyClass='', dataAos = n
     }
       widgetView = <div data-aos={dataAos}>{freeHeader && <>
                   {title || subtitle  ? <div className="">
-                      <div className="d-flex pb-2">
+                      <div className="d-flex py-2">
                           <div>
                               {/* {subtitle && <h6 className="mb-n1 opacity-80 color-highlight">{subtitle}</h6>}
                               <h3>{title}</h3> */}
@@ -21,7 +21,7 @@ const Widget = ({title, freeHeader=false, styleObj={}, bodyClass='', dataAos = n
         <div className={`card card-style ${exClass} ${title || subtitle ? 'headed' : ''}`} style={{...styleObj}}>
                     <div className={`content m-0 p-0 ${cover ? 'bg-theme-transparent' : ''} ${coverClass}`}>
                       {!freeHeader && <>{title || subtitle  ? <div className="card-header py-2">
-                      <div className="d-flex pb-2">
+                      <div className="d-flex py-2">
                           <div>
                            <Heading1 small exClass={headingExClass} title={title} subtitle={subtitle ?? null}/>
                           </div>

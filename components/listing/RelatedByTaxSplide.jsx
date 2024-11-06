@@ -11,7 +11,7 @@ import { SectionHeader } from "@/components/UI/Partials";
 import { cleanHtml } from "@/helpers/universal";
 
 
-function RelatedByTaxSplide({ids, titleComp,type=null, cardExClass='', cardWidth=200, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
+function RelatedByTaxSplide({ids, exClass='', titleComp,type=null, cardExClass='', cardWidth=200, splideObj={}, author, listy, taxName, ids2, taxonomy_2, taxonomy, slug, exclude, random, nextUpdater=false, title}) {
 
     const [loading, setLoading] = useState(true);
     const [horizontal, setHorizontal] = useState(listy ?? false);
@@ -82,7 +82,7 @@ function RelatedByTaxSplide({ids, titleComp,type=null, cardExClass='', cardWidth
     if(nextUpdater){
       setNextPost(listings[0]?.slug);
     }
-    listView = <>
+    listView = <div className={exClass}>
          {cachedTitle?.title && <SectionHeader exClass='px-3 mb-2'  title={`${cleanHtml(cachedTitle.title)}`} subTitle={`${cachedTitle.subTitle}`}/>}
           {titleComp ?? <></>}
           <Splider height={210} options={{gap:10, arrows: false, wheel:false, autoWidth: true, padding: { left: 10, right: 15}, perPage:1, autoplay: false, perMove: 1, interval:6000, type:'loop', ...splideObj}}>
@@ -93,7 +93,7 @@ function RelatedByTaxSplide({ids, titleComp,type=null, cardExClass='', cardWidth
                 :
                 <></>
               }
-          </Splider></>
+          </Splider></div>
       }
   
 

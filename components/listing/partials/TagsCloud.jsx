@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import {useEffect, useState, memo } from 'react';
 import { TagCloud } from 'react-tagcloud';
 
-const TagsCloudConst = ({ids, hashed=false, renderer=null, dark, hue = null, itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
+const TagsCloudConst = ({ids, gradient, hashed=false, renderer=null, dark, hue = null, itemsList, onClickFunc, live=false, minSize=16, maxSize=38}) => {
 
   const router = useRouter();
 
@@ -58,8 +58,8 @@ let highlight = typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-H
 
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
-  hue: hue ?? siteColorObjs?.filter((col) => col.name === highlight)[0]?.hex
-  //hue: hue ?? 'monochrome',
+  //hue: hue ?? siteColorObjs?.filter((col) => col.name === highlight)[0]?.hex
+  hue: hue ?? 'monochrome',
   //hue: hue ?? typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-Highlight') : null
 }
 
@@ -108,7 +108,7 @@ const color_options = {
 
 
   return (
-    <><TagCloud
+    <><TagCloud  className={`${gradient ? '_gradient' : ''}`}
     minSize={minSize}
     maxSize={maxSize}
     tags={createTags()}

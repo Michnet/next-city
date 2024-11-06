@@ -12,8 +12,8 @@ const SalesCard2 = ({listing, width=320, dataAos, height='auto', exClass='', tru
     const {likes} = acf?.community ?? {};
     return (<>
                     <div data-aos={dataAos} className={`listing_card bg-theme justify-center card card-style sale_card card_2 position-relative rounded-0 ${exClass}`}>
-                            <div className="sale_content bg-theme-transparent position-relative z-2 shadow" style={{height: height, width: width}}>
-                                <div className="d-grid overflow-hidden px-0 content_box h-100">
+                            <div className="sale_content bg-theme-transparent position-relative z-2 shadow mw-100" style={{height: height, width: width}}>
+                                <div className="d-grid overflow-hidden px-0 content_box h-100 mw-100">
                                     <img className={`h-100 masked mask-${randomEither(siteMasks)}`} src={xtra_large_thumb}/>
                         <div className={`d-flex flex-column p-2 ps-4 pe-2 _content bg-cover ${contentExClass}`}>
 

@@ -67,7 +67,7 @@ let menuContent = <div className="menu_content">
       {logoView} 
       {<div className='flex-shrink-1' style={{width: 'calc(100% - 40px)'}}>
         <h4 className="smLine _title truncate text-16">{cleanHtml(title?.rendered)}</h4>
-        <span className="smLine _title truncate text-14 fw-400 opacity-50">{lMenu.filter((el) => el.id == activeKey)[0]?.title}</span>
+        <span className="smLine _title truncate text-14 fw-400 opacity-70">{lMenu.filter((el) => el.id == activeKey)[0]?.title}</span>
         </div> 
         }
     </div> 
