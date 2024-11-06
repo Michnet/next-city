@@ -59,7 +59,7 @@ let highlight = typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-H
 const color_options = {
   luminosity: dark ? 'dark' : 'light',
   //hue: hue ?? siteColorObjs?.filter((col) => col.name === highlight)[0]?.hex
-  hue: hue ?? 'monochrome',
+ // hue: hue ?? 'monochrome',
   //hue: hue ?? typeof window !== 'undefined' ? localStorage.getItem(pwaName+'-Highlight') : null
 }
 

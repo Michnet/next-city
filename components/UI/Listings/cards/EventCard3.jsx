@@ -1,4 +1,4 @@
-import { cleanHtml, randomEither } from "@/helpers/universal";
+import { cleanHtml, hashtag, randomEither } from "@/helpers/universal";
 import Link from "next/link";
 import PostLike from "../../partials/social/PostLike";
 //import DateViewString from "../../partials/dateViews/DateViewString";
@@ -23,8 +23,9 @@ const EventCard3 = ({listing, width=320, cardBottomExClass='bg-gradient', withDe
                         <div className={`d-flex flex-column _content ${contentExClass}`}>
                             <div className="pe-3 title_content mb-1">
                             
-                            <Link href={`/${type}s/${slug}`}><h1 className={`lh-1 color-white font-${titleSize} font-800 truncate-${truncate - 1}`}>{cleanHtml(title.rendered)}</h1></Link>
-                            {withDesc && <div><p className={`color-white font-13 mb-0 opacity-70 truncate-${truncate}`}>{cleanHtml(short_desc)}</p></div>}
+                            <Link href={`/${type}s/${slug}`}><h1 className={`lh-1 mb-2 color-white font-${titleSize} font-800 truncate-${truncate - 1}`}>{cleanHtml(title.rendered)}</h1></Link>
+                            {withDesc && <div>
+                                <p className={`font-15 fw-500 mb-0 opacity-80 truncate-${truncate}`}  dangerouslySetInnerHTML={{__html: hashtag(cleanHtml(short_desc))}}/></div>}
                             </div>
                             <div className='mb-1'>
                             <TermTag exTagClass={'rounded-3 text-14 color-white fw-300'} exClass={'w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>

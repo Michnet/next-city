@@ -19,7 +19,7 @@ export const TermIcon = ({item, flipped=false, shadowy=true, listingType}) => {
                 </div>
 }
 
-export const TermIconBox = ({item, listingType, flipped=false, externalTitle=false, shadowy=true, exClass='', width='80px', height='80px'}) => {
+export const TermIconBox = ({item, truncate='2', listingType, flipped=false, externalTitle=false, shadowy=true, exClass='', width='80px', height='80px'}) => {
     let {name, slug, term_meta, id} = item;
     let {color, rl_awesome} = term_meta;
     let linker = `/explore${listingType ? '/'+listingType+'s' : ''}?category=${slug}`;
@@ -31,7 +31,7 @@ export const TermIconBox = ({item, listingType, flipped=false, externalTitle=fal
                         </span>
                     </Link>
                     {flipped ? <div className={`icon_overlay ${flipped ? 'bg-gradient-45' : ''} h-100 w-100 position-absolute top-0 left-0 opacity-70`}/> : <></>}
-                    {!externalTitle && <div className={`_title text-right ${flipped ? 'p-3' : 'px-3 pb-2'} d-flex align-items-end justify-center position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={linker}  className={`${flipped ? 'color-white text-13 opacity-70' : 'color-theme text-10 opacity-80'} smLine fw-600 truncate-2  lh-12 heady`}>{cleanHtml(name).replace(' and ', ' & ')}</Link></div>}
+                    {!externalTitle && <div className={`_title text-right ${flipped ? 'p-3 px-2' : 'px-3 pb-2'} d-flex align-items-end justify-center position-relative`} style={{height: height, width: width}}><Link onClick={() => closeMenus()} href={linker}  className={`${flipped ? 'color-white text-13 opacity-70' : 'color-theme text-10 opacity-80'} smLine fw-600 truncate-${truncate}  lh-12 heady`}>{cleanHtml(name).replace(' and ', ' & ')}</Link></div>}
                 </div>
                 {externalTitle && <div className={`_title text-center py-2 d-flex align-items-end  justify-centerposition-relative opacity-60`} style={{ width: width}}><Link onClick={() => closeMenus()} href={linker}  className={`${flipped ? 'color-white text-13 opacity-70' : 'color-theme text-12'} smLine fw-600 truncate-2  lh-1 heady`}>{cleanHtml(name).replace(' and ', ' & ')}</Link></div>}
                 </div>

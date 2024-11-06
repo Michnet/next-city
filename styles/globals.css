@@ -2229,10 +2229,6 @@ section.custom_section .row_content .head_content {display: block;width: fit-con
 }
 
 .menu_icon span.anticon , .menu_icon i{
-  border: 1px solid #eaeaea;
-  width: 26px;
-  height: 26px;
-  line-height: 26px;
   border-radius: 5px;
   text-align: center;
   border: none;

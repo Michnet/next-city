@@ -97,7 +97,7 @@ const ExploreConst = ({topList, type=null}) => {
             <div className="explore_content col minw-0 p-md-2 p-0">
               <div className="inner_section mb-3 top_list">
                 {loading ? <Skeleton  height={300}/> : <>{
-                activeTopList?.length > 0 && <Slider  {...fadingSlide} autoplaySpeed={5000} speed={2000} responsive = {[...largeResp]} >
+                activeTopList?.length > 0 && <Slider  {...fadingSlide} autoplaySpeed={7000} speed={2000} responsive = {[...largeResp]} >
                 { activeTopList.map((li) => {
                       let {id} = li;
                       return <EventCard3 withDesc={true} cardBottomExClass='' height={310} titleSize={24} contentExClass={'px-4 pb-4'} truncate={3} width={'inherit'} listing={li} key={id} exClass='_hero m-0 radius-0'/>
@@ -106,7 +106,7 @@ const ExploreConst = ({topList, type=null}) => {
               </Slider>}</>}
               </div>
               <div className="inner_section mb-4">
-                 <Suspense fallback={'Loading'}><TermsCarousel flipped={true} listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
+                 <Suspense fallback={'Loading'}><TermsCarousel truncate='3' flipped={true} listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="query_hint mx-2 p-2">
