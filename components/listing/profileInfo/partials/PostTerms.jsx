@@ -1,5 +1,5 @@
-import { DualColorHeader } from "@/components/UI/Partials";
-import TermTag from "@/components/UI/partials/TermTag";
+//import { DualColorHeader } from "@/components/UI/Partials";
+//import TermTag from "@/components/UI/partials/TermTag";
 import Widget from "@/components/UI/partials/Widget";
 import { getLocalTaxonomy } from "@/helpers/rest";
 import Link from "next/link";

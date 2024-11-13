@@ -3,7 +3,7 @@ import {  RowLoader, Skeleton, TitleWithSub} from '../Skeletons'
 import { generateTempArray } from '@/helpers/universal';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
-const ListingSkeleton = () => {
+export const ListingSkeleton = () => {
   const sectionClass='gx-border-cyan gx-p-3 gx-border br-10';
   return (
     <div id='page_skeleton'>   
@@ -29,7 +29,6 @@ const ListingSkeleton = () => {
   )
 }
 
-export default ListingSkeleton
 
 export const ExploreSkeleton = () => {
   const sectionClass='gx-border-cyan gx-p-3 gx-border br-10';

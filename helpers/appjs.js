@@ -66,18 +66,32 @@ function addTransitions(){
 function appjsCode(){
 
 //Set Color Based on Remembered Preference.
-if(localStorage.getItem(pwaName+'-Theme')){
-    if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){
-       activateDarkMode()
-    }
-    if(localStorage.getItem(pwaName+'-Theme') == "light-mode"){
-        activateLightMode()
-    }
-}else{
-    activateLightMode();
+if (typeof window !== 'undefined') {
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const isNoPreference = window.matchMedia("(prefers-color-scheme: no-preference)").matches;
+
+    if(isNoPreference){
+        if(localStorage.getItem(pwaName+'-Theme')){
+            if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){
+            activateDarkMode()
+            }
+            if(localStorage.getItem(pwaName+'-Theme') == "light-mode"){
+                activateLightMode()
+            }
+        }else{
+            activateLightMode();
+            }
+        }else{
+        if(isDarkMode){
+            activateDarkMode();}
+        else{ 
+            if(isLightMode){
+                activateLightMode();
+            }}
     }
 }
-
+}
 /* function setColorScheme() {
     if (typeof window !== 'undefined') {
     const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches

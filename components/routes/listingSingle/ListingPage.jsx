@@ -29,22 +29,16 @@ import LazyLoad from "react-lazyload";
 import { Skeleton } from "@/components/skeletons/Skeletons";
 import Link from "next/link";
 import { Heading1 } from "@/components/UI/partials/headings/Heading1";
-//import HeroGrid from "@/components/listing/landingPages/hero/HeroGrid";
-//import HeroParallax from "@/components/listing/landingPages/hero/HeroParallax";
-import ProfileInfo from "@/components/listing/profileInfo/ProfileInfo";
-//import ContentTabs from "@/components/listing/Content-Tabs";
+const ProfileInfo = dynamic(() => import("@/components/listing/profileInfo/ProfileInfo"));
 const Navigator = dynamic(() => import("@/components/listing/navigation/Navigator"));
 
   const ListingPageConst = ({listing, themeColor, themeColorHex, listingType}) => {
     
-    //const {listing} = serverObj;
     const {slug,  type} = listing ?? {};
     const router = useRouter();
     const {query} = router;
     const [view, setView] = useRecoilState(listingViewState);
     const {user, token} = useRecoilValue(authState);
-    //const activeView = useRecoilValue(listingViewState);
-    //const [activeKey, setActiveKey] = useState(query?.view ?? view);
     const [activeKey, setActiveKey] = useState(router.asPath.split('#')[1] ?? view);
 
     function setActiveView(view){
@@ -55,11 +49,6 @@ const Navigator = dynamic(() => import("@/components/listing/navigation/Navigato
       router.push(url, undefined, { shallow: true }) */
       setActiveKey(view)
     }
-/* 
-useEffect(() => {
-  setActiveKey(router.asPath.split('#')[1] ?? view);
-  return () => setActiveKey(view);
-}, [listing?.id, view]); */
 
 useEffect(() => {
   scrollTop();
@@ -124,15 +113,15 @@ return linkzz;
         {/* <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> */}
         <Content listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
-          <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
+          <LazyLoad placeholder={<Skeleton height={400}/>} offset={300} once>
           <div className='border mx-2 pb-2 mb-2 mt-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
             <Navigator  faClass={'fad'} itemClass='col-sm-4 col-md-3 col-lg-2 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} /* listing={listing} */ activeKey={activeKey}/>
             </div>
             </LazyLoad>
         </Client>
-        <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
-         <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={listing} setActiveKey={setActiveKey}/>
+        <LazyLoad placeholder={<Skeleton height={400}/>} offset={300} once>
+         <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </LazyLoad>
         
         {/* <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>

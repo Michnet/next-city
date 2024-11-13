@@ -1,13 +1,9 @@
-"use client";
+//"use client";
 
-import  {useState, useEffect, memo, useMemo} from "react";
+import  {useState, useEffect, memo} from "react";
 import { Client } from "react-hydration-provider";
-// import ListingLoader from "~/appComponents/components/skeletons/React-content-loader/FullPage/ListingPage";
-//import StatCard from "../../LandingPages/teleportHq/conference1/components/StatCard";
-// import PayMeans from './../../partials/PayMeans';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import PageContact from "../partials/PageContact";
-import Photos from "./partials/Photos";
 import Widget from "@/components/UI/partials/Widget";
 import { DualColorHeader, Floater } from "@/components/UI/Partials";
 //import ListingStats from "./partials/ListingStats";
@@ -15,21 +11,16 @@ import TeamMini from "../team/TeamMini";
 //import About from "./partials/About";
 import PostTerms from "./partials/PostTerms";
 import AuthorCard from "./partials/AuthorCard";
-import ListingSkeleton from "@/components/skeletons/fullPage/PageSkeletons";
+import {ListingSkeleton} from "@/components/skeletons/fullPage/PageSkeletons";
 import PayMeans from "./partials/PayMeans";
-import { Heading1 } from "@/components/UI/partials/headings/Heading1";
-import RelatedByTaxSplide from "../RelatedByTaxSplide";
-//import {srcWithFallback } from '@/helpers/universal';
 
 
 
 const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
-  //const [tags, setTags] = useState(null);
-  const {members_count} = community ?? {}
+  //const {members_count} = community ?? {}
   const [loading, setLoading] = useState(true)
 
-  const cachedListing = useMemo(() => listing, [listing.id] );
-
+  //const cachedListing = useMemo(() => listing, [listing.id] );
 
   useEffect(() => {
     setLoading(true);
@@ -37,58 +28,20 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
     
   }, [listing?.id]);
 
-    let historyView, teamView, performersView, statsView, guestsView, contactsView, contentView, groupView, tagsView, visionView, missionView, galleryView, paymentsView;
+    let historyView, teamView, performersView, statsView, guestsView, contactsView, groupView, tagsView, visionView, missionView, galleryView, paymentsView;
+
     
     if(listing){
-      const {acf, content, cover, dir_tags, about_us, team, gallery, meta,phone,website,whatsapp, type} = listing;
+      const {acf, content, cover, dir_tags, dir_categories, about_us, team, gallery, meta,phone,website,whatsapp, type} = listing;
       const {"_special-guests": special_guests, _performers:performers} = meta ?? {}
-
-
-    /*  if(_stats?.length > 0){
-      statsView = <Widget 
-      title= 'Event stats'
-      subtitle={'Key stats about event'}
-      coverClass={'backdropGray'}
-      cover= {srcWithFallback(processImg(gallery, cover))}
-      icon = {'fas fa-stopwatch-20'}
-      >
-              <ListingStats stats={_stats}/>
-      </Widget>
-      
-     } */
 
      contactsView= <PageContact phone = {phone} website={website}whatsapp={whatsapp} /* contacts={contactDetails} *//>
 
-     if(dir_tags){
+     if(dir_categories?.length > 0){
       groupView = <PostTerms linkTax={'category'} post={listing} termKey='dir_categories' taxonomy={'categories'} title={'Category'}/>
     }
 
       paymentsView = <PayMeans listingId={listing.id} type={type}/>
-
-     /* if(content){
-       contentView = <Widget freeHeader subtitle={'More About Listing'} title= 'Event Detail' > <div className="position-relative">
-                          <Client><div className={`listing_content ${fullContent ? '' : 'truncate-5'}`} dangerouslySetInnerHTML={{ __html: content }}/>
-                          </Client>
-                          {fullContent ? <></> : <div className="_hidden_hint"></div>}
-                        </div>
-                        <div className="content_footer">
-                          <button className="btn btn-sm mb-0 btn-outline-secondary" onClick={() => setFullContent(!fullContent)}>{fullContent ? 'Show Less' : 'Show More'}</button>
-                        </div>
-                      </Widget>
-     } */
-    /*  if(tags){
-            tagsView = <Widget title= {<DualColorHeader exClass={'mb-0 sm-font'} title={'Tagged In'}/>}
-            styleName={'no-pad'}
-            headless
-            ><div className='tags_row light'>
-                <div className='row_content'>
-                    <TagsCloud ids={dir_tags} dark/>
-                    <DualColorHeader exClass='vertical_text lg_text' title={'# Tagged In'} />
-                 </div>
-                 </div>
-                 </Widget>
-        } */
-        
 
         if(about_us){
           const {our_vision, our_mission, our_history, opening_date} = about_us;
@@ -128,53 +81,22 @@ const ProfileInfoConst = ({listing, setActiveKey, community, exClass=''}) => {
           </span>} exClass='mt-2 mb-3 ml-15 _font-size' title={'Other Guest(s)'}/><TeamMini list={special_guests} rounded title="Keynote Artists" description={`Meet Uganda's top talent`}/></>;
         } 
      }
-  
-    return (<>{loading ? <ListingSkeleton/> :
-          <div className={`gx-profile-info ${exClass}`}>
-              {/* <div className="row px-15">
-                <div className="col-12 p-0 col-sm-6 col-md-4 col-xl-12">
-                  {contentView}
-                  <About communitySize={members_count ?? null} listing={listing} /> 
-                  {performersView}
-                  {statsView}
-                  {guestsView}
-                  {visionView}
-                  {missionView}
-                  {historyView}
-                </div>
-
-                <div className="col-12 p-0 col-sm-6 col-md-4 col-xl-12">
-                      <AuthorCard exClass='mb-15' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
-                      {contactsView}
-                      {groupView}
-                      {paymentsView}
-                      {teamView}
-                </div>
-              </div> */}
-              <ResponsiveMasonry className="masonry_grid sticky_items hide_empty padded_items mb-3" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3}}>
-                <Masonry>
-                  {contentView}
-                  {/* <About communitySize={members_count ?? null} listing={cachedListing} /> */} 
-                  {/* {performersView} */}
-                  {statsView}
-                  {tagsView}
-                  {visionView}
-                  {missionView}
-                  {historyView}
-                  {/* <div><Heading1 exClass='mb-2 mx-3' title={'Author'} subtitle={'Listing Owner'}/> */}
-                  <AuthorCard listingId={listing?.id} exClass='mb-20' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
-                  {/* </div> */}
-                  {contactsView}
-                  {groupView}
-                  {paymentsView}
-                  {teamView}
-                </Masonry>
-                </ResponsiveMasonry>
-                {/* <RelatedByTaxSplide titleComp={<Heading1 small exClass='mb-2 mx-3' title={'Same account'} subtitle={'Other listings by this Author'}/>} splideObj={{padding:0}} author={listing?.author_id} exclude={listing?.id}/> */}
-          </div>}
-          </>                
-    );
-  
+   
+     if(loading){
+        return <ListingSkeleton/>;
+     }else{
+      return <div className={`gx-profile-info ${exClass}`}>
+          <ResponsiveMasonry className="masonry_grid sticky_items hide_empty padded_items mb-3" columnsCountBreakPoints={{0: 1, 575: 2, 768: 3}}>
+            <Masonry>
+              <AuthorCard listingId={listing?.id} exClass='mb-20' author={listing?.author} setActiveKey={setActiveKey} cover={listing?.cover}/>
+              {contactsView}
+              {groupView}
+              {paymentsView}
+              {teamView}
+            </Masonry>
+            </ResponsiveMasonry>
+        </div>
+     }
 }
 
 const ProfileInfo = memo(ProfileInfoConst)
