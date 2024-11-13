@@ -7,6 +7,32 @@ import TableOfContents from '@/components/UI/partials/TableOfContents';
 import { openOffCanvas } from '@/helpers/appjs';
 import SiteHead from '@/components/UI/SiteHead';
 
+
+export async function getStaticProps() {
+
+    async function getPage(id, fields) {
+
+        const page = await fetch(`${fetchPageUrl(id, fields)}`);
+        const data = await page.json();
+        return data;
+    }
+
+    const content = await getPage(202, "title, content");
+
+    return {
+      props: {
+        seoMeta:{title: 'Your Privacy on LyveCity', robots : "noindex,nofollow"},
+        headerTitle: 'Your Privacy',
+        head: {
+            title : 'Privacy',
+            robots : "noindex,nofollow"
+        },
+        content : content
+      }, 
+  }
+}
+
+
 const Privacy = ({content}) => {
     const {isTab} = useRecoilValue(UISizes);
 
@@ -52,37 +78,5 @@ const Privacy = ({content}) => {
         </>
     );
 };
-
-export async function getStaticProps() {
-
-    async function getPage(id, fields) {
-
-        const page = await fetch(`${fetchPageUrl(id, fields)}`);
-        const data = await page.json();
-        return data;
-    }
-
-    const content = await getPage(202, "title, content");
-
-    return {
-      props: {
-        headerTitle: 'Your Privacy',
-        head: {
-            title : 'Terms of Use',
-            robots : "noindex,nofollow"
-        },
-        content : content
-      }, 
-  }
-}
-
-/* const PageLayout = dynamic(() => import('~/appComponents/core/Layout/PageLayout'));
-import { BSReveal } from './../../components/UI/partials/BSReveal';
-
-Privacy.getLayout = function getLayout({children}) {
-  return (
-      <PageLayout>{children}</PageLayout>
-  )
-} */
 
 export default Privacy;

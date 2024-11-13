@@ -4,11 +4,11 @@
 //import { run_template } from "./../../helpers/js";
 import dynamic from "next/dynamic";
 import { useRecoilValue, useRecoilState } from 'recoil';
-import {useMemo, memo, useState } from "react";
+import {useMemo, memo, useState, useEffect } from "react";
 import { Client } from "react-hydration-provider";
 import AuthUI from "../auth/AuthUI";
 import { closeMenus, changeHighlight, openOffCanvas } from "@/helpers/appjs";
-import {UISizes, UIWidthState} from '@/contexts/atoms';
+import {cookieState, UISizes, UIWidthState} from '@/contexts/atoms';
 import { BSReveal } from "../UI/partials/BSReveal";
 //import Splash from "../UI/Splash";
 import SnackBar from "../UI/partials/SnackBar";
@@ -18,6 +18,35 @@ import { ParallaxScrollProvider } from '@/contexts/ParallaxContext';
 import { siteColorObjs } from '@/helpers/base';
 import SearchForm1 from "../UI/search/SearchForm1";
 import RouteLoader from "./RouteLoader";
+import Link from "next/link";
+
+export const CookieConsent = () => {
+  const [consent, setConsent] = useRecoilState(cookieState);
+  useEffect(() => {
+    if(!consent){
+          if(typeof window !== 'undefined'){
+            setTimeout(function() {openOffCanvas(null, 'cookieMessage');}, 10000);
+              
+      }
+    }
+  }, []);
+
+
+return (<Client>
+  <BSReveal onClose={() => setConsent(true)} id={'cookieMessage'} title={"We're using cookies"} subtitle={'To make your experience awesome!'}>
+          <div class="px-3 text-center">
+            <div className='mb-3'>
+            <p className='mb-3'>Our website uses cookies to make your overall experience better and unique to you.</p>
+            <Link href='/support/privacy' className='mt-2'>See Privacy Policy</Link>
+            </div>
+           
+            <button onClick={() => {setConsent(true); closeMenus()}} class="close-menu mb-4 btn btn-m btn-center-xl rounded-s shadow-m bg-highlight text-uppercase font-900">Accept</button>
+        </div>
+          </BSReveal>
+          </Client>
+)
+  
+}
 
 function sizing(width, setWidth){
   if (typeof window !== 'undefined') {
@@ -82,8 +111,10 @@ function LayoutConst({ children, headerTitle, settings}) {
             className="menu menu-box-bottom menu-box-detached"
           >
             <div className="menu-title mt-0 pt-0">
+              <div>
               <h1>Settings</h1>
               <p className="color-highlight">Choose Your Style</p>
+              </div>
               <span className="close-menu" onClick={() => closeMenus()}>
                 <i className="fa fa-times"></i>
               </span>
@@ -104,6 +135,7 @@ function LayoutConst({ children, headerTitle, settings}) {
           <UserSideMenu/>
 
             <SnackBar/>
+            <CookieConsent/>
           <div id="snackbar-liked" className="snackbar-toast rounded-m bg-green-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-check me-3"></i>Added to favourites</div>
           <div id="snackbar-unliked" className="snackbar-toast rounded-m bg-yellow-dark" data-bs-delay="1500" data-bs-autohide="true"><i className="fa fa-info me-3"></i>Removed from favourites!</div>
             <BSReveal id={'menu-highlights'}>

@@ -15,7 +15,7 @@ function SnackBar({}) {
                 var notificationElement = document.getElementById('snackMessage');
 
                 var notificationToast = new bootstrap.Toast(notificationElement);
-                console.log('message in effects', notificationToast);
+                //console.log('message in effects', notificationToast);
 
                 notificationToast.show();
                // snackMessage.value = '';

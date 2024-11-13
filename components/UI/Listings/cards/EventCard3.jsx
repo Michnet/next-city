@@ -21,14 +21,14 @@ const EventCard3 = ({listing, width=320, cardBottomExClass='bg-gradient', withDe
                             <div className={`card-bottom p-2 pt-5 ${cardBottomExClass}`}>
                                 <div className="d-block px-2 rounded-m">
                         <div className={`d-flex flex-column _content ${contentExClass}`}>
-                            <div className="pe-3 title_content mb-1">
+                            <div className="pe-2 title_content mb-1">
                             
                             <Link href={`/${type}s/${slug}`}><h1 className={`lh-1 color-white font-${titleSize} font-800 truncate-${truncate - 1}`}>{cleanHtml(title.rendered)}</h1>
                             {withDesc && <div>
                                 <p className={`font-15 fw-500 mb-0 opacity-80 truncate-${truncate}`}  dangerouslySetInnerHTML={{__html: hashtag(cleanHtml(short_desc))}}/></div>}
                             </Link>
-                            <div className='mb-1'>
-                            <TermTag exTagClass={'rounded-3 text-14 color-white fw-300 mt-1'} exClass={'w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
+                            <div className='mb-1 d-flex'>
+                            <TermTag exTagClass={'rounded-3 text-14 color-white fw-300 mt-1 truncate'} exClass={'w-fit flex-shrink-1 minw-0'} term={category} type={'hash'} linkTax={'category'}/>
                             {/* {ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> } */}
                             </div>
                             </div>

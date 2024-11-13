@@ -50,11 +50,11 @@ function EventsCarousel({defListings = null, spliderOptions, height, queryObj={}
 
     
     if(orderMeta){
-        load.order_by=orderby;
+        load.orderby=orderby;
         load.order=order;
         load.meta_key=orderMeta;
     }else if(orderby){
-        load.order_by=orderby;
+        load.orderby=orderby;
         load.order=order;
     }
     if(sort){

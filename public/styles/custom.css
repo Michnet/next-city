@@ -455,7 +455,15 @@ div.truncate-5 > p {
 
 
 /*Classes*/
-.bright-1.5{filter: brightness(1.5)}
+.menu-box-modal.show {
+    opacity: 1;
+}
+
+.menu-title h1 {
+    padding-top: 0;
+}
+
+.bright-15{filter: brightness(1.5)}
 .bg_card_cap{
     background: var(--bs-card-cap-bg)
 }
@@ -5910,6 +5918,7 @@ section._dark .de_testi blockquote {
     margin-top: 0;
     margin-bottom: auto;
     height: inherit;
+    vertical-align: top;
 }
 
 .htm_carousel .slide  * {

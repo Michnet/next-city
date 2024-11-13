@@ -316,7 +316,7 @@ export default function Home(props) {
     <section  className="mb-2 row">
       <div className="col-12 col-md-6 px-0">
           <SectionHeader inverted iconClass={'far fa-map-marker-alt'} color={'dark-dark'} exClass='px-3 mb-2' link={'See All'} title={'Dice Roll'} subTitle={'Explore events & places'}/>
-        <ListingsMasonry/>
+        <ListingsMasonry ignorePriority={true} orderby='rand'/>
           <AddListingCard/>
       </div>
       <div className="col-12 col-md-6">

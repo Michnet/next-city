@@ -14,7 +14,7 @@ import EventCardImage from "./cards/EventCardImage";
 
 function ListingsMasonryConst({listingType, defListings = null, thumbsize = 'xtra_large_thumb', queryObj={},  catSlug, orderMeta, exClass, gap =null, sort='random', ignorePriority = false, eventDate, orderby, order, include}) {
 
-    let theView, fetchy = true, linkQuery = '';
+    let fetchy = true, linkQuery = '';
 
     const {query} = useRouter();
     const params = query ?? {};
@@ -33,14 +33,18 @@ function ListingsMasonryConst({listingType, defListings = null, thumbsize = 'xtr
     }, []);
 
     if(orderMeta){
-        load.order_by=orderby;
+        load.orderby=orderby;
         load.order=order;
         load.meta_key=orderMeta;
-        linkQuery.concat(`order=${order}&order_by=${orderby}&meta_key=${orderMeta}`);
+        linkQuery.concat(`order=${order}&orderby=${orderby}&meta_key=${orderMeta}`);
     }else if(orderby){
-        load.order_by=orderby;
-        load.order=order;
-        linkQuery.concat(`order=${order}&order_by=${orderby}`);
+        load.orderby=orderby;
+        if(order){
+          load.order=order ;
+          linkQuery.concat(`order=${order}&orderby=${orderby}`);
+        }else{
+          linkQuery.concat(`orderby=${orderby}`);
+        }
     }
     if(sort){
       linkQuery.concat(`sort=${sort}`);
@@ -68,7 +72,7 @@ function ListingsMasonryConst({listingType, defListings = null, thumbsize = 'xtr
       load.ignore_priority = ignorePriority;
     }
 
-    const { data:listings, error } = useSWR(fetchy && !defListings ? advancedFetchListingsUrl({...load, _embed : true }) : null, (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false });
+    const { data:listings, error } = useSWR(advancedFetchListingsUrl({...load, _embed : true }), (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false });
 
     const isLoadingInitialData = !listings && !error;
     const isEmpty = listings?.length === 0;

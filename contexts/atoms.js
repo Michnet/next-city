@@ -24,12 +24,21 @@ const { persistAtom : persistLoc } = recoilPersist({
 const { persistAtom : persistIntro } = recoilPersist({
   key: 'LyveIntro'
 });
+const { persistAtom : persistConsent } = recoilPersist({
+  key: 'cookie_state'
+});
 
 /*Atoms & selectors*/
 export const introState = atom({
   key: 'intro',
   default: false, 
   effects_UNSTABLE: [persistAtom],
+});
+
+export const cookieState = atom({
+  key: 'cookieState',
+  default: false, 
+  effects_UNSTABLE: [persistConsent],
 });
 
 export const UIState = atom({

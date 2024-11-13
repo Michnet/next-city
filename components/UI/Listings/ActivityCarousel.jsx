@@ -69,14 +69,14 @@ function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, 
     }, []);
 
     if(orderMeta){
-        load.order_by=orderby ?? 'meta_value_num';
+        load.orderby=orderby ?? 'meta_value_num';
         load.order=order ?? 'desc';
         load.meta_key=orderMeta;
-        linkQuery.concat(`order=${order}&order_by=${orderby}&meta_key=${orderMeta}`);
+        linkQuery.concat(`order=${order}&orderby=${orderby}&meta_key=${orderMeta}`);
     }else if(orderby){
-        load.order_by=orderby;
+        load.orderby=orderby;
         load.order=order;
-        linkQuery.concat(`order=${order}&order_by=${orderby}`);
+        linkQuery.concat(`order=${order}&orderby=${orderby}`);
     }
     if(sort){
       load.sort = sort;

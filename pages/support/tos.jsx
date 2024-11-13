@@ -7,6 +7,32 @@ import { openOffCanvas } from '@/helpers/appjs';
 import SiteHead from '@/components/UI/SiteHead';
 
 
+export async function getStaticProps() {
+
+    async function getPage(id, fields) {
+
+        const page = await fetch(`${fetchPageUrl(id, fields)}`);
+        const data = await page.json();
+        return data;
+    }
+
+    const content = await getPage(201, "title, content");
+
+    return {
+      props: {
+        seoMeta:{title: 'Terms of use', robots : "noindex,nofollow"},
+        headerTitle: 'Terms of Use',
+        head: {
+            title : 'Terms of Use',
+            robots : "noindex,nofollow"
+        },
+        content : content
+      }, 
+  }
+}
+
+
+
 const TermsOfService = ({content}) => {
     const {isTab} = useRecoilValue(UISizes);
 
@@ -47,39 +73,6 @@ const TermsOfService = ({content}) => {
         </>
     );
 };
-
-export async function getStaticProps() {
-
-    async function getPage(id, fields) {
-
-        const page = await fetch(`${fetchPageUrl(id, fields)}`);
-        const data = await page.json();
-        return data;
-    }
-
-    const content = await getPage(201, "title, content");
-
-    return {
-      props: {
-        headerTitle: 'Terms of Use',
-        head: {
-            title : 'Terms of Use',
-            robots : "noindex,nofollow"
-        },
-        content : content
-      }, 
-  }
-}
-
-/* 
-import dynamic from "next/dynamic";
-const PageLayout = dynamic(() => import('~/appComponents/core/Layout/PageLayout'));
-
-TermsOfService.getLayout = function getLayout({children}) {
-  return (
-      <PageLayout>{children}</PageLayout>
-  )
-} */
 
 
 export default TermsOfService;

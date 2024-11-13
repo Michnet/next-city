@@ -8,9 +8,9 @@ import { usePathname} from "next/navigation";
 //import { homeurl, siteSettings } from "~/server/Base";
 
 export default function SeoHead({seoMeta }) {
- // console.log('seoMeta in head', seoMeta)
   const {title, description, pageColor, street_address, children, latitude, longitude, updated_time, image, slug, type, phone_number, robots} = seoMeta ?? {};
-  const pathname = usePathname()
+  const pathname = usePathname();
+
   //const {colorTheme} = useRecoilValue(UIState);
   //const {colors} = colorTheme;
   //const  color = colors[0] ?? '#0F2844';

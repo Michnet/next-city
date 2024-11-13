@@ -152,15 +152,15 @@ menuOpen.forEach(el => el.addEventListener('click',e =>{
     }
 })); */
 
-export function openOffCanvas(e){
+export function openOffCanvas(e, id){
     if(typeof window !== 'undefined'){
-        let el = e.currentTarget;
+        let el = e ? e.currentTarget : null;
         //Close Existing Opened Menus
         const activeMenu = document.querySelectorAll('.menu-active');
         for(let i=0; i < activeMenu.length; i++){activeMenu[i].classList.remove('menu-active');}
         //Open Clicked Menu
-        var menuData = el.getAttribute('data-menu');
-        var menu = document.getElementById(menuData);
+        var menuData = el?.getAttribute('data-menu');
+        var menu = document.getElementById(menuData ?? id);
         menu?.classList.add('menu-active');
         document.getElementsByClassName('menu-hider')[0].classList.add('menu-active');
         //Check and Apply Effects
