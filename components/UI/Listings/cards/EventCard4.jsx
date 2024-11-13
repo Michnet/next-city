@@ -1,4 +1,4 @@
-import { cleanHtml } from "@/helpers/universal";
+import { cleanHtml, hashtag } from "@/helpers/universal";
 import Link from "next/link";
 import DateViewString from "../../partials/dateViews/DateViewString";
 
@@ -8,12 +8,16 @@ const EventCard4 = ({listing, width=260, height=200, exClass=''}) => {
         <div className={`listing_card card card-style event_card_4 p-3 m-0 ${exClass}`} style={{width: width}}>
             <div className="d-flex align-items-center">
                 <div>
-                    <img src={thumbnail} className="object-cover rounded-sm me-3" width="70" height="70"/>
+                    <img src={thumbnail} className="object-cover rounded-sm me-3" width="80" height="80"/>
                 </div>
                 <div>
                 {event_date && event_date[0] ? <span className="color-highlight font-300 d-block pt-0 text-uppercase font-10"><DateViewString date={event_date[0].start} format={'DD MMMM'}/></span> : <></>}
-                    <Link href={`/${type}s/${slug}`}><strong className="color-theme font-15 d-block truncate-2 smLine my-1">{cleanHtml(title.rendered)}</strong></Link>
-                    <span className="font-11 d-block mb-n1 color-theme opacity-30 lh-1"><i className="fa fa-map-marker pe-2"></i>{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</span>
+                    <Link href={`/${type}s/${slug}`}>
+                        <strong className="color-theme font-15 d-block truncate-2 smLine my-1">{cleanHtml(title.rendered)}</strong>
+                        <p className="truncate-2 text-13 color-theme" dangerouslySetInnerHTML={{__html: hashtag(short_desc)}}/>
+                        <span className="font-11 d-block mb-n1 color-theme opacity-30 lh-1"><i className="fa fa-map-marker pe-2"></i>{address?.length > 0 ? address : locations?.length > 0 ? locations[0].name : ''}</span>
+                    </Link>
+                    
                 </div>
             </div>
         </div>

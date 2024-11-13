@@ -1,4 +1,4 @@
-import SiteHead from "@/components/UI/SiteHead";
+//import SiteHead from "@/components/UI/SiteHead";
 import Search from "@/components/UI/search/Search";
 
 export async function getStaticProps(context) {
@@ -35,7 +35,7 @@ const SearchPage = () => {
         {/* <SiteHead title={`Search`}>
             <Script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDquFA71wYW2IHiZOADRsHKG2NFs1X6ZG0" />
         </SiteHead> */}
-        <div className="page-content">
+        <div className="page-content search_page">
           <Search withSideFilter columnObj={{0: 1, 420: 2, 600: 3, 768:2, 992:3,  1200: 4}}/>
         </div>
     </>

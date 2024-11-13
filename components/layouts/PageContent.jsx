@@ -44,7 +44,6 @@ const handleStart = (url) => {
 
 const handleStop = () => {
   if (typeof window !== 'undefined') {
-    console.log('route stoping');
     document.body.classList.remove('in_transit');
     closeMenus();
   }

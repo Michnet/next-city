@@ -102,6 +102,12 @@ function MainMenu() {
                                     <div className="content my-0">
                                         <h5 className="font-700 text-uppercase opacity-40 font-12 pt-2">Explore</h5>
                                         <div className="list-group list-custom-small list-icon-0">
+                                                    <Link href={'/explore'} className='close-menu' onClick={() => closeMenus()}>
+                                                        <i className={`fas fa-search-location color-theme 
+                                                        rounded-sm`}></i>
+                                                        <span className="truncate">All Listings</span>
+                                                        <i className="fa fa-angle-right"></i>
+                                                    </Link>
                                             {typeLinks.map((el) => {
                                                 let {id, icon, color, name, routePath, isNew} = el;
                                                 return <Link key={id} href={routePath} className='close-menu' onClick={() => closeMenus()}>

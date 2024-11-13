@@ -35,7 +35,7 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
   return (<div className={`listing_info_card bg-transparent ${exClass}`} style={{...locStyle}}>
           <div className={`card card-style m-0 border-0 bg-theme`} /* data-aos='zoom-in' */>
           <div
-            className={`z-1 p-4 p-md-5 pb-3 position-relative ${styles['section-container']} bg-transparent card card-style border-0 w-auto m-0`}
+            className={`z-1 p-4 p-md-5 pb-3 position-relative ${styles['section-container']} align-items-stretch bg-transparent card card-style border-0 w-auto m-0`}
           >
             {/* <div className='overlay position-absolute w-100 h-full top-0 bg-cover' style={{background: `url(/images/bg/connect.png)`}}/> */}
             <div style={{rowGap: '10px', columnGap: '20px'}} className={`row md:flex-row flex-sm-nowrap flex-col position-relative`}>

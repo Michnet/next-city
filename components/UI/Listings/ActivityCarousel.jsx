@@ -69,8 +69,8 @@ function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, 
     }, []);
 
     if(orderMeta){
-        load.order_by=orderby;
-        load.order=order;
+        load.order_by=orderby ?? 'meta_value_num';
+        load.order=order ?? 'desc';
         load.meta_key=orderMeta;
         linkQuery.concat(`order=${order}&order_by=${orderby}&meta_key=${orderMeta}`);
     }else if(orderby){
@@ -89,9 +89,9 @@ function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, 
     if(eventDate){
       load['event-date'] = eventDate
       linkQuery.concat(`event-date=${eventDate}`);
-    }else{
+    }/* else{
       load['event-date'] = 'any-date'
-    }
+    } */
 
     if(query?.category){
       load.category = query?.category
@@ -120,7 +120,7 @@ function ActivityCarouselConst({optionsObj = {}, autoHeight=false, listingType, 
       if(listings?.length > 0){
         controller.abort();
           const itemArray =   listings.slice(0, 5).map((item, i) => (
-           <div key={i}><Card mini={mini} exClass={exCardClass}  width={cardWidth} key={i} listing = {item}/></div>
+          <Card key={i} mini={mini} exClass={exCardClass}  width={cardWidth} listing = {item}/>
          ));
        
           theView =  <>

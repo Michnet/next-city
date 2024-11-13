@@ -1,6 +1,6 @@
-"use client";
+//"use client";
 
-import { Heading1 } from "@/components/UI/partials/headings/Heading1"
+//import { Heading1 } from "@/components/UI/partials/headings/Heading1"
 import Search from "@/components/UI/search/Search"
 import { Client } from "react-hydration-provider"
 import RelatedByTaxSplide from "../RelatedByTaxSplide"

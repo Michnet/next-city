@@ -64,7 +64,6 @@ const MegaGallery = ({listing, color, upcoming}) => {
   const punchlines = Array.isArray(punch_lines) ? punch_lines.map((el) => el.text) : [];
   const [gridFactor, setGridFactor] = useState(1)
   
-
   function itemIndex(item){
      return gallery.indexOf(item);
   }

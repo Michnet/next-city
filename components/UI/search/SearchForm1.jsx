@@ -137,8 +137,8 @@ const onSubmit = () => {
   if(keyword){
     payload.search_keywords=keyword
   }
-  if(selectTags){
-    payload.tag = selectTags.join(',')
+  if(selectTags?.length > 0){
+    payload.tags = selectTags.join(',')
   }
 
   if(cancelSearchModal){

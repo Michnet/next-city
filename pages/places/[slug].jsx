@@ -7,14 +7,15 @@ import { useRouter } from "next/router";
 const VisitRecord = dynamic(() => import('@/components/UI/VisitRecord'), { ssr: false });
 
 const ColorThief = require('colorthief');
-
-import NotFound from "@/components/UI/site/NotFound";
-import ActivityCarousel from "@/components/UI/Listings/ActivityCarousel";
 import ListingPage from "@/components/routes/listingSingle/ListingPage";
-import RelatedListings from "@/components/listing/partials/RelatedListings";
+import LazyLoad from "react-lazyload";
+import { Skeleton } from "@/components/skeletons/Skeletons";
+const RelatedListings = dynamic(() => import("@/components/listing/partials/RelatedListings"));
+
+const apiType = 'place';
 
 export async function getStaticPaths() {
-    const res = await fetch(fetchIdsUrl({type: 'job_listing', per_page: 10, page: 1, listing_type:'place', slugs: true}));
+    const res = await fetch(fetchIdsUrl({type: 'job_listing', per_page: 10, page: 1, listing_type:apiType, slugs: true}));
     const data = await res.json();
     const paths = data?.map(item => {
         return {
@@ -61,7 +62,7 @@ export async function getStaticPaths() {
          street_address:address,
          latitude:latitude,
          longitude:longitude,
-         slug:`/places/${slug}`,
+         slug:`/${apiType}s/${slug}`,
          pageColor: serverObj?.themeColorHex ?? null
       }
       await getThemeColor();
@@ -99,18 +100,25 @@ export async function getStaticPaths() {
 
    const cachedListing = useMemo( () => listing, [listing?.id] );   
 
-    return <>{listing && listing != 'undefined' ? <><div className={`listing_page _place ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
+   if(listing && listing != 'undefined' ){
+    return <><div className={`listing_page _${apiType} ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
 
     <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
-
+    <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
     <RelatedListings type={type} category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
+    </LazyLoad>
     <VisitRecord Id={listing?.id}/>
     <ListingStater id={listing?.id}/></div>
-              </> :
-    <div>
+              </> 
+   }else{
+    const NotFound = dynamic(() => import("@/components/UI/site/NotFound"));
+    const ActivityCarousel = dynamic(() => import("@/components/UI/Listings/ActivityCarousel"));
+      return <div>
       <NotFound title='Page not available' description='The Page you are trying to view is not available at the moment. This can be caused by an error in the page address you entered. It could also mean that the page is under review and not yet published'/>
       <ActivityCarousel optionsObj={{arrows: true}} skeletonHeight={200} skeletonWidth={270} thumbsize={'xtra_large_thumb,thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} title={'Check out the latest'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
-      </div>}</>
+      </div>
+   }
+    
 
   }
 

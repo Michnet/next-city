@@ -455,6 +455,7 @@ div.truncate-5 > p {
 
 
 /*Classes*/
+.bright-1.5{filter: brightness(1.5)}
 .bg_card_cap{
     background: var(--bs-card-cap-bg)
 }
@@ -854,7 +855,7 @@ body.theme-dark .btn {
 
 .header {
     background-color: rgb(255 255 255 / 81%);
-    backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(40px);
 }
 
 #footer-bar {
@@ -5279,7 +5280,7 @@ div#explore_nav .view_filter {
     .header.header-auto-show.header-sticky:not(.header-active){
         position: fixed;
     }
-    .header.header-sticky.header-always-show.header-invert ._title, .header.header-sticky.header-always-show.header-invert:not(.header-active) ._title{
+    .header.header-sticky.header-always-show.header-invert:not(.header-active) ._title{
     color: var(--color-white);
     /* font-weight: 300; */
     /* opacity: 1 !important; */
@@ -5339,13 +5340,13 @@ div#explore_nav .view_filter {
     background: transparent;
 }
 
-.header.header-sticky.header-always-show.header-invert i {
+.header.header-sticky.header-always-show.header-invert:not(.header-active) i {
     color: #fff;
 }
 
 #listing_header.header-active {
     position: fixed;
-    background: #000;
+    background: var(--bgThemeTransparent0);
     /* top: 0; */
 }
 
@@ -5937,6 +5938,11 @@ section._dark .de_testi blockquote {
     backdrop-filter: blur(2px);
 }
 
+.page-content.search_page 
+ .results .view_control {
+    top: 0;
+}
+
 
 .listing_card .sale_content {
     max-width: inherit;
@@ -5944,4 +5950,8 @@ section._dark .de_testi blockquote {
 
 #footer-bar a {
     color: var(--colorTheme);
+}
+
+.menu .list-custom-small ._link i:first-child {
+    margin-left: 0;
 }

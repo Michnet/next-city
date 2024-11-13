@@ -84,7 +84,7 @@ const payload = {
   if(ids){
     payload.include = ids
   }
-  if(category){
+  if(category?.length > 0){
     payload.category = category 
   }
   if(keyId){

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { LoaderRingBoxed } from "../Loaders";
+import { ExploreSkeleton, ListingSkeleton } from "./PageSkeletons";
 
 
 export function urlString(str, theArray=[]){
@@ -17,8 +18,10 @@ const PageLoader = ({route}) => {
   let listingRoutes = ['/events/','/places/','/special-sales/','/services/'];
 if(route){
   if(route.includes(urlString(route, listingRoutes))){
-    const ListingSkeleton = dynamic(() => import("./ListingSkeleton"));
+    //const ListingSkeleton = dynamic(() => import("./PageSkeletons"));
     loaderView = <ListingSkeleton/>
+  }else if(route.includes('explore')){
+    loaderView = <><ExploreSkeleton/></>
   }else{
     loaderView = <div style={{height: '100vh'}}><LoaderRingBoxed/></div>
   }

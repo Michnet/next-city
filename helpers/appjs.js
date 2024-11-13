@@ -161,17 +161,17 @@ export function openOffCanvas(e){
         //Open Clicked Menu
         var menuData = el.getAttribute('data-menu');
         var menu = document.getElementById(menuData);
-        menu.classList.add('menu-active');
+        menu?.classList.add('menu-active');
         document.getElementsByClassName('menu-hider')[0].classList.add('menu-active');
         //Check and Apply Effects
         // var menu = document.getElementById(menuData);
-        var menuEffect = menu.getAttribute('data-menu-effect');
-        var menuLeft = menu.classList.contains('menu-box-left');
-        var menuRight = menu.classList.contains('menu-box-right');
-        var menuTop = menu.classList.contains('menu-box-top');
-        var menuBottom = menu.classList.contains('menu-box-bottom');
-        var menuWidth = menu.offsetWidth;
-        var menuHeight = menu.offsetHeight;
+        var menuEffect = menu?.getAttribute('data-menu-effect');
+        var menuLeft = menu?.classList.contains('menu-box-left');
+        var menuRight = menu?.classList.contains('menu-box-right');
+        var menuTop = menu?.classList.contains('menu-box-top');
+        var menuBottom = menu?.classList.contains('menu-box-bottom');
+        var menuWidth = menu?.offsetWidth;
+        var menuHeight = menu?.offsetHeight;
     
         if(menuEffect === "menu-push"){
             var menuWidth = document.getElementById(menuData).getAttribute('data-menu-width');

@@ -67,8 +67,8 @@ function SearchFilterConst() {
         }
 
         if(Dir_tags){
-            if(query.tag){
-                setTags(getQueryTagVariable(query.tag.split(','), Dir_tags))
+            if(query.tags){
+                setTags(getQueryTagVariable(query.tags.split(','), Dir_tags))
             }
         }
 
@@ -85,7 +85,7 @@ function SearchFilterConst() {
              filter.category = searchCat
          }
          if(searchTags){
-            filter.tag = searchTags.join(',')
+            filter.tags = searchTags.join(',')
         }
         resetValues();
          

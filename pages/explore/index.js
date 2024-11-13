@@ -12,7 +12,7 @@ import {  advancedFetchListingsUrl, explorerServerQuery, fetcherWithSignal } fro
 import MainMenuBtn from "@/components/layouts/partials/MainMenuBtn";
 import { closeMenus } from "@/helpers/appjs";
 import ExploreListings from "@/components/routes/explore/ExploreListings";
-import { removeLastCharacter } from "@/helpers/universal";
+//import { removeLastCharacter } from "@/helpers/universal";
 
 //const listingType = null;
 

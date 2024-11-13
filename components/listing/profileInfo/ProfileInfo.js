@@ -15,7 +15,7 @@ import TeamMini from "../team/TeamMini";
 //import About from "./partials/About";
 import PostTerms from "./partials/PostTerms";
 import AuthorCard from "./partials/AuthorCard";
-import ListingSkeleton from "@/components/skeletons/fullPage/ListingSkeleton";
+import ListingSkeleton from "@/components/skeletons/fullPage/PageSkeletons";
 import PayMeans from "./partials/PayMeans";
 import { Heading1 } from "@/components/UI/partials/headings/Heading1";
 import RelatedByTaxSplide from "../RelatedByTaxSplide";

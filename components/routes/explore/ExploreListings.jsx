@@ -127,9 +127,13 @@ const ExploreConst = ({topList, type=null}) => {
                     <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} title={`Latest ${typeName(type)}s`} subtitle={`Fresh and New ${type != 'all' ? type+'s' : ''}`} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
-              {!query || sort !== 'top-rated' && <div className="inner_section px-2">
-                    <ActivityCarousel listingType={type} skeletonHeight={200} skeletonWidth={200} height={220} mini noFallback cardWidth={200} exCardClass={'_mini ms-0'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
+              {!query || sort !== 'top-rated' && <div className="inner_section px-2 mb-3">
+                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={200} skeletonWidth={200} height={220} mini noFallback cardWidth={200} exCardClass={'_mini ms-0'} sort={'top-rated'} subtitle={'By User Rating'} title={'Top rated'}   limit={10} cardType={22} exClass={'px-0'}  shadowHeight={144}/>
               </div>}
+
+              {/* <div className="inner_section mb-3">
+                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={200} skeletonWidth={270} thumbsize={'xtra_large_thumb,thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'}  orderMeta='page_views' title={'Most Viewed'}  iconClass={'fas fa-eyes'} limit={10} cardType={5} exClass={'px-0'} height={210} />
+              </div> */}
 
               {(type == 'event' || type == 'special-sale') && <>{ !query || eventDate !== 'this-week' && <div className="inner_section">
                     <ActivityCarousel listingType={type} skeletonHeight={200} skeletonWidth={270} thumbsize={'xtra_large_thumb,thumbnail'} cardWidth={270} gap={15} exCardClass={'_mini'} eventDate={'this-week'} title={'Happening this week'}  iconClass={'fas fa-calendar-week'} limit={10} cardType={5} exClass={'px-0'} height={210} />
@@ -137,7 +141,7 @@ const ExploreConst = ({topList, type=null}) => {
 
 
               <div className="inner_section">
-                  <Search cardExClass={'mx-0'} listingType={type}/>
+                  <Search cardExClass={'mx-0'} listingType={type} ignorePriority={true}/>
               </div>
 
             </div>

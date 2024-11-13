@@ -89,7 +89,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
         }
 
         if(tickets?.length > 0){
-            ticketsHint = <Section  /* bgUrl={srcWithFallback(randomEither([cover, ...gallery]))} */ exClass="px-4 pb-4 pt-3"><div className='mb-20 sc_heading_3 px-4 mt-4'>
+            ticketsHint = <Section  /* bgUrl={srcWithFallback(randomEither([cover, ...gallery]))} */ exClass="px-4 pb-4 pt-3"><div className='sc_heading_3 px-4 mt-4'>
             <h5>Engage Now</h5>
             <h4>Booking Options</h4>
         </div>
@@ -97,14 +97,13 @@ function Archi({listing, setActiveKey, colorHex, color}){
                                 <div className='ps-data d-flex flex-column p-3'>
                                         <div className="coverImg_box position-relative mb-4" style={{ background: "var(--bg-gray)" }}> 
                                             <div className='cover_content'>
-                                                <h4>Online Booking Available</h4>
-                                                <div className='divider mt-3 w-25'/>
+                                                <div className='divider w-25'/>
                                                 <>{ticket_min_price_html && <PriceView preText={'Starting from'}  exClass={'_inline text-20'} priceHTml={ticket_min_price_html}/> }</> 
                                             </div>
                                             
                                         </div>
                                         <div className='content_box'>
-                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m  mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`gradient-${color}`}`}>
+                                            {<button onClick={() => setActiveKey('tickets')} className={`btn btn-m color-white mb-3 rounded-l text-uppercase text-nowrap font-900 shadow-s btn-icon text-start ${`gradient-${color}`}`}>
                                                     <i className="fas fa-qrcode font-15 text-center bg-transparent"/>
                                                       See Options
                                                 </button>}

@@ -30,18 +30,15 @@ import { Heading1 } from '../partials/headings/Heading1';
 
 const PAGE_SIZE = 22;
 
-const SearchConst = ({withSideFilter, title=null, subtitle=null, propQuery = null, columnObj, hideHeading=false, listingType='all', xlRow=6, cardExClass}) => {
+const SearchConst = ({withSideFilter, ignorePriority = null, title=null, subtitle=null, propQuery = null, columnObj, hideHeading=false, listingType='all', xlRow=6, cardExClass}) => {
 
     const router = useRouter();
     const query = propQuery ?? router.query;
     const {user} = useRecoilValue(authState);
     const [showThumb, setShowThumb] = useState(true);
     const [timelineView, setTimelineView] = useState(false);
-   // const [filter, setFilter] = useState(null);
-    //const [loading, setLoading] = useState(true);
     const [viewType, setViewType] = useState('Grid');
     const [page, setPage] = useState(1);
-    //const width = useRecoilValue(UIWidthState);
     const params = query ?? {};
 
 
@@ -53,10 +50,13 @@ const SearchConst = ({withSideFilter, title=null, subtitle=null, propQuery = nul
         let filterArr = {
             'event-date': 'any-day',
             ...params,
-            sort:'latest',
+            sort:'random',
             _fields : fieldList,
             _embed: true, 
             listing_type: listingType
+        }
+        if(ignorePriority) {
+            filterArr.ignore_priority = ignorePriority;
         }
         
         /* if (query.category) {

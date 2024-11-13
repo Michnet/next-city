@@ -28,41 +28,8 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
   const {likes} = acf?.community ?? {};
  
 
-  var itemSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-
   //const imgSrc = useMemo(() => processImg(imgArr), [listing.id] );
   const imgSrc = processImg(imgArr);
-
-  // custom navigation
-  function Arrow(props) {
-    let className =
-      props.type === "next"
-        ? "slick_arrow-between slick_arrow -next arrow-md flex-center button -blue-1 bg-theme shadow-1 size-30 rounded-full sm:d-none js-next"
-        : "slick_arrow-between slick_arrow -prev arrow-md flex-center button -blue-1 bg-theme shadow-1 size-30 rounded-full sm:d-none js-prev";
-    className += " arrow";
-    const char =
-      props.type === "next" ? (
-        <>
-          <i className="icon icon-chevron-right text-12"></i>
-        </>
-      ) : (
-        <>
-          <span className="icon icon-chevron-left text-12"></span>
-        </>
-      );
-    return (
-      <button className={className} onClick={props.onClick}>
-        {char}
-      </button>
-    );
-  }
   
   return (
           <div style={{width: width ?? 300}} className={`listing_card ${exClass ?? ''} ${mini ? '_mini' : ''}`}
@@ -73,36 +40,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
             >
               <div className="activityCard__image position-relative ratio ratio-4x3 card card-style m-0">
                 <div className="inside-slider topped_dots roundy">
-                  {/* <Slider
-                  focusOnSelect
-                  autoplay
-                  swipe={false}
-                  touchMove={true}
-                  autoplaySpeed={6000}
-                  fade
-                  pauseOnHover
-                    {...itemSettings}
-                    arrows={false}
-                    nextArrow={<Arrow type="next" />}
-                    prevArrow={<Arrow type="prev" />}
-                  >
-                    {imgArr?.map((slide, i) => (
-                      <div className="cardImage ratio ratio-4:3" key={i}>
-                        <div className="cardImage__content ">
-                          <img
-                          quality={90}
-                            width={size ? size  : 400}
-                            height={size ? size  : 'auto'}
-                            //className="col-12 js-lazy"
-                            placeholder={<LoaderSiteLogo/>}
-                            src={slide}
-                            onError={(e) => {e.target.src = '/images/bg/fallback-sm.jpg'}}
-                            alt="image"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </Slider> */}
+                 
                   <img
                           quality={90}
                             width={size ? size  : '100%'}
@@ -114,14 +52,14 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                             alt="image"
                           />
                   {mini && event_date && event_date[0] ? <DateView customDate={event_date[0].start} customEndDate={event_date[0].end} exClass='card_date mr-10'/> : <></>}
-                  <div className="stats_box">
+                  <div className="stats_box flex-wrap">
                     <div className="_lefty d-flex flex-column align-items-start gap-2 flex-grow-1">
                     <TermTag exTagClass={'rounded-3 text-13 fw-300 w-100'} exClass={'lgLine w-fit flex-shrink-1 minw-0 mw-100'} term={category} type={'hash'} linkTax={'category'}/>
                     {/* {mini ? <></> : <ListingMetaMini page_likes={likes?.length ?? null}  page_views={page_views} ratings={rating}/>} */}
                     {!mini && event_date && event_date[0] ? <DateViewState exClass={mini ? '_texty bg-theme' : ''} customDate={event_date[0].start} customEndDate={event_date[0].end} eventId={id}/> : <></>}
                     </div>
                     
-                    {ticket_min_price_html && <PriceView preText={''}  exClass={'_inline'} priceHTml={ticket_min_price_html}/> }
+                    {ticket_min_price_html && <PriceView preText={''}  exClass={'_inline bright-15'} priceHTml={ticket_min_price_html}/> }
                   </div>
                   <div className="cardImage__wishlist">
                     <PostLike listing={id}/>
@@ -136,7 +74,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                 <div className=' mb-0 w-100 content-collapsible'>
                   <div className="flex-grow-1">
                     <Link href={`/${type}s/${listing.slug}`}>
-                      <h4 className={`activityCard__title lh-13 text-dark-1 ${mini ? 'd-block text-truncate mb-0' : ''}`}>
+                      <h4 className={`activityCard__title lh-13 text-dark-1 ${mini ? 'd-block truncate-2 mb-0 text-14' : ''}`}>
                         <span className="text-capitalize">{cleanHtml(title?.rendered).toLowerCase()}</span>
                       </h4>
                     </Link>
