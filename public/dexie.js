@@ -1,5 +1,7 @@
-import { getDirTerms } from "@/helpers/rest";
-import Dexie from "dexie";
+//import { getDirTerms } from "@/helpers/rest";
+//import Dexie from "dexie";
+importScripts("dexie");
+//import { getDirTerms } from "./sw-rest";
 
 // Define a function-based Dexie instance
   const db = new Dexie("LC_store");
@@ -13,7 +15,7 @@ import Dexie from "dexie";
 
 //console.log('getWebWorkerDB', getWebWorkerDB);
 
-export async function populateDb({querySize = 3}){
+async function populateDb({querySize = 3}){
 let PageNum = 1;
 let queryCount =3;
 
@@ -61,6 +63,5 @@ let taxfields = "id,count,extra_meta,term_meta,description,parent,name,slug";
 while (queryCount === querySize){
     await getCats();
   }
-  
 }
 

@@ -28,7 +28,8 @@ function SiteActivity({user, token}) {
     useEffect(() => {
         function loaderFunc(){
             console.log('crossing now');
-            if(!isReachingEnd){setSize(size + 1)}}
+            if(!isReachingEnd){setSize(size + 1)}
+          }
         runOnIntersect({observedId:'activityLoader', func:loaderFunc});
     }, [])
     

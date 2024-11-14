@@ -33,7 +33,7 @@ import Link from "next/link";
 
 const SiteMapContent = ({links}) => {
   return (
-    <div className="d-none">
+    <div className="d-none _page_map">
       {links.map((menu, i) => (
               <Link target={'_blank'} href={`${menu.routerPath}`} as={menu.routerPath} key={i}>
                 {menu.name}

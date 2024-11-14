@@ -472,8 +472,8 @@ export default function Home(props) {
 
 
     <div className="footer card card-style">
-        <a href="#" className="footer-title"><span className="color-highlight">LyveCity</span></a>
-        <p className="footer-text"><span><i className="bi bi-pin-map"/>Closer to the action </span><br></br>{siteSettings.description}</p>
+        <Link href="/about/about-us" className="footer-title lh-1"><span className="color-highlight">LyveCity</span></Link>
+        <p className="footer-text"><span className='fw-300 d-block'>Bringing closer to the action </span><br></br>{siteSettings.description}</p>
         {/* <div className="text-center mb-3">
             <a href="#" className="icon icon-xs rounded-sm shadow-l me-1 bg-facebook"><i className="fab fa-facebook-f"></i></a>
             <a href="#" className="icon icon-xs rounded-sm shadow-l me-1 bg-twitter"><i className="fab fa-twitter"></i></a>
@@ -481,7 +481,7 @@ export default function Home(props) {
             <a href="#" data-menu="menu-share" className="icon icon-xs rounded-sm me-1 shadow-l bg-red-dark"><i className="fa fa-share-alt"></i></a>
             <a href="#" className="back-to-top icon icon-xs rounded-sm shadow-l bg-dark-light"><i className="fa fa-angle-up"></i></a>
         </div> */}
-        <p className="footer-copyright">Copyright &copy; LyveCity <span id="copyright-year">2024</span>. All Rights Reserved.</p>
+        <p className="footer-copyright text-13 opacity-60">Copyright &copy; LyveCity <span id="copyright-year">2024</span>. All Rights Reserved.</p>
         <p className="footer-links"><Link href="/support/privacy" className="color-highlight">Privacy Policy</Link> | <Link href="/support/tos" className="color-highlight">Terms and Conditions</Link> | <a href="#" className="back-to-top color-highlight"> Back to Top</a></p>
         <div className="clear"></div>
     </div>

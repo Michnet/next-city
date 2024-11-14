@@ -3,7 +3,7 @@
 
 //import { getEventDates } from "../helpers/rest";
 importScripts("/sw-rest.js");
-importScripts("/dexie.js");
+importScripts("https://unpkg.com/dexie@4.0.9/dist/dexie.js");
 
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
 var APP_NAME = 'LyveCity';
@@ -70,7 +70,71 @@ self.addEventListener('install', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Installed');}
 });
 
-const unCacheables = ['jwt-auth/v1', 'api/auth/', '_next/data/', 'api/auth/session','m-api/v1/event-dates','m-api/v1/visit', '/buddyboss/v1', 'jet-reviews-api/v1','user-actions/v1']
+// Define a function-based Dexie instance
+const db = new Dexie("LC_store");
+db.version(1).stores({
+  jl_cats: "id, name, slug, description, parent, extra_meta, count, term_meta"
+});
+
+// Initialize with Web Worker DB insance
+//const db = getWebWorkerDB(db, {workerUrl: '/dexieWorker.js'});
+//export default db;
+
+//console.log('getWebWorkerDB', getWebWorkerDB);
+
+
+async function populateDb({querySize = 3}){
+	
+let queryCount =50;
+let PageNum = 1;
+
+let taxfields = "id,count,extra_meta,term_meta,description,parent,name,slug";
+async function getCats(){
+	
+  const catsFilterArr = {
+	  _fields : taxfields,
+	  per_page: querySize,
+	  page: PageNum,
+	  orderby:'count',
+	  order: 'desc'
+	}
+  const eCats = await getDirTerms('categories', {...catsFilterArr});
+  if(eCats){
+	  queryCount = eCats.length;
+	  PageNum++
+	  if(eCats?.length > 0){
+		  db.jl_cats
+	  .bulkPut(eCats)
+	  .then(() => {
+		console.log(`Done putting ${eCats.length} in the db`);
+		
+	  })
+	  .catch((e) => {
+		if (e.name === 'BulkError') {
+		  // Explicitly catching the bulkPut() operation makes those successful
+		  // additions commit despite that there were errors.
+		  console.error(
+			'Some raindrops did not succeed. However, ' +
+			  100000 -
+			  e.failures.length +
+			  ' raindrops was added successfully'
+		  );
+		} else {
+		  throw e; // We're only handling BulkError here.
+		}
+	  });
+	  }
+  }
+
+}
+
+while (queryCount === querySize){
+  await getCats();
+}
+}
+
+
+const unCacheables = ['jwt-auth/v1', 'api/auth/', '_next/data/', 'api/auth/session','m-api/v1/event-dates','m-api/v1/visit', '/buddyboss/v1', 'jet-reviews-api/v1','user-actions/v1'];
 
 self.addEventListener('fetch', function(event) {
 	/* event.respondWith(
@@ -93,8 +157,8 @@ self.addEventListener('fetch', function(event) {
                 });
 				return fetch(req);
 			}else{
-			return fetch(event.request);
-			}
+			//return fetch(event.request);
+			//}
 		  
 		  if(unCachList.test(event.request.url)){
 			//console.log('unCachList', event.request.url);
@@ -146,6 +210,7 @@ self.addEventListener('fetch', function(event) {
 				})
 			}
 		  }
+		}
 		  
 		})(),
 	  );
@@ -168,7 +233,7 @@ self.addEventListener('activate', function(event) {
 	if(APP_DIAG){console.log('Service Worker: Activated')}
 });
 
-addEventListener("message", async (event) => {
+self.addEventListener("message", async (event) => {
 	// event is an ExtendableMessageEvent object
 	let swResponse = {}, swRespObj = {};
     const messageObj = event.data;
@@ -178,7 +243,16 @@ addEventListener("message", async (event) => {
 	const {type} = messageObj;
 
 	if(type == 'db'){
-        let dbResponse = await populateDb({querySize:5});
+        let dbResponse = await populateDb({querySize:50});
+	}
+
+	if(type == 'getActivity'){
+		const {payload} = messageObj;
+		let resp = await bpPublicActivities(payload);
+		if(resp){
+
+			swResponse.list = resp; 
+		}
 	}
 
 	if(type == 'auth'){

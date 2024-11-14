@@ -6,9 +6,10 @@ import DateViewDescriptive from '@/components/UI/partials/dateViews/DateViewDesc
 import DateViewString from '@/components/UI/partials/dateViews/DateViewString';
 import CountDownUI from '@/components/UI/CountDownUI';
 import styles from '@/components/listing/styles/home1.module.css';
+import { googleDirectionsUrl } from '@/helpers/base';
 
 const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActiveKey, user, token, exClass=''}) => {
-  const {title, author_id, venue,tagline,gallery, id, type} = listing ?? {};
+  const {title, author_id, venue,tagline,gallery, id, address} = listing ?? {};
   const {greeting} = listing?.landing ?? {};
 
   let galArr = [], greetingView, firstWord='', lastWords='';
@@ -51,9 +52,10 @@ const ListingInfoCardConst = ({listing, activeKey, styleObj = {}, color, setActi
                 </span>}
                 
               </div>
-              <Client><div className="flex-grow-1 gap-2 d-flex md:items-end items-start flex-column col-12 col-sm-6 px-0" /* data-aos='fade-right' */>
+              <Client><div className="flex-grow-1 gap-2 d-flex justify-center sm:justify-start sm:items-end items-start flex-column col-12 col-sm-6 px-0" /* data-aos='fade-right' */>
                 {id ? <><CountDownUI light fromActive eventId={id} />
-              {<DateViewDescriptive hideIfEnded fromActive eventId={id} exClass={'_hero mb-10'} light/>}</> : <></>}
+                {<DateViewDescriptive hideIfEnded fromActive eventId={id} exClass={'_hero mb-10'} light/>}</> : <></>}
+                <a className='btn' href={`${googleDirectionsUrl}/${address}`} target="_blank">Get Directions<i className='ms-3 text-18 far fa-directions'/></a>
               </div>
             </Client>
             </div>

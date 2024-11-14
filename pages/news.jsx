@@ -1,6 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { authState } from "@/contexts/atoms";
 import SiteActivity from "@/components/UI/lists/SiteActivity";
+import SiteActivityWorker from "@/components/UI/lists/SiteActivityWorker";
 
 
 export async function getStaticProps() {
@@ -21,7 +22,7 @@ const SiteNews = () => {
   
   return (
     <div className="page-content">
-      <div className="container p-sm-3 p-2"><SiteActivity user={user} token={token}/></div>
+      <div className="container p-sm-3 p-2"><SiteActivityWorker user={user} token={token}/></div>
     </div>
   )
 }

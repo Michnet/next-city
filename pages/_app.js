@@ -25,7 +25,7 @@ import '@splidejs/react-splide/css';
 import { Analytics} from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SiteLinksSearchBoxJsonLd } from "next-seo";
-import {populateDb} from "@/helpers/dexie";
+//import {populateDb} from "@/helpers/dexie";
 
 
 function MyAppConst({ Component, pageProps, platform }) {
@@ -61,7 +61,7 @@ function MyAppConst({ Component, pageProps, platform }) {
       url="https://lyvecity.com"
       potentialActions={[
         {
-          target: 'https://lyvecity.com/search?search_keywords',
+          target: 'https://lyvecity.com/explore?search_keywords',
           queryInput: 'best restaurant',
         }
       ]}

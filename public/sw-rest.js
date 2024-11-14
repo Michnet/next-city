@@ -31,6 +31,49 @@ const authenticate = async (payload, signal) => {
   } catch (error) {
   }
 }
+
+const getDirTermsUrl = (taxonomy, payload) => {
+  function processedTax(){
+      switch (taxonomy) {
+      case 'categories':
+          return 'job_listing_category';
+          break;
+      case 'tags':
+          return 'case27_job_listing_tags';
+      case 'locations':
+          return 'dir_locations';
+      case 'product_cat':
+          return 'product_cat';
+      default:
+          return 'job_listing_category';
+          break;
+  }}
+  let endpoint;
+  if (payload) {
+      endpoint = `wp-json/wp/v2/${processedTax()}?${serializeQuery({
+          ...payload
+      })}`;
+  } else {
+      endpoint = `wp-json/wp/v2/${taxonomy}`;
+  }
+  return `${WPDomain}/${endpoint}`;
+}
+
+async function getDirTerms(taxonomy, payload){
+  const query = getDirTermsUrl(taxonomy, payload);
+  try {
+    const res = await fetch(query);
+    if(res){
+        return res.json();
+      }else{
+        return [];
+    }
+    } catch (error) {
+      console.log('terms failed', error)
+  } 
+}
+
+
 const getEventDates = async (payload, signal) => {
 
   const endPoint = `wp-json/m-api/v1/event-dates?${serializeQuery({
@@ -74,4 +117,28 @@ const fetchListingReviews = async (payload) => {
     } catch (error) {
       console.log('got failed', error)
   }    
+}
+
+
+const bpPublicActivities = async(payload) =>{
+  let endPoint;
+  if(payload){
+      endPoint = `wp-json/m-api/v1/activity?${serializeQuery({
+          ...payload
+      })}`
+  }else{
+      endPoint = `wp-json/m-api/v1/activity`
+  }
+   //return `${WPDomain}/${endPoint}`;
+
+  try {
+    const res = await fetch(`${WPDomain}/${endPoint}`); 
+      if(res){
+        return res.json();
+      }else{
+        return null
+    }
+    } catch (error) {
+      console.log('got failed', error)
+  }
 }
