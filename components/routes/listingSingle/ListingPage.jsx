@@ -113,14 +113,14 @@ return linkzz;
         {/* <HeroParallax user={user} token={token} color={color} listing={cachedListing} activeKey={activeKey} setActiveKey={setActiveView}/> */}
         <Content listingType={listingType} lMenu={lMenu}  activeKey={activeKey} setActiveKey={setActiveView} listing={cachedListing} color={color} colorHex={themeColorHex}/>
         <Client>
-          <LazyLoad placeholder={<Skeleton height={400}/>} offset={300} once>
+          <LazyLoad placeholder={<Skeleton height={400}/>} offset={600} once>
           <div className='border mx-2 pb-2 mb-2 mt-3'>
           <Heading1 exClass="mt-20 mb-20 px-4" title={'Explore Page'} subtitle={`All in ${cleanHtml(listing?.title?.rendered)}`}/>
             <Navigator  faClass={'fad'} itemClass='col-sm-4 col-md-3 col-lg-2 col-6 pe-2' exClass='px-3 view_all grid gap-0' lMenu={lMenu} setActiveKey={setActiveView} /* listing={listing} */ activeKey={activeKey}/>
             </div>
             </LazyLoad>
         </Client>
-        <LazyLoad placeholder={<Skeleton height={400}/>} offset={300} once>
+        <LazyLoad placeholder={<Skeleton height={400}/>} offset={600} once>
          <ProfileInfo exClass={'px-lg-0 px-2 py-2'} listing={cachedListing} setActiveKey={setActiveKey}/>
         </LazyLoad>
         
