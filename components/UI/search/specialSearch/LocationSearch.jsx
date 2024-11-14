@@ -4,12 +4,31 @@ import { ActiveQueryOption } from "@/components/UI/Partials";
 //import { siteState } from "~/appComponents/contexts/siteContext";
 import { Dir_locations } from "@/public/data/localCache";
 //import { getDirTerms } from "~/server/WpRest";
+import { cleanHtml } from "@/helpers/universal";
 
-const LocationSearch = ({params, setParams, query, locations}) => {
+const LocationSearch = ({params, setParams, query, locations, region}) => {
+  //const {slug} = region;
+  let baseCat = 0;
 
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedID, setSelectedID] = useState(null);
   const [options, setOptions] = useState(locations ?? null);
+  const [selectedItem, setSelectedItem] = useState(query && query['region'] ? {slug: query['region']} : null);
+  const [selectedID, setSelectedID] = useState(query && query['region'] ? Dir_locations.filter((el) => el.slug == query['region'])[0].id : baseCat);
+
+
+  /* function parentTerm(){
+    if(selectedItem?.slug){
+      return selectedItem.slug
+    }else
+    if(slug) {
+        return slug; 
+    }else{
+      if(query && query['region']){
+        return query['region'];
+      }else{
+        return null;
+      }
+    }
+  } */
 
   //const {Dir_locations} = useRecoilValue(siteState);
 
@@ -29,7 +48,7 @@ function reset(){
   }
 
   function getTerms(){
-    let theTerms = selectedID ? Dir_locations?.filter((el) => el.parent == selectedID) : Dir_locations?.filter((el) => el.parent == 0);
+    let theTerms = Dir_locations?.filter((el) => el.parent == selectedID);
     if(theTerms?.length > 0){
       setOptions(theTerms);
 
@@ -68,13 +87,13 @@ function reset(){
         data-bs-auto-close="true"
         data-bs-offset="0,22"
       >
-        <div className="option_box mb-1">{selectedItem ? <h3 className="text-16">{selectedItem?.name}</h3> : <></>}</div>
+        <div className="option_box mb-1">{selectedItem ? <h3 className="text-16">{cleanHtml(selectedItem?.name)}</h3> : <></>}</div>
       </div>
 
       <div >
           {options?.length > 0 &&
             <select value={selectedID} onChange={(e) => handleOptionClick(e.target.value)}>
-            {options?.length > 0 ? <option value={selectedID} className="gray_text">{selectedID ? 'Choose a sublocation' : 'Choose Location'}</option> : <></>}
+            {options?.length > 0 ? <option value={selectedID} className="gray_text">{selectedID != 0 ? 'Choose a sublocation' : 'Choose Location'}</option> : <></>}
             {options.map((item) => (
               <option
                 className={`-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option mb-1 ${
@@ -84,11 +103,11 @@ function reset(){
                 role="button"
                 value={item.id}
               >
-                      {item.name}
+                      {cleanHtml(item.name)}
               </option>
             ))}
           </select>}
-        {selectedID && <button type="button" className="btn-outline-secondary btn btn-sm rounded" onClick={() => reset()}>Reset</button>}
+        {selectedID != 0 && <button type="button" className="btn-outline-secondary btn btn-sm rounded" onClick={() => reset()}>Reset</button>}
       </div>
     </div>
     </>

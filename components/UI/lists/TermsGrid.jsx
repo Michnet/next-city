@@ -1,19 +1,20 @@
-"use client";
-import { siteState } from '@/contexts/siteContext';
+//"use client";
+//import { siteState } from '@/contexts/siteContext';
 import { closeMenus } from "@/helpers/appjs"
-import { getDirTerms } from '@/helpers/rest';
+import { fetcherWithSignal, getDirTerms, getDirTermsUrl } from '@/helpers/rest';
 //import { useRouter } from 'next/router';
 import { useSearchParams, useRouter} from 'next/navigation';
 import  {useEffect, useState} from 'react';
-import { useRecoilValue } from 'recoil';
+//import { useRecoilValue } from 'recoil';
 //import {siteState } from '../../../contexts/siteContext';
 import { TermIcon } from '../partials/termLinks';
 //import TermCarouselIcon from './TermCarouselIcon';
+import useSWR from 'swr';
 
 const TermsGrid = ({id, listy, exClass, flipped=false, shadowy=true}) => {
     const [cats, setCats] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [orderBy, setOrderBy] = useState('count');
+    //const [orderBy, setOrderBy] = useState('count');
 
     const searchParams = useSearchParams()
  
@@ -24,8 +25,6 @@ const TermsGrid = ({id, listy, exClass, flipped=false, shadowy=true}) => {
     let taxfields = "id,count,extra_meta,term_meta,description,parent,name,slug";
 
 
-    const { dirCats} = useRecoilValue(siteState);
-
     const catsFilterArr = {
         _fields : taxfields,
         parent: 0 ?? 0,
@@ -34,12 +33,27 @@ const TermsGrid = ({id, listy, exClass, flipped=false, shadowy=true}) => {
         order: 'desc'
       }
       //Get event categories
-      async function getCats(){
+      /* async function getCats(){
         const eCats = await getDirTerms('categories', catsFilterArr);
         if(eCats){
             setCats(eCats); 
         }
         setLoading(false);
+      } */
+
+      let controller = new AbortController();
+      let {signal} = controller;
+
+      useEffect(() => {
+        //getCats();
+        return () => {controller.abort()};
+       }, [id]);       
+
+      const { data, error } = useSWR(cats?.length > 0 ? null : getDirTermsUrl('categories', {...catsFilterArr, _embed : true }), (url) => fetcherWithSignal(signal, url), { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false });
+
+      if(data?.length > 0){
+        setCats(data); 
+        //setLoading(false);
       }
      
    /*  function getTaxonomies() {
@@ -57,10 +71,6 @@ const TermsGrid = ({id, listy, exClass, flipped=false, shadowy=true}) => {
         }
       } */
 
-useEffect(() => {
-   getCats();
-  
-  }, [id]);
 /* useEffect(() => {
    getCats();
   
@@ -76,7 +86,6 @@ useEffect(() => {
     return (
         <div className={`terms_grid contain ${exClass ?? ''}`}>
             <div className='row'> {catsArray} </div>
-            
         </div>
     )
 }

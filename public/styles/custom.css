@@ -3397,8 +3397,9 @@ span.clear_tag {
 .footer-links {
     list-style: none;
 }
-
-.hero_title .profile_name {border-right: 3px dashed rgb(226 226 226 / 10%);}
+ul.listing_navigator.view_all.grid .active .card {
+    border: 1px solid var(--borderTheme);
+}
 
 .footer-link.l_menu._item .label, .footer-link {
     font-family: var(--fontFamily) !important;

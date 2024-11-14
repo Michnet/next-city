@@ -48,13 +48,13 @@ function MainMenu() {
         routePath: "/explore/places",
         isNew: false
     },
-    {id: 3,
+   /*  {id: 3,
         icon: "far fa-tags",
         color: 'gradient-brown',
         name: "Special Sales",
         routePath: "/explore/special-sales",
         isNew: false
-    },
+    }, */
     {id: 4,
         icon: "far fa-wrench",
         color: 'gradient-brown',

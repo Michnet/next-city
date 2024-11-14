@@ -5,15 +5,15 @@ import { ActiveQueryOption } from "@/components/UI/Partials";
 
 
 const CategorySearch = ({category, setCategory, params, setParams, categories, query}) => {
-  const {slug} = category ?? {}
+  //const {slug} = category ?? {}
 
   let baseCat = 0;
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(query && query['category'] ? {slug: query['category']} : null);
   const [options, setOptions] = useState(categories ?? null);
-  const [selectedID, setSelectedID] = useState(baseCat);
+  const [selectedID, setSelectedID] = useState(query && query['category'] ? Dir_categories.filter((el) => el.slug == query['category'])[0].id : baseCat);
 
-
+/* 
   function parentTerm(){
     if(selectedItem?.slug){
       return selectedItem.slug
@@ -21,9 +21,13 @@ const CategorySearch = ({category, setCategory, params, setParams, categories, q
     if(slug) {
         return slug; 
     }else{
+      if(query && query['category']){
+        return query['category'];
+      }else{
         return 'events';
+      }
     }
-}
+} */
 function reset(){
   setSelectedItem(null);
   setSelectedID(baseCat);
@@ -35,14 +39,14 @@ function reset(){
   delete tempObj['category'];
   setParams({...tempObj});
 }
-  let payload ={
+  /* let payload ={
     parent_slug : parentTerm()
-  }
+  } */
  
 
   function getTerms(){
     //const theTerms = await getDirTerms('categories', payload);
-    let theTerms = selectedID ? Dir_categories?.filter((el) => el.parent == selectedID) : Dir_categories?.filter((el) => el.parent == baseCat);
+    let theTerms = Dir_categories?.filter((el) => el.parent == selectedID);
     if(theTerms?.length > 0){
       setOptions(theTerms);
     }else{
@@ -93,7 +97,7 @@ function reset(){
           data-bs-auto-close="true"
           data-bs-offset="0,22"
         >
-          <div className="option_box mb-1">{selectedItem ? <h3 className="text-16">{selectedItem?.name}</h3> : <></>}</div>
+          <div className="option_box mb-1">{selectedItem ? <h3 className="text-16">{cleanHtml(selectedItem?.name)}</h3> : <></>}</div>
         </div>
 
         <div >

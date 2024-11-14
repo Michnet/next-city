@@ -3,10 +3,11 @@
 
 //import { getEventDates } from "../helpers/rest";
 importScripts("/sw-rest.js");
+importScripts("/dexie.js");
 
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
 var APP_NAME = 'LyveCity';
-var APP_VER = '1.4.0';
+var APP_VER = '1.4.2';
 var CACHE_NAME = APP_NAME + '-' + APP_VER;
 
 // Files required to make this app work offline.
@@ -175,6 +176,10 @@ addEventListener("message", async (event) => {
 	const {signal} = controller;
 	//console.log(`The client sent me a message xx :`, event.data);
 	const {type} = messageObj;
+
+	if(type == 'db'){
+        let dbResponse = await populateDb({querySize:5});
+	}
 
 	if(type == 'auth'){
 		const {loginData} = messageObj;

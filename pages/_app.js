@@ -25,12 +25,14 @@ import '@splidejs/react-splide/css';
 import { Analytics} from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SiteLinksSearchBoxJsonLd } from "next-seo";
+import {populateDb} from "@/helpers/dexie";
+
 
 function MyAppConst({ Component, pageProps, platform }) {
   const {headerTitle, settings, seoMeta} = pageProps;
   
   const Session = getSession();
-
+  run_template();
   const cachedRunTemplate = useMemo(() => run_template(), [Session])
   const cachedOnAppLoad = useMemo(() => onAppLoad(), [Session])
 
@@ -49,7 +51,10 @@ function MyAppConst({ Component, pageProps, platform }) {
       offset: 0,
       once: true,
     });
+
+   // populateDb({querySize:3});
 }, []);
+
 
   return <>
     <SiteLinksSearchBoxJsonLd
@@ -75,7 +80,7 @@ function MyAppConst({ Component, pageProps, platform }) {
                 {/* <SWMessaging/> */}
                 <SiteProvider/>
                 <MessagesStater/>
-                <ActivityProvider/>
+                {/* <ActivityProvider/> */}
               </Client>
               </HydrationProvider>
               <Analytics/>

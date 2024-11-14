@@ -12,7 +12,7 @@
 // import DateSearchEvents from "../hero/hero-events/DateSearchEvents";
 import { memo, useState } from "react";
 import { useRouter } from "next/router";
-import { typeName, UICleanup } from "@/helpers/universal";
+import { typeName, UICleanup, typeNameSlug } from "@/helpers/universal";
 import DateSearchEvents from "./specialSearch/DateSearchEvents";
 import TagsFilter from "./specialSearch/TagsFilter";
 import LocationSearch from "./specialSearch/LocationSearch";
@@ -46,7 +46,7 @@ const SearchFilter3Const = ({listingType}) => {
     params['tags'] = tags.join(',')
   }  
   const push_url = {
-    pathname: `/explore/${typeName(listingType, '')}`,
+    pathname: `/explore${listingType ? typeNameSlug(listingType, '') : ''}`,
     query: {...params},
   } 
   return (
@@ -70,10 +70,11 @@ const SearchFilter3Const = ({listingType}) => {
         <h5 className="text-13 fw-600 mb-10 gray_text text-uppercase">Search by key word(s)</h5>
         <div className="single-field relative d-flex items-center py-10">
           <input
+            value={query['search_keywords'] ?? ''}
             onChange={(e) => {setParams({...params, search_keywords : e.target.value})}}
-            className="border-light text-dark-1 rounded-4 px-2 w-100"
+            className="border-light text-dark-1 rounded-4 p-2 w-100"
             type={'text'}
-            placeholder="e.g. Mchomo Party"
+            placeholder="e.g. Bridal Salon"
           />{/* 
           <button type="submit" className="absolute d-flex items-center h-full">
             <i className="icon-search text-20 px-15 text-dark-1" />
@@ -149,16 +150,25 @@ const SearchFilter3Const = ({listingType}) => {
       <div className="sidebar__item -no-border position-relative">
         <Map />
       </div> */}
-      <div className="filter_actions p-2 px-3">
+      <div className="filter_actions p-2 px-3 d-flex gap-2 flex-nowrap">
           <button
             className="btn btn-theme radius-30"
             onClick={() => {
-              router.push(push_url,push_url, {shallow: true});
+              router.push(push_url,push_url);
               UICleanup();
             }}
           >
             <i className="las la-search-location mr-10"></i>
             Search
+          </button>
+          <button
+            className="btn btn-outline radius-30 border"
+            onClick={() => {
+              router.push(`/explore`);
+              UICleanup();
+            }}
+          >
+            Reset All
           </button>
       </div>
     </div>

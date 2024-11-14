@@ -3,6 +3,7 @@ import { cleanHtml, randomEither } from "@/helpers/universal";
 import { siteColors } from "@/helpers/base";
 
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const TermIcon = ({item, flipped=false, shadowy=true, listingType}) => {
     let {name, slug, term_meta, id} = item;
@@ -22,9 +23,10 @@ export const TermIcon = ({item, flipped=false, shadowy=true, listingType}) => {
 export const TermIconBox = ({item, truncate='2', listingType, flipped=false, externalTitle=false, shadowy=true, exClass='', width='80px', height='80px'}) => {
     let {name, slug, term_meta, id} = item;
     let {color, rl_awesome} = term_meta;
-    let linker = `/explore${listingType ? '/'+listingType+'s' : ''}?category=${slug}`;
+    let linker = `/explore${listingType && listingType != 'all' ? '/'+listingType+'s' : ''}?category=${slug}`;
+    const router = useRouter();
 
-    return <div key={id} className={`term_i_box overflow-hidden ${exClass} ${shadowy ? 'shadow' : ''}`}><div className={`icon_bound box_icon  text-center  position-relative ${flipped ? '_flipped' : '_def'}  `} style={{background: `${flipped ? color?.length > 0 ? color : 'var(--highlight)' : 'var(--bgTheme)'}`}}>
+    return <div onClick={() => router.push(linker)} className={`term_i_box overflow-hidden ${exClass} ${shadowy ? 'shadow' : ''}`}><div className={`icon_bound box_icon  text-center  position-relative ${flipped ? '_flipped' : '_def'}`} style={{background: `${flipped ? color?.length > 0 ? color : 'var(--highlight)' : 'var(--bgTheme)'}`}}>
                     <Link onClick={() => closeMenus()} href={linker} className={`term_box icon`} style={{ height: externalTitle ? height : 'auto', lineHeight: externalTitle ? height : 'auto'}}>
                         <span className={`term_icon_box bg-transparent`}>
                             <i className={`text-center text-${flipped ? '80' : '40'} opacity-30 ${rl_awesome?.length > 0 ? rl_awesome : 'fas fa-feather'}`} style={{color: flipped ? '#fff' : color}}></i>

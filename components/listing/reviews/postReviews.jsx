@@ -84,7 +84,7 @@ function PostReviews({id, type=null, author_id, headerLess=false, light=true, fr
     let fallBackView = <div style={{maxWidth: 500, marginLeft: 'auto', marginRight: 'auto'}}>{loading ?  <div><LoaderDualRingBoxed height={300}/></div> : <>{
         userOwned ? 
         <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} title={'No Reviews Yet'} light={light} descript={`No one has submitted a review for your listing yet. Share your page and encourage others to share their reviews of your ${typeName(type)}`}/> 
-        : <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} descript={`No one has submitted a review for this page. If you have had a real life experience with this ${typeName(type)}, be the first to add a review`} light={light}  title={'Be the first'} actionComponent={withButton ? <button className={`btn ${light ? '' : 'btn-light'}`} onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>}</div>
+        : <CallToActions bgClass={transparentCards ? 'bg-transparent shadow-0' : 'bg-theme'} descript={`No one has submitted a review for this page. If you have had a real life experience with this ${typeName(type)}, be the first to add a review`} light={light}  title={'Be the first'} actionComponent={withButton ? <button className={`btn ${light ? '' : 'btn-light bg-theme'}`} onClick={() => setActiveKey('reviews')}>Add Review</button> : <></>}/>}</>}</div>
     if(loading){
         reviewsView = <div><LoaderDualRingBoxed height={300}/></div>
     }else if(reviews){

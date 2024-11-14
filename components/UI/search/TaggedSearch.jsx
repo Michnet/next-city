@@ -186,7 +186,7 @@ const submit = () => {
 
   if(selectTags && selectTags.length > 0){
     var tagArr = [];
-    selectTags.map((tag) =>tagArr.push(tag.id));
+    selectTags.map((tag) =>tagArr.push(tag.slug));
     payload.tags=tagArr.join(',')
   }
 
@@ -264,7 +264,7 @@ const customRenderer = (tag, size, color) => {
 
   function setupTags(value, arr, setArr){
     if(arr.length > 0){
-      if(arr.filter((item) => item.id === value.id ).length > 0){
+      if(arr.filter((item) => item.id == value.id ).length > 0){
         setArr(removeTag([...arr], value));
       }else{
         setArr([...arr, value])
@@ -429,7 +429,7 @@ const customRenderer = (tag, size, color) => {
                             luminosity: 'dark',
                           }}
                         renderer={customTagRenderer}
-                        onClick={tag =>  setupTags(tag.props, selectTags, setSelectTags)}
+                        onClick={tag =>  {setupTags(tag.props, selectTags, setSelectTags)}}
                     />
                     </div>
                     </div>

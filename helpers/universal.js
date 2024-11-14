@@ -632,6 +632,18 @@ export function typeName(type, fb='listing'){
       return fb;
   }
 }
+export function typeNameSlug(type, fb=''){
+  switch (type) {
+    case 'place':
+      return 'places';
+    case 'event':
+      return 'events';
+    case 'special-sale':
+      return 'special-sales';
+    default:
+      return fb;
+  }
+}
 
 
 export function clearInputField(id){

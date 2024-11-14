@@ -25,13 +25,13 @@ function SearchFilterConst() {
     return pool.filter((item) => item.id === id)[0];
     }
 
-    function getQueryTagVariable(ids, pool){
-        if(ids && ids.length > 0){
-            let finalArr =[];
-            ids.map((id) => {
-                finalArr.push(pool.filter((item) => item.id === parseInt(id))[0])
-            })
+    function getQueryTagVariable(slugs, pool){
+        if(slugs && slugs.length > 0){
 
+            let finalArr =[];
+            slugs.map((slug) => {
+                finalArr.push(pool.filter((item) => item.slug == slug)[0])
+            })
             return finalArr;
         }    
     }

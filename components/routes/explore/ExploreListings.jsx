@@ -106,25 +106,25 @@ const ExploreConst = ({topList, type=null}) => {
               </Slider>}</>}
               </div>
               <div className="inner_section mb-4">
-                 <Suspense fallback={'Loading'}><TermsCarousel truncate='3' flipped={true} listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
+                 <Suspense fallback={'Loading'}><TermsCarousel truncate='3' flipped={true} listingType={type} queryKey={'category'} queryLink={`/explore/${type}s?category=`} exClass={'pt-10'} slug={type && type != 'all' ? `${type}s` : null}  type={'dir_cats'} infinity/></Suspense>
               </div>
               <>{query && Object.keys(query).length > 0 ? 
               <><div className="query_hint mx-2 p-2">
               {showHint ? <div className="query_content">
                   <p className="mb-2"><span>Exploring {category ? <span><span className="text-info pointer">{translateDate(category)} </span></span> : ''}
-                    listings </span>
-                    {eventDate ? <span>scheduled for <span className="text-warning pointer">{translateDate(eventDate)}</span></span> : ''}
-                    {region ? <span> in <span className="text-info pointer capitalize">{region}</span></span> : ''}
+                    {`${type && type != 'all' ? type+'s' : 'listings'}`}</span>
+                    {eventDate ? <span> scheduled for <span className="text-warning pointer">{translateDate(eventDate)}</span></span> : ''}
+                    {region ? <span> in <span className="text-info pointer text-capitalize">{region}</span></span> : ''}
                     {sort ? <span>, starting with the <span className="text-info pointer">{sort}</span></span> : ''}
-                    {tags ? <span>, and tagged in <span className="text-success _tags">{translateTags(tags)}</span></span> : ''}
+                    {tags ? <span>, tagged in <span className="text-success _tags">{translateTags(tags)}</span></span> : ''}
                   </p> 
                   <div><button className="btn btn-xs mb-0 btn-outline-secondary px-3" onClick={() => setShowHint(false)}>Hide</button></div>
               </div> 
               : 
-              <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Hints</button> 
+              <button className="btn btn-xs mb-0 btn-secondary px-3" onClick={() => setShowHint(true)}>Show Summary</button> 
               }</div></> : <></>}</>
               <div className="inner_section mt-20 mb-3">
-                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} title={`Latest ${typeName(type)}s`} subtitle={`Fresh and New ${type != 'all' ? type+'s' : ''}`} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
+                    <ActivityCarousel listingType={type} ignorePriority={true} skeletonHeight={100} skeletonWidth={300} thumbsize={'thumbnail'} height={120} title={`Latest ${typeName(type)}s`} subtitle={`Fresh and New ${type && type != 'all' ? type+'s' : ''}`} limit={4} cardType={4} exClass={'px-0'} cardWidth={300} shadowHeight={144}/>
               </div>
 
               {!query || sort !== 'top-rated' && <div className="inner_section px-2 mb-3">

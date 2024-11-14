@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Splider from "../partials/Splider";
 import { TermIconBox } from "../partials/termLinks"
-import Mirrored from './../partials/Mirrored';
+//import Mirrored from './../partials/Mirrored';
 
 function TermsCarousel({items=[], truncate='2', slug, listingType, type, flipped=false, queryKey, heady, exClass='', filterArr, setFilterArr, inactiveLinks, infinity, imagey, variant, taxonomy}){
     const {query} = useRouter();
