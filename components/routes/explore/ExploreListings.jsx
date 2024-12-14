@@ -37,6 +37,8 @@ const ExploreConst = ({topList, type=null}) => {
  const cachedTopList = useMemo(() => topList, [topListKey]);
  let fetchy = topList?.length > 0 ? false : true;
 
+ console.log('front top list', topList);
+
  function translateTags(string){
    let arr = string.split(',');
    let newArr = arr.map((it) => {

@@ -21,7 +21,7 @@ export async function getServerSideProps({res, req, query}) {
 
   res.setHeader(
     'Cache-Control',
-    'public, s-maxage=60, stale-while-revalidate=120'
+    'public, maxage=600, s-maxage=3600, stale-while-revalidate=1200'
   )
   
   let serverObj = await explorerServerQuery({query: query, listing_type: 'all'});

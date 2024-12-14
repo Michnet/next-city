@@ -52,7 +52,7 @@ const EventCard6 = ({listing, width=220, exImgClass='', imageRadius=0, contentCl
 
 
             <div className={`overflow-hidden card position-relative shadow-0 mb-0 card-img rounded-${imageRadius}`} style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
-                <img onErrorCapture = {(e) => {e.target.src = imgArr2[0]/* '/images/bg/fallback-sm.jpg' */, e.target.srcset= {fallbackImgSrcSet}, console.log('error src', e.target.src)}} src={resizedImage(srcWithFallback(imgArr2[0], '/images/bg/fallback-sm.jpg'), 'medium_large')} fill={true} className={`h-100 w-100 bg-cover pos-relative object-cover ${exImgClass} rounded-${imageRadius}`} style={{minHeight:minHeight, /* background: srcUrlWithFallback(resizedImage(imgArr2[0], 'medium_large'), '/images/bg/fallback-sm.jpg') */}}/>
+                <img onErrorCapture = {(e) => {e.target.src = imgArr2[0]/* '/images/bg/fallback-sm.jpg' */, e.target.srcset= {fallbackImgSrcSet}, console.log('error src', e.target.src)}} src={resizedImage(srcWithFallback(imgArr2[0], '/images/bg/fallback-sm.jpg'), 'medium_large')} className={`h-100 w-100 bg-cover pos-relative object-cover ${exImgClass} rounded-${imageRadius}`} style={{minHeight:minHeight, /* background: srcUrlWithFallback(resizedImage(imgArr2[0], 'medium_large'), '/images/bg/fallback-sm.jpg') */}}/>
                 
                 <div className="card-bottom px-2 d-flex justify-between align-items-center gap-2 flex-wrap-reverse img_content py-2" style={{gridTemplateColumns: 'auto 50px'}}>
                     <div className='_left'>

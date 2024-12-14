@@ -16,7 +16,7 @@ import { ListingContact } from "./partials/ListingContact";
 import { LoaderDualRingBoxed } from '@/components/skeletons/Loaders';
 import LazyLoad from "react-lazyload";
 
-function itContent(tabId, listing, gallery, community_id, colorHex, type, general_merchandise,setActiveKey,activeKey,color, faqs, isSample, tickets, id, chatCount, user){
+function itContent(tabId, listing, gallery, community_id, colorHex, type, general_merchandise,setActiveKey,activeKey,color, faqs, isSample, tickets, id, chatCount, user, author_id){
   switch (tabId) {
       case 'gallery':
         console.log('gallery');
@@ -87,7 +87,7 @@ function ContentConst({listing, colorHex, activeView, lMenu, activeKey, color, s
         let tagGroup = lMenu.filter((el) => el.id == key)[0];
           if(tagGroup){
           const {id, icon, title, subTitle, innerClass, widgetClass, badge} = tagGroup;
-          let content = cacheditContent(id, listing, gallery, community_id, colorHex, type, general_merchandise,setActiveKey,activeKey,color, faqs, isSample, tickets, id, chatCount, user);
+          let content = cacheditContent(id, listing, gallery, community_id, colorHex, type, general_merchandise,setActiveKey,activeKey,color, faqs, isSample, tickets, id, chatCount, user, author_id);
           
           if(content == 'empty'){
             const customRenderer = (tag, size, color) => {

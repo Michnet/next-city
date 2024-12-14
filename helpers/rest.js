@@ -843,7 +843,7 @@ export async function explorerServerQuery({query, listing_type}){
   let seoDescript = `Explore ${category ? translateDate(category) : ''} ${listing_type}s ${region ? '' : 'all around you'} ${eventDate ? ', scheduled for ' + translateDate(eventDate) : ''}${region ? ' in ' + region : ''}${sort ? ', starting with the ' + sort : ''}`;
 
   let load={_fields : `id,title,slug,fields,ticket_min_price_html,event_date,featured_media,featured,rating,acf,short_desc,page_views,level,category,_links,type, gallery,locations,max_discount,${thumbsize}`, 
-    listing_type: listing_type ?? 'all', per_page: 5, 'event-date':'any-day'};
+    listing_type: listing_type ?? 'all', per_page: 5, 'event-date':'any-day',sort:sort ?? 'latest'};
 
     if(query){
       load = {...load, ...query};
@@ -860,8 +860,6 @@ export async function explorerServerQuery({query, listing_type}){
     } */
 
   async function topListings(){
-    
-
     const list = await advancedFetchListings(load);
     if(list){
       serverObj.topList = list;
@@ -869,6 +867,5 @@ export async function explorerServerQuery({query, listing_type}){
   }
 
   await topListings();
-  
   return {...serverObj, seoDescript: seoDescript}
 }

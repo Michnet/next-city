@@ -27,7 +27,7 @@ const PostTerms = ({post, termKey, title,taxonomy, linkTax}) => {
                       <div className="listing_tags">
                         {terms.map((item) => {
                           const {name, taxonomy, slug } = item ?? {};
-                          return <Link href={`/explore?${linkTax}=${slug}`} className={'icon-box color-theme'}>
+                          return <Link key={slug} href={`/explore?${linkTax}=${slug}`} className={'icon-box color-theme'}>
 
                             <span className="gx-media-body row_flex gap-2 justify-between mb-2 align-items-center">
                               <span  className="gx-text-truncate icon_text" dangerouslySetInnerHTML={{__html: name}}/>

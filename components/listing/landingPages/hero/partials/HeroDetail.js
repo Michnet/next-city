@@ -118,7 +118,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
              {isLargeTab && <><div className='profile_name card card-style d-block d-lg-none mx-0 p-4'>
                {nameView}
              </div>
-             <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={5} exClass='minw-100 mb-3' listing={listing} setActiveKey={setActiveKey}/>
+             <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={'5px'} exClass='minw-100 mb-3' listing={listing} setActiveKey={setActiveKey}/>
              </>}
              </Client>
             <div className='_right card card-style mx-0 p-3 p-sm-5 gap-4 mb-0 row flex-lg-row flex-lg-nowrap'> 
@@ -148,7 +148,7 @@ const HeroDetailConst = ({listing, activeKey, color, setActiveKey, user, token, 
                 </div>
                 </div>
                 {/* <div className='col-12 col-lg-6'>
-                <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={5} exClass='mx-n4 mb-n3 minw-100' listing={listing} setActiveKey={setActiveKey}/>
+                <MegaGalleryMini columnsObj={{0: 3, 1024: 4}} gutter={"5px"} exClass='mx-n4 mb-n3 minw-100' listing={listing} setActiveKey={setActiveKey}/>
                 </div> */}
               </div>
             </div>

@@ -34,14 +34,14 @@ function MainMenu() {
     },
  ]
  const typeLinks = [
-    {id: 1,
+    {id: 3,
         icon: "far fa-calendar-check",
         color: 'gradient-red',
         name: "Events",
         routePath: "/explore/events",
         isNew: false
     },
-    {id: 2,
+    {id: 4,
         icon: "far fa-map-marked-alt",
         color: 'gradient-brown',
         name: "Places",
@@ -55,7 +55,7 @@ function MainMenu() {
         routePath: "/explore/special-sales",
         isNew: false
     }, */
-    {id: 4,
+    {id: 5,
         icon: "far fa-wrench",
         color: 'gradient-brown',
         name: "Services",

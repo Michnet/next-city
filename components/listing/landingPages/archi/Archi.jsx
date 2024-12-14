@@ -260,7 +260,7 @@ function Archi({listing, setActiveKey, colorHex, color}){
                <HeroDetail listing={listing} exClass='pb-5'/>
             </ParallaxSection> */}
             <section className="d-none d-lg-block bg-transparent hide_if_empty shadow-0 rounded-0 py-0 px-0 overflow-visible">
-                <MegaGalleryMini imgShadows columnsObj={{0: 3, 1024: 4}} gutter={10} exClass='minw-100' listing={listing} setActiveKey={setActiveKey}/>
+                <MegaGalleryMini imgShadows columnsObj={{0: 3, 1024: 4}} gutter={'10px'} exClass='minw-100' listing={listing} setActiveKey={setActiveKey}/>
             </section>
             {detailView}
             <Section fullWidth overlay={false}  dark={false} exClass='p-0 bg-transparent'>
