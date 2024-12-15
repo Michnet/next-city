@@ -67,11 +67,11 @@ function appjsCode(){
 
 //Set Color Based on Remembered Preference.
 if (typeof window !== 'undefined') {
-    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
-    const isNoPreference = window.matchMedia("(prefers-color-scheme: no-preference)").matches;
+    //const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    //const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
+    //const isNoPreference = window.matchMedia("(prefers-color-scheme: no-preference)").matches;
 
-    if(isNoPreference){
+    //if(isNoPreference){
         if(localStorage.getItem(pwaName+'-Theme')){
             if(localStorage.getItem(pwaName+'-Theme') == "dark-mode"){
             activateDarkMode()
@@ -82,14 +82,15 @@ if (typeof window !== 'undefined') {
         }else{
             activateLightMode();
             }
-        }else{
+        //}
+        /* else{
         if(isDarkMode){
             activateDarkMode();}
         else{ 
             if(isLightMode){
                 activateLightMode();
             }}
-    }
+    } */
 }
 }
 /* function setColorScheme() {
