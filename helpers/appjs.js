@@ -80,8 +80,13 @@ if (typeof window !== 'undefined') {
                 activateLightMode()
             }
         }else{
+            const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            if(isDarkMode){
+                activateDarkMode();}
+            else{
             activateLightMode();
             }
+        }
         //}
         /* else{
         if(isDarkMode){

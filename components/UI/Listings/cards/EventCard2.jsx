@@ -1,4 +1,4 @@
-import { cleanHtml, shuffleArray, srcWithFallback } from "@/helpers/universal";
+import { cleanHtml, resizedImage, shuffleArray, srcWithFallback } from "@/helpers/universal";
 import Link from "next/link";
 import DateView from "../../partials/dateViews/DateView";
 import Image from 'next/image';
@@ -8,15 +8,16 @@ import TermTag from "../../partials/TermTag";
 //import Slider from "react-slick";
 //import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
 import { fallbackImgSrcSet } from '@/helpers/base';
+import { memo } from "react";
 //import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
 
-const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
+const EventCard2Const = ({listing, width=220, contentClass='px-2', minHeight=150, height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, type} = listing;
     const {likes} = acf?.community ?? {};
 
     const slicedGal = shuffleArray(gallery).slice(0, 5);
     //const imgArr = [xtra_large_thumb ?? large_thumb, ...slicedGal];
-    const imgArr2 = shuffleArray([xtra_large_thumb ?? large_thumb, ...gallery]);
+    const imgArr2 = shuffleArray([...gallery]);
 
     /* var itemSettings = {
         dots: true,
@@ -30,7 +31,7 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, hei
     <div data-aos='zoom-in' className={`listing_card card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width}}>
             <div className="overflow-hidden card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
 
-                <Image unoptimized onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={srcWithFallback(imgArr2[0])} fill={true} className={'pos-relative object-cover'} style={{minHeight:minHeight}}/>
+                <Image unoptimized onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={resizedImage(srcWithFallback(imgArr2[0]), 'medium')} fill={true} className={'pos-relative object-cover'} style={{minHeight:minHeight}}/>
                 {/* <Slider
                   focusOnSelect
                   autoplay
@@ -110,4 +111,5 @@ const EventCard2 = ({listing, width=220, contentClass='px-2', minHeight=150, hei
     )
 }
 
+const EventCard2 = memo(EventCard2Const);
 export default EventCard2;

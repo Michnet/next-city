@@ -1,26 +1,24 @@
-import { cleanHtml, shuffleArray, srcWithFallback } from "@/helpers/universal";
+import { cleanHtml, resizedImage, shuffleArray, srcWithFallback } from "@/helpers/universal";
 import Link from "next/link";
-import DateView from "../../partials/dateViews/DateView";
 import Image from 'next/image';
-import { ListingMetaMini, ListingMeta, SlickArrow } from "../../Partials";
-import { PriceView } from "../../PriceView";
-import TermTag from "../../partials/TermTag";
+import { ListingMetaMini, ListingMeta} from "../../Partials";
 //import Slider from "react-slick";
 //import { LoaderSiteLogo } from "@/components/skeletons/Loaders";
 import { fallbackImgSrcSet } from '@/helpers/base';
 import DateViewDescriptive from './../../partials/dateViews/DateViewDescriptive';
+import { memo } from "react";
 
-const EventCardImage = ({listing, width= 'fit-content', contentClass='px-2', minHeight=130,maxHeight= '300px', height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini, styleObj={}}) => {
+const EventCardImageConst = ({listing, width= 'fit-content', contentClass='px-2', minHeight=130,maxHeight= '300px', height='auto', exClass='', noButton=true, truncate=true, transparent=false, mini, styleObj={}}) => {
     let {id, title, address, short_desc, category, event_date, page_views, rating, large_thumb, locations, level, ticket_min_price_html, xtra_large_thumb, gallery, slug, acf, type} = listing;
     const {likes} = acf?.community ?? {};
 
-    const slicedGal = shuffleArray(gallery).slice(0, 5);
+    //const slicedGal = shuffleArray(gallery).slice(0, 5);
     //const imgArr = [xtra_large_thumb ?? large_thumb, ...slicedGal];
-    const imgArr2 = shuffleArray([xtra_large_thumb ?? large_thumb, ...gallery]);
+    const imgArr2 = shuffleArray([...gallery]);
     return (<>
     <div data-aos='zoom-in' className={`listing_card hover_reveal card card-style m-0 event_card_2 ${exClass} ${transparent ? 'bgClear' : ''}`} style={{width: width, ...styleObj}}>
             <div className="w-100 card position-relative shadow-l mb-0 card-img" style={{width: 'inherit', maxHeight: '300px', height:height, minHeight:minHeight}}>
-                <Image unoptimized onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={srcWithFallback(imgArr2[0])} fill={true} className={'pos-relative object-cover'} style={{maxHeight: maxHeight,minHeight:minHeight}}/>
+                <Image unoptimized onErrorCapture = {(e) => {e.target.src = '/images/bg/fallback-sm.jpg', e.target.srcset= {fallbackImgSrcSet}}} src={resizedImage(srcWithFallback(imgArr2[0]), 'medium')} fill={true} className={'pos-relative object-cover'} style={{maxHeight: maxHeight,minHeight:minHeight}}/>
                 {/* <Slider
                   focusOnSelect
                   autoplay
@@ -91,4 +89,5 @@ const EventCardImage = ({listing, width= 'fit-content', contentClass='px-2', min
     )
 }
 
+const EventCardImage= memo(EventCardImageConst);
 export default EventCardImage;
