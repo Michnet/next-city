@@ -47,7 +47,7 @@ const ActivityCard2Const = ({listing, exClass, size, mini, width}) => {
                             height={size ? size  : '100%'}
                             className="object-cover js-lazy"
                             placeholder={<LoaderSiteLogo/>}
-                            src={imgSrc/* resizedImage(imgSrc, 'medium') */}
+                            src={resizedImage(imgSrc, 'medium')}
                             onError={(e) => {console.log('tag', e.target.src); e.target.src = '/images/bg/fallback-sm.jpg'}}
                             alt="image"
                           />

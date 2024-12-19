@@ -104,9 +104,7 @@ export async function getStaticPaths() {
     return <><div className={`listing_page _${apiType} ${query?.view &&  query?.view !== 'home' ? '_section' : ''}`}>
 
     <ListingPage listing={cachedListing} themeColor={themeColor} themeColorHex={themeColorHex}/>
-    <LazyLoad placeholder={<Skeleton height={400}/>} offset={200} once>
     <RelatedListings type={type} category={category} locations={locations} dir_categories={dir_categories} listingId={listingId}/>
-    </LazyLoad>
     <VisitRecord Id={listing?.id}/>
     <ListingStater id={listing?.id}/></div>
               </> 
